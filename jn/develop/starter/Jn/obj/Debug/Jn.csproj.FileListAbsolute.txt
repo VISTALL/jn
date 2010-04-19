@@ -1,0 +1,29 @@
+E:\WORK\jn\resource\Jn.exe
+E:\WORK\jn\resource\Jn.pdb
+E:\WORK\jn\dev\starter\WindowsFormsApplication1\obj\Debug\ResolveAssemblyReference.cache
+E:\WORK\jn\dev\starter\WindowsFormsApplication1\obj\Debug\Jn.Properties.Resources.resources
+E:\WORK\jn\dev\starter\WindowsFormsApplication1\obj\Debug\Jn.csproj.GenerateResource.Cache
+E:\WORK\jn\dev\starter\WindowsFormsApplication1\obj\Debug\Jn.exe
+E:\WORK\jn\dev\starter\WindowsFormsApplication1\obj\Debug\Jn.pdb
+E:\WORK\jn\dev\starter\WindowsFormsApplication1\obj\Debug\Jn.JnForm.resources
+E:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.exe
+E:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.pdb
+E:\WORK\jn\dev\starter\Jn\obj\Debug\ResolveAssemblyReference.cache
+E:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.Properties.Resources.resources
+E:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.csproj.GenerateResource.Cache
+G:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.exe
+G:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.pdb
+G:\WORK\jn\resource\Jn.exe
+G:\WORK\jn\resource\Jn.pdb
+G:\WORK\jn\dev\starter\Jn\obj\Debug\ResolveAssemblyReference.cache
+G:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.Properties.Resources.resources
+G:\WORK\jn\dev\starter\Jn\obj\Debug\Jn.csproj.GenerateResource.Cache
+G:\J Develop Station\jn\dev\starter\Jn\obj\Debug\ResolveAssemblyReference.cache
+G:\J Develop Station\jn\dev\starter\Jn\obj\Debug\Jn.Properties.Resources.resources
+G:\J Develop Station\jn\dev\starter\Jn\obj\Debug\Jn.csproj.GenerateResource.Cache
+G:\J Develop Station\jn\resource\Jn.exe
+G:\J Develop Station\jn\resource\Jn.pdb
+G:\J Develop Station\jn\dev\starter\Jn\obj\Debug\Jn.exe
+G:\J Develop Station\jn\dev\starter\Jn\obj\Debug\Jn.pdb
+G:\J Develop Station\jn\develop\starter\Jn\obj\Debug\Jn.exe
+G:\J Develop Station\jn\develop\starter\Jn\obj\Debug\Jn.pdb
