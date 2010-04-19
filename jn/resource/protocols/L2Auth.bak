@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol name="Lineage 2 Auth Server" crypt="L2Auth" ignoreWarnings="true">
+  <packetfamilly switchtype="c" way="ServerPackets">
+    <packet id="0x00" name="Init" key="true">
+      <part name="session id" type="d" />
+      <part name="protocol revision" type="d" />
+      <part name="RSA key" type="b" size="0x80" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="Blowfish key" type="b" size="0x10"/>
+    </packet>
+    <packet id="0x01" name="LoginFail">
+      <part name="reason" type="d" />
+    </packet>
+    <packet id="0x02" name="AccountKicked">
+      <part name="reason" type="d" />
+    </packet>
+    <packet id="0x03" name="LoginOk" >
+      <part name="LoginOk 1" type="d" />
+      <part name="LoginOk 2" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="b" size="0x10"/>
+    </packet>
+    <packet id="0x04" name="ServerList" server_list="true">
+      <part name="list size" type="c" id="1" />
+      <part name="last serv" type="c" />
+      <for id="1">
+        <part name="id" type="c" />
+        <part name="ip" type="d">
+          <reader type="IPv4"/>
+        </part>
+        <part name="port" type="d" />
+        <part name="age" type="c" />
+        <part name="pvp" type="c" />
+        <part name="current players" type="h" />
+        <part name="max players" type="h" />
+        <part name="up/down" type="c" />
+        <part name="bits (clock/testserver)" type="d" />
+        <part name="brackets" type="c" />
+      </for>
+    </packet>
+    <packet id="0x06" name="PlayFail" >
+      <part name="reason" type="d" />
+    </packet>
+    <packet id="0x07" name="PlayOk" >
+      <part name="PlayOk 1" type="d" />
+      <part name="PlayOk 2" type="d" />
+    </packet>
+    <packet id="0x0b" name="GGAuth" >
+      <part name="sessionId" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+  </packetfamilly>
+  <packetfamilly switchtype="c" way="ClientPackets">
+    <packet id="0x00" name="RequestAuthLogin">
+      <part name="loginData" type="b" size="128"/>
+    </packet>
+    <packet id="0x02" name="RequestServerLogin" >
+      <part name="LoginOk1" type="d" />
+      <part name="LoginOk2" type="d" />
+      <part name="ServId" type="c" />
+    </packet>
+    <packet id="0x05" name="RequestServerList" >
+      <part name="LoginOk1" type="d" />
+      <part name="LoginOk2" type="d" />
+    </packet>
+    <packet id="0x07" name="AuthGameGuard" >
+      <part name="sessionId" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+  </packetfamilly>
+</protocol>

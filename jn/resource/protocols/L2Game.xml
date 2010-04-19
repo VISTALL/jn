@@ -1,0 +1,1599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<protocol checksumSize="0" crypt="L2Game" name="Lineage 2 Game Server">
+  <packetfamilly way="SERVER">
+    <packet id="2E" key="true" name="VersionCheck">
+      <part name="success" type="c" />
+      <part name="key0" type="c" />
+      <part name="key1" type="c" />
+      <part name="key2" type="c" />
+      <part name="key3" type="c" />
+      <part name="key4" type="c" />
+      <part name="key5" type="c" />
+      <part name="key6" type="c" />
+      <part name="key7" type="c" />
+      <part name="ok" type="d" />
+      <part name="serverId" type="d" />
+      <part name="?" type="c" />
+      <part name="seed" type="d" />
+    </packet>
+    <packet id="FE;BC00" name="ExBrPremiumState">
+      <part name="obj_id" type="d" />
+      <part name="state" type="c" />
+    </packet>
+    <packet id="0B" name="CharSelected">
+      <part name="name" type="S" />
+      <part name="charId" type="d" />
+      <part name="title" type="S" />
+      <part name="sessionId" type="d" />
+      <part name="clanId" type="d" />
+      <part name="?" type="d" />
+      <part name="sex" type="d" />
+      <part name="race" type="d" />
+      <part name="classId" type="d" />
+      <part name="active" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="hp" type="D" />
+      <part name="mp" type="D" />
+      <part name="sp" type="d" />
+      <part name="exp" type="Q" />
+      <part name="level" type="d" />
+      <part name="kamra" type="d" />
+      <part name="pkkills" type="d" />
+      <part name="int" type="d" />
+      <part name="str" type="d" />
+      <part name="con" type="d" />
+      <part name="men" type="d" />
+      <part name="dex" type="d" />
+      <part name="wit" type="d" />
+      <part name="time" type="d" />
+      <part name="?" type="d" />
+      <part name="classId" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="bytes" type="b" size="64" />
+      <part name="seed" type="d" />
+    </packet>
+    <packet id="F9" name="EtcStatusUpdate">
+      <part name="force" type="d" />
+      <part name="weightpenalty" type="d" />
+      <part name="messagerefusal" type="d" />
+      <part name="dangerarea" type="d" />
+      <part name="weaponpenalty" type="d" />
+      <part name="armorpenalty" type="d" />
+      <part name="charnofcourage" type="d" />
+      <part name="deathpenalty" type="d" />
+      <part name="consumedsouls" type="d" />
+    </packet>
+    <packet id="48" name="MagicSkillUse">
+      <part name="obj_id" type="d" />
+      <part name="target_obj_id" type="d" />
+      <part name="skillId" type="d" />
+      <part name="skillLevel" type="d" />
+      <part name="hitTime" type="d" />
+      <part name="reuse" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="?" type="h" />
+      <part name="?" type="h" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+    </packet>
+    <packet id="21" name="InventoryUpdate">
+      <part name="size" type="h" id="0" />
+      <for id="0">
+        <part name="change" type="h" />
+        <part name="type1" type="h" />
+        <part name="obj_id" type="d" />
+        <part name="item_id" type="d" />
+        <part name="equip_slot" type="d" />
+        <part name="count" type="Q" />
+        <part name="typ2" type="h" />
+        <part name="custom_type1" type="h" />
+        <part name="isEquiped" type="h" />
+        <part name="bodypart" type="d" />
+        <part name="enchant" type="h" />
+        <part name="custom_type2" type="h" />
+        <part name="aurgId" type="d" />
+        <part name="shadowlife" type="d" />
+        <part name="attackelement" type="h" />
+        <part name="attackvalue" type="h" />
+        <part name="fire" type="h" />
+        <part name="water" type="h" />
+        <part name="wind" type="h" />
+        <part name="earth" type="h" />
+        <part name="holy" type="h" />
+        <part name="unholy" type="h" />
+        <part name="timeLeft" type="d" />
+        <part name="enchanteffect1" type="h" />
+        <part name="enchanteffect2" type="h" />
+        <part name="enchanteffect3" type="h" />
+      </for>
+    </packet>
+    <packet id="E5" name="HennaInfo">
+      <part name="INT" type="c" />
+      <part name="STR" type="c" />
+      <part name="CON" type="c" />
+      <part name="MEN" type="c" />
+      <part name="DEX" type="c" />
+      <part name="WIT" type="c" />
+      <part name="slots" type="d" />
+      <part id="0" name="size" type="d" />
+      <for id="0">
+        <part name="symbolId" type="d" />
+        <part name="symbolId" type="d" />
+      </for>
+    </packet>
+    <packet id="79" name="ValidateLocation">
+      <part name="obj_id" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="h" type="d" />
+    </packet>
+    <packet id="45" name="ShortCutInit">
+      <part id="0" name="size" type="d" />
+      <for id="0">
+        <part id="1" name="type" type="d" />
+        <part name="slot" type="d" />
+        <part name="id" type="d" />
+        <switch id="1">
+          <case id="1">
+            <part name="?" type="d" />
+            <part name="?" type="d" />
+            <part name="?" type="d" />
+            <part name="?" type="d" />
+            <part name="?" type="h" />
+            <part name="?" type="h" />
+          </case>
+          <case id="2">
+            <part name="level" type="d" />
+            <part name="?" type="c" />
+            <part name="?" type="d" />
+          </case>
+          <case id="default">
+            <part name="?" type="d" />
+          </case>
+        </switch>
+      </for>
+    </packet>
+    <packet id="33" name="Attack">
+      <part name="obj_id" type="d" />
+      <part name="target" type="d" />
+      <part name="damage" type="d" />
+      <part name="flags" type="c" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="hits" type="h" />
+    </packet>
+    <packet id="22" name="TeleportToLocation">
+      <part name="obj_id" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+    </packet>
+    <packet id="0F" name="CharacterCreateSuccess" />
+    <packet id="11" name="ItemList">
+      <part name="showWindow" type="h" />
+      <part id="0" name="size" type="h" />
+      <for id="0">
+        <part name="item type 1" type="h" />
+        <part name="obj_id" type="d" />
+        <part name="item_id" type="d" />
+        <part name="equip_slot" type="d" />
+        <part name="count" type="Q" />
+        <part name="item type 2" type="h" />
+        <part name="custom item type 1" type="h" />
+        <part name="is Equiped" type="h" />
+        <part name="bodypart" type="d" />
+        <part name="enchant" type="h" />
+        <part name="custom item type 1" type="h" />
+        <part name="augId" type="d" />
+        <part name="lifeLeft" type="d" />
+        <part name="attackElement" type="h" />
+        <part name="attackElement" type="h" />
+        <part name="fire" type="h" />
+        <part name="water" type="h" />
+        <part name="wind" type="h" />
+        <part name="earth" type="h" />
+        <part name="holy" type="h" />
+        <part name="unholy" type="h" />
+        <part name="timeLeft" type="d" />
+        <part name="enchanteffect1" type="h" />
+        <part name="enchanteffect2" type="h" />
+        <part name="enchanteffect3" type="h" />
+      </for>
+    </packet>
+    <packet id="0D" name="NewCharacterSuccess">
+      <part id="0" name="size" type="d" />
+      <for id="0">
+        <part name="race" type="d" />
+        <part name="classId" type="d" />
+        <part name="?" type="d" />
+        <part name="STR" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="DEX" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="CON" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="INT" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="WIT" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="MEN" type="d" />
+        <part name="?" type="d" />
+      </for>
+    </packet>
+    <packet id="30" name="NpcSay">
+      <part name="obj_id" type="d" />
+      <part name="type" type="d" />
+      <part name="npc_id" type="d" />
+      <part name="text" type="S" />
+    </packet>
+    <packet id="31" name="CharInfo">
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="?" type="d" />
+      <part name="obj_id" type="d" />
+      <part name="name" type="S" />
+      <part name="race" type="d" />
+      <part name="sex" type="d" />
+      <part name="base_class" type="d" />
+      <part name="under-itemId" type="d" />
+      <part name="head-itemId" type="d" />
+      <part name="rhand-itemId" type="d" />
+      <part name="lhand-itemId" type="d" />
+      <part name="gloves-itemId" type="d" />
+      <part name="chest-itemId" type="d" />
+      <part name="legs-itemId" type="d" />
+      <part name="feet-itemId" type="d" />
+      <part name="back-itemId" type="d" />
+      <part name="lrhand-itemId" type="d" />
+      <part name="hair-itemId" type="d" />
+      <part name="dhair-itemId" type="d" />
+      <part name="rbracelet-itemId" type="d" />
+      <part name="lbracelet-itemId" type="d" />
+      <part name="deco1-itemId" type="d" />
+      <part name="deco2-itemId" type="d" />
+      <part name="deco3-itemId" type="d" />
+      <part name="deco4-itemId" type="d" />
+      <part name="deco5-itemId" type="d" />
+      <part name="deco6-itemId" type="d" />
+      <part name="belt-itemId" type="d" />
+      <part name="under-augId" type="d" />
+      <part name="head-augId" type="d" />
+      <part name="rhand-augId" type="d" />
+      <part name="lhand-augId" type="d" />
+      <part name="gloves-augId" type="d" />
+      <part name="chest-augId" type="d" />
+      <part name="legs-augId" type="d" />
+      <part name="feet-augId" type="d" />
+      <part name="back-augId" type="d" />
+      <part name="lrhand-augId" type="d" />
+      <part name="hair-augId" type="d" />
+      <part name="dhair-augId" type="d" />
+      <part name="rbracelet-augId" type="d" />
+      <part name="lbracelet-augId" type="d" />
+      <part name="deco1-augId" type="d" />
+      <part name="deco2-augId" type="d" />
+      <part name="deco3-augId" type="d" />
+      <part name="deco4-augId" type="d" />
+      <part name="deco5-augId" type="d" />
+      <part name="deco6-augId" type="d" />
+      <part name="belt-augId" type="d" />
+      <part name="talismanCount" type="d" />
+      <part name="?" type="d" />
+      <part name="pvpFlag" type="d" />
+      <part name="karma" type="d" />
+      <part name="mAttackSpeed" type="d" />
+      <part name="pAtttackSpeed" type="d" />
+      <part name="pvpFlag" type="d" />
+      <part name="karma" type="d" />
+      <part name="runSpeed" type="d" />
+      <part name="walkSpeed" type="d" />
+      <part name="sweemRunSpeed" type="d" />
+      <part name="sweemWalkSpeed" type="d" />
+      <part name="flyRunSpeed" type="d" />
+      <part name="flyWalkSpeed" type="d" />
+      <part name="flyRunSpeed" type="d" />
+      <part name="flyWalkSpeed" type="d" />
+      <part name="moveMulti" type="D" />
+      <part name="attackMulti" type="D" />
+      <part name="colRadius" type="D" />
+      <part name="colHeight" type="D" />
+      <part name="hairStyle" type="d" />
+      <part name="hairColor" type="d" />
+      <part name="face" type="d" />
+      <part name="title" type="S" />
+      <part name="clan_id" type="d" />
+      <part name="clan_crest_id" type="d" />
+      <part name="ally_id" type="d" />
+      <part name="ally_crest_id" type="d" />
+      <part name="?" type="d" />
+      <part name="sit" type="c" />
+      <part name="run" type="c" />
+      <part name="combat" type="c" />
+      <part name="dead" type="c" />
+      <part name="invis" type="c" />
+      <part name="mount_type" type="c" />
+      <part name="private_store" type="c" />
+      <part name="cubic_size" type="h" id="0" />
+      <for id="0">
+        <part name="cubicId" type="h" />
+      </for>
+      <part name="partyRoom" type="c" />
+      <part name="abnormalEffects" type="d" />
+      <part name="flying" type="c" />
+      <part name="rec_have" type="h" />
+      <part name="mount_id" type="d" />
+      <part name="class_Id" type="d" />
+      <part name="?" type="d" />
+      <part name="enchant" type="c" />
+      <part name="team" type="c" />
+      <part name="large_crest_id" type="d" />
+      <part name="noble" type="c" />
+      <part name="hero" type="c" />
+      <part name="fishing" type="c" />
+      <part name="fish-x" type="d" />
+      <part name="fish-y" type="d" />
+      <part name="fish-z" type="d" />
+      <part name="name_color" type="d">
+        <reader type="Color" />
+      </part>
+      <part name="h" type="d" />
+      <part name="plegde_class" type="d" />
+      <part name="pledge_type" type="d" />
+      <part name="title_color" type="d">
+        <reader type="Color" />
+      </part>
+      <part name="cw_level" type="d" />
+      <part name="clan_reputation" type="d" />
+      <part name="transformation" type="d" />
+      <part name="agation" type="d" />
+      <part name="allowedMap" type="d" />
+      <part name="specialEffects" type="d" />
+      <part name="territoryId" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="0C" name="NpcInfo">
+      <part name="obj_id" type="d" />
+      <part name="npcId" type="d" />
+      <part name="attackable" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="h" type="d" />
+      <part name="?" type="d" />
+      <part name="mAtackSpeed" type="d" />
+      <part name="pAtackSpeed" type="d" />
+      <part name="run_spd" type="d" />
+      <part name="walk_spd" type="d" />
+      <part name="run_spd" type="d" />
+      <part name="walk_spd" type="d" />
+      <part name="run_spd" type="d" />
+      <part name="walk_spd" type="d" />
+      <part name="run_spd" type="d" />
+      <part name="walk_spd" type="d" />
+      <part name="move_speed" type="D" />
+      <part name="attack_speed" type="D" />
+      <part name="col_radius" type="D" />
+      <part name="col_height" type="D" />
+      <part name="rhand" type="d" />
+      <part name="armor" type="d" />
+      <part name="lrhand" type="d" />
+      <part name="?" type="c" />
+      <part name="running" type="c" />
+      <part name="in combat" type="c" />
+      <part name="dead" type="c" />
+      <part name="show spawn animation" type="c" />
+      <part name="name" type="S" />
+      <part name="title" type="S" />
+      <part name="?" type="d" />
+      <part name="pvp_flag" type="d" />
+      <part name="karma" type="d" />
+      <part name="abnormal" type="d" />
+      <part name="clan_id" type="d" />
+      <part name="clan_crest_id" type="d" />
+      <part name="ally_id" type="d" />
+      <part name="ally_crest_id" type="d" />
+      <part name="?" type="c" />
+      <part name="team" type="c" />
+      <part name="col_radius" type="D" />
+      <part name="col_height" type="D" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="type" type="d" />
+      <part name="?" type="c" />
+      <part name="?" type="c" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="2f" name="CharMoveToLocation">
+      <part name="obj_id" type="d" />
+      <part name="desc_x" type="d" />
+      <part name="desc_y" type="d" />
+      <part name="desc_z" type="d" />
+      <part name="cur_x" type="d" />
+      <part name="cur_y" type="d" />
+      <part name="cur_z" type="d" />
+    </packet>
+    <packet id="32" name="UserInfo">
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="airship" type="d" />
+      <part name="obj_id" type="d" />
+      <part name="name" type="S" />
+      <part name="race" type="d" />
+      <part name="sex" type="d" />
+      <part name="base_class" type="d" />
+      <part name="level" type="d" />
+      <part name="exp" type="Q" />
+      <part name="str" type="d" />
+      <part name="dex" type="d" />
+      <part name="con" type="d" />
+      <part name="int" type="d" />
+      <part name="wit" type="d" />
+      <part name="men" type="d" />
+      <part name="maxHP" type="d" />
+      <part name="curHP" type="d" />
+      <part name="maxMP" type="d" />
+      <part name="curMP" type="d" />
+      <part name="sp" type="d" />
+      <part name="curLoad" type="d" />
+      <part name="maxLoad" type="d" />
+      <part name="is equiped weapon" type="d" />
+      <part name="obj_id-UNDER" type="d" />
+      <part name="obj_id-REAR" type="d" />
+      <part name="obj_id-LEAR" type="d" />
+      <part name="obj_id-NECK" type="d" />
+      <part name="obj_id-RFINGER" type="d" />
+      <part name="obj_id-LFINGER" type="d" />
+      <part name="obj_id-HEAD" type="d" />
+      <part name="obj_id-RHAND" type="d" />
+      <part name="obj_id-LHAND" type="d" />
+      <part name="obj_id-GLOVES" type="d" />
+      <part name="obj_id-CHEST" type="d" />
+      <part name="obj_id-LEGS" type="d" />
+      <part name="obj_id-FEET" type="d" />
+      <part name="obj_id-BACK" type="d" />
+      <part name="obj_id-LRHAND" type="d" />
+      <part name="obj_id-HAIR" type="d" />
+      <part name="obj_id-DHAIR" type="d" />
+      <part name="obj_id-RBRACELET" type="d" />
+      <part name="obj_id-LBRACELET" type="d" />
+      <part name="obj_id-DECO1" type="d" />
+      <part name="obj_id-DECO2" type="d" />
+      <part name="obj_id-DECO3" type="d" />
+      <part name="obj_id-DECO4" type="d" />
+      <part name="obj_id-DECO5" type="d" />
+      <part name="obj_id-DECO6" type="d" />
+      <part name="obj_id-BELT" type="d" />
+      <part name="item_id-UNDER" type="d" />
+      <part name="item_id-REAR" type="d" />
+      <part name="item_id-LEAR" type="d" />
+      <part name="item_id-NECK" type="d" />
+      <part name="item_id-RFINGER" type="d" />
+      <part name="item_id-LFINGER" type="d" />
+      <part name="item_id-HEAD" type="d" />
+      <part name="item_id-RHAND" type="d" />
+      <part name="item_id-LHAND" type="d" />
+      <part name="item_id-GLOVES" type="d" />
+      <part name="item_id-CHEST" type="d" />
+      <part name="item_id-LEGS" type="d" />
+      <part name="item_id-FEET" type="d" />
+      <part name="item_id-BACK" type="d" />
+      <part name="item_id-LRHAND" type="d" />
+      <part name="item_id-HAIR" type="d" />
+      <part name="item_id-DHAIR" type="d" />
+      <part name="item_id-RBRACELET" type="d" />
+      <part name="item_id-LBRACELET" type="d" />
+      <part name="item_id-DECO1" type="d" />
+      <part name="item_id-DECO2" type="d" />
+      <part name="item_id-DECO3" type="d" />
+      <part name="item_id-DECO4" type="d" />
+      <part name="item_id-DECO5" type="d" />
+      <part name="item_id-DECO6" type="d" />
+      <part name="item_id-BACK" type="d" />
+      <part name="aurg_id-UNDER" type="d" />
+      <part name="aurg_id-REAR" type="d" />
+      <part name="aurg_id-LEAR" type="d" />
+      <part name="aurg_id-NECK" type="d" />
+      <part name="aurg_id-RFINGER" type="d" />
+      <part name="aurg_id-LFINGER" type="d" />
+      <part name="aurg_id-HEAD" type="d" />
+      <part name="aurg_id-RHAND" type="d" />
+      <part name="aurg_id-LHAND" type="d" />
+      <part name="aurg_id-GLOVES" type="d" />
+      <part name="aurg_id-CHEST" type="d" />
+      <part name="aurg_id-LEGS" type="d" />
+      <part name="aurg_id-FEET" type="d" />
+      <part name="aurg_id-BACK" type="d" />
+      <part name="aurg_id-LRHAND" type="d" />
+      <part name="aurg_id-HAIR" type="d" />
+      <part name="aurg_id-DHAIR" type="d" />
+      <part name="aurg_id-RBRACELET" type="d" />
+      <part name="aurg_id-LBRACELET" type="d" />
+      <part name="aurg_id-DECO1" type="d" />
+      <part name="aurg_id-DECO2" type="d" />
+      <part name="aurg_id-DECO3" type="d" />
+      <part name="aurg_id-DECO4" type="d" />
+      <part name="aurg_id-DECO5" type="d" />
+      <part name="aurg_id-DECO6" type="d" />
+      <part name="aurg_id-BELT" type="d" />
+      <part name="talismans" type="d" />
+      <part name="cloakactive" type="d" />
+      <part name="pAtack" type="d" />
+      <part name="pAtackSpeed" type="d" />
+      <part name="pDef" type="d" />
+      <part name="evasion" type="d" />
+      <part name="acc" type="d" />
+      <part name="crit" type="d" />
+      <part name="mAtack" type="d" />
+      <part name="mAtackSpeed" type="d" />
+      <part name="pAtackSpeed" type="d" />
+      <part name="mDef" type="d" />
+      <part name="pvp_flag" type="d" />
+      <part name="karma" type="d" />
+      <part name="run_spd" type="d" />
+      <part name="walk_spd" type="d" />
+      <part name="swim_spd" type="d" />
+      <part name="swim_spd" type="d" />
+      <part name="fly_run_spd" type="d" />
+      <part name="fly_walk_spd" type="d" />
+      <part name="fly_run_spd" type="d" />
+      <part name="fly_walk_spd" type="d" />
+      <part name="move_speed" type="D" />
+      <part name="attack_speed" type="D" />
+      <part name="col_radius" type="D" />
+      <part name="col_height" type="D" />
+      <part name="hair_stype" type="d" />
+      <part name="hair_color" type="d" />
+      <part name="face" type="d" />
+      <part name="gm_commands" type="d" />
+      <part name="title" type="S" />
+      <part name="clan_id" type="d" />
+      <part name="clan_crest_id" type="d" />
+      <part name="ally_id" type="d" />
+      <part name="ally_crest_id" type="d" />
+      <part name="relation" type="d" />
+      <part name="mount_type" type="c" />
+      <part name="private_store" type="c" />
+      <part name="can_crystalize" type="c" />
+      <part name="pk_kills" type="d" />
+      <part name="pvp_kills" type="d" />
+      <part id="0" name="cubic-size" type="h" />
+      <for id="0">
+        <part name="cubicId" type="h" />
+      </for>
+      <part name="party_room" type="c" />
+      <part name="abnormal" type="d" />
+      <part name="fly" type="c" />
+      <part name="clan_privs" type="d" />
+      <part name="rec_left" type="h" />
+      <part name="rec_have" type="h" />
+      <part name="mount_id" type="d" />
+      <part name="inventory-limit" type="h" />
+      <part name="class_id" type="d" />
+      <part name="?" type="d" />
+      <part name="maxCP" type="d" />
+      <part name="curCP" type="d" />
+      <part name="enchant" type="c" />
+      <part name="team" type="c" />
+      <part name="large_clan_crest_id" type="d" />
+      <part name="noble" type="c" />
+      <part name="hero" type="c" />
+      <part name="fishing" type="c" />
+      <part name="fishing-x" type="d" />
+      <part name="fishing-y" type="d" />
+      <part name="fishing-z" type="d" />
+      <part name="name-color" type="d">
+        <reader type="Color" />
+      </part>
+      <part name="running" type="c" />
+      <part name="pledge_class" type="d" />
+      <part name="pledge_type" type="d" />
+      <part name="title_color" type="d">
+        <reader type="Color" />
+      </part>
+      <part name="cw_level" type="d" />
+      <part name="transformation" type="d" />
+      <part name="attackElement" type="h" />
+      <part name="attackElement" type="h" />
+      <part name="fire" type="h" />
+      <part name="water" type="h" />
+      <part name="wind" type="h" />
+      <part name="earth" type="h" />
+      <part name="holy" type="h" />
+      <part name="unholy" type="h" />
+      <part name="agathion" type="d" />
+      <part name="fame" type="d" />
+      <part name="allowedMap" type="d" />
+      <part name="vitalityLevel" type="d" />
+      <part name="specialeffects" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="4a" name="Say2">
+      <part name="obj_id" type="d" />
+      <part name="type" type="d" />
+      <part name="name" type="S" />
+      <part name="text" type="S" />
+    </packet>
+    <packet id="54" name="MagicSkillLaunched">
+      <part name="obj_id" type="d" />
+      <part name="skill_id" type="d" />
+      <part name="skill_level" type="d" />
+      <part name="targetsize" type="d" />
+    </packet>
+    <packet id="5F" name="SkillList">
+      <part id="0" name="size" type="d" />
+      <for id="0">
+        <part name="isActive" type="d" />
+        <part name="level" type="d" />
+        <part name="id" type="d" />
+        <part name="?" type="c" />
+        <part name="?" type="c" />
+      </for>
+    </packet>
+    <packet id="62" name="SystemMessage">
+      <part name="messageId" type="d" />
+      <part id="0" name="size" type="d" />
+      <for id="0">
+        <part id="1" name="type" type="d" />
+        <switch id="1">
+          <case id="0">
+            <part name="att" type="S" />
+          </case>
+          <case id="1">
+            <part name="num" type="d" />
+          </case>
+          <case id="2">
+            <part name="npc id" type="d" />
+          </case>
+          <case id="3">
+            <part name="item id" type="d" />
+          </case>
+          <case id="4">
+            <part name="skill_id" type="d" />
+            <part name="skill_level" type="d" />
+          </case>
+          <case id="5">
+            <part name="att" type="d" />
+          </case>
+          <case id="6">
+            <part name="long" type="Q" />
+          </case>
+          <case id="7">
+            <part name="x" type="d" />
+            <part name="y" type="d" />
+            <part name="z" type="d" />
+          </case>
+          <case id="8">
+            <part name="?" type="d" />
+            <part name="?" type="h" />
+            <part name="?" type="h" />
+          </case>
+          <case id="9">
+            <part name="att" type="d" />
+          </case>
+          <case id="10">
+            <part name="att" type="d" />
+          </case>
+          <case id="11">
+            <part name="att" type="d" />
+          </case>
+          <case id="default" />
+        </switch>
+      </for>
+    </packet>
+    <packet id="86" name="QuestList" />
+    <packet id="9e" name="PlaySound" />
+    <packet id="a0" name="PrivateStoreManageList" />
+    <packet id="a3" name="ShowMiniMap">
+      <part name="mapId" type="d" />
+      <part name="period" type="c" />
+    </packet>
+    <packet id="a6" name="TutorialShowHtml">
+      <part name="html" type="S" />
+    </packet>
+    <packet id="a7" name="TutorialShowQuestionMark" />
+    <packet id="a8" name="TutorialShowHtml" />
+    <packet id="a9" name="TutorialCloseHtml" />
+    <packet id="b9" name="MyTargetSelected">
+      <part name="obj_id" type="d" />
+    </packet>
+    <packet id="73" name="SSQInfo">
+      <part name="type" type="h" />
+    </packet>
+    <packet id="FE;A000" name="ExVitalityPointInfo">
+      <part name="points" type="d" />
+    </packet>
+    <packet id="74" name="GameGuardQuery" />
+    <packet id="75" name="L2FriendList">
+      <part id="0" name="size" type="d" />
+    </packet>
+    <packet id="84" name="LeaveWorld" />
+    <packet id="85" name="AbnormalStatusUpdate">
+      <part name="size" type="h" />
+    </packet>
+    <packet id="00" name="Die" />
+    <packet id="05" name="SpawnItem" />
+    <packet id="07" name="BuyList" />
+    <packet id="08" name="DeleteObject">
+      <part name="obj_id" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="FE;9200" name="ExReplyDominionInfo">
+      <part id="1" name="count" type="d" />
+      <for id="1">
+        <part name="id" type="d" />
+        <part name="string" type="S" />
+        <part name="owner" type="S" />
+        <part id="2" name="emblemCounr" type="d" />
+        <for id="2">
+          <part name="emblemId" type="d" />
+        </for>
+        <part name="time" type="d" />
+      </for>
+    </packet>
+    <packet id="FE;BE00" name="ExBrExtraUserInfo">
+      <part name="obj_id" type="d" />
+      <part name="afro_hair" type="d" />
+    </packet>
+    <packet id="CF" name="EventTrigger">
+      <part name="trapId" type="d" />
+      <part name="val" type="c" />
+    </packet>
+    <packet id="BD" name="PrivateStoreManageListBuy" />
+    <packet id="C7" name="SkillCoolTime" />
+    <packet id="E8" name="SendMacroList" />
+    <packet id="F2" name="ClientSetTime" />
+    <packet id="FD" name="AgitDecoInfo" />
+    <packet id="09" name="CharacterSelectionInfo" />
+    <packet id="13" name="SunSet" />
+    <packet id="16" name="DropItem" />
+    <packet id="17" name="GetItem" />
+    <packet id="18" name="StatusUpdate">
+      <part name="obj_id" type="d" />
+      <part id="0" name="size" type="d" />
+      <for id="0">
+        <part name="id" type="d" />
+        <part name="value" type="d" />
+      </for>
+    </packet>
+    <packet id="19" name="NpcHtmlMessage">
+      <part name="obj_id" type="d" />
+      <part name="html" type="S">
+        <reader type="HTML" />
+      </part>
+      <part name="item_id" type="d" />
+    </packet>
+    <packet id="40" name="MagicAndSkillList">
+      <part name="obj_id" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="FE;8D00" name="ExNpcQuestHtmlMessage">
+      <part name="obj_id" type="d" />
+      <part name="html" type="S">
+        <reader type="HTML" />
+      </part>
+      <part name="quest_id" type="d" />
+    </packet>
+    <packet id="1c" name="SendTradeDone">
+      <part name="num" type="d" />
+    </packet>
+    <packet id="FE;3300" name="ExSetCompassZoneCode">
+      <part name="zone" type="d" />
+    </packet>
+    <packet id="FE;2F00" name="ExStorageMaxCount">
+      <part name="w" type="d" />
+    </packet>
+    <packet id="FE;5E00" name="ExBasicActionList">
+      <part id="1" name="size" type="d" />
+      <for id="1">
+        <part name="actionId" type="d" />
+      </for>
+    </packet>
+    <packet id="FE;BD00" name="ExBrBroadcastEventState">
+      <part name="eventId" type="d" />
+      <part name="eventState" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="1f" name="ActionFail" />
+    <packet id="23" name="TargetSelected" />
+    <packet id="25" name="AutoAttackStart" />
+    <packet id="27" name="SocialAction">
+      <part name="obj_id" type="d" />
+      <part name="actionId" type="d" />
+    </packet>
+    <packet id="28" name="ChangeMoveType" />
+    <packet id="47" name="StopMove" />
+    <packet id="4b" name="EquipUpdate" />
+    <packet id="FE;6000" name="ExAirShipInfo">
+      <part name="obj" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="h" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="01" name="Revive" />
+    <packet id="02" name="AttackOutofRange" />
+    <packet id="03" name="AttackinCoolTime" />
+    <packet id="04" name="AttackDeadTarget" />
+    <packet id="06" name="SellList" />
+    <packet id="0A" name="LoginFail" />
+    <packet id="0E" name="NewCharacterFail" />
+    <packet id="10" name="CharCreateFail" />
+    <packet id="12" name="SunRise" />
+    <packet id="14" name="TradeStartPacket" />
+    <packet id="15" name="TradeStartOkPacket" />
+    <packet id="1A" name="TradeOwnAddPacket" />
+    <packet id="1B" name="TradeOtherAddPacket" />
+    <packet id="1D" name="CharacterDeleteSuccess" />
+    <packet id="1E" name="CharacterDeleteFail" />
+    <packet id="20" name="ServerClose" />
+    <packet id="24" name="TargetUnselectedPacket" />
+    <packet id="26" name="AutoAttackStopPacket" />
+    <packet id="29" name="ChangeWaitTypePacket" />
+    <packet id="2A" name="ManagePledgePowerPacket" />
+    <packet id="2B" name="CreatePledgePacket" />
+    <packet id="2C" name="AskJoinPledgePacket" />
+    <packet id="2D" name="JoinPledgePacket" />
+    <packet id="34" name="WithdrawalPledgePacket" />
+    <packet id="35" name="OustPledgeMemberPacket" />
+    <packet id="36" name="SetOustPledgeMemberPacket" />
+    <packet id="37" name="DismissPledgePacket" />
+    <packet id="38" name="SetDismissPledgePacket" />
+    <packet id="39" name="AskJoinPartyPacket" />
+    <packet id="3A" name="JoinPartyPacket" />
+    <packet id="3B" name="WithdrawalPartyPacket" />
+    <packet id="3C" name="OustPartyMemberPacket" />
+    <packet id="3D" name="SetOustPartyMemberPacket" />
+    <packet id="3E" name="DismissPartyPacket" />
+    <packet id="3F" name="SetDismissPartyPacket" />
+    <packet id="41" name="WareHouseDepositListPacket" />
+    <packet id="42" name="WareHouseWithdrawListPacket" />
+    <packet id="43" name="WareHouseDonePacket" />
+    <packet id="44" name="ShortCutRegisterPacket" />
+    <packet id="46" name="ShortCutDeletePacket" />
+    <packet id="49" name="MagicSkillCanceled" />
+    <packet id="4C" name="DoorInfo" />
+    <packet id="4D" name="DoorStatusUpdate" />
+    <packet id="4E" name="PartySmallWindowAll" />
+    <packet id="4F" name="PartySmallWindowAddPacket" />
+    <packet id="50" name="PartySmallWindowDeleteAllPacket" />
+    <packet id="51" name="PartySmallWindowDeletePacket" />
+    <packet id="52" name="PartySmallWindowUpdatePacket" />
+    <packet id="53" name="TradePressOwnOkPacket" />
+    <packet id="55" name="FriendAddRequestResult" />
+    <packet id="56" name="FriendAdd" />
+    <packet id="57" name="FriendRemove" />
+    <packet id="58" name="FriendList" />
+    <packet id="59" name="FriendStatus" />
+    <packet id="5A" name="PledgeShowMemberListAllPacket" />
+    <packet id="5B" name="PledgeShowMemberListUpdatePacket" />
+    <packet id="5C" name="PledgeShowMemberListAddPacket" />
+    <packet id="5D" name="PledgeShowMemberListDeletePacket" />
+    <packet id="5E" name="MagicListPacket" />
+    <packet id="60" name="OnVehicleInfo" />
+    <packet id="61" name="FinishRotating" />
+    <packet id="63" name="StartPledgeWarPacket" />
+    <packet id="64" name="ReplyStartPledgeWarPacket" />
+    <packet id="65" name="StopPledgeWarPacket" />
+    <packet id="66" name="ReplyStopPledgeWarPacket" />
+    <packet id="67" name="SurrenderPledgeWarPacket" />
+    <packet id="68" name="ReplySurrenderPledgeWarPacket" />
+    <packet id="69" name="SetPledgeCrestPacket" />
+    <packet id="6A" name="PledgeCrest" />
+    <packet id="6B" name="SetupGaugePacket" />
+    <packet id="6C" name="OnVehicleDeparture" />
+    <packet id="6D" name="OnVehicleCheckLocation" />
+    <packet id="6E" name="OnGetOnVehicle" />
+    <packet id="6F" name="OnGetOffVehicle" />
+    <packet id="70" name="TradeRequestPacket" />
+    <packet id="71" name="RestartResponsePacket" />
+    <packet id="72" name="MoveToPawn" />
+    <packet id="76" name="L2FriendPacket" />
+    <packet id="77" name="L2FriendStatusPacket" />
+    <packet id="78" name="L2FriendSayPacket" />
+    <packet id="7A" name="StartRotating" />
+    <packet id="7B" name="ShowBoardPacket" />
+    <packet id="7C" name="ChooseInventoryItemPacket" />
+    <packet id="7D" name="Dummy" />
+    <packet id="7E" name="MoveToLocationInVehicle" />
+    <packet id="7F" name="StopMoveInVehicle" />
+    <packet id="80" name="ValidateLocationInVehicle" />
+    <packet id="81" name="TradeUpdatePacket" />
+    <packet id="82" name="TradePressOtherOkPacket" />
+    <packet id="83" name="FriendAddRequestResult" />
+    <packet id="87" name="EnchantResultPacket" />
+    <packet id="88" name="PledgeShowMemberListDeleteAllPacket" />
+    <packet id="89" name="PledgeInfo" />
+    <packet id="8A" name="PledgeExtendedInfoPacket" />
+    <packet id="8B" name="SurrenderPersonallyPacket" />
+    <packet id="8C" name="Ride" />
+    <packet id="8D" name="Dummy" />
+    <packet id="8E" name="PledgeShowInfoUpdatePacket" />
+    <packet id="8F" name="ActionFail" />
+    <packet id="90" name="AcquireSkillListPacket" />
+    <packet id="91" name="AcquireSkillInfoPacket" />
+    <packet id="92" name="ServerObjectInfoPacket" />
+    <packet id="93" name="GMHidePacket" />
+    <packet id="94" name="AcquireSkillDonePacket" />
+    <packet id="95" name="GMViewCharacterInfoPacket" />
+    <packet id="96" name="GMViewPledgeInfoPacket" />
+    <packet id="97" name="GMViewSkillInfoPacket" />
+    <packet id="98" name="GMViewMagicInfoPacket" />
+    <packet id="99" name="GMViewQuestInfoPacket" />
+    <packet id="9A" name="GMViewItemListPacket" />
+    <packet id="9B" name="GMViewWarehouseWithdrawListPacket" />
+    <packet id="9C" name="ListPartyWatingPacket" />
+    <packet id="9D" name="PartyRoomInfoPacket" />
+    <packet id="9F" name="StaticObjectPacket" />
+    <packet id="A1" name="PrivateBuyList" />
+    <packet id="A2" name="PrivateStoreMsg" />
+    <packet id="A4" name="ReviveRequestPacket" />
+    <packet id="A5" name="AbnormalVisualEffectPacket" />
+    <packet id="AA" name="ShowRadarPacket" />
+    <packet id="AB" name="WithdrawAlliancePacket" />
+    <packet id="AC" name="OustAllianceMemberPledgePacket" />
+    <packet id="AD" name="DismissAlliancePacket" />
+    <packet id="AE" name="SetAllianceCrestPacket" />
+    <packet id="AF" name="AllianceCrest" />
+    <packet id="B0" name="ServerCloseSocketPacket" />
+    <packet id="B1" name="PetStatusShow" />
+    <packet id="B2" name="PetInfo" />
+    <packet id="B3" name="PetItemList" />
+    <packet id="B4" name="PetInventoryUpdatePacket" />
+    <packet id="B5" name="AllianceInfoPacket" />
+    <packet id="B6" name="PetStatusUpdatePacket" />
+    <packet id="B7" name="PetDeletePacket" />
+    <packet id="B8" name="DeleteRadarPacket" />
+    <packet id="BA" name="PartyMemberPosition" />
+    <packet id="BB" name="AskJoinAlliancePacket" />
+    <packet id="BC" name="JoinAlliancePacket" />
+    <packet id="BE" name="PrivateBuyList" />
+    <packet id="BF" name="PrivateStoreBuyMsg" />
+    <packet id="C0" name="VehicleStartPacket" />
+    <packet id="C1" name="RequestTimeCheckPacket" />
+    <packet id="C2" name="StartAllianceWarPacket" />
+    <packet id="C3" name="ReplyStartAllianceWarPacket" />
+    <packet id="C4" name="StopAllianceWarPacket" />
+    <packet id="C5" name="ReplyStopAllianceWarPacket" />
+    <packet id="C6" name="SurrenderAllianceWarPacket" />
+    <packet id="C8" name="PackageToListPacket" />
+    <packet id="C9" name="CastleSiegeInfoPacket" />
+    <packet id="CA" name="CastleSiegeAttackerList" />
+    <packet id="CB" name="CastleSiegeDefenderList" />
+    <packet id="CC" name="NickNameChanged" />
+    <packet id="CD" name="PledgeStatusChanged" />
+    <packet id="CE" name="RelationChanged" />
+    <packet id="D0" name="MultiSellListPacket" />
+    <packet id="D1" name="SetSummonRemainTimePacket" />
+    <packet id="D2" name="PackageSendableListPacket" />
+    <packet id="D3" name="EarthQuake" />
+    <packet id="D4" name="FlyToLocation" />
+    <packet id="D5" name="BlockListPacket" />
+    <packet id="D6" name="SpecialCamera" />
+    <packet id="D7" name="NormalCamera" />
+    <packet id="D8" name="OnSkillRemainSec" />
+    <packet id="D9" name="NetPingPacket" />
+    <packet id="DA" name="DicePacket" />
+    <packet id="DB" name="SnoopPacket" />
+    <packet id="DC" name="RecipeBookItemListPacket" />
+    <packet id="DD" name="RecipeItemMakeInfoPacket" />
+    <packet id="DE" name="RecipeShopManageListPacket" />
+    <packet id="DF" name="RecipeShopSellListPacket" />
+    <packet id="E0" name="RecipeShopItemInfoPacket" />
+    <packet id="E1" name="RecipeShopMsgPacket" />
+    <packet id="E2" name="ShowCalcPacket" />
+    <packet id="E3" name="RaceMonsterStatusUpdatePacket" />
+    <packet id="E4" name="HennaItemInfo" />
+    <packet id="E6" name="HennaUnequipListPacket" />
+    <packet id="E7" name="HennaUnequipItemInfo" />
+    <packet id="E9" name="BuyListSeed" />
+    <packet id="EA" name="ShowTownMapPacket" />
+    <packet id="EB" name="ObserverStartPacket" />
+    <packet id="EC" name="ObserverEndPacket" />
+    <packet id="ED" name="ChairSitPacket" />
+    <packet id="EE" name="HennaEquipListPacket" />
+    <packet id="EF" name="SellListProcure" />
+    <packet id="F0" name="GMHennaInfoPacket" />
+    <packet id="F1" name="ShowRadarPacket" />
+    <packet id="F3" name="ConfirmDlgPacket" />
+    <packet id="F4" name="PartySpelled" />
+    <packet id="F5" name="PreviewList" />
+    <packet id="F6" name="ShopPreviewInfoPacket" />
+    <packet id="F7" name="CameraModePacket" />
+    <packet id="F8" name="ShowXMasSealPacket" />
+    <packet id="FA" name="ShortBuffStatusUpdatePacket" />
+    <packet id="FB" name="SSQStatusPacket" />
+    <packet id="FC" name="PetitionVotePacket" />
+    <packet id="FE00" name="DummyPacket" />
+    <packet id="FE;0000" name="ExDummyPacket" />
+    <packet id="FE;0100" name="ExRegenMaxPacket" />
+    <packet id="FE;0200" name="ExEventMatchUserInfoPacket" />
+    <packet id="FE;0300" name="ExColosseumFenceInfoPacket" />
+    <packet id="FE;0400" name="ExEventMatchSpelledInfoPacket" />
+    <packet id="FE;0500" name="ExEventMatchFirecrackerPacket" />
+    <packet id="FE;0600" name="ExEventMatchTeamUnlockedPacket" />
+    <packet id="FE;0700" name="ExEventMatchGMTestPacket" />
+    <packet id="FE;0800" name="ExPartyRoomMemberPacket" />
+    <packet id="FE;0900" name="ExClosePartyRoomPacket" />
+    <packet id="FE;0A00" name="ExManagePartyRoomMemberPacket" />
+    <packet id="FE;0B00" name="ExEventMatchLockResult" />
+    <packet id="FE;0C00" name="ExAutoSoulShot" />
+    <packet id="FE;0D00" name="ExEventMatchListPacket" />
+    <packet id="FE;0E00" name="ExEventMatchObserverPacket" />
+    <packet id="FE;0F00" name="ExEventMatchMessagePacket" />
+    <packet id="FE;1000" name="ExEventMatchScorePacket" />
+    <packet id="FE;1100" name="ExServerPrimitivePacket" />
+    <packet id="FE;1200" name="ExOpenMPCCPacket" />
+    <packet id="FE;1300" name="ExCloseMPCCPacket" />
+    <packet id="FE;1400" name="ExShowCastleInfo" />
+    <packet id="FE;1500" name="ExShowFortressInfo" />
+    <packet id="FE;1600" name="ExShowAgitInfo" />
+    <packet id="FE;1700" name="ExShowFortressSiegeInfo" />
+    <packet id="FE;1800" name="ExPartyPetWindowAdd" />
+    <packet id="FE;1900" name="ExPartyPetWindowUpdate" />
+    <packet id="FE;1A00" name="ExAskJoinMPCCPacket" />
+    <packet id="FE;1B00" name="ExPledgeEmblem" />
+    <packet id="FE;1C00" name="ExEventMatchTeamInfoPacket" />
+    <packet id="FE;1D00" name="ExEventMatchCreatePacket" />
+    <packet id="FE;1E00" name="ExFishingStartPacket" />
+    <packet id="FE;1F00" name="ExFishingEndPacket" />
+    <packet id="FE;2000" name="ExShowQuestInfoPacket" />
+    <packet id="FE;2100" name="ExShowQuestMarkPacket" />
+    <packet id="FE;2200" name="ExSendManorListPacket" />
+    <packet id="FE;2300" name="ExShowSeedInfoPacket" />
+    <packet id="FE;2400" name="ExShowCropInfoPacket" />
+    <packet id="FE;2500" name="ExShowManorDefaultInfoPacket" />
+    <packet id="FE;2600" name="ExShowSeedSettingPacket" />
+    <packet id="FE;2700" name="ExFishingStartCombatPacket" />
+    <packet id="FE;2800" name="ExFishingHpRegenPacket" />
+    <packet id="FE;2900" name="ExEnchantSkillListPacket" />
+    <packet id="FE;2A00" name="ExEnchantSkillInfoPacket" />
+    <packet id="FE;2B00" name="ExShowCropSettingPacket" />
+    <packet id="FE;2C00" name="ExShowSellCropListPacket" />
+    <packet id="FE;2D00" name="ExOlympiadMatchEndPacket" />
+    <packet id="FE;2E00" name="ExMailArrivedPacket" />
+    <packet id="FE;3000" name="ExEventMatchManagePacket" />
+    <packet id="FE;3100" name="ExMultiPartyCommandChannelInfoPacket" />
+    <packet id="FE;3200" name="ExPCCafePointInfoPacket" />
+    <packet id="FE;3400" name="ExGetBossRecord" />
+    <packet id="FE;3500" name="ExAskJoinPartyRoom" />
+    <packet id="FE;3600" name="ExListPartyMatchingWaitingRoom" />
+    <packet id="FE;3700" name="ExSetMpccRouting" />
+    <packet id="FE;3800" name="ExShowAdventurerGuideBook" />
+    <packet id="FE;3900" name="ExShowScreenMessage" />
+    <packet id="FE;3A00" name="PledgeSkillListPacket" />
+    <packet id="FE;3B00" name="PledgeSkillListAddPacket" />
+    <packet id="FE;3C00" name="PledgePowerGradeList" />
+    <packet id="FE;3D00" name="PledgeReceivePowerInfo" />
+    <packet id="FE;3E00" name="PledgeReceiveMemberInfo" />
+    <packet id="FE;3F00" name="PledgeReceiveWarList" />
+    <packet id="FE;4000" name="PledgeReceiveSubPledgeCreated" />
+    <packet id="FE;4100" name="ExRedSkyPacket" />
+    <packet id="FE;4200" name="PledgeReceiveUpdatePower" />
+    <packet id="FE;4300" name="FlySelfDestinationPacket" />
+    <packet id="FE;4400" name="ShowPCCafeCouponShowUI" />
+    <packet id="FE;4500" name="ExSearchOrc" />
+    <packet id="FE;4600" name="ExCursedWeaponList" />
+    <packet id="FE;4700" name="ExCursedWeaponLocation" />
+    <packet id="FE;4800" name="ExRestartClient" />
+    <packet id="FE;4900" name="ExRequestHackShield" />
+    <packet id="FE;4A00" name="ExUseSharedGroupItem" />
+    <packet id="FE;4B00" name="ExMPCCShowPartyMemberInfo" />
+    <packet id="FE;4C00" name="ExDuelAskStart" />
+    <packet id="FE;4D00" name="ExDuelReady" />
+    <packet id="FE;4E00" name="ExDuelStart" />
+    <packet id="FE;4F00" name="ExDuelEnd" />
+    <packet id="FE;5000" name="ExDuelUpdateUserInfo" />
+    <packet id="FE;5100" name="ExShowVariationMakeWindow" />
+    <packet id="FE;5200" name="ExShowVariationCancelWindow" />
+    <packet id="FE;5300" name="ExPutItemResultForVariationMake" />
+    <packet id="FE;5400" name="ExPutIntensiveResultForVariationMake" />
+    <packet id="FE;5500" name="ExPutCommissionResultForVariationMake" />
+    <packet id="FE;5600" name="ExVariationResult" />
+    <packet id="FE;5700" name="ExPutItemResultForVariationCancel" />
+    <packet id="FE;5800" name="ExVariationCancelResult" />
+    <packet id="FE;5900" name="ExDuelEnemyRelation" />
+    <packet id="FE;5A00" name="ExPlayAnimation" />
+    <packet id="FE;5B00" name="ExMPCCPartyInfoUpdate" />
+    <packet id="FE;5C00" name="ExPlayScene" />
+    <packet id="FE;5D00" name="ExSpawnEmitterPacket" />
+    <packet id="FE;5F00" name="ExBasicActionList" />
+    <packet id="FE;6100" name="ExAttributeEnchantResultPacket" />
+    <packet id="FE;6200" name="ExChooseInventoryAttributeItemPacket" />
+    <packet id="FE;6300" name="ExGetOnAirShipPacket" />
+    <packet id="FE;6400" name="ExGetOffAirShipPacket" />
+    <packet id="FE;6500" name="ExMoveToLocationAirShipPacket" />
+    <packet id="FE;6600" name="ExStopMoveAirShipPacket" />
+    <packet id="FE;6700" name="ExShowTracePacket" />
+    <packet id="FE;6800" name="ExItemAuctionInfoPacket" />
+    <packet id="FE;6900" name="ExNeedToChangeName" />
+    <packet id="FE;6A00" name="ExPartyPetWindowDelete" />
+    <packet id="FE;6B00" name="ExTutorialList" />
+    <packet id="FE;6C00" name="ExRpItemLink" />
+    <packet id="FE;6D00" name="ExMoveToLocationInAirShipPacket" />
+    <packet id="FE;6E00" name="ExStopMoveInAirShipPacket" />
+    <packet id="FE;6F00" name="ExValidateLocationInAirShipPacket" />
+    <packet id="FE;7000" name="ExUISettingPacket" />
+    <packet id="FE;7100" name="ExMoveToTargetInAirShipPacket" />
+    <packet id="FE;7200" name="ExAttackInAirShipPacket" />
+    <packet id="FE;7300" name="ExMagicSkillUseInAirShipPacket" />
+    <packet id="FE;7400" name="ExShowBaseAttributeCancelWindow" />
+    <packet id="FE;7500" name="ExBaseAttributeCancelResult" />
+    <packet id="FE;7600" name="ExSubPledgetSkillAdd" />
+    <packet id="FE;7700" name="ExResponseFreeServer" />
+    <packet id="FE;7800" name="ExShowProcureCropDetailPacket" />
+    <packet id="FE;7900" name="ExHeroListPacket" />
+    <packet id="FE;7A00" name="ExOlympiadUserInfoPacket" />
+    <packet id="FE;7B00" name="ExOlympiadSpelledInfoPacket" />
+    <packet id="FE;7C00" name="ExOlympiadModePacket" />
+    <packet id="FE;7D00" name="ExShowFortressMapInfo" />
+    <packet id="FE;7E00" name="ExPVPMatchRecord" />
+    <packet id="FE;7F00" name="ExPVPMatchUserDie" />
+    <packet id="FE;8000" name="ExPrivateStoreSetWholeMsg" />
+    <packet id="FE;8100" name="ExPutEnchantTargetItemResult" />
+    <packet id="FE;8200" name="ExPutEnchantSupportItemResult" />
+    <packet id="FE;8300" name="ExChangeNicknameNColor" />
+    <packet id="FE;8400" name="ExGetBookMarkInfoPacket" />
+    <packet id="FE;8500" name="ExNotifyPremiumItem" />
+    <packet id="FE;8600" name="ExGetPremiumItemListPacket" />
+    <packet id="FE;8700" name="ExPeriodicItemList" />
+    <packet id="FE;8800" name="ExJumpToLocation" />
+    <packet id="FE;8900" name="ExPVPMatchCCRecord" />
+    <packet id="FE;8A00" name="ExPVPMatchCCMyRecord" />
+    <packet id="FE;8B00" name="ExPVPMatchCCRetire" />
+    <packet id="FE;8C00" name="ExShowTerritory" />
+    <packet id="FE;8E00" name="ExSendUIEventPacket" />
+    <packet id="FE;8F00" name="ExNotifyBirthDay" />
+    <packet id="FE;9000" name="ExShowDominionRegistry" />
+    <packet id="FE;9100" name="ExReplyRegisterDominion" />
+    <packet id="FE;9300" name="ExShowOwnthingPos" />
+    <packet id="FE;9400" name="ExCleftList" />
+    <packet id="FE;9500" name="ExCleftState" />
+    <packet id="FE;9600" name="ExDominionChannelSet" />
+    <packet id="FE;9700" name="ExBlockUpSetList" />
+    <packet id="FE;9800" name="ExBlockUpSetState" />
+    <packet id="FE;9900" name="ExStartScenePlayer" />
+    <packet id="FE;9A00" name="ExAirShipTeleportList" />
+    <packet id="FE;9B00" name="ExMpccRoomInfo" />
+    <packet id="FE;9C00" name="ExListMpccWaiting" />
+    <packet id="FE;9D00" name="ExDissmissMpccRoom" />
+    <packet id="FE;9E00" name="ExManageMpccRoomMember" />
+    <packet id="FE;9F00" name="ExMpccRoomMember" />
+    <packet id="FE;A100" name="ExShowSeedMapInfo" />
+    <packet id="FE;A200" name="ExMpccPartymasterList" />
+    <packet id="FE;A300" name="ExDominionWarStart" />
+    <packet id="FE;A400" name="ExDominionWarEnd" />
+    <packet id="FE;A500" name="ExShowLines" />
+    <packet id="FE;A600" name="ExPartyMemberRenamed" />
+    <packet id="FE;A700" name="ExEnchantSkillResult" />
+    <packet id="FE;A800" name="ExRefundList" />
+    <packet id="FE;A900" name="ExNoticePostArrived" />
+    <packet id="FE;AA00" name="ExShowReceivedPostList" />
+    <packet id="FE;AB00" name="ExReplyReceivedPost" />
+    <packet id="FE;AC00" name="ExShowSentPostList" />
+    <packet id="FE;AD00" name="ExReplySentPost" />
+    <packet id="FE;AE00" name="ExResponseShowStepOne" />
+    <packet id="FE;AF00" name="ExResponseShowStepTwo" />
+    <packet id="FE;B000" name="ExResponseShowContents" />
+    <packet id="FE;B100" name="ExShowPetitionHtml" />
+    <packet id="FE;B200" name="ExReplyPostItemList" />
+    <packet id="FE;B300" name="ExChangePostState" />
+    <packet id="FE;B400" name="ExReplyWritePost" />
+    <packet id="FE;B500" name="ExRaidCharSelected" />
+    <packet id="FE;B600" name="ExRaidReserveResult" />
+    <packet id="FE;B700" name="ExBuySellListPacket" />
+    <packet id="FE;B800" name="ExBR_GamePoint" />
+    <packet id="FE;B900" name="ExBR_ProductList" />
+    <packet id="FE;BA00" name="ExBR_ProductInfo" />
+    <packet id="FE;BB00" name="ExBR_BuyProduct" />
+    <packet id="FE;BF00" name="ExBrBuffEventState" />
+    <packet id="FE;C000" name="ExBR_RecentProductList" />
+    <packet id="FE;C100" name="ExBR_LoadEventTopRankers" />
+    <packet id="FE;C200" name="ExBR_MinigameLoadScores" />
+  </packetfamilly>
+  <!--__________________________________________-->
+  <packetfamilly way="CLIENT">
+    <packet id="11" name="EnterWorld" />
+    <packet id="2B" name="C_LOGIN">
+      <part name="account" type="S" />
+      <part name="playOk2" type="d" />
+      <part name="playOk1" type="d" />
+      <part name="loginOk1" type="d" />
+      <part name="loginOk2" type="d" />
+    </packet>
+    <packet id="19" name="UseItem">
+      <part name="obj_id" type="d" />
+      <part name="ctrl" type="d" />
+    </packet>
+    <packet id="1f" name="Action">
+      <part name="obj_id" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="action" type="c" />
+    </packet>
+    <packet id="59" name="ValidatePosition">
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="h" type="d" />
+      <part name="data" type="d" />
+    </packet>
+    <packet id="5b" name="FinishRotating">
+      <part name="degree" type="d" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="5c" name="StartRotating">
+      <part name="degre" type="d" />
+      <part name="side" type="d" />
+    </packet>
+    <packet id="6c" name="RequestShowMiniMap" />
+    <packet id="74" name="SendBypassBuildCmd">
+      <part name="command" type="S" />
+    </packet>
+    <packet id="56" name="NotifyStartMiniGame">
+      <part name="time" type="d" />
+    </packet>
+    <packet id="23" name="RequestBypassToServer">
+      <part name="command" type="S" />
+    </packet>
+    <packet id="0E" name="ProtocolVersion">
+      <part name="versionId" type="d" />
+      <part name="hwid" size="256" type="b" />
+      <part name="?" type="d" />
+    </packet>
+    <packet id="0F" name="MoveBackwardToLocation">
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="x" type="d" />
+      <part name="y" type="d" />
+      <part name="z" type="d" />
+      <part name="moveType" type="d" />
+    </packet>
+    <packet id="00" name="Logout" />
+    <packet id="01" name="AttackRequest" />
+    <packet id="0c" name="CharacterCreate" />
+    <packet id="12" name="CharacterSelected" />
+    <packet id="13" name="NewCharacter" />
+    <packet id="14" name="RequestItemList" />
+    <packet id="39" name="RequestMagicSkillUse">
+      <part name="skillId" type="d" />
+      <part name="ctrlPresed" type="d" />
+      <part name="shiftPresed" type="c" />
+    </packet>
+    <packet id="3a" name="Appearing" />
+    <packet id="40" name="RequestBuyItem" />
+    <packet id="50" name="RequestSkillItem" />
+    <packet id="86" name="RequestTutorialPassCmdToServer">
+      <part name="command" type="S" />
+    </packet>
+    <packet id="96" name="RequestPrivateStoreQuitSell" />
+    <packet id="9c" name="RequestPrivateStoreQuitBuy" />
+    <packet id="a6" name="RequestSkillCoolTime" />
+    <packet id="cb" name="ReplyGameGuardQuery" />
+    <packet id="b1" name="NetPing" />
+    <packet id="D0;3700" name="GotoLobby" />
+    <packet id="D0;0100" name="RequestManorList" />
+    <packet id="03" name="RequestStartPledgeWar" />
+    <packet id="04" name="RequestReplyStartPledgeWar" />
+    <packet id="05" name="RequestStopPledgeWar" />
+    <packet id="06" name="RequestSCCheck" />
+    <packet id="07" name="RequestSurrenderPledgeWar" />
+    <packet id="08" name="RequestReplySurrenderPledgeWar" />
+    <packet id="09" name="RequestSetPledgeCrest" />
+    <packet id="0b" name="RequestGiveNickName" />
+    <packet id="0d" name="CharacterDeletePacket" />
+    <packet id="15" name="RequestEquipItem" />
+    <packet id="16" name="RequestUnEquipItem" />
+    <packet id="17" name="RequestDropItemPacket" />
+    <packet id="1a" name="TradeRequestPacket" />
+    <packet id="1b" name="AddTradeItemPacket" />
+    <packet id="1c" name="TradeDonePacket" />
+    <packet id="22" name="RequestLinkHtml" />
+    <packet id="25" name="RequestCreatePledge" />
+    <packet id="26" name="RequestJoinPledge" />
+    <packet id="27" name="RequestAnswerJoinPledge" />
+    <packet id="28" name="RequestWithDrawalPledge" />
+    <packet id="29" name="RequestOustPledgeMember" />
+    <packet id="2c" name="RequestGetItemFromPet" />
+    <packet id="2e" name="RequestAllyInfo" />
+    <packet id="2f" name="RequestCrystallizeItem" />
+    <packet id="30" name="RequestPrivateStoreManageSell" />
+    <packet id="31" name="SetPrivateStoreList" />
+    <packet id="32" name="AttackRequest" />
+    <packet id="33" name="RequestTeleportPacket" />
+    <packet id="34" name="SocialAction" />
+    <packet id="35" name="ChangeMoveType" />
+    <packet id="36" name="ChangeWaitType" />
+    <packet id="37" name="RequestSellItem" />
+    <packet id="38" name="RequestMagicSkillList" />
+    <packet id="3b" name="SendWareHouseDepositList" />
+    <packet id="3c" name="SendWareHouseWithDrawList" />
+    <packet id="3d" name="RequestShortCutReg" />
+    <packet id="3e" name="RequestShortCutUse" />
+    <packet id="3f" name="RequestShortCutDel" />
+    <packet id="41" name="RequestDismissPledge" />
+    <packet id="42" name="RequestJoinParty" />
+    <packet id="43" name="RequestAnswerJoinParty" />
+    <packet id="44" name="RequestWithDrawalParty" />
+    <packet id="45" name="RequestOustPartyMember" />
+    <packet id="46" name="RequestDismissParty" />
+    <packet id="47" name="CanNotMoveAnymore" />
+    <packet id="48" name="RequestTargetCancel" />
+    <packet id="49" name="Say2" />
+    <packet id="4a:00" name="SuperCmdCharacterInfo" />
+    <packet id="4a:01" name="SuperCmdSummonCmd" />
+    <packet id="4a:02" name="SuperCmdServerStatus" />
+    <packet id="4a:03" name="SendL2ParamSetting" />
+    <packet id="4d" name="RequestPledgeMemberList" />
+    <packet id="4f" name="RequestMagicList" />
+    <packet id="52" name="MoveWithDelta" />
+    <packet id="53" name="GetOnVehicle" />
+    <packet id="54" name="GetOffVehicle" />
+    <packet id="55" name="AnswerTradeRequest" />
+    <packet id="57" name="RequestRestart" />
+    <packet id="58" name="RequestSiegeInfo" />
+    <packet id="5a" name="RequestSEKCustom" />
+    <packet id="5e" name="RequestShowboard" />
+    <packet id="5f" name="RequestEnchantItem" />
+    <packet id="60" name="RequestDestroyItem" />
+    <packet id="62" name="RequestQuestList" />
+    <packet id="63" name="RequestDestroyQuest" />
+    <packet id="65" name="RequestPledgeInfo" />
+    <packet id="66" name="RequestPledgeExtendedInfo" />
+    <packet id="67" name="RequestPledgeCrest" />
+    <packet id="6b" name="RequestSendL2FriendSay" />
+    <packet id="6d" name="RequestSendMsnChatLog" />
+    <packet id="6e" name="RequestReload" />
+    <packet id="6f" name="RequestHennaEquip" />
+    <packet id="70" name="RequestHennaUnequipList" />
+    <packet id="71" name="RequestHennaUnequipInfo" />
+    <packet id="72" name="RequestHennaUnequip" />
+    <packet id="73" name="RequestAcquireSkillInfo" />
+    <packet id="75" name="MoveToLocationInVehicle" />
+    <packet id="76" name="CanNotMoveAnymoreVehicle" />
+    <packet id="77" name="RequestFriendInvite" />
+    <packet id="78" name="RequestFriendAddReply" />
+    <packet id="79" name="RequestFriendList" />
+    <packet id="7a" name="RequestFriendDel" />
+    <packet id="7b" name="CharacterRestorePacket" />
+    <packet id="7c" name="RequestAcquireSkill" />
+    <packet id="7d" name="RequestRestartPoint" />
+    <packet id="7e" name="RequestGMCommand" />
+    <packet id="7f" name="RequestPartyMatchConfig" />
+    <packet id="80" name="RequestPartyMatchList" />
+    <packet id="81" name="RequestPartyMatchDetail" />
+    <packet id="83" name="SendPrivateStoreBuyList" />
+    <packet id="84" name="ReviveReply" />
+    <packet id="85" name="RequestTutorialLinkHtml" />
+    <packet id="87" name="RequestTutorialQuestionMarkPressed" />
+    <packet id="88" name="RequestTutorialClientEvent" />
+    <packet id="89" name="RequestPetition" />
+    <packet id="8a" name="RequestPetitionCancel" />
+    <packet id="8b" name="RequestGMList" />
+    <packet id="8c" name="RequestJoinAlly" />
+    <packet id="8d" name="RequestAnswerJoinAlly" />
+    <packet id="8e" name="RequestWithdrawAlly" />
+    <packet id="8f" name="RequestOustAlly" />
+    <packet id="90" name="RequestDismissAlly" />
+    <packet id="91" name="RequestSetAllyCrest" />
+    <packet id="92" name="RequestAllyCrest" />
+    <packet id="93" name="RequestChangePetName" />
+    <packet id="94" name="RequestPetUseItem" />
+    <packet id="95" name="RequestGiveItemToPet" />
+    <packet id="97" name="SetPrivateStoreMsgSell" />
+    <packet id="98" name="RequestPetGetItem" />
+    <packet id="99" name="RequestPrivateStoreBuyManage" />
+    <packet id="9a" name="SetPrivateStoreList" />
+    <packet id="9d" name="SetPrivateStoreMsgBuy" />
+    <packet id="9f" name="SendPrivateStoreBuyList" />
+    <packet id="a0" name="SendTimeCheckPacket" />
+    <packet id="a7" name="RequestPackageSendableItemList" />
+    <packet id="a8" name="RequestPackageSend" />
+    <packet id="a9" name="RequestBlock" />
+    <packet id="aa" name="RequestCastleSiegeInfo" />
+    <packet id="ab" name="RequestCastleSiegeAttackerList" />
+    <packet id="ac" name="RequestCastleSiegeInfo" />
+    <packet id="ad" name="RequestJoinCastleSiege" />
+    <packet id="ae" name="RequestConfirmCastleSiegeWaitingList" />
+    <packet id="af" name="RequestSetCastleSiegeTime" />
+    <packet id="b0" name="RequestMultiSellChoose" />
+    <packet id="b2" name="RequestRemainTime" />
+    <packet id="b3" name="BypassUserCmd" />
+    <packet id="b4" name="Snoop_quit" />
+    <packet id="b5" name="RequestRecipeBookOpen" />
+    <packet id="b6" name="RequestRecipeItemDelete" />
+    <packet id="b7" name="RequestRecipeItemMakeInfo" />
+    <packet id="b8" name="RequestRecipeItemMakeSelf" />
+    <packet id="b9" name="RequestRecipeShopManageList" />
+    <packet id="ba" name="RequestRecipeShopMessageSet" />
+    <packet id="bb" name="RequestRecipeShopListSet" />
+    <packet id="bc" name="RequestRecipeShopManageQuit" />
+    <packet id="bd" name="RequestRecipeShopManageCancel" />
+    <packet id="be" name="RequestRecipeShopMakeInfo" />
+    <packet id="bf" name="RequestRecipeShopMakeDo" />
+    <packet id="c0" name="RequestRecipeShopSellList" />
+    <packet id="c1" name="RequestObserverEndPacket" />
+    <packet id="c2" name="VoteSociality" />
+    <packet id="c3" name="RequestHennaItemList" />
+    <packet id="c4" name="RequestHennaItemInfo" />
+    <packet id="c5" name="RequestBuySeed" />
+    <packet id="c6" name="ConfirmDlg" />
+    <packet id="c7" name="RequestPreviewItem" />
+    <packet id="c8" name="RequestSSQStatus" />
+    <packet id="c9" name="PetitionVote" />
+    <packet id="cc" name="RequestPledgePower" />
+    <packet id="cd" name="RequestMakeMacro" />
+    <packet id="ce" name="RequestDeleteMacro" />
+    <packet id="cf" name="RequestProcureCrop" />
+    <packet id="D0;0200" name="RequestProcureCropList" />
+    <packet id="D0;0300" name="RequestSetSeed" />
+    <packet id="D0;0400" name="RequestSetCrop" />
+    <packet id="D0;0500" name="RequestWriteHeroWords" />
+    <packet id="D0;0600" name="RequestExAskJoinMPCC" />
+    <packet id="D0;0700" name="RequestExAcceptJoinMPCC" />
+    <packet id="D0;0800" name="RequestExOustFromMPCC" />
+    <packet id="D0;0900" name="RequestOustFromPartyRoom" />
+    <packet id="D0;0A00" name="RequestDismissPartyRoom" />
+    <packet id="D0;0B00" name="RequestWithdrawPartyRoom" />
+    <packet id="D0;0C00" name="RequestHandOverPartyMaster" />
+    <packet id="D0;0D00" name="RequestAutoSoulShot" />
+    <packet id="D0;0E00" name="RequestExEnchantSkillInfo" />
+    <packet id="D0;0F00" name="RequestExEnchantSkill" />
+    <packet id="D0;1000" name="RequestExPledgeCrestLarge" />
+    <packet id="D0;1100" name="RequestExSetPledgeCrestLarge" />
+    <packet id="D0;1200" name="RequestPledgeSetAcademyMaster" />
+    <packet id="D0;1300" name="RequestPledgePowerGradeList" />
+    <packet id="D0;1400" name="RequestPledgeMemberPowerInfo" />
+    <packet id="D0;1500" name="RequestPledgeSetMemberPowerGrade" />
+    <packet id="D0;1600" name="RequestPledgeMemberInfo" />
+    <packet id="D0;1700" name="RequestPledgeWarList" />
+    <packet id="D0;1800" name="RequestExFishRanking" />
+    <packet id="D0;1900" name="RequestPCCafeCouponUse" />
+    <packet id="D0;1A00" name="ExOrcMove" />
+    <packet id="D0;1B00" name="RequestDuelStart" />
+    <packet id="D0;1C00" name="RequestDuelAnswerStart" />
+    <packet id="D0;1D00" name="RequestExSetTutorial" />
+    <packet id="D0;1E00" name="RequestExRqItemLink" />
+    <packet id="D0;1F00" name="CanNotMoveAnymoreAirShip" />
+    <packet id="D0;2000" name="MoveToLocationInAirShip" />
+    <packet id="D0;2100" name="RequestKeyMapping" />
+    <packet id="D0;2200" name="RequestSaveKeyMapping" />
+    <packet id="D0;2300" name="RequestExRemoveItemAttribute" />
+    <packet id="D0;2400" name="RequestSaveInventoryOrder" />
+    <packet id="D0;2500" name="RequestExitPartyMatchingWaitingRoom" />
+    <packet id="D0;2600" name="RequestConfirmTargetItem" />
+    <packet id="D0;2700" name="RequestConfirmRefinerItem" />
+    <packet id="D0;2800" name="RequestConfirmGemStone" />
+    <packet id="D0;2900" name="RequestOlympiadObserverEnd" />
+    <packet id="D0;2A00" name="RequestCursedWeaponList" />
+    <packet id="D0;2B00" name="RequestCursedWeaponLocation" />
+    <packet id="D0;2C00" name="RequestPledgeReorganizeMember" />
+    <packet id="D0;2D00" name="RequestExMPCCShowPartyMembersInfo" />
+    <packet id="D0;2E00" name="RequestOlympiadMatchList" />
+    <packet id="D0;2F00" name="RequestAskJoinPartyRoom" />
+    <packet id="D0;3000" name="AnswerJoinPartyRoom" />
+    <packet id="D0;3100" name="RequestListPartyMatchingWaitingRoom" />
+    <packet id="D0;3200" name="RequestExEnchantSkill" />
+    <packet id="D0;3300" name="RequestExEnchantSkill" />
+    <packet id="D0;3400" name="RequestExEnchantSkill" />
+    <packet id="D0;3500" name="RequestEnchantItemAttribute" />
+    <packet id="D0;3600" name="ExGetOnAirShip" />
+    <packet id="D0;3800" name="MoveToLocationAirShip" />
+    <packet id="D0;3900" name="RequestBidItemAuction" />
+    <packet id="D0;3A00" name="RequestInfoItemAuction" />
+    <packet id="D0;3B00" name="RequestExChangeName" />
+    <packet id="D0;3C00" name="RequestAllCastleInfo" />
+    <packet id="D0;3D00" name="RequestAllFortressInfo" />
+    <packet id="D0;3E00" name="RequestAllAgitInfo" />
+    <packet id="D0;3F00" name="RequestFortressSiegeInfo" />
+    <packet id="D0;4000" name="RequestGetBossRecord" />
+    <packet id="D0;4100" name="RequestRefine" />
+    <packet id="D0;4200" name="RequestConfirmCancelItem" />
+    <packet id="D0;4300" name="RequestRefineCancel" />
+    <packet id="D0;4400" name="RequestExMagicSkillUseGround" />
+    <packet id="D0;4500" name="RequestDuelSurrender" />
+    <packet id="D0;4600" name="RequestExEnchantSkillInfoDetail" />
+    <packet id="D0;4800" name="RequestFortressMapInfo" />
+    <packet id="D0;4900" name="RequestPVPMatchRecord" />
+    <packet id="D0;4A00" name="SetPrivateStoreWholeMsg" />
+    <packet id="D0;4B00" name="RequestDispel" />
+    <packet id="D0;4C00" name="RequestExTryToPutEnchantTargetItem" />
+    <packet id="D0;4D00" name="RequestExTryToPutEnchantSupportItem" />
+    <packet id="D0;4E00" name="RequestExCancelEnchantItem" />
+    <packet id="D0;4F00" name="RequestChangeNicknameColor" />
+    <packet id="D0;5000" name="RequestResetNickname" />
+    <packet id="D0;51;0000" name="RequestBookMarkSlotInfo" />
+    <packet id="D0;51;0100" name="RequestSaveBookMarkSlot" />
+    <packet id="D0;51;0200" name="RequestModifyBookMarkSlot" />
+    <packet id="D0;51;0300" name="RequestDeleteBookMarkSlot" />
+    <packet id="D0;51;0400" name="RequestTeleportBookMark" />
+    <packet id="D0;51;0500" name="RequestChangeBookMarkSlot" />
+    <packet id="D0;5200" name="RequestWithDrawPremiumItem" />
+    <packet id="D0;5300" name="RequestJump" />
+    <packet id="D0;5400" name="RequestStartShowCrataeCubeRank" />
+    <packet id="D0;5500" name="RequestStopShowCrataeCubeRank" />
+    <packet id="D0;5600" name="NotifyStartMiniGame" />
+    <packet id="D0;5700" name="RequestJoinDominionWar" />
+    <packet id="D0;5800" name="RequestDominionInfo" />
+    <packet id="D0;5900" name="RequestExCleftEnter" />
+    <packet id="D0;5A00" name="RequestExBlockGameEnter" />
+    <packet id="D0;5B00" name="EndScenePlayer" />
+    <packet id="D0;5C00" name="RequestExBlockGameVote" />
+    <packet id="D0;5D00" name="RequestListMpccWaiting" />
+    <packet id="D0;5E00" name="RequestManageMpccRoom" />
+    <packet id="D0;5F00" name="RequestJoinMpccRoom" />
+    <packet id="D0;6000" name="RequestOustFromMpccRoom" />
+    <packet id="D0;6100" name="RequestDismissMpccRoom" />
+    <packet id="D0;6200" name="RequestWithdrawMpccRoom" />
+    <packet id="D0;6300" name="RequestSeedPhase" />
+    <packet id="D0;6400" name="RequestMpccPartyMasterList" />
+    <packet id="D0;6500" name="RequestPostItemList" />
+    <packet id="D0;6600" name="RequestSendPost" />
+    <packet id="D0;6700" name="RequestRequestReceivedPostList" />
+    <packet id="D0;6800" name="RequestDeleteReceivedPost" />
+    <packet id="D0;6900" name="RequestRequestReceivedPost" />
+    <packet id="D0;6A00" name="RequestReceivePost" />
+    <packet id="D0;6B00" name="RequestRejectPost" />
+    <packet id="D0;6C00" name="RequestSentPostList" />
+    <packet id="D0;6D00" name="RequestDeleteSentPost" />
+    <packet id="D0;6E00" name="RequestRequestSentPost" />
+    <packet id="D0;6F00" name="RequestCancelSentPost" />
+    <packet id="D0;7000" name="RequestShowNewUserPetition" />
+    <packet id="D0;7100" name="RequestShowStepThree" />
+    <packet id="D0;7200" name="RequestShowStepTwo" />
+    <packet id="D0;7300" name="ExRaidReserveResult" />
+    <packet id="D0;7500" name="RequestRefundItem" />
+    <packet id="D0;7600" name="RequestBuySellUIClose" />
+    <packet id="D0;7700" name="RequestEventMatchObserverEnd" />
+    <packet id="D0;7800" name="BrGamePoint" />
+    <packet id="D0;7900" name="BrProductList" />
+    <packet id="D0;7A00" name="BrProductInfo" />
+    <packet id="D0;7B00" name="BrBuyProduct" />
+    <packet id="D0;7C00" name="BrRecentProductList" />
+    <packet id="D0;7D00" name="BrEventRankerList" />
+    <packet id="D0;7E00" name="BrMinigameLoadScores" />
+    <packet id="D0;7F00" name="BrMinigameInsertScore" />
+    <packet id="D0;8000" name="BrLectureMark" />
+  </packetfamilly>
+</protocol>

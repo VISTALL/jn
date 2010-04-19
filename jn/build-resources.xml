@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Jn Resources" default="dist" basedir=".">
+	<description>jdevelopstation.com</description>
+	<property name="java" location="java-resource"/>
+	<property name="resource" location="resource"/>
+	<property name="build" location="build"/>
+	<property name="svn_root" location="" />
+	<property name="build.resource" location="${build}/resource"/>
+	<property name="lib" location="resource/libs"/>
+
+	<path id= "svnant.classpath" >
+     <fileset dir= "../java/svn_ant/lib" >
+         <include name= "*.jar" />
+     </fileset>
+	</path>
+	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.classpath" />
+
+	<target name="clean" description="Removes old file.">
+		<delete file="${build}/jn-resources.jar"/>
+		<delete file="${lib}/jn-resources.jar"/>
+	</target>
+
+	<target name="init" description="Create the output directories.">
+		<mkdir dir="${build}"/>
+		<mkdir dir="${build.resource}"/>
+	</target>
+
+	<target name="compile" depends="init" description="Compile the source.">
+		<copy todir="${build.resource}/com/jds/jn/resources/bundle">
+			<fileset dir="${java}/com/jds/jn/resources/bundle">
+				<include name="*.properties"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.resource}/com/jds/jn/resources/images">
+			<fileset dir="${java}/com/jds/jn/resources/images">
+				<include name="*.png*"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.resource}/com/jds/jn/resources/nimg">
+			<fileset dir="${java}/com/jds/jn/resources/nimg">
+				<include name="*.png*"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.resource}/com/jds/jn/resources/images/part">
+			<fileset dir="${java}/com/jds/jn/resources/images/part">
+				<include name="*.png"/>
+			</fileset>
+		</copy>
+	</target>
+	<target name="jar" depends="clean,compile" description="Create the jar file">
+		<svn>
+            <status path="${svn_root}" revisionProperty="svn.revision" />
+        </svn>
+		<echo message= "Subversion revision: ${svn.revision}" />
+		<jar destfile="${lib}/jn-resources.jar">
+			<fileset dir="${build.resource}"/>
+			<manifest>
+				<attribute name="Company" value="J Develop Station"/>
+				<attribute name="Implementation-Revision" value="${svn.revision}"/>
+			</manifest>
+		</jar>
+	</target>
+	<target name="dist" depends="jar"/>
+</project>
