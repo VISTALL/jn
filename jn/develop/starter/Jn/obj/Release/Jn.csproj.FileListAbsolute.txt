@@ -1,7 +1,0 @@
-G:\J Develop Station\jn\develop\starter\Jn\bin\Release\Jn.exe
-G:\J Develop Station\jn\develop\starter\Jn\bin\Release\Jn.pdb
-G:\J Develop Station\jn\develop\starter\Jn\obj\Release\ResolveAssemblyReference.cache
-G:\J Develop Station\jn\develop\starter\Jn\obj\Release\Jn.Properties.Resources.resources
-G:\J Develop Station\jn\develop\starter\Jn\obj\Release\Jn.csproj.GenerateResource.Cache
-G:\J Develop Station\jn\develop\starter\Jn\obj\Release\Jn.exe
-G:\J Develop Station\jn\develop\starter\Jn\obj\Release\Jn.pdb

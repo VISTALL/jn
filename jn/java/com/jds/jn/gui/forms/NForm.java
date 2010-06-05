@@ -1,30 +1,8 @@
 package com.jds.jn.gui.forms;
 
-import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.Jn;
-import com.jgoodies.forms.layout.CellConstraints;
-import com.jgoodies.forms.layout.FormLayout;
-import com.sun.awt.AWTUtilities;
-import com.jds.jn.gui.JActionEvent;
-import com.jds.jn.gui.JActionListener;
-import com.jds.jn.gui.dialogs.ExceptionDialog;
-import com.jds.jn.gui.listeners.HideWatcher;
-import com.jds.jn.gui.listeners.WindowsAdapter;
-import com.jds.jn.gui.panels.ConsolePane;
-import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.gui.panels.ViewTabbedPane;
-import com.jds.jn.network.profiles.NetworkProfile;
-import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.rconfig.RValues;
-import com.jds.jn.session.Session;
-import com.jds.jn.statics.RibbonActions;
-import com.jds.jn.statics.TabRibbonActions;
-import com.jds.jn.util.ThreadPoolManager;
-import com.jds.swing.JTrayIcon;
-import org.jvnet.flamingo.ribbon.*;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +11,27 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
 import java.util.Arrays;
 import java.util.concurrent.ScheduledFuture;
+
+import com.intellij.uiDesigner.core.Spacer;
+import com.jds.jn.Jn;
+import com.jds.jn.gui.JActionEvent;
+import com.jds.jn.gui.JActionListener;
+import com.jds.jn.gui.dialogs.ExceptionDialog;
+import com.jds.jn.gui.listeners.HideWatcher;
+import com.jds.jn.gui.listeners.WindowsAdapter;
+import com.jds.jn.gui.panels.*;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.config.RValues;
+import com.jds.jn.session.Session;
+import com.jds.jn.statics.RibbonActions;
+import com.jds.jn.statics.TabRibbonActions;
+import com.jds.jn.util.ThreadPoolManager;
+import com.jds.swing.JTrayIcon;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+import com.sun.awt.AWTUtilities;
+import org.jvnet.flamingo.ribbon.*;
 
 /**
  * Author: VISTALL
@@ -60,9 +59,9 @@ public class NForm extends JRibbonFrame
 	public NForm()
 	{
 		super("Jn");
+
 		$$$setupUI$$$();
 		add($$$getRootComponent$$$());
-
 		initTray();
 		setResizable(false);
 
@@ -74,6 +73,7 @@ public class NForm extends JRibbonFrame
 		}
 		catch (IOException ignored)
 		{
+			ignored.printStackTrace();
 		}
 
 		RibbonApplicationMenu menu = new RibbonApplicationMenu();
@@ -271,12 +271,21 @@ public class NForm extends JRibbonFrame
 
 	public void warn(String text, Throwable e)
 	{
-		_consolePane.addLog("[Warning] " + text + e);
+		if(e != null)
+		{
+			_consolePane.addLog("[Warning] " + text + e);
+		}
+		else
+		{
+			_consolePane.addLog("[Warning] " + text);
+		}
 
 		if (e != null)
 		{
+			e.printStackTrace();
+
 			enableException();
-			ExceptionDialog.getInstance().addException(e);
+			ExceptionDialog.getInstance().addException(e);			
 		}
 	}
 
@@ -288,18 +297,11 @@ public class NForm extends JRibbonFrame
 
 	public void updateTitle()
 	{
-		String profName = RValues.ACTIVE_PROFILE.asString();
-		if (!profName.trim().equals(""))
+		NetworkProfile prof = NetworkProfiles.getInstance().active();
+
+		if (prof != null)
 		{
-			NetworkProfile prof = NetworkProfiles.getInstance().getProfile(profName);
-			if (prof != null)
-			{
-				setTitle(Jn.VERSION + String.format(" - [%s]", prof.getName()));
-			}
-			else
-			{
-				setTitle(Jn.VERSION);
-			}
+			setTitle(Jn.VERSION + String.format(" - [%s]", prof.getName()));
 		}
 		else
 		{

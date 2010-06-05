@@ -1,5 +1,16 @@
 package com.jds.jn.gui.panels.viewpane;
 
+import javolution.util.FastList;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -7,15 +18,6 @@ import com.jds.jn.network.profiles.*;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
-import javolution.util.FastList;
-
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -67,7 +69,7 @@ public class FilterPane extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
-				PacketInfo v = (PacketInfo) ((JList) e.getSource()).getSelectedValue();
+				PacketInfo v = (PacketInfo) packetList.getSelectedValue();
 				if (_pane.getSession() == null || profile == null || v == null)
 				{
 					return;

@@ -1,8 +1,13 @@
 package com.jds.jn.gui.forms;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
+import javax.swing.*;
+import javax.swing.text.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.*;
 import com.jds.jn.Jn;
 import com.jds.jn.gui.dialogs.EnterNameDialog;
 import com.jds.jn.gui.forms.menu_listeners.MenuPopupMenuListener;
@@ -10,9 +15,7 @@ import com.jds.jn.gui.listeners.TableMouseListener;
 import com.jds.jn.gui.models.DataPartNode;
 import com.jds.jn.gui.models.PacketViewTableModel;
 import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.gui.renders.IconComboBoxRenderer;
-import com.jds.jn.gui.renders.IconTableRenderer;
-import com.jds.jn.gui.renders.PacketViewTreeRenderer;
+import com.jds.jn.gui.renders.*;
 import com.jds.jn.network.packets.DataPacket;
 import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.PartTypeManager;
@@ -23,12 +26,6 @@ import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.Util;
 import com.sun.awt.AWTUtilities;
 import org.jdesktop.swingx.JXTreeTable;
-
-import javax.swing.*;
-import javax.swing.text.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL

@@ -28,6 +28,7 @@ public class PriorityThreadFactory implements ThreadFactory
 		Thread t = new Thread(_group, r);
 		t.setName(_name + "-" + _threadNumber.getAndIncrement());
 		t.setPriority(_prio);
+		//t.setUncaughtExceptionHandler(new UncaughtExceptionHandlerImpl());
 		return t;
 	}
 

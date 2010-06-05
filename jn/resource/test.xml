@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<protocol><families xsi:type="java:org.exolab.castor.mapping.MapItem" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><key xsi:type="java:st.parser.PacketType"/><value xsi:type="java:st.parser.Family"/></families><families xsi:type="java:org.exolab.castor.mapping.MapItem" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><key xsi:type="java:st.parser.PacketType"/><value xsi:type="java:st.parser.Family"/></families><name>L2 Game Server</name></protocol>

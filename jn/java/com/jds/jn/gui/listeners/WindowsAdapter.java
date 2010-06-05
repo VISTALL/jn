@@ -1,7 +1,7 @@
 package com.jds.jn.gui.listeners;
 
 import com.jds.jn.Jn;
-import com.jds.jn.rconfig.RValues;
+import com.jds.jn.config.RValues;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

@@ -1,15 +1,14 @@
 package com.jds.jn.gui.dialogs;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.Jn;
-import com.jds.jn.rconfig.RValues;
-
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.*;
+import com.jds.jn.Jn;
+import com.jds.jn.config.RValues;
 
 public class ProgramSettingsDialog extends JDialog
 {
@@ -23,11 +22,9 @@ public class ProgramSettingsDialog extends JDialog
 
 	public ProgramSettingsDialog()
 	{
-		super(Jn.getInstance());
-		setLocationRelativeTo(null);
-		setLocationByPlatform(true);
+		super(Jn.getInstance(), "Program Settings", true);
+
 		setContentPane(contentPane);
-		setModal(true);
 		getRootPane().setDefaultButton(buttonOK);
 
 		buttonOK.addActionListener(new ActionListener()

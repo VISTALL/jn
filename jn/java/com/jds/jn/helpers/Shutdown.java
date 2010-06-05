@@ -1,6 +1,6 @@
 package com.jds.jn.helpers;
 
-import com.jds.jn.rconfig.RConfig;
+import com.jds.jn.config.ConfigParser;
 
 /**
  * Author: VISTALL
@@ -13,6 +13,13 @@ public class Shutdown extends Thread
 	@Override
 	public void run()
 	{
-		//RConfig.getInstance().shutdown();
+		try
+		{
+			ConfigParser.getInstance().shutdown();
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

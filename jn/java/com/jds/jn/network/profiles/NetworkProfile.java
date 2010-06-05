@@ -1,10 +1,11 @@
 package com.jds.jn.network.profiles;
 
 import javolution.util.FastMap;
-import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.listener.types.ReceiveType;
 
 import java.util.Collection;
+
+import com.jds.jn.network.listener.types.ListenerType;
+import com.jds.jn.network.listener.types.ReceiveType;
 
 /**
  * Author: VISTALL
@@ -45,7 +46,7 @@ public class NetworkProfile
 		return _name;
 	}
 
-	public ReceiveType getActive()
+	public ReceiveType getType()
 	{
 		return _type;
 	}

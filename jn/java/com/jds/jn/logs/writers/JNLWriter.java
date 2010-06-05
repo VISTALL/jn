@@ -3,7 +3,7 @@ package com.jds.jn.logs.writers;
 import com.jds.jn.Jn;
 import com.jds.jn.network.packets.DataPacket;
 import com.jds.jn.network.packets.JPacket;
-import com.jds.jn.rconfig.RValues;
+import com.jds.jn.config.RValues;
 import com.jds.jn.session.Session;
 import com.jds.nio.buffer.NioBuffer;
 

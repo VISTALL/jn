@@ -13,7 +13,6 @@ public class ThreadPoolManager
 	private static ThreadPoolManager _instance;
 
 	private ScheduledThreadPoolExecutor _shedulePool;
-	private ThreadPoolExecutor _threadPool;
 
 	public static ThreadPoolManager getInstance()
 	{
@@ -26,13 +25,12 @@ public class ThreadPoolManager
 
 	ThreadPoolManager()
 	{
-		_threadPool = new ThreadPoolExecutor(2, 4, 15L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(), new PriorityThreadFactory("Thread Pool", Thread.MIN_PRIORITY));
 		_shedulePool = new ScheduledThreadPoolExecutor(3, new PriorityThreadFactory("Shedule", Thread.MIN_PRIORITY));
 	}
 
 	public void execute(Runnable r)
 	{
-		_threadPool.execute(r);
+		_shedulePool.execute(r);
 	}
 
 	public ScheduledFuture scheduleAtFixedRate(Runnable r, long initial, long delay)

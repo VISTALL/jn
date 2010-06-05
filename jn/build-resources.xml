@@ -8,11 +8,12 @@
 	<property name="build.resource" location="${build}/resource"/>
 	<property name="lib" location="resource/libs"/>
 
-	<path id= "svnant.classpath" >
-     <fileset dir= "../java/svn_ant/lib" >
-         <include name= "*.jar" />
-     </fileset>
+	<path id="svnant.classpath">
+		<fileset dir="D:/Java Binaries/svn_ant/lib">
+			<include name="*.jar"/>
+		</fileset>
 	</path>
+	
 	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.classpath" />
 
 	<target name="clean" description="Removes old file.">

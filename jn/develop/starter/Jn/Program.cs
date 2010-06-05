@@ -19,13 +19,24 @@ namespace Jn
         {
             load();
             if (JAVA_HOME == null)
-                return;
-
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.FileName = JAVA_HOME + "javaw.exe";
-            startInfo.Arguments = XMS + " " + XMX + " " + " -cp ./libs/*; jds.jn.Jn";
-            Process.Start(startInfo);
-        }
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                                                 {
+                                                     FileName = "javaw",
+                                                     Arguments = XMS + " " + XMX + " " + " -cp ./libs/*; com.jds.jn.Jn"
+                                                 };
+                Process.Start(startInfo);
+            }
+            else
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo
+                                                 {
+                                                     FileName = JAVA_HOME + "javaw.exe",
+                                                     Arguments = XMS + " " + XMX + " " + " -cp ./libs/*; com.jds.jn.Jn"
+                                                 };
+                Process.Start(startInfo);
+            }
+    }
        
         static void load()
         {

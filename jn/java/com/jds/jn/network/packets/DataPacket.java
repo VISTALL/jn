@@ -1,11 +1,12 @@
 package com.jds.jn.network.packets;
 
+import java.nio.BufferUnderflowException;
+
 import com.jds.jn.Jn;
 import com.jds.jn.parser.DataStructure;
+import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
-
-import java.nio.BufferUnderflowException;
 
 
 /**
@@ -100,5 +101,15 @@ public class DataPacket extends DataStructure
 	public boolean isKey()
 	{
 		return _packetFormat != null && _packetFormat.isKey();
+	}
+
+	public double getDouble(String s)
+	{
+		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsDouble();
+	}
+
+	public int getInt(String s)
+	{
+		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsInt();
 	}
 }

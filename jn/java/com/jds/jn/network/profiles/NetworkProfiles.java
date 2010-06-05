@@ -1,11 +1,12 @@
 package com.jds.jn.network.profiles;
 
 import javolution.util.FastMap;
-import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.listener.types.ReceiveType;
-import com.jds.jn.rconfig.RValues;
 
 import java.util.Collection;
+
+import com.jds.jn.network.listener.types.ListenerType;
+import com.jds.jn.network.listener.types.ReceiveType;
+import com.jds.jn.config.RValues;
 
 /**
  * Author: VISTALL
@@ -30,6 +31,10 @@ public class NetworkProfiles
 
 	public NetworkProfile getProfile(String name)
 	{
+		if(name == null)
+		{
+			return null;
+		}
 		return _map.get(name);
 	}
 
@@ -38,9 +43,9 @@ public class NetworkProfiles
 		_map.put(prof.getName(), prof);
 	}
 
-	public NetworkProfile newProfile(String name)
+	public NetworkProfile newProfile(String name, ReceiveType type)
 	{
-		NetworkProfile prof = new NetworkProfile(name, ReceiveType.PROXY);
+		NetworkProfile prof = new NetworkProfile(name, type);
 		prof.addPart(new NetworkProfilePart(ListenerType.Auth_Server, prof));
 		prof.addPart(new NetworkProfilePart(ListenerType.Game_Server, prof));
 		addProfile(prof);
@@ -55,7 +60,7 @@ public class NetworkProfiles
 
 	public NetworkProfile active()
 	{
-		return _map.get(RValues.ACTIVE_PROFILE.asString());
+		return RValues.ACTIVE_PROFILE.getVal() != null ? _map.get(RValues.ACTIVE_PROFILE.asString()) : null;
 	}
 
 	public Collection<NetworkProfile> profiles()

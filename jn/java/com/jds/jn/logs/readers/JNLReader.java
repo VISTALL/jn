@@ -1,16 +1,15 @@
 package com.jds.jn.logs.readers;
 
+import java.io.File;
+import java.io.IOException;
+
 import com.jds.jn.Jn;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.network.packets.JPacket;
-import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.network.packets.*;
+import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
 import com.jds.nio.buffer.NioBuffer;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Author: VISTALL
@@ -63,6 +62,14 @@ public class JNLReader extends AbstractReader
 			}
 
 			_size = _buffer.getInt();
+
+			Protocol protocol = ProtocolManager.getInstance().getProtocol(type);
+			if(protocol == null)
+			{
+				Jn.getInstance().warn("Not find protocol for type: " + type);
+				throw new IllegalArgumentException("Not find protocol");
+			}
+
 			_session = new Session(type, sessionId, ProtocolManager.getInstance().getProtocol(type));
 
 			if (version != null)

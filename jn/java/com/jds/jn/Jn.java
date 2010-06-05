@@ -1,24 +1,25 @@
 package com.jds.jn;
 
+import javax.swing.*;
+
+import java.awt.*;
+import java.util.ResourceBundle;
+
 import com.jds.jn.gui.dialogs.ExceptionDialog;
 import com.jds.jn.gui.forms.NForm;
 import com.jds.jn.gui.forms.SplashWindow;
 import com.jds.jn.helpers.Shutdown;
+import com.jds.jn.config.ConfigParser;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.Types;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
-import com.jds.jn.rconfig.RConfig;
 import com.jds.jn.remotefiles.FileLoader;
 import com.jds.jn.runnable.GCUpdate;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.ThreadPoolManager;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -34,10 +35,12 @@ public class Jn implements Runnable
 
 	public static void main(String... arg)
 	{
+
 		_instance = new Jn();
 
 		//SwingUtilities.invokeLater(_instance);
-		ThreadPoolManager.getInstance().execute(_instance);
+		//ThreadPoolManager.getInstance().execute(_instance);
+		_instance.run();
 	}
 
 	public static NForm getInstance()
@@ -52,17 +55,15 @@ public class Jn implements Runnable
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 			SplashWindow.showSplash();
-
 			JFrame.setDefaultLookAndFeelDecorated(true);
 			JDialog.setDefaultLookAndFeelDecorated(true);
 
-			RConfig.getInstance();
+			ConfigParser.getInstance();
 
 			_form = new NForm();
 			_form.setMinimumSize(new Dimension(500, 800));
 			_form.setExtendedState(JFrame.MAXIMIZED_HORIZ);
 			_form.info("Program started.");
-
 
 			NetworkProfiles.getInstance();
 
@@ -91,6 +92,10 @@ public class Jn implements Runnable
 		}
 		finally
 		{
+			if(_form == null)
+			{
+				throw new Error("Form is Null");
+			}
 			_form.setVisible(true);
 			_form.updateVisible();
 

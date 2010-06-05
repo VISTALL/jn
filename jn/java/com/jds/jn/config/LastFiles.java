@@ -1,4 +1,4 @@
-package com.jds.jn.rconfig;
+package com.jds.jn.config;
 
 import javolution.util.FastList;
 

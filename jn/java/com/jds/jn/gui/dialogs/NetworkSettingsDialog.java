@@ -10,7 +10,7 @@ import com.jds.jn.gui.panels.NetworkSettingPane;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfilePart;
 import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.rconfig.RValues;
+import com.jds.jn.config.RValues;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,15 +32,12 @@ public class NetworkSettingsDialog extends JDialog
 
 	public NetworkSettingsDialog()
 	{
-		super(Jn.getInstance());
-		setLocationRelativeTo(null);
-		setLocationByPlatform(true);
-		setContentPane(contentPane);
-		setModal(true);
-		//add(contentPane);
-		getRootPane().setDefaultButton(buttonOK);
+		super(Jn.getInstance(), "Network Settings", true);
 
-		setTitle("Network Settings");
+		setLocationByPlatform(false);
+		
+		setContentPane(contentPane);
+		getRootPane().setDefaultButton(buttonOK);
 		setSize(700, 500);
 
 		buttonOK.addActionListener(new ActionListener()
@@ -148,14 +145,10 @@ public class NetworkSettingsDialog extends JDialog
 			_profiles.addItem(profile);
 		}
 
-		String profName = RValues.ACTIVE_PROFILE.asString();
-		if (!profName.equalsIgnoreCase(""))
+		NetworkProfile prof = NetworkProfiles.getInstance().getProfile(RValues.ACTIVE_PROFILE.asString());
+		if (prof != null)
 		{
-			NetworkProfile prof = NetworkProfiles.getInstance().getProfile(profName);
-			if (prof != null)
-			{
-				_profiles.setSelectedItem(prof);
-			}
+			_profiles.setSelectedItem(prof);
 		}
 	}
 

@@ -1,7 +1,9 @@
 package com.jds.jn.network.profiles;
 
-import javolution.util.FastList;
+import java.util.ArrayList;
+
 import com.jds.jn.network.listener.types.ListenerType;
+import com.jds.jn.properties.PropertyValue;
 
 /**
  * Author: VISTALL
@@ -30,7 +32,7 @@ public class NetworkProfilePart
 	private String _protocol = "";
 
 	// filter
-	private FastList<String> _filterList = new FastList<String>();
+	private ArrayList<String> _filterList;
 
 
 	public NetworkProfilePart(ListenerType type, NetworkProfile m)
@@ -39,6 +41,7 @@ public class NetworkProfilePart
 		_mother = m;
 	}
 
+	@PropertyValue("LocalHost")
 	public String getLocalHost()
 	{
 		return _localHost;
@@ -49,6 +52,7 @@ public class NetworkProfilePart
 		_localHost = localHost;
 	}
 
+	@PropertyValue("RemoteHost")
 	public String getRemoteHost()
 	{
 		return _remoteHost;
@@ -59,6 +63,7 @@ public class NetworkProfilePart
 		_remoteHost = remoteHost;
 	}
 
+	@PropertyValue("LocalPort")
 	public int getLocalPort()
 	{
 		return _localPort;
@@ -69,6 +74,7 @@ public class NetworkProfilePart
 		_localPort = localPort;
 	}
 
+	@PropertyValue("RemotePort")
 	public int getRemotePort()
 	{
 		return _remotePort;
@@ -79,6 +85,7 @@ public class NetworkProfilePart
 		_remotePort = remotePort;
 	}
 
+	@PropertyValue("DeviceId")
 	public int getDeviceId()
 	{
 		return _deviceId;
@@ -89,6 +96,7 @@ public class NetworkProfilePart
 		_deviceId = deviceName;
 	}
 
+	@PropertyValue("DevicePort")
 	public int getDevicePort()
 	{
 		return _devicePort;
@@ -109,6 +117,7 @@ public class NetworkProfilePart
 		return _mother;
 	}
 
+	@PropertyValue("Protocol")
 	public String getProtocol()
 	{
 		return _protocol;
@@ -119,6 +128,7 @@ public class NetworkProfilePart
 		_protocol = protocol;
 	}
 
+	@PropertyValue("ProxyPacketId")
 	public int getPacketId()
 	{
 		return _packetId;
@@ -129,6 +139,7 @@ public class NetworkProfilePart
 		_packetId = packetId;
 	}
 
+	@PropertyValue("ProxyServerId")
 	public int getServerId()
 	{
 		return _serverId;
@@ -139,6 +150,7 @@ public class NetworkProfilePart
 		_serverId = serverId;
 	}
 
+	@PropertyValue("ProxyServerList")
 	public String getServerList()
 	{
 		return _serverList;
@@ -151,27 +163,36 @@ public class NetworkProfilePart
 
 	public void addFilterOpcode(String s)
 	{
+		if(_filterList == null)
+		{
+			_filterList = new ArrayList<String>();
+		}
 		_filterList.add(s);
 	}
 
 	public void removeFilterOpcode(String a)
 	{
-		_filterList.remove(a);
+		if(_filterList != null)
+		{
+			_filterList.remove(a);
+		}
 	}
 
+	@PropertyValue("FilterOpcodeList")
 	public String getFilterListAsString()
 	{
 		String filterList = "";
 
-		for (String str : _filterList)
-		{
-			filterList += str + ";";
-		}
+		if(_filterList != null)
+			for (String str : _filterList)
+			{
+				filterList += str + ";";
+			}
 
 		return filterList;
 	}
 
-	public void fromStringToFilterList(String filterList)
+	public void setFilterListAsString(String filterList)
 	{
 		for (String st : filterList.split(";"))
 		{
@@ -184,6 +205,6 @@ public class NetworkProfilePart
 
 	public boolean isFiltredOpcode(String s)
 	{
-		return _filterList.contains(s);
+		return _filterList != null && _filterList.contains(s);
 	}
 }

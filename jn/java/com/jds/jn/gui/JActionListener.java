@@ -1,11 +1,15 @@
 package com.jds.jn.gui;
 
-import com.jds.jn.Jn;
 import javolution.util.FastMap;
-import com.jds.jn.gui.dialogs.EnterNameDialog;
-import com.jds.jn.gui.dialogs.ExceptionDialog;
-import com.jds.jn.gui.dialogs.NetworkSettingsDialog;
-import com.jds.jn.gui.dialogs.ProgramSettingsDialog;
+
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+
+import java.io.File;
+import java.io.IOException;
+
+import com.jds.jn.Jn;
+import com.jds.jn.gui.dialogs.*;
 import com.jds.jn.gui.panels.ConsolePane;
 import com.jds.jn.gui.panels.ViewTabbedPane;
 import com.jds.jn.logs.Reader;
@@ -14,18 +18,13 @@ import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.rconfig.LastFiles;
-import com.jds.jn.rconfig.RValues;
+import com.jds.jn.config.LastFiles;
+import com.jds.jn.config.RValues;
 import com.jds.jn.session.Session;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.util.ThreadPoolManager;
 import org.jvnet.flamingo.common.JCommandButton;
-
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Author: VISTALL
@@ -232,7 +231,7 @@ public class JActionListener
 				EnterNameDialog dial = new EnterNameDialog(d, "Enter profile name");
 				if (dial.showToWrite())
 				{
-					NetworkProfiles.getInstance().newProfile(dial.getText());
+					NetworkProfiles.getInstance().newProfile(dial.getText(), ReceiveType.JPCAP);
 					d.load();
 				}
 				break;
