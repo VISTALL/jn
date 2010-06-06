@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.ResourceBundle;
 
 import com.jds.jn.gui.dialogs.ExceptionDialog;
-import com.jds.jn.gui.forms.NForm;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
 import com.jds.jn.helpers.Shutdown;
 import com.jds.jn.config.ConfigParser;
@@ -30,7 +30,7 @@ import com.jds.jn.util.ThreadPoolManager;
 public class Jn implements Runnable
 {
 	private static Jn _instance;
-	private NForm _form;
+	private MainForm _form;
 	public static String VERSION = ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Jn");
 
 	public static void main(String... arg)
@@ -43,7 +43,7 @@ public class Jn implements Runnable
 		_instance.run();
 	}
 
-	public static NForm getInstance()
+	public static MainForm getInstance()
 	{
 		return _instance._form;
 	}
@@ -60,7 +60,7 @@ public class Jn implements Runnable
 
 			ConfigParser.getInstance();
 
-			_form = new NForm();
+			_form = new MainForm();
 			_form.setMinimumSize(new Dimension(500, 800));
 			_form.setExtendedState(JFrame.MAXIMIZED_HORIZ);
 			_form.info("Program started.");

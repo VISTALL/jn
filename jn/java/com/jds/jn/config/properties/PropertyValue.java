@@ -1,4 +1,4 @@
-package com.jds.jn.properties;
+package com.jds.jn.config.properties;
 
 import java.lang.annotation.*;
 

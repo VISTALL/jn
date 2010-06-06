@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
+import com.jds.jn.gui.listeners.ColorChooseMouseListener;
 
 public class ProgramSettingsDialog extends JDialog
 {
@@ -19,6 +20,12 @@ public class ProgramSettingsDialog extends JDialog
 	private JCheckBox _useTrayCheckBox;
 	private JCheckBox _savePacketsInDecodeCheckBox;
 	private JSlider _mainVisible;
+	private JPanel _sampleBackground;
+	private JPanel _sampleForeground;
+	private JPanel _sampleForeground3;
+	private JPanel _sampleForeground4;
+	private JPanel _sampleBackground3;
+	private JPanel _sampleBackground4;
 
 	public ProgramSettingsDialog()
 	{
@@ -61,6 +68,15 @@ public class ProgramSettingsDialog extends JDialog
 			}
 		}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
+		_sampleBackground.addMouseListener(new ColorChooseMouseListener(this, _sampleBackground, RValues.PACKET_FORM_SELECT_BACKGROUND_COLOR, "Choose color for background"));
+		_sampleForeground.addMouseListener(new ColorChooseMouseListener(this, _sampleForeground, RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR, "Choose color for foreground"));
+
+		_sampleBackground3.addMouseListener(new ColorChooseMouseListener(this, _sampleBackground3, RValues.PACKET_FORM_SELECT_BACKGROUND_COLOR_2, "Choose color for background"));
+		_sampleForeground3.addMouseListener(new ColorChooseMouseListener(this, _sampleForeground3, RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR_2, "Choose color for foreground"));
+
+		_sampleBackground4.addMouseListener(new ColorChooseMouseListener(this, _sampleBackground4, RValues.PACKET_FORM_NOT_SELECT_BACKGROUND_COLOR_2, "Choose color for background"));
+		_sampleForeground4.addMouseListener(new ColorChooseMouseListener(this, _sampleForeground4, RValues.PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2, "Choose color for foreground"));
+
 		load();
 
 		setSize(600, 400);
@@ -71,6 +87,12 @@ public class ProgramSettingsDialog extends JDialog
 		_useTrayCheckBox.setSelected(RValues.USE_TRAY.asBoolean());
 		_savePacketsInDecodeCheckBox.setSelected(RValues.SAVE_AS_DECODE.asBoolean());
 		_mainVisible.setValue((int) (RValues.MAIN_VISIBLE.asFloat() * 100F));
+		_sampleBackground.setBackground(RValues.PACKET_FORM_SELECT_BACKGROUND_COLOR.asTColor());
+		_sampleForeground.setBackground(RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR.asTColor());
+		_sampleBackground3.setBackground(RValues.PACKET_FORM_SELECT_BACKGROUND_COLOR_2.asTColor());
+		_sampleForeground3.setBackground(RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR_2.asTColor());
+		_sampleBackground4.setBackground(RValues.PACKET_FORM_NOT_SELECT_BACKGROUND_COLOR_2.asTColor());
+		_sampleForeground4.setBackground(RValues.PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2.asTColor());
 	}
 
 	private void onOK()

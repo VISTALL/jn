@@ -39,7 +39,7 @@ import org.jvnet.flamingo.ribbon.*;
  * Date: 03/01/2010
  * Time: 22:31:09
  */
-public class NForm extends JRibbonFrame
+public class MainForm extends JRibbonFrame
 {
 	private JPanel _panel1;
 	private JTabbedPane _manTab;
@@ -56,7 +56,7 @@ public class NForm extends JRibbonFrame
 
 	private RibbonContextualTaskGroup _sessionGroup;
 
-	public NForm()
+	public MainForm()
 	{
 		super("Jn");
 

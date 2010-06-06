@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.Jn;
+import com.jds.jn.config.RValues;
 import com.jds.jn.gui.dialogs.EnterNameDialog;
 import com.jds.jn.gui.forms.menu_listeners.MenuPopupMenuListener;
 import com.jds.jn.gui.listeners.TableMouseListener;
@@ -47,9 +48,10 @@ public class PacketForm extends JFrame
 	private JPopupMenu _menu;
 	private ViewPane _pane;
 	private int _row;
-
 	private JMenu _bytesPopupMenu;
 
+	private int _verticalScroll;
+	private int _horizontalScroll;
 
 	public PacketForm(ViewPane pane, float persent, DataPacket packet, int row)
 	{
@@ -158,7 +160,7 @@ public class PacketForm extends JFrame
 		 getMenu().add(changeMenu);
 		 getMenu().add(delete); */
 
-		getPacketStructure().addMouseListener(new MouseListener()
+		getPacketStructure().addMouseListener(new MouseAdapter()
 		{
 
 			@Override
@@ -167,50 +169,25 @@ public class PacketForm extends JFrame
 				int index = getPacketStructure().getSelectedRow();
 				Object node = getPacketStructure().getModel().getValueAt(index, 0);
 
-				if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON1)
+				_verticalScroll = _scrollPane.getVerticalScrollBar().getValue();
+				_horizontalScroll = _scrollPane.getHorizontalScrollBar().getValue();
+
+				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && node instanceof ValuePart)
 				{
-					if (node instanceof ValuePart)
-					{
-						ValuePart part = (ValuePart) node;
-						part.setSelected(!part.isSelected());
-						part.updateColor(getPacket());
-						updateHexDump();
-
-						getPacketStructure().setRowSelectionInterval(index, index);
-					}
+					ValuePart part = (ValuePart) node;
+					part.setSelected(!part.isSelected());
+					part.updateColor(getPacket());
+					updateHexDump();
+					getPacketStructure().setRowSelectionInterval(index, index);
+					setScroolBar();
 				}
-
-				if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
+				else if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
 				{
 					getMenu().show(getPacketStructure(), e.getX(), e.getY());
 				}
 			}
 
-			@Override
-			public void mousePressed(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e)
-			{
-
-			}
 		});
-
 
 		$$$getRootComponent$$$().registerKeyboardAction(new ActionListener()
 		{
@@ -236,6 +213,12 @@ public class PacketForm extends JFrame
 		Style def = StyleContext.getDefaultStyleContext().getStyle(StyleContext.DEFAULT_STYLE);
 
 		Style base = doc.addStyle("base", def);
+
+		Style selected = doc.addStyle("selected", def);
+		StyleConstants.setFontFamily(selected, "Monospaced");
+		StyleConstants.setForeground(selected, RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR.asTColor());
+		StyleConstants.setBackground(selected, RValues.PACKET_FORM_SELECT_BACKGROUND_COLOR.asTColor());
+
 		StyleConstants.setFontFamily(base, "Monospaced");
 		StyleConstants.setForeground(base, Color.BLACK);
 
@@ -291,8 +274,8 @@ public class PacketForm extends JFrame
 		s = doc.addStyle("op", regular);
 		StyleConstants.setBackground(s, Color.YELLOW);
 
-		s = doc.addStyle("selected", regular);
-		StyleConstants.setBackground(s, Color.BLUE);
+		//s = doc.addStyle("selected", regular);
+		//StyleConstants.setBackground(s, Color.BLUE);
 
 		s = doc.addStyle("chk", regular);
 		StyleConstants.setBackground(s, Color.GREEN);
@@ -320,7 +303,6 @@ public class PacketForm extends JFrame
 	public void updateHexDump()
 	{
 		_hexDumpPacket.setText("");
-		int pos = _scrollPane.getVerticalScrollBar().getValue();
 
 		int len = getPacket().getFullBuffer().array().length;
 
@@ -349,10 +331,13 @@ public class PacketForm extends JFrame
 		}
 
 		addLineBreaksToHexDump(getPacket().getBuffer().array());
-
-		_scrollPane.getVerticalScrollBar().setValue(pos);
 	}
 
+	public void setScroolBar()
+	{
+		_scrollPane.getVerticalScrollBar().setValue(_verticalScroll);
+		_scrollPane.getHorizontalScrollBar().setValue(_horizontalScroll);
+	}
 
 	public void updateCurrentPacket()
 	{
@@ -369,7 +354,7 @@ public class PacketForm extends JFrame
 
 		updateHexDump();
 
-		if (getPacket().getPacketFormat() != null)
+		if (getPacket().getPacketFormat() != null && !getPacket().hasError())
 		{
 			/*int opSize = 0;
 			for (PartType pt : getPacket().getPacketFormat().sizeId())

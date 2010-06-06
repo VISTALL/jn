@@ -322,13 +322,12 @@
       <part name="deco6-augId" type="d" />
       <part name="belt-augId" type="d" />
       <part name="talismanCount" type="d" />
-      <part name="?" type="d" />
+      <part name="activeCloak" type="d" />
       <part name="pvpFlag" type="d" />
       <part name="karma" type="d" />
       <part name="mAttackSpeed" type="d" />
       <part name="pAtttackSpeed" type="d" />
-      <part name="pvpFlag" type="d" />
-      <part name="karma" type="d" />
+      <part name="?" type="d" />
       <part name="runSpeed" type="d" />
       <part name="walkSpeed" type="d" />
       <part name="sweemRunSpeed" type="d" />
@@ -336,7 +335,7 @@
       <part name="flyRunSpeed" type="d" />
       <part name="flyWalkSpeed" type="d" />
       <part name="flyRunSpeed" type="d" />
-      <!---<part name="flyWalkSpeed" type="d" />     -->
+      <part name="flyWalkSpeed" type="d" />
       <part name="moveMulti" type="D" />
       <part name="attackMulti" type="D" />
       <part name="colRadius" type="D" />
@@ -349,7 +348,6 @@
       <part name="clan_crest_id" type="d" />
       <part name="ally_id" type="d" />
       <part name="ally_crest_id" type="d" />
-      <!--<part name="?" type="d" />-->
       <part name="sit" type="c" />
       <part name="run" type="c" />
       <part name="combat" type="c" />
@@ -1136,13 +1134,13 @@
     <packet id="CC" name="NickNameChanged" />
     <packet id="CD" name="PledgeStatusChanged" />
     <packet id="CE" name="RelationChanged">
-        <part name="?" type="d" />
-        <part name="obj_id" type="d" />
-        <part name="relation" type="d" />
-        <part name="attackable" type="d" />
-        <part name="karma" type="d" />
-        <part name="pvpflag" type="d" />
-	</packet>
+      <part name="?" type="d" />
+      <part name="obj_id" type="d" />
+      <part name="relation" type="d" />
+      <part name="attackable" type="d" />
+      <part name="karma" type="d" />
+      <part name="pvpflag" type="d" />
+    </packet>
     <packet id="D0" name="MultiSellListPacket" />
     <packet id="D1" name="SetSummonRemainTimePacket" />
     <packet id="D2" name="PackageSendableListPacket" />
@@ -1451,7 +1449,7 @@
             <part name="enchanteffect1" type="h" />
             <part name="enchanteffect2" type="h" />
             <part name="enchanteffect3" type="h" />
-            <part name="?" type="d" />
+            <part name="refune_id" type="d" />
             <part name="price" type="Q" />
           </for>
           <part name="end" type="c" />
@@ -1467,16 +1465,16 @@
     <packet id="FE;D200" name="ExBR_MinigameLoadScores" />
     <packet id="FE;D300" name="ExBR_AgathionEnergyInfo" />
     <packet id="FE;BD00" name="ExChangeNpcState">
-        <part name="objectId" type="d" />
-       	<part name="state" type="d" />
-	</packet>
+      <part name="objectId" type="d" />
+      <part name="state" type="d" />
+    </packet>
     <packet id="FE;C800" name="ExVoteSystemInfo">
-        <part name="rec_can_give" type="d" />
-       	<part name="rec_have" type="d" />
-        <part name="timer" type="d" />
-        <part name="persent" type="d" />
-        <part name="active?" type="d" />
-	</packet>
+      <part name="rec_can_give" type="d" />
+      <part name="rec_have" type="d" />
+      <part name="timer" type="d" />
+      <part name="persent" type="d" />
+      <part name="active?" type="d" />
+    </packet>
   </packetfamilly>
   <!--__________________________________________-->
   <packetfamilly way="CLIENT">

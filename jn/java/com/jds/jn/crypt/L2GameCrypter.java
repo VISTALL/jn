@@ -1,12 +1,12 @@
 package com.jds.jn.crypt;
 
+import java.util.Arrays;
+
 import com.jds.jn.crypt.helpers.Obfuscator;
 import com.jds.jn.network.packets.DataPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.protocol.Protocol;
-
-import java.util.Arrays;
 
 /**
  * Author: VISTALL
@@ -55,9 +55,12 @@ public class L2GameCrypter implements ProtocolCrypter
 				{
 					decode(raw, _outKey);
 
-					int d = raw[0] & 0xFF;
-					int id = _obs.decodeSingleOpcode(d);
+					int id = _obs.decodeSingleOpcode(raw[0] & 0xFF);
 					raw[0] = (byte) id;
+					if(id == 0xD0 && raw.length >= 2)
+					{
+						raw[1] = (byte)_obs.decodeDoubleOpcode(raw[1] & 0xFF);
+					}
 				}
 				break;
 			case SERVER:
@@ -118,7 +121,9 @@ public class L2GameCrypter implements ProtocolCrypter
 				_obs.disable();
 				int seed = ((NumberValuePart)packet.getRootNode().getPartByName("seed")).getValueAsInt();
 				if(seed != 0)
+				{
 					_obs.init_tables(seed);
+				}
 			}	
 		}
 	}

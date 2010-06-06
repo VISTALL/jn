@@ -1,4 +1,6 @@
-package com.jds.jn.properties;
+package com.jds.jn.config.properties;
+
+import com.jds.jn.util.TColor;
 
 /**
  * Author: VISTALL
@@ -49,6 +51,11 @@ public class ObjectParse
 		if (clazz.isAssignableFrom(String.class))
 		{
 			return String.valueOf(val);
+		}
+
+		if(clazz.isAssignableFrom(TColor.class))
+		{
+			return new TColor(TColor.decode(val));
 		}
 
 		if (clazz.isEnum())

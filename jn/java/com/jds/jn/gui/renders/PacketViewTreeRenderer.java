@@ -1,11 +1,14 @@
 package com.jds.jn.gui.renders;
 
-import com.jds.jn.gui.models.DataPartNode;
-import com.jds.jn.statics.ImageStatic;
-
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeCellRenderer;
+
 import java.awt.*;
+
+import com.jds.jn.config.RValues;
+import com.jds.jn.gui.models.DataPartNode;
+import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.statics.ImageStatic;
 
 /**
  * Author: VISTALL
@@ -27,6 +30,16 @@ public class PacketViewTreeRenderer extends DefaultTreeCellRenderer
 
 			setText(node.getPacketNode().toString());
 			setIcon(ImageStatic.getInstance().getIconForPartType(node.getPacketNode().getModelPart().getType()));
+
+
+			if(node.getPacketNode() instanceof ValuePart)
+			{
+				boolean isSelected = ((ValuePart)node.getPacketNode()).isSelected();
+
+				setBackgroundNonSelectionColor(isSelected ? RValues.PACKET_FORM_SELECT_BACKGROUND_COLOR_2.asTColor() : RValues.PACKET_FORM_NOT_SELECT_BACKGROUND_COLOR_2.asTColor());
+				setTextNonSelectionColor(isSelected ? RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR_2.asTColor() : RValues.PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2.asTColor());
+			}
+
 		}
 		return this;
 	}

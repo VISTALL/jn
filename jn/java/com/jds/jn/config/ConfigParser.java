@@ -14,8 +14,8 @@ import java.util.HashMap;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.profiles.*;
-import com.jds.jn.properties.ObjectParse;
-import com.jds.jn.properties.PropertyValue;
+import com.jds.jn.config.properties.ObjectParse;
+import com.jds.jn.config.properties.PropertyValue;
 import com.sun.org.apache.xerces.internal.impl.Constants;
 
 /**
@@ -114,7 +114,7 @@ public class ConfigParser
 							}
 							RValues rv = _rValues.get(map.getNamedItem("name").getNodeValue());
 
-							if (rv != null && rv.getType() != null)
+							if (rv != null)
 							{
 								rv.setVal(ObjectParse.parse(rv.getType(), map.getNamedItem("val").getNodeValue()));
 							}

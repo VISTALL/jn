@@ -11,10 +11,10 @@ public class Obfuscator
 	private int _seed;
 	private int _firstSize;
 	private int _secondSize;
-	private int _thirdSize;
+	//private int _thirdSize;
 	private int[] _decodeTable1;
 	private int[] _decodeTable2;
-	private int[] _decodeTable3;
+	//private int[] _decodeTable3;
 
 	public Obfuscator()
 	{
@@ -25,7 +25,7 @@ public class Obfuscator
 	{
 		_isEnable = false;
 		_seed = 0;
-		_firstSize = (_secondSize = _thirdSize = 0);
+		_firstSize = (_secondSize = 0);
 		_decodeTable1 = (_decodeTable2 = null);
 	}
 
@@ -37,12 +37,12 @@ public class Obfuscator
 		int l = 0;
 
 		_firstSize = 0xd0;   //длина первых опкодов
-		_secondSize = 0x80;   //длина вторых опкодов
-		_thirdSize = 0x06;   //длина треьих опкодов
+		_secondSize = 0x86;   //длина вторых опкодов
+	//	_thirdSize = 0x06;   //длина треьих опкодов
 
 		_decodeTable1 = new int[_firstSize + 1];
 		_decodeTable2 = new int[_secondSize + 1];
-		_decodeTable3 = new int[_thirdSize + 1];
+	//	_decodeTable3 = new int[_thirdSize + 1];
 
 		for (i = 0; i <= _firstSize; ++i)
 		{
@@ -54,10 +54,10 @@ public class Obfuscator
 			_decodeTable2[i] = i;
 		}
 
-		for (i = 0; i <= _thirdSize; ++i)
+	/*	for (i = 0; i <= _thirdSize; ++i)
 		{
 			_decodeTable3[i] = i;
-		}
+		}   */
 
 		pseudo_rand_seed(seed);
 
@@ -77,13 +77,13 @@ public class Obfuscator
 			_decodeTable2[i] = j;
 		}
 
-		for (i = 1; i <= _thirdSize; ++i)
+	/*	for (i = 1; i <= _thirdSize; ++i)
 		{
 			k = pseudo_rand() % (i + 1);
 			j = _decodeTable3[k];
 			_decodeTable3[k] = _decodeTable3[i];
 			_decodeTable3[i] = j;
-		}
+		}  */
 
 
 		for (l = 0; _decodeTable1[l] != 0x12; ++l)
@@ -115,8 +115,7 @@ public class Obfuscator
 		{
 			return id;
 		}
-		id = _decodeTable1[id];
-		return id;
+		return _decodeTable1[id];
 	}
 
 	public int decodeDoubleOpcode(int id)
@@ -129,11 +128,10 @@ public class Obfuscator
 		{
 			return id;
 		}
-		id = _decodeTable2[id];
-		return id;
+		return _decodeTable2[id];
 	}
 
-	public int decodeTripleOpcode(int id)
+/*	public int decodeTripleOpcode(int id)
 	{
 		if (!_isEnable)
 		{
@@ -145,7 +143,7 @@ public class Obfuscator
 		}
 		id = _decodeTable3[id];
 		return id;
-	}
+	} */
 
 	private void pseudo_rand_seed(int id)
 	{

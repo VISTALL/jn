@@ -3,7 +3,7 @@ package com.jds.jn.network.profiles;
 import java.util.ArrayList;
 
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.properties.PropertyValue;
+import com.jds.jn.config.properties.PropertyValue;
 
 /**
  * Author: VISTALL

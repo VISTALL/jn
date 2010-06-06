@@ -1,9 +1,6 @@
 package com.jds.jn.gui.models;
 
-import com.jds.jn.parser.datatree.DataSwitchBlock;
-import com.jds.jn.parser.datatree.DataTreeNode;
-import com.jds.jn.parser.datatree.DataTreeNodeContainer;
-import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
@@ -82,7 +79,7 @@ public class DataPartNode extends DefaultMutableTreeTableNode
 		}
 		return "";
 	}
-
+	
 	@Override
 	public boolean getAllowsChildren()
 	{
