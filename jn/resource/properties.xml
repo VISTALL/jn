@@ -16,6 +16,7 @@
     <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya2.jnl"/>
     <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya6.jnl"/>
     <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya_6.jnl"/>
+    <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Final.jnl"/>
     <profile name="Test" type="JPCAP">
         <part DeviceId="0" DevicePort="2106" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"
