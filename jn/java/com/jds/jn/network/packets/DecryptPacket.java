@@ -1,28 +1,30 @@
-package com.jds.jn.parser;
+package com.jds.jn.network.packets;
 
+import java.nio.BufferUnderflowException;
+
+import com.jds.jn.Jn;
 import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.formattree.*;
+import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.nio.buffer.NioBuffer;
-import javolution.util.FastList;
-
-import java.nio.ByteOrder;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * @author Gilles Duboscq
+ * @rewrite VISTALL - full rewrite
  */
-public class DataStructure
+public class DecryptPacket implements IPacketData
 {
-	protected ByteOrder _order;
+	private final NotDecryptPacket _notDecryptPacket;
+	private Protocol _protocol;
+
+	private DataTreeNodeContainer _packetParts;
+	private Format _dataFormat;
+	private PacketInfo _packetFormat;
+
 	protected NioBuffer _buf;
-	protected NioBuffer _fullBuffer;
-	protected byte[] _unparsed;
-	protected Format _format;
-	protected DataTreeNodeContainer _packetParts;
+
 	protected boolean _mustUpdate = true;
-	protected boolean _isValid;
 	protected String _error;
 	protected DataPacketMode _mode;
 
@@ -34,43 +36,62 @@ public class DataStructure
 		FORGING
 	}
 
-	public DataStructure(byte[] raw, Format format)
+	public DecryptPacket(byte[] data, PacketType type, Protocol protocol)
 	{
-		this(NioBuffer.wrap(raw).order(ByteOrder.LITTLE_ENDIAN), format);
+		this(data, type, protocol, true);
 	}
 
-	public DataStructure(NioBuffer buf, Format format)
+	public DecryptPacket(byte[] data, PacketType type, Protocol protocol, boolean parse)
 	{
-		setData(buf);
-		_format = format;
+		this(new NotDecryptPacket(type, data, System.currentTimeMillis()), protocol, parse);
 	}
 
-	public DataStructure(DataTreeNodeContainer root)
+	public DecryptPacket(NotDecryptPacket packet, Protocol protocol)
 	{
-		this(root, null, ByteOrder.LITTLE_ENDIAN);
+		this(packet, protocol, true);
 	}
 
-	public DataStructure(DataTreeNodeContainer root, ByteOrder order)
+	public DecryptPacket(NotDecryptPacket packet, Protocol protocol, boolean parse)
 	{
-		this(root, null, order);
-	}
+		_notDecryptPacket = packet;
+		_protocol = protocol;
 
-	public DataStructure(DataTreeNodeContainer root, Format format)
-	{
-		this(root, format, ByteOrder.LITTLE_ENDIAN);
-	}
+		_buf = packet.getBuffer().clone();
+		_colorForHex = new String[packet.length()];
 
-	public void setData(NioBuffer buf)
-	{
-		_colorForHex = new String[buf.array().length ];
-
-		setBuffer(buf);
-
-		byte[] fdata = Arrays.copyOf(buf.array(), buf.array().length);
-		setFullBuffer(NioBuffer.wrap(fdata).order(ByteOrder.LITTLE_ENDIAN));
+		_packetFormat = getProtocol().getFormat(this);
+		if (_packetFormat == null)
+		{
+			_buf.position(0);
+		}
+		else
+		{
+			_dataFormat = _packetFormat.getDataFormat();
+		}
 
 		_mode = DataPacketMode.PARSING;
-		_order = buf.order();
+
+		if (parse)
+		{
+			try
+			{
+				parse();
+			}
+			catch (BufferUnderflowException e)
+			{
+				_error = "Insuficient data for the specified format";
+				Jn.getInstance().warn("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+			}
+		}
+	}
+
+	public String getName()
+	{
+		if (getPacketFormat() == null)
+		{
+			return null;
+		}
+		return getPacketFormat().getName();
 	}
 
 	public void setColor(int index, String color)
@@ -81,18 +102,6 @@ public class DataStructure
 	public String getColor(int index)
 	{
 		return _colorForHex[index];
-	}
-
-	public DataStructure(DataTreeNodeContainer root, Format format, ByteOrder order)
-	{
-		if (!root.isRoot())
-		{
-			throw new IllegalArgumentException("The root of a Forging mode packet must be... root :p");
-		}
-		_packetParts = root;
-		_format = format;
-		_mode = DataPacketMode.FORGING;
-		_order = order;
 	}
 
 	public synchronized void parse()
@@ -108,17 +117,11 @@ public class DataStructure
 		_mustUpdate = false;
 		_packetParts = new DataTreeNodeContainer();
 
-		//getBuffer().rewind();
+		if (getDataFormat() != null)
+		{
+			getDataFormat().registerFormatChangeListener(this);
 
-		if (getFormat() != null)
-		{
-			getFormat().registerFormatChangeListener(this);
-			boolean ret = parse(getFormat().getMainBlock(), _packetParts);
-			setValid(ret);
-		}
-		else
-		{
-			this.setValid(false);
+			parse(getDataFormat().getMainBlock(), _packetParts);
 		}
 	}
 
@@ -209,9 +212,9 @@ public class DataStructure
 
 	public DataTreeNodeContainer getRootNode()
 	{
-		if (this.getMode() == DataPacketMode.PARSING)
+		if (getMode() == DataPacketMode.PARSING)
 		{
-			this.parse();
+			parse();
 		}
 		return _packetParts;
 	}
@@ -221,77 +224,19 @@ public class DataStructure
 		return _mode;
 	}
 
-	public Format getFormat()
+	public Format getDataFormat()
 	{
-		return _format;
+		return _dataFormat;
 	}
 
-	public void setFormat(Format f)
+	public PacketInfo getPacketFormat()
 	{
-		_format = f;
-	}
-
-	public byte get(int idx)
-	{
-		return getBuffer().get(idx);
-	}
-
-	public byte[] getUnparsedData()
-	{
-		if (_unparsed == null)
-		{
-			int size = getBuffer().remaining();
-			_unparsed = new byte[size];
-			getBuffer().get(_unparsed);
-		}
-		return _unparsed;
-	}
-
-	public byte[] getData()
-	{
-		return getBuffer().array();
+		return _packetFormat;
 	}
 
 	public int getSize()
 	{
 		return getBuffer().limit();
-	}
-
-	/**
-	 * to be used by UI
-	 *
-	 * @return
-	 */
-	public List<ValuePart> getValuePartList()
-	{
-		return getValuePartList(getRootNode());
-	}
-
-	private List<ValuePart> getValuePartList(DataTreeNodeContainer node)
-	{
-		FastList<ValuePart> parts = new FastList<ValuePart>();
-		for (DataTreeNode n : node.getNodes())
-		{
-			if (n instanceof ValuePart)
-			{
-				parts.add((ValuePart) n);
-			}
-			else if (n instanceof DataTreeNodeContainer)
-			{
-				parts.addAll(getValuePartList((DataTreeNodeContainer) n));
-			}
-		}
-		return parts;
-	}
-
-	protected void setValid(boolean val)
-	{
-		_isValid = val;
-	}
-
-	public boolean isValid()
-	{
-		return _isValid || _mustUpdate;
 	}
 
 	public void invalidateParsing()
@@ -302,7 +247,6 @@ public class DataStructure
 		}
 		synchronized (this)
 		{
-			this.setValid(false);
 			_mustUpdate = true;
 			_packetParts = null;
 		}
@@ -317,7 +261,6 @@ public class DataStructure
 		}
 		synchronized (this)
 		{
-			this.setValid(false);
 			_mustUpdate = true;
 		}
 	}
@@ -332,133 +275,51 @@ public class DataStructure
 		return _error != null ? _error : null;
 	}
 
-	public boolean isTreeValid()
-	{
-		boolean ret;
-		if (this.getFormat() != null)
-		{
-			// validate against Format
-			ret = validateTree(this.getRootNode(), this.getFormat().getMainBlock());
-		}
-		else
-		{
-			// just validate the structure
-			ret = validateTree(this.getRootNode());
-		}
-		return ret;
-	}
-
-	public NioBuffer getFullBuffer()
-	{
-		return _fullBuffer;
-	}
-
 	public NioBuffer getBuffer()
 	{
 		return _buf;
 	}
 
-	public void setFullBuffer(NioBuffer buf)
+	@Override
+	public PacketType getPacketType()
 	{
-		_fullBuffer = buf;
+		return _notDecryptPacket.getPacketType();
 	}
 
-	protected void setBuffer(NioBuffer buf)
+	@Override
+	public long getTime()
 	{
-		_buf = buf;
+		return _notDecryptPacket.getTime();
 	}
 
-	private boolean validateTree(DataTreeNodeContainer node)
+	@Override
+	public byte[] getAllData()
 	{
-		boolean insideFor = node instanceof DataForPart;
-
-		DataForBlock model = null;
-		for (DataTreeNode n : node.getNodes())
-		{
-			if (n instanceof DataForPart)
-			{
-				if (insideFor)
-				{
-					return false;
-				}
-				if (!validateTree((DataForPart) n))
-				{
-					return false;
-				}
-			}
-
-			else if (n instanceof DataSwitchBlock)
-			{
-				if (insideFor)
-				{
-					return false;
-				}
-				if (!validateTree((DataSwitchBlock) n))
-				{
-					return false;
-				}
-			}
-			else if (n instanceof DataForBlock)
-			{
-				if (!insideFor)
-				{
-					return false;
-				}
-				if (model == null)
-				{
-					model = (DataForBlock) n;
-				}
-				else
-				{
-					if (!branchesEqual(model, (DataForBlock) n))
-					{
-						return false;
-					}
-				}
-				if (!validateTree((DataForBlock) n))
-				{
-					return false;
-				}
-			}
-			else if (insideFor)
-			{
-				return false;
-			}
-		}
-		return true;
+		return _notDecryptPacket.getAllData();
 	}
 
-	private boolean branchesEqual(DataTreeNodeContainer branch1, DataTreeNodeContainer branch2)
+	public byte[] getNotDecryptData()
 	{
-		Iterator<? extends DataTreeNode> it1 = branch1.getNodes().iterator();
-		Iterator<? extends DataTreeNode> it2 = branch2.getNodes().iterator();
-		while (it1.hasNext())
-		{
-			if (!it2.hasNext())
-			{
-				return false;
-			}
-			DataTreeNode node1 = it1.next();
-			DataTreeNode node2 = it2.next();
-			if (node1.getClass() != node2.getClass())
-			{
-				return false;
-			}
-			if (node1 instanceof NumberValuePart && ((NumberValuePart) node1).getType() != ((NumberValuePart) node2).getType())
-			{
-				return false;
-			}
-			//if(node1 instanceof D)
-		}
-		if (it2.hasNext())
-		{
-			return false;
-		}
-		return true;
+		return _notDecryptPacket.getAllData();
 	}
 
-	private boolean validateTree(DataTreeNodeContainer dataTreeNode, PartContainer protocolNode)
+	public boolean isKey()
 	{
-		return true;
+		return _packetFormat != null && _packetFormat.isKey();
+	}
+
+	public double getDouble(String s)
+	{
+		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsDouble();
+	}
+
+	public int getInt(String s)
+	{
+		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsInt();
+	}
+
+	public Protocol getProtocol()
+	{
+		return _protocol;
 	}
 }

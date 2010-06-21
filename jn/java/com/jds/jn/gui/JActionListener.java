@@ -202,13 +202,7 @@ public class JActionListener
 
 				if (returnVal == JFileChooser.APPROVE_OPTION)
 				{
-					ThreadPoolManager.getInstance().execute(new Runnable()
-					{
-						public void run()
-						{
-							openSession(chooser.getSelectedFile());
-						}
-					});
+					openSession(chooser.getSelectedFile());
 				}
 				break;
 			case OPEN_SELECT_FILE:

@@ -1,20 +1,22 @@
 package com.jds.jn.gui.models;
 
-import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.gui.renders.PacketTableRenderer;
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.protocoltree.PacketFamilly;
-import com.jds.jn.statics.ImageStatic;
-import com.jds.jn.util.Util;
 import javolution.util.FastTable;
 
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.ResourceBundle;
+
+import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.gui.renders.PacketTableRenderer;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.protocoltree.PacketFamilly;
+import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.Bundle;
+import com.jds.jn.util.Util;
 
 /**
  * Author: VISTALL
@@ -25,12 +27,13 @@ import java.util.ResourceBundle;
 @SuppressWarnings("serial")
 public class DecPacketTableModel extends AbstractTableModel implements PacketTableRenderer.TooltipTable
 {
-	private static final String[] columnNames = {
+	private static final String[] columnNames =
+	{
 			"S/C",
-			"Time",
-			ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Id"),
-			ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Length"),
-			ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Name")
+			Bundle.getString("Time"),
+			Bundle.getString("Id"),
+			Bundle.getString("Length"),
+			Bundle.getString("Name")
 	};
 
 	private FastTable<Object[]> _currentTable = new FastTable<Object[]>();
@@ -76,9 +79,9 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		return false;
 	}
 
-	public DataPacket getPacket(int row)
+	public DecryptPacket getPacket(int row)
 	{
-		return (DataPacket) _currentTable.get(row)[7];
+		return (DecryptPacket) _currentTable.get(row)[7];
 	}
 
 	public void clear()
@@ -86,12 +89,12 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		_currentTable.clear();
 	}
 
-	public void addRow(DataPacket packet)
+	public void addRow(DecryptPacket packet)
 	{
 		addRow(packet, -1);
 	}
 
-	public void addRow(DataPacket packet, int row)
+	public void addRow(DecryptPacket packet, int row)
 	{
 		if (packet.getBuffer().array().length == 0)
 		{
@@ -190,7 +193,7 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 	public void setName(int row, String name)
 	{
 		String OPCODE = (String) _currentTable.get(row)[1];
-		DataPacket p = (DataPacket) _currentTable.get(row)[7];
+		DecryptPacket p = (DecryptPacket) _currentTable.get(row)[7];
 
 		if (p == null)
 		{
@@ -225,11 +228,11 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		for (Object[] objs : _currentTable)
 		{
 			String st = (String) objs[1];
-			DataPacket packet = (DataPacket) objs[7];
+			DecryptPacket packet = (DecryptPacket) objs[7];
 
 			if (st.equalsIgnoreCase(OPCODE) && p.getPacketType() == packet.getPacketType())
 			{
-				DataPacket newPacket = new DataPacket(packet.getFullBuffer().clone().array(), packet.getPacketType(), packet.getProtocol());
+				DecryptPacket newPacket = new DecryptPacket(packet.getNotDecryptData().clone(), packet.getPacketType(), packet.getProtocol());
 				objs[2] = String.valueOf(newPacket.getSize());
 				objs[3] = newPacket.getName();
 				objs[6] = newPacket;
@@ -240,9 +243,9 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 	public void deleteFormat(int row)
 	{
 		String OPCODE = (String) _currentTable.get(row)[1];
-		DataPacket p = (DataPacket) _currentTable.get(row)[7];
+		DecryptPacket p = (DecryptPacket) _currentTable.get(row)[7];
 
-		if (p.getFormat() == null)
+		if (p.getDataFormat() == null)
 		{
 			return;
 		}
@@ -266,11 +269,11 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		for (Object[] objs : _currentTable)
 		{
 			String st = (String) objs[1];
-			DataPacket packet = (DataPacket) objs[7];
+			DecryptPacket packet = (DecryptPacket) objs[7];
 
 			if (st.equalsIgnoreCase(OPCODE) && p.getPacketType() == packet.getPacketType())
 			{
-				DataPacket newPacket = new DataPacket(packet.getFullBuffer().clone().array(), packet.getPacketType(), packet.getProtocol());
+				DecryptPacket newPacket = new DecryptPacket(packet.getNotDecryptData().clone(), packet.getPacketType(), packet.getProtocol());
 				objs[3] = String.valueOf(newPacket.getSize());
 				objs[4] = "";
 				objs[7] = newPacket;
@@ -278,7 +281,7 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		}
 	}
 
-	public void updatePacket(int row, DataPacket packet)
+	public void updatePacket(int row, DecryptPacket packet)
 	{
 		Object[] objs = _currentTable.get(row);
 
@@ -287,11 +290,11 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		objs[6] = packet;
 	}
 
-	public void updatePackets(DataPacket packet)
+	public void updatePackets(DecryptPacket packet)
 	{
 		for (Object[] obj : _currentTable)
 		{
-			DataPacket pa = (DataPacket) obj[76];
+			DecryptPacket pa = (DecryptPacket) obj[76];
 			if (pa.getPacketFormat() == null)
 			{
 				continue;
@@ -299,7 +302,7 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 
 			if ((pa.getPacketType() == packet.getPacketType()) && (packet.getPacketFormat().getOpcodeStr().equals(pa.getPacketFormat().getOpcodeStr())))
 			{
-				DataPacket newPacket = new DataPacket(pa.getFullBuffer().clone().array(), pa.getPacketType(), pa.getProtocol());
+				DecryptPacket newPacket = new DecryptPacket(pa.getNotDecryptData().clone(), pa.getPacketType(), pa.getProtocol());
 				obj[3] = String.valueOf(newPacket.getSize());
 				obj[4] = newPacket.getName();
 				obj[7] = newPacket;
@@ -327,13 +330,13 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 
 	public boolean searchPacket(String findPacket)
 	{
-		int last = _pane.get_packetListPane().getPacketTable().getSelectionModel().getMinSelectionIndex();
+		int last = _pane.getPacketListPane().getPacketTable().getSelectionModel().getMinSelectionIndex();
 
 		int index = 0;
 
-		while (_pane.get_packetListPane().getPacketTable().getModel().getRowCount() != index)
+		while (_pane.getPacketListPane().getPacketTable().getModel().getRowCount() != index)
 		{
-			String packet = (String) _pane.get_packetListPane().getPacketTable().getModel().getValueAt(index, 4);
+			String packet = (String) _pane.getPacketListPane().getPacketTable().getModel().getValueAt(index, 4);
 
 			if (packet == null)
 			{
@@ -345,9 +348,9 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 			{
 				if (packet.startsWith(findPacket))
 				{
-					_pane.get_packetListPane().getPacketTable().setAutoscrolls(true);
-					_pane.get_packetListPane().getPacketTable().getSelectionModel().setSelectionInterval(index, index);
-					_pane.get_packetListPane().getPacketTable().scrollRectToVisible(_pane.get_packetListPane().getPacketTable().getCellRect(index, 0, true));
+					_pane.getPacketListPane().getPacketTable().setAutoscrolls(true);
+					_pane.getPacketListPane().getPacketTable().getSelectionModel().setSelectionInterval(index, index);
+					_pane.getPacketListPane().getPacketTable().scrollRectToVisible(_pane.getPacketListPane().getPacketTable().getCellRect(index, 0, true));
 					return true;
 				}
 			}

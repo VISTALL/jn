@@ -10,14 +10,6 @@ public class DataForBlock extends DataTreeNodeContainer
 	private int _iteration;
 	private int _size;
 
-	// avoids construction of root ForBlock
-
-	@SuppressWarnings("unused")
-	private DataForBlock()
-	{
-		super();
-	}
-
 	public DataForBlock(DataTreeNodeContainer container, PartContainer part, int iteration, int size)
 	{
 		super(container, part);

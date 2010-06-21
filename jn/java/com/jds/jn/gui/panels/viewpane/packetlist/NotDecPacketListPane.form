@@ -13,7 +13,9 @@
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
-        <properties/>
+        <properties>
+          <enabled value="true"/>
+        </properties>
         <border type="none"/>
         <children>
           <scrollpane id="fc907" binding="_packetScrollPane">
@@ -21,6 +23,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <enabled value="true"/>
               <horizontalScrollBarPolicy value="31"/>
               <verticalScrollBarPolicy value="22"/>
             </properties>
@@ -42,7 +45,7 @@
             <properties/>
             <border type="none"/>
             <children>
-              <component id="7b048" class="javax.swing.JButton" binding="decodeButton" default-binding="true">
+              <component id="7b048" class="javax.swing.JButton" binding="_decodeButton" default-binding="true">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -55,15 +58,16 @@
                   <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
               </hspacer>
-              <component id="91964" class="javax.swing.JButton" binding="decodeAllButton" default-binding="true">
+              <component id="91964" class="javax.swing.JButton" binding="_decodeAllButton" default-binding="true">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <enabled value="true"/>
                   <text resource-bundle="com/jds/jn/resources/bundle/LanguageBundle" key="DecodeAll"/>
                 </properties>
               </component>
-              <component id="946f6" class="javax.swing.JButton" binding="sendServerListButton" default-binding="true">
+              <component id="946f6" class="javax.swing.JButton" binding="_sendServerListButton" default-binding="true">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>

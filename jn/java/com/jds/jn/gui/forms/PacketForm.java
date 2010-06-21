@@ -17,13 +17,14 @@ import com.jds.jn.gui.models.DataPartNode;
 import com.jds.jn.gui.models.PacketViewTableModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.*;
-import com.jds.jn.network.packets.DataPacket;
+import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
 import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.Bundle;
 import com.jds.jn.util.Util;
 import com.sun.awt.AWTUtilities;
 import org.jdesktop.swingx.JXTreeTable;
@@ -36,7 +37,7 @@ import org.jdesktop.swingx.JXTreeTable;
  */
 public class PacketForm extends JFrame
 {
-	private DataPacket _packet;
+	private DecryptPacket _packet;
 	private JPanel root;
 	private PacketViewTableModel _packetViewTableModel;
 	private JTextPane _hexDumpPacket;
@@ -53,7 +54,7 @@ public class PacketForm extends JFrame
 	private int _verticalScroll;
 	private int _horizontalScroll;
 
-	public PacketForm(ViewPane pane, float persent, DataPacket packet, int row)
+	public PacketForm(ViewPane pane, float persent, DecryptPacket packet, int row)
 	{
 		setPacket(packet);
 		setPane(pane);
@@ -72,7 +73,8 @@ public class PacketForm extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("EnterName"));
+				
+				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, Bundle.getString("EnterName"));
 				if (!dialog.showToWrite())
 				{
 					return;
@@ -83,7 +85,9 @@ public class PacketForm extends JFrame
 				Part p = new Part(partType);
 				p.setName(dialog.getText());
 				pC.addPart(p);
-				setPacket(new DataPacket(getPacket().getFullBuffer().clone().array(), getPacket().getPacketType(), getPacket().getProtocol()));
+
+				setPacket(new DecryptPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
+
 				getPane().getPacketTableModel().updatePacket(getRow(), getPacket());
 
 				updateCurrentPacket();
@@ -135,7 +139,7 @@ public class PacketForm extends JFrame
 
 				pC.replace(part.getModelPart(), p);
 
-				setPacket(new DataPacket(getPacket().getFullBuffer().clone().array(), getPacket().getPacketType(), getPacket().getProtocol()));
+				setPacket(new DecryptPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
 				getPane().getPacketTableModel().updatePacket(getRow(), getPacket());
 
 				updateCurrentPacket();
@@ -304,7 +308,7 @@ public class PacketForm extends JFrame
 	{
 		_hexDumpPacket.setText("");
 
-		int len = getPacket().getFullBuffer().array().length;
+		int len = getPacket().getNotDecryptData().length;
 
 		for (int i = 0; i < len; i++)
 		{
@@ -314,7 +318,7 @@ public class PacketForm extends JFrame
 				color = "base";
 			}
 
-			byte b = getPacket().getFullBuffer().array()[i];
+			byte b = getPacket().getNotDecryptData()[i];
 
 			addStyledText(Util.zeropad(Long.toHexString(b & 0xff), 2).toUpperCase(), color);
 
@@ -430,17 +434,17 @@ public class PacketForm extends JFrame
 		getPacketStructure().setExpandedIcon(ImageStatic.OPEN_ICON);
 		getPacketStructure().setClosedIcon(ImageStatic.FOLDER_OPEN);
 
-		setPartBox(new JComboBox(IconComboBoxRenderer.types));
+		setPartBox(new JComboBox(IconComboBoxRenderer._types));
 		getPartBox().setRenderer(new IconComboBoxRenderer());
 		getPacketStructure().setEditable(false);
 	}
 
-	public DataPacket getPacket()
+	public DecryptPacket getPacket()
 	{
 		return _packet;
 	}
 
-	public void setPacket(DataPacket packet)
+	public void setPacket(DecryptPacket packet)
 	{
 		_packet = packet;
 	}

@@ -1,8 +1,8 @@
 package com.jds.jn.parser.datatree;
 
 import com.jds.jn.Jn;
-import com.jds.jn.parser.DataStructure;
-import com.jds.jn.parser.DataStructure.DataPacketMode;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptPacket.DataPacketMode;
 import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
@@ -37,7 +37,7 @@ public class ValuePart extends DataTreeNode
 		}
 	}
 
-	public void parse(NioBuffer buf, DataStructure d)
+	public void parse(NioBuffer buf, DecryptPacket d)
 	{
 		if (getMode() == DataPacketMode.FORGING)
 		{
@@ -175,7 +175,7 @@ public class ValuePart extends DataTreeNode
 		}
 	}
 
-	public void updateColor(DataStructure a)
+	public void updateColor(DecryptPacket a)
 	{
 		for(int index = _startPosition; index < _endPosition; index ++)
 		{

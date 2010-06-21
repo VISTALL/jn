@@ -1,22 +1,20 @@
 package com.jds.jn.gui.panels;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jds.jn.gui.models.DecPacketTableModel;
-import com.jds.jn.gui.models.NotDecPacketTableModel;
-import com.jds.jn.gui.panels.viewpane.FilterPane;
-import com.jds.jn.gui.panels.viewpane.InfoPane;
-import com.jds.jn.gui.panels.viewpane.PacketList;
-import com.jds.jn.gui.panels.viewpane.SearchPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
-import com.jds.jn.session.Session;
-
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.jds.jn.gui.models.DecPacketTableModel;
+import com.jds.jn.gui.models.NotDecPacketTableModel;
+import com.jds.jn.gui.panels.viewpane.*;
+import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
+import com.jds.jn.session.Session;
 
 /**
  * Author: VISTALL
@@ -261,7 +259,7 @@ public class ViewPane extends JPanel
 		return _session;
 	}
 
-	public DecPacketListPane get_packetListPane()
+	public DecPacketListPane getPacketListPane()
 	{
 		return _packetList.get_packetListPane();//_Dec_packetListPane;
 	}
@@ -271,12 +269,12 @@ public class ViewPane extends JPanel
 		return _packetList.getNotDecPacketListPane();//_notdec_packetListPane;
 	}
 
-	public SearchPane get_searchPane()
+	public SearchPane getSearchPane()
 	{
 		return _searchPane;
 	}
 
-	public FilterPane get_filterPane()
+	public FilterPane getFilterPane()
 	{
 		return _filterPane;
 	}
@@ -284,6 +282,13 @@ public class ViewPane extends JPanel
 	public void updateInfo(Session session)
 	{
 		_infoPane.update(session);
+	}
+
+	public void actionEnalble(boolean e)
+	{
+		setEnabled(e);
+
+		_packetList.setEnabled(e);
 	}
 
 

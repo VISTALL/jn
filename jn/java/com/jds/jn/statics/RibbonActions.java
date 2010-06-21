@@ -1,22 +1,22 @@
 package com.jds.jn.statics;
 
-import com.jds.jn.gui.JActionEvent;
-import com.jds.jn.gui.JActionListener;
-import com.jds.jn.network.listener.types.ReceiveType;
-import com.jds.jn.config.LastFiles;
-import com.jds.jn.config.RValues;
-import com.jds.swing.SimpleResizableIcon;
-import org.jvnet.flamingo.common.CommandButtonDisplayState;
-import org.jvnet.flamingo.common.JCommandButton;
-import org.jvnet.flamingo.common.JCommandButtonPanel;
-import org.jvnet.flamingo.ribbon.*;
-import org.jvnet.flamingo.ribbon.resize.CoreRibbonResizePolicies;
-
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import com.jds.jn.config.LastFiles;
+import com.jds.jn.config.RValues;
+import com.jds.jn.gui.JActionEvent;
+import com.jds.jn.gui.JActionListener;
+import com.jds.jn.network.listener.types.ReceiveType;
+import com.jds.jn.util.Bundle;
+import com.jds.swing.SimpleResizableIcon;
+import org.jvnet.flamingo.common.*;
+import org.jvnet.flamingo.ribbon.*;
+import org.jvnet.flamingo.ribbon.resize.CoreRibbonResizePolicies;
 
 /**
  * Author: VISTALL
@@ -28,10 +28,10 @@ public abstract class RibbonActions
 {
 	public static JRibbonBand view()
 	{
-		JRibbonBand viewBand = new JRibbonBand("Tabs", new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 8, 8));
+		JRibbonBand viewBand = new JRibbonBand(Bundle.getString("Tabs"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 8, 8));
 		viewBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(viewBand));
 
-		final JCheckBox box = new JCheckBox("Console");
+		final JCheckBox box = new JCheckBox(Bundle.getString("Console"));
 		box.setSelected(true);
 		box.addActionListener(new ActionListener()
 		{
@@ -45,7 +45,7 @@ public abstract class RibbonActions
 		JRibbonComponent c = new JRibbonComponent(box);
 		viewBand.addRibbonComponent(c);
 
-		final JCheckBox bb2 = new JCheckBox("View");
+		final JCheckBox bb2 = new JCheckBox(Bundle.getString("View2"));
 		bb2.setSelected(true);
 		bb2.addActionListener(new ActionListener()
 		{
@@ -64,10 +64,10 @@ public abstract class RibbonActions
 
 	public static JRibbonBand settings()
 	{
-		JRibbonBand animationBand = new JRibbonBand("Settings", new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 50, 50));
+		JRibbonBand animationBand = new JRibbonBand(Bundle.getString("Settings"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 50, 50));
 		animationBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(animationBand));
 
-		final JCommandButton jCommandButton = new JCommandButton("Program", ImageStatic.PROGRAM_SET_48x48);
+		final JCommandButton jCommandButton = new JCommandButton(Bundle.getString("Program"), ImageStatic.PROGRAM_SET_48x48);
 		animationBand.addCommandButton(jCommandButton, RibbonElementPriority.TOP);
 		jCommandButton.addActionListener(new ActionListener()
 		{
@@ -78,7 +78,7 @@ public abstract class RibbonActions
 			}
 		});
 
-		final JCommandButton networkS = new JCommandButton("Network", ImageStatic.NETWORK_SET_48x48);
+		final JCommandButton networkS = new JCommandButton(Bundle.getString("Network"), ImageStatic.NETWORK_SET_48x48);
 		networkS.addActionListener(new ActionListener()
 		{
 			@Override
@@ -95,10 +95,10 @@ public abstract class RibbonActions
 
 	public static JRibbonBand files()
 	{
-		JRibbonBand animationBand = new JRibbonBand("Files", new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 30, 30));
+		JRibbonBand animationBand = new JRibbonBand(Bundle.getString("Files"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 30, 30));
 		animationBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(animationBand));
 
-		JCommandButton opnFile = new JCommandButton("Open", ImageStatic.FILE_48x48);
+		JCommandButton opnFile = new JCommandButton(Bundle.getString("Open"), ImageStatic.FILE_48x48);
 		opnFile.addActionListener(new ActionListener()
 		{
 
@@ -123,7 +123,7 @@ public abstract class RibbonActions
 
 	public static JRibbonBand listeners()
 	{
-		JRibbonBand animationBand = new JRibbonBand("Listeners", new SimpleResizableIcon(RibbonElementPriority.TOP, 60, 60));
+		JRibbonBand animationBand = new JRibbonBand(Bundle.getString("Listeners"), new SimpleResizableIcon(RibbonElementPriority.TOP, 60, 60));
 		animationBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(animationBand));
 
 		LISTENER_1 = new JCommandButton("N.1", ImageStatic.START_48x48);
@@ -162,7 +162,7 @@ public abstract class RibbonActions
 			}
 		});
 
-		JRadioButton proxy = new JRadioButton(" - Proxy");
+		JRadioButton proxy = new JRadioButton(" - " + Bundle.getString("ProxyTab"));
 		proxy.addActionListener(new ActionListener()
 		{
 			@Override
@@ -185,7 +185,7 @@ public abstract class RibbonActions
 		b.add(jpcap);
 		b.add(proxy);
 
-		animationBand.addRibbonComponent(new JRibbonComponent(new JLabel("Type:")));
+		animationBand.addRibbonComponent(new JRibbonComponent(new JLabel(Bundle.getString("Type"))));
 		animationBand.addRibbonComponent(new JRibbonComponent(jpcap));
 		animationBand.addRibbonComponent(new JRibbonComponent(proxy));
 
@@ -194,7 +194,7 @@ public abstract class RibbonActions
 
 	public static void ribbonMenu(RibbonApplicationMenu m)
 	{
-		final RibbonApplicationMenuEntryPrimary fopn = new RibbonApplicationMenuEntryPrimary(ImageStatic.FILE_48x48, "Open", new ActionListener()
+		final RibbonApplicationMenuEntryPrimary fopn = new RibbonApplicationMenuEntryPrimary(ImageStatic.FILE_48x48, Bundle.getString("Open"), new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -202,7 +202,7 @@ public abstract class RibbonActions
 			}
 		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
 
-		RibbonApplicationMenuEntryPrimary h = new RibbonApplicationMenuEntryPrimary(ImageStatic.HELP_48x48, "Help", new ActionListener()
+		RibbonApplicationMenuEntryPrimary h = new RibbonApplicationMenuEntryPrimary(ImageStatic.HELP_48x48, Bundle.getString("Help"), new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -210,7 +210,7 @@ public abstract class RibbonActions
 			}
 		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
 
-		RibbonApplicationMenuEntryPrimary io = new RibbonApplicationMenuEntryPrimary(ImageStatic.INFO_48x48, "Info", new ActionListener()
+		RibbonApplicationMenuEntryPrimary io = new RibbonApplicationMenuEntryPrimary(ImageStatic.INFO_48x48, Bundle.getString("Info"), new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -218,7 +218,7 @@ public abstract class RibbonActions
 			}
 		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
 
-		RibbonApplicationMenuEntryPrimary amEntryExit = new RibbonApplicationMenuEntryPrimary(ImageStatic.EXIT_48x48, "Exit", new ActionListener()
+		RibbonApplicationMenuEntryPrimary amEntryExit = new RibbonApplicationMenuEntryPrimary(ImageStatic.EXIT_48x48, Bundle.getString("Exit"), new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
@@ -238,7 +238,7 @@ public abstract class RibbonActions
 				targetPanel.removeAll();
 
 				JCommandButtonPanel openHistoryPanel = new JCommandButtonPanel(CommandButtonDisplayState.MEDIUM);
-				openHistoryPanel.addButtonGroup("Last Files");
+				openHistoryPanel.addButtonGroup(Bundle.getString("LastFiles"));
 
 				for (String st : LastFiles.getLastFiles())
 				{

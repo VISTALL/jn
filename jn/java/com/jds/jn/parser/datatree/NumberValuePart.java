@@ -1,6 +1,6 @@
 package com.jds.jn.parser.datatree;
 
-import com.jds.jn.parser.DataStructure;
+import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.Types;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.nio.buffer.NioBuffer;
@@ -22,9 +22,9 @@ public class NumberValuePart extends ValuePart
 	}
 
 	@Override
-	public void parse(NioBuffer buf, DataStructure s)
+	public void parse(NioBuffer buf, DecryptPacket s)
 	{
-		if (getMode() == DataStructure.DataPacketMode.FORGING)
+		if (getMode() == DecryptPacket.DataPacketMode.FORGING)
 		{
 			throw new IllegalStateException("Can not parse on a Forging mode Data JPacket Tree element");
 		}

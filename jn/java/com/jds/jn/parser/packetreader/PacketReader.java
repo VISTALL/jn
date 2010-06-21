@@ -1,6 +1,6 @@
 package com.jds.jn.parser.packetreader;
 
-import com.jds.jn.network.packets.DataPacket;
+import com.jds.jn.network.packets.DecryptPacket;
 
 /**
  * Author: VISTALL
@@ -12,5 +12,5 @@ public interface PacketReader
 {
 	public void show();
 
-	public boolean read(DataPacket packet);
+	public boolean read(DecryptPacket packet);
 }

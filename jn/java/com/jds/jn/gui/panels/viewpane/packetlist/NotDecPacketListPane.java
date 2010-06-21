@@ -1,10 +1,13 @@
 package com.jds.jn.gui.panels.viewpane.packetlist;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.Jn;
-import javolution.util.FastList;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.*;
+import com.jds.jn.gui.listeners.panels.packetlist.DecodeAllActionListener;
 import com.jds.jn.gui.models.DecPacketTableModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRender2;
@@ -13,24 +16,11 @@ import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.methods.proxy.Proxy;
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.network.packets.JPacket;
-import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.network.profiles.NetworkProfile;
-import com.jds.jn.network.profiles.NetworkProfilePart;
-import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.network.packets.*;
+import com.jds.jn.network.profiles.*;
 import com.jds.jn.session.Session;
-import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.Util;
 import com.jds.nio.buffer.NioBuffer;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -43,88 +33,19 @@ public class NotDecPacketListPane extends JPanel
 	private JScrollPane _packetScrollPane;
 	private JTable _packetList;
 	private JPanel main;
-	private JButton decodeButton;
-	private JButton decodeAllButton;
-	private JButton sendServerListButton;
-	protected ViewPane _pane;
+	private JButton _decodeButton;
+	private JButton _decodeAllButton;
+	private JButton _sendServerListButton;
+	private ViewPane _pane;
 
 	public NotDecPacketListPane(ViewPane pane)
 	{
 		_pane = pane;
 		$$$setupUI$$$();
 
-		decodeAllButton.addActionListener(new ActionListener()
-		{
+		_decodeAllButton.addActionListener(new DecodeAllActionListener(this));
 
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				Session session = _pane.getSession();
-				NetworkProfile profile = NetworkProfiles.getInstance().active();
-
-				if (session.getProtocol() == null || profile == null)
-				{
-					return;
-				}
-
-				FastList<JPacket> packetList = session.getNotDecryptPackets();
-
-				final DecPacketListPane pane = _pane.get_packetListPane();
-				DecPacketTableModel model = _pane.getPacketTableModel();
-
-				Jn.getInstance().getProgressBar().setVisible(true);
-				Jn.getInstance().getProgressBar().setValue(0);
-
-				int i = 1;
-				int size = packetList.size();
-
-				for (JPacket packet : packetList)
-				{
-					if (!packet.isShow())
-					{
-						DataPacket datapacket = session.decode(packet);
-
-						if (datapacket.getName() != null && datapacket.getPacketFormat().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
-						{
-							sendServerListButton.setEnabled(true);
-							sendServerListButton.setVisible(true);
-						}
-
-						if (datapacket.getPacketFormat() != null)
-						{
-							NetworkProfilePart part = profile.getPart(session.getListenerType());
-							if (part.isFiltredOpcode(datapacket.getPacketFormat().getOpcodeStr()))
-							{
-								continue;
-							}
-						}
-
-						session.addDecryptPacket(datapacket);
-						model.addRow(datapacket);
-					}
-
-					Jn.getInstance().getProgressBar().setValue((int) ((i * 100D) / size));
-					i++;
-				}
-
-				Jn.getInstance().getProgressBar().setVisible(false);
-				Jn.getInstance().getProgressBar().setValue(0);
-
-				_pane.updateInfo(session);
-
-				ThreadPoolManager.getInstance().execute(new Runnable()
-				{
-
-					@Override
-					public void run()
-					{
-						pane.getPacketTable().updateUI();
-					}
-				});
-			}
-		});
-
-		sendServerListButton.addActionListener(new ActionListener()
+		_sendServerListButton.addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -146,9 +67,9 @@ public class NotDecPacketListPane extends JPanel
 
 				NioBuffer buf = parser.getBuffer();
 
-				Session session = _pane.getSession();
+				Session session = getViewPane().getSession();
 
-				DecPacketTableModel model = _pane.getPacketTableModel();
+				DecPacketTableModel model = getViewPane().getPacketTableModel();
 
 				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER);
 				if (bytes == null)
@@ -158,9 +79,9 @@ public class NotDecPacketListPane extends JPanel
 
 				NioBuffer buff = NioBuffer.wrap(bytes);
 
-				final DecPacketListPane pane = _pane.get_packetListPane();
+				final DecPacketListPane pane = getViewPane().getPacketListPane();
 
-				DataPacket datapacket = session.decode(new JPacket(PacketType.SERVER, buff));
+				DecryptPacket datapacket = session.decode(new NotDecryptPacket(PacketType.SERVER, buff, System.currentTimeMillis()));
 				model.addRow(datapacket);
 				session.addDecryptPacket(datapacket);
 
@@ -174,7 +95,7 @@ public class NotDecPacketListPane extends JPanel
 					e1.printStackTrace();
 				}
 
-				_pane.updateInfo(session);
+				getViewPane().updateInfo(session);
 
 				SwingUtilities.invokeLater(new Runnable()
 				{
@@ -189,12 +110,12 @@ public class NotDecPacketListPane extends JPanel
 		});
 
 
-		decodeButton.addActionListener(new ActionListener()
+		_decodeButton.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Session session = _pane.getSession();
+				Session session = getViewPane().getSession();
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
 
 				if (session.getProtocol() == null || profile == null)
@@ -202,22 +123,22 @@ public class NotDecPacketListPane extends JPanel
 					return;
 				}
 
-				final DecPacketListPane pane = _pane.get_packetListPane();
-				DecPacketTableModel model = _pane.getPacketTableModel();
+				final DecPacketListPane pane = getViewPane().getPacketListPane();
+				DecPacketTableModel model = getViewPane().getPacketTableModel();
 				if (_packetList.getSelectedRow() == -1)
 				{
 					return;
 				}
-				JPacket packet = _pane.getPacketTableModel2().getPacket(_packetList.getSelectedRow());
+				NotDecryptPacket packet = getViewPane().getPacketTableModel2().getPacket(_packetList.getSelectedRow());
 
 
 				if (!packet.isShow())
 				{
-					DataPacket datapacket = session.decode(packet);
+					DecryptPacket datapacket = session.decode(packet);
 					if (datapacket.getName() != null && datapacket.getName().equals("SM_SERVER_LIST"))
 					{
-						sendServerListButton.setEnabled(true);
-						sendServerListButton.setVisible(true);
+						_sendServerListButton.setEnabled(true);
+						_sendServerListButton.setVisible(true);
 					}
 					if (datapacket.getPacketFormat() != null)
 					{
@@ -233,7 +154,7 @@ public class NotDecPacketListPane extends JPanel
 				}
 
 
-				_pane.updateInfo(session);
+				getViewPane().updateInfo(session);
 
 				SwingUtilities.invokeLater(new Runnable()
 				{
@@ -248,20 +169,20 @@ public class NotDecPacketListPane extends JPanel
 		});
 	}
 
-
 	private void createUIComponents()
 	{
 		main = this;
 
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 
-		_packetList = new JTable(_pane.getPacketTableModel2());
+		_packetList = new JTable(getViewPane().getPacketTableModel2());
 		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		_packetList.setDefaultRenderer(Object.class, new PacketTableRender2());
 		_packetList.getColumnModel().getColumn(0).setMaxWidth(50); //type
 		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
 		_packetList.getColumnModel().getColumn(2).setMaxWidth(300);  //
 		_packetList.addMouseListener(new MouseL());
+
 	}
 
 	/**
@@ -271,6 +192,7 @@ public class NotDecPacketListPane extends JPanel
 	 *
 	 * @noinspection ALL
 	 */
+
 	private void $$$setupUI$$$()
 	{
 		createUIComponents();
@@ -287,20 +209,20 @@ public class NotDecPacketListPane extends JPanel
 		final JPanel panel2 = new JPanel();
 		panel2.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
 		main.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-		decodeButton = new JButton();
-		this.$$$loadButtonText$$$(decodeButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Decode"));
-		panel2.add(decodeButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_decodeButton = new JButton();
+		this.$$$loadButtonText$$$(_decodeButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Decode"));
+		panel2.add(_decodeButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer1 = new Spacer();
 		panel2.add(spacer1, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-		decodeAllButton = new JButton();
-		this.$$$loadButtonText$$$(decodeAllButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("DecodeAll"));
-		panel2.add(decodeAllButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-		sendServerListButton = new JButton();
-		sendServerListButton.setFocusPainted(false);
-		sendServerListButton.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/images/serverlist.png")));
-		sendServerListButton.setText("");
-		sendServerListButton.setVisible(false);
-		panel2.add(sendServerListButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_decodeAllButton = new JButton();
+		this.$$$loadButtonText$$$(_decodeAllButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("DecodeAll"));
+		panel2.add(_decodeAllButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_sendServerListButton = new JButton();
+		_sendServerListButton.setFocusPainted(false);
+		_sendServerListButton.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/images/serverlist.png")));
+		_sendServerListButton.setText("");
+		_sendServerListButton.setVisible(false);
+		panel2.add(_sendServerListButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 	}
 
 	/**
@@ -347,7 +269,7 @@ public class NotDecPacketListPane extends JPanel
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
 				int row = _packetList.getSelectedRow();
-				JPacket packet = _pane.getPacketTableModel2().getPacket(row);
+				NotDecryptPacket packet = getViewPane().getPacketTableModel2().getPacket(row);
 				if (packet == null)
 				{
 					return;
@@ -389,6 +311,26 @@ public class NotDecPacketListPane extends JPanel
 		}
 	}
 
+	@Override
+	public void setEnabled(boolean b)
+	{
+		for(Component c : getComponents())
+		{
+			if(c != null)
+			{
+				c.setEnabled(b);
+			}
+		}
+
+		super.setEnabled(b);
+	}
+
+	public void setEnableServerListButton(boolean b)
+	{
+		_sendServerListButton.setEnabled(b);
+		_sendServerListButton.setVisible(b);
+	}
+
 	public JTable getPacketTable()
 	{
 		return _packetList;
@@ -397,5 +339,10 @@ public class NotDecPacketListPane extends JPanel
 	public JScrollPane getScroll()
 	{
 		return _packetScrollPane;
+	}
+
+	public ViewPane getViewPane()
+	{
+		return _pane;
 	}
 }

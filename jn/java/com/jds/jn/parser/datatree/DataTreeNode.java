@@ -1,7 +1,7 @@
 package com.jds.jn.parser.datatree;
 
 
-import com.jds.jn.parser.DataStructure.DataPacketMode;
+import com.jds.jn.network.packets.DecryptPacket.DataPacketMode;
 import com.jds.jn.parser.formattree.Part;
 
 /**

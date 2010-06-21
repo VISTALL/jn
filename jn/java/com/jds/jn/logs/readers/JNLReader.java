@@ -9,6 +9,7 @@ import com.jds.jn.network.packets.*;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
+import com.jds.jn.util.Version;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
@@ -16,6 +17,7 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date: 23.09.2009
  * Time: 21:47:47
+ * TODO убрать старую поддержку
  */
 public class JNLReader extends AbstractReader
 {
@@ -71,11 +73,7 @@ public class JNLReader extends AbstractReader
 			}
 
 			_session = new Session(type, sessionId, ProtocolManager.getInstance().getProtocol(type));
-
-			if (version != null)
-			{
-				_session.setVersion(version);
-			}
+			_session.setVersion(Version.get(version));
 
 			Jn.getInstance().showSession(_session);
 			return true;
@@ -101,7 +99,7 @@ public class JNLReader extends AbstractReader
 						PacketType type = PacketType.values()[_buffer.getInt()];
 						int size = _buffer.getInt();
 						byte[] data = readBytes(_buffer, size);
-						JPacket packet = new JPacket(type, NioBuffer.wrap(data));
+						NotDecryptPacket packet = new NotDecryptPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
 
 						_session.receivePacket(packet);
 						int p = (int) ((100D * (i + 1)) / _size);
@@ -124,8 +122,8 @@ public class JNLReader extends AbstractReader
 						PacketType type = PacketType.values()[_buffer.getInt()];
 						int size = _buffer.getInt();
 						byte[] data = readBytes(_buffer, size);
-						JPacket packet = new JPacket(type, NioBuffer.wrap(data));
-						DataPacket dp = new DataPacket(packet, _session.getProtocol());
+						NotDecryptPacket packet = new NotDecryptPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
+						DecryptPacket dp = new DecryptPacket(packet, _session.getProtocol());
 
 						_session.receivePacket(dp);
 					}

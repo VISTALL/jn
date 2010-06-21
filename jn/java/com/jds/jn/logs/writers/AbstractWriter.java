@@ -1,10 +1,11 @@
 package com.jds.jn.logs.writers;
 
-import com.jds.jn.session.Session;
-import com.jds.nio.buffer.NioBuffer;
-
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.ByteOrder;
+
+import com.jds.jn.session.Session;
+import com.jds.nio.buffer.NioBuffer;
 
 /**
  * Author: VISTALL
@@ -38,11 +39,50 @@ public abstract class AbstractWriter
 
 	protected abstract void writePackets() throws IOException;
 
+	protected void createBuffer()
+	{
+		_buf = NioBuffer.allocate(1);
+		_buf.setAutoExpand(true);
+		_buf.order(ByteOrder.LITTLE_ENDIAN);
+	}
+
+	protected void crypt() throws IOException
+	{
+
+	}
+
 	public void write() throws IOException
 	{
+		createBuffer();
 		writeHeader();
 		writePackets();
+		crypt();
 		close();
+	}
+
+	protected void writeBoolC(boolean b)
+	{
+		_buf.put(b ? (byte)1 : 0);
+	}
+
+	protected void writeC(int i)
+	{
+		_buf.put((byte)i);
+	}
+
+	protected void writeD(int i)
+	{
+		_buf.putInt(i);
+	}
+
+	protected void writeQ(long i)
+	{
+		_buf.putLong(i);
+	}
+
+	protected void writeB(byte[] i)
+	{
+		_buf.put(i);
 	}
 
 	protected void writeS(CharSequence text)

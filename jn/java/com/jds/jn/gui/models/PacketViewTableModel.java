@@ -2,10 +2,9 @@ package com.jds.jn.gui.models;
 
 import com.jds.jn.parser.datatree.DataTreeNode;
 import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.util.Bundle;
 import org.jdesktop.swingx.treetable.DefaultTreeTableModel;
 import org.jdesktop.swingx.treetable.TreeTableNode;
-
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -21,11 +20,12 @@ public class PacketViewTableModel extends DefaultTreeTableModel
 	{
 		super(root);
 
-		columnNames = new String[]{
-				ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Name"),
-				ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Value"),
-				ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("HexValue"),
-				ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Reader")
+		columnNames = new String[]
+		{
+				Bundle.getString("Name"),
+				Bundle.getString("Value"),
+				Bundle.getString("HexValue"),
+				Bundle.getString("Reader")
 		};
 	}
 

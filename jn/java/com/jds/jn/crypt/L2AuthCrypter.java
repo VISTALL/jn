@@ -1,14 +1,14 @@
 package com.jds.jn.crypt;
 
+import java.io.IOException;
+import java.util.Arrays;
+
 import com.jds.jn.Jn;
 import com.jds.jn.crypt.helpers.NewCrypt;
-import com.jds.jn.network.packets.DataPacket;
+import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.protocol.Protocol;
-
-import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Author: VISTALL
@@ -51,7 +51,7 @@ public class L2AuthCrypter implements ProtocolCrypter
 
 				NewCrypt.decXORPass(potentialInit);
 
-				DataPacket packet = new DataPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
+				DecryptPacket packet = new DecryptPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
 
 				if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
 				{

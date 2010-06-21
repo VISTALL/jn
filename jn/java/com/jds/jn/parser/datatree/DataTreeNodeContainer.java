@@ -1,12 +1,10 @@
 package com.jds.jn.parser.datatree;
 
-import com.jds.jn.parser.DataStructure.DataPacketMode;
-import com.jds.jn.parser.PartType;
-import com.jds.jn.parser.formattree.ForPart;
-import com.jds.jn.parser.formattree.Part;
-import com.jds.jn.parser.formattree.PartContainer;
-
 import java.util.*;
+
+import com.jds.jn.network.packets.DecryptPacket.DataPacketMode;
+import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.formattree.*;
 
 
 /**
@@ -89,7 +87,7 @@ public class DataTreeNodeContainer extends DataTreeNode
 
 	public DataTreeNode getPartByName(String name, boolean enterSwitch)
 	{
-		for (DataTreeNode node : this.getNodes())
+		for (DataTreeNode node : getNodes())
 		{
 			if (name.equals(node.getModelPart().getName()))
 			{

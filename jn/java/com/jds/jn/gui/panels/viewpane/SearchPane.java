@@ -1,32 +1,28 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.parser.datatree.NumberValuePart;
-import com.jds.jn.protocol.protocoltree.PacketInfo;
 import javolution.util.FastList;
+
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.*;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.network.profiles.NetworkProfile;
-import com.jds.jn.network.profiles.NetworkProfilePart;
-import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.profiles.*;
 import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.parser.datatree.StringValuePart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.session.Session;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -56,7 +52,8 @@ public class SearchPane extends JPanel
 	private int _currentIndex;
 	private boolean _stringPart;
 
-	private static final String[] MATH_OPERATORS = {
+	private static final String[] MATH_OPERATORS =
+	{
 			"==",
 			"!=",
 			">",
@@ -64,7 +61,8 @@ public class SearchPane extends JPanel
 			"<",
 			"<="
 	};
-	private static final String[] STRING_OPERATORS = {
+	private static final String[] STRING_OPERATORS =
+	{
 			"==",
 			"!="
 	};
@@ -126,7 +124,7 @@ public class SearchPane extends JPanel
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-				_pane.get_packetListPane().getSearchItem().setEnabled(!_findText.getText().trim().equals(""));
+				_pane.getPacketListPane().getSearchItem().setEnabled(!_findText.getText().trim().equals(""));
 				_searchBtn.setEnabled(!_findText.getText().trim().equals(""));
 			}
 		});
@@ -149,7 +147,7 @@ public class SearchPane extends JPanel
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-				_pane.get_packetListPane().getSearchItem().setEnabled(!findT.getText().trim().equals(""));
+				_pane.getPacketListPane().getSearchItem().setEnabled(!findT.getText().trim().equals(""));
 				_searchBtn.setEnabled(!findT.getText().trim().equals(""));
 			}
 		});
@@ -265,7 +263,7 @@ public class SearchPane extends JPanel
 
 			if (index >= 0)
 			{
-				JTable pt = _pane.get_packetListPane().getPacketTable();
+				JTable pt = _pane.getPacketListPane().getPacketTable();
 				pt.setAutoscrolls(true);
 				pt.getSelectionModel().setSelectionInterval(index, index);
 				pt.scrollRectToVisible(pt.getCellRect(index, 0, true));
@@ -339,7 +337,7 @@ public class SearchPane extends JPanel
 
 		ListenerType type = session.getListenerType();
 		NetworkProfilePart part = profile.getPart(type);
-		FastList<DataPacket> packets = session.getDecryptPackets();
+		ArrayList<DecryptPacket> packets = session.getDecryptPackets();
 
 		if (packets == null)
 		{
@@ -351,7 +349,7 @@ public class SearchPane extends JPanel
 
 		for (int i = startIndex; i < size; i++)
 		{
-			DataPacket gp = packets.get(i);
+			DecryptPacket gp = packets.get(i);
 			format = gp.getPacketFormat();
 
 			if (format != null)
@@ -397,7 +395,7 @@ public class SearchPane extends JPanel
 									try
 									{
 										int value = Integer.decode(findT.getText());
-										int partValue = (int) ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+										int partValue = ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 
 										if (value != partValue)
 										{

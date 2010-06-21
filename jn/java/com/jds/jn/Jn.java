@@ -3,13 +3,12 @@ package com.jds.jn;
 import javax.swing.*;
 
 import java.awt.*;
-import java.util.ResourceBundle;
 
+import com.jds.jn.config.ConfigParser;
 import com.jds.jn.gui.dialogs.ExceptionDialog;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
 import com.jds.jn.helpers.Shutdown;
-import com.jds.jn.config.ConfigParser;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
@@ -31,7 +30,6 @@ public class Jn implements Runnable
 {
 	private static Jn _instance;
 	private MainForm _form;
-	public static String VERSION = ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Jn");
 
 	public static void main(String... arg)
 	{

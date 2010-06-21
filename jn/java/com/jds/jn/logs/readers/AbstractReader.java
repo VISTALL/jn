@@ -1,15 +1,14 @@
 package com.jds.jn.logs.readers;
 
-import com.jds.jn.Jn;
 import javolution.text.TextBuilder;
-import com.jds.jn.util.ThreadPoolManager;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
+
+import com.jds.jn.Jn;
+import com.jds.jn.util.ThreadPoolManager;
 
 /**
  * Author: VISTALL
@@ -45,7 +44,6 @@ public abstract class AbstractReader
 
 	public void read() throws IOException
 	{
-
 		ThreadPoolManager.getInstance().execute(new Runnable()
 		{
 			@Override
@@ -62,6 +60,7 @@ public abstract class AbstractReader
 					}
 
 					close();
+
 					Jn.getInstance().getProgressBar().setVisible(false);
 					Jn.getInstance().getProgressBar().setValue(0);
 				}

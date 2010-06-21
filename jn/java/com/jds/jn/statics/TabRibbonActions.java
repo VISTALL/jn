@@ -1,19 +1,20 @@
 package com.jds.jn.statics;
 
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import com.jds.jn.Jn;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.util.Bundle;
 import com.jds.swing.SimpleResizableIcon;
 import org.jvnet.flamingo.common.JCommandButton;
 import org.jvnet.flamingo.ribbon.*;
 import org.jvnet.flamingo.ribbon.resize.CoreRibbonResizePolicies;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -32,11 +33,11 @@ public class TabRibbonActions
 
 	public RibbonTask getTask1()
 	{
-		JRibbonBand viewBand = new JRibbonBand("View", new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 8, 8));
+		JRibbonBand viewBand = new JRibbonBand(Bundle.getString("View"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 8, 8));
 		viewBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(viewBand));
 
 
-		final JCheckBox box = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("PacketList"));
+		final JCheckBox box = new JCheckBox(Bundle.getString("PacketList"));
 		box.setSelected(true);
 		box.addActionListener(new ActionListener()
 		{
@@ -56,13 +57,13 @@ public class TabRibbonActions
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("PacketList"), pane._packetList);
+					pane._packetAndSearch.addTab(Bundle.getString("PacketList"), pane._packetList);
 					pane._packetList.IS_HIDE = false;
 				}
 			}
 		});
 
-		final JCheckBox box2 = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindPanel"));
+		final JCheckBox box2 = new JCheckBox(Bundle.getString("FindPanel"));
 		box2.setSelected(true);
 		box2.addActionListener(new ActionListener()
 		{
@@ -82,13 +83,13 @@ public class TabRibbonActions
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindPanel"), pane._searchPane);
+					pane._packetAndSearch.addTab(Bundle.getString("FindPanel"), pane._searchPane);
 					pane._searchPane.IS_HIDE = false;
 				}
 			}
 		});
 
-		final JCheckBox box3 = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Filter"));
+		final JCheckBox box3 = new JCheckBox(Bundle.getString("Filter"));
 		box3.setSelected(true);
 		box3.addActionListener(new ActionListener()
 		{
@@ -108,13 +109,13 @@ public class TabRibbonActions
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Filter"), pane._filterPane);
+					pane._packetAndSearch.addTab(Bundle.getString("Filter"), pane._filterPane);
 					pane._filterPane.IS_HIDE = false;
 				}
 			}
 		});
 
-		final JCheckBox box4 = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Info"));
+		final JCheckBox box4 = new JCheckBox(Bundle.getString("Info"));
 		box4.setSelected(true);
 		box4.addActionListener(new ActionListener()
 		{
@@ -134,7 +135,7 @@ public class TabRibbonActions
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Info"), pane._infoPane);
+					pane._packetAndSearch.addTab(Bundle.getString("Info"), pane._infoPane);
 					pane._infoPane.IS_HIDE = false;
 				}
 			}
@@ -155,10 +156,10 @@ public class TabRibbonActions
 		viewBand.addRibbonComponent(c);
 
 
-		JRibbonBand actionsBand = new JRibbonBand("Actions", new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 15, 15));
+		JRibbonBand actionsBand = new JRibbonBand(Bundle.getString("Actions"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 15, 15));
 		actionsBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(actionsBand));
 
-		final JCommandButton jCommandButton = new JCommandButton("Save", ImageStatic.SAVE_48x48);
+		final JCommandButton jCommandButton = new JCommandButton(Bundle.getString("Save"), ImageStatic.SAVE_48x48);
 		jCommandButton.addActionListener(new ActionListener()
 		{
 			@Override
@@ -169,7 +170,7 @@ public class TabRibbonActions
 		});
 		actionsBand.addCommandButton(jCommandButton, RibbonElementPriority.TOP);
 
-		final JCommandButton jCommandButton2 = new JCommandButton("Close", ImageStatic.EXIT_48x48);
+		final JCommandButton jCommandButton2 = new JCommandButton(Bundle.getString("Close"), ImageStatic.EXIT_48x48);
 		jCommandButton2.addActionListener(new ActionListener()
 		{
 			@Override
@@ -180,7 +181,7 @@ public class TabRibbonActions
 		});
 		actionsBand.addCommandButton(jCommandButton2, RibbonElementPriority.TOP);
 
-		RibbonTask task = new RibbonTask("Session Menu", viewBand, actionsBand);
+		RibbonTask task = new RibbonTask(Bundle.getString("SessionMenu"), viewBand, actionsBand);
 
 		return task;
 	}

@@ -1,12 +1,13 @@
 package com.jds.jn.protocol;
 
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.protocoltree.PacketFamilly;
-import com.jds.jn.protocol.protocoltree.PacketInfo;
 import javolution.util.FastMap;
 
 import java.util.Collection;
+
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.protocol.protocoltree.PacketFamilly;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 
 /**
  * @author Gilles Duboscq  && VISTALL
@@ -25,7 +26,7 @@ public class Protocol
 		_filename = pFile;
 	}
 
-	public PacketInfo getFormat(DataPacket packet)
+	public PacketInfo getFormat(DecryptPacket packet)
 	{
 		PacketFamilly f = _familyes.get(packet.getPacketType());
 		if (f == null)
@@ -35,7 +36,6 @@ public class Protocol
 
 		for (PacketInfo format : f.getFormats().values())
 		{
-
 			int position = packet.getBuffer().position();
 			final int start = position;
 

@@ -1,7 +1,7 @@
 package com.jds.jn.parser.datatree;
 
-import com.jds.jn.parser.DataStructure;
-import com.jds.jn.parser.DataStructure.DataPacketMode;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptPacket.DataPacketMode;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.parttypes.StringPartType;
 import com.jds.nio.buffer.NioBuffer;
@@ -22,7 +22,7 @@ public class StringValuePart extends ValuePart
 	}
 
 	@Override
-	public void parse(NioBuffer buf, DataStructure s)
+	public void parse(NioBuffer buf, DecryptPacket s)
 	{
 		if (this.getMode() == DataPacketMode.FORGING)
 		{

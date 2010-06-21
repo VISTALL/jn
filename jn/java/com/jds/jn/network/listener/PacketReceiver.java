@@ -1,7 +1,7 @@
 package com.jds.jn.network.listener;
 
 import com.jds.jn.network.methods.IMethod;
-import com.jds.jn.network.packets.JPacket;
+import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.session.SessionTable;
 
 /**
@@ -12,7 +12,7 @@ import com.jds.jn.session.SessionTable;
  */
 public class PacketReceiver
 {
-	public static synchronized void receive(IMethod method, JPacket packet)
+	public static synchronized void receive(IMethod method, NotDecryptPacket packet)
 	{
 		switch (method.getType())
 		{

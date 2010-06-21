@@ -1,18 +1,21 @@
 package com.jds.jn.session;
 
-import com.jds.jn.Jn;
+import javolution.util.FastList;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.jds.jn.crypt.NullCrypter;
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.methods.IMethod;
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.network.packets.JPacket;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.lineage2.npc.L2NpcSpawnListener;
 import com.jds.jn.protocol.Protocol;
-import javolution.util.FastList;
-
-import java.util.Arrays;
+import com.jds.jn.util.Version;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -22,13 +25,13 @@ import java.util.Arrays;
 public class Session
 {
 	private long _sessionId;
-	private String _version = "Unknown Jn Version";
+	private Version _version;
 
 	private ProtocolCrypter _crypt;
 	private Protocol _protocol;
 
-	private final FastList<JPacket> _notDecryptPackets = new FastList<JPacket>();
-	private final FastList<DataPacket> _decryptPackets = new FastList<DataPacket>();
+	private final ArrayList<NotDecryptPacket> _notDecryptPackets = new ArrayList<NotDecryptPacket>();
+	private final ArrayList<DecryptPacket> _decryptPackets = new ArrayList<DecryptPacket>();
 
 	private IMethod _method;
 	private ListenerType _type;
@@ -42,7 +45,7 @@ public class Session
 		_type = iMethod.getListenerType();
 		_sessionId = iMethod.getSessionId();
 		_protocol = protocol;
-		_version = Jn.VERSION;
+		_version = Version.UNKNOWN;
 		init(true);
 	}
 
@@ -76,8 +79,8 @@ public class Session
 
 		_crypt.setProtocol(_protocol);
 
-		/*FastList<Class<? extends IPacketListener>> l = new FastList<Class<? extends IPacketListener>>();
-		l.add(CharMoveToLocationL.class);
+		FastList<Class<? extends IPacketListener>> l = new FastList<Class<? extends IPacketListener>>();
+		l.add(L2NpcSpawnListener.class);
 
 		for(Class<? extends IPacketListener> cl : l)
 		{
@@ -93,16 +96,16 @@ public class Session
 			{
 				e.printStackTrace();
 			}
-		}   */
+		}
 	}
 
-	public DataPacket decode(JPacket packet)
+	public DecryptPacket decode(NotDecryptPacket packet)
 	{
 		byte data[] = Arrays.copyOf(packet.getBuffer().array(), packet.getBuffer().array().length);
 
-		_crypt.decrypt(data, packet.getType());
+		_crypt.decrypt(data, packet.getPacketType());
 
-		return new DataPacket(data, packet.getType(), _protocol);
+		return new DecryptPacket(data, packet.getPacketType(), _protocol);
 	}
 
 	public long getSessionId()
@@ -110,7 +113,7 @@ public class Session
 		return _sessionId;
 	}
 
-	public FastList<JPacket> getNotDecryptPackets()
+	public ArrayList<NotDecryptPacket> getNotDecryptPackets()
 	{
 		return _notDecryptPackets;
 	}
@@ -130,7 +133,7 @@ public class Session
 		return _crypt;
 	}
 
-	public synchronized void receivePacket(JPacket p)
+	public synchronized void receivePacket(NotDecryptPacket p)
 	{
 		_notDecryptPackets.add(p);
 
@@ -141,7 +144,7 @@ public class Session
 		}
 	}
 
-	public void receivePacket(DataPacket p)
+	public void receivePacket(DecryptPacket p)
 	{
 		addDecryptPacket(p);
 
@@ -177,12 +180,12 @@ public class Session
 		_viewPane = viewPane;
 	}
 
-	public FastList<DataPacket> getDecryptPackets()
+	public ArrayList<DecryptPacket> getDecryptPackets()
 	{
 		return _decryptPackets;
 	}
 
-	public void addDecryptPacket(DataPacket packet)
+	public void addDecryptPacket(DecryptPacket packet)
 	{
 		_decryptPackets.add(packet);
 
@@ -192,12 +195,12 @@ public class Session
 		}
 	}
 
-	public String getVersion()
+	public Version getVersion()
 	{
 		return _version;
 	}
 
-	public void setVersion(String version)
+	public void setVersion(Version version)
 	{
 		_version = version;
 	}

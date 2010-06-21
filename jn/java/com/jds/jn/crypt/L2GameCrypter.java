@@ -3,7 +3,7 @@ package com.jds.jn.crypt;
 import java.util.Arrays;
 
 import com.jds.jn.crypt.helpers.Obfuscator;
-import com.jds.jn.network.packets.DataPacket;
+import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.protocol.Protocol;
@@ -38,7 +38,7 @@ public class L2GameCrypter implements ProtocolCrypter
 
 		if (!_isEnables && dir == PacketType.SERVER)
 		{
-			DataPacket packet = new DataPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
+			DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
 
 			if (packet.isKey())
 			{
@@ -79,7 +79,7 @@ public class L2GameCrypter implements ProtocolCrypter
 
 	private synchronized void searchKey(byte[] twice)
 	{
-		DataPacket packet = new DataPacket(twice, PacketType.SERVER, _protocol);
+		DecryptPacket packet = new DecryptPacket(twice, PacketType.SERVER, _protocol);
 
 
 		byte[] key = new byte[16];
@@ -112,7 +112,7 @@ public class L2GameCrypter implements ProtocolCrypter
 
 	public void searchSeed(byte[] raw)
 	{
-		DataPacket packet = new DataPacket(Arrays.copyOf(raw, raw.length), PacketType.SERVER, _protocol);
+		DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), PacketType.SERVER, _protocol);
 
 		if(packet.getPacketFormat() != null && !packet.hasError())
 		{

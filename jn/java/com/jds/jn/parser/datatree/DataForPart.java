@@ -1,9 +1,9 @@
 package com.jds.jn.parser.datatree;
 
-import com.jds.jn.parser.formattree.ForPart;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import com.jds.jn.parser.formattree.ForPart;
 
 
 public class DataForPart extends DataTreeNodeContainer
@@ -49,6 +49,6 @@ public class DataForPart extends DataTreeNodeContainer
 	@Override
 	public String toString()
 	{
-		return ((ForPart) this.getModelPart()).treeString();
+		return getModelPart().treeString();
 	}
 }

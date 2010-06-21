@@ -1,21 +1,20 @@
 package com.jds.jn.gui.forms.menu_items;
 
+import javax.swing.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
 import com.jds.jn.gui.dialogs.EnterNameDialog;
 import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.network.packets.DataPacket;
+import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
-import com.jds.jn.parser.formattree.Part;
-import com.jds.jn.parser.formattree.PartContainer;
-import com.jds.jn.parser.formattree.SwitchCaseBlock;
+import com.jds.jn.parser.formattree.*;
 import com.jds.jn.statics.ImageStatic;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -69,7 +68,7 @@ public class AddMenu extends JMenu
 						{
 							pC.addPart(p);
 
-							form.setPacket(new DataPacket(form.getPacket().getFullBuffer().clone().array(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
+							form.setPacket(new DecryptPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
 							form.getPane().getPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
 							form.updateCurrentPacket();
@@ -92,7 +91,7 @@ public class AddMenu extends JMenu
 						{
 							block.addPart(p);
 
-							form.setPacket(new DataPacket(form.getPacket().getFullBuffer().clone().array(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
+							form.setPacket(new DecryptPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
 							form.getPane().getPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
 							form.updateCurrentPacket();

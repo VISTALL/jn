@@ -1,15 +1,16 @@
 package com.jds.jn.gui.panels.viewpane;
 
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ResourceBundle;
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -119,6 +120,15 @@ public class PacketList extends JPanel
 
 			}
 		});
+	}
+
+	@Override
+	public void setEnabled(boolean b)
+	{
+		_Dec_packetListPane.setEnabled(b);
+		_notdec_packetListPane.setEnabled(b);
+
+		super.setEnabled(b);
 	}
 
 	public DecPacketListPane get_packetListPane()

@@ -1,21 +1,21 @@
 package com.jds.jn.gui.panels.viewpane.packetlist;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jds.jn.Jn;
-import com.jds.jn.gui.dialogs.EnterNameDialog;
-import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.gui.renders.PacketTableRenderer;
-import com.jds.jn.network.packets.DataPacket;
-import com.jds.jn.parser.packetreader.PacketReader;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.jds.jn.gui.forms.PacketForm;
+import com.jds.jn.gui.listeners.protocol_manipulation.packetlist.JPacketListPopup;
+import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.gui.renders.PacketTableRenderer;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.parser.packetreader.PacketReader;
 
 /**
  * Author: VISTALL
@@ -29,7 +29,7 @@ public class DecPacketListPane extends JPanel
 	private JTable _packetList;
 	private JSlider _transperyPacket;
 	private JPanel main;
-	protected ViewPane _pane;
+	private ViewPane _pane;
 	private JPopupMenu _menu;
 	private JMenuItem _searchItem;
 	private JMenuItem _readItem;
@@ -38,10 +38,10 @@ public class DecPacketListPane extends JPanel
 	public DecPacketListPane(ViewPane pane)
 	{
 		_pane = pane;
-		_menu = new JPopupMenu();
+		_menu = new JPacketListPopup(this);
 		$$$setupUI$$$();
 
-		_searchItem = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindNext"));
+	/*	_searchItem = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindNext"));
 		_searchItem.setEnabled(false);
 		_searchItem.addActionListener(new ActionListener()
 		{
@@ -49,7 +49,7 @@ public class DecPacketListPane extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				String findPacket = _pane.get_searchPane().getFindText();
+				String findPacket = _pane.getSearchPane().getFindText();
 				_pane.getPacketTableModel().searchPacket(findPacket);
 			}
 		});
@@ -68,7 +68,7 @@ public class DecPacketListPane extends JPanel
 				{
 					return;
 				}
-				DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
@@ -88,7 +88,7 @@ public class DecPacketListPane extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				int row = _packetList.getSelectedRow();
-				DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
 				if (packet == null || packet.getPacketFormat() == null)
 				{
 					return;
@@ -121,7 +121,7 @@ public class DecPacketListPane extends JPanel
 					return;
 				}
 
-				DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
@@ -149,13 +149,13 @@ public class DecPacketListPane extends JPanel
 					return;
 				}
 
-				DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
 				}
 
-				/*if (Config.get(Values.DELETE_PACKET_CONFIRM, true))
+				if (Config.get(Values.DELETE_PACKET_CONFIRM, true))
 				{
 					ConfirmDialog dialog = new ConfirmDialog(Jn.getInstance(), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Message"), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("YouRealyWantToyDeletePacketInfo"));
 					boolean[] result = dialog.showToConfirm();
@@ -166,7 +166,7 @@ public class DecPacketListPane extends JPanel
 					{
 						return;
 					}
-				}  */
+				}
 
 				_pane.getPacketTableModel().deleteFormat(row);
 				_packetList.updateUI();
@@ -176,7 +176,8 @@ public class DecPacketListPane extends JPanel
 		edit.add(rename);
 		edit.add(delete);
 
-		_menu.add(edit);
+
+		_menu.add(edit);  */
 
 
 		_transperyPacket.setToolTipText(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Visible") + ": " + _transperyPacket.getValue());
@@ -195,7 +196,7 @@ public class DecPacketListPane extends JPanel
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				_pane.get_searchPane().search();
+				getPane().getSearchPane().search();
 			}
 		}, KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
@@ -209,13 +210,13 @@ public class DecPacketListPane extends JPanel
 				{
 					return;
 				}
-				DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+				DecryptPacket packet = getPane().getPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
 				}
 				float f = _transperyPacket.getValue() / 100F;
-				new PacketForm(_pane, f, packet, row);
+				new PacketForm(getPane(), f, packet, row);
 			}
 		}, KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 	}
@@ -232,9 +233,9 @@ public class DecPacketListPane extends JPanel
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 
 
-		_packetList = new JTable(_pane.getPacketTableModel());
+		_packetList = new JTable(getPane().getPacketTableModel());
 		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_packetList.setDefaultRenderer(Object.class, new PacketTableRenderer(_pane.getPacketTableModel()));
+		_packetList.setDefaultRenderer(Object.class, new PacketTableRenderer(getPane().getPacketTableModel()));
 		_packetList.getColumnModel().getColumn(0).setMaxWidth(30); //type
 		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
 		_packetList.getColumnModel().getColumn(2).setMaxWidth(50); //id
@@ -285,11 +286,11 @@ public class DecPacketListPane extends JPanel
 		public void mouseClicked(MouseEvent e)
 		{
 			int row = _packetList.rowAtPoint(e.getPoint());
-			if (row != -1)
+			/*if (row != -1)
 			{
 				_see.setEnabled(true);
 			}
-
+                */
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
 				if (row == -1)
@@ -297,20 +298,18 @@ public class DecPacketListPane extends JPanel
 					return;
 				}
 
-				DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+				DecryptPacket packet = getPane().getPacketTableModel().getPacket(row);
 
 				if (packet == null)
 				{
 					return;
 				}
 				float f = _transperyPacket.getValue() / 100F;
-				new PacketForm(_pane, f, packet, row);
+				new PacketForm(getPane(), f, packet, row);
 			}
 
 			else if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
 			{
-				activeReadItem();
-
 				JTable table = (JTable) e.getSource();
 				_menu.show(table, e.getX(), e.getY());
 			}
@@ -345,13 +344,7 @@ public class DecPacketListPane extends JPanel
 	{
 		_readItem.setEnabled(false);
 
-		int row = _packetList.getSelectedRow();
-		if (row == -1)
-		{
-			return;
-		}
-
-		DataPacket packet = _pane.getPacketTableModel().getPacket(row);
+		DecryptPacket packet = getSelectedRow();
 		if (packet == null || packet.getPacketFormat() == null)
 		{
 			return;
@@ -367,6 +360,28 @@ public class DecPacketListPane extends JPanel
 		_readItem.setEnabled(true);
 	}
 
+	public int getSelectedRowNumber()
+	{
+		return _packetList.getSelectedRow();
+	}
+
+	public DecryptPacket getSelectedRow()
+	{
+		int row = _packetList.getSelectedRow();
+
+		if (row == -1)
+		{
+			return null;
+		}
+		
+		return getPane().getPacketTableModel().getPacket(row);
+	}
+
+	public float getTransientValue()
+	{
+		return _transperyPacket.getValue() / 100F;
+	}
+
 	public JTable getPacketTable()
 	{
 		return _packetList;
@@ -375,5 +390,10 @@ public class DecPacketListPane extends JPanel
 	public JScrollPane getScroll()
 	{
 		return _packetScrollPane;
+	}
+
+	public ViewPane getPane()
+	{
+		return _pane;
 	}
 }

@@ -1,12 +1,12 @@
 package com.jds.jn.crypt;
 
+import java.util.Arrays;
+
 import com.jds.jn.Jn;
-import com.jds.jn.network.packets.DataPacket;
+import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.protocol.Protocol;
-
-import java.util.Arrays;
 
 /**
  * Author: VISTALL
@@ -63,7 +63,7 @@ public class AionEmuGameCrypter implements ProtocolCrypter
 
 	private boolean searchKey(byte[] raw, PacketType dir)
 	{
-		DataPacket packet = new DataPacket(raw, dir, _protocol);
+		DecryptPacket packet = new DecryptPacket(raw, dir, _protocol);
 
 		if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
 		{

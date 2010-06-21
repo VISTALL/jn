@@ -744,6 +744,8 @@
     <packet id="a9" name="TutorialCloseHtml" />
     <packet id="b9" name="MyTargetSelected">
       <part name="obj_id" type="d" />
+      <part name="diff" type="h" />
+      <part name="?" type="d" />
     </packet>
     <packet id="73" name="SSQInfo">
       <part name="type" type="h" />
@@ -876,7 +878,7 @@
     <packet id="18" name="StatusUpdate">
       <part name="obj_id" type="d" />
       <part id="0" name="size" type="d" />
-      <for id="0">
+      <for id="0" name="attibutes">
         <part name="id" type="d" />
         <part name="value" type="d" />
       </for>

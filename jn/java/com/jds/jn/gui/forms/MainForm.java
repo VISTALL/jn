@@ -14,6 +14,7 @@ import java.util.concurrent.ScheduledFuture;
 
 import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.Jn;
+import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.dialogs.ExceptionDialog;
@@ -22,11 +23,10 @@ import com.jds.jn.gui.listeners.WindowsAdapter;
 import com.jds.jn.gui.panels.*;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.config.RValues;
 import com.jds.jn.session.Session;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.statics.TabRibbonActions;
-import com.jds.jn.util.ThreadPoolManager;
+import com.jds.jn.util.*;
 import com.jds.swing.JTrayIcon;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -80,16 +80,16 @@ public class MainForm extends JRibbonFrame
 		RibbonActions.ribbonMenu(menu);
 		getRibbon().setApplicationMenu(menu);
 
-		RibbonTask f = new RibbonTask("Main", new AbstractRibbonBand[]{
+		RibbonTask f = new RibbonTask(Bundle.getString("Main"), new AbstractRibbonBand[]{
 				RibbonActions.files(),
 				RibbonActions.listeners()
 		});
 		getRibbon().addTask(f);
 
-		RibbonTask v = new RibbonTask("View", new AbstractRibbonBand[]{RibbonActions.view()});
+		RibbonTask v = new RibbonTask(Bundle.getString("View"), new AbstractRibbonBand[]{RibbonActions.view()});
 		getRibbon().addTask(v);
 
-		RibbonTask s = new RibbonTask("Settings", new AbstractRibbonBand[]{RibbonActions.settings()});
+		RibbonTask s = new RibbonTask(Bundle.getString("Settings"), new AbstractRibbonBand[]{RibbonActions.settings()});
 		getRibbon().addTask(s);
 
 		TabRibbonActions tabs = new TabRibbonActions();
@@ -117,8 +117,8 @@ public class MainForm extends JRibbonFrame
 			}
 		});
 
-		_manTab.addTab("Console", _consolePane);
-		_manTab.addTab("View", _viewPane);
+		_manTab.addTab(Bundle.getString("Console"), _consolePane);
+		_manTab.addTab(Bundle.getString("View2"), _viewPane);
 	}
 
 	private void initTray()
@@ -133,7 +133,7 @@ public class MainForm extends JRibbonFrame
 			SystemTray st = SystemTray.getSystemTray();
 			_trayIcon = new JTrayIcon(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Jn24.png")));
 			_trayIcon.setImageAutoSize(true);
-			_trayIcon.setToolTip(Jn.VERSION);
+			_trayIcon.setToolTip(Version.current());
 
 
 			JPopupMenu pm = new JPopupMenu();
@@ -238,7 +238,7 @@ public class MainForm extends JRibbonFrame
 
 	public void info(String text)
 	{
-		_consolePane.addLog("[Info] " + text);
+		_consolePane.addLog("[" + Bundle.getString("Info") + "] " + text);
 	}
 
 	public void enableException()
@@ -273,11 +273,11 @@ public class MainForm extends JRibbonFrame
 	{
 		if(e != null)
 		{
-			_consolePane.addLog("[Warning] " + text + e);
+			_consolePane.addLog("[" +  Bundle.getString("Error") +"] " + text + e);
 		}
 		else
 		{
-			_consolePane.addLog("[Warning] " + text);
+			_consolePane.addLog("[" +  Bundle.getString("Error") +"] "  + text);
 		}
 
 		if (e != null)
@@ -288,7 +288,6 @@ public class MainForm extends JRibbonFrame
 			ExceptionDialog.getInstance().addException(e);			
 		}
 	}
-
 
 	public ViewTabbedPane getViewTabbedPane()
 	{
@@ -301,11 +300,11 @@ public class MainForm extends JRibbonFrame
 
 		if (prof != null)
 		{
-			setTitle(Jn.VERSION + String.format(" - [%s]", prof.getName()));
+			setTitle( String.format("%s - [%s]", Version.current(), prof.getName()));
 		}
 		else
 		{
-			setTitle(Jn.VERSION);
+			setTitle(Version.current());
 		}
 	}
 

@@ -1,14 +1,13 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.session.Session;
-
 import javax.swing.*;
+
 import java.awt.*;
 import java.util.ResourceBundle;
+
+import com.intellij.uiDesigner.core.*;
+import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.session.Session;
 
 /**
  * Author: VISTALL
@@ -37,7 +36,7 @@ public class InfoPane extends JPanel
 		encodep.setText(String.valueOf(sss.getNotDecryptPackets().size()));
 		decodep.setText(String.valueOf(sss.getDecryptPackets().size()));
 		protocol.setText(sss.getProtocol().getName());
-		version.setText(sss.getVersion());
+		version.setText(sss.getVersion().getName());
 		proxy.setText(String.valueOf(sss.getListenerType()));
 	}
 

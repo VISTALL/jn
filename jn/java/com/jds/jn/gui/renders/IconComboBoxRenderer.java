@@ -1,9 +1,14 @@
 package com.jds.jn.gui.renders;
 
-import com.jds.jn.statics.ImageStatic;
-
 import javax.swing.*;
+
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.PartTypeManager;
+import com.jds.jn.statics.ImageStatic;
 
 /**
  * Author: VISTALL
@@ -13,50 +18,50 @@ import java.awt.*;
  */
 public class IconComboBoxRenderer extends JLabel implements ListCellRenderer
 {
-	private static final ImageIcon[] images = {
-			ImageStatic.PART_BYTE,
-			ImageStatic.PART_UBYTE,
-			ImageStatic.PART_SHORT,
-			ImageStatic.PART_USHORT,
+	private static final ImageIcon[] _images;
+	public static final String[] _types;
 
-	};
-	public static final String[] types = {
-			"c",
-			"uc",
-			"h",
-			"uh"
-	};
+	static
+	{
+		Collection<PartType> t = PartTypeManager.getInstance().getTypes();
+		ArrayList<PartType> types = new ArrayList<PartType>(t.size());
+		for (PartType type : t)
+		{
+			if (ImageStatic.getInstance().getIconForPartType(type) != null)
+			{
+				types.add(type);
+			}
+		}
 
+		_types = new String[types.size()];
+		_images = new ImageIcon[types.size()];
+
+		for (int i = 0; i < types.size(); i++)
+		{
+			_types[i] = types.get(i).getName();
+			_images[i] = ImageStatic.getInstance().getIconForPartType(types.get(i));
+		}
+	}
+
+	@Override
 	public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus)
 	{
 		int selectedIndex = searchIndex(value);
-		if (selectedIndex < 0 || selectedIndex >= types.length)
+		if (selectedIndex < 0 || selectedIndex >= _types.length)
 		{
 			selectedIndex = index;
 		}
-		if (selectedIndex < 0 || selectedIndex >= types.length)
+		if (selectedIndex < 0 || selectedIndex >= _types.length)
 		{
 			selectedIndex = 0;
 		}
 
-		//	if (isSelected)
-		//		{
-		//			setBackground(list.getSelectionBackground());
 		setForeground(Color.BLACK);
-		//		}
-		//	else
-		//{
-		//		setBackground(list.getBackground());
-		setForeground(Color.BLACK);
-		//	}
-		// Set the icon and text. If icon was null, say so.
-		ImageIcon icon = images[selectedIndex];
-		setText(types[selectedIndex]);
+		setBackground(Color.WHITE);
+
+		ImageIcon icon = _images[selectedIndex];
+		setText(_types[selectedIndex]);
 		setIcon(icon);
-		/*	if (icon != null)
-				{
-					setFont(list.getFont());
-				} */
 
 		return this;
 	}
@@ -67,7 +72,7 @@ public class IconComboBoxRenderer extends JLabel implements ListCellRenderer
 		{
 			String str = (String) value;
 			int i = 0;
-			for (String type : types)
+			for (String type : _types)
 			{
 				if (type.equals(str))
 				{

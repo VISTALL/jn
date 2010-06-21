@@ -1,8 +1,8 @@
 package com.jds.jn.network.packets;
 
-import com.jds.nio.buffer.NioBuffer;
-
 import java.nio.ByteOrder;
+
+import com.jds.nio.buffer.NioBuffer;
 
 /**
  * Author: VISTALL
@@ -10,20 +10,23 @@ import java.nio.ByteOrder;
  * Date: 26.08.2009
  * Time: 14:55:53
  */
-public class JPacket
+public class NotDecryptPacket  implements IPacketData
 {
 	private final PacketType _type;
 	private final NioBuffer _buff;
 	private boolean _isShow = false;
+	private final long _time;
 
-	public JPacket(PacketType type, byte[] content)
+	public NotDecryptPacket(PacketType type, byte[] content, long t)
 	{
+		_time = t;
 		_type = type;
 		_buff = NioBuffer.wrap(content).order(ByteOrder.LITTLE_ENDIAN);
 	}
 
-	public JPacket(PacketType type, NioBuffer content)
+	public NotDecryptPacket(PacketType type, NioBuffer content, long t)
 	{
+		_time = t;
 		_type = type;
 		_buff = content;
 	}
@@ -33,9 +36,27 @@ public class JPacket
 		return _buff;
 	}
 
-	public PacketType getType()
+	public int length()
+	{
+		return getAllData().length;
+	}
+
+	@Override
+	public byte[] getAllData()
+	{
+		return getBuffer().array();
+	}
+
+	@Override
+	public PacketType getPacketType()
 	{
 		return _type;
+	}
+
+	@Override
+	public long getTime()
+	{
+		return _time;
 	}
 
 	public boolean isShow()
