@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <property name="UseTray" val="false"/>
-    <property name="LastFolder" val="D:\J Develop Station\Jn\trunk\jn\resource\logs\"/>
+    <property name="LastFolder" val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\"/>
     <property name="ActiveProfile" val="Test"/>
     <property name="MainVisible" val="1.0"/>
     <property name="ActiveType" val="JPCAP"/>
@@ -17,6 +17,10 @@
     <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya6.jnl"/>
     <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya_6.jnl"/>
     <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Final.jnl"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya.jnl"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya2.jnl"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya_5.jnl"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya_6.jnl"/>
     <profile name="Test" type="JPCAP">
         <part DeviceId="0" DevicePort="2106" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"

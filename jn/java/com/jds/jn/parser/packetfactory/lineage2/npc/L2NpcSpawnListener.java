@@ -2,6 +2,9 @@ package com.jds.jn.parser.packetfactory.lineage2.npc;
 
 import gnu.trove.TIntObjectHashMap;
 
+import java.io.*;
+import java.util.TreeMap;
+
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.packetfactory.IPacketListener;
@@ -29,6 +32,7 @@ public class L2NpcSpawnListener implements IPacketListener
 	private int _level;
 
 	private TIntObjectHashMap<NpcInfo> _npcInfos = new TIntObjectHashMap<NpcInfo>();
+   	private TreeMap<Integer, NpcInfo> _npcInfosByNpcId = new TreeMap<Integer, NpcInfo>();
 
 	@Override
 	public void invoke(DecryptPacket p)
@@ -47,6 +51,17 @@ public class L2NpcSpawnListener implements IPacketListener
 			{
 				npc = new NpcInfo(p);
 				_npcInfos.put(objectId, npc);
+			}
+
+			NpcInfo  list = _npcInfosByNpcId.get(npc.getNpcId());
+			if(list == null)
+			{
+				list = npc;
+				_npcInfosByNpcId.put(npc.getNpcId(), list);
+			}
+			else
+			{
+				list.addSpawnLoc(p);	
 			}
 		}
 		else if (p.getName().equalsIgnoreCase(USER_INFO))
@@ -114,6 +129,32 @@ public class L2NpcSpawnListener implements IPacketListener
 						break;
 				}
 			}
+		}
+	}
+
+	@Override
+	public void close()
+	{
+	 	int id = 0;
+		String fileName = "./npc_sniff_%d.xml";
+		while (new File(String.format(fileName, id)).exists())
+		{
+			id ++;
+		}
+
+		try
+		{
+			FileWriter writer = new FileWriter(String.format(fileName, id));
+			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<list>\n");
+			for(NpcInfo npc : _npcInfosByNpcId.values())
+			{
+				writer.write(npc.toXML());
+			}
+			writer.close();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
 		}
 	}
 }

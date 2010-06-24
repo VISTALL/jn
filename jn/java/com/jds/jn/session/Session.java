@@ -15,6 +15,7 @@ import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.npc.L2NpcSpawnListener;
 import com.jds.jn.protocol.Protocol;
+import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.Version;
 
 /**
@@ -157,6 +158,8 @@ public class Session
 
 	public void close()
 	{
+		fireClose();
+		
 		SessionTable.getInstance().removeGameSession(getSessionId());
 	}
 
@@ -189,10 +192,37 @@ public class Session
 	{
 		_decryptPackets.add(packet);
 
-		for(IPacketListener f :_invokes)
+		fireInvokePacket(packet);
+	}
+
+	public void fireInvokePacket(final DecryptPacket o)
+	{
+		ThreadPoolManager.getInstance().execute(new Runnable()
 		{
-			f.invoke(packet);
-		}
+			@Override
+			public void run()
+			{
+				for(IPacketListener f :_invokes)
+				{
+					f.invoke(o);
+				}
+			}
+		});
+	}
+
+	public void fireClose()
+	{
+		ThreadPoolManager.getInstance().execute(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				for(IPacketListener f :_invokes)
+				{
+					f.close();
+				}
+			}
+		});
 	}
 
 	public Version getVersion()

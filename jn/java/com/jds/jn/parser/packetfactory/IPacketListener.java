@@ -10,4 +10,6 @@ import com.jds.jn.network.packets.DecryptPacket;
 public interface IPacketListener
 {
 	void invoke(DecryptPacket p);
+
+	void close();
 }

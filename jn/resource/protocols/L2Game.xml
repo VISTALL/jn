@@ -420,7 +420,7 @@
       <part name="col_height" type="D" />
       <part name="rhand" type="d" />
       <part name="armor" type="d" />
-      <part name="lrhand" type="d" />
+      <part name="lhand" type="d" />
       <part name="?" type="c" />
       <part name="running" type="c" />
       <part name="in combat" type="c" />

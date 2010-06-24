@@ -2,6 +2,9 @@ package com.jds.jn.parser.packetfactory.lineage2.npc;
 
 import gnu.trove.TIntObjectHashMap;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+
 import com.jds.jn.network.packets.DecryptPacket;
 
 /**
@@ -12,10 +15,7 @@ import com.jds.jn.network.packets.DecryptPacket;
 public class NpcInfo
 {
 	private final int _npcId;
-	private final int _x;
-	private final int _y;
-	private final int _z;
-	private final int _h;
+
 	private final int _pAttackSpeed;
 	private final int _mAttackSpeed;
 	private final int _runSpd;
@@ -23,61 +23,155 @@ public class NpcInfo
 	private final double _collisionRadius;
 	private final double _collisionHeight;
 
-	private int _hp;
-	private int _mp;
-	private int _level;
+	private int _hp = 100;
+	private int _mp = 100;
+	private int _level = 1;
 
-	private TIntObjectHashMap<SkillInfo> _skills = new TIntObjectHashMap<SkillInfo>();
-	//private final int _rhand;
-	//private final int _armor;
-	//private final int _lhand;
-	
+	private final TIntObjectHashMap<SkillInfo> _skills = new TIntObjectHashMap<SkillInfo>();
+	private final ArrayList<SpawnLoc> _spawns = new ArrayList<SpawnLoc>();
+	private final int _rhand;
+	private final int _armor;
+	private final int _lhand;
+
 	public NpcInfo(DecryptPacket p)
 	{
-		_npcId = p.getInt("npcId");
-		_x = p.getInt("x");
-		_y = p.getInt("y");
-		_z = p.getInt("z");
-		_h = p.getInt("h");
+		_npcId = p.getInt("npcId") - 1000000;
+
 		_mAttackSpeed = p.getInt("mAttackSpeed");
 		_pAttackSpeed = p.getInt("pAttackSpeed");
 		_runSpd = p.getInt("run_spd");
 		_walkSpd = p.getInt("walk_spd");
 		_collisionRadius = p.getDouble("col_radius");
 		_collisionHeight = p.getDouble("col_height");
-		//_rhand = p.getInt("rhand");
-		//_armor = p.getInt("armor");
-		//_lhand = p.getInt("lhand");
+		_rhand = p.getInt("rhand");
+		_armor = p.getInt("armor");
+		_lhand = p.getInt("lhand");
+
+		addSpawnLoc(p);
 	}
 
-	public int getNpcId()
+
+	public void addSpawnLoc(DecryptPacket p)
 	{
-		return _npcId;
+		SpawnLoc loc =  new SpawnLoc(p);
+		if(!hasSpawn(loc))
+		{
+			_spawns.add(loc);
+		}
 	}
 
-	public int getHp()
+	public String toXML()
 	{
-		return _hp;
+		String xml =
+				"\t<npc id=\"%npcId%\" templateId=\"0\" name=\"-\" title=\"\">\n" +
+				"\t\t<set name=\"collision_radius\" val=\"%collisionRadius%\" />\n" +
+				"\t\t<set name=\"collision_height\" val=\"%collisionHeight%\" />\n" +
+				"\t\t<set name=\"level\" val=\"%level%\" />\n" +
+				"\t\t<set name=\"nameServerSide\" val=\"false\" />\n" +
+				"\t\t<set name=\"titleServerSide\" val=\"false\" />\n" +
+				"\t\t<set name=\"type\" val=\"L2Npc\" />\n" +
+				"\t\t<set name=\"ai_type\" val=\"NpcAI\" />\n" +
+				"\t\t<set name=\"baseAtkRange\" val=\"40\" />\n" +
+				"\t\t<set name=\"baseHpMax\" val=\"%hp%\" />\n" +
+				"\t\t<set name=\"baseMpMax\" val=\"%mp%\" />\n" +
+				"\t\t<set name=\"baseHpReg\" val=\"7.5\" />\n" +
+				"\t\t<set name=\"baseMpReg\" val=\"2.7\" />\n" +
+				"\t\t<set name=\"baseSTR\" val=\"40\" />\n" +
+				"\t\t<set name=\"baseCON\" val=\"43\" />\n" +
+				"\t\t<set name=\"baseDEX\" val=\"30\" />\n" +
+				"\t\t<set name=\"baseINT\" val=\"21\" />\n" +
+				"\t\t<set name=\"baseWIT\" val=\"20\" />\n" +
+				"\t\t<set name=\"baseMEN\" val=\"10\" />\n" +
+				"\t\t<set name=\"revardExp\" val=\"0\" />\n" +
+				"\t\t<set name=\"revardSp\" val=\"0\" />\n" +
+				"\t\t<set name=\"basePAtk\" val=\"500\" />\n" +
+				"\t\t<set name=\"basePDef\" val=\"500\" />\n" +
+				"\t\t<set name=\"baseMAtk\" val=\"500\" />\n" +
+				"\t\t<set name=\"baseMDef\" val=\"500\" />\n" +
+				"\t\t<set name=\"basePAtkSpd\" val=\"%pAttackSpeed%\" />\n" +
+				"\t\t<set name=\"baseMAtkSpd\" val=\"%mAttackSpeed%\" />\n" +
+				"\t\t<set name=\"aggroRange\" val=\"0\" />\n" +
+				"\t\t<set name=\"baseWalkSpd\" val=\"%walkSpd%\" />\n" + 
+				"\t\t<set name=\"baseRunSpd\" val=\"%runSpd%\" />\n" +
+				"\t\t<set name=\"baseShldDef\" val=\"0\" />\n" +
+				"\t\t<set name=\"baseShldRate\" val=\"0\" />\n" +
+				"\t\t<set name=\"baseCrit\" val=\"40\" />\n" +
+				"\t\t<set name=\"dropHerbs\" val=\"true\" />\n" +
+				"\t\t<set name=\"shots\" val=\"NONE\" />\n";
+
+		if(_armor != 0 || _lhand != 0 || _rhand != 0)
+		{
+			xml += "\t\t<equip>\n";
+
+			if(_armor != 0)
+			{
+				xml += "\t\t\t<armor id=\"%armor%\" />\n";
+			}
+
+			if(_lhand != 0)
+			{
+				xml += "\t\t\t<lhand id=\"%lhand%\" />\n";
+			}
+
+			if(_rhand != 0)
+			{
+				xml += "\t\t\t<rhand id=\"%rhand%\" />\n";
+			}
+
+			xml += "\t\t</equip>\n";
+		}
+
+		if(_spawns.size() != 0)
+		{
+			xml += "\t\t<spawnlist>\n";
+			for(SpawnLoc loc : _spawns)
+			{
+				xml += String.format("\t\t\t<spawn x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\" />\n", loc.getX(), loc.getY(), loc.getZ(), loc.getH());
+			}
+			xml += "\t\t</spawnlist>\n";
+		}
+
+		if(_skills.size() != 0)
+		{
+			xml += "\t\t<skills>\n";
+			for(SkillInfo info : _skills.getValues(new ArrayList<SkillInfo>(_skills.size())))
+			{
+				xml += String.format("\t\t\t<!--Hit time: %d; Reuse: %d-->\n", info.getHitTime(), info.getReuse());
+				xml += String.format("\t\t\t<skill id=\"%d\" level=\"%d\" />\n", info.getId(), info.getLevel());
+			}
+			xml += "\t\t</skills>\n";
+		}
+
+		xml += "\t</npc>\n";
+
+		for(Field d : NpcInfo.class.getDeclaredFields())
+		{
+			String name = "%" + d.getName().replace("_", "") + "%";
+			if(xml.contains(name))
+			{
+				try
+				{
+					xml = xml.replace(name, String.valueOf(d.get(this)));
+				}
+				catch (IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return xml;
 	}
+
 
 	public void setHp(int hp)
 	{
 		_hp = hp;
 	}
 
-	public int getMp()
-	{
-		return _mp;
-	}
-
 	public void setMp(int mp)
 	{
 		_mp = mp;
-	}
-
-	public int getLevel()
-	{
-		return _level;
 	}
 
 	public void setLevel(int level)
@@ -93,5 +187,21 @@ public class NpcInfo
 	public void addSkill(SkillInfo f)
 	{
 		_skills.put(f.getId(), f);
+	}
+
+	public boolean hasSpawn(SpawnLoc loc)
+	{
+		for (SpawnLoc l : _spawns)
+		{
+			if(l.equals(loc))
+				return true;
+		}
+
+		return false;
+	}
+
+	public int getNpcId()
+	{
+		return _npcId;
 	}
 }
