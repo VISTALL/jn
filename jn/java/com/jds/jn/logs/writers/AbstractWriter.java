@@ -1,9 +1,9 @@
 package com.jds.jn.logs.writers;
 
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 import java.nio.ByteOrder;
 
+import com.jds.jn.Jn;
 import com.jds.jn.session.Session;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -19,10 +19,34 @@ public abstract class AbstractWriter
 	protected RandomAccessFile _file;
 	protected NioBuffer _buf = null;
 
-	protected AbstractWriter(String file, Session session) throws IOException
+	private boolean _isBusy;
+
+	public void write(File file, Session session) throws IOException
 	{
-		_session = session;
+		if(_isBusy)
+		{
+			Jn.getForm().info("Writer is busy");
+			return;
+		}
+
 		_file = new RandomAccessFile(file, "rw");
+		_session = session;
+
+		_isBusy = true;
+
+		_buf = NioBuffer.allocate(1);
+		_buf.setAutoExpand(true);
+		_buf.order(ByteOrder.LITTLE_ENDIAN);
+
+		write();
+	}
+
+	protected void write() throws IOException
+	{
+		writeHeader();
+		writePackets();
+		crypt();
+		close();
 	}
 
 	protected void close() throws IOException
@@ -33,31 +57,21 @@ public abstract class AbstractWriter
 		}
 
 		_file.close();
+
+		_isBusy = false;
 	}
 
 	protected abstract void writeHeader() throws IOException;
 
 	protected abstract void writePackets() throws IOException;
 
-	protected void createBuffer()
-	{
-		_buf = NioBuffer.allocate(1);
-		_buf.setAutoExpand(true);
-		_buf.order(ByteOrder.LITTLE_ENDIAN);
-	}
+	public abstract String getFileExtension();
+
+	public abstract String getWriterInfo();
 
 	protected void crypt() throws IOException
 	{
 
-	}
-
-	public void write() throws IOException
-	{
-		createBuffer();
-		writeHeader();
-		writePackets();
-		crypt();
-		close();
 	}
 
 	protected void writeBoolC(boolean b)

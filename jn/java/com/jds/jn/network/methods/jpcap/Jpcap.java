@@ -52,14 +52,14 @@ public class Jpcap implements IMethod
 	@Override
 	public void start() throws Exception
 	{
-		Jn.getInstance().info("Start Jpcap on port " + _port);
+		Jn.getForm().info("Start Jpcap on port " + _port);
 		_cap.loopPacket(-1, _receiver);
 	}
 
 	@Override
 	public void stop() throws Exception
 	{
-		Jn.getInstance().info("Stop Jpcap on port " + _port);
+		Jn.getForm().info("Stop Jpcap on port " + _port);
 		_cap.breakLoop();
 	}
 

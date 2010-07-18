@@ -26,7 +26,7 @@ public class HideWatcher extends MouseAdapter
 	{
 		if (e.getButton() == MouseEvent.BUTTON3)
 		{
-			if (Jn.getInstance().isVisible())
+			if (Jn.getForm().isVisible())
 			{
 				_menuItem.setText("Hide");
 			}

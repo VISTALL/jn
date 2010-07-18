@@ -1,12 +1,13 @@
 package com.jds.jn.session;
 
-import com.jds.jn.Jn;
 import javolution.util.FastMap;
+
+import java.util.Map;
+
+import com.jds.jn.Jn;
 import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
-
-import java.util.Map;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -40,7 +41,7 @@ public class SessionTable
 		{
 			CaptorSession gameSession = new CaptorSession(iMethod, protocol);
 			_sessionList.put(session, gameSession);
-			Jn.getInstance().showSession(gameSession);
+			Jn.getForm().showSession(gameSession);
 
 			return gameSession;
 		}
@@ -58,7 +59,7 @@ public class SessionTable
 		{
 			Session gameSession = new Session(iMethod, protocol);
 			_sessionList.put(iMethod.getSessionId(), gameSession);
-			Jn.getInstance().showSession(gameSession);
+			Jn.getForm().showSession(gameSession);
 
 			return gameSession;
 		}

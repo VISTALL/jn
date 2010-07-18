@@ -55,7 +55,7 @@ public class Receiver implements PacketReceiver
 						byte[] header = new byte[2];
 						byte[] packetData = new byte[size];
 						session.getClientbuf().getNextPacket(header, packetData);
-						session.receivePacket(new NotDecryptPacket(PacketType.CLIENT, packetData, System.currentTimeMillis()));
+						session.receivePacket(new NotDecryptPacket(PacketType.CLIENT, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
 					}
 				}
 				session.getClientSequenced().flush();
@@ -77,7 +77,7 @@ public class Receiver implements PacketReceiver
 						byte[] header = new byte[2];
 						byte[] packetData = new byte[size];
 						session.getServerbuf().getNextPacket(header, packetData);
-						session.receivePacket(new NotDecryptPacket(PacketType.SERVER, packetData, System.currentTimeMillis()));
+						session.receivePacket(new NotDecryptPacket(PacketType.SERVER, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
 					}
 				}
 				session.getServerSequenced().flush();

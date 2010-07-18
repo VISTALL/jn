@@ -33,7 +33,7 @@ public class WindowMoveAdapter implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
-		Jn.getInstance().repaint();
+		Jn.getForm().repaint();
 	}
 
 	@Override
@@ -51,10 +51,10 @@ public class WindowMoveAdapter implements MouseListener, MouseMotionListener
 	@Override
 	public void mouseDragged(MouseEvent e)
 	{
-		_location = Jn.getInstance().getLocation(_location);
+		_location = Jn.getForm().getLocation(_location);
 		int x = _location.x - _pressed.getX() + e.getX();
 		int y = _location.y - _pressed.getY() + e.getY();
-		Jn.getInstance().setLocation(x, y);
+		Jn.getForm().setLocation(x, y);
 	}
 
 	@Override

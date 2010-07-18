@@ -1,6 +1,5 @@
 package com.jds.jn.logs.readers;
 
-import java.io.File;
 import java.io.IOException;
 
 import com.jds.jn.Jn;
@@ -9,7 +8,7 @@ import com.jds.jn.network.packets.*;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
-import com.jds.jn.util.Version;
+import com.jds.jn.version_control.Version;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
@@ -22,13 +21,7 @@ import com.jds.nio.buffer.NioBuffer;
 public class JNLReader extends AbstractReader
 {
 	private int _size;
-	private Session _session;
 	private boolean _isDecode = false;
-
-	public JNLReader(File file) throws IOException
-	{
-		super(file);
-	}
 
 	@Override
 	public boolean parseHeader() throws IOException
@@ -55,7 +48,7 @@ public class JNLReader extends AbstractReader
 
 			if (test2 == -2)
 			{
-				version = readS(_buffer);
+				version = readS();
 				sessionId = _buffer.getLong();
 			}
 			else
@@ -68,14 +61,12 @@ public class JNLReader extends AbstractReader
 			Protocol protocol = ProtocolManager.getInstance().getProtocol(type);
 			if(protocol == null)
 			{
-				Jn.getInstance().warn("Not find protocol for type: " + type);
+				Jn.getForm().warn("Not find protocol for type: " + type);
 				throw new IllegalArgumentException("Not find protocol");
 			}
 
-			_session = new Session(type, sessionId, ProtocolManager.getInstance().getProtocol(type));
-			_session.setVersion(Version.get(version));
-
-			Jn.getInstance().showSession(_session);
+			_session = new Session(type, sessionId, ProtocolManager.getInstance().getProtocol(type), true);
+			_session.setVersion(Version.UNKNOWN);
 			return true;
 		}
 		catch (Exception e)
@@ -98,14 +89,14 @@ public class JNLReader extends AbstractReader
 					{
 						PacketType type = PacketType.values()[_buffer.getInt()];
 						int size = _buffer.getInt();
-						byte[] data = readBytes(_buffer, size);
+
+						byte[] data = readB(size);
 						NotDecryptPacket packet = new NotDecryptPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
 
-						_session.receivePacket(packet);
+						_session.receiveQuitPacket(packet);
+
 						int p = (int) ((100D * (i + 1)) / _size);
-						// 100 - 222
-						//  x  - 11
-						Jn.getInstance().getProgressBar().setValue(p);
+						Jn.getForm().getProgressBar().setValue(p);
 					}
 					catch (Exception e)
 					{
@@ -121,11 +112,14 @@ public class JNLReader extends AbstractReader
 					{
 						PacketType type = PacketType.values()[_buffer.getInt()];
 						int size = _buffer.getInt();
-						byte[] data = readBytes(_buffer, size);
+						byte[] data = readB(size);
 						NotDecryptPacket packet = new NotDecryptPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
 						DecryptPacket dp = new DecryptPacket(packet, _session.getProtocol());
 
-						_session.receivePacket(dp);
+						_session.receiveQuitPacket(dp);
+
+						int p = (int) ((100D * (i + 1)) / _size);
+						Jn.getForm().getProgressBar().setValue(p);
 					}
 					catch (Exception e)
 					{
@@ -133,6 +127,8 @@ public class JNLReader extends AbstractReader
 					}
 				}
 			}
+
+			_session.updateUI();
 			return true;
 		}
 		catch (Exception e)
@@ -140,5 +136,17 @@ public class JNLReader extends AbstractReader
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public String getFileExtension()
+	{
+		return "jnl";
+	}
+
+	@Override
+	public String getReaderInfo()
+	{
+		return "Jn old log file";
 	}
 }

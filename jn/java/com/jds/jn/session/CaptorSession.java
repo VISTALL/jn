@@ -2,8 +2,9 @@ package com.jds.jn.session;
 
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.methods.IMethod;
-import com.jds.jn.network.methods.jpcap.PacketBuffer;
 import com.jds.jn.network.methods.jpcap.Sequenced;
+import com.jds.jn.network.methods.jpcap.buffers.IPacketBuffer;
+import com.jds.jn.network.methods.jpcap.buffers.LittleEndianShortPacketBuffer;
 import com.jds.jn.protocol.Protocol;
 
 /**
@@ -13,8 +14,8 @@ import com.jds.jn.protocol.Protocol;
  */
 public class CaptorSession extends Session
 {
-	private final PacketBuffer _serverbuf = new PacketBuffer();
-	private final PacketBuffer _clientbuf = new PacketBuffer();
+	private final IPacketBuffer _serverbuf = new LittleEndianShortPacketBuffer();
+	private final IPacketBuffer _clientbuf = new LittleEndianShortPacketBuffer();
 
 	private final Sequenced _clientSequenced = new Sequenced();
 	private final Sequenced _serverSequenced = new Sequenced();
@@ -24,17 +25,17 @@ public class CaptorSession extends Session
 		super(iMethod, protocol);
 	}
 
-	public CaptorSession(ListenerType type, long sessionId, Protocol protocol)
+	public CaptorSession(ListenerType type, long sessionId, Protocol protocol, boolean b)
 	{
-		super(type, sessionId, protocol);
+		super(type, sessionId, protocol, b);
 	}
 
-	public PacketBuffer getServerbuf()
+	public IPacketBuffer getServerbuf()
 	{
 		return _serverbuf;
 	}
 
-	public PacketBuffer getClientbuf()
+	public IPacketBuffer getClientbuf()
 	{
 		return _clientbuf;
 	}

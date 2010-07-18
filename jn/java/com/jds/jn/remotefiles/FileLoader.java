@@ -62,7 +62,7 @@ public class FileLoader
 				}
 				catch (ClassNotFoundException e)
 				{
-					Jn.getInstance().warn("Can't load file " + e, e);
+					Jn.getForm().warn("Can't load file " + e, e);
 				}
 			}
 

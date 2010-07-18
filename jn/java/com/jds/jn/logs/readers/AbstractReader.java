@@ -8,6 +8,7 @@ import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 
 import com.jds.jn.Jn;
+import com.jds.jn.session.Session;
 import com.jds.jn.util.ThreadPoolManager;
 
 /**
@@ -18,12 +19,29 @@ import com.jds.jn.util.ThreadPoolManager;
  */
 public abstract class AbstractReader
 {
-	protected final RandomAccessFile _file;
-	protected final ByteBuffer _buffer;
-	protected final FileChannel _channel;
+	protected RandomAccessFile _file;
+	protected ByteBuffer _buffer;
+	protected FileChannel _channel;
+	protected Session _session;
 
-	protected AbstractReader(File file) throws IOException
+	private boolean _isBusy;
+
+	public void read(File file) throws IOException
 	{
+		if(!file.exists())
+		{
+			Jn.getForm().info("File not exists: " + file);
+			return;
+		}
+
+		if(_isBusy)
+		{
+			Jn.getForm().info("Reader is busy");
+			return;
+		}
+
+		_isBusy = true;
+
 		_file = new RandomAccessFile(file, "r");
 		_buffer = ByteBuffer.allocate((int) _file.length());
 		_channel = _file.getChannel();
@@ -32,6 +50,8 @@ public abstract class AbstractReader
 
 		_buffer.flip();
 		_buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+		read();
 	}
 
 	protected void close() throws IOException
@@ -39,10 +59,11 @@ public abstract class AbstractReader
 		_buffer.clear();
 		_file.close();
 		_channel.close();
+
+		_isBusy = false;
 	}
 
-
-	public void read() throws IOException
+	protected void read() throws IOException
 	{
 		ThreadPoolManager.getInstance().execute(new Runnable()
 		{
@@ -51,8 +72,8 @@ public abstract class AbstractReader
 			{
 				try
 				{
-					Jn.getInstance().getProgressBar().setVisible(true);
-					Jn.getInstance().getProgressBar().setValue(0);
+					Jn.getForm().getProgressBar().setVisible(true);
+					Jn.getForm().getProgressBar().setValue(0);
 
 					if (parseHeader())
 					{
@@ -61,8 +82,14 @@ public abstract class AbstractReader
 
 					close();
 
-					Jn.getInstance().getProgressBar().setVisible(false);
-					Jn.getInstance().getProgressBar().setValue(0);
+					if(_session != null)
+					{
+						Jn.getForm().showSession(_session);
+						_session = null;
+					}
+
+					Jn.getForm().getProgressBar().setVisible(false);
+					Jn.getForm().getProgressBar().setValue(0);
 				}
 				catch (IOException e)
 				{
@@ -76,14 +103,43 @@ public abstract class AbstractReader
 
 	public abstract boolean parsePackets() throws IOException;
 
-	protected final String readS(ByteBuffer buf)
+	public abstract String getFileExtension();
+
+	public abstract String getReaderInfo();
+
+	protected boolean readBoolC()
+	{
+		return _buffer.get() == 1;
+	}
+
+	protected byte readC()
+	{
+		return _buffer.get();
+	}
+
+	protected short readH()
+	{
+		return _buffer.getShort();
+	}
+
+	protected int readD()
+	{
+		return _buffer.getInt();
+	}
+
+	protected long readQ()
+	{
+		return _buffer.getLong();
+	}
+
+	protected final String readS()
 	{
 		try
 		{
 			TextBuilder tb = TextBuilder.newInstance();
 			char ch;
 
-			while ((ch = buf.getChar()) != 0)
+			while ((ch = _buffer.getChar()) != 0)
 			{
 				tb.append(ch);
 			}
@@ -97,7 +153,7 @@ public abstract class AbstractReader
 		}
 	}
 
-	protected final byte[] readBytes(ByteBuffer buf, int length)
+	protected final byte[] readB(int length)
 	{
 		if (length < 0)
 		{
@@ -106,7 +162,7 @@ public abstract class AbstractReader
 
 		byte[] result = new byte[length];
 
-		buf.get(result);
+		_buffer.get(result);
 
 		return result;
 	}

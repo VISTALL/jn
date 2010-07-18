@@ -7,6 +7,9 @@ import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.network.profiles.*;
+import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
 
 /**
@@ -22,21 +25,46 @@ public class InfoPane extends JPanel
 	private JLabel encodep;
 	private JLabel decodep;
 	private JLabel protocol;
-	private JLabel version;
+	private JLabel _version;
 	private JLabel proxy;
+	private JComboBox _protocols;
 	public boolean IS_HIDE = false;
 
 	public InfoPane(ViewPane a)
 	{
 		_pane = a;
+
+		for (Protocol rpof : ProtocolManager.getInstance().getProtocols())
+		{
+			_protocols.addItem(rpof);
+		}
+
+		NetworkProfile prof = NetworkProfiles.getInstance().active();
+		if(prof == null)
+		{
+			return;
+		}
+		NetworkProfilePart part = prof.getPart(a.getSession().getListenerType());
+
+		if (part.getProtocol() != null && !part.getProtocol().equals(""))
+		{
+			Protocol prot = ProtocolManager.getInstance().getProtocolByName(part.getProtocol());
+
+			_protocols.setSelectedItem(prot);
+		}
+	}
+
+	public Protocol getProtocol()
+	{
+		return (Protocol)_protocols.getSelectedItem();
 	}
 
 	public void update(Session sss)
 	{
 		encodep.setText(String.valueOf(sss.getNotDecryptPackets().size()));
 		decodep.setText(String.valueOf(sss.getDecryptPackets().size()));
-		protocol.setText(sss.getProtocol().getName());
-		version.setText(sss.getVersion().getName());
+		protocol.setText(sss.getProtocol() == null ? "NONE" : sss.getProtocol().getName());
+		_version.setText(sss.getVersion().toString());
 		proxy.setText(String.valueOf(sss.getListenerType()));
 	}
 
@@ -72,9 +100,9 @@ public class InfoPane extends JPanel
 		panel1.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer1 = new Spacer();
 		panel1.add(spacer1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-		version = new JLabel();
-		version.setText("Version");
-		panel1.add(version, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_version = new JLabel();
+		_version.setText("Version");
+		panel1.add(_version, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer2 = new Spacer();
 		root.add(spacer2, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 		final JPanel panel2 = new JPanel();

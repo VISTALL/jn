@@ -33,7 +33,7 @@ public class ExceptionDialog extends JDialog
 		getRootPane().setDefaultButton(buttonOK);
 		setMinimumSize(new Dimension(600, 800));
 		setTitle("Exception");
-		setLocationRelativeTo(Jn.getInstance());
+		setLocationRelativeTo(Jn.getForm());
 		try
 		{
 			setIconImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/images/error.png")));
@@ -59,7 +59,7 @@ public class ExceptionDialog extends JDialog
 				_exceptionList.clear();
 				_exceptionText.setText("");
 
-				Jn.getInstance().disableException();
+				Jn.getForm().disableException();
 
 				onOK();
 			}

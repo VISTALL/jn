@@ -36,7 +36,7 @@ public class TextReader implements ValueReader
 		{
 			return ((StringValuePart) part).getStringValue();
 		}
-		Jn.getInstance().warn("Text ValueReader set on a non String part: " + part.getModelPart().getName());
+		Jn.getForm().warn("Text ValueReader set on a non String part: " + part.getModelPart().getName());
 		return "";
 	}
 
@@ -70,10 +70,10 @@ public class TextReader implements ValueReader
 
 		public void actionPerformed(ActionEvent e)
 		{
-			JDialog dlg = new JDialog(Jn.getInstance(), "Text");
+			JDialog dlg = new JDialog(Jn.getForm(), "Text");
 			dlg.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dlg.setSize(350, 400);
-			dlg.setLocationRelativeTo(Jn.getInstance());
+			dlg.setLocationRelativeTo(Jn.getForm());
 
 			// Source
 			JEditorPane sourceDisplay = new JEditorPane();

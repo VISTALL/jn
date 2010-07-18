@@ -2,12 +2,14 @@ package com.jds.jn.protocol;
 
 import javolution.util.FastMap;
 
+import java.nio.ByteOrder;
 import java.util.Collection;
 
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.nio.buffer.NioBuffer;
 
 /**
  * @author Gilles Duboscq  && VISTALL
@@ -20,6 +22,8 @@ public class Protocol
 	private String _encryption;
 	private String _name;
 	private String _filename;
+
+	private ByteOrder _order = ByteOrder.LITTLE_ENDIAN;
 
 	public Protocol(String pFile)
 	{
@@ -43,17 +47,31 @@ public class Protocol
 
 			for (int i = 0; i < format.sizeId(); i++)
 			{
-				String hex = format.getHexForIndex(i);
+				String hexStep = format.getHexForIndex(i);
 
-				if (hex.trim().equals(""))
+				if (hexStep.trim().equals(""))
 				{
 					ok[i] = false;
 					continue;
 				}
-				int val = -1;
-				boolean sho = false;
 
-				if(hex.length() > 2 && ((packet.getBuffer().limit() - position) >= 2))
+
+				int val = -1;
+
+				int len = hexStep.length();
+				int needValue = byteCount(len);
+				if((packet.getBuffer().limit() - position) >= needValue)
+				{
+					val = read(len, packet.getBuffer(), position);
+					position += needValue;
+				}
+				else
+				{
+					ok[i] = false;
+					continue;
+				}
+	
+				/*if(hex.length() > 2 && ((packet.getBuffer().limit() - position) >= 2))
 				{
 					val =  packet.getBuffer().getUnsignedShort(position);
 					position += 2;
@@ -72,24 +90,24 @@ public class Protocol
 				}
 				else
 				{
-					ok[i] = false;
-					continue;
-				}
 
-				String hex2 = Integer.toHexString(val).toUpperCase();
+				} */
 
-				if (val <= 0x0F)
+				String hex = Integer.toHexString(val).toUpperCase();
+
+				if(hex.length() < hexStep.length())
 				{
-					hex2 = "0" + hex2;
+					String allZero = "";
+					for(int $ = 0; $ < (hexStep.length() - hex.length()); $++)
+					{
+						allZero += "0";
+					}
+
+					hex = allZero + hex;
 				}
+				/* */
 
-				if(val <= 0xFF && sho)
-				{
-					hex2 = hex2 + "00";
-				}
-
-
-				if (!hex2.equalsIgnoreCase(hex))
+				if (!hex.equalsIgnoreCase(hexStep))
 				{
 					ok[i] = false;
 					continue;
@@ -119,6 +137,30 @@ public class Protocol
 		}
 
 		return null;
+	}
+
+	public int byteCount(int t)
+	{
+		if(t >= 1 && t <= 2)  //c
+			return 1;
+		if(t >= 3 && t <= 4) //h
+			return 2;
+		if(t >= 5 && t <= 8) //d
+			return 4;
+
+		return 0;
+	}
+
+	public int read(int t, NioBuffer b, int pos)
+	{
+		if(t >= 1 && t <= 2)  //c
+			return b.getUnsigned(pos);
+		if(t >= 3 && t <= 4) //h
+			return b.getUnsignedShort(pos);
+		if(t >= 5 && t <= 8) //d
+			return b.getInt(pos);
+
+		return 0;
 	}
 
 	public int getChecksumSize()
@@ -170,5 +212,15 @@ public class Protocol
 	public Collection<PacketFamilly> getFamilies()
 	{
 		return _familyes.values();
+	}
+
+	public ByteOrder getOrder()
+	{
+		return _order;
+	}
+
+	public void setOrder(ByteOrder order)
+	{
+		_order = order;
 	}
 }

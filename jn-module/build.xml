@@ -18,7 +18,7 @@
 	</path>
 
 	<path id="svnant.classpath">
-		<fileset dir="../java/svn_ant/lib">
+		<fileset dir="D:/Java Binaries/svn_ant/lib">
 			<include name="*.jar"/>
 		</fileset>
 	</path>

@@ -22,7 +22,7 @@ public class PacketFamilly// extends ProtocolNode
 	{
 		if ((format = _formats.put(format.getId(), format)) != null)
 		{
-			Jn.getInstance().info("More than 1 packet register for 1 packet id: " + format.getId());
+			Jn.getForm().info("More than 1 packet register for 1 packet id: " + format.getId());
 		}
 	}
 

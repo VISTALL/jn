@@ -26,7 +26,7 @@ public class AboutDialog extends JWindow
 
 	public AboutDialog()
 	{
-		super(Jn.getInstance());
+		super(Jn.getForm());
 		$$$setupUI$$$();
 		add(contentPane);
 		try

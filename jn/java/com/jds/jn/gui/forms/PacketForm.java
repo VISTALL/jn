@@ -206,7 +206,7 @@ public class PacketForm extends JFrame
 		updateCurrentPacket();
 		setSize(976, 634);
 		AWTUtilities.setWindowOpacity(this, persent);
-		setLocationRelativeTo(Jn.getInstance());
+		setLocationRelativeTo(Jn.getForm());
 		setResizable(true);
 		setVisible(true);
 	}
@@ -290,7 +290,7 @@ public class PacketForm extends JFrame
 		Style s = _hexStyledDoc.getStyle(style);
 		if (s == null)
 		{
-			Jn.getInstance().warn("Missing style for partType: " + style);
+			Jn.getForm().warn("Missing style for partType: " + style);
 			style = "base";
 		}
 

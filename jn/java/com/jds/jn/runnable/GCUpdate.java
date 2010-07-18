@@ -13,6 +13,6 @@ public class GCUpdate implements Runnable
 	@Override
 	public void run()
 	{
-		Jn.getInstance().updateMemoryBar();
+		Jn.getForm().updateMemoryBar();
 	}
 }

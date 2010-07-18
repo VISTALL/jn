@@ -112,7 +112,7 @@ public class ValuePart extends DataTreeNode
 				ValuePart vp = this.getParentContainer().getPacketValuePartById(getModelPart().getBSizeId());
 				if (vp == null || !(vp instanceof NumberValuePart))
 				{
-					Jn.getInstance().warn("ValuePart: Invalid SizeId for bx: part can not be found or is not an integer");
+					Jn.getForm().warn("ValuePart: Invalid SizeId for bx: part can not be found or is not an integer");
 				}
 				else
 				{

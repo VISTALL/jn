@@ -1,24 +1,25 @@
 package com.jds.jn.protocol;
 
+import org.xml.sax.SAXParseException;
+
+import org.w3c.dom.*;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.ByteOrder;
+
 import com.jds.jn.Jn;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.formattree.*;
 import com.jds.jn.parser.packetreader.PacketReader;
-import com.jds.jn.parser.parttypes.RawPartType;
 import com.jds.jn.parser.valuereader.ValueReader;
-import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.remotefiles.FileLoader;
-import org.w3c.dom.*;
-import org.xml.sax.SAXParseException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.List;
 
 /**
  * Author: VISTALL
@@ -53,7 +54,7 @@ public class ProtocolLoader
 
 			if (!root.getNodeName().equals("protocol"))
 			{
-				Jn.getInstance().warn("Error malformed protocol : root node should be called 'protocol'.");
+				Jn.getForm().warn("Error malformed protocol : root node should be called 'protocol'.");
 			}
 			protocol = new Protocol(file.getAbsolutePath());
 
@@ -84,6 +85,12 @@ public class ProtocolLoader
 				return null;
 			}
 
+			node = attr.getNamedItem("order");
+			if (node != null)
+			{
+				protocol.setOrder((ByteOrder)ByteOrder.class.getField(node.getNodeValue()).get(null));
+			}
+
 			for (Node n = root.getFirstChild(); n != null; n = n.getNextSibling())
 			{
 				if ("packetfamilly".equalsIgnoreCase(n.getNodeName()))
@@ -96,14 +103,14 @@ public class ProtocolLoader
 					}
 					else
 					{
-						Jn.getInstance().warn("Error packetfamilly returned is null there was an error");
+						Jn.getForm().warn("Error packetfamilly returned is null there was an error");
 					}
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			Jn.getInstance().warn("Error while parsing protocol " + file.getName());
+			Jn.getForm().warn("Error while parsing protocol " + file.getName());
 			e.printStackTrace();
 		}
 
@@ -118,7 +125,7 @@ public class ProtocolLoader
 		Node atr = map.getNamedItem("way");
 		if (atr == null)
 		{
-			Jn.getInstance().warn("Error, Root packetfamilly don't have 'way'. skipping it");
+			Jn.getForm().warn("Error, Root packetfamilly don't have 'way'. skipping it");
 			return null;
 		}
 		else
@@ -205,7 +212,7 @@ public class ProtocolLoader
 				atr = attrs.getNamedItem("id");
 				if (atr == null)
 				{
-					Jn.getInstance().warn("Error, for doesnt have 'id'. skipping packet");
+					Jn.getForm().warn("Error, for doesnt have 'id'. skipping packet");
 					return false;
 				}
 				forId = Integer.parseInt(atr.getNodeValue());
@@ -237,7 +244,7 @@ public class ProtocolLoader
 
 				if (atr == null)
 				{
-					Jn.getInstance().warn("Error, switch doesnt have 'id'. skipping packet");
+					Jn.getForm().warn("Error, switch doesnt have 'id'. skipping packet");
 					return false;
 				}
 				switchId = Integer.parseInt(atr.getNodeValue());
@@ -254,7 +261,7 @@ public class ProtocolLoader
 						atr = attrs.getNamedItem("id");
 						if (atr == null)
 						{
-							Jn.getInstance().warn("Error, case doesnt have 'id'. skipping packet");
+							Jn.getForm().warn("Error, case doesnt have 'id'. skipping packet");
 							return false;
 						}
 
@@ -281,7 +288,7 @@ public class ProtocolLoader
 							}
 							catch (NumberFormatException e)
 							{
-								Jn.getInstance().warn("Warning, case doesnt have a valid 'id'. making it default");
+								Jn.getForm().warn("Warning, case doesnt have a valid 'id'. making it default");
 								newSwitchCase = new SwitchCaseBlock(newSwitchBlock);
 							}
 						}
@@ -312,7 +319,7 @@ public class ProtocolLoader
 		Node atr = attrs.getNamedItem("name");
 		if (atr == null)
 		{
-			Jn.getInstance().warn("Warning, part doesnt have 'name'");
+			Jn.getForm().warn("Warning, part doesnt have 'name'");
 			partName = "";
 		}
 		else
@@ -334,7 +341,7 @@ public class ProtocolLoader
 			}
 			catch (NumberFormatException nfe)
 			{
-				Jn.getInstance().warn("Warning: parts id must be an integer");
+				Jn.getForm().warn("Warning: parts id must be an integer");
 				partId = -1;
 			}
 		}
@@ -342,7 +349,7 @@ public class ProtocolLoader
 		atr = attrs.getNamedItem("type");
 		if (atr == null)
 		{
-			Jn.getInstance().warn("Error, part doesnt have 'type'. skipping packet");
+			Jn.getForm().warn("Error, part doesnt have 'type'. skipping packet");
 			return null;
 		}
 		String type = atr.getNodeValue();
@@ -372,13 +379,13 @@ public class ProtocolLoader
 			{
 				if (r != null)
 				{
-					Jn.getInstance().warn("Warning, part '" + (partName) + "' has mutiple readers");
+					Jn.getForm().warn("Warning, part '" + (partName) + "' has mutiple readers");
 				}
 				NamedNodeMap attrs2 = subNode.getAttributes();
 				atr = attrs2.getNamedItem("type");
 				if (atr == null)
 				{
-					Jn.getInstance().warn("Warning, part '" + (partName) + "' has a reader with no type");
+					Jn.getForm().warn("Warning, part '" + (partName) + "' has a reader with no type");
 					continue;
 				}
 
@@ -398,7 +405,7 @@ public class ProtocolLoader
 
 				if (clazz == null)
 				{
-					Jn.getInstance().warn("Warning, part '" + (partName) + "' reader's could not be found in either parser or custom packages");
+					Jn.getForm().warn("Warning, part '" + (partName) + "' reader's could not be found in either parser or custom packages");
 					continue;
 				}
 				try
@@ -446,6 +453,6 @@ public class ProtocolLoader
 
 	public static void report(String severity, SAXParseException e)
 	{
-		Jn.getInstance().warn(severity + ": " + e.getMessage() + " (Line " + e.getLineNumber() + ", Column: " + e.getColumnNumber() + ")", e);
+		Jn.getForm().warn(severity + ": " + e.getMessage() + " (Line " + e.getLineNumber() + ", Column: " + e.getColumnNumber() + ")", e);
 	}
 }

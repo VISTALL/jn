@@ -11,7 +11,7 @@ import com.jds.jn.protocol.Protocol;
  */
 public interface ProtocolCrypter
 {
-	public void decrypt(byte[] raw, PacketType dir);
+	public byte[] decrypt(byte[] raw, PacketType dir);
 
 	public byte[] encrypt(byte[] raw, PacketType dir);
 

@@ -19,6 +19,8 @@ import com.jds.jn.remotefiles.FileLoader;
 import com.jds.jn.runnable.GCUpdate;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.ThreadPoolManager;
+import com.jds.jn.version_control.Programs;
+import com.jds.jn.version_control.Version;
 
 /**
  * Author: VISTALL
@@ -26,28 +28,12 @@ import com.jds.jn.util.ThreadPoolManager;
  * Date: 03/01/2010
  * Time: 22:32:18
  */
-public class Jn implements Runnable
+public class Jn
 {
-	private static Jn _instance;
-	private MainForm _form;
+	public  static final Version CURRENT = new Version(Programs.JN, 2, 0, Version.ALPHA, 1);
+	private static MainForm _form;
 
-	public static void main(String... arg)
-	{
-
-		_instance = new Jn();
-
-		//SwingUtilities.invokeLater(_instance);
-		//ThreadPoolManager.getInstance().execute(_instance);
-		_instance.run();
-	}
-
-	public static MainForm getInstance()
-	{
-		return _instance._form;
-	}
-
-	@Override
-	public void run()
+	public static void main(String... arg) throws Exception
 	{
 		try
 		{
@@ -94,6 +80,7 @@ public class Jn implements Runnable
 			{
 				throw new Error("Form is Null");
 			}
+
 			_form.setVisible(true);
 			_form.updateVisible();
 
@@ -105,5 +92,10 @@ public class Jn implements Runnable
 			}
 			SplashWindow.hideSplash();
 		}
+	}
+
+	public static MainForm getForm()
+	{
+		return _form;
 	}
 }

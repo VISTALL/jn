@@ -33,7 +33,7 @@ public class IPv4Reader implements ValueReader
 			byte[] ip = part.getBytes();
 			return (ip[0] & 0xFF) + "." + (ip[1] & 0xFF) + "." + (ip[2] & 0xFF) + "." + (ip[3] & 0xFF);
 		}
-		Jn.getInstance().warn("IPv4 ValueReader requires a part with exactly 4 bytes. Faulty part : " + part.getModelPart().getName());
+		Jn.getForm().warn("IPv4 ValueReader requires a part with exactly 4 bytes. Faulty part : " + part.getModelPart().getName());
 		return "";
 	}
 

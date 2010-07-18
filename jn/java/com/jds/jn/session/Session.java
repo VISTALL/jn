@@ -1,10 +1,8 @@
 package com.jds.jn.session;
 
-import javolution.util.FastList;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
+import com.jds.jn.Jn;
 import com.jds.jn.crypt.NullCrypter;
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.gui.panels.ViewPane;
@@ -13,10 +11,9 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
-import com.jds.jn.parser.packetfactory.lineage2.npc.L2NpcSpawnListener;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.util.ThreadPoolManager;
-import com.jds.jn.util.Version;
+import com.jds.jn.version_control.Version;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -26,7 +23,7 @@ import com.jds.jn.util.Version;
 public class Session
 {
 	private long _sessionId;
-	private Version _version;
+	private Version _version = Jn.CURRENT;
 
 	private ProtocolCrypter _crypt;
 	private Protocol _protocol;
@@ -38,7 +35,7 @@ public class Session
 	private ListenerType _type;
 	private ViewPane _viewPane;
 
-	private final FastList<IPacketListener> _invokes =new FastList<IPacketListener>();
+	private final ArrayList<IPacketListener> _invokes = new ArrayList<IPacketListener>();
 
 	public Session(IMethod iMethod, Protocol protocol)
 	{
@@ -46,15 +43,15 @@ public class Session
 		_type = iMethod.getListenerType();
 		_sessionId = iMethod.getSessionId();
 		_protocol = protocol;
-		_version = Version.UNKNOWN;
 		init(true);
 	}
 
-	public Session(ListenerType type, long sessionId, Protocol protocol)
+	public Session(ListenerType type, long sessionId, Protocol protocol, boolean createViewPane)
 	{
 		_type = type;
 		_sessionId = sessionId;
 		_protocol = protocol;
+		_viewPane = new ViewPane(this);
 
 		init(true);
 	}
@@ -65,7 +62,7 @@ public class Session
 		{
 			try
 			{
-				Class<?> clazz = Class.forName("com.jds.jn.crypt." + _protocol.getEncryption() + "Crypter");
+				Class<?> clazz = Class.forName("com.jds.jn.crypt." + getProtocol().getEncryption() + "Crypter");
 				_crypt = (ProtocolCrypter) clazz.newInstance();
 			}
 			catch (Exception e)
@@ -78,9 +75,9 @@ public class Session
 			_crypt = new NullCrypter();
 		}
 
-		_crypt.setProtocol(_protocol);
+		_crypt.setProtocol(getProtocol());
 
-		FastList<Class<? extends IPacketListener>> l = new FastList<Class<? extends IPacketListener>>();
+		/*FastList<Class<? extends IPacketListener>> l = new FastList<Class<? extends IPacketListener>>();
 		l.add(L2NpcSpawnListener.class);
 
 		for(Class<? extends IPacketListener> cl : l)
@@ -97,16 +94,16 @@ public class Session
 			{
 				e.printStackTrace();
 			}
-		}
+		} */
 	}
 
 	public DecryptPacket decode(NotDecryptPacket packet)
 	{
 		byte data[] = Arrays.copyOf(packet.getBuffer().array(), packet.getBuffer().array().length);
 
-		_crypt.decrypt(data, packet.getPacketType());
+		data = _crypt.decrypt(data, packet.getPacketType());
 
-		return new DecryptPacket(data, packet.getPacketType(), _protocol);
+		return new DecryptPacket(data, packet.getPacketType(), getProtocol());
 	}
 
 	public long getSessionId()
@@ -114,19 +111,14 @@ public class Session
 		return _sessionId;
 	}
 
-	public ArrayList<NotDecryptPacket> getNotDecryptPackets()
+	public List<NotDecryptPacket> getNotDecryptPackets()
 	{
 		return _notDecryptPackets;
 	}
 
-	public void setProtocol(Protocol p)
-	{
-		_protocol = p;
-	}
-
 	public Protocol getProtocol()
 	{
-		return _protocol;
+		return _viewPane != null ? _viewPane.getProtocol() : _protocol;
 	}
 
 	public ProtocolCrypter getCrypt()
@@ -136,12 +128,42 @@ public class Session
 
 	public synchronized void receivePacket(NotDecryptPacket p)
 	{
-		_notDecryptPackets.add(p);
+		 _notDecryptPackets.add(p);
 
 		if (_viewPane != null)
 		{
 			_viewPane.getPacketTableModel2().addRow(p);
 			_viewPane.updateInfo(this);
+		}
+	}
+
+	public synchronized void receiveQuitPacket(NotDecryptPacket p)
+	{
+		_notDecryptPackets.add(p);
+
+		if (_viewPane != null)
+		{
+			_viewPane.getPacketTableModel2().addRow(p);
+		}
+	}
+
+	public synchronized void receiveQuitPacket(DecryptPacket p)
+	{
+		addDecryptPacket(p);
+
+		if (_viewPane != null)
+		{
+			_viewPane.getPacketTableModel().addRow(p);
+		}
+	}
+
+	public void updateUI()
+	{
+		if (_viewPane != null)
+		{
+			//_viewPane.updateInfo(this);
+			_viewPane.getPacketListPane().getPacketTable().updateUI();
+			_viewPane.getNotDecPacketListPane().getPacketTable().updateUI();
 		}
 	}
 

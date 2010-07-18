@@ -42,7 +42,7 @@ public class ProtocolManager
 	{
 		if (!_protocolsByName.containsKey(name))
 		{
-			Jn.getInstance().warn("Can not find protocol for name " + name);
+			Jn.getForm().warn("Can not find protocol for name " + name);
 		}
 
 		return _protocolsByName.get(name);
@@ -81,7 +81,7 @@ public class ProtocolManager
 
 		if (!dir.isDirectory())
 		{
-			Jn.getInstance().warn("Invalid Protocols directory (" + _protocolsDir + ")", null);
+			Jn.getForm().warn("Invalid Protocols directory (" + _protocolsDir + ")", null);
 			return;
 		}
 

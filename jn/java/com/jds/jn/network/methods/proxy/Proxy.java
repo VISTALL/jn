@@ -48,14 +48,14 @@ public class Proxy implements IMethod
 	@Override
 	public void start() throws Exception
 	{
-		Jn.getInstance().info("Start Proxy: " + _type.name());
+		Jn.getForm().info("Start Proxy: " + _type.name());
 		_acceptor.bind(new InetSocketAddress(getLocalHost(), getLocalPort()));
 	}
 
 	@Override
 	public void stop() throws Exception
 	{
-		Jn.getInstance().info("Stop Proxy: " + _type.name());
+		Jn.getForm().info("Stop Proxy: " + _type.name());
 		try
 		{
 			if (getClientSession() != null)

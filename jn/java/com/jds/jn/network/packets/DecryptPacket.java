@@ -43,7 +43,7 @@ public class DecryptPacket implements IPacketData
 
 	public DecryptPacket(byte[] data, PacketType type, Protocol protocol, boolean parse)
 	{
-		this(new NotDecryptPacket(type, data, System.currentTimeMillis()), protocol, parse);
+		this(new NotDecryptPacket(type, data, System.currentTimeMillis(), protocol.getOrder()), protocol, parse);
 	}
 
 	public DecryptPacket(NotDecryptPacket packet, Protocol protocol)
@@ -80,7 +80,7 @@ public class DecryptPacket implements IPacketData
 			catch (BufferUnderflowException e)
 			{
 				_error = "Insuficient data for the specified format";
-				Jn.getInstance().warn("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+				Jn.getForm().warn("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
 			}
 		}
 	}
@@ -316,6 +316,11 @@ public class DecryptPacket implements IPacketData
 	public int getInt(String s)
 	{
 		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsInt();
+	}
+
+	public byte[] getBytes(String s)
+	{
+		return ((ValuePart)getRootNode().getPartByName(s)).getBytes();
 	}
 
 	public Protocol getProtocol()

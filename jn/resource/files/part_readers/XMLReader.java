@@ -37,7 +37,7 @@ public class XMLReader implements ValueReader
 		{
 			return ((StringValuePart) part).getStringValue();
 		}
-		Jn.getInstance().warn("XML ValueReader set on a non String part: " + part.getModelPart().getName());
+		Jn.getForm().warn("XML ValueReader set on a non String part: " + part.getModelPart().getName());
 		return "";
 	}
 
@@ -70,10 +70,10 @@ public class XMLReader implements ValueReader
 
 		public void actionPerformed(ActionEvent e)
 		{
-			JDialog dlg = new JDialog(Jn.getInstance(), "HTML");
+			JDialog dlg = new JDialog(Jn.getForm(), "HTML");
 			dlg.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dlg.setSize(350, 400);
-			dlg.setLocationRelativeTo(Jn.getInstance());
+			dlg.setLocationRelativeTo(Jn.getForm());
 
 			JTabbedPane tabPane = new JTabbedPane();
 

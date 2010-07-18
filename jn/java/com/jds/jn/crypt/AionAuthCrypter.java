@@ -41,7 +41,7 @@ public class AionAuthCrypter implements ProtocolCrypter
 	private NewCrypt _initcrypt = new NewCrypt(STATIC_BLOWFISH_KEY);
 
 	@Override
-	public void decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir)
 	{
 		try
 		{
@@ -59,15 +59,15 @@ public class AionAuthCrypter implements ProtocolCrypter
 					ValuePart part = (ValuePart) packet.getRootNode().getPartByName("Blowfish key");
 					if (part == null)
 					{
-						Jn.getInstance().warn("Check your protocol there is no part called 'Blowfish key' which is required in key packet of the AS protocol.");
-						return;
+						Jn.getForm().warn("Check your protocol there is no part called 'Blowfish key' which is required in key packet of the AS protocol.");
+						return raw;
 					}
 					_crypt = new NewCrypt(part.getBytes());
 					System.arraycopy(potentialInit, 0, raw, 0, raw.length);
-					return; // no checksum here
+					return raw; // no checksum here
 				}
-				Jn.getInstance().warn("No key was ready to read JPacket, there should have been an Init packet before");
-				return;
+				Jn.getForm().warn("No key was ready to read JPacket, there should have been an Init packet before");
+				return raw;
 			}
 
 			if (dir == PacketType.SERVER)
@@ -91,7 +91,7 @@ public class AionAuthCrypter implements ProtocolCrypter
 				 //ProxyList.getInstance().getProxy(1).PACKET_RECEIVER.receive(ProxyList.getInstance().getProxy(1), p);
 				 }
 				 */
-				return;
+				return raw;
 			}
 
 			_crypt.decrypt(raw);
@@ -100,7 +100,7 @@ public class AionAuthCrypter implements ProtocolCrypter
 			{
 				//MainForm.getInstance().error("AionAuthCrypter : Wrong checksum (packet id: " + raw[0] + ", dir:" + dir + ")");
 			}
-			return;
+			return raw;
 
 		}
 		catch (IOException e)
@@ -108,6 +108,7 @@ public class AionAuthCrypter implements ProtocolCrypter
 			e.printStackTrace();
 		}
 
+		return raw;
 	}
 
 	@Override

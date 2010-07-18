@@ -36,13 +36,13 @@ public class FileObject
 				}
 				else
 				{
-					Jn.getInstance().warn("Class " + getName() + " field " + s + " not found or private!");
+					Jn.getForm().warn("Class " + getName() + " field " + s + " not found or private!");
 				}
 			}
 		}
 		catch (NoSuchFieldException e)
 		{
-			Jn.getInstance().warn("Class " + getName() + " field " + s + " not found or private!");
+			Jn.getForm().warn("Class " + getName() + " field " + s + " not found or private!");
 		}
 		catch (Exception e)
 		{
@@ -64,13 +64,13 @@ public class FileObject
 				}
 				else
 				{
-					Jn.getInstance().warn("Class " + getName() + " field " + s + " not found or private!");
+					Jn.getForm().warn("Class " + getName() + " field " + s + " not found or private!");
 				}
 			}
 		}
 		catch (NoSuchFieldException e)
 		{
-			Jn.getInstance().warn("Class " + getName() + " field " + s + " not found or private!");
+			Jn.getForm().warn("Class " + getName() + " field " + s + " not found or private!");
 		}
 		catch (Exception e)
 		{
@@ -102,7 +102,7 @@ public class FileObject
 		}
 		catch (InvocationTargetException f)
 		{
-			Jn.getInstance().warn("Class " + getName() + " method " + s + " return a error!");
+			Jn.getForm().warn("Class " + getName() + " method " + s + " return a error!");
 			f.printStackTrace();
 		}
 		catch (Exception e)
@@ -229,7 +229,7 @@ public class FileObject
 
 				if (meth == null)
 				{
-					Jn.getInstance().warn("Class " + getName() + " method " + s + " not found!");
+					Jn.getForm().warn("Class " + getName() + " method " + s + " not found!");
 					return null;
 				}
 
@@ -245,7 +245,7 @@ public class FileObject
 		}
 		catch (InvocationTargetException f)
 		{
-			Jn.getInstance().warn("Class " + getName() + " method " + s + " return a error!");
+			Jn.getForm().warn("Class " + getName() + " method " + s + " return a error!");
 			f.printStackTrace();
 		}
 		catch (Exception e)

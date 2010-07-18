@@ -3,12 +3,13 @@ package com.jds.jn.gui;
 import javolution.util.FastMap;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 
 import java.io.File;
 import java.io.IOException;
 
 import com.jds.jn.Jn;
+import com.jds.jn.config.LastFiles;
+import com.jds.jn.config.RValues;
 import com.jds.jn.gui.dialogs.*;
 import com.jds.jn.gui.panels.ConsolePane;
 import com.jds.jn.gui.panels.ViewTabbedPane;
@@ -18,9 +19,6 @@ import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.config.LastFiles;
-import com.jds.jn.config.RValues;
-import com.jds.jn.session.Session;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.util.ThreadPoolManager;
@@ -86,7 +84,7 @@ public class JActionListener
 				}
 				catch (IOException e)
 				{
-					Jn.getInstance().warn("Not can start/stop", e);
+					Jn.getForm().warn("Not can start/stop", e);
 					return;
 				}
 
@@ -107,8 +105,8 @@ public class JActionListener
 
 				break;
 			case CONSOLE_TAB:
-				ConsolePane pane = Jn.getInstance().getConsolePane();
-				JTabbedPane tabs = Jn.getInstance().getTabs();
+				ConsolePane pane = Jn.getForm().getConsolePane();
+				JTabbedPane tabs = Jn.getForm().getTabs();
 				JCheckBox cbox = (JCheckBox) sender;
 				if (!cbox.isSelected())
 				{
@@ -120,8 +118,8 @@ public class JActionListener
 				}
 				break;
 			case VIEW_TAB:
-				ViewTabbedPane p2 = Jn.getInstance().getViewTabbedPane();
-				JTabbedPane t2 = Jn.getInstance().getTabs();
+				ViewTabbedPane p2 = Jn.getForm().getViewTabbedPane();
+				JTabbedPane t2 = Jn.getForm().getTabs();
 				JCheckBox b2 = (JCheckBox) sender;
 				if (!b2.isSelected())
 				{
@@ -163,7 +161,7 @@ public class JActionListener
 					@Override
 					public void run()
 					{
-						Jn.getInstance().setVisible(!Jn.getInstance().isVisible());
+						Jn.getForm().setVisible(!Jn.getForm().isVisible());
 					}
 				});
 				break;
@@ -179,31 +177,6 @@ public class JActionListener
 				break;
 			case CLEAR_LAST_FILES:
 				LastFiles.clearFiles();
-				break;
-			case OPEN_FILE:
-				final JFileChooser chooser = new JFileChooser(RValues.LAST_FOLDER.asString());
-
-				chooser.setFileFilter(new FileFilter()
-				{
-
-					@Override
-					public boolean accept(File f)
-					{
-						return f.isDirectory() || f.isFile() && f.getName().endsWith(".jnl");
-					}
-
-					@Override
-					public String getDescription()
-					{
-						return "Jn log format (.jnl)";
-					}
-				});
-				final int returnVal = chooser.showOpenDialog(Jn.getInstance());
-
-				if (returnVal == JFileChooser.APPROVE_OPTION)
-				{
-					openSession(chooser.getSelectedFile());
-				}
 				break;
 			case OPEN_SELECT_FILE:
 				final File files = (File) arg[0];
@@ -230,59 +203,8 @@ public class JActionListener
 				}
 				break;
 			case SAVE_SESSION:
-				final JFileChooser c = new JFileChooser(RValues.LAST_FOLDER.asString());
-
-				c.setFileFilter(new FileFilter()
-				{
-
-					@Override
-					public boolean accept(File f)
-					{
-						return f.isDirectory() || f.isFile() && f.getName().endsWith(".jnl");
-					}
-
-					@Override
-					public String getDescription()
-					{
-						return "Jn log format (.jnl)";
-					}
-				});
-
-				final int r = c.showSaveDialog(Jn.getInstance());
-
-				if (r == JFileChooser.APPROVE_OPTION)
-				{
-					Thread t = new Thread()
-					{
-						@Override
-						public void run()
-						{
-							saveSession(c.getSelectedFile(), c.getFileFilter());
-						}
-					};
-					t.start();
-				}
+				Writer.getInstance().chooseDialog();
 				break;
-		}
-	}
-
-	public static void saveSession(File file, FileFilter filter)
-	{
-
-		try
-		{
-			Session session = Jn.getInstance().getViewTabbedPane().getCurrentViewPane().getSession();
-
-			if (session == null)
-			{
-				return;
-			}
-
-			Writer.write(file, filter, session);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
 		}
 	}
 
@@ -292,11 +214,11 @@ public class JActionListener
 		{
 			LastFiles.addLastFile(file.getAbsolutePath());
 			RValues.LAST_FOLDER.setVal(file.getAbsolutePath().replace(file.getName(), ""));
-			Reader.read(file.getAbsolutePath());
+			Reader.getInstance().read(file);
 		}
 		catch (Exception e)
 		{
-			Jn.getInstance().warn("Failed to open file " + e.getMessage(), e);
+			Jn.getForm().warn("Failed to open file " + e.getMessage(), e);
 		}
 	}
 

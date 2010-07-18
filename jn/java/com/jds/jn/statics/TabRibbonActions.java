@@ -44,7 +44,7 @@ public class TabRibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				ViewPane pane = Jn.getInstance().getViewTabbedPane().getCurrentViewPane();
+				ViewPane pane = Jn.getForm().getViewTabbedPane().getCurrentViewPane();
 				if (pane == null)
 				{
 					return;
@@ -52,12 +52,12 @@ public class TabRibbonActions
 				if (!pane._packetList.IS_HIDE)
 				{
 					int index = pane.getIndex(pane._packetList);
-					pane._packetAndSearch.removeTabAt(index);
+					pane.getPacketAndSearch().removeTabAt(index);
 					pane._packetList.IS_HIDE = true;
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(Bundle.getString("PacketList"), pane._packetList);
+					pane.getPacketAndSearch().addTab(Bundle.getString("PacketList"), pane._packetList);
 					pane._packetList.IS_HIDE = false;
 				}
 			}
@@ -70,7 +70,7 @@ public class TabRibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				ViewPane pane = Jn.getInstance().getViewTabbedPane().getCurrentViewPane();
+				ViewPane pane = Jn.getForm().getViewTabbedPane().getCurrentViewPane();
 				if (pane == null)
 				{
 					return;
@@ -78,12 +78,12 @@ public class TabRibbonActions
 				if (!pane._searchPane.IS_HIDE)
 				{
 					int index = pane.getIndex(pane._searchPane);
-					pane._packetAndSearch.removeTabAt(index);
+					pane.getPacketAndSearch().removeTabAt(index);
 					pane._searchPane.IS_HIDE = true;
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(Bundle.getString("FindPanel"), pane._searchPane);
+					pane.getPacketAndSearch().addTab(Bundle.getString("FindPanel"), pane._searchPane);
 					pane._searchPane.IS_HIDE = false;
 				}
 			}
@@ -96,7 +96,7 @@ public class TabRibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				ViewPane pane = Jn.getInstance().getViewTabbedPane().getCurrentViewPane();
+				ViewPane pane = Jn.getForm().getViewTabbedPane().getCurrentViewPane();
 				if (pane == null)
 				{
 					return;
@@ -104,12 +104,12 @@ public class TabRibbonActions
 				if (!pane._filterPane.IS_HIDE)
 				{
 					int index = pane.getIndex(pane._filterPane);
-					pane._packetAndSearch.removeTabAt(index);
+					pane.getPacketAndSearch().removeTabAt(index);
 					pane._filterPane.IS_HIDE = true;
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(Bundle.getString("Filter"), pane._filterPane);
+					pane.getPacketAndSearch().addTab(Bundle.getString("Filter"), pane._filterPane);
 					pane._filterPane.IS_HIDE = false;
 				}
 			}
@@ -122,7 +122,7 @@ public class TabRibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				ViewPane pane = Jn.getInstance().getViewTabbedPane().getCurrentViewPane();
+				ViewPane pane = Jn.getForm().getViewTabbedPane().getCurrentViewPane();
 				if (pane == null)
 				{
 					return;
@@ -130,12 +130,12 @@ public class TabRibbonActions
 				if (!pane._infoPane.IS_HIDE)
 				{
 					int index = pane.getIndex(pane._infoPane);
-					pane._packetAndSearch.removeTabAt(index);
+					pane.getPacketAndSearch().removeTabAt(index);
 					pane._infoPane.IS_HIDE = true;
 				}
 				else
 				{
-					pane._packetAndSearch.addTab(Bundle.getString("Info"), pane._infoPane);
+					pane.getPacketAndSearch().addTab(Bundle.getString("Info"), pane._infoPane);
 					pane._infoPane.IS_HIDE = false;
 				}
 			}
@@ -176,7 +176,7 @@ public class TabRibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				Jn.getInstance().closeSessionTab(Jn.getInstance().getViewTabbedPane().getCurrentViewPane());
+				Jn.getForm().closeSessionTab(Jn.getForm().getViewTabbedPane().getCurrentViewPane());
 			}
 		});
 		actionsBand.addCommandButton(jCommandButton2, RibbonElementPriority.TOP);

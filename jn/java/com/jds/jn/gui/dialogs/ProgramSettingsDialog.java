@@ -29,7 +29,7 @@ public class ProgramSettingsDialog extends JDialog
 
 	public ProgramSettingsDialog()
 	{
-		super(Jn.getInstance(), "Program Settings", true);
+		super(Jn.getForm(), "Program Settings", true);
 
 		setContentPane(contentPane);
 		getRootPane().setDefaultButton(buttonOK);
@@ -100,7 +100,7 @@ public class ProgramSettingsDialog extends JDialog
 		RValues.USE_TRAY.setVal(_useTrayCheckBox.isSelected());
 		RValues.SAVE_AS_DECODE.setVal(_savePacketsInDecodeCheckBox.isSelected());
 		RValues.MAIN_VISIBLE.setVal(_mainVisible.getValue() / 100F);
-		Jn.getInstance().updateVisible();
+		Jn.getForm().updateVisible();
 		dispose();
 	}
 

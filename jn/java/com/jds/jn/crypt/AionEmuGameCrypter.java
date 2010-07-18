@@ -25,13 +25,13 @@ public class AionEmuGameCrypter implements ProtocolCrypter
 	public final static byte STATIC_CLIENT_KEY = 0x5D;
 	public final static byte STATIC_SERVER_KEY = 0x54;
 
-	public void decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir)
 	{
 		if (dir == PacketType.CLIENT)
 		{
 			if (clientPacketkey == null)
 			{
-				return;
+				return raw;
 			}
 			decode(raw, clientPacketkey);
 		}
@@ -53,6 +53,8 @@ public class AionEmuGameCrypter implements ProtocolCrypter
 			}
 			decodeServerOpcode(raw);
 		}
+
+		return raw;
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class AionEmuGameCrypter implements ProtocolCrypter
 			NumberValuePart part = (NumberValuePart) packet.getRootNode().getPartByName("key");
 			if (part == null)
 			{
-				Jn.getInstance().warn("Check your protocol there is no part called 'key' which is required in key packet of the GS protocol.");
+				Jn.getForm().warn("Check your protocol there is no part called 'key' which is required in key packet of the GS protocol.");
 				return false;
 			}
 			key = part.getValueAsInt();
@@ -90,7 +92,7 @@ public class AionEmuGameCrypter implements ProtocolCrypter
 			System.arraycopy(clientPacketkey, 0, serverPacketkey, 0, 8);
 			return true;
 		}
-		Jn.getInstance().warn("No key found...");
+		Jn.getForm().warn("No key found...");
 		return false;
 	}
 

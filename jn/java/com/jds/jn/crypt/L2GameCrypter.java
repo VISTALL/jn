@@ -29,11 +29,11 @@ public class L2GameCrypter implements ProtocolCrypter
 	private final Object _serverLock = new Object();
 
 	@Override
-	public void decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir)
 	{
 		if (!_isEnables && dir == PacketType.CLIENT)
 		{
-			return;
+			return raw;
 		}
 
 		if (!_isEnables && dir == PacketType.SERVER)
@@ -45,7 +45,7 @@ public class L2GameCrypter implements ProtocolCrypter
 				searchKey(Arrays.copyOf(raw, raw.length));
 			}
 
-			return;
+			return raw;
 		}
 
 		switch (dir)
@@ -75,6 +75,8 @@ public class L2GameCrypter implements ProtocolCrypter
 				}
 				break;
 		}
+
+		return raw;
 	}
 
 	private synchronized void searchKey(byte[] twice)

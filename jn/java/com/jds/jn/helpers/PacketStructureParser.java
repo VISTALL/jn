@@ -75,7 +75,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -87,7 +87,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -99,7 +99,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -111,7 +111,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -123,7 +123,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -154,7 +154,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -167,7 +167,7 @@ public class PacketStructureParser
 					}
 					catch (NumberFormatException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getLocalizedMessage(), e);
+						Jn.getForm().warn("Exception " + e.getLocalizedMessage(), e);
 						//e.printStackTrace();
 					}
 					break;
@@ -183,7 +183,7 @@ public class PacketStructureParser
 					}
 					catch (UnknownHostException e)
 					{
-						Jn.getInstance().warn("Exception " + e.getMessage(), e);
+						Jn.getForm().warn("Exception " + e.getMessage(), e);
 					}
 					break;
 			}

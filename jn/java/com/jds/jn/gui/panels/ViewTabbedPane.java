@@ -1,15 +1,16 @@
 package com.jds.jn.gui.panels;
 
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.Jn;
 import com.jds.jn.session.Session;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ResourceBundle;
+import com.jds.jn.util.Bundle;
 
 /**
  * Author: VISTALL
@@ -35,9 +36,14 @@ public class ViewTabbedPane extends JTabbedPane
 
 	public void showSession(final Session s)
 	{
-		final ViewPane viewPane = new ViewPane(s);
+		ViewPane viewPane = s.getViewPane();
 
-		addTab(String.format(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Session") + ": %d", s.getSessionId()), viewPane);
+		if(viewPane == null)
+		{
+			viewPane = new ViewPane(s);
+		}
+
+		addTab(String.format(Bundle.getString("Session") + ": %d", s.getSessionId()), viewPane);
 	}
 
 	public int sizeAll()
@@ -97,7 +103,7 @@ public class ViewTabbedPane extends JTabbedPane
 										{
 											Config.set(Values.CONFIRM_CLOSE_SESSION, result[1]);  */
 
-				Jn.getInstance().closeSessionTab(getCurrentViewPane());
+				Jn.getForm().closeSessionTab(getCurrentViewPane());
 
 				/*	}
 									}

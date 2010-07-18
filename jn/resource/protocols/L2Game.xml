@@ -750,7 +750,7 @@
     <packet id="73" name="SSQInfo">
       <part name="type" type="h" />
     </packet>
-    <packet id="FE;A000" name="ExVitalityPointInfo">
+    <packet id="FE;00A0" name="ExVitalityPointInfo">
       <part name="points" type="d" />
     </packet>
     <packet id="74" name="GameGuardQuery" />
@@ -768,7 +768,7 @@
       <part name="obj_id" type="d" />
       <part name="?" type="d" />
     </packet>
-    <packet id="FE;9200" name="ExReplyDominionInfo">
+    <packet id="FE;0092" name="ExReplyDominionInfo">
       <part id="1" name="count" type="d" />
       <for id="1">
         <part name="id" type="d" />
@@ -781,7 +781,7 @@
         <part name="time" type="d" />
       </for>
     </packet>
-    <packet id="FE;CF00" name="ExBR_ExtraUserInfo">
+    <packet id="FE;00CF" name="ExBR_ExtraUserInfo">
       <part name="obj_id" type="d" />
       <part name="afro_hair" type="d" />
     </packet>
@@ -917,7 +917,7 @@
         <part name="actionId" type="d" />
       </for>
     </packet>
-    <packet id="FE;CE00" name="ExBR_BroadcastEventState">
+    <packet id="FE;00CE" name="ExBR_BroadcastEventState">
       <part name="eventId" type="d" />
       <part name="eventState" type="d" />
       <part name="?" type="d" />
@@ -938,7 +938,7 @@
     <packet id="28" name="ChangeMoveType" />
     <packet id="47" name="StopMove" />
     <packet id="4b" name="EquipUpdate" />
-    <packet id="FE;6000" name="ExAirShipInfo">
+    <packet id="FE;0060" name="ExAirShipInfo">
       <part name="obj" type="d" />
       <part name="x" type="d" />
       <part name="y" type="d" />
@@ -1217,28 +1217,28 @@
     <packet id="FC" name="PetitionVotePacket" />
     <packet id="FE00" name="DummyPacket" />
     <packet id="FE;0000" name="ExDummyPacket" />
-    <packet id="FE;0100" name="ExRegenMaxPacket" />
-    <packet id="FE;0200" name="ExEventMatchUserInfoPacket" />
-    <packet id="FE;0300" name="ExColosseumFenceInfoPacket" />
-    <packet id="FE;0400" name="ExEventMatchSpelledInfoPacket" />
-    <packet id="FE;0500" name="ExEventMatchFirecrackerPacket" />
-    <packet id="FE;0600" name="ExEventMatchTeamUnlockedPacket" />
-    <packet id="FE;0700" name="ExEventMatchGMTestPacket" />
-    <packet id="FE;0800" name="ExPartyRoomMemberPacket" />
-    <packet id="FE;0900" name="ExClosePartyRoomPacket" />
-    <packet id="FE;0A00" name="ExManagePartyRoomMemberPacket" />
-    <packet id="FE;0B00" name="ExEventMatchLockResult" />
-    <packet id="FE;0C00" name="ExAutoSoulShot" />
-    <packet id="FE;0D00" name="ExEventMatchListPacket" />
-    <packet id="FE;0E00" name="ExEventMatchObserverPacket" />
-    <packet id="FE;0F00" name="ExEventMatchMessagePacket" />
-    <packet id="FE;1000" name="ExEventMatchScorePacket" />
-    <packet id="FE;1100" name="ExServerPrimitivePacket" />
-    <packet id="FE;1200" name="ExOpenMPCCPacket" />
-    <packet id="FE;1300" name="ExCloseMPCCPacket" />
-    <packet id="FE;1400" name="ExShowCastleInfo" />
-    <packet id="FE;1500" name="ExShowFortressInfo" />
-    <packet id="FE;1600" name="ExShowAgitInfo" />
+    <packet id="FE;0001" name="ExRegenMaxPacket" />
+    <packet id="FE;0002" name="ExEventMatchUserInfoPacket" />
+    <packet id="FE;0003" name="ExColosseumFenceInfoPacket" />
+    <packet id="FE;0004" name="ExEventMatchSpelledInfoPacket" />
+    <packet id="FE;0005" name="ExEventMatchFirecrackerPacket" />
+    <packet id="FE;0006" name="ExEventMatchTeamUnlockedPacket" />
+    <packet id="FE;0007" name="ExEventMatchGMTestPacket" />
+    <packet id="FE;0008" name="ExPartyRoomMemberPacket" />
+    <packet id="FE;0009" name="ExClosePartyRoomPacket" />
+    <packet id="FE;000A" name="ExManagePartyRoomMemberPacket" />
+    <packet id="FE;000B" name="ExEventMatchLockResult" />
+    <packet id="FE;000C" name="ExAutoSoulShot" />
+    <packet id="FE;000D" name="ExEventMatchListPacket" />
+    <packet id="FE;000E" name="ExEventMatchObserverPacket" />
+    <packet id="FE;000F" name="ExEventMatchMessagePacket" />
+    <packet id="FE;0010" name="ExEventMatchScorePacket" />
+    <packet id="FE;0011" name="ExServerPrimitivePacket" />
+    <packet id="FE;0012" name="ExOpenMPCCPacket" />
+    <packet id="FE;0013" name="ExCloseMPCCPacket" />
+    <packet id="FE;0014" name="ExShowCastleInfo" />
+    <packet id="FE;0015" name="ExShowFortressInfo" />
+    <packet id="FE;0016" name="ExShowAgitInfo" />
     <packet id="FE;1700" name="ExShowFortressSiegeInfo" />
     <packet id="FE;1800" name="ExPartyPetWindowAdd" />
     <packet id="FE;1900" name="ExPartyPetWindowUpdate" />
@@ -1745,33 +1745,33 @@
     <packet id="cd" name="RequestMakeMacro" />
     <packet id="ce" name="RequestDeleteMacro" />
     <packet id="cf" name="RequestProcureCrop" />
-    <packet id="D0;0200" name="RequestProcureCropList" />
-    <packet id="D0;0300" name="RequestSetSeed" />
-    <packet id="D0;0400" name="RequestSetCrop" />
-    <packet id="D0;0500" name="RequestWriteHeroWords" />
-    <packet id="D0;0600" name="RequestExAskJoinMPCC" />
-    <packet id="D0;0700" name="RequestExAcceptJoinMPCC" />
-    <packet id="D0;0800" name="RequestExOustFromMPCC" />
-    <packet id="D0;0900" name="RequestOustFromPartyRoom" />
-    <packet id="D0;0A00" name="RequestDismissPartyRoom" />
-    <packet id="D0;0B00" name="RequestWithdrawPartyRoom" />
-    <packet id="D0;0C00" name="RequestHandOverPartyMaster" />
-    <packet id="D0;0D00" name="RequestAutoSoulShot" />
-    <packet id="D0;0E00" name="RequestExEnchantSkillInfo" />
-    <packet id="D0;0F00" name="RequestExEnchantSkill" />
-    <packet id="D0;1000" name="RequestExPledgeCrestLarge" />
-    <packet id="D0;1100" name="RequestExSetPledgeCrestLarge" />
-    <packet id="D0;1200" name="RequestPledgeSetAcademyMaster" />
-    <packet id="D0;1300" name="RequestPledgePowerGradeList" />
-    <packet id="D0;1400" name="RequestPledgeMemberPowerInfo" />
-    <packet id="D0;1500" name="RequestPledgeSetMemberPowerGrade" />
-    <packet id="D0;1600" name="RequestPledgeMemberInfo" />
-    <packet id="D0;1700" name="RequestPledgeWarList" />
-    <packet id="D0;1800" name="RequestExFishRanking" />
-    <packet id="D0;1900" name="RequestPCCafeCouponUse" />
-    <packet id="D0;1A00" name="ExOrcMove" />
-    <packet id="D0;1B00" name="RequestDuelStart" />
-    <packet id="D0;1C00" name="RequestDuelAnswerStart" />
+    <packet id="D0;0002" name="RequestProcureCropList" />
+    <packet id="D0;0003" name="RequestSetSeed" />
+    <packet id="D0;0004" name="RequestSetCrop" />
+    <packet id="D0;0005" name="RequestWriteHeroWords" />
+    <packet id="D0;0006" name="RequestExAskJoinMPCC" />
+    <packet id="D0;0007" name="RequestExAcceptJoinMPCC" />
+    <packet id="D0;0008" name="RequestExOustFromMPCC" />
+    <packet id="D0;0009" name="RequestOustFromPartyRoom" />
+    <packet id="D0;000A" name="RequestDismissPartyRoom" />
+    <packet id="D0;000B" name="RequestWithdrawPartyRoom" />
+    <packet id="D0;000C" name="RequestHandOverPartyMaster" />
+    <packet id="D0;000D" name="RequestAutoSoulShot" />
+    <packet id="D0;000E" name="RequestExEnchantSkillInfo" />
+    <packet id="D0;000F" name="RequestExEnchantSkill" />
+    <packet id="D0;0010" name="RequestExPledgeCrestLarge" />
+    <packet id="D0;0011" name="RequestExSetPledgeCrestLarge" />
+    <packet id="D0;0012" name="RequestPledgeSetAcademyMaster" />
+    <packet id="D0;0013" name="RequestPledgePowerGradeList" />
+    <packet id="D0;0014" name="RequestPledgeMemberPowerInfo" />
+    <packet id="D0;0015" name="RequestPledgeSetMemberPowerGrade" />
+    <packet id="D0;0016" name="RequestPledgeMemberInfo" />
+    <packet id="D0;0017" name="RequestPledgeWarList" />
+    <packet id="D0;0018" name="RequestExFishRanking" />
+    <packet id="D0;0019" name="RequestPCCafeCouponUse" />
+    <packet id="D0;001A" name="ExOrcMove" />
+    <packet id="D0;001B" name="RequestDuelStart" />
+    <packet id="D0;001C" name="RequestDuelAnswerStart" />
     <packet id="D0;1D00" name="RequestExSetTutorial" />
     <packet id="D0;1E00" name="RequestExRqItemLink" />
     <packet id="D0;1F00" name="CanNotMoveAnymoreAirShip" />

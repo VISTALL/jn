@@ -2,7 +2,7 @@
 <config>
     <property name="UseTray" val="false"/>
     <property name="LastFolder" val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\"/>
-    <property name="ActiveProfile" val="Test"/>
+    <property name="ActiveProfile" val="Freya 214"/>
     <property name="MainVisible" val="1.0"/>
     <property name="ActiveType" val="JPCAP"/>
     <property name="PacketForm_Select_BackgroundColor" val="-65434"/>
@@ -12,20 +12,14 @@
     <property name="PacketForm_NotSelect_BackgroundColor2" val="-1"/>
     <property name="PacketForm_NotSelect_ForegroundColor2" val="-16777216"/>
     <property name="SaveAsDecode" val="false"/>
-    <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya.jnl"/>
-    <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya2.jnl"/>
-    <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya6.jnl"/>
-    <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Freya_6.jnl"/>
-    <file val="D:\J Develop Station\Jn\trunk\jn\resource\logs\Final.jnl"/>
     <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya2.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya_5.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Freya_6.jnl"/>
-    <profile name="Test" type="JPCAP">
+    <file val="C:\Users\VISTALL\Desktop\session-2609334.jnl"/>
+    <file val="C:\Users\VISTALL\Desktop\Correct.jnl"/>
+    <file val="C:\Users\VISTALL\Desktop\test.jnl2"/>
+    <profile name="Freya 214" type="JPCAP">
         <part DeviceId="0" DevicePort="2106" FilterOpcodeList=""
-            LocalHost="127.0.0.1" LocalPort="0"
-            Protocol="Lineage 2 Game Server" ProxyPacketId="0"
-            ProxyServerId="0"
+            LocalHost="127.0.0.1" LocalPort="0" Protocol="ABP Auth"
+            ProxyPacketId="0" ProxyServerId="0"
             ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
             RemoteHost="127.0.0.1" RemotePort="0" type="Auth_Server"/>
         <part DeviceId="0" DevicePort="7777" FilterOpcodeList=""

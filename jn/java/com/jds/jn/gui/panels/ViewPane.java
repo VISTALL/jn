@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -14,7 +13,9 @@ import com.jds.jn.gui.models.NotDecPacketTableModel;
 import com.jds.jn.gui.panels.viewpane.*;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
+import com.jds.jn.protocol.Protocol;
 import com.jds.jn.session.Session;
+import com.jds.jn.util.Bundle;
 
 /**
  * Author: VISTALL
@@ -27,7 +28,7 @@ public class ViewPane extends JPanel
 	public Session _session;
 
 	private JPanel mainPane;
-	public JTabbedPane _packetAndSearch;
+	private JTabbedPane _packetAndSearch;
 	private DecPacketTableModel _packetTableModel;
 	private NotDecPacketTableModel _packetTableModel2;
 
@@ -48,106 +49,11 @@ public class ViewPane extends JPanel
 		$$$setupUI$$$();
 
 		_session = session;
-		_session.setViewPane(this);
 
 		_packetTableModel = new DecPacketTableModel(this);
 		_packetTableModel2 = new NotDecPacketTableModel(this);
 
 		_tabMenu = new JPopupMenu();
-
-		/*	_packetListShow = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("PacketList"));
-		_packetListShow.addActionListener(new ActionListener()
-		{
-
-		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-		if(!_packetList.IS_HIDE)
-		{
-		int index = getIndex(_packetList);
-		_packetAndSearch.removeTabAt(index);
-		_packetList.IS_HIDE = true;
-		}
-		else
-		{
-		_packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("PacketList"), _packetList);
-		_packetList.IS_HIDE = false;
-		}
-		}
-		});
-
-		_tabMenu.add(_packetListShow);
-
-
-		_searchShow = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindPanel"));
-		_searchShow.addActionListener(new ActionListener()
-		{
-
-		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-		if(!_searchPane.IS_HIDE)
-		{
-		int index = getIndex(_searchPane);
-		_packetAndSearch.removeTabAt(index);
-		_searchPane.IS_HIDE = true;
-		}
-		else
-		{
-		_packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindPanel"), _searchPane);
-		_searchPane.IS_HIDE = false;
-		}
-		}
-		});
-
-		_tabMenu.add(_searchShow);
-				*/
-		/*_filterShow = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Filter"));
-				  _filterShow.addActionListener(new ActionListener()
-				  {
-
-					  @Override
-					  public void actionPerformed(ActionEvent e)
-					  {
-						  if(!_filterPane.IS_HIDE)
-						  {
-							  int index = getIndex(_filterPane);
-							  _packetAndSearch.removeTabAt(index);
-							  _filterPane.IS_HIDE = true;
-						  }
-						  else
-						  {
-							  _packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Filter"), _filterPane);
-							  _filterPane.IS_HIDE = false;
-						  }
-					  }
-				  });
-
-				  _tabMenu.add(_filterShow); */
-
-		//_infoShow = new JCheckBox(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Info"));
-		/*	_infoShow.addActionListener(new ActionListener()
-				  {
-
-					  @Override
-					  public void actionPerformed(ActionEvent e)
-					  {
-						  if(!_infoPane.IS_HIDE)
-						  {
-							  int index = getIndex(_infoPane);
-							  _packetAndSearch.removeTabAt(index);
-							  _infoPane.IS_HIDE = true;
-						  }
-						  else
-						  {
-							  _packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Info"), _infoPane);
-							  _infoPane.IS_HIDE = false;
-						  }
-					  }
-				  });
-
-				  _tabMenu.add(_infoShow);*/
-
 
 		_packetAndSearch.addMouseListener(new MouseListener()
 		{
@@ -187,26 +93,15 @@ public class ViewPane extends JPanel
 		});
 
 
+		_infoPane = new InfoPane(this);
 		_searchPane = new SearchPane(this);
 		_filterPane = new FilterPane(this);
 		_packetList = new PacketList(this);
-		_infoPane = new InfoPane(this);
-		//_packetList.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-		//
 
-		_packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("PacketList"), _packetList);
-		//_packetListShow.setSelected(true);
-
-		_packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindPanel"), _searchPane);
-		//_searchShow.setSelected(true);
-
-		_packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Filter"), _filterPane);
-		//_filterShow.setSelected(true);
-
-		_packetAndSearch.addTab(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Info"), _infoPane);
-		//_infoShow.setSelected(true);
-
-		updateInfo(_session);
+		_packetAndSearch.addTab(Bundle.getString("PacketList"), _packetList);
+		_packetAndSearch.addTab(Bundle.getString("FindPanel"), _searchPane);
+		_packetAndSearch.addTab(Bundle.getString("Filter"), _filterPane);
+		_packetAndSearch.addTab(Bundle.getString("Info"), _infoPane);
 	}
 
 	public int getIndex(Component comp)
@@ -223,13 +118,6 @@ public class ViewPane extends JPanel
 		}
 
 		return -1;
-	}
-
-	public void autoScroll()
-	{
-		//_packetScrollPane.validate();
-		//JScrollBar vScroll = _packetScrollPane.getVerticalScrollBar();
-		//vScroll.setValue(vScroll.getMaximum());
 	}
 
 	private void createUIComponents()
@@ -284,6 +172,11 @@ public class ViewPane extends JPanel
 		_infoPane.update(session);
 	}
 
+	public Protocol getProtocol()
+	{
+		return _infoPane.getProtocol();
+	}
+
 	public void actionEnalble(boolean e)
 	{
 		setEnabled(e);
@@ -314,5 +207,10 @@ public class ViewPane extends JPanel
 	public JComponent $$$getRootComponent$$$()
 	{
 		return mainPane;
+	}
+
+	public JTabbedPane getPacketAndSearch()
+	{
+		return _packetAndSearch;
 	}
 }

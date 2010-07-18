@@ -44,7 +44,7 @@ public class Compiler
 
 		for (Diagnostic<? extends JavaFileObject> dia : diacol.getDiagnostics())
 		{
-			Jn.getInstance().info("Compiler " + dia);
+			Jn.getForm().info("Compiler " + dia);
 		}
 		return false;
 	}

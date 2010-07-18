@@ -11,6 +11,7 @@ import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
+import com.jds.jn.logs.Reader;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.util.Bundle;
 import com.jds.swing.SimpleResizableIcon;
@@ -105,7 +106,7 @@ public abstract class RibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				JActionListener.handle(JActionEvent.OPEN_FILE, e.getSource());
+				Reader.getInstance().showChooseDialog();
 			}
 		});
 		animationBand.addCommandButton(opnFile, RibbonElementPriority.TOP);
@@ -198,7 +199,7 @@ public abstract class RibbonActions
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				JActionListener.handle(JActionEvent.OPEN_FILE, e.getSource());
+				Reader.getInstance().showChooseDialog();
 			}
 		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
 

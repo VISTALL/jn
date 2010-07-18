@@ -17,11 +17,11 @@ public class NotDecryptPacket  implements IPacketData
 	private boolean _isShow = false;
 	private final long _time;
 
-	public NotDecryptPacket(PacketType type, byte[] content, long t)
+	public NotDecryptPacket(PacketType type, byte[] content, long t, ByteOrder order)
 	{
 		_time = t;
 		_type = type;
-		_buff = NioBuffer.wrap(content).order(ByteOrder.LITTLE_ENDIAN);
+		_buff = NioBuffer.wrap(content).order(order);
 	}
 
 	public NotDecryptPacket(PacketType type, NioBuffer content, long t)

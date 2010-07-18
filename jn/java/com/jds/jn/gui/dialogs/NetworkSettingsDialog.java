@@ -32,7 +32,7 @@ public class NetworkSettingsDialog extends JDialog
 
 	public NetworkSettingsDialog()
 	{
-		super(Jn.getInstance(), "Network Settings", true);
+		super(Jn.getForm(), "Network Settings", true);
 
 		setLocationByPlatform(false);
 		
@@ -176,7 +176,7 @@ public class NetworkSettingsDialog extends JDialog
 	{
 		save();
 
-		Jn.getInstance().updateTitle();
+		Jn.getForm().updateTitle();
 
 		dispose();
 	}

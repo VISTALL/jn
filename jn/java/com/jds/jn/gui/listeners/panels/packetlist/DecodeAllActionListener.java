@@ -2,7 +2,7 @@ package com.jds.jn.gui.listeners.panels.packetlist;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.jds.jn.Jn;
 import com.jds.jn.gui.models.DecPacketTableModel;
@@ -47,15 +47,15 @@ public class DecodeAllActionListener implements ActionListener
 					return;
 				}
 
-				ArrayList<NotDecryptPacket> packetList = session.getNotDecryptPackets();
+				List<NotDecryptPacket> packetList = session.getNotDecryptPackets();
 
 				final DecPacketListPane pane = _pane.getViewPane().getPacketListPane();
 				DecPacketTableModel model = _pane.getViewPane().getPacketTableModel();
 
 				_pane.getViewPane().actionEnalble(false);
 
-				Jn.getInstance().getProgressBar().setVisible(true);
-				Jn.getInstance().getProgressBar().setValue(0);
+				Jn.getForm().getProgressBar().setVisible(true);
+				Jn.getForm().getProgressBar().setValue(0);
 
 				int i = 1;
 				int size = packetList.size();
@@ -90,12 +90,12 @@ public class DecodeAllActionListener implements ActionListener
 
 					int p = (int) ((100D * (i + 1)) / size);
 
-					Jn.getInstance().getProgressBar().setValue(p);
+					Jn.getForm().getProgressBar().setValue(p);
 					i++;
 				}
 
-				Jn.getInstance().getProgressBar().setVisible(false);
-				Jn.getInstance().getProgressBar().setValue(0);
+				Jn.getForm().getProgressBar().setVisible(false);
+				Jn.getForm().getProgressBar().setValue(0);
 
 				_pane.getViewPane().actionEnalble(true);
 

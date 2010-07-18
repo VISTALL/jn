@@ -10,9 +10,9 @@ import com.jds.jn.protocol.Protocol;
 public class NullCrypter implements ProtocolCrypter
 {
 
-	public void decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir)
 	{
-
+   		return raw;
 	}
 
 	@Override

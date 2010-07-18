@@ -31,7 +31,7 @@ public class WindowsAdapter extends WindowAdapter
 	{
 		if (RValues.USE_TRAY.asBoolean())
 		{
-			Jn.getInstance().setVisible(!Jn.getInstance().isVisible());
+			Jn.getForm().setVisible(!Jn.getForm().isVisible());
 		}
 	}
 }

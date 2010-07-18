@@ -66,7 +66,7 @@ public class ServerToProxyHandler implements NioHandler
 	@Override
 	public void catchException(NioSession nioSession, Throwable throwable)
 	{
-		Jn.getInstance().warn("Throwable " + throwable, throwable);
+		Jn.getForm().warn("Throwable " + throwable, throwable);
 	}
 
 	/**

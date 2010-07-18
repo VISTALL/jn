@@ -59,7 +59,7 @@ public class ForPart extends Part
 		{
 			return "For.. : '" + pp.getName() + "'";
 		}
-		Jn.getInstance().warn("ForSize Part id " + this.getForId() + " not found");
+		Jn.getForm().warn("ForSize Part id " + this.getForId() + " not found");
 		return "For..";
 	}
 

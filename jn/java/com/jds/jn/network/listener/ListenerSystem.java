@@ -62,7 +62,7 @@ public class ListenerSystem
 				}
 				catch (Exception e)
 				{
-					Jn.getInstance().warn("Not can start", e);
+					Jn.getForm().warn("Not can start", e);
 				}
 			}
 		});
@@ -81,7 +81,7 @@ public class ListenerSystem
 				}
 				catch (Exception e)
 				{
-					Jn.getInstance().warn("Not can stop", e);
+					Jn.getForm().warn("Not can stop", e);
 				}
 			}
 		}//);

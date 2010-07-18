@@ -182,7 +182,6 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		if (row == -1)
 		{
 			_currentTable.add(temp);
-			_pane.autoScroll();
 		}
 		else
 		{

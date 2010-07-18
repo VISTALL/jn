@@ -57,7 +57,7 @@ public class ClientToProxyHandler implements NioHandler
 			{
 				//e1.printStackTrace();
 			}
-			Jn.getInstance().warn("Exception " + e, e);
+			Jn.getForm().warn("Exception " + e, e);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class ClientToProxyHandler implements NioHandler
 	@Override
 	public void catchException(NioSession nioSession, Throwable throwable)
 	{
-		Jn.getInstance().warn("Throwable " + throwable, throwable);
+		Jn.getForm().warn("Throwable " + throwable, throwable);
 	}
 
 	/**

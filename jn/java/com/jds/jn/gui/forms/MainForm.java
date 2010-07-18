@@ -26,7 +26,8 @@ import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.session.Session;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.statics.TabRibbonActions;
-import com.jds.jn.util.*;
+import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ThreadPoolManager;
 import com.jds.swing.JTrayIcon;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -56,7 +57,7 @@ public class MainForm extends JRibbonFrame
 
 	private RibbonContextualTaskGroup _sessionGroup;
 
-	public MainForm()
+	public MainForm() throws Exception
 	{
 		super("Jn");
 
@@ -133,7 +134,7 @@ public class MainForm extends JRibbonFrame
 			SystemTray st = SystemTray.getSystemTray();
 			_trayIcon = new JTrayIcon(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Jn24.png")));
 			_trayIcon.setImageAutoSize(true);
-			_trayIcon.setToolTip(Version.current());
+			_trayIcon.setToolTip(Jn.CURRENT.toString());
 
 
 			JPopupMenu pm = new JPopupMenu();
@@ -222,7 +223,7 @@ public class MainForm extends JRibbonFrame
 
 		if (getViewTabbedPane().sizeAll() == 0)
 		{
-			Jn.getInstance().sessionMenu(false);
+			Jn.getForm().sessionMenu(false);
 		}
 	}
 
@@ -300,11 +301,11 @@ public class MainForm extends JRibbonFrame
 
 		if (prof != null)
 		{
-			setTitle( String.format("%s - [%s]", Version.current(), prof.getName()));
+			setTitle(String.format("%s - [%s]", Jn.CURRENT, prof.getName()));
 		}
 		else
 		{
-			setTitle(Version.current());
+			setTitle(Jn.CURRENT.toString());
 		}
 	}
 
