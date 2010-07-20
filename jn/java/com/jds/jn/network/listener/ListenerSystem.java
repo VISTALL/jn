@@ -1,6 +1,9 @@
 package com.jds.jn.network.listener;
 
-import javolution.util.FastMap;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jds.jn.Jn;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
@@ -8,8 +11,6 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.methods.jpcap.Jpcap;
 import com.jds.jn.network.methods.proxy.Proxy;
 import com.jds.jn.util.ThreadPoolManager;
-
-import java.io.IOException;
 
 /**
  * Author: VISTALL
@@ -21,7 +22,7 @@ public class ListenerSystem
 {
 	private static ListenerSystem _instance;
 
-	private FastMap<ReceiveType, FastMap<ListenerType, IMethod>> _list = new FastMap<ReceiveType, FastMap<ListenerType, IMethod>>();
+	private Map<ReceiveType, Map<ListenerType, IMethod>> _list = new HashMap<ReceiveType, Map<ListenerType, IMethod>>();
 
 	public static ListenerSystem getInstance()
 	{
@@ -34,8 +35,8 @@ public class ListenerSystem
 
 	private ListenerSystem()
 	{
-		_list.put(ReceiveType.PROXY, new FastMap<ListenerType, IMethod>());
-		_list.put(ReceiveType.JPCAP, new FastMap<ListenerType, IMethod>());
+		_list.put(ReceiveType.PROXY, new HashMap<ListenerType, IMethod>());
+		_list.put(ReceiveType.JPCAP, new HashMap<ListenerType, IMethod>());
 
 		_list.get(ReceiveType.PROXY).put(ListenerType.Auth_Server, new Proxy(ListenerType.Auth_Server));
 		_list.get(ReceiveType.PROXY).put(ListenerType.Game_Server, new Proxy(ListenerType.Game_Server));
@@ -91,7 +92,7 @@ public class ListenerSystem
 	{
 		for (ReceiveType type : ReceiveType.values())
 		{
-			FastMap<ListenerType, IMethod> list = _list.get(type);
+			Map<ListenerType, IMethod> list = _list.get(type);
 			for (IMethod method : list.values())
 			{
 				method.init();

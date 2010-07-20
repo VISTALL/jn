@@ -1,6 +1,7 @@
-package com.jds.jn.crypt;
+package crypt;
 
 
+import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.Protocol;
 

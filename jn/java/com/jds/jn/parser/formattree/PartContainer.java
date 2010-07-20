@@ -1,17 +1,15 @@
 package com.jds.jn.parser.formattree;
 
-import javolution.util.FastTable;
-import com.jds.jn.parser.PartType;
+import java.util.*;
 
-import java.util.Collections;
-import java.util.List;
+import com.jds.jn.parser.PartType;
 
 /**
  * @author Ulysses R. Ribeiro
  */
 public class PartContainer extends Part
 {
-	private FastTable<Part> _parts = new FastTable<Part>();
+	private List<Part> _parts = new ArrayList<Part>();
 	private boolean _lengthComputed;
 	private boolean _constantLength;
 	private int _length;

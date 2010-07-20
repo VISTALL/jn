@@ -53,4 +53,8 @@ public class ThreadPoolManager
 		}
 	}
 
+	public void shutdown()
+	{
+		_pool.shutdown();
+	}
 }

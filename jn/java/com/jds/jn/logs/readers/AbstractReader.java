@@ -2,8 +2,6 @@ package com.jds.jn.logs.readers;
 
 import org.apache.log4j.Logger;
 
-import javolution.text.TextBuilder;
-
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -140,7 +138,7 @@ public abstract class AbstractReader
 	{
 		try
 		{
-			TextBuilder tb = TextBuilder.newInstance();
+			StringBuffer tb = new StringBuffer();
 			char ch;
 
 			while ((ch = _buffer.getChar()) != 0)
@@ -148,7 +146,7 @@ public abstract class AbstractReader
 				tb.append(ch);
 			}
 			String str = tb.toString();
-			TextBuilder.recycle(tb);
+			tb.reverse();
 			return str;
 		}
 		catch (Exception e)

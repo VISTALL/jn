@@ -1,8 +1,10 @@
 package com.jds.jn.protocol.protocoltree;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.jds.jn.Jn;
 import com.jds.jn.network.packets.PacketType;
-import javolution.util.FastMap;
 
 /**
  * @author Gilles Duboscq
@@ -11,7 +13,7 @@ import javolution.util.FastMap;
 public class PacketFamilly// extends ProtocolNode
 {
 	private final PacketType _type;
-	private FastMap<String, PacketInfo> _formats = new FastMap<String, PacketInfo>();
+	private Map<String, PacketInfo> _formats = new HashMap<String, PacketInfo>();
 
 	public PacketFamilly(PacketType t)
 	{
@@ -26,7 +28,7 @@ public class PacketFamilly// extends ProtocolNode
 		}
 	}
 
-	public FastMap<String, PacketInfo> getFormats()
+	public Map<String, PacketInfo> getFormats()
 	{
 		return _formats;
 	}

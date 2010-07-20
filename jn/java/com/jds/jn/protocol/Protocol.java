@@ -1,9 +1,7 @@
 package com.jds.jn.protocol;
 
-import javolution.util.FastMap;
-
 import java.nio.ByteOrder;
-import java.util.Collection;
+import java.util.*;
 
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
@@ -16,7 +14,7 @@ import com.jds.nio.buffer.NioBuffer;
  */
 public class Protocol
 {
-	private FastMap<PacketType, PacketFamilly> _familyes = new FastMap<PacketType, PacketFamilly>();
+	private Map<PacketType, PacketFamilly> _familyes = new HashMap<PacketType, PacketFamilly>();
 	private int _checksumSize = 0;
 
 	private String _encryption;

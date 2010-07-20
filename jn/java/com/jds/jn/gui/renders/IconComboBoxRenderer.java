@@ -3,8 +3,8 @@ package com.jds.jn.gui.renders;
 import javax.swing.*;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.*;
+import java.util.List;
 
 import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.PartTypeManager;
@@ -24,7 +24,7 @@ public class IconComboBoxRenderer extends JLabel implements ListCellRenderer
 	static
 	{
 		Collection<PartType> t = PartTypeManager.getInstance().getTypes();
-		ArrayList<PartType> types = new ArrayList<PartType>(t.size());
+		List<PartType> types = new ArrayList<PartType>(t.size());
 		for (PartType type : t)
 		{
 			if (ImageStatic.getInstance().getIconForPartType(type) != null)

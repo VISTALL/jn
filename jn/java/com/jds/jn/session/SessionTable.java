@@ -1,7 +1,6 @@
 package com.jds.jn.session;
 
-import javolution.util.FastMap;
-
+import java.util.HashMap;
 import java.util.Map;
 
 import com.jds.jn.Jn;
@@ -28,7 +27,7 @@ public class SessionTable
 
 	private SessionTable()
 	{
-		_sessionList = new FastMap<Long, Session>();
+		_sessionList = new HashMap<Long, Session>();
 	}
 
 	public CaptorSession newGameSession(IMethod iMethod, long session)

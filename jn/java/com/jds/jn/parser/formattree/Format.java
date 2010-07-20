@@ -1,12 +1,12 @@
 package com.jds.jn.parser.formattree;
 
-import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.protocol.protocoltree.PacketInfo;
-import javolution.util.FastList;
-
-import com.jds.jn.parser.PartType;
-
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.parser.PartType;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 
 
 /**
@@ -16,11 +16,11 @@ public class Format
 {
 	private final PacketInfo _containingPacketFormat;
 	private final PartContainer _mainBlock;
-	private final FastList<WeakReference<DecryptPacket>> _formatChangeListeners;
+	private final List<WeakReference<DecryptPacket>> _formatChangeListeners;
 
 	public Format(PacketInfo container)
 	{
-		_formatChangeListeners = new FastList<WeakReference<DecryptPacket>>();
+		_formatChangeListeners = new ArrayList<WeakReference<DecryptPacket>>();
 		_mainBlock = new PartContainer(PartType.block, true);
 		_mainBlock.setContainingFormat(this);
 		_containingPacketFormat = container;

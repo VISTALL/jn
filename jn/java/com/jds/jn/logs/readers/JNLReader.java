@@ -61,7 +61,7 @@ public class JNLReader extends AbstractReader
 
 			_size = _buffer.getInt();
 			_session = new Session(type, sessionId);
-			_session.setVersion(new Version(Programs.JN, 1, 0, Version.ALPHA, 1));
+			_session.setVersion(new Version(Programs.JN, 1, 0, Version.M, 1));
 			return true;
 		}
 		catch (Exception e)

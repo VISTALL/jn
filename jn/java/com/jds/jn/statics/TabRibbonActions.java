@@ -12,9 +12,9 @@ import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.util.Bundle;
 import com.jds.swing.SimpleResizableIcon;
-import org.jvnet.flamingo.common.JCommandButton;
-import org.jvnet.flamingo.ribbon.*;
-import org.jvnet.flamingo.ribbon.resize.CoreRibbonResizePolicies;
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.ribbon.*;
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 
 /**
  * Author: VISTALL

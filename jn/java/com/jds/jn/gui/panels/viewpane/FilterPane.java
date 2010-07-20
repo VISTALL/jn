@@ -1,7 +1,5 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import javolution.util.FastList;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -9,6 +7,7 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
@@ -33,7 +32,7 @@ public class FilterPane extends JPanel
 
 	public boolean IS_HIDE = false;
 	private ViewPane _pane;
-	private FastList<PacketInfo> _formats = new FastList<PacketInfo>();
+	private java.util.List<PacketInfo> _formats = new ArrayList<PacketInfo>();
 
 	public FilterPane(ViewPane pa)
 	{

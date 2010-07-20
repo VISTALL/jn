@@ -14,7 +14,7 @@ import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.Types;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
-import com.jds.jn.remotefiles.FileLoader;
+import com.jds.jn.classes.CLoader;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.logging.LoggingService;
@@ -57,7 +57,7 @@ public class Jn
 
 		ListenerSystem.getInstance();
 
-		FileLoader.getInstance();
+		CLoader.getInstance();
 
 		Types.newInstance();
 		PartTypeManager.getInstance();
@@ -83,7 +83,7 @@ public class Jn
 
 		MainForm.getInstance().updateVisible();
 
-		_log.info(String.format("Load %d classes.", FileLoader.getInstance().size()));
+		_log.info(String.format("Load %d classes.", CLoader.getInstance().size()));
 
 		for (Protocol p : ProtocolManager.getInstance().getProtocols())
 		{

@@ -1,20 +1,16 @@
 package com.jds.jn.parser.formattree;
 
-import javolution.util.FastList;
-import javolution.util.FastMap;
-import com.jds.jn.parser.PartType;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
+
+import com.jds.jn.parser.PartType;
 
 /**
  * @author Gilles Duboscq
  */
 public class SwitchPart extends Part
 {
-	private Map<Integer, SwitchCaseBlock> _casesMap = new FastMap<Integer, SwitchCaseBlock>();
+	private Map<Integer, SwitchCaseBlock> _casesMap = new HashMap<Integer, SwitchCaseBlock>();
 	private SwitchCaseBlock _default;
 	private int _switchId;
 
@@ -63,7 +59,7 @@ public class SwitchPart extends Part
 
 	public List<Integer> getCasesIds()
 	{
-		FastList<Integer> cases = new FastList<Integer>();
+		List<Integer> cases = new ArrayList<Integer>();
 		for (Entry<Integer, SwitchCaseBlock> entry : _casesMap.entrySet())
 		{
 			cases.add(entry.getKey());
@@ -73,7 +69,7 @@ public class SwitchPart extends Part
 
 	public List<SwitchCaseBlock> getCases()
 	{
-		FastList<SwitchCaseBlock> cases = new FastList<SwitchCaseBlock>();
+		List<SwitchCaseBlock> cases = new ArrayList<SwitchCaseBlock>();
 		for (Entry<Integer, SwitchCaseBlock> entry : _casesMap.entrySet())
 		{
 			cases.add(entry.getValue());

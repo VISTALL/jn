@@ -1,6 +1,8 @@
 package com.jds.jn.helpers;
 
 import com.jds.jn.config.ConfigParser;
+import com.jds.jn.gui.forms.MainForm;
+import com.jds.jn.util.ThreadPoolManager;
 
 /**
  * Author: VISTALL
@@ -15,6 +17,8 @@ public class Shutdown extends Thread
 	{
 		try
 		{
+			MainForm.getInstance().stopMemoryBarTask();
+			ThreadPoolManager.getInstance().shutdown();
 			ConfigParser.getInstance().shutdown();
 		}
 		catch (Exception e)

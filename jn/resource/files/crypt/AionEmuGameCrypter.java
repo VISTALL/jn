@@ -1,17 +1,21 @@
-package com.jds.jn.crypt;
+package crypt;
 
 import java.util.Arrays;
 
 import com.jds.jn.Jn;
+import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.protocol.Protocol;
 
 /**
- * @author -Nemesiss-
+ * Author: VISTALL
+ * Company: J Develop Station
+ * Date: 30.10.2009
+ * Time: 8:09:42
  */
-public class AionGameCrypter implements ProtocolCrypter
+public class AionEmuGameCrypter implements ProtocolCrypter
 {
 	private Protocol _protocol;
 	private static byte[] staticKey = "nKO/WctQ0AVLbpzfBkS6NevDYT8ourG5CRlmdjyJ72aswx4EPq1UgZhFMXH?3iI9".getBytes();
@@ -31,13 +35,12 @@ public class AionGameCrypter implements ProtocolCrypter
 				return raw;
 			}
 			decode(raw, clientPacketkey);
-			decodeClientOpcode(raw);
 		}
 		else
 		{
 			if (clientPacketkey == null)
 			{
-				if (!validatePacket(raw, (byte) STATIC_CLIENT_KEY))
+				if (!validatePacket(raw, STATIC_CLIENT_KEY))
 				{
 					//MainForm.getInstance().error("1 Invalid JPacket!!!");
 				}
@@ -45,7 +48,7 @@ public class AionGameCrypter implements ProtocolCrypter
 				searchKey(Arrays.copyOf(raw, raw.length), dir);
 			}
 			decode(raw, serverPacketkey);
-			if (!validatePacket(raw, (byte) STATIC_CLIENT_KEY))
+			if (!validatePacket(raw, STATIC_CLIENT_KEY))
 			{
 				//MainForm.getInstance().error("2 Invalid JPacket!!!");
 			}
@@ -128,12 +131,7 @@ public class AionGameCrypter implements ProtocolCrypter
 
 	public void decodeServerOpcode(byte[] raw)
 	{
-		raw[0] = (byte) ((raw[0] ^ 0xFF) + 0x4A); ///(byte) ((op - 0x4A) ^ 0xFF);
-	}
-
-	private void decodeClientOpcode(byte[] raw)
-	{
-		raw[0] = (byte) ((raw[0] + 0x83) ^ 0x3D); //byte) ((op + 0x83) ^ 0x3D); // можно и так ((op +0x03) ^0xBD;
+		raw[0] = (byte) ((raw[0] ^ 0xEE) - 0xAE);
 	}
 
 	public void setProtocol(Protocol protocol)

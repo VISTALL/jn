@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 
 import java.util.*;
 
-import com.jds.jn.crypt.NullCrypter;
+import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -83,7 +83,7 @@ public class Session
 		{
 			try
 			{
-				Class<?> clazz = Class.forName("com.jds.jn.crypt." + getProtocol().getEncryption() + "Crypter");
+				Class<?> clazz = CLoader.getInstance().forName("crypt." + getProtocol().getEncryption() + "Crypter");
 				_crypt = (ProtocolCrypter) clazz.newInstance();
 			}
 			catch (Exception e)
@@ -93,7 +93,15 @@ public class Session
 		}
 		else
 		{
-			_crypt = new NullCrypter();
+			try
+			{
+				Class<?> clazz = CLoader.getInstance().forName("crypt.NullCrypter");
+				_crypt = (ProtocolCrypter) clazz.newInstance();
+			}
+			catch (Exception e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 		_crypt.setProtocol(getProtocol());

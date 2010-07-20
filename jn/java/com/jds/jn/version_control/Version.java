@@ -7,18 +7,17 @@ package com.jds.jn.version_control;
  */
 public class Version
 {
-	public static final byte ALPHA 	= 0;
-	public static final byte BETA 	= 1;
-	public static final byte RC 	= 2;
-	public static final byte STABLE = 3;
+	public static final byte M 		= 0;
+	public static final byte RC 	= 1;
+	public static final byte STABLE = 2;
 
-	public static final Version UNKNOWN = new Version(Programs.UNKNOWN, 0, 0, ALPHA, 0);
-	public static final Version CURRENT = new Version(Programs.JN, 2, 0, ALPHA, 1);
+	public static final Version UNKNOWN = new Version(Programs.UNKNOWN, 0, 0, M, 0);
+	public static final Version CURRENT = new Version(Programs.JN, 2, 0, M, 1);
 
 	private final Programs _program;
 	private final int _major;
 	private final int _minor;
-	private final byte _type; // 0 - alpha 1 - beta 2 - rc 3 - stable
+	private final byte _type; //
 	private final int _number;
 
 	public Version(Programs p, int major, int minor, byte type, int number)
@@ -43,15 +42,13 @@ public class Version
 	{
 		switch (_type)
 		{
-			case ALPHA:
-				return "Alpha " + _number;
-			case 1:
-				return "Beta " + _number;
-			case 2:
-				return "RC " + _number;
-			default:
-				return "Stable";
+			case M:
+				return "M" + _number;
+			case RC:
+				return "RC" + _number;
 		}
+
+		return "";
 	}
 
 	public int getMajor()

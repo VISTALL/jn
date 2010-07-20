@@ -1,6 +1,7 @@
 package com.jds.jn.config;
 
-import javolution.util.FastList;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: VISTALL
@@ -10,7 +11,7 @@ import javolution.util.FastList;
  */
 public class LastFiles
 {
-	private static FastList<String> _list = new FastList<String>();
+	private static List<String> _list = new ArrayList<String>();
 
 	public static void addLastFile(String last)
 	{
@@ -25,7 +26,7 @@ public class LastFiles
 		_list.clear();
 	}
 
-	public static FastList<String> getLastFiles()
+	public static List<String> getLastFiles()
 	{
 		return _list;
 	}

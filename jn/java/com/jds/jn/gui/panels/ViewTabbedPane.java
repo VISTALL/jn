@@ -8,7 +8,7 @@ import java.awt.event.MouseListener;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.Bundle;
 
@@ -80,7 +80,7 @@ public class ViewTabbedPane extends JTabbedPane
 										{
 											Config.set(Values.CONFIRM_CLOSE_SESSION, result[1]);  */
 
-				Jn.getForm().closeSessionTab(getCurrentViewPane());
+				MainForm.getInstance().closeSessionTab(getCurrentViewPane());
 
 				/*	}
 									}

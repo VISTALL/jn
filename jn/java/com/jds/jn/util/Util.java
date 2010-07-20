@@ -1,6 +1,5 @@
 package com.jds.jn.util;
 
-import javolution.text.TextBuilder;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
@@ -128,7 +127,7 @@ public class Util
 
 	public static String printData(byte[] data, int len)
 	{
-		TextBuilder result = new TextBuilder();
+		StringBuilder result = new StringBuilder();
 
 		int counter = 0;
 
@@ -226,7 +225,7 @@ public class Util
 
 	public static String makeFormatString(List<Part> parts)
 	{
-		TextBuilder tb = new TextBuilder();
+		StringBuilder tb = new StringBuilder();
 		for (Part part : parts)
 		{
 			if (part instanceof ForPart)

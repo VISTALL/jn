@@ -1,10 +1,11 @@
-package com.jds.jn.crypt;
+package crypt;
 
 import java.io.IOException;
 import java.util.Arrays;
 
 import com.jds.jn.Jn;
-import com.jds.jn.crypt.helpers.NewCrypt;
+import com.jds.jn.crypt.ProtocolCrypter;
+import crypt.helpers.NewCrypt;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.ValuePart;

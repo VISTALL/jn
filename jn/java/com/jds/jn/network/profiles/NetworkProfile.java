@@ -1,8 +1,6 @@
 package com.jds.jn.network.profiles;
 
-import javolution.util.FastMap;
-
-import java.util.Collection;
+import java.util.*;
 
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
@@ -18,7 +16,7 @@ public class NetworkProfile
 	private final String _name;
 	private ReceiveType _type;
 
-	private FastMap<ListenerType, NetworkProfilePart> TYPES = new FastMap<ListenerType, NetworkProfilePart>();
+	private Map<ListenerType, NetworkProfilePart> TYPES = new HashMap<ListenerType, NetworkProfilePart>();
 
 	public NetworkProfile(String name, ReceiveType type)
 	{

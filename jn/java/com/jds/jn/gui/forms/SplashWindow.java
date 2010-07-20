@@ -53,7 +53,7 @@ public class SplashWindow extends JWindow
 		JPicturePanel pp = new JPicturePanel();
 		try
 		{
-			pp.setImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Fire.png")));
+			pp.setImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/logo.png")));
 		}
 		catch (IOException e)
 		{

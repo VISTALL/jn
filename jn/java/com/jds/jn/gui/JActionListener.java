@@ -1,7 +1,5 @@
 package com.jds.jn.gui;
 
-import javolution.util.FastMap;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -21,7 +19,7 @@ import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.util.ThreadPoolManager;
-import org.jvnet.flamingo.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.JCommandButton;
 
 /**
  * Author: VISTALL
@@ -31,12 +29,12 @@ import org.jvnet.flamingo.common.JCommandButton;
  */
 public class JActionListener
 {
-	private static final Map<ListenerType, FastMap<ReceiveType, Boolean>> _status = new HashMap<ListenerType, FastMap<ReceiveType, Boolean>>();
+	private static final Map<ListenerType, Map<ReceiveType, Boolean>> _status = new HashMap<ListenerType, Map<ReceiveType, Boolean>>();
 
 	static
 	{
-		_status.put(ListenerType.Auth_Server, new FastMap<ReceiveType, Boolean>());
-		_status.put(ListenerType.Game_Server, new FastMap<ReceiveType, Boolean>());
+		_status.put(ListenerType.Auth_Server, new HashMap<ReceiveType, Boolean>());
+		_status.put(ListenerType.Game_Server, new HashMap<ReceiveType, Boolean>());
 	}
 
 	public static void active(ReceiveType type)

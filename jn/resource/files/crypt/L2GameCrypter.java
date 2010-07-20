@@ -1,8 +1,9 @@
-package com.jds.jn.crypt;
+package crypt;
 
 import java.util.Arrays;
 
-import com.jds.jn.crypt.helpers.Obfuscator;
+import com.jds.jn.crypt.ProtocolCrypter;
+import crypt.helpers.Obfuscator;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.NumberValuePart;

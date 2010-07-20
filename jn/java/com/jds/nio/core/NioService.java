@@ -1,13 +1,12 @@
 package com.jds.nio.core;
 
-import javolution.util.FastList;
+import java.nio.channels.Selector;
+import java.util.*;
+
 import com.jds.nio.NioProcessor;
 import com.jds.nio.NioSession;
 import com.jds.nio.buffer.NioBuffer;
 import com.jds.nio.core.impl.DefaultHandler;
-
-import java.nio.channels.Selector;
-import java.util.NoSuchElementException;
 
 /**
  * Author: VISTALL
@@ -17,18 +16,18 @@ import java.util.NoSuchElementException;
  */
 public abstract class NioService
 {
-	protected final FastList<NioServiceListener> _listeners;
+	protected final List<NioServiceListener> _listeners;
 	protected volatile Selector _selector;
 	protected final NioHandler _handler;
 	protected final NioProcessor _processor;
 	protected Acceptor _acceptor;
 	protected final Protocol _protocol;
 
-	protected FastList<NioSession> _sessionList = new FastList<NioSession>();
+	protected List<NioSession> _sessionList = new ArrayList<NioSession>();
 
 	protected NioService(NioHandler handler, Protocol protocol)
 	{
-		_listeners = new FastList<NioServiceListener>();
+		_listeners = new ArrayList<NioServiceListener>();
 
 		if (handler == null)
 		{
@@ -175,7 +174,7 @@ public abstract class NioService
 		return _protocol;
 	}
 
-	public FastList<NioSession> getSessions()
+	public List<NioSession> getSessions()
 	{
 		return _sessionList;
 	}

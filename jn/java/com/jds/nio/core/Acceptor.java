@@ -1,11 +1,11 @@
 package com.jds.nio.core;
 
-import com.jds.nio.NioSession;
-
 import java.io.IOException;
 import java.nio.channels.SelectionKey;
 import java.util.Iterator;
 import java.util.Set;
+
+import com.jds.nio.NioSession;
 
 /**
  * Author: VISTALL
@@ -96,10 +96,14 @@ public class Acceptor extends Thread
 		{
 			while (!_service.getProcessor().pendingClose().isEmpty())
 			{
-				NioSession session = _service.getProcessor().pendingClose().removeFirst();
-				_service.fireSessionClose(session, session.getCloseType());
-				closeSessionImpl(session);
+				NioSession session = _service.getProcessor().pendingClose().poll();
+				if(session != null)
+				{
+					_service.fireSessionClose(session, session.getCloseType());
+					closeSessionImpl(session);
+				}
 			}
+
 		}
 
 	}

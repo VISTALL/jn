@@ -1,16 +1,13 @@
 package com.jds.jn.protocol;
 
-import javolution.util.FastMap;
-
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 
 import com.jds.jn.Jn;
+import com.jds.jn.config.RValues;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.profiles.*;
-import com.jds.jn.config.RValues;
 
 public class ProtocolManager
 {
@@ -31,7 +28,7 @@ public class ProtocolManager
 	private ProtocolManager(String protocolsDir)
 	{
 		_protocolsDir = protocolsDir;
-		_protocolsByName = new FastMap<String, Protocol>();
+		_protocolsByName = new HashMap<String, Protocol>();
 		if (_protocolsDir != null)
 		{
 			loadProtocols();

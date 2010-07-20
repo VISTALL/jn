@@ -6,8 +6,8 @@ import java.awt.*;
 import java.util.HashMap;
 
 import com.jds.jn.parser.PartType;
-import org.jvnet.flamingo.common.icon.ImageWrapperResizableIcon;
-import org.jvnet.flamingo.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 
 /**
  * Author: VISTALL
@@ -31,6 +31,10 @@ public class ImageStatic
 
 	public static ResizableIcon DOC_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/JnDoc24.png"), new Dimension(15, 15));
 	public static ResizableIcon HELP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/help.png"), new Dimension(15, 15));
+
+	public static ResizableIcon JN_ICON_32 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_32.png"), new Dimension(32, 32));
+	public static ResizableIcon JN_ICON_16 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_16.png"), new Dimension(16, 16));
+	public static ResizableIcon JN_ICON_64 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_64.png"), new Dimension(64, 64));
 
 
 	public static final ImageIcon ICON_PLUS = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/add.png"));

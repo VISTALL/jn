@@ -1,12 +1,10 @@
 package com.jds.jn.network.profiles;
 
-import javolution.util.FastMap;
+import java.util.*;
 
-import java.util.Collection;
-
+import com.jds.jn.config.RValues;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
-import com.jds.jn.config.RValues;
 
 /**
  * Author: VISTALL
@@ -16,7 +14,7 @@ import com.jds.jn.config.RValues;
  */
 public class NetworkProfiles
 {
-	private FastMap<String, NetworkProfile> _map = new FastMap<String, NetworkProfile>();
+	private Map<String, NetworkProfile> _map = new HashMap<String, NetworkProfile>();
 
 	private static NetworkProfiles _instance;
 

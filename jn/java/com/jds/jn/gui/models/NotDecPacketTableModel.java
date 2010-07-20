@@ -1,12 +1,10 @@
 package com.jds.jn.gui.models;
 
-import javolution.util.FastTable;
-
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.packets.NotDecryptPacket;
@@ -30,7 +28,7 @@ public class NotDecPacketTableModel extends AbstractTableModel
 			Bundle.getString("Length")
 	};
 
-	private FastTable<Object[]> _currentTable = new FastTable<Object[]>();
+	private List<Object[]> _currentTable = new ArrayList<Object[]>();
 
 	private final ViewPane _pane;
 

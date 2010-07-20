@@ -1,9 +1,9 @@
 package com.jds.swing;
 
-import org.jvnet.flamingo.common.icon.ResizableIcon;
-import org.jvnet.flamingo.ribbon.RibbonElementPriority;
-
 import java.awt.*;
+
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
 
 /**
  * Author: VISTALL

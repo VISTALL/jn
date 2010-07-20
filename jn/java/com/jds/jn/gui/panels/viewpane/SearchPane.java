@@ -1,13 +1,11 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import javolution.util.FastList;
-
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.gui.panels.ViewPane;
@@ -52,8 +50,7 @@ public class SearchPane extends JPanel
 	private int _currentIndex;
 	private boolean _stringPart;
 
-	private static final String[] MATH_OPERATORS =
-	{
+	private static final String[] MATH_OPERATORS = {
 			"==",
 			"!=",
 			">",
@@ -61,13 +58,12 @@ public class SearchPane extends JPanel
 			"<",
 			"<="
 	};
-	private static final String[] STRING_OPERATORS =
-	{
+	private static final String[] STRING_OPERATORS = {
 			"==",
 			"!="
 	};
 
-	private FastList<PacketInfo> _formats = new FastList<PacketInfo>();
+	private List<PacketInfo> _formats = new ArrayList<PacketInfo>();
 
 	public SearchPane(ViewPane pane)
 	{

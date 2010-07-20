@@ -1,4 +1,4 @@
-package com.jds.jn.crypt.helpers;
+package crypt.helpers;
 
 /**
  * Author: VISTALL

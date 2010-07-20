@@ -1,11 +1,10 @@
 package com.jds.jn.network.methods.jpcap;
 
-import javolution.util.FastList;
 import javolution.util.FastMap;
-import jpcap.packet.TCPPacket;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import jpcap.packet.TCPPacket;
 
 /**
  * Author: VISTALL
@@ -16,7 +15,7 @@ public class Sequenced
 {
 	private static final long MODULO = 4294967296L;
 	private Map<Long, SeqHolder> _waitingPrevious = new FastMap<Long, SeqHolder>();
-	private List<TCPPacket> _sequenced = new FastList<TCPPacket>();
+	private List<TCPPacket> _sequenced = new ArrayList<TCPPacket>();
 	private long _lastAck;
 
 	public Sequenced()

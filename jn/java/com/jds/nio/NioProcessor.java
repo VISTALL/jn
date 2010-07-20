@@ -1,15 +1,14 @@
 package com.jds.nio;
 
-import javolution.util.FastList;
+import java.io.IOException;
+import java.nio.ByteOrder;
+import java.nio.channels.*;
+import java.util.*;
+import java.util.concurrent.ConcurrentLinkedQueue;
+
 import com.jds.nio.buffer.NioBuffer;
 import com.jds.nio.core.CloseType;
 import com.jds.nio.core.NioService;
-
-import java.io.IOException;
-import java.nio.ByteOrder;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
 
 /**
  * Author: VISTALL
@@ -20,12 +19,12 @@ import java.nio.channels.SocketChannel;
 public class NioProcessor
 {
 	private NioService _service;
-	private final FastList<NioSession> _pendingClose;
+	private final Queue<NioSession> _pendingClose;
 
 	public NioProcessor(NioService service)
 	{
 		_service = service;
-		_pendingClose = new FastList<NioSession>();
+		_pendingClose = new ConcurrentLinkedQueue<NioSession>();
 	}
 
 	public void accept(SelectionKey key)
@@ -179,7 +178,7 @@ public class NioProcessor
 		}
 	}
 
-	public FastList<NioSession> pendingClose()
+	public Queue<NioSession> pendingClose()
 	{
 		return _pendingClose;
 	}

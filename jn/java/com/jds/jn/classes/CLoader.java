@@ -1,9 +1,12 @@
-package com.jds.jn.remotefiles;
+package com.jds.jn.classes;
 
-import com.jds.jn.Jn;
-import javolution.util.FastList;
+import org.apache.log4j.Logger;
 
-import java.util.HashMap;
+import java.io.File;
+import java.util.*;
+
+import com.jds.jn.classes.compiler.Compiler;
+import com.jds.jn.classes.compiler.MemoryClassLoader;
 
 /**
  * Author: VISTALL
@@ -11,23 +14,23 @@ import java.util.HashMap;
  * Date: 27/11/2009
  * Time: 7:05:13
  */
-public class FileLoader
+public class CLoader
 {
-	private static FileLoader _instance;
+	private static CLoader _instance;
 
-	private HashMap<String, File> _classes = new HashMap<String, File>();
-	private FastList<java.io.File> _fileNames = new FastList<java.io.File>();
+	private Map<String, Class<?>> _classes = new HashMap<String, Class<?>>();
+	private static final Logger _log = Logger.getLogger(CLoader.class);
 
-	public static FileLoader getInstance()
+	public static CLoader getInstance()
 	{
 		if (_instance == null)
 		{
-			_instance = new FileLoader();
+			_instance = new CLoader();
 		}
 		return _instance;
 	}
 
-	FileLoader()
+	CLoader()
 	{
 		load();
 	}
@@ -40,13 +43,14 @@ public class FileLoader
 	public void load()
 	{
 		_classes.clear();
-		_fileNames.clear();
 
-		getFiles(new java.io.File("./files"), "");
+		List<File> fileNames = new ArrayList<File>();
 
-		if (Compiler.getInstance().compile(_fileNames))
+		getFiles(fileNames, new java.io.File("./files"), "");
+
+		if (com.jds.jn.classes.compiler.Compiler.getInstance().compile(fileNames))
 		{
-			Compiler.MemoryClassLoader classLoader = Compiler.getInstance().getClassLoader();
+			MemoryClassLoader classLoader = Compiler.getInstance().getClassLoader();
 
 			for (String name : classLoader.byteCodes.keySet())
 			{
@@ -57,12 +61,11 @@ public class FileLoader
 				try
 				{
 					Class c = classLoader.loadClass(name);
-					File s = new File(c);
-					_classes.put(name, s);
+					_classes.put(name, c);
 				}
 				catch (ClassNotFoundException e)
 				{
-					Jn.getForm().warn("Can't load file " + e, e);
+					_log.info("Can't load file " + e, e);
 				}
 			}
 
@@ -70,7 +73,7 @@ public class FileLoader
 		}
 	}
 
-	private void getFiles(java.io.File f, String dir)
+	private void getFiles(List<File> list, File f, String dir)
 	{
 		for (java.io.File z : f.listFiles())
 		{
@@ -82,7 +85,7 @@ public class FileLoader
 				}
 				String olddir = dir;
 				dir = dir + z.getName() + "/";
-				getFiles(z, dir);
+				getFiles(list, z, dir);
 				dir = olddir;
 			}
 			else
@@ -92,12 +95,12 @@ public class FileLoader
 					continue;
 				}
 
-				_fileNames.add(z);
+				list.add(z);
 			}
 		}
 	}
 
-	public File getFile(String file) throws ClassNotFoundException
+	public Class<?> forName(String file) throws ClassNotFoundException
 	{
 		if (_classes.get(file) == null)
 		{

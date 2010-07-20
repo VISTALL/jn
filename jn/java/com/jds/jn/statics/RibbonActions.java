@@ -15,9 +15,9 @@ import com.jds.jn.logs.Reader;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.util.Bundle;
 import com.jds.swing.SimpleResizableIcon;
-import org.jvnet.flamingo.common.*;
-import org.jvnet.flamingo.ribbon.*;
-import org.jvnet.flamingo.ribbon.resize.CoreRibbonResizePolicies;
+import org.pushingpixels.flamingo.api.common.*;
+import org.pushingpixels.flamingo.api.ribbon.*;
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 
 /**
  * Author: VISTALL

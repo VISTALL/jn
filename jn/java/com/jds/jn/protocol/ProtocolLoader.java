@@ -19,7 +19,7 @@ import com.jds.jn.parser.packetreader.PacketReader;
 import com.jds.jn.parser.valuereader.ValueReader;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
-import com.jds.jn.remotefiles.FileLoader;
+import com.jds.jn.classes.CLoader;
 
 /**
  * Author: VISTALL
@@ -159,7 +159,7 @@ public class ProtocolLoader
 				{
 					try
 					{
-						reader = FileLoader.getInstance().getFile("packet_readers." + reader_c + "Reader").getRawClass();
+						reader = (Class<PacketReader>) CLoader.getInstance().forName("packet_readers." + reader_c + "Reader");
 					}
 					catch (ClassNotFoundException e)
 					{
@@ -393,7 +393,7 @@ public class ProtocolLoader
 				Class<?> clazz = null;
 				try
 				{
-					clazz = FileLoader.getInstance().getFile("part_readers." + atr.getNodeValue() + "Reader").getRawClass();
+					clazz = CLoader.getInstance().forName("part_readers." + atr.getNodeValue() + "Reader");
 				}
 				catch (DOMException e)
 				{
@@ -401,6 +401,7 @@ public class ProtocolLoader
 				}
 				catch (ClassNotFoundException e)
 				{
+					e.printStackTrace();
 				}
 
 				if (clazz == null)
