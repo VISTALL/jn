@@ -10,12 +10,13 @@ import java.io.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.Map;
 
+import com.jds.jn.config.properties.ObjectParse;
+import com.jds.jn.config.properties.PropertyValue;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.profiles.*;
-import com.jds.jn.config.properties.ObjectParse;
-import com.jds.jn.config.properties.PropertyValue;
 import com.sun.org.apache.xerces.internal.impl.Constants;
 
 /**
@@ -27,11 +28,12 @@ public class ConfigParser
 {
 	private static ConfigParser _instance;
 
-	private HashMap<String, RValues> _rValues = new HashMap<String, RValues>();
-	private HashMap<RValues, String> _rValues2 = new HashMap<RValues, String>();
+	// caches
+	private Map<String, RValues> _rValues = new HashMap<String, RValues>();
+	private Map<RValues, String> _rValues2 = new HashMap<RValues, String>();
 
-	private HashMap<String, Method> _methodValues = new HashMap<String, Method>();
-	private HashMap<Method, String> _methodValues2 = new HashMap<Method, String>();
+	private Map<String, Method> _methodValues = new HashMap<String, Method>();
+	private Map<Method, String> _methodValues2 = new HashMap<Method, String>();
 
 	public static ConfigParser getInstance()
 	{

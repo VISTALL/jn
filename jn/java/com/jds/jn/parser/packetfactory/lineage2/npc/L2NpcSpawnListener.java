@@ -1,9 +1,7 @@
 package com.jds.jn.parser.packetfactory.lineage2.npc;
 
-import gnu.trove.TIntObjectHashMap;
-
 import java.io.*;
-import java.util.TreeMap;
+import java.util.*;
 
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.datatree.*;
@@ -31,8 +29,8 @@ public class L2NpcSpawnListener implements IPacketListener
 
 	private int _level;
 
-	private TIntObjectHashMap<NpcInfo> _npcInfos = new TIntObjectHashMap<NpcInfo>();
-   	private TreeMap<Integer, NpcInfo> _npcInfosByNpcId = new TreeMap<Integer, NpcInfo>();
+	private Map<Integer, NpcInfo> _npcInfos = new HashMap<Integer, NpcInfo>();
+   	private Map<Integer, NpcInfo> _npcInfosByNpcId = new TreeMap<Integer, NpcInfo>();
 
 	@Override
 	public void invoke(DecryptPacket p)

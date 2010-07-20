@@ -1,5 +1,7 @@
 package com.jds.jn.logs.readers;
 
+import org.apache.log4j.Logger;
+
 import javolution.text.TextBuilder;
 
 import java.io.*;
@@ -7,7 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.ThreadPoolManager;
 
@@ -19,6 +21,8 @@ import com.jds.jn.util.ThreadPoolManager;
  */
 public abstract class AbstractReader
 {
+	private static final Logger _log = Logger.getLogger(AbstractReader.class);
+
 	protected RandomAccessFile _file;
 	protected ByteBuffer _buffer;
 	protected FileChannel _channel;
@@ -30,13 +34,13 @@ public abstract class AbstractReader
 	{
 		if(!file.exists())
 		{
-			Jn.getForm().info("File not exists: " + file);
+			_log.info("File not exists: " + file);
 			return;
 		}
 
 		if(_isBusy)
 		{
-			Jn.getForm().info("Reader is busy");
+			_log.info("Reader is busy");
 			return;
 		}
 
@@ -72,8 +76,8 @@ public abstract class AbstractReader
 			{
 				try
 				{
-					Jn.getForm().getProgressBar().setVisible(true);
-					Jn.getForm().getProgressBar().setValue(0);
+					MainForm.getInstance().getProgressBar().setVisible(true);
+					MainForm.getInstance().getProgressBar().setValue(0);
 
 					if (parseHeader())
 					{
@@ -84,16 +88,16 @@ public abstract class AbstractReader
 
 					if(_session != null)
 					{
-						Jn.getForm().showSession(_session);
+						MainForm.getInstance().showSession(_session);
 						_session = null;
 					}
 
-					Jn.getForm().getProgressBar().setVisible(false);
-					Jn.getForm().getProgressBar().setValue(0);
+					MainForm.getInstance().getProgressBar().setVisible(false);
+					MainForm.getInstance().getProgressBar().setValue(0);
 				}
 				catch (IOException e)
 				{
-					e.printStackTrace();
+					_log.info("IOException: " + e, e);
 				}
 			}
 		});
@@ -101,7 +105,7 @@ public abstract class AbstractReader
 
 	public abstract boolean parseHeader() throws IOException;
 
-	public abstract boolean parsePackets() throws IOException;
+	public abstract void parsePackets() throws IOException;
 
 	public abstract String getFileExtension();
 

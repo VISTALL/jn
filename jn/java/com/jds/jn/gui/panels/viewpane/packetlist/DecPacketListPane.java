@@ -41,143 +41,143 @@ public class DecPacketListPane extends JPanel
 		_menu = new JPacketListPopup(this);
 		$$$setupUI$$$();
 
-	/*	_searchItem = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindNext"));
-		_searchItem.setEnabled(false);
-		_searchItem.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				String findPacket = _pane.getSearchPane().getFindText();
-				_pane.getPacketTableModel().searchPacket(findPacket);
-			}
-		});
-
-		_menu.add(_searchItem);
-
-		_see = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Show"));
-		_see.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				int row = _packetList.getSelectedRow();
-				if (row == -1)
+		/*	_searchItem = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("FindNext"));
+				_searchItem.setEnabled(false);
+				_searchItem.addActionListener(new ActionListener()
 				{
-					return;
-				}
-				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
-				if (packet == null)
-				{
-					return;
-				}
-				float f = _transperyPacket.getValue() / 100F;
-				new PacketForm(_pane, f, packet, row);
-			}
-		});
-		_see.setEnabled(false);
-		_menu.add(_see);
 
-		_readItem = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Reader"));
-		_readItem.setEnabled(true);
-		_readItem.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				int row = _packetList.getSelectedRow();
-				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
-				if (packet == null || packet.getPacketFormat() == null)
-				{
-					return;
-				}
-
-				PacketReader read = packet.getPacketFormat().getPacketReader();
-
-				if (read == null || !read.read(packet))
-				{
-					return;
-				}
-
-				read.show();
-			}
-		});
-		_menu.add(_readItem);
-
-		JMenu edit = new JMenu(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("EditMenu"));
-
-		JMenuItem rename = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Rename"));
-		rename.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				int row = _packetList.getSelectedRow();
-				if (row == -1)
-				{
-					return;
-				}
-
-				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
-				if (packet == null)
-				{
-					return;
-				}
-
-				EnterNameDialog dialog = new EnterNameDialog(Jn.getInstance(), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("EnterName"), packet.getName());
-				if (dialog.showToWrite())
-				{
-					_pane.getPacketTableModel().setName(row, dialog.getText());
-					_packetList.updateUI();
-				}
-			}
-		});
-
-		JMenuItem delete = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Delete"));
-		delete.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				int row = _packetList.getSelectedRow();
-				if (row == -1)
-				{
-					return;
-				}
-
-				DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
-				if (packet == null)
-				{
-					return;
-				}
-
-				if (Config.get(Values.DELETE_PACKET_CONFIRM, true))
-				{
-					ConfirmDialog dialog = new ConfirmDialog(Jn.getInstance(), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Message"), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("YouRealyWantToyDeletePacketInfo"));
-					boolean[] result = dialog.showToConfirm();
-
-					Config.set(Values.DELETE_PACKET_CONFIRM, result[1]);
-
-					if (!result[0])
+					@Override
+					public void actionPerformed(ActionEvent e)
 					{
-						return;
+						String findPacket = _pane.getSearchPane().getFindText();
+						_pane.getPacketTableModel().searchPacket(findPacket);
 					}
-				}
+				});
 
-				_pane.getPacketTableModel().deleteFormat(row);
-				_packetList.updateUI();
-			}
-		});
+				_menu.add(_searchItem);
 
-		edit.add(rename);
-		edit.add(delete);
+				_see = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Show"));
+				_see.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						int row = _packetList.getSelectedRow();
+						if (row == -1)
+						{
+							return;
+						}
+						DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
+						if (packet == null)
+						{
+							return;
+						}
+						float f = _transperyPacket.getValue() / 100F;
+						new PacketForm(_pane, f, packet, row);
+					}
+				});
+				_see.setEnabled(false);
+				_menu.add(_see);
+
+				_readItem = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Reader"));
+				_readItem.setEnabled(true);
+				_readItem.addActionListener(new ActionListener()
+				{
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						int row = _packetList.getSelectedRow();
+						DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
+						if (packet == null || packet.getPacketFormat() == null)
+						{
+							return;
+						}
+
+						PacketReader read = packet.getPacketFormat().getPacketReader();
+
+						if (read == null || !read.read(packet))
+						{
+							return;
+						}
+
+						read.show();
+					}
+				});
+				_menu.add(_readItem);
+
+				JMenu edit = new JMenu(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("EditMenu"));
+
+				JMenuItem rename = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Rename"));
+				rename.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						int row = _packetList.getSelectedRow();
+						if (row == -1)
+						{
+							return;
+						}
+
+						DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
+						if (packet == null)
+						{
+							return;
+						}
+
+						EnterNameDialog dialog = new EnterNameDialog(Jn.getInstance(), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("EnterName"), packet.getName());
+						if (dialog.showToWrite())
+						{
+							_pane.getPacketTableModel().setName(row, dialog.getText());
+							_packetList.updateUI();
+						}
+					}
+				});
+
+				JMenuItem delete = new JMenuItem(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Delete"));
+				delete.addActionListener(new ActionListener()
+				{
+
+					@Override
+					public void actionPerformed(ActionEvent e)
+					{
+						int row = _packetList.getSelectedRow();
+						if (row == -1)
+						{
+							return;
+						}
+
+						DecryptPacket packet = _pane.getPacketTableModel().getPacket(row);
+						if (packet == null)
+						{
+							return;
+						}
+
+						if (Config.get(Values.DELETE_PACKET_CONFIRM, true))
+						{
+							ConfirmDialog dialog = new ConfirmDialog(Jn.getInstance(), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Message"), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("YouRealyWantToyDeletePacketInfo"));
+							boolean[] result = dialog.showToConfirm();
+
+							Config.set(Values.DELETE_PACKET_CONFIRM, result[1]);
+
+							if (!result[0])
+							{
+								return;
+							}
+						}
+
+						_pane.getPacketTableModel().deleteFormat(row);
+						_packetList.updateUI();
+					}
+				});
+
+				edit.add(rename);
+				edit.add(delete);
 
 
-		_menu.add(edit);  */
+				_menu.add(edit);  */
 
 
 		_transperyPacket.setToolTipText(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Visible") + ": " + _transperyPacket.getValue());
@@ -210,7 +210,7 @@ public class DecPacketListPane extends JPanel
 				{
 					return;
 				}
-				DecryptPacket packet = getPane().getPacketTableModel().getPacket(row);
+				DecryptPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
@@ -233,9 +233,9 @@ public class DecPacketListPane extends JPanel
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 
 
-		_packetList = new JTable(getPane().getPacketTableModel());
+		_packetList = new JTable(getPane().getDecryptPacketTableModel());
 		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_packetList.setDefaultRenderer(Object.class, new PacketTableRenderer(getPane().getPacketTableModel()));
+		_packetList.setDefaultRenderer(Object.class, new PacketTableRenderer(getPane().getDecryptPacketTableModel()));
 		_packetList.getColumnModel().getColumn(0).setMaxWidth(30); //type
 		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
 		_packetList.getColumnModel().getColumn(2).setMaxWidth(50); //id
@@ -243,40 +243,6 @@ public class DecPacketListPane extends JPanel
 		_packetList.getColumnModel().getColumn(4).setMaxWidth(180); //name
 
 		_packetList.addMouseListener(new MouseL());
-	}
-
-	/**
-	 * Method generated by IntelliJ IDEA GUI Designer
-	 * >>> IMPORTANT!! <<<
-	 * DO NOT edit this method OR call it in your code!
-	 *
-	 * @noinspection ALL
-	 */
-	private void $$$setupUI$$$()
-	{
-		createUIComponents();
-		main.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-		_packetScrollPane = new JScrollPane();
-		_packetScrollPane.setAutoscrolls(true);
-		_packetScrollPane.setHorizontalScrollBarPolicy(31);
-		_packetScrollPane.setVerticalScrollBarPolicy(22);
-		main.add(_packetScrollPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-		_packetList.setAutoCreateRowSorter(false);
-		_packetList.setPreferredScrollableViewportSize(new Dimension(-1, -1));
-		_packetScrollPane.setViewportView(_packetList);
-		_transperyPacket = new JSlider();
-		_transperyPacket.setMinimum(20);
-		_transperyPacket.setOrientation(0);
-		_transperyPacket.setValue(100);
-		main.add(_transperyPacket, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-	}
-
-	/**
-	 * @noinspection ALL
-	 */
-	public JComponent $$$getRootComponent$$$()
-	{
-		return main;
 	}
 
 	public class MouseL implements MouseListener
@@ -298,7 +264,7 @@ public class DecPacketListPane extends JPanel
 					return;
 				}
 
-				DecryptPacket packet = getPane().getPacketTableModel().getPacket(row);
+				DecryptPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
 
 				if (packet == null)
 				{
@@ -373,8 +339,8 @@ public class DecPacketListPane extends JPanel
 		{
 			return null;
 		}
-		
-		return getPane().getPacketTableModel().getPacket(row);
+
+		return getPane().getDecryptPacketTableModel().getPacket(row);
 	}
 
 	public float getTransientValue()
@@ -395,5 +361,39 @@ public class DecPacketListPane extends JPanel
 	public ViewPane getPane()
 	{
 		return _pane;
+	}
+
+	/**
+	 * Method generated by IntelliJ IDEA GUI Designer
+	 * >>> IMPORTANT!! <<<
+	 * DO NOT edit this method OR call it in your code!
+	 *
+	 * @noinspection ALL
+	 */
+	private void $$$setupUI$$$()
+	{
+		createUIComponents();
+		main.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+		_packetScrollPane = new JScrollPane();
+		_packetScrollPane.setAutoscrolls(true);
+		_packetScrollPane.setHorizontalScrollBarPolicy(31);
+		_packetScrollPane.setVerticalScrollBarPolicy(22);
+		main.add(_packetScrollPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+		_packetList.setAutoCreateRowSorter(false);
+		_packetList.setPreferredScrollableViewportSize(new Dimension(-1, -1));
+		_packetScrollPane.setViewportView(_packetList);
+		_transperyPacket = new JSlider();
+		_transperyPacket.setMinimum(20);
+		_transperyPacket.setOrientation(0);
+		_transperyPacket.setValue(100);
+		main.add(_transperyPacket, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+	}
+
+	/**
+	 * @noinspection ALL
+	 */
+	public JComponent $$$getRootComponent$$$()
+	{
+		return main;
 	}
 }

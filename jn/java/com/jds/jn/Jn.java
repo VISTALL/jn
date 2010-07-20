@@ -1,11 +1,10 @@
 package com.jds.jn;
 
+import org.apache.log4j.Logger;
+
 import javax.swing.*;
 
-import java.awt.*;
-
 import com.jds.jn.config.ConfigParser;
-import com.jds.jn.gui.dialogs.ExceptionDialog;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
 import com.jds.jn.helpers.Shutdown;
@@ -16,11 +15,9 @@ import com.jds.jn.parser.Types;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.remotefiles.FileLoader;
-import com.jds.jn.runnable.GCUpdate;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.ThreadPoolManager;
-import com.jds.jn.version_control.Programs;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.logging.LoggingService;
 
 /**
  * Author: VISTALL
@@ -30,72 +27,75 @@ import com.jds.jn.version_control.Version;
  */
 public class Jn
 {
-	public  static final Version CURRENT = new Version(Programs.JN, 2, 0, Version.ALPHA, 1);
-	private static MainForm _form;
+	private static final Logger _log = Logger.getLogger(Jn.class);
 
 	public static void main(String... arg) throws Exception
 	{
+		LoggingService.load();
+
+		_log.info("Logger init - ok");
+
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		JDialog.setDefaultLookAndFeelDecorated(true);
+
+		_log.info("GUI properties set - ok");
+
+		SplashWindow.showSplash();
+
+		_log.info("Loading config - start");
+
+		ConfigParser.getInstance();
+
+		_log.info("Loading config - ok");
+
+		ThreadPoolManager.getInstance();
+
+		ImageStatic.getInstance();
+
+		NetworkProfiles.getInstance();
+
+		ListenerSystem.getInstance();
+
+		FileLoader.getInstance();
+
+		Types.newInstance();
+		PartTypeManager.getInstance();
+		ProtocolManager.getInstance();
+
 		try
 		{
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			SplashWindow.showSplash();
-			JFrame.setDefaultLookAndFeelDecorated(true);
-			JDialog.setDefaultLookAndFeelDecorated(true);
-
-			ConfigParser.getInstance();
-
-			_form = new MainForm();
-			_form.setMinimumSize(new Dimension(500, 800));
-			_form.setExtendedState(JFrame.MAXIMIZED_HORIZ);
-			_form.info("Program started.");
-
-			NetworkProfiles.getInstance();
-
-			ListenerSystem.getInstance();
-
-			ThreadPoolManager.getInstance();
-
-			ImageStatic.getInstance();
-			FileLoader.getInstance();
-
-			Types.newInstance();
-			PartTypeManager.getInstance();
-			ProtocolManager.getInstance();
-
-			ExceptionDialog.getInstance();
-
-			_form.updateTitle();
-
-			ThreadPoolManager.getInstance().scheduleAtFixedRate(new GCUpdate(), 500, 5000);
-
-			Runtime.getRuntime().addShutdownHook(new Shutdown());
+			MainForm.init();
+			_log.info("MainForm: init ok");
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			_log.info("MainForm: init fail" + e, e);
 		}
-		finally
+
+		Runtime.getRuntime().addShutdownHook(new Shutdown());
+
+		MainForm.getInstance().startMemoryBarTask();
+
+		MainForm.getInstance().updateTitle();
+
+		MainForm.getInstance().setVisible(true);
+
+		MainForm.getInstance().updateVisible();
+
+		_log.info(String.format("Load %d classes.", FileLoader.getInstance().size()));
+
+		for (Protocol p : ProtocolManager.getInstance().getProtocols())
 		{
-			if(_form == null)
-			{
-				throw new Error("Form is Null");
-			}
-
-			_form.setVisible(true);
-			_form.updateVisible();
-
-			_form.info(String.format("Load %d classes.", FileLoader.getInstance().size()));
-
-			for (Protocol p : ProtocolManager.getInstance().getProtocols())
-			{
-				_form.info(String.format("Load %s protocol.", p.getName()));
-			}
-			SplashWindow.hideSplash();
+			_log.info(String.format("Load %s protocol.", p.getName()));
 		}
+
+		SplashWindow.hideSplash();
 	}
 
+	@Deprecated
 	public static MainForm getForm()
 	{
-		return _form;
+		return MainForm.getInstance();
 	}
 }

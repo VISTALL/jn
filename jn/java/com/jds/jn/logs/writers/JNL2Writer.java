@@ -3,10 +3,10 @@ package com.jds.jn.logs.writers;
 import java.io.IOException;
 import java.util.List;
 
-import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
 import com.jds.jn.network.packets.IPacketData;
 import com.jds.jn.version_control.Programs;
+import com.jds.jn.version_control.Version;
 
 /**
  * Author: VISTALL
@@ -33,10 +33,10 @@ public class JNL2Writer  extends AbstractWriter
 	{
 		//
 		writeD(Programs.JN.ordinal());
-		writeD(Jn.CURRENT.getMajor());
-		writeD(Jn.CURRENT.getMinor());
-		writeC(Jn.CURRENT.getType());
-		writeD(Jn.CURRENT.getNumber());
+		writeD(Version.CURRENT.getMajor());
+		writeD(Version.CURRENT.getMinor());
+		writeC(Version.CURRENT.getType());
+		writeD(Version.CURRENT.getNumber());
 
 		writeC(_session.getListenerType().ordinal());
 		writeQ(_session.getSessionId());

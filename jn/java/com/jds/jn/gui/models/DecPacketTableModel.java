@@ -152,7 +152,7 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 		String opcode = null;
 		if (packet.getPacketFormat() != null)
 		{
-			opcode = packet.getPacketFormat().getOpcodeStr().toUpperCase();
+			opcode = packet.getPacketFormat().getId().toUpperCase();
 		}
 		else
 		{
@@ -168,7 +168,8 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 
 		SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss SSSS");
 
-		Object[] temp = {
+		Object[] temp =
+		{
 				new JLabel(icon),
 				time.format(new Date()),
 				opcode,

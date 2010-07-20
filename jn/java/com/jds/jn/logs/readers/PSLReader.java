@@ -5,8 +5,8 @@ import java.io.IOException;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
+import com.jds.jn.version_control.Programs;
 import com.jds.jn.version_control.Version;
 
 /**
@@ -36,15 +36,15 @@ public class PSLReader extends AbstractReader
 		long sessionId = readQ();
 		boolean isDecrypted = !readBoolC();
 
-		_session = new Session(ListenerType.Game_Server, sessionId, ProtocolManager.getInstance().getProtocol(ListenerType.Game_Server), true);
-		_session.setVersion(Version.UNKNOWN);
+		_session = new Session(ListenerType.Game_Server, sessionId);
+		_session.setVersion(new Version(Programs.PACKET_SAMURAI, 1, 0, Version.STABLE, 0));
 
 
 		return true;
 	}
 
 	@Override
-	public boolean parsePackets() throws IOException
+	public void parsePackets() throws IOException
 	{
 		for(int i = 0; i < _size; i ++)
 		{
@@ -56,7 +56,6 @@ public class PSLReader extends AbstractReader
 
 			_session.receiveQuitPacket(packet);
 		}
-		return true;
 	}
 
 	@Override

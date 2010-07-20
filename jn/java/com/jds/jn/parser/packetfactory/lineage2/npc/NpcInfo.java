@@ -1,9 +1,7 @@
 package com.jds.jn.parser.packetfactory.lineage2.npc;
 
-import gnu.trove.TIntObjectHashMap;
-
 import java.lang.reflect.Field;
-import java.util.ArrayList;
+import java.util.*;
 
 import com.jds.jn.network.packets.DecryptPacket;
 
@@ -27,8 +25,8 @@ public class NpcInfo
 	private int _mp = 100;
 	private int _level = 1;
 
-	private final TIntObjectHashMap<SkillInfo> _skills = new TIntObjectHashMap<SkillInfo>();
-	private final ArrayList<SpawnLoc> _spawns = new ArrayList<SpawnLoc>();
+	private final Map<Integer, SkillInfo> _skills = new HashMap<Integer, SkillInfo>();
+	private final List<SpawnLoc> _spawns = new ArrayList<SpawnLoc>();
 	private final int _rhand;
 	private final int _armor;
 	private final int _lhand;
@@ -134,7 +132,7 @@ public class NpcInfo
 		if(_skills.size() != 0)
 		{
 			xml += "\t\t<skills>\n";
-			for(SkillInfo info : _skills.getValues(new ArrayList<SkillInfo>(_skills.size())))
+			for(SkillInfo info : _skills.values())
 			{
 				xml += String.format("\t\t\t<!--Hit time: %d; Reuse: %d-->\n", info.getHitTime(), info.getReuse());
 				xml += String.format("\t\t\t<skill id=\"%d\" level=\"%d\" />\n", info.getId(), info.getLevel());

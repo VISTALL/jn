@@ -2,7 +2,7 @@ package com.jds.jn.config;
 
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.config.properties.PropertyValue;
-import com.jds.jn.util.TColor;
+import com.jds.swing.JColor;
 
 /**
  * Author: VISTALL
@@ -26,18 +26,18 @@ public enum RValues
 
 	//colors hex dump
 	@PropertyValue("PacketForm_Select_BackgroundColor")
-	PACKET_FORM_SELECT_BACKGROUND_COLOR(new TColor(TColor.YELLOW)),
+	PACKET_FORM_SELECT_BACKGROUND_COLOR(new JColor(JColor.YELLOW)),
 	@PropertyValue("PacketForm_Select_ForegroundColor")
-	PACKET_FORM_SELECT_FOREGROUND_COLOR(new TColor(TColor.BLACK)),
+	PACKET_FORM_SELECT_FOREGROUND_COLOR(new JColor(JColor.BLACK)),
 	//colors parts
 	@PropertyValue("PacketForm_Select_BackgroundColor2")
-	PACKET_FORM_SELECT_BACKGROUND_COLOR_2(new TColor(TColor.YELLOW)),
+	PACKET_FORM_SELECT_BACKGROUND_COLOR_2(new JColor(JColor.YELLOW)),
 	@PropertyValue("PacketForm_Select_ForegroundColor2")
-	PACKET_FORM_SELECT_FOREGROUND_COLOR_2(new TColor(TColor.BLACK)),
+	PACKET_FORM_SELECT_FOREGROUND_COLOR_2(new JColor(JColor.BLACK)),
 	@PropertyValue("PacketForm_NotSelect_BackgroundColor2")
-	PACKET_FORM_NOT_SELECT_BACKGROUND_COLOR_2(new TColor(TColor.WHITE)),
+	PACKET_FORM_NOT_SELECT_BACKGROUND_COLOR_2(new JColor(JColor.WHITE)),
 	@PropertyValue("PacketForm_NotSelect_ForegroundColor2")
-	PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2(new TColor(TColor.BLACK)),
+	PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2(new JColor(JColor.BLACK)),
 
 	@PropertyValue("SaveAsDecode")
 	SAVE_AS_DECODE(false);
@@ -86,9 +86,9 @@ public enum RValues
 		return (ReceiveType)_val;
 	}
 
-	public TColor asTColor()
+	public JColor asTColor()
 	{
-		return (TColor)_val;
+		return (JColor)_val;
 	}
 
 	public Object getVal()

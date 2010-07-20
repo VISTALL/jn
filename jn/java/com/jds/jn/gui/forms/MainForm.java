@@ -1,5 +1,7 @@
 package com.jds.jn.gui.forms;
 
+import org.apache.log4j.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
@@ -13,14 +15,13 @@ import java.util.Arrays;
 import java.util.concurrent.ScheduledFuture;
 
 import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
-import com.jds.jn.gui.dialogs.ExceptionDialog;
 import com.jds.jn.gui.listeners.HideWatcher;
 import com.jds.jn.gui.listeners.WindowsAdapter;
-import com.jds.jn.gui.panels.*;
+import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.gui.panels.ViewTabbedPane;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.session.Session;
@@ -28,6 +29,7 @@ import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.statics.TabRibbonActions;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.ThreadPoolManager;
+import com.jds.jn.version_control.Version;
 import com.jds.swing.JTrayIcon;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -42,18 +44,30 @@ import org.jvnet.flamingo.ribbon.*;
  */
 public class MainForm extends JRibbonFrame
 {
+	private static MainForm _instance;
+	private static final Logger _log = Logger.getLogger(MainForm.class);
+
+	public static void init() throws Exception
+	{
+		_instance = new MainForm();
+	}
+
+	public static MainForm getInstance()
+	{
+		return _instance;
+	}
+
 	private JPanel _panel1;
-	private JTabbedPane _manTab;
+
 	private JProgressBar _memoryBar;
 	private JButton _gcButton;
-	private JButton _exceptionBtn;
-	private JProgressBar _progressBar1;
-
-	private ConsolePane _consolePane = new ConsolePane();
-	private ViewTabbedPane _viewPane = new ViewTabbedPane();
+	private JButton _consoleBtn;
+	private JProgressBar _readerProgress;
+	private ViewTabbedPane _sessionTabbedPane;
 
 	private JTrayIcon _trayIcon;
-	private ScheduledFuture _future;
+
+	private ScheduledFuture<?> _memoryBarTask;
 
 	private RibbonContextualTaskGroup _sessionGroup;
 
@@ -67,14 +81,16 @@ public class MainForm extends JRibbonFrame
 		setResizable(false);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE); //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+		setMinimumSize(new Dimension(500, 800));
+		setExtendedState(JFrame.MAXIMIZED_HORIZ);
 
 		try
 		{
 			setIconImages(Arrays.asList(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Jn24.png")), ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Jn.png"))));
 		}
-		catch (IOException ignored)
+		catch (IOException e)
 		{
-			ignored.printStackTrace();
+			_log.info("Exception: " + e, e);
 		}
 
 		RibbonApplicationMenu menu = new RibbonApplicationMenu();
@@ -86,9 +102,6 @@ public class MainForm extends JRibbonFrame
 				RibbonActions.listeners()
 		});
 		getRibbon().addTask(f);
-
-		RibbonTask v = new RibbonTask(Bundle.getString("View"), new AbstractRibbonBand[]{RibbonActions.view()});
-		getRibbon().addTask(v);
 
 		RibbonTask s = new RibbonTask(Bundle.getString("Settings"), new AbstractRibbonBand[]{RibbonActions.settings()});
 		getRibbon().addTask(s);
@@ -109,17 +122,15 @@ public class MainForm extends JRibbonFrame
 			}
 		});
 
-		_exceptionBtn.addActionListener(new ActionListener()
+		_consoleBtn.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				JActionListener.handle(JActionEvent.EXCEPTION_WINDOW, e.getSource());
+				JActionListener.handle(JActionEvent.CONSOLE_WINDOW, e.getSource());
 			}
 		});
 
-		_manTab.addTab(Bundle.getString("Console"), _consolePane);
-		_manTab.addTab(Bundle.getString("View2"), _viewPane);
 	}
 
 	private void initTray()
@@ -134,7 +145,7 @@ public class MainForm extends JRibbonFrame
 			SystemTray st = SystemTray.getSystemTray();
 			_trayIcon = new JTrayIcon(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Jn24.png")));
 			_trayIcon.setImageAutoSize(true);
-			_trayIcon.setToolTip(Jn.CURRENT.toString());
+			_trayIcon.setToolTip(Version.CURRENT.toString());
 
 
 			JPopupMenu pm = new JPopupMenu();
@@ -177,31 +188,47 @@ public class MainForm extends JRibbonFrame
 		}
 		catch (Exception e)
 		{
-			warn("Exception tray icon", e);
+			_log.info("Exception: " + e, e);
 		}
 	}
 
-	public synchronized void updateMemoryBar()
+	public void startMemoryBarTask()
 	{
-		//SwingUtilities.invokeLater(new Runnable()
-		//{
-		//	public void run()
+		_memoryBarTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable()
 		{
-			MemoryUsage hm = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage();
+			@Override
+			public void run()
+			{
+				updateMemoryBar();
+			}
+		}, 5000, 5000);
+	}
 
-			long use = hm.getUsed() / 1048576;
-			long max = hm.getMax() / 1048576;
-			byte persents = (byte) ((use * 100) / max);
-
-			_memoryBar.setString(use + " MB of " + max + " MB");
-			_memoryBar.setValue(persents);
-			_memoryBar.setToolTipText("Total heap size: " + max + " MB Used: " + use + "MB");
+	public void stopMemoryBarTask()
+	{
+		if (_memoryBarTask != null)
+		{
+			_memoryBarTask.cancel(true);
+			_memoryBarTask = null;
 		}
-		//});
+	}
+
+	public void updateMemoryBar()
+	{
+		MemoryUsage hm = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage();
+
+		long use = hm.getUsed() / 1048576;
+		long max = hm.getMax() / 1048576;
+		byte persents = (byte) ((use * 100) / max);
+
+		_memoryBar.setString(use + " MB of " + max + " MB");
+		_memoryBar.setValue(persents);
+		_memoryBar.setToolTipText("Total heap size: " + max + " MB Used: " + use + "MB");
 	}
 
 	public void showSession(Session s)
 	{
+		s.show();
 		sessionMenu(true);
 		getViewTabbedPane().showSession(s);
 	}
@@ -223,46 +250,13 @@ public class MainForm extends JRibbonFrame
 
 		if (getViewTabbedPane().sizeAll() == 0)
 		{
-			Jn.getForm().sessionMenu(false);
+			sessionMenu(false);
 		}
-	}
-
-	public ConsolePane getConsolePane()
-	{
-		return _consolePane;
-	}
-
-	public JTabbedPane getTabs()
-	{
-		return _manTab;
 	}
 
 	public void info(String text)
 	{
-		_consolePane.addLog("[" + Bundle.getString("Info") + "] " + text);
-	}
-
-	public void enableException()
-	{
-		_future = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable()
-		{
-
-			@Override
-			public void run()
-			{
-				_exceptionBtn.setVisible(!_exceptionBtn.isVisible());
-			}
-		}, 1000, 1000);
-	}
-
-	public void disableException()
-	{
-		if (_future != null)
-		{
-			_future.cancel(true);
-		}
-
-		_exceptionBtn.setVisible(false);
+		_log.info(text);
 	}
 
 	public void warn(String text)
@@ -272,27 +266,12 @@ public class MainForm extends JRibbonFrame
 
 	public void warn(String text, Throwable e)
 	{
-		if(e != null)
-		{
-			_consolePane.addLog("[" +  Bundle.getString("Error") +"] " + text + e);
-		}
-		else
-		{
-			_consolePane.addLog("[" +  Bundle.getString("Error") +"] "  + text);
-		}
-
-		if (e != null)
-		{
-			e.printStackTrace();
-
-			enableException();
-			ExceptionDialog.getInstance().addException(e);			
-		}
+		_log.info(text, e);
 	}
 
 	public ViewTabbedPane getViewTabbedPane()
 	{
-		return _viewPane;
+		return _sessionTabbedPane;
 	}
 
 	public void updateTitle()
@@ -301,17 +280,17 @@ public class MainForm extends JRibbonFrame
 
 		if (prof != null)
 		{
-			setTitle(String.format("%s - [%s]", Jn.CURRENT, prof.getName()));
+			setTitle(String.format("%s - [%s]", Version.CURRENT, prof.getName()));
 		}
 		else
 		{
-			setTitle(Jn.CURRENT.toString());
+			setTitle(Version.CURRENT.toString());
 		}
 	}
 
 	public JProgressBar getProgressBar()
 	{
-		return _progressBar1;
+		return _readerProgress;
 	}
 
 	public void updateVisible()
@@ -319,6 +298,11 @@ public class MainForm extends JRibbonFrame
 		AWTUtilities.setWindowOpacity(this, RValues.MAIN_VISIBLE.asFloat());
 	}
 
+
+	private void createUIComponents()
+	{
+		_sessionTabbedPane = new ViewTabbedPane();
+	}
 
 	/**
 	 * Method generated by IntelliJ IDEA GUI Designer
@@ -330,37 +314,32 @@ public class MainForm extends JRibbonFrame
 	private void $$$setupUI$$$()
 	{
 		_panel1 = new JPanel();
-		_panel1.setLayout(new FormLayout("fill:d:grow", "center:394px:grow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
-		_manTab = new JTabbedPane();
-		_manTab.setRequestFocusEnabled(true);
-		_manTab.setTabLayoutPolicy(1);
-		_manTab.setTabPlacement(3);
-		CellConstraints cc = new CellConstraints();
-		_panel1.add(_manTab, new CellConstraints(1, 1, 1, 1, CellConstraints.DEFAULT, CellConstraints.FILL, new Insets(5, 5, 5, 5)));
+		_panel1.setLayout(new FormLayout("fill:d:grow", "center:d:grow,top:4dlu:noGrow,center:max(d;4px):noGrow"));
 		final JToolBar toolBar1 = new JToolBar();
 		toolBar1.setEnabled(true);
 		toolBar1.setFloatable(false);
 		toolBar1.setMargin(new Insets(2, 2, 2, 2));
+		CellConstraints cc = new CellConstraints();
 		_panel1.add(toolBar1, cc.xy(1, 3, CellConstraints.FILL, CellConstraints.DEFAULT));
-		_exceptionBtn = new JButton();
-		_exceptionBtn.setBorderPainted(false);
-		_exceptionBtn.setFocusPainted(false);
-		_exceptionBtn.setHorizontalTextPosition(0);
-		_exceptionBtn.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/nimg/error.png")));
-		_exceptionBtn.setText("");
-		_exceptionBtn.setVisible(false);
-		toolBar1.add(_exceptionBtn);
+		_consoleBtn = new JButton();
+		_consoleBtn.setBorderPainted(false);
+		_consoleBtn.setFocusPainted(false);
+		_consoleBtn.setHorizontalTextPosition(0);
+		_consoleBtn.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/images/file.png")));
+		_consoleBtn.setText("");
+		_consoleBtn.setVisible(true);
+		toolBar1.add(_consoleBtn);
 		final Spacer spacer1 = new Spacer();
 		toolBar1.add(spacer1);
-		_progressBar1 = new JProgressBar();
-		_progressBar1.setEnabled(true);
-		_progressBar1.setMaximumSize(new Dimension(200, 20));
-		_progressBar1.setMinimumSize(new Dimension(200, 20));
-		_progressBar1.setPreferredSize(new Dimension(200, 20));
-		_progressBar1.setStringPainted(true);
-		_progressBar1.setVerifyInputWhenFocusTarget(true);
-		_progressBar1.setVisible(false);
-		toolBar1.add(_progressBar1);
+		_readerProgress = new JProgressBar();
+		_readerProgress.setEnabled(true);
+		_readerProgress.setMaximumSize(new Dimension(200, 20));
+		_readerProgress.setMinimumSize(new Dimension(200, 20));
+		_readerProgress.setPreferredSize(new Dimension(200, 20));
+		_readerProgress.setStringPainted(true);
+		_readerProgress.setVerifyInputWhenFocusTarget(true);
+		_readerProgress.setVisible(false);
+		toolBar1.add(_readerProgress);
 		final Spacer spacer2 = new Spacer();
 		toolBar1.add(spacer2);
 		_memoryBar = new JProgressBar();
@@ -379,6 +358,8 @@ public class MainForm extends JRibbonFrame
 		_gcButton.setRolloverEnabled(true);
 		_gcButton.setText("");
 		toolBar1.add(_gcButton);
+		_sessionTabbedPane = new ViewTabbedPane();
+		_panel1.add(_sessionTabbedPane.$$$getRootComponent$$$(), cc.xy(1, 1, CellConstraints.DEFAULT, CellConstraints.FILL));
 	}
 
 	/**

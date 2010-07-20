@@ -77,7 +77,7 @@ public class AddAfterMenu extends JMenu
 					pC.addPartAfter(p, part.getModelPart());
 
 					form.setPacket(new DecryptPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
-					form.getPane().getPacketTableModel().updatePacket(form.getRow(), form.getPacket());
+					form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
 					form.updateCurrentPacket();
 				}

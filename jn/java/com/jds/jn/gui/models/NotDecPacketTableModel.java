@@ -95,7 +95,8 @@ public class NotDecPacketTableModel extends AbstractTableModel
 
 		SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss SSSS");
 
-		Object[] temp = {
+		Object[] temp =
+		{
 				new JLabel(icon),
 				time.format(new Date()),
 				String.valueOf(packet.getBuffer().limit()),
@@ -103,8 +104,6 @@ public class NotDecPacketTableModel extends AbstractTableModel
 		};
 
 		_currentTable.add(temp);
-
-		_pane.getNotDecPacketListPane().getPacketTable().updateUI();
 	}
 
 	public NotDecryptPacket getPacket(int index)

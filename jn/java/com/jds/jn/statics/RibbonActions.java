@@ -27,42 +27,6 @@ import org.jvnet.flamingo.ribbon.resize.CoreRibbonResizePolicies;
  */
 public abstract class RibbonActions
 {
-	public static JRibbonBand view()
-	{
-		JRibbonBand viewBand = new JRibbonBand(Bundle.getString("Tabs"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 8, 8));
-		viewBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(viewBand));
-
-		final JCheckBox box = new JCheckBox(Bundle.getString("Console"));
-		box.setSelected(true);
-		box.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				JActionListener.handle(JActionEvent.CONSOLE_TAB, box);
-			}
-		});
-
-		JRibbonComponent c = new JRibbonComponent(box);
-		viewBand.addRibbonComponent(c);
-
-		final JCheckBox bb2 = new JCheckBox(Bundle.getString("View2"));
-		bb2.setSelected(true);
-		bb2.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				JActionListener.handle(JActionEvent.VIEW_TAB, bb2);
-			}
-		});
-
-		c = new JRibbonComponent(bb2);
-		viewBand.addRibbonComponent(c);
-
-		return viewBand;
-	}
-
 	public static JRibbonBand settings()
 	{
 		JRibbonBand animationBand = new JRibbonBand(Bundle.getString("Settings"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 50, 50));

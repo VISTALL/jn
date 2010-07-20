@@ -6,7 +6,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
@@ -124,7 +124,9 @@ public class SearchPane extends JPanel
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-				_pane.getPacketListPane().getSearchItem().setEnabled(!_findText.getText().trim().equals(""));
+				/*
+				TODO _pane.getPacketListPane().getSearchItem().setEnabled(!_findText.getText().trim().equals(""));
+				*/
 				_searchBtn.setEnabled(!_findText.getText().trim().equals(""));
 			}
 		});
@@ -248,7 +250,7 @@ public class SearchPane extends JPanel
 				return;
 			}
 
-			if (_pane.getPacketTableModel().searchPacket(findPacket))
+			if (_pane.getDecryptPacketTableModel().searchPacket(findPacket))
 			{
 				found();
 			}
@@ -337,7 +339,7 @@ public class SearchPane extends JPanel
 
 		ListenerType type = session.getListenerType();
 		NetworkProfilePart part = profile.getPart(type);
-		ArrayList<DecryptPacket> packets = session.getDecryptPackets();
+		List<DecryptPacket> packets = session.getDecryptPackets();
 
 		if (packets == null)
 		{

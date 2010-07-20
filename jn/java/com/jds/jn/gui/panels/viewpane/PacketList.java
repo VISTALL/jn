@@ -22,22 +22,21 @@ public class PacketList extends JPanel
 {
 	private JPanel root;
 	public boolean IS_HIDE = false;
-	protected NotDecPacketListPane _notdec_packetListPane;
-	protected DecPacketListPane _Dec_packetListPane;
+	protected NotDecPacketListPane _notDecPacketListPane;
+	protected DecPacketListPane _decPacketListPane;
 	protected ViewPane _pane;
 
-	JRadioButton radio1;
-	JRadioButton radio2;
-	JPopupMenu popup;
+	private JRadioButton radio1;
+	private JRadioButton radio2;
+	private JPopupMenu popup;
 
 	public PacketList(ViewPane pane)
 	{
 		_pane = pane;
 		$$$setupUI$$$();
-		_notdec_packetListPane = new NotDecPacketListPane(_pane);
-		_Dec_packetListPane = new DecPacketListPane(_pane);
 
-		//add(_notdec_packetListPane);
+		_notDecPacketListPane = new NotDecPacketListPane(_pane);
+		_decPacketListPane = new DecPacketListPane(_pane);
 
 		popup = new JPopupMenu();
 
@@ -49,8 +48,8 @@ public class PacketList extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				PacketList.this.remove(_notdec_packetListPane);
-				add(_Dec_packetListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+				PacketList.this.remove(_notDecPacketListPane);
+				add(_decPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 				updateUI();
 			}
 		});
@@ -61,8 +60,8 @@ public class PacketList extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				PacketList.this.remove(_Dec_packetListPane);
-				add(_notdec_packetListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+				PacketList.this.remove(_decPacketListPane);
+				add(_notDecPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 				updateUI();
 			}
 		});
@@ -125,20 +124,20 @@ public class PacketList extends JPanel
 	@Override
 	public void setEnabled(boolean b)
 	{
-		_Dec_packetListPane.setEnabled(b);
-		_notdec_packetListPane.setEnabled(b);
+		_decPacketListPane.setEnabled(b);
+		_notDecPacketListPane.setEnabled(b);
 
 		super.setEnabled(b);
 	}
 
 	public DecPacketListPane get_packetListPane()
 	{
-		return _Dec_packetListPane;//_Dec_packetListPane;
+		return _decPacketListPane;
 	}
 
 	public NotDecPacketListPane getNotDecPacketListPane()
 	{
-		return _notdec_packetListPane;//_notdec_packetListPane;
+		return _notDecPacketListPane;
 	}
 
 	private void createUIComponents()

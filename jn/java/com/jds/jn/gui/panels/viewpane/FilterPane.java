@@ -39,7 +39,6 @@ public class FilterPane extends JPanel
 	{
 		_pane = pa;
 		$$$setupUI$$$();
-		setPackets();
 
 		packetList.addListSelectionListener(new ListSelectionListener()
 		{
@@ -96,7 +95,7 @@ public class FilterPane extends JPanel
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 	}
 
-	public void setPackets()
+	public void drawThis()
 	{
 		if (_pane == null)
 		{

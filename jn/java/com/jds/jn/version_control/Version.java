@@ -13,6 +13,7 @@ public class Version
 	public static final byte STABLE = 3;
 
 	public static final Version UNKNOWN = new Version(Programs.UNKNOWN, 0, 0, ALPHA, 0);
+	public static final Version CURRENT = new Version(Programs.JN, 2, 0, ALPHA, 1);
 
 	private final Programs _program;
 	private final int _major;
@@ -35,7 +36,7 @@ public class Version
 		if(_program == Programs.UNKNOWN)
 			return _program.getName();
 		else
-			return _program.getName() + _major + "." + _minor + " " + getTypeAsString();
+			return _program.getName() + " " + _major + "." + _minor + " " + getTypeAsString();
 	}
 
 	public String getTypeAsString()

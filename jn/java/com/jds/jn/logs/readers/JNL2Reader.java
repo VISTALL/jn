@@ -2,11 +2,8 @@ package com.jds.jn.logs.readers;
 
 import java.io.IOException;
 
-import com.jds.jn.Jn;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.*;
-import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
 import com.jds.jn.version_control.Programs;
 import com.jds.jn.version_control.Version;
@@ -46,20 +43,13 @@ public class JNL2Reader extends AbstractReader
 		long sessionId = readQ();
 		_isDecode = readBoolC();
 
-		Protocol protocol = ProtocolManager.getInstance().getProtocol(list);
-		if(protocol == null)
-		{
-			Jn.getForm().warn("Not find protocol for type: " + type);
-			throw new IllegalArgumentException("Not find protocol");
-		}
-
-		_session = new Session(list, sessionId, protocol, true);
+		_session = new Session(list, sessionId);
 		_session.setVersion(v);
 		return true;
 	}
 
 	@Override
-	public boolean parsePackets() throws IOException
+	public void parsePackets() throws IOException
 	{
 		int size = readD();
 		PacketType[] values = PacketType.values();
@@ -83,7 +73,6 @@ public class JNL2Reader extends AbstractReader
 				_session.receiveQuitPacket(packet);
 			}
 		}
-		return true;
 	}
 
 	@Override

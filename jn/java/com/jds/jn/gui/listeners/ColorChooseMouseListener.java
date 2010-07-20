@@ -7,7 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import com.jds.jn.config.RValues;
-import com.jds.jn.util.TColor;
+import com.jds.swing.JColor;
 
 /**
  * Author: VISTALL
@@ -32,12 +32,12 @@ public class ColorChooseMouseListener extends MouseAdapter
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		TColor color = _value.asTColor();
+		JColor color = _value.asTColor();
 		Color c = JColorChooser.showDialog(_component, _title, color);
 
 		if (c != null)
 		{
-			_value.setVal(new TColor(c));
+			_value.setVal(new JColor(c));
 			_panel.setBackground(c);
 		}
 	}

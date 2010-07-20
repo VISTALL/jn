@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <property name="UseTray" val="false"/>
-    <property name="LastFolder" val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\"/>
+    <property name="LastFolder" val="C:\Users\VISTALL\Desktop\"/>
     <property name="ActiveProfile" val="Freya 214"/>
     <property name="MainVisible" val="1.0"/>
     <property name="ActiveType" val="JPCAP"/>
@@ -16,6 +16,7 @@
     <file val="C:\Users\VISTALL\Desktop\session-2609334.jnl"/>
     <file val="C:\Users\VISTALL\Desktop\Correct.jnl"/>
     <file val="C:\Users\VISTALL\Desktop\test.jnl2"/>
+    <file val="C:\Users\VISTALL\Desktop\live445272135.psl"/>
     <profile name="Freya 214" type="JPCAP">
         <part DeviceId="0" DevicePort="2106" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0" Protocol="ABP Auth"

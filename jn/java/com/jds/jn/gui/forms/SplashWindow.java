@@ -1,11 +1,12 @@
 package com.jds.jn.gui.forms;
 
-import com.jds.swing.JPicturePanel;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
 import java.awt.*;
 import java.io.IOException;
+
+import com.jds.swing.JPicturePanel;
 
 /**
  * Author: VISTALL
@@ -16,7 +17,6 @@ import java.io.IOException;
 public class SplashWindow extends JWindow
 {
 	private static SplashWindow _splash;
-	private JProgressBar _progressBar;
 
 	public static void showSplash()
 	{
@@ -50,13 +50,10 @@ public class SplashWindow extends JWindow
 	private void initComponents()
 	{
 		JPanel mainPanel = new JPanel(new BorderLayout(0, 0));
-		_progressBar = new JProgressBar();
-		_progressBar.setIndeterminate(true);
-		mainPanel.add(_progressBar, BorderLayout.SOUTH);
 		JPicturePanel pp = new JPicturePanel();
 		try
 		{
-			pp.setImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/images/logo.png")));
+			pp.setImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/Fire.png")));
 		}
 		catch (IOException e)
 		{
@@ -65,10 +62,5 @@ public class SplashWindow extends JWindow
 		pp.setPreferredSize(pp.getImageSize());
 		mainPanel.add(pp, BorderLayout.CENTER);
 		setContentPane(mainPanel);
-	}
-
-	public JProgressBar getProgressBar()
-	{
-		return _progressBar;
 	}
 }

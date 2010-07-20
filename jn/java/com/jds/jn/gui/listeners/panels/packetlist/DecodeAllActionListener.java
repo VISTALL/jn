@@ -50,9 +50,9 @@ public class DecodeAllActionListener implements ActionListener
 				List<NotDecryptPacket> packetList = session.getNotDecryptPackets();
 
 				final DecPacketListPane pane = _pane.getViewPane().getPacketListPane();
-				DecPacketTableModel model = _pane.getViewPane().getPacketTableModel();
+				DecPacketTableModel model = _pane.getViewPane().getDecryptPacketTableModel();
 
-				_pane.getViewPane().actionEnalble(false);
+				_pane.getViewPane().actionEnable(false);
 
 				Jn.getForm().getProgressBar().setVisible(true);
 				Jn.getForm().getProgressBar().setValue(0);
@@ -97,7 +97,7 @@ public class DecodeAllActionListener implements ActionListener
 				Jn.getForm().getProgressBar().setVisible(false);
 				Jn.getForm().getProgressBar().setValue(0);
 
-				_pane.getViewPane().actionEnalble(true);
+				_pane.getViewPane().actionEnable(true);
 
 				_pane.getViewPane().updateInfo(session);
 

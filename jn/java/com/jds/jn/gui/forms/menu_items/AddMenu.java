@@ -69,7 +69,7 @@ public class AddMenu extends JMenu
 							pC.addPart(p);
 
 							form.setPacket(new DecryptPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
-							form.getPane().getPacketTableModel().updatePacket(form.getRow(), form.getPacket());
+							form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
 							form.updateCurrentPacket();
 						}
@@ -92,7 +92,7 @@ public class AddMenu extends JMenu
 							block.addPart(p);
 
 							form.setPacket(new DecryptPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
-							form.getPane().getPacketTableModel().updatePacket(form.getRow(), form.getPacket());
+							form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
 							form.updateCurrentPacket();
 						}

@@ -1,13 +1,14 @@
 package com.jds.jn.logs.readers;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.*;
-import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.session.Session;
+import com.jds.jn.version_control.Programs;
 import com.jds.jn.version_control.Version;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -16,10 +17,12 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date: 23.09.2009
  * Time: 21:47:47
- * TODO убрать старую поддержку
+ * FIX ME больше не используется
  */
 public class JNLReader extends AbstractReader
 {
+	private static final Logger _log = Logger.getLogger(JNLReader.class);
+
 	private int _size;
 	private boolean _isDecode = false;
 
@@ -57,16 +60,8 @@ public class JNLReader extends AbstractReader
 			}
 
 			_size = _buffer.getInt();
-
-			Protocol protocol = ProtocolManager.getInstance().getProtocol(type);
-			if(protocol == null)
-			{
-				Jn.getForm().warn("Not find protocol for type: " + type);
-				throw new IllegalArgumentException("Not find protocol");
-			}
-
-			_session = new Session(type, sessionId, ProtocolManager.getInstance().getProtocol(type), true);
-			_session.setVersion(Version.UNKNOWN);
+			_session = new Session(type, sessionId);
+			_session.setVersion(new Version(Programs.JN, 1, 0, Version.ALPHA, 1));
 			return true;
 		}
 		catch (Exception e)
@@ -77,7 +72,7 @@ public class JNLReader extends AbstractReader
 	}
 
 	@Override
-	public boolean parsePackets() throws IOException
+	public void parsePackets() throws IOException
 	{
 		try
 		{
@@ -96,11 +91,11 @@ public class JNLReader extends AbstractReader
 						_session.receiveQuitPacket(packet);
 
 						int p = (int) ((100D * (i + 1)) / _size);
-						Jn.getForm().getProgressBar().setValue(p);
+						MainForm.getInstance().getProgressBar().setValue(p);
 					}
 					catch (Exception e)
 					{
-						e.printStackTrace();
+						_log.info("Exception: " + e, e);
 					}
 				}
 			}
@@ -119,22 +114,18 @@ public class JNLReader extends AbstractReader
 						_session.receiveQuitPacket(dp);
 
 						int p = (int) ((100D * (i + 1)) / _size);
-						Jn.getForm().getProgressBar().setValue(p);
+						MainForm.getInstance().getProgressBar().setValue(p);
 					}
 					catch (Exception e)
 					{
-						e.printStackTrace();
+						_log.info("Exception: " + e, e);
 					}
 				}
 			}
-
-			_session.updateUI();
-			return true;
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
-			return false;
+			_log.info("Exception: " + e, e);
 		}
 	}
 

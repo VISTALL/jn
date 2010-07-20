@@ -1,6 +1,5 @@
 package com.jds.jn.session;
 
-import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.methods.jpcap.Sequenced;
 import com.jds.jn.network.methods.jpcap.buffers.IPacketBuffer;
@@ -23,11 +22,6 @@ public class CaptorSession extends Session
 	public CaptorSession(IMethod iMethod, Protocol protocol)
 	{
 		super(iMethod, protocol);
-	}
-
-	public CaptorSession(ListenerType type, long sessionId, Protocol protocol, boolean b)
-	{
-		super(type, sessionId, protocol, b);
 	}
 
 	public IPacketBuffer getServerbuf()

@@ -88,7 +88,7 @@ public class PacketForm extends JFrame
 
 				setPacket(new DecryptPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
 
-				getPane().getPacketTableModel().updatePacket(getRow(), getPacket());
+				getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
 
 				updateCurrentPacket();
 			}
@@ -140,7 +140,7 @@ public class PacketForm extends JFrame
 				pC.replace(part.getModelPart(), p);
 
 				setPacket(new DecryptPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
-				getPane().getPacketTableModel().updatePacket(getRow(), getPacket());
+				getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
 
 				updateCurrentPacket();
 			}
@@ -345,7 +345,7 @@ public class PacketForm extends JFrame
 
 	public void updateCurrentPacket()
 	{
-		String name = (String) getPane().getPacketTableModel().getValueAt(_row, 4);
+		String name = (String) getPane().getDecryptPacketTableModel().getValueAt(_row, 4);
 
 		if (name == null)
 		{

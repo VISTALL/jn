@@ -1,6 +1,6 @@
 package com.jds.jn.config.properties;
 
-import com.jds.jn.util.TColor;
+import com.jds.swing.JColor;
 
 /**
  * Author: VISTALL
@@ -53,9 +53,9 @@ public class ObjectParse
 			return String.valueOf(val);
 		}
 
-		if(clazz.isAssignableFrom(TColor.class))
+		if(clazz.isAssignableFrom(JColor.class))
 		{
-			return new TColor(TColor.decode(val));
+			return new JColor(JColor.decode(val));
 		}
 
 		if (clazz.isEnum())

@@ -1,12 +1,13 @@
 package com.jds.jn.statics;
 
+import javax.swing.*;
+
+import java.awt.*;
+import java.util.HashMap;
+
 import com.jds.jn.parser.PartType;
 import org.jvnet.flamingo.common.icon.ImageWrapperResizableIcon;
 import org.jvnet.flamingo.common.icon.ResizableIcon;
-
-import javax.swing.*;
-import java.awt.*;
-import java.util.HashMap;
 
 /**
  * Author: VISTALL
@@ -37,7 +38,6 @@ public class ImageStatic
 	public static final ImageIcon ICON_EDIT = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/runToCursor.png"));
 	public static final ImageIcon ICON_CHANGE = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/change.png"));
 	public static final ImageIcon ICON_PACKET = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/packet.png"));
-	public static final ImageIcon LOGO = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/logo.png"));
 	public static final ImageIcon WARNING = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/warning.png"));
 	public static final ImageIcon PART_ID = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/id.png"));
 

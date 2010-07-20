@@ -9,7 +9,8 @@ public enum Programs
 {
 	UNKNOWN("Unknown"),
 	JN("Jn"),
-	JN_MODULE("Jn Module");
+	JN_MODULE("Jn Module"),
+	PACKET_SAMURAI("Packet Samurai");
 	
 	private final String _name;
 

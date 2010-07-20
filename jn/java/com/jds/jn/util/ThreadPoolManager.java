@@ -12,7 +12,7 @@ public class ThreadPoolManager
 {
 	private static ThreadPoolManager _instance;
 
-	private ScheduledThreadPoolExecutor _shedulePool;
+	private ScheduledThreadPoolExecutor _pool;
 
 	public static ThreadPoolManager getInstance()
 	{
@@ -25,12 +25,12 @@ public class ThreadPoolManager
 
 	ThreadPoolManager()
 	{
-		_shedulePool = new ScheduledThreadPoolExecutor(3, new PriorityThreadFactory("Shedule", Thread.MIN_PRIORITY));
+		_pool = new ScheduledThreadPoolExecutor(3, new PriorityThreadFactory("Shedule", Thread.MIN_PRIORITY));
 	}
 
 	public void execute(Runnable r)
 	{
-		_shedulePool.execute(r);
+		_pool.execute(r);
 	}
 
 	public ScheduledFuture scheduleAtFixedRate(Runnable r, long initial, long delay)
@@ -45,7 +45,7 @@ public class ThreadPoolManager
 			{
 				initial = 0;
 			}
-			return _shedulePool.scheduleAtFixedRate(r, initial, delay, TimeUnit.MILLISECONDS);
+			return _pool.scheduleAtFixedRate(r, initial, delay, TimeUnit.MILLISECONDS);
 		}
 		catch (RejectedExecutionException e)
 		{

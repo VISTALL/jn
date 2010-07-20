@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.jds.jn.gui.forms.MainForm">
   <grid id="27dc6" binding="_panel1" default-binding="true" layout-manager="FormLayout">
-    <rowspec value="center:394px:grow"/>
+    <rowspec value="center:d:grow"/>
     <rowspec value="top:4dlu:noGrow"/>
     <rowspec value="center:max(d;4px):noGrow"/>
     <colspec value="fill:d:grow"/>
@@ -11,21 +11,6 @@
     <properties/>
     <border type="none"/>
     <children>
-      <tabbedpane id="a6251" binding="_manTab">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="200" height="200"/>
-          </grid>
-          <forms top="5" left="5" bottom="5" right="5" defaultalign-vert="false"/>
-        </constraints>
-        <properties>
-          <requestFocusEnabled value="true"/>
-          <tabLayoutPolicy value="1"/>
-          <tabPlacement value="3"/>
-        </properties>
-        <border type="none"/>
-        <children/>
-      </tabbedpane>
       <toolbar id="117eb">
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
@@ -40,21 +25,21 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="8caf6" class="javax.swing.JButton" binding="_exceptionBtn">
+          <component id="8caf6" class="javax.swing.JButton" binding="_consoleBtn">
             <constraints/>
             <properties>
               <borderPainted value="false"/>
               <focusPainted value="false"/>
               <horizontalTextPosition value="0"/>
-              <icon value="com/jds/jn/resources/nimg/error.png"/>
+              <icon value="com/jds/jn/resources/images/file.png"/>
               <text value=""/>
-              <visible value="false"/>
+              <visible value="true"/>
             </properties>
           </component>
           <hspacer id="9cc3f">
             <constraints/>
           </hspacer>
-          <component id="9948d" class="javax.swing.JProgressBar" binding="_progressBar1" default-binding="true">
+          <component id="9948d" class="javax.swing.JProgressBar" binding="_readerProgress">
             <constraints/>
             <properties>
               <enabled value="true"/>
@@ -93,6 +78,12 @@
           </component>
         </children>
       </toolbar>
+      <nested-form id="da5d4" form-file="com/jds/jn/gui/panels/ViewTabbedPane.form" binding="_sessionTabbedPane">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="0" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <forms defaultalign-vert="false"/>
+        </constraints>
+      </nested-form>
     </children>
   </grid>
 </form>

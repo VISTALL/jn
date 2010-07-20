@@ -2,17 +2,16 @@ package com.jds.jn.gui;
 
 import javolution.util.FastMap;
 
-import javax.swing.*;
-
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.jds.jn.Jn;
 import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.dialogs.*;
-import com.jds.jn.gui.panels.ConsolePane;
-import com.jds.jn.gui.panels.ViewTabbedPane;
+import com.jds.jn.gui.forms.ConsoleForm;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.logs.Writer;
 import com.jds.jn.network.listener.ListenerSystem;
@@ -32,7 +31,7 @@ import org.jvnet.flamingo.common.JCommandButton;
  */
 public class JActionListener
 {
-	private static final FastMap<ListenerType, FastMap<ReceiveType, Boolean>> _status = new FastMap<ListenerType, FastMap<ReceiveType, Boolean>>();
+	private static final Map<ListenerType, FastMap<ReceiveType, Boolean>> _status = new HashMap<ListenerType, FastMap<ReceiveType, Boolean>>();
 
 	static
 	{
@@ -104,37 +103,11 @@ public class JActionListener
 				}
 
 				break;
-			case CONSOLE_TAB:
-				ConsolePane pane = Jn.getForm().getConsolePane();
-				JTabbedPane tabs = Jn.getForm().getTabs();
-				JCheckBox cbox = (JCheckBox) sender;
-				if (!cbox.isSelected())
-				{
-					tabs.remove(pane);
-				}
-				else
-				{
-					tabs.addTab("Console", pane);
-				}
-				break;
-			case VIEW_TAB:
-				ViewTabbedPane p2 = Jn.getForm().getViewTabbedPane();
-				JTabbedPane t2 = Jn.getForm().getTabs();
-				JCheckBox b2 = (JCheckBox) sender;
-				if (!b2.isSelected())
-				{
-					t2.remove(p2);
-				}
-				else
-				{
-					t2.addTab("View", p2);
-				}
-				break;
 			case GC:
 				System.gc();
 				break;
 			case PROGRAM_SETTINGS:
-				SwingUtilities.invokeLater(new Runnable()
+				ThreadPoolManager.getInstance().execute(new Runnable()
 				{
 					@Override
 					public void run()
@@ -145,7 +118,7 @@ public class JActionListener
 				});
 				break;
 			case NETWORK_SETTINGS:
-				SwingUtilities.invokeLater(new Runnable()
+				ThreadPoolManager.getInstance().execute(new Runnable()
 				{
 					@Override
 					public void run()
@@ -156,7 +129,7 @@ public class JActionListener
 				});
 				break;
 			case HIDE_SHOW:
-				SwingUtilities.invokeLater(new Runnable()
+				ThreadPoolManager.getInstance().execute(new Runnable()
 				{
 					@Override
 					public void run()
@@ -165,13 +138,13 @@ public class JActionListener
 					}
 				});
 				break;
-			case EXCEPTION_WINDOW:
-				SwingUtilities.invokeLater(new Runnable()
+			case CONSOLE_WINDOW:
+				ThreadPoolManager.getInstance().execute(new Runnable()
 				{
 					@Override
 					public void run()
 					{
-						ExceptionDialog.getInstance().setVisible(true);
+						ConsoleForm.getInstance().setVisible(true);
 					}
 				});
 				break;
