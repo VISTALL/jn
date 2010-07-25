@@ -1,9 +1,7 @@
 package com.jds.jn.parser.parttypes;
 
 
-import com.jds.jn.parser.PartType;
-import com.jds.jn.parser.datatree.DataTreeNodeContainer;
-import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.formattree.Part;
 
 /**
@@ -19,7 +17,7 @@ public class RawPartType extends PartType
 	@Override
 	public ValuePart getValuePart(DataTreeNodeContainer parent, Part part)
 	{
-		return new ValuePart(parent, part);
+		return new RawValuePart(parent, part);
 	}
 
 	@Override

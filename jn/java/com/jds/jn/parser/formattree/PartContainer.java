@@ -2,7 +2,7 @@ package com.jds.jn.parser.formattree;
 
 import java.util.*;
 
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -65,7 +65,6 @@ public class PartContainer extends Part
 			{
 				return true;
 			}
-
 			if (ipart instanceof SwitchPart)
 			{
 				for (SwitchCaseBlock sCase : ((SwitchPart) ipart).getCases(true))
@@ -298,13 +297,13 @@ public class PartContainer extends Part
 	public void invalidateLength()
 	{
 		_lengthComputed = false;
-		if (!this.isRoot())
+		if (!isRoot())
 		{
 			getParentContainer().invalidateLength();
 		}
-		if (this.getContainingFormat() != null)
+		if (getContainingFormat() != null)
 		{
-			this.getContainingFormat().triggerFormatChanged();
+			getContainingFormat().triggerFormatChanged();
 		}
 	}
 

@@ -1,17 +1,14 @@
 package com.jds.jn.gui.models;
 
 import com.jds.jn.parser.datatree.*;
-import com.jds.jn.parser.formattree.ForPart;
-import com.jds.jn.parser.formattree.SwitchCaseBlock;
+import com.jds.jn.parser.formattree.*;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
 
 public class DataPartNode extends DefaultMutableTreeTableNode
 {
 	private DataTreeNode _node;
-	private int _offset;
-	private int _length;
 
-	public DataPartNode(DataTreeNode node, int offset)
+	public DataPartNode(DataTreeNode node)
 	{
 		super();
 		_node = node;
@@ -21,20 +18,9 @@ public class DataPartNode extends DefaultMutableTreeTableNode
 			int i = 0;
 			for (DataTreeNode n : ((DataTreeNodeContainer) _node).getNodes())
 			{
-				insert(new DataPartNode(n, offset), i++);
-
-				setOffset(offset);
-				setLengtht(_node.getBytesSize() * 3 - 1);
-				offset += n.getBytesSize() * 3;
+				insert(new DataPartNode(n), i++);
 			}
 		}
-		else
-		{
-			setOffset(offset);
-			setLengtht(_node.getBytesSize() * 3 - 1);
-			offset += this.getLength() + 1;
-		}
-
 	}
 
 	@Override
@@ -74,7 +60,16 @@ public class DataPartNode extends DefaultMutableTreeTableNode
 			else if (_node.getModelPart() instanceof ForPart)
 			{
 				ForPart part = (ForPart) _node.getModelPart();
-				return "id " + part.getForId();
+				return "For: " + part.getForId();
+			}
+			else if (_node.getModelPart() instanceof MacroPart)
+			{
+				MacroPart part = (MacroPart) _node.getModelPart();
+				return part.getName() + "; Macro: " + part.getMacroId();
+			}
+			else if (_node instanceof DataForBlock)
+			{
+				return _node.toString();
 			}
 		}
 		return "";
@@ -89,31 +84,11 @@ public class DataPartNode extends DefaultMutableTreeTableNode
 	@Override
 	public boolean isLeaf()
 	{
-		return (_node instanceof ValuePart);
+		return _node instanceof ValuePart;
 	}
 
 	public DataTreeNode getPacketNode()
 	{
 		return _node;
-	}
-
-	private void setOffset(int offset)
-	{
-		_offset = offset;
-	}
-
-	public int getOffset()
-	{
-		return _offset;
-	}
-
-	private void setLengtht(int length)
-	{
-		_length = length;
-	}
-
-	public int getLength()
-	{
-		return _length;
 	}
 }

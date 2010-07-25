@@ -114,8 +114,8 @@ public class L2NpcSpawnListener implements IPacketListener
 
 			for(DataForBlock block : att.getNodes())
 			{
-				int id = ((NumberValuePart)block.getPartByName("id")).getValueAsInt();
-				int value = ((NumberValuePart)block.getPartByName("value")).getValueAsInt();
+				int id = ((VisualValuePart)block.getPartByName("id")).getValueAsInt();
+				int value = ((VisualValuePart)block.getPartByName("value")).getValueAsInt();
 
 				switch (id)
 				{

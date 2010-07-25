@@ -1,6 +1,6 @@
 package part_readers;
 
-import com.jds.jn.parser.datatree.NumberValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.valuereader.ValueReader;
 import org.w3c.dom.Document;
@@ -30,10 +30,10 @@ public class AionItemSlotReader implements ValueReader
 
 	public String read(ValuePart part)
 	{
-		if(!(part instanceof NumberValuePart))
+		if(!(part instanceof VisualValuePart))
 			return "";
 
-		int result = ((NumberValuePart)part).getValueAsInt();
+		int result = ((VisualValuePart)part).getValueAsInt();
 		return "Slot: " + ItemSlots.getById(getMask(result));
 	}
 

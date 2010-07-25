@@ -6,51 +6,49 @@ import com.jds.jn.Jn;
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.parser.datatree.NumberValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.protocol.Protocol;
 
 /**
- * @author -Nemesiss-
+ * Author: VISTALL
+ * Company: J Develop Station
+ * Date: 30.10.2009
+ * Time: 8:09:42
  */
 public class AionGameCrypter implements ProtocolCrypter
 {
 	private Protocol _protocol;
 	private static byte[] staticKey = "nKO/WctQ0AVLbpzfBkS6NevDYT8ourG5CRlmdjyJ72aswx4EPq1UgZhFMXH?3iI9".getBytes();
 
-	byte[] clientPacketkey;
-	byte[] serverPacketkey;
+	private byte[] clientPacketkey;
+	private byte[] serverPacketkey;
 
-	public final static byte STATIC_CLIENT_KEY = 0x5D;
-	public final static byte STATIC_SERVER_KEY = 0x54;
+	private boolean _enabled;
 
 	public byte[] decrypt(byte[] raw, PacketType dir)
 	{
 		if (dir == PacketType.CLIENT)
 		{
-			if (clientPacketkey == null)
+			if (!_enabled)
 			{
 				return raw;
 			}
+
 			decode(raw, clientPacketkey);
-			decodeClientOpcode(raw);
 		}
 		else
 		{
-			if (clientPacketkey == null)
+			if (!_enabled)
 			{
-				if (!validatePacket(raw, (byte) STATIC_CLIENT_KEY))
-				{
-					//MainForm.getInstance().error("1 Invalid JPacket!!!");
-				}
 				decodeServerOpcode(raw);
-				searchKey(Arrays.copyOf(raw, raw.length), dir);
+				searchKey(raw, dir);
+				_enabled = true;
 			}
-			decode(raw, serverPacketkey);
-			if (!validatePacket(raw, (byte) STATIC_CLIENT_KEY))
+			else
 			{
-				//MainForm.getInstance().error("2 Invalid JPacket!!!");
-			}
-			decodeServerOpcode(raw);
+				decode(raw, serverPacketkey);
+				decodeServerOpcode(raw);
+			}			
 		}
 
 		return raw;
@@ -69,7 +67,7 @@ public class AionGameCrypter implements ProtocolCrypter
 		if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
 		{
 			int key;
-			NumberValuePart part = (NumberValuePart) packet.getRootNode().getPartByName("key");
+			VisualValuePart part = (VisualValuePart) packet.getRootNode().getPartByName("key");
 			if (part == null)
 			{
 				Jn.getForm().warn("Check your protocol there is no part called 'key' which is required in key packet of the GS protocol.");
@@ -129,12 +127,7 @@ public class AionGameCrypter implements ProtocolCrypter
 
 	public void decodeServerOpcode(byte[] raw)
 	{
-		raw[0] = (byte) ((raw[0] ^ 0xFF) + 0x4A); ///(byte) ((op - 0x4A) ^ 0xFF);
-	}
-
-	private void decodeClientOpcode(byte[] raw)
-	{
-		raw[0] = (byte) ((raw[0] + 0x83) ^ 0x3D); //byte) ((op + 0x83) ^ 0x3D); // можно и так ((op +0x03) ^0xBD;
+		raw[0] = (byte) ((raw[0] ^ 0xEE) - 0xAE);
 	}
 
 	public void setProtocol(Protocol protocol)

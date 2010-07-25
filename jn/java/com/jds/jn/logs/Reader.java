@@ -8,10 +8,10 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.readers.*;
 
 /**
@@ -55,7 +55,7 @@ public class Reader
 			chooser.addChoosableFileFilter(new ReaderFileFilter(reader));
 		}
 
-		final int returnVal = chooser.showOpenDialog(Jn.getForm());
+		final int returnVal = chooser.showOpenDialog(MainForm.getInstance());
 
 		if (returnVal == JFileChooser.APPROVE_OPTION)
 		{

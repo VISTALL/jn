@@ -7,6 +7,7 @@ import java.util.*;
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.gui2.MainForm.ribbon.SessionMenu.SessionRibbonTaskGroup;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.packets.DecryptPacket;
@@ -35,32 +36,28 @@ public class Session
 	private final List<NotDecryptPacket> _notDecryptPackets = new ArrayList<NotDecryptPacket>();
 	private final List<DecryptPacket> _decryptPackets = new ArrayList<DecryptPacket>();
 
-	private IMethod _method;
-	private ListenerType _type;
+	private final IMethod _method;
+	private final ListenerType _type;
 
-	private ViewPane _viewPane = new ViewPane(this);
+	// gui
+	private final ViewPane _viewPane = new ViewPane(this);
+	private final SessionRibbonTaskGroup _ribbonGroup = new SessionRibbonTaskGroup(this);
 
 	private final List<IPacketListener> _invokes = new ArrayList<IPacketListener>();
 
-	public Session(IMethod iMethod, Protocol protocol)
+	public Session(IMethod iMethod, long sessionId)
 	{
-		_method = iMethod;
-		_type = iMethod.getListenerType();
-		_sessionId = iMethod.getSessionId();
-
-		if(protocol == null)
-		{
-			_log.info("Not find protocol for type: " + iMethod.getListenerType());
-			throw new IllegalArgumentException("Not find protocol");
-		}
-
-		_protocol = protocol;
-
-		init(true);
+		this(iMethod, iMethod.getListenerType(), sessionId);
 	}
 
 	public Session(ListenerType type, long sessionId)
 	{
+		this(null, type, sessionId);
+	}
+
+	private Session(IMethod method, ListenerType type, long sessionId)
+	{
+		_method = method;
 		_type = type;
 		_sessionId = sessionId;
 
@@ -192,7 +189,7 @@ public class Session
 		fireInvokePacket(packet);
 	}
 
-	public void show()
+	public void onShow()
 	{
 		_viewPane.drawThis();
 
@@ -266,6 +263,11 @@ public class Session
 	public void setVersion(Version version)
 	{
 		_version = version;
+	}
+
+	public SessionRibbonTaskGroup getRibbonGroup()
+	{
+		return _ribbonGroup;
 	}
 }
 

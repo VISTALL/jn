@@ -4,7 +4,6 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.methods.jpcap.Sequenced;
 import com.jds.jn.network.methods.jpcap.buffers.IPacketBuffer;
 import com.jds.jn.network.methods.jpcap.buffers.LittleEndianShortPacketBuffer;
-import com.jds.jn.protocol.Protocol;
 
 /**
  * Author: VISTALL
@@ -19,9 +18,9 @@ public class CaptorSession extends Session
 	private final Sequenced _clientSequenced = new Sequenced();
 	private final Sequenced _serverSequenced = new Sequenced();
 
-	public CaptorSession(IMethod iMethod, Protocol protocol)
+	public CaptorSession(IMethod iMethod, long sessionId)
 	{
-		super(iMethod, protocol);
+		super(iMethod, sessionId);
 	}
 
 	public IPacketBuffer getServerbuf()

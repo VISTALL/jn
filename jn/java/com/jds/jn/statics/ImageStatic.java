@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 

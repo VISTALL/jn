@@ -2,16 +2,17 @@ package com.jds.jn.network.packets;
 
 import java.nio.BufferUnderflowException;
 
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.formattree.*;
 import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
- * @author Gilles Duboscq
- * @rewrite VISTALL - full rewrite
+ * @author Gilles Duboscq   - first version
+ * @author VISTALL - full rewrite
  */
 public class DecryptPacket implements IPacketData
 {
@@ -80,7 +81,12 @@ public class DecryptPacket implements IPacketData
 			catch (BufferUnderflowException e)
 			{
 				_error = "Insuficient data for the specified format";
-				Jn.getForm().warn("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+				MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+			}
+			catch (Exception e)
+			{
+				_error = "Exception: " + e.getMessage();
+				MainForm.getInstance().info("Exception: " + e);
 			}
 		}
 	}
@@ -135,15 +141,15 @@ public class DecryptPacket implements IPacketData
 				ValuePart vp = dataNode.getPacketValuePartById(((ForPart) part).getForId());
 				if (vp == null)
 				{
-					_error = "Error: could not find valuepart to loop on for (For " + part.getName() + " - id:" + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+					_error = "Error: could not find valuepart to loop on for (For " + part.getName() + " - id:" + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
-				if (!(vp instanceof NumberValuePart))
+				if (!(vp instanceof VisualValuePart))
 				{
-					_error = "Error: for id didnt refer to an IntValePart in (For " + part.getName() + " - id:" + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+					_error = "Error: for id didnt refer to an IntValePart in (For " + part.getName() + " - id:" + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
-				int size = ((NumberValuePart) vp).getValueAsInt();
+				int size = ((VisualValuePart) vp).getValueAsInt();
 
 				//check size here
 				if (((ForPart) part).getModelBlock().hasConstantLength())
@@ -151,13 +157,13 @@ public class DecryptPacket implements IPacketData
 					int forBlockSize = ((ForPart) part).getModelBlock().getLength();
 					if (size * forBlockSize > getBuffer().remaining())
 					{
-						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 						return false;
 					}
 				}
 				else if (size > getBuffer().remaining())
 				{
-					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
 				DataForPart forPart = new DataForPart(dataNode, (ForPart) part);
@@ -170,24 +176,49 @@ public class DecryptPacket implements IPacketData
 					}
 				}
 			}
+			else if (part instanceof MacroPart)
+			{
+				MacroInfo macro = _protocol.getMacroInfo(((MacroPart)part).getMacroId());
+				if(macro == null)
+				{
+					_error = "Not find macro by id: " + ((MacroPart)part).getMacroId();
+					return false;
+				}
+
+				if (macro.getModelBlock().hasConstantLength())
+				{
+					int macroSize = macro.getModelBlock().getLength();
+					if (macroSize > getBuffer().remaining())
+					{
+						_error =  "Incorrect buffer to read macro " + part.getName();
+						return false;
+					}
+				}
+
+				DataMacroPart macroPart = new DataMacroPart(dataNode, (MacroPart)part);
+				if (!parse(macro.getModelBlock(), macroPart))
+				{
+					return false;
+				}
+			}
 			else if (part instanceof SwitchPart)
 			{
 				//find the actual type
 				ValuePart vp = dataNode.getPacketValuePartById(((SwitchPart) part).getSwitchId());
 				if (vp == null)
 				{
-					_error = "Error: could not find valuepart to switch on for Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+					_error = "Error: could not find valuepart to switch on for Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
-				if (!(vp instanceof NumberValuePart))
+				if (!(vp instanceof VisualValuePart))
 				{
-					_error = "Error: swicth id didnt refer to an IntValePart in Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+					_error = "Error: swicth id didnt refer to an IntValePart in Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
-				SwitchCaseBlock caseBlockFormat = ((SwitchPart) part).getCase((int) ((NumberValuePart) vp).getValueAsInt());
+				SwitchCaseBlock caseBlockFormat = ((SwitchPart) part).getCase(((VisualValuePart) vp).getValueAsInt());
 				if (caseBlockFormat == null)
 				{
-					_error = "Error: no such case: " + ((NumberValuePart) vp).getValueAsInt() + " for (Switch " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getContainingPacketFormat() + "]";
+					_error = "Error: no such case: " + ((VisualValuePart) vp).getValueAsInt() + " for (Switch " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
 				DataSwitchBlock caseBlock = new DataSwitchBlock(dataNode, caseBlockFormat, vp);
@@ -250,19 +281,6 @@ public class DecryptPacket implements IPacketData
 			_mustUpdate = true;
 			_packetParts = null;
 		}
-
-	}
-
-	public void invalidateForging()
-	{
-		if (this.getMode() != DataPacketMode.FORGING)
-		{
-			throw new IllegalStateException("Can not invalidate forging on a non-forging mode DataPacket");
-		}
-		synchronized (this)
-		{
-			_mustUpdate = true;
-		}
 	}
 
 	public boolean hasError()
@@ -310,17 +328,22 @@ public class DecryptPacket implements IPacketData
 
 	public double getDouble(String s)
 	{
-		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsDouble();
+		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsDouble();
 	}
 
 	public int getInt(String s)
 	{
-		return ((NumberValuePart)getRootNode().getPartByName(s)).getValueAsInt();
+		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsInt();
+	}
+
+	public String getString(String s)
+	{
+		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsString();
 	}
 
 	public byte[] getBytes(String s)
 	{
-		return ((ValuePart)getRootNode().getPartByName(s)).getBytes();
+		return ((RawValuePart)getRootNode().getPartByName(s)).getBytes();
 	}
 
 	public Protocol getProtocol()

@@ -12,9 +12,7 @@ import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.profiles.*;
-import com.jds.jn.parser.PartType;
-import com.jds.jn.parser.datatree.NumberValuePart;
-import com.jds.jn.parser.datatree.StringValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.protocol.Protocol;
@@ -145,7 +143,7 @@ public class SearchPane extends JPanel
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-				_pane.getPacketListPane().getSearchItem().setEnabled(!findT.getText().trim().equals(""));
+				//_pane.getPacketListPane().getSearchItem().setEnabled(!findT.getText().trim().equals(""));
 				_searchBtn.setEnabled(!findT.getText().trim().equals(""));
 			}
 		});
@@ -201,7 +199,9 @@ public class SearchPane extends JPanel
 					return;
 				}
 
-				if ((!_stringPart || operatorSelect.getItemCount() <= 0) && (_currentPart.getType() == PartType.S || _currentPart.getType() == PartType.s))
+				boolean isString = _currentPart.getName().equalsIgnoreCase("s");
+
+				if ((!_stringPart || operatorSelect.getItemCount() <= 0) && isString)
 				{
 					operatorSelect.removeAllItems();
 					_stringPart = true;
@@ -211,7 +211,7 @@ public class SearchPane extends JPanel
 					}
 					operatorSelect.setSelectedIndex(0);
 				}
-				else if ((_stringPart || operatorSelect.getItemCount() <= 0) && !(_currentPart.getType() == PartType.S || _currentPart.getType() == PartType.s))
+				else if ((_stringPart || operatorSelect.getItemCount() <= 0) && !isString)
 				{
 					operatorSelect.removeAllItems();
 					_stringPart = false;
@@ -360,15 +360,16 @@ public class SearchPane extends JPanel
 				{
 					if (_currentPart != null)
 					{
+						boolean isString = _currentPart.getName().equalsIgnoreCase("s");
 						switch (operatorSelect.getSelectedIndex())
 						{
 							case 0: // ==
-								if ((_currentPart.getType() != PartType.S) && (_currentPart.getType() != PartType.s))
+								if (!isString)
 								{
 									try
 									{
 										int value = Integer.decode(findT.getText());
-										int partValue = (int) ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+										int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 										if (value == partValue)
 										{
 											return i;
@@ -381,19 +382,19 @@ public class SearchPane extends JPanel
 								}
 								else
 								{
-									if (((StringValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getStringValue().equalsIgnoreCase(findT.getText()))
+									if (gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
 									{
 										return i;
 									}
 								}
 								break;
 							case 1: // !=
-								if ((_currentPart.getType() != PartType.S) && (_currentPart.getType() != PartType.s))
+								if (!isString)
 								{
 									try
 									{
 										int value = Integer.decode(findT.getText());
-										int partValue = ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+										int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 
 										if (value != partValue)
 										{
@@ -407,7 +408,7 @@ public class SearchPane extends JPanel
 								}
 								else
 								{
-									if (!((StringValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getStringValue().equalsIgnoreCase(findT.getText()))
+									if (!gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
 									{
 										return i;
 									}
@@ -417,7 +418,7 @@ public class SearchPane extends JPanel
 								try
 								{
 									int value = Integer.decode(findT.getText());
-									int partValue = (int) ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if (partValue > value)
 									{
 										return i;
@@ -432,7 +433,7 @@ public class SearchPane extends JPanel
 								try
 								{
 									int value = Integer.decode(findT.getText());
-									int partValue = (int) ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if (partValue >= value)
 									{
 										return i;
@@ -447,7 +448,7 @@ public class SearchPane extends JPanel
 								try
 								{
 									int value = Integer.decode(findT.getText());
-									int partValue = (int) ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if (partValue < value)
 									{
 										return i;
@@ -462,7 +463,7 @@ public class SearchPane extends JPanel
 								try
 								{
 									int value = Integer.decode(findT.getText());
-									int partValue = ((NumberValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+									int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if (partValue <= value)
 									{
 										return i;

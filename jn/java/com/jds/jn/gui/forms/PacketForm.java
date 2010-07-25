@@ -18,11 +18,13 @@ import com.jds.jn.gui.models.PacketViewTableModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.*;
 import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.PartTypeManager;
+import com.jds.jn.parser.Types;
+import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.Util;
@@ -73,7 +75,7 @@ public class PacketForm extends JFrame
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				
+
 				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, Bundle.getString("EnterName"));
 				if (!dialog.showToWrite())
 				{
@@ -111,12 +113,12 @@ public class PacketForm extends JFrame
 					return;
 				}
 
-				if (!(node instanceof ValuePart))
+				if (!(node instanceof RawValuePart))
 				{
 					return;
 				}
 
-				ValuePart part = (ValuePart) node;
+				RawValuePart part = (RawValuePart) node;
 
 				if (!part.getClass().getSimpleName().equals("ValuePart"))
 				{
@@ -229,60 +231,21 @@ public class PacketForm extends JFrame
 		Style regular = doc.addStyle("regular", base);
 		//StyleConstants.setUnderline(regular , true);
 
-		Style s = doc.addStyle("d", regular);
-		StyleConstants.setBackground(s, new Color(72, 164, 255));
 
-		s = doc.addStyle("ud", regular);
-		StyleConstants.setBackground(s, new Color(72, 164, 255));
-
-		s = doc.addStyle("Q", regular);
-		StyleConstants.setBackground(s, new Color(255, 255, 128));
-
-		s = doc.addStyle("h", regular);
-		StyleConstants.setBackground(s, Color.ORANGE);
-
-		s = doc.addStyle("uh", regular);
-		StyleConstants.setBackground(s, new Color(255, 200, 10));
-
-		s = doc.addStyle("bch", regular);
-		StyleConstants.setBackground(s, new Color(189, 148, 6));
-
-		s = doc.addStyle("s", regular);
-		StyleConstants.setBackground(s, new Color(100, 255, 100));
-
-		s = doc.addStyle("S", regular);
-		StyleConstants.setBackground(s, new Color(100, 255, 100));
-
-		s = doc.addStyle("uc", regular);
-		StyleConstants.setBackground(s, Color.MAGENTA);
-
-		s = doc.addStyle("c", regular);
-		StyleConstants.setBackground(s, Color.PINK);
-
-		s = doc.addStyle("SS", regular);
-		StyleConstants.setBackground(s, new Color(100, 255, 100));
-
-		s = doc.addStyle("sS", regular);
-		StyleConstants.setBackground(s, new Color(100, 255, 100));
-
-		s = doc.addStyle("f", regular);
-		StyleConstants.setBackground(s, Color.LIGHT_GRAY);
-
-		s = doc.addStyle("D", regular);
-		StyleConstants.setBackground(s, Color.DARK_GRAY);
-
-		Color bxColor = new Color(100, 50, 50);
-		s = doc.addStyle("b", regular);
-		StyleConstants.setBackground(s, bxColor);
+		Style s = doc.addStyle("b", regular);
+		StyleConstants.setBackground(s, new Color(100, 50, 50));
 
 		s = doc.addStyle("op", regular);
 		StyleConstants.setBackground(s, Color.YELLOW);
 
-		//s = doc.addStyle("selected", regular);
-		//StyleConstants.setBackground(s, Color.BLUE);
-
 		s = doc.addStyle("chk", regular);
 		StyleConstants.setBackground(s, Color.GREEN);
+
+		for (Types t : Types.values())
+		{
+			s = doc.addStyle(t.name(), regular);
+			StyleConstants.setBackground(s, t.getColor());
+		}
 	}
 
 	public void addStyledText(String text, String style)
@@ -349,24 +312,18 @@ public class PacketForm extends JFrame
 
 		if (name == null)
 		{
-			setTitle(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Packet") + ": -");
+			setTitle(Bundle.getString("Packet") + ": -");
 		}
 		else
 		{
-			setTitle(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Packet") + ": " + name);
+			setTitle(Bundle.getString("Packet") + ": " + name);
 		}
 
 		updateHexDump();
 
 		if (getPacket().getPacketFormat() != null && !getPacket().hasError())
 		{
-			/*int opSize = 0;
-			for (PartType pt : getPacket().getPacketFormat().sizeId())
-			{
-				opSize += pt.getTypeByteNumber() * 3;
-			}   */
-
-			DataPartNode root = new DataPartNode(getPacket().getRootNode(), getPacket().getProtocol().getChecksumSize() * 3);
+			DataPartNode root = new DataPartNode(getPacket().getRootNode());
 
 			getPacketViewTableModel().setRoot(root);
 			getPacketStructure().revalidate();
@@ -421,22 +378,21 @@ public class PacketForm extends JFrame
 
 	private void createUIComponents()
 	{
-		setPacketViewTableModel(new PacketViewTableModel(null));
-		setPacketStructure(new JXTreeTable(getPacketViewTableModel()));
-		getPacketStructure().setDefaultRenderer(Object.class, new IconTableRenderer());
-		getPacketStructure().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		getPacketStructure().addMouseListener(new TableMouseListener(getPacketStructure()));
-		getPacketStructure().setTreeCellRenderer(new PacketViewTreeRenderer());
-		//getPacketStructure().getColumn(0).setPreferredWidth(50);
+		_packetViewTableModel = new PacketViewTableModel(null);
+		_packetStructure = new JXTreeTable(_packetViewTableModel);
+		_packetStructure.setDefaultRenderer(Object.class, new IconTableRenderer());
+		_packetStructure.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		_packetStructure.addMouseListener(new TableMouseListener(getPacketStructure()));
+		_packetStructure.setTreeCellRenderer(new PacketViewTreeRenderer());
 
-		getPacketStructure().setOpenIcon(ImageStatic.FOLDER_CLOSE);
-		getPacketStructure().setCollapsedIcon(ImageStatic.CLOSE_ICON);
-		getPacketStructure().setExpandedIcon(ImageStatic.OPEN_ICON);
-		getPacketStructure().setClosedIcon(ImageStatic.FOLDER_OPEN);
+		_packetStructure.setOpenIcon(ImageStatic.FOLDER_CLOSE);
+		_packetStructure.setCollapsedIcon(ImageStatic.CLOSE_ICON);
+		_packetStructure.setExpandedIcon(ImageStatic.OPEN_ICON);
+		_packetStructure.setClosedIcon(ImageStatic.FOLDER_OPEN);
 
 		setPartBox(new JComboBox(IconComboBoxRenderer._types));
 		getPartBox().setRenderer(new IconComboBoxRenderer());
-		getPacketStructure().setEditable(false);
+		_packetStructure.setEditable(false);
 	}
 
 	public DecryptPacket getPacket()
@@ -452,11 +408,6 @@ public class PacketForm extends JFrame
 	public JXTreeTable getPacketStructure()
 	{
 		return _packetStructure;
-	}
-
-	public void setPacketStructure(JXTreeTable packetStructure)
-	{
-		_packetStructure = packetStructure;
 	}
 
 	public ViewPane getPane()
@@ -482,11 +433,6 @@ public class PacketForm extends JFrame
 	public PacketViewTableModel getPacketViewTableModel()
 	{
 		return _packetViewTableModel;
-	}
-
-	public void setPacketViewTableModel(PacketViewTableModel packetViewTableModel)
-	{
-		_packetViewTableModel = packetViewTableModel;
 	}
 
 	public JComboBox getPartBox()

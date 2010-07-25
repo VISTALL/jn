@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.*;
 
-import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.profiles.*;
 
@@ -39,7 +39,7 @@ public class ProtocolManager
 	{
 		if (!_protocolsByName.containsKey(name))
 		{
-			Jn.getForm().warn("Can not find protocol for name " + name);
+			MainForm.getInstance().warn("Can not find protocol for name " + name);
 		}
 
 		return _protocolsByName.get(name);
@@ -78,7 +78,7 @@ public class ProtocolManager
 
 		if (!dir.isDirectory())
 		{
-			Jn.getForm().warn("Invalid Protocols directory (" + _protocolsDir + ")", null);
+			MainForm.getInstance().warn("Invalid Protocols directory (" + _protocolsDir + ")");
 			return;
 		}
 

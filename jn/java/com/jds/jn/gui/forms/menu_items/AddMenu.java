@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import com.jds.jn.gui.dialogs.EnterNameDialog;
 import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;

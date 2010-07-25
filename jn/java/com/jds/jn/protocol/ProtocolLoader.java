@@ -4,6 +4,8 @@ import org.xml.sax.SAXParseException;
 
 import org.w3c.dom.*;
 
+import org.apache.log4j.Logger;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -12,14 +14,13 @@ import java.io.FileInputStream;
 import java.nio.ByteOrder;
 
 import com.jds.jn.Jn;
+import com.jds.jn.classes.CLoader;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.formattree.*;
 import com.jds.jn.parser.packetreader.PacketReader;
 import com.jds.jn.parser.valuereader.ValueReader;
-import com.jds.jn.protocol.protocoltree.PacketFamilly;
-import com.jds.jn.protocol.protocoltree.PacketInfo;
-import com.jds.jn.classes.CLoader;
+import com.jds.jn.protocol.protocoltree.*;
 
 /**
  * Author: VISTALL
@@ -30,6 +31,8 @@ import com.jds.jn.classes.CLoader;
 @SuppressWarnings("unchecked")
 public class ProtocolLoader
 {
+	private static final Logger _log = Logger.getLogger(ProtocolLoader.class);
+
 	public static Protocol restore(File file)
 	{
 		Protocol protocol = null;
@@ -54,7 +57,7 @@ public class ProtocolLoader
 
 			if (!root.getNodeName().equals("protocol"))
 			{
-				Jn.getForm().warn("Error malformed protocol : root node should be called 'protocol'.");
+				_log.info("Error malformed protocol : root node should be called 'protocol'.");
 			}
 			protocol = new Protocol(file.getAbsolutePath());
 
@@ -69,11 +72,6 @@ public class ProtocolLoader
 				protocol.setEncryption("Null");
 			}
 
-			node = attr.getNamedItem("checksumSize");
-			if (node != null)
-			{
-				protocol.setChecksumSize(Integer.parseInt(node.getNodeValue()));
-			}
 
 			node = attr.getNamedItem("name");
 			if (node != null)
@@ -95,7 +93,7 @@ public class ProtocolLoader
 			{
 				if ("packetfamilly".equalsIgnoreCase(n.getNodeName()))
 				{
-					PacketFamilly familly = parseFamilly(protocol, n);
+					PacketFamilly familly = parseFamilly(n);
 
 					if (familly != null)
 					{
@@ -103,21 +101,30 @@ public class ProtocolLoader
 					}
 					else
 					{
-						Jn.getForm().warn("Error packetfamilly returned is null there was an error");
+						_log.info("Error packetfamilly returned is null there was an error");
+					}
+				}
+				else if("macro".equalsIgnoreCase(n.getNodeName()))
+				{
+					NamedNodeMap map = n.getAttributes();
+					String name = map.getNamedItem("id").getNodeValue();
+					MacroInfo part = new MacroInfo(name);
+					if (parseParts(n, part.getModelBlock()))
+					{
+						protocol.addMacro(part);
 					}
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			Jn.getForm().warn("Error while parsing protocol " + file.getName());
-			e.printStackTrace();
+			_log.info("Exception: " + file.getName(), e);
 		}
 
 		return protocol;
 	}
 
-	private static PacketFamilly parseFamilly(Protocol protocol, Node n)
+	private static PacketFamilly parseFamilly(Node n)
 	{
 		NamedNodeMap map = n.getAttributes();
 		PacketType type = null;
@@ -125,7 +132,7 @@ public class ProtocolLoader
 		Node atr = map.getNamedItem("way");
 		if (atr == null)
 		{
-			Jn.getForm().warn("Error, Root packetfamilly don't have 'way'. skipping it");
+			_log.info("Error, Root packetfamilly don't have 'way'. skipping it");
 			return null;
 		}
 		else
@@ -212,7 +219,7 @@ public class ProtocolLoader
 				atr = attrs.getNamedItem("id");
 				if (atr == null)
 				{
-					Jn.getForm().warn("Error, for doesnt have 'id'. skipping packet");
+					_log.info("Error, for doesnt have 'id'. skipping packet");
 					return false;
 				}
 				forId = Integer.parseInt(atr.getNodeValue());
@@ -235,16 +242,42 @@ public class ProtocolLoader
 					return false;
 				}
 			}
+			else if ("macro".equalsIgnoreCase(o.getNodeName()))
+			{
+				attrs = o.getAttributes();
+				atr = attrs.getNamedItem("id");
+				if (atr == null)
+				{
+					_log.info("Error, for doesnt have 'id'. skipping packet");
+					return false;
+				}
+				String id, name;
+				id = atr.getNodeValue();
+
+				atr = attrs.getNamedItem("name");
+				if (atr == null)
+				{
+					name = id;
+				}
+				else
+				{
+					name = atr.getNodeValue();
+				}
+
+				MacroPart part = new MacroPart(id, name);
+				part.setParentContainer(pc);
+				part.setContainingFormat(pc.getContainingFormat());
+				pc.addPart(part);
+			}
 			else if ("switch".equalsIgnoreCase(o.getNodeName()))
 			{
 				attrs = o.getAttributes();
 				int switchId;
 				atr = attrs.getNamedItem("id");
 
-
 				if (atr == null)
 				{
-					Jn.getForm().warn("Error, switch doesnt have 'id'. skipping packet");
+					_log.info("Error, switch doesnt have 'id'. skipping packet");
 					return false;
 				}
 				switchId = Integer.parseInt(atr.getNodeValue());
@@ -261,7 +294,7 @@ public class ProtocolLoader
 						atr = attrs.getNamedItem("id");
 						if (atr == null)
 						{
-							Jn.getForm().warn("Error, case doesnt have 'id'. skipping packet");
+							_log.info("Error, case doesnt have 'id'. skipping packet");
 							return false;
 						}
 

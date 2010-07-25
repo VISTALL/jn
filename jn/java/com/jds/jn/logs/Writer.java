@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.writers.AbstractWriter;
 import com.jds.jn.logs.writers.JNL2Writer;
 import com.jds.jn.session.Session;
@@ -53,7 +53,7 @@ public class Writer
 			c.addChoosableFileFilter(new WriterFileFilter(w));
 		}
 
-		final int r = c.showSaveDialog(Jn.getForm());
+		final int r = c.showSaveDialog(MainForm.getInstance());
 
 		if (r == JFileChooser.APPROVE_OPTION)
 		{
@@ -62,7 +62,7 @@ public class Writer
 				@Override
 				public void run()
 				{
-				 	Session session = Jn.getForm().getViewTabbedPane().getCurrentViewPane().getSession();
+				 	Session session = MainForm.getInstance().getViewTabbedPane().getSelectedComponent().getSession();
 
 					if (session == null)
 					{
@@ -73,7 +73,14 @@ public class Writer
 
 					try
 					{
-						w.write(c.getSelectedFile(), session);
+						if(!c.getSelectedFile().getName().contains(w.getFileExtension()))
+						{
+							w.write(new File(c.getSelectedFile().getAbsolutePath() + "." + w.getFileExtension()), session);
+						}
+						else
+						{
+							w.write(c.getSelectedFile(), session);
+						}
 					}
 					catch (IOException e)
 					{

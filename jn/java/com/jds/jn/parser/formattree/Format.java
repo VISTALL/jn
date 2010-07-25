@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 
 
@@ -14,7 +14,7 @@ import com.jds.jn.protocol.protocoltree.PacketInfo;
  */
 public class Format
 {
-	private final PacketInfo _containingPacketFormat;
+	private final PacketInfo _packetInfo;
 	private final PartContainer _mainBlock;
 	private final List<WeakReference<DecryptPacket>> _formatChangeListeners;
 
@@ -23,7 +23,7 @@ public class Format
 		_formatChangeListeners = new ArrayList<WeakReference<DecryptPacket>>();
 		_mainBlock = new PartContainer(PartType.block, true);
 		_mainBlock.setContainingFormat(this);
-		_containingPacketFormat = container;
+		_packetInfo = container;
 	}
 
 	public PartContainer getMainBlock()
@@ -48,8 +48,8 @@ public class Format
 		_formatChangeListeners.add(new WeakReference<DecryptPacket>(packet));
 	}
 
-	public PacketInfo getContainingPacketFormat()
+	public PacketInfo getPacketInfo()
 	{
-		return _containingPacketFormat;
+		return _packetInfo;
 	}
 }

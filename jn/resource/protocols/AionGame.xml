@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Create by VISTALL-->
+<protocol crypt="AionGame" name="Aion Game Server for client 1.9">
+    <packetfamilly way="SERVER">
+        <packet id="64" name="SM_KEY" key="true">
+			<part name="chk" type="h" />
+            <part name="key" type="d"/>
+        </packet>
+        <packet id="FC" name="SM_VERSION_CHECK">
+            <part name="chk" type="h" />
+            <part name="?" type="c"/>
+            <part name="gameServerId" type="c"/>
+            <part name="?" type="d"/>
+            <part name="?" type="d"/>
+            <part name="?" type="d"/>
+            <part name="?" type="d"/>
+            <part name="?" type="d"/>
+            <part name="?" type="c"/>
+            <part name="serverCountryCode" type="c"/>
+            <part name="?" type="c"/>
+            <part name="serverMode" type="c"/>
+            <part name="serverTime" type="d"/>
+            <part name="?" type="d"/>
+            <part name="?" type="d"/>
+            <part name="?" type="d"/>
+            <part name="ip" type="b" size="4">
+	        	<reader type="IPv4"/>
+	     	</part>
+	      	<part name="port" type="h" />
+        </packet>
+	</packetfamilly>
+    <packetfamilly way="CLIENT">
+        <packet id="F3" name="CM_VERSION_CHECK">
+			<part name="chk" type="h" />
+        </packet>
+        <packet id="FD" name="CM_TIME_CHECK">
+        	<part name="chk" type="h" />
+            <part name="nanoTime/1000000 [?]" type="d"/>
+        </packet>
+	</packetfamilly>
+</protocol>

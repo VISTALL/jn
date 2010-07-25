@@ -3,10 +3,10 @@ package com.jds.jn.network.methods.proxy.handlers;
 import java.io.IOException;
 
 import com.jds.jn.Jn;
-import com.jds.jn.network.listener.PacketReceiver;
 import com.jds.jn.network.methods.proxy.Proxy;
 import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.session.SessionTable;
 import com.jds.nio.NioSession;
 import com.jds.nio.buffer.NioBuffer;
 import com.jds.nio.core.CloseType;
@@ -84,6 +84,11 @@ public class ServerToProxyHandler implements NioHandler
 
 		_proxy.getClientSession().put(buffer);
 
-		PacketReceiver.receive(_proxy, packet);
+		if (SessionTable.getInstance().getSession(_proxy.getSessionId()) == null)
+		{
+			return;
+		}
+
+		SessionTable.getInstance().getSession(_proxy.getSessionId()).receivePacket(packet);
 	}
 }

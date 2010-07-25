@@ -1,11 +1,14 @@
 package crypt;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.Protocol;
+import crypt.helpers.RC4;
 
 /**
  * Author: VISTALL
@@ -15,79 +18,53 @@ import com.jds.jn.protocol.Protocol;
 public class APBAuthCrypter implements ProtocolCrypter
 {
 	private Protocol _protocol;
-	//private Cipher _decrypt;
-	private byte[] _key = null;
+	private RC4 _crypt;
+
+	private boolean _first = true;
 
 	@Override
 	public byte[] decrypt(byte[] raw, PacketType dir)
 	{
-		if (_key == null)
+		if(_crypt == null && _first)
 		{
-			DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
-			if (packet != null && packet.isKey())
+			try
 			{
-				try
+				DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
+				// LS2GC_LOGIN_PIZZLE
+				if(packet != null && packet.getPacketFormat() != null)
 				{
-					//_decrypt = Cipher.getInstance("RC4");
+					MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
 
-					//byte[] data = new byte[16];
-					//System.arraycopy(packet.getBytes("key"), 0, data, 0, 12);
+					byte[] nounce = packet.getBytes("nounce");
+					sha1.update(nounce);
 
-					//SecretKeySpec spec = new SecretKeySpec(data, "ARCFOUR");
+					byte[] hash = sha1.digest();
 
-					//_decrypt.init(Cipher.DECRYPT_MODE, spec);
+					_crypt = new RC4();
+					_crypt.setKey(hash);
+					_first = false;
 				}
-				catch (Exception e)
-				{
-					e.printStackTrace();
-				}
-
-				_key = packet.getBytes("key");
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				e.printStackTrace();
 			}
 		}
-		else
+		else if(_crypt != null)
 		{
-			return encdec(raw, _key);
+			byte[] newdata = new byte[raw.length];
+
+			_crypt.decrypt(raw, 0, newdata, 0, raw.length);
+
+			//_crypt = null;
+
+			return newdata;
 		}
+
 
 		return raw;
 	}
 
-	public static byte[] encdec(byte[] bytes, byte[] key)
-	{
-		byte[] s = new byte[256];
-		byte[] k = new byte[256];
-		byte temp;
-		int i, j;
-
-		for (i = 0; i < 256; i++)
-		{
-			s[i] = (byte) i;
-			k[i] = key[i % key.length];
-		}
-
-		j = 0;
-		for (i = 0; i < 256; i++)
-		{
-			j = (j + s[i] + k[i]) % 256;
-			temp = s[i];
-			s[i] = s[j];
-			s[j] = temp;
-		}
-
-		i = j = 0;
-		for (int x = 0; x < bytes.length; x++)
-		{
-			i = (i + 1) % 256;
-			j = (j + s[i]) % 256;
-			temp = s[i];
-			s[i] = s[j];
-			s[j] = temp;
-			int t = (s[i] + s[j]) % 256;
-			bytes[x] ^= s[t];
-		}
-		return s;
-	}
 
 	@Override
 	public byte[] encrypt(byte[] raw, PacketType dir)

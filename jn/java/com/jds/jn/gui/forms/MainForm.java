@@ -17,7 +17,6 @@ import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.listeners.HideWatcher;
-import com.jds.jn.gui.listeners.WindowsAdapter;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.panels.ViewTabbedPane;
 import com.jds.jn.network.profiles.NetworkProfile;
@@ -64,7 +63,7 @@ public class MainForm extends JRibbonFrame
 
 	private ScheduledFuture<?> _memoryBarTask;
 
-	private RibbonContextualTaskGroup _sessionGroup;
+	//private RibbonContextualTaskGroup _sessionGroup;
 
 	public MainForm() throws Exception
 	{
@@ -86,20 +85,13 @@ public class MainForm extends JRibbonFrame
 		RibbonActions.ribbonMenu(menu);
 		getRibbon().setApplicationMenu(menu);
 
-		RibbonTask f = new RibbonTask(Bundle.getString("Main"), new AbstractRibbonBand[]{
-				RibbonActions.files(),
-				RibbonActions.listeners()
-		});
 
-		getRibbon().addTask(f);
+		getRibbon().addTask(new RibbonTask(Bundle.getString("Main"), RibbonActions.files(), RibbonActions.listeners()));
+		getRibbon().addTask(new RibbonTask(Bundle.getString("Settings"), RibbonActions.settings()));
 
-		RibbonTask s = new RibbonTask(Bundle.getString("Settings"), new AbstractRibbonBand[]{RibbonActions.settings()});
-		getRibbon().addTask(s);
-
-		TabRibbonActions tabs = new TabRibbonActions();
-		_sessionGroup = tabs.getGroup();
-
-		getRibbon().addContextualTaskGroup(_sessionGroup);
+		//TabRibbonActions tabs = new TabRibbonActions();
+		//_sessionGroup = tabs.getGroup();
+		//getRibbon().addContextualTaskGroup(_sessionGroup);
 
 		//addWindowListener(new WindowsAdapter());
 
@@ -218,14 +210,12 @@ public class MainForm extends JRibbonFrame
 
 	public void showSession(Session s)
 	{
-		s.show();
-		sessionMenu(true);
-		getViewTabbedPane().showSession(s);
-	}
+		getViewTabbedPane().addTab(s);
 
-	public void sessionMenu(boolean b)
-	{
-		getRibbon().setVisible(_sessionGroup, b);
+		s.onShow();
+
+		getRibbon().addContextualTaskGroup(s.getRibbonGroup());
+		getViewTabbedPane().fireTabsChanged();
 	}
 
 	public void closeSessionTab(ViewPane vp)
@@ -236,12 +226,9 @@ public class MainForm extends JRibbonFrame
 		}
 
 		vp.getSession().close();
+		getRibbon().removeContextualTaskGroup(vp.getSession().getRibbonGroup());
 		getViewTabbedPane().remove(vp);
-
-		if (getViewTabbedPane().sizeAll() == 0)
-		{
-			sessionMenu(false);
-		}
+		getViewTabbedPane().fireTabsChanged();
 	}
 
 	public void info(String text)

@@ -10,12 +10,12 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  16:07:25/07.04.2010
  */
-public class NumberValuePart extends ValuePart
+public class VisualValuePart extends ValuePart
 {
-	private Number _value;
+	private Object _value;
 	private Types _type;
 
-	public NumberValuePart(DataTreeNodeContainer parent, Part part, Types type)
+	public VisualValuePart(DataTreeNodeContainer parent, Part part, Types type)
 	{
 		super(parent, part);
 		_type = type;
@@ -24,14 +24,9 @@ public class NumberValuePart extends ValuePart
 	@Override
 	public void parse(NioBuffer buf, DecryptPacket s)
 	{
-		if (getMode() == DecryptPacket.DataPacketMode.FORGING)
-		{
-			throw new IllegalStateException("Can not parse on a Forging mode Data JPacket Tree element");
-		}
-
 		final int position = buf.position();
 
-		_value = (Number) _type.getInstance().getValue(buf);
+		_value = _type.getInstance().getValue(buf);
 
 		_startPosition = position;
 		_endPosition = buf.position();
@@ -49,11 +44,11 @@ public class NumberValuePart extends ValuePart
 	{
 		if (getModelPart().isInvert())
 		{
-			return -_value.doubleValue();
+			return -((Number)_value).doubleValue();
 		}
 		else
 		{
-			return _value.doubleValue();
+			return ((Number)_value).doubleValue();
 		}
 	}
 
@@ -61,11 +56,11 @@ public class NumberValuePart extends ValuePart
 	{
 		if (getModelPart().isInvert())
 		{
-			return -_value.floatValue();
+			return -((Number)_value).floatValue();
 		}
 		else
 		{
-			return _value.floatValue();
+			return ((Number)_value).floatValue();
 		}
 	}
 
@@ -73,11 +68,11 @@ public class NumberValuePart extends ValuePart
 	{
 		if (getModelPart().isInvert())
 		{
-			return -_value.longValue();
+			return -((Number)_value).longValue();
 		}
 		else
 		{
-			return _value.longValue();
+			return ((Number)_value).longValue();
 		}
 	}
 
@@ -85,11 +80,11 @@ public class NumberValuePart extends ValuePart
 	{
 		if (getModelPart().isInvert())
 		{
-			return -_value.intValue();
+			return -((Number)_value).intValue();
 		}
 		else
 		{
-			return _value.intValue();
+			return ((Number)_value).intValue();
 		}
 	}
 
@@ -97,11 +92,11 @@ public class NumberValuePart extends ValuePart
 	{
 		if (getModelPart().isInvert())
 		{
-			return (short) (-_value.shortValue());
+			return (short) (-((Number)_value).shortValue());
 		}
 		else
 		{
-			return _value.shortValue();
+			return ((Number)_value).shortValue();
 		}
 	}
 
@@ -109,24 +104,28 @@ public class NumberValuePart extends ValuePart
 	{
 		if (getModelPart().isInvert())
 		{
-			return (byte) -_value.byteValue();
+			return (byte) -((Number)_value).byteValue();
 		}
 		else
 		{
-			return _value.byteValue();
+			return ((Number)_value).byteValue();
 		}
 	}
 
 	@Override
 	public String getValueAsString()
 	{
-		return String.valueOf(getValueAsLong());
+		return String.valueOf(_value);
 	}
 
 	@Override
 	public String getHexValueAsString()
 	{
-		if (_type == Types.D || _type == Types.f)
+		if(_value instanceof String)
+		{
+			return "";
+		}
+		else if (_type == Types.D || _type == Types.f)
 		{
 			return Double.toHexString(getValueAsLong()).toUpperCase();
 		}
@@ -134,5 +133,11 @@ public class NumberValuePart extends ValuePart
 		{
 			return "0x" + Long.toHexString(getValueAsLong()).toUpperCase();
 		}
+	}
+
+	@Override
+	public int getBytesSize()
+	{
+		return 0;
 	}
 }

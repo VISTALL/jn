@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.statics.ImageStatic;
 

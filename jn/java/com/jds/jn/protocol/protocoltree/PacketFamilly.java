@@ -3,7 +3,7 @@ package com.jds.jn.protocol.protocoltree;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.PacketType;
 
 /**
@@ -24,7 +24,7 @@ public class PacketFamilly// extends ProtocolNode
 	{
 		if ((format = _formats.put(format.getId(), format)) != null)
 		{
-			Jn.getForm().info("More than 1 packet register for 1 packet id: " + format.getId());
+			MainForm.getInstance().info("More than 1 packet register for 1 packet id: " + format.getId());
 		}
 	}
 

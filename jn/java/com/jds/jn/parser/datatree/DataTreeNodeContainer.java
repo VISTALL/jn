@@ -3,7 +3,7 @@ package com.jds.jn.parser.datatree;
 import java.util.*;
 
 import com.jds.jn.network.packets.DecryptPacket.DataPacketMode;
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.formattree.*;
 
 
@@ -16,14 +16,12 @@ public class DataTreeNodeContainer extends DataTreeNode
 	private List<DataTreeNode> _nodes = new LinkedList<DataTreeNode>();
 	private boolean _isRoot;
 
-	// can not intantiate non-root container
-
 	protected DataTreeNodeContainer(DataTreeNodeContainer container, Part part)
 	{
 		super(container, part);
-		if (!(part instanceof PartContainer || part instanceof ForPart))
+		if (!(part instanceof PartContainer || part instanceof ForPart || part instanceof MacroPart))
 		{
-			throw new IllegalArgumentException("The model of a packet node container must be a blockpart/switchcase/forpart/has");
+			throw new IllegalArgumentException("The model of a packet node container must be a blockpart/switchcase/forpart/macro");
 		}
 		_isRoot = false;
 	}

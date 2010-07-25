@@ -3,10 +3,10 @@ package com.jds.jn.protocol;
 import java.nio.ByteOrder;
 import java.util.*;
 
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.protocoltree.PacketFamilly;
-import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.jn.protocol.protocoltree.*;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
@@ -15,7 +15,7 @@ import com.jds.nio.buffer.NioBuffer;
 public class Protocol
 {
 	private Map<PacketType, PacketFamilly> _familyes = new HashMap<PacketType, PacketFamilly>();
-	private int _checksumSize = 0;
+	private Map<String, MacroInfo> _macros = new HashMap<String, MacroInfo>();
 
 	private String _encryption;
 	private String _name;
@@ -68,28 +68,6 @@ public class Protocol
 					ok[i] = false;
 					continue;
 				}
-	
-				/*if(hex.length() > 2 && ((packet.getBuffer().limit() - position) >= 2))
-				{
-					val =  packet.getBuffer().getUnsignedShort(position);
-					position += 2;
-					sho = true;
-				}
-				else if((packet.getBuffer().limit() - position) >= 1)
-				{
-					try
-					{
-						val = packet.getBuffer().getUnsigned(position++);
-					}
-					catch(Exception e)
-					{
-						position--;
-					}
-				}
-				else
-				{
-
-				} */
 
 				String hex = Integer.toHexString(val).toUpperCase();
 
@@ -103,7 +81,6 @@ public class Protocol
 
 					hex = allZero + hex;
 				}
-				/* */
 
 				if (!hex.equalsIgnoreCase(hexStep))
 				{
@@ -161,16 +138,6 @@ public class Protocol
 		return 0;
 	}
 
-	public int getChecksumSize()
-	{
-		return _checksumSize;
-	}
-
-	public void setChecksumSize(int it)
-	{
-		_checksumSize = it;
-	}
-
 	public void setEncryption(String enc)
 	{
 		_encryption = enc;
@@ -199,6 +166,19 @@ public class Protocol
 	public void setFamily(PacketType type, PacketFamilly fa)
 	{
 		_familyes.put(type, fa);
+	}
+
+	public void addMacro(MacroInfo part)
+	{
+		if ((part = _macros.put(part.getId(), part)) != null)
+		{
+			MainForm.getInstance().info("More than 1 packet register for 1 macro name: " + part.getId());
+		}
+	}
+
+	public MacroInfo getMacroInfo(String name)
+	{
+		return _macros.get(name);
 	}
 
 	@Override

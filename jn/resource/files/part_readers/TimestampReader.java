@@ -1,6 +1,6 @@
 package part_readers;
 
-import com.jds.jn.parser.datatree.NumberValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.valuereader.ValueReader;
 import org.w3c.dom.Document;
@@ -38,10 +38,10 @@ public class TimestampReader implements ValueReader
 	@Override
 	public String read(ValuePart part)
 	{
-		if(!(part instanceof NumberValuePart))
+		if(!(part instanceof VisualValuePart))
 			return "";
 
-		long result = ((NumberValuePart)part).getValueAsInt();
+		long result = ((VisualValuePart)part).getValueAsInt();
 
 		Timestamp tt = new Timestamp(result);
 

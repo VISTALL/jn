@@ -1,17 +1,16 @@
 package part_readers;
 
-import com.jds.jn.Jn;
-import com.jds.jn.parser.datatree.StringValuePart;
-import com.jds.jn.parser.datatree.ValuePart;
-import com.jds.jn.parser.valuereader.ValueReader;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import org.w3c.dom.*;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import com.jds.jn.Jn;
+import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
+import com.jds.jn.parser.valuereader.ValueReader;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -31,9 +30,9 @@ public class HTMLReader implements ValueReader
 
 	public String read(ValuePart part)
 	{
-		if (part instanceof StringValuePart)
+		if (part instanceof VisualValuePart)
 		{
-			return ((StringValuePart) part).getStringValue();
+			return part.getValueAsString();
 		}
 		Jn.getForm().warn("ERROR: HTML ValueReader set on a non String part: " + part.getModelPart().getName());
 		return "";

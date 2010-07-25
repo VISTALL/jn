@@ -48,7 +48,7 @@ public class CLoader
 
 		getFiles(fileNames, new java.io.File("./files"), "");
 
-		if (com.jds.jn.classes.compiler.Compiler.getInstance().compile(fileNames))
+		if (Compiler.getInstance().compile(fileNames))
 		{
 			MemoryClassLoader classLoader = Compiler.getInstance().getClassLoader();
 

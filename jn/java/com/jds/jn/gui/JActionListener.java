@@ -105,26 +105,12 @@ public class JActionListener
 				System.gc();
 				break;
 			case PROGRAM_SETTINGS:
-				ThreadPoolManager.getInstance().execute(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						ProgramSettingsDialog di = new ProgramSettingsDialog();
-						di.setVisible(true);
-					}
-				});
+				ProgramSettingsDialog p = new ProgramSettingsDialog();
+				p.setVisible(true);
 				break;
 			case NETWORK_SETTINGS:
-				ThreadPoolManager.getInstance().execute(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						NetworkSettingsDialog di = new NetworkSettingsDialog();
-						di.setVisible(true);
-					}
-				});
+				NetworkSettingsDialog di = new NetworkSettingsDialog();
+				di.setVisible(true);
 				break;
 			case HIDE_SHOW:
 				ThreadPoolManager.getInstance().execute(new Runnable()
@@ -137,14 +123,7 @@ public class JActionListener
 				});
 				break;
 			case CONSOLE_WINDOW:
-				ThreadPoolManager.getInstance().execute(new Runnable()
-				{
-					@Override
-					public void run()
-					{
-						ConsoleForm.getInstance().setVisible(true);
-					}
-				});
+				ConsoleForm.getInstance().setVisible(!ConsoleForm.getInstance().isVisible());
 				break;
 			case CLEAR_LAST_FILES:
 				LastFiles.clearFiles();

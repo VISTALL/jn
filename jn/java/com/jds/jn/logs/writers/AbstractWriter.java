@@ -3,7 +3,7 @@ package com.jds.jn.logs.writers;
 import java.io.*;
 import java.nio.ByteOrder;
 
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.session.Session;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -25,7 +25,7 @@ public abstract class AbstractWriter
 	{
 		if(_isBusy)
 		{
-			Jn.getForm().info("Writer is busy");
+			MainForm.getInstance().info("Writer is busy");
 			return;
 		}
 

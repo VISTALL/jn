@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 
 import com.jds.jn.Jn;
-import com.jds.jn.network.listener.PacketReceiver;
 import com.jds.jn.network.methods.proxy.Proxy;
 import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.network.packets.PacketType;
@@ -41,7 +40,8 @@ public class ClientToProxyHandler implements NioHandler
 
 		try
 		{
-			SessionTable.getInstance().newGameSession(_proxy);
+			SessionTable.getInstance().newSession(_proxy);
+
 			_proxy.getConnector().connect(new InetSocketAddress(_proxy.getRemoteHost(), _proxy.getRemotePort()));
 
 			_proxy.setServerSession(_proxy.getConnector().getSession());
@@ -107,6 +107,11 @@ public class ClientToProxyHandler implements NioHandler
 
 		_proxy.getServerSession().put(buffer);
 
-		PacketReceiver.receive(_proxy, packet);
+		if (SessionTable.getInstance().getSession(_proxy.getSessionId()) == null)
+		{
+			return;
+		}
+
+		SessionTable.getInstance().getSession(_proxy.getSessionId()).receivePacket(packet);
 	}
 }

@@ -2,17 +2,25 @@
 <!--APB-->
 <protocol checksumSize="0" crypt="APBAuth" name="ABP Auth">
   <packetfamilly way="SERVER">
-     <packet id="00007D2" name="LS2GC_LOGIN_PIZZLE" key="true" >
+     <packet id="00007D2" name="LS2GC_LOGIN_PIZZLE">
         <part name="v1" type="d" />
         <part name="v2" type="d" />
         <part name="v3" type="d" />
         <part name="v4" type="d" />
         <part name="diff" type="c" />
-        <part name="nounce" type="D" />
+        <part name="nounce" type="b" size="8"/>
         <part name="key" type="b" size="12"/>
 	 </packet>
   </packetfamilly>
   <packetfamilly way="CLIENT">
-
+     <packet id="00003E8" name="GC2LS [ASK_LOGIN]">
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="?" type="d" />
+        <part name="login" type="S" />
+	 </packet>
   </packetfamilly>
 </protocol>

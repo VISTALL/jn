@@ -1,20 +1,18 @@
 package com.jds.jn.gui.dialogs;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.Spacer;
-import com.jds.jn.Jn;
-import com.jds.jn.gui.JActionEvent;
-import com.jds.jn.gui.JActionListener;
-import com.jds.jn.gui.panels.NetworkSettingPane;
-import com.jds.jn.network.profiles.NetworkProfile;
-import com.jds.jn.network.profiles.NetworkProfilePart;
-import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.config.RValues;
-
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
+
+import com.intellij.uiDesigner.core.*;
+import com.jds.jn.Jn;
+import com.jds.jn.config.RValues;
+import com.jds.jn.gui.JActionEvent;
+import com.jds.jn.gui.JActionListener;
+import com.jds.jn.gui.forms.MainForm;
+import com.jds.jn.gui.panels.NetworkSettingPane;
+import com.jds.jn.network.profiles.*;
 
 public class NetworkSettingsDialog extends JDialog
 {
@@ -32,7 +30,7 @@ public class NetworkSettingsDialog extends JDialog
 
 	public NetworkSettingsDialog()
 	{
-		super(Jn.getForm(), "Network Settings", true);
+		super(MainForm.getInstance(), "Network Settings", true);
 
 		setLocationByPlatform(false);
 		

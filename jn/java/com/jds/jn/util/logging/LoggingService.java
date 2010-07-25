@@ -8,7 +8,7 @@ import java.util.logging.*;
 import com.jds.jn.util.logging.log4j.JuliToLog4JHandler;
 
 /**
- * from aion-emu.com
+ * @author VISTALL
  */
 public class LoggingService
 {

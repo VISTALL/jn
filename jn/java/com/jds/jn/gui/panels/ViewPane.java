@@ -31,10 +31,10 @@ public class ViewPane extends JPanel
 	private DecPacketTableModel _decryptPacketTableModel = new DecPacketTableModel(this);
 	private NotDecPacketTableModel _notDecryptPacketTableModel = new NotDecPacketTableModel(this);
 
-	public PacketList _packetList;
-	public SearchPane _searchPane;
-	public FilterPane _filterPane;
-	public InfoPane _infoPane;
+	private PacketList _packetList;
+	private SearchPane _searchPane;
+	private FilterPane _filterPane;
+	private InfoPane _infoPane;
 
 	private JPopupMenu _tabMenu;
 
@@ -178,6 +178,21 @@ public class ViewPane extends JPanel
 	public JTabbedPane getPacketAndSearch()
 	{
 		return _packetAndSearch;
+	}
+
+	public PacketList getPacketList()
+	{
+		return _packetList;
+	}
+
+	public InfoPane getInfoPane()
+	{
+		return _infoPane;
+	}
+
+	public JPopupMenu getTabMenu()
+	{
+		return _tabMenu;
 	}
 
 	/**

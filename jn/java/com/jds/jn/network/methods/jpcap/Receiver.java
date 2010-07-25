@@ -33,7 +33,12 @@ public class Receiver implements PacketReceiver
 
 			if ((session = (CaptorSession) SessionTable.getInstance().getSession(pi.src_port * pi.dst_port)) == null)
 			{
-				session = SessionTable.getInstance().newGameSession(_pcap, pi.src_port * pi.dst_port);
+				session = SessionTable.getInstance().newCaptorSession(_pcap, pi.src_port * pi.dst_port);
+			}
+
+			if(session == null)
+			{
+				return;
 			}
 
 			int size = 0;

@@ -3,13 +3,13 @@ package crypt;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.jds.jn.Jn;
 import com.jds.jn.crypt.ProtocolCrypter;
-import crypt.helpers.NewCrypt;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.protocol.Protocol;
+import crypt.helpers.NewCrypt;
 
 /**
  * Author: VISTALL
@@ -57,17 +57,17 @@ public class AionAuthCrypter implements ProtocolCrypter
 
 				if (packet.getPacketFormat() != null && dir == PacketType.SERVER && packet.getPacketFormat().isKey())
 				{
-					ValuePart part = (ValuePart) packet.getRootNode().getPartByName("Blowfish key");
+					RawValuePart part = (RawValuePart) packet.getRootNode().getPartByName("Blowfish key");
 					if (part == null)
 					{
-						Jn.getForm().warn("Check your protocol there is no part called 'Blowfish key' which is required in key packet of the AS protocol.");
+						MainForm.getInstance().warn("Check your protocol there is no part called 'Blowfish key' which is required in key packet of the AS protocol.");
 						return raw;
 					}
 					_crypt = new NewCrypt(part.getBytes());
 					System.arraycopy(potentialInit, 0, raw, 0, raw.length);
 					return raw; // no checksum here
 				}
-				Jn.getForm().warn("No key was ready to read JPacket, there should have been an Init packet before");
+				MainForm.getInstance().warn("No key was ready to read JPacket, there should have been an Init packet before");
 				return raw;
 			}
 
@@ -80,18 +80,6 @@ public class AionAuthCrypter implements ProtocolCrypter
 					//MainForm.getInstance().error("AionAuthCrypter : Wrong checksum (packet id: " + raw[0] + ", dir:" + dir + ")");
 				}
 
-				/**	byte[] d = Arrays.copyOf(raw, raw.length);
-				 DataPacket packet = new DataPacket(Arrays.copyOf(d, d.length), dir,  _protocol);
-
-				 if(packet.getName() != null && packet.getName().equals("SM_SERVER_LIST"))
-				 {
-				 byte[] serverlist = encrypt(Config.getInstance().getServerList().array(), PacketType.SERVER);
-				 ProxyList.getInstance().getProxy(1).CLIENT_SESSION.put(NioBuffer.wrap(serverlist).order(ByteOrder.LITTLE_ENDIAN));
-
-				 raw = Arrays.copyOf(Config.getInstance().getServerList().array() , Config.getInstance().getServerList().array().length);
-				 //ProxyList.getInstance().getProxy(1).PACKET_RECEIVER.receive(ProxyList.getInstance().getProxy(1), p);
-				 }
-				 */
 				return raw;
 			}
 

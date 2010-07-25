@@ -1,7 +1,6 @@
 package com.jds.jn.parser.parttypes;
 
 
-import com.jds.jn.parser.PartType;
 import com.jds.jn.parser.datatree.DataTreeNodeContainer;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
@@ -15,7 +14,8 @@ public class BlockPartType extends PartType
 	{
 		forblock,
 		switchblock,
-		block
+		block,
+		macroBlock
 	}
 
 	private blockType _type;

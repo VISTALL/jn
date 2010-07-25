@@ -7,7 +7,6 @@ import com.jds.jn.network.packets.*;
 import com.jds.jn.session.Session;
 import com.jds.jn.version_control.Programs;
 import com.jds.jn.version_control.Version;
-import com.jds.nio.buffer.NioBuffer;
 
 /**
  * Author: VISTALL
@@ -27,7 +26,7 @@ import com.jds.nio.buffer.NioBuffer;
  */
 public class JNL2Reader extends AbstractReader
 {
-	private boolean _isDecode = false;
+	private boolean _isDecrypted = false;
 
 	@Override
 	public boolean parseHeader() throws IOException
@@ -41,7 +40,7 @@ public class JNL2Reader extends AbstractReader
 
 		ListenerType list = ListenerType.values()[readC()];
 		long sessionId = readQ();
-		_isDecode = readBoolC();
+		_isDecrypted = readBoolC();
 
 		_session = new Session(list, sessionId);
 		_session.setVersion(v);
@@ -60,9 +59,9 @@ public class JNL2Reader extends AbstractReader
 			int sizeArray = readD();
 			byte[] data = readB(sizeArray);
 
-			NotDecryptPacket packet = new NotDecryptPacket(t, NioBuffer.wrap(data), time);
+			NotDecryptPacket packet = new NotDecryptPacket(t, data, time, _session.getProtocol().getOrder());
 
-			if(_isDecode)
+			if(_isDecrypted)
 			{
 				DecryptPacket dp = new DecryptPacket(packet, _session.getProtocol());
 

@@ -1,11 +1,10 @@
 package com.jds.jn.parser;
 
-import com.jds.jn.parser.parttypes.NumberPartType;
-import com.jds.jn.statics.ImageStatic;
+import java.util.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import com.jds.jn.parser.parttypes.PartType;
+import com.jds.jn.parser.parttypes.VisualPartType;
+import com.jds.jn.statics.ImageStatic;
 
 
 /**
@@ -53,24 +52,17 @@ public class PartTypeManager
 	{
 		for(Types type : Types.values())
 		{
-			NumberPartType t = new NumberPartType(type.name(), type);
+			VisualPartType t = new VisualPartType(type.name(), type);
 
 			registerPartType(t);
 			ImageStatic.getInstance().registerIcon(t, type.getIcon());
 		}
 
-		registerPartType(PartType.S);
-		registerPartType(PartType.SS);
-		registerPartType(PartType.sS);
-		registerPartType(PartType.s);
 		registerPartType(PartType.b);
 		registerPartType(PartType.forBlock);
 		registerPartType(PartType.swicthBlock);
 		registerPartType(PartType.block);
 
-		ImageStatic.getInstance().registerIcon(PartType.S, ImageStatic.PART_NORMAL_STRING);
-		ImageStatic.getInstance().registerIcon(PartType.SS, ImageStatic.PART_NORMAL_STRING);
-		ImageStatic.getInstance().registerIcon(PartType.s, ImageStatic.PART_NORMAL_STRING);
 		ImageStatic.getInstance().registerIcon(PartType.b, ImageStatic.PART_BYTE_ARRAY);
 	}
 }

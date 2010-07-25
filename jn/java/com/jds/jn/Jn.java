@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 
 import javax.swing.*;
 
+import com.jds.jn.classes.CLoader;
 import com.jds.jn.config.ConfigParser;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
@@ -11,10 +12,8 @@ import com.jds.jn.helpers.Shutdown;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
-import com.jds.jn.parser.Types;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
-import com.jds.jn.classes.CLoader;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.logging.LoggingService;
@@ -24,6 +23,8 @@ import com.jds.jn.util.logging.LoggingService;
  * Company: J Develop Station
  * Date: 03/01/2010
  * Time: 22:32:18
+ *
+ * Java sNiffer
  */
 public class Jn
 {
@@ -59,7 +60,6 @@ public class Jn
 
 		CLoader.getInstance();
 
-		Types.newInstance();
 		PartTypeManager.getInstance();
 		ProtocolManager.getInstance();
 

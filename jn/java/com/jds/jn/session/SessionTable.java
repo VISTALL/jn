@@ -3,10 +3,8 @@ package com.jds.jn.session;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.methods.IMethod;
-import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolManager;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -30,40 +28,22 @@ public class SessionTable
 		_sessionList = new HashMap<Long, Session>();
 	}
 
-	public CaptorSession newGameSession(IMethod iMethod, long session)
+	public CaptorSession newCaptorSession(IMethod iMethod, long sessionId)
 	{
-		Protocol protocol;
+		CaptorSession session = new CaptorSession(iMethod, sessionId);
+		_sessionList.put(sessionId, session);
+		MainForm.getInstance().showSession(session);
 
-		protocol = ProtocolManager.getInstance().getProtocol(iMethod.getListenerType());
-
-		if (protocol != null)
-		{
-			CaptorSession gameSession = new CaptorSession(iMethod, protocol);
-			_sessionList.put(session, gameSession);
-			Jn.getForm().showSession(gameSession);
-
-			return gameSession;
-		}
-
-		return null;
+		return session;
 	}
 
-	public Session newGameSession(IMethod iMethod)
+	public Session newSession(IMethod iMethod)
 	{
-		Protocol protocol;
+		Session session = new Session(iMethod, iMethod.getSessionId());
+		_sessionList.put(iMethod.getSessionId(), session);
+		MainForm.getInstance().showSession(session);
 
-		protocol = ProtocolManager.getInstance().getProtocol(iMethod.getListenerType());
-
-		if (protocol != null)
-		{
-			Session gameSession = new Session(iMethod, protocol);
-			_sessionList.put(iMethod.getSessionId(), gameSession);
-			Jn.getForm().showSession(gameSession);
-
-			return gameSession;
-		}
-
-		return null;
+		return session;
 	}
 
 	public void removeGameSession(long sessionId)

@@ -1,10 +1,13 @@
 package com.jds.jn.gui.panels;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -22,35 +25,61 @@ public class ViewTabbedPane extends JTabbedPane
 {
 	private JPanel root;
 	private JTabbedPane _sessionTabs;
+	private java.util.List<ViewPane> _tabs = new ArrayList<ViewPane>();
 
 	public ViewTabbedPane()
 	{
 		$$$setupUI$$$();
 		addMouseListener(new MouseL());
+		getModel().addChangeListener(new ChangeListener()
+		{
+
+			@Override
+			public void stateChanged(ChangeEvent e)
+			{
+				for (ViewPane pane : _tabs)
+				{
+					if (pane != null)
+					{
+						MainForm.getInstance().getRibbon().setVisible(pane.getSession().getRibbonGroup(), false);
+					}
+				}
+
+				if (getSelectedComponent() != null)
+				{
+					MainForm.getInstance().getRibbon().setVisible(getSelectedComponent().getSession().getRibbonGroup(), true);
+				}
+			}
+		});
 	}
 
-	public ViewPane getCurrentViewPane()
+	public void fireTabsChanged()
 	{
-		return (ViewPane) getSelectedComponent();
+		ChangeListener[] listeners = ((DefaultSingleSelectionModel) getModel()).getChangeListeners();
+		for (ChangeListener c : listeners)
+		{
+			c.stateChanged(null);
+		}
 	}
 
-	public void showSession(final Session s)
+	@Override
+	public ViewPane getSelectedComponent()
+	{
+		return (ViewPane) super.getSelectedComponent();
+	}
+
+	public void addTab(final Session s)
 	{
 		ViewPane viewPane = s.getViewPane();
 
 		if (viewPane == null)
 		{
-			viewPane = new ViewPane(s);
+			throw new IllegalAccessError("Can't addTab without ViewPane. Wtf ?");
 		}
 
+		_tabs.add(viewPane);
 		addTab(String.format(Bundle.getString("Session") + ": %d", s.getSessionId()), viewPane);
 	}
-
-	public int sizeAll()
-	{
-		return getTabCount();
-	}
-
 
 	public class MouseL implements MouseListener
 	{
@@ -60,7 +89,7 @@ public class ViewTabbedPane extends JTabbedPane
 		{
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
-				ViewPane pane = getCurrentViewPane();
+				ViewPane pane = getSelectedComponent();
 				if (pane == null)
 				{
 					return;
@@ -80,7 +109,7 @@ public class ViewTabbedPane extends JTabbedPane
 										{
 											Config.set(Values.CONFIRM_CLOSE_SESSION, result[1]);  */
 
-				MainForm.getInstance().closeSessionTab(getCurrentViewPane());
+				MainForm.getInstance().closeSessionTab(getSelectedComponent());
 
 				/*	}
 									}

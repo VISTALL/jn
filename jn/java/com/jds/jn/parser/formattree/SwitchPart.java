@@ -3,7 +3,7 @@ package com.jds.jn.parser.formattree;
 import java.util.*;
 import java.util.Map.Entry;
 
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 
 /**
  * @author Gilles Duboscq

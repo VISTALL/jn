@@ -3,13 +3,13 @@ package crypt;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.jds.jn.Jn;
 import com.jds.jn.crypt.ProtocolCrypter;
-import crypt.helpers.NewCrypt;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.protocol.Protocol;
+import crypt.helpers.NewCrypt;
 
 /**
  * Author: VISTALL
@@ -56,17 +56,17 @@ public class L2AuthCrypter implements ProtocolCrypter
 
 				if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
 				{
-					ValuePart part = (ValuePart) packet.getRootNode().getPartByName("Blowfish key");
+					RawValuePart part = (RawValuePart) packet.getRootNode().getPartByName("Blowfish key");
 					if (part == null)
 					{
-						Jn.getForm().warn("Check your protocol there is no part called 'Blowfish key' which is required in key packet of the AS protocol.");
+						MainForm.getInstance().warn("Check your protocol there is no part called 'Blowfish key' which is required in key packet of the AS protocol.");
 						return raw;
 					}
 					_crypt = new NewCrypt(part.getBytes());
 					System.arraycopy(potentialInit, 0, raw, 0, raw.length);
 					return raw;// no checksum here
 				}
-				Jn.getForm().warn("No key was ready to read JPacket, there should have been an Init packet before");
+				MainForm.getInstance().warn("No key was ready to read JPacket, there should have been an Init packet before");
 				return raw;
 			}
 

@@ -21,7 +21,7 @@ import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
 public class PacketList extends JPanel
 {
 	private JPanel root;
-	public boolean IS_HIDE = false;
+	private boolean _isHide = false;
 	protected NotDecPacketListPane _notDecPacketListPane;
 	protected DecPacketListPane _decPacketListPane;
 	protected ViewPane _pane;
@@ -144,6 +144,16 @@ public class PacketList extends JPanel
 	{
 		root = this;
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+	}
+
+	public boolean isHide()
+	{
+		return _isHide;
+	}
+
+	public void setIsHide(boolean IS_HIDE)
+	{
+		this._isHide = IS_HIDE;
 	}
 
 	/**

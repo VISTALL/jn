@@ -3,10 +3,10 @@ package crypt;
 import java.util.Arrays;
 
 import com.jds.jn.crypt.ProtocolCrypter;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import crypt.helpers.Obfuscator;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.parser.datatree.NumberValuePart;
 import com.jds.jn.protocol.Protocol;
 
 /**
@@ -89,7 +89,7 @@ public class L2GameCrypter implements ProtocolCrypter
 
 		for (int i = 0; i < 8; i++)
 		{
-			NumberValuePart part = (NumberValuePart) packet.getRootNode().getPartByName("key" + i); // key
+			VisualValuePart part = (VisualValuePart) packet.getRootNode().getPartByName("key" + i); // key
 			key[i] = part.getValueAsByte();
 		}
 		//xor key
@@ -102,7 +102,7 @@ public class L2GameCrypter implements ProtocolCrypter
 		key[14] = (byte) 0x31;
 		key[15] = (byte) 0x97;
 
-		NumberValuePart part = (NumberValuePart) packet.getRootNode().getPartByName("seed");
+		VisualValuePart part = (VisualValuePart) packet.getRootNode().getPartByName("seed");
 		int seed = part.getValueAsInt();
 		if(seed != 0)
 			_obs.init_tables(seed);
@@ -122,7 +122,7 @@ public class L2GameCrypter implements ProtocolCrypter
 			if(packet.getRootNode().getPartByName("seed") != null)
 			{
 				_obs.disable();
-				int seed = ((NumberValuePart)packet.getRootNode().getPartByName("seed")).getValueAsInt();
+				int seed = ((VisualValuePart)packet.getRootNode().getPartByName("seed")).getValueAsInt();
 				if(seed != 0)
 				{
 					_obs.init_tables(seed);

@@ -1,6 +1,6 @@
 package com.jds.jn.parser.formattree;
 
-import com.jds.jn.parser.PartType;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.valuereader.ValueReader;
 
 /**
