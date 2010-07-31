@@ -13,6 +13,7 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.NotDecryptPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.util.ThreadPoolManager;
@@ -103,8 +104,8 @@ public class Session
 
 		_crypt.setProtocol(getProtocol());
 
-		/*List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
-		l.add(L2NpcSpawnListener.class);
+		List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
+		l.add(L2World.class);
 
 		for(Class<? extends IPacketListener> cl : l)
 		{
@@ -120,7 +121,7 @@ public class Session
 			{
 				e.printStackTrace();
 			}
-		} */
+		}
 	}
 
 	public DecryptPacket decode(NotDecryptPacket packet)

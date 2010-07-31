@@ -1,8 +1,9 @@
-package com.jds.jn.parser.packetfactory.lineage2.npc;
+package com.jds.jn.parser.packetfactory.lineage2.infos;
 
 import java.lang.reflect.Field;
 import java.util.*;
 
+import com.jds.jn.holders.NpcNameHolder;
 import com.jds.jn.network.packets.DecryptPacket;
 
 /**
@@ -10,8 +11,9 @@ import com.jds.jn.network.packets.DecryptPacket;
  * Company: J Develop Station
  * Date:  17:58:15/05.06.2010
  */
-public class NpcInfo
+public class L2NpcInfo
 {
+	private final String _name;
 	private final int _npcId;
 
 	private final int _pAttackSpeed;
@@ -25,16 +27,19 @@ public class NpcInfo
 	private int _mp = 100;
 	private int _level = 1;
 
-	private final Map<Integer, SkillInfo> _skills = new HashMap<Integer, SkillInfo>();
-	private final List<SpawnLoc> _spawns = new ArrayList<SpawnLoc>();
 	private final int _rhand;
 	private final int _armor;
 	private final int _lhand;
 
-	public NpcInfo(DecryptPacket p)
+	private final Map<Integer, L2SkillInfo> _skills = new HashMap<Integer, L2SkillInfo>();
+	private final List<L2DialogInfo> _dialogs = new ArrayList<L2DialogInfo>();
+	private final List<L2SpawnLocInfo> _spawns = new ArrayList<L2SpawnLocInfo>();
+
+
+	public L2NpcInfo(DecryptPacket p)
 	{
 		_npcId = p.getInt("npcId") - 1000000;
-
+		_name = NpcNameHolder.getInstance().name(_npcId);
 		_mAttackSpeed = p.getInt("mAttackSpeed");
 		_pAttackSpeed = p.getInt("pAttackSpeed");
 		_runSpd = p.getInt("run_spd");
@@ -51,7 +56,7 @@ public class NpcInfo
 
 	public void addSpawnLoc(DecryptPacket p)
 	{
-		SpawnLoc loc =  new SpawnLoc(p);
+		L2SpawnLocInfo loc =  new L2SpawnLocInfo(p);
 		if(!hasSpawn(loc))
 		{
 			_spawns.add(loc);
@@ -61,7 +66,7 @@ public class NpcInfo
 	public String toXML()
 	{
 		String xml =
-				"\t<npc id=\"%npcId%\" templateId=\"0\" name=\"-\" title=\"\">\n" +
+				"\t<npc id=\"%npcId%\" templateId=\"0\" name=\"%name%\" title=\"\">\n" +
 				"\t\t<set name=\"collision_radius\" val=\"%collisionRadius%\" />\n" +
 				"\t\t<set name=\"collision_height\" val=\"%collisionHeight%\" />\n" +
 				"\t\t<set name=\"level\" val=\"%level%\" />\n" +
@@ -122,7 +127,7 @@ public class NpcInfo
 		if(_spawns.size() != 0)
 		{
 			xml += "\t\t<spawnlist>\n";
-			for(SpawnLoc loc : _spawns)
+			for(L2SpawnLocInfo loc : _spawns)
 			{
 				xml += String.format("\t\t\t<spawn x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\" />\n", loc.getX(), loc.getY(), loc.getZ(), loc.getH());
 			}
@@ -132,7 +137,7 @@ public class NpcInfo
 		if(_skills.size() != 0)
 		{
 			xml += "\t\t<skills>\n";
-			for(SkillInfo info : _skills.values())
+			for(L2SkillInfo info : _skills.values())
 			{
 				xml += String.format("\t\t\t<!--Hit time: %d; Reuse: %d-->\n", info.getHitTime(), info.getReuse());
 				xml += String.format("\t\t\t<skill id=\"%d\" level=\"%d\" />\n", info.getId(), info.getLevel());
@@ -142,7 +147,7 @@ public class NpcInfo
 
 		xml += "\t</npc>\n";
 
-		for(Field d : NpcInfo.class.getDeclaredFields())
+		for(Field d : L2NpcInfo.class.getDeclaredFields())
 		{
 			String name = "%" + d.getName().replace("_", "") + "%";
 			if(xml.contains(name))
@@ -182,14 +187,14 @@ public class NpcInfo
 		return _skills.containsKey(f);
 	}
 
-	public void addSkill(SkillInfo f)
+	public void addSkill(L2SkillInfo f)
 	{
 		_skills.put(f.getId(), f);
 	}
 
-	public boolean hasSpawn(SpawnLoc loc)
+	public boolean hasSpawn(L2SpawnLocInfo loc)
 	{
-		for (SpawnLoc l : _spawns)
+		for (L2SpawnLocInfo l : _spawns)
 		{
 			if(l.equals(loc))
 				return true;
@@ -201,5 +206,16 @@ public class NpcInfo
 	public int getNpcId()
 	{
 		return _npcId;
+	}
+
+	public void addDialog(L2DialogInfo t)
+	{
+		if(!_dialogs.contains(t))
+			_dialogs.add(t);
+	}
+
+	public List<L2DialogInfo> getDialogs()
+	{
+		return _dialogs;
 	}
 }

@@ -282,9 +282,17 @@ public class ProtocolLoader
 				}
 				switchId = Integer.parseInt(atr.getNodeValue());
 
+				String name = "";
+				if (attrs.getNamedItem("name") != null)
+				{
+					name = attrs.getNamedItem("name").getNodeValue();
+				}
+
 				SwitchPart newSwitchBlock = new SwitchPart(switchId);
 				newSwitchBlock.setParentContainer(pc);
 				newSwitchBlock.setContainingFormat(pc.getContainingFormat());
+				newSwitchBlock.setName(name);
+
 				for (Node caseNode = o.getFirstChild(); caseNode != null; caseNode = caseNode.getNextSibling())
 				{
 					if ("case".equalsIgnoreCase(caseNode.getNodeName()))
@@ -382,7 +390,8 @@ public class ProtocolLoader
 		atr = attrs.getNamedItem("type");
 		if (atr == null)
 		{
-			Jn.getForm().warn("Error, part doesnt have 'type'. skipping packet");
+			System.out.println("Error, part doesnt have 'type'. skipping packet: " + partName);
+			//Jn.getForm().warn("Error, part doesnt have 'type'. skipping packet");
 			return null;
 		}
 		String type = atr.getNodeValue();
@@ -487,6 +496,7 @@ public class ProtocolLoader
 
 	public static void report(String severity, SAXParseException e)
 	{
-		Jn.getForm().warn(severity + ": " + e.getMessage() + " (Line " + e.getLineNumber() + ", Column: " + e.getColumnNumber() + ")", e);
+		System.out.println(severity + ": " + e.getMessage() + " (Line " + e.getLineNumber() + ", Column: " + e.getColumnNumber() + ")");
+		e.printStackTrace();
 	}
 }

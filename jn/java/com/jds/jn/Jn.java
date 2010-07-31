@@ -9,6 +9,8 @@ import com.jds.jn.config.ConfigParser;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
 import com.jds.jn.helpers.Shutdown;
+import com.jds.jn.holders.ItemNameHolder;
+import com.jds.jn.holders.NpcNameHolder;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
@@ -52,9 +54,13 @@ public class Jn
 
 		ThreadPoolManager.getInstance();
 
+		NetworkProfiles.getInstance();
+		
 		ImageStatic.getInstance();
 
-		NetworkProfiles.getInstance();
+		NpcNameHolder.getInstance();
+		ItemNameHolder.getInstance();
+
 
 		ListenerSystem.getInstance();
 

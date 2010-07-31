@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Freay ct2.5-->
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="Lineage 2 Game Server Frey">
-  <!--Inventory Macro-->
+  <!--Item Macro-->
   <macro id="item">
     <part name="obj_id" type="d" />
     <part name="item_id" type="d" />
@@ -18,11 +18,11 @@
     <part name="timeLeft" type="d" />
     <part name="attackElement" type="h" />
     <part name="attackElement" type="h" />
-    <part name="fire" type="h" />
     <part name="water" type="h" />
+	<part name="fire" type="h" />
     <part name="earth" type="h" />
     <part name="wind" type="h" />
-    <part name="unholy" type="h" />
+    <part name="dark" type="h" />
     <part name="holy" type="h" />
     <part name="enchanteffect1" type="h" />
     <part name="enchanteffect2" type="h" />
@@ -188,6 +188,11 @@
       <part id="0" name="size" type="h" />
       <for id="0">
         <macro name="item" id="item"/>
+      </for>
+      <part id="1" name="size" type="h" />
+      <for id="1">
+        <part name="?" type="c"/>
+        <part name="?" type="d"/>
       </for>
     </packet>
     <packet id="FE;00C5" name="ExQuestItemList">
@@ -632,8 +637,8 @@
         <part name="isActive" type="d" />
         <part name="level" type="d" />
         <part name="id" type="d" />
-        <part name="?" type="c" />
-        <part name="?" type="c" />
+        <part name="disable" type="c" />
+        <part name="enchanted" type="c" />
       </for>
     </packet>
     <packet id="62" name="SystemMessage">
@@ -682,6 +687,12 @@
           </case>
           <case id="11">
             <part name="att" type="d" />
+          </case>
+          <case id="12">
+            <part name="name" type="S" />
+          </case>
+          <case id="13">
+            <part name="?" type="d" />
           </case>
           <case id="default" />
         </switch>
@@ -752,7 +763,9 @@
     <packet id="C7" name="SkillCoolTime" />
     <packet id="E8" name="SendMacroList" />
     <packet id="F2" name="ClientSetTime" />
-    <packet id="FD" name="AgitDecoInfo" />
+    <packet id="FD" name="AgitDecoInfo">
+        <part name="0x07" type="d" />
+	</packet>
     <packet id="09" name="CharacterSelectionInfo">
       <part name="size" type="d" id="0" />
       <part name="0x07" type="d" />
@@ -870,9 +883,9 @@
     <packet id="FE;002F" name="ExStorageMaxCount">
       <part name="w" type="d" />
     </packet>
-    <packet id="FE;005E" name="ExBasicActionList">
-      <part id="1" name="size" type="d" />
-      <for id="1">
+    <packet id="FE;005F" name="ExBasicActionList">
+      <part name="size" type="d" id="0"/>
+      <for id="0">
         <part name="actionId" type="d" />
       </for>
     </packet>
@@ -959,7 +972,27 @@
     <packet id="49" name="MagicSkillCanceled" />
     <packet id="4C" name="DoorInfo" />
     <packet id="4D" name="DoorStatusUpdate" />
-    <packet id="4E" name="PartySmallWindowAll" />
+    <packet id="4E" name="PartySmallWindowAll">
+        <part name="leaderObjectId" type="d" />
+        <part name="lootType" type="d" />
+        <part name="size" type="d" id="0"/>
+		<for id="0">
+            <part name="objectId" type="d" />
+            <part name="name" type="S" />
+            <part name="curCP" type="d" />
+            <part name="maxCP" type="d" />
+            <part name="curHP" type="d" />
+            <part name="maxHP" type="d" />
+   			<part name="curMP" type="d" />
+            <part name="maxMP" type="d" />
+            <part name="level" type="d" />
+            <part name="classId" type="d" />
+            <part name="?" type="d" />
+            <part name="race" type="d" />
+            <part name="?" type="d" />
+            <part name="?" type="d" />
+		</for>
+	</packet>
     <packet id="4F" name="PartySmallWindowAddPacket" />
     <packet id="50" name="PartySmallWindowDeleteAllPacket" />
     <packet id="51" name="PartySmallWindowDeletePacket" />
@@ -1045,9 +1078,9 @@
     <packet id="8D" name="Dummy" />
     <packet id="8E" name="PledgeShowInfoUpdatePacket" />
     <packet id="8F" name="ActionFail" />
-    <packet id="90" name="AcquireSkillListPacket" />
-    <packet id="91" name="AcquireSkillInfoPacket" />
-    <packet id="92" name="ServerObjectInfoPacket" />
+    <packet id="90" name="AcquireSkillList" />
+    <packet id="91" name="AcquireSkillInfo" />
+    <packet id="92" name="ServerObjectInfo" />
     <packet id="93" name="GMHidePacket" />
     <packet id="94" name="AcquireSkillDonePacket" />
     <packet id="95" name="GMViewCharacterInfoPacket" />
@@ -1059,7 +1092,19 @@
     <packet id="9B" name="GMViewWarehouseWithdrawListPacket" />
     <packet id="9C" name="ListPartyWatingPacket" />
     <packet id="9D" name="PartyRoomInfoPacket" />
-    <packet id="9F" name="StaticObjectPacket" />
+    <packet id="9F" name="StaticObject">
+        <part name="id" type="d" />
+        <part name="objectId" type="d" />
+        <part name="type" type="d" />
+        <part name="targetable" type="d" />
+		<part name="meshIndex" type="d" />
+        <part name="open" type="d" />
+        <part name="enemy" type="d" />
+        <part name="currentHP" type="d" />
+        <part name="maxHP" type="d" />
+        <part name="hpVisible" type="d" />
+        <part name="damage" type="d" />
+	</packet>
     <packet id="A1" name="PrivateBuyList" />
     <packet id="A2" name="PrivateStoreMsg" />
     <packet id="A4" name="ReviveRequestPacket" />
@@ -1118,7 +1163,63 @@
 	      <part name="pvpflag" type="d" />
 	  </for>
     </packet>
-    <packet id="D0" name="MultiSellListPacket" />
+    <packet id="D0" name="MultiSellList">
+		<part name="listId" type="d"/>
+		<part name="page" type="d"/>
+		<part name="finished" type="d"/>
+		<part name="size of pages" type="d"/>
+		<part name="sizeOfList" type="d" id="0"/>
+		<for id="0" name="entry">
+			<part name="entryId" type="d" />
+			<part name="stackable" type="c" />
+			<part name="?" type="h" />
+			<part name="aug" type="d" />
+			<part name="aug" type="d" />
+			<part name="attackElement" type="h" />
+			<part name="attackElement" type="h" />
+			<part name="water" type="h" />
+			<part name="fire" type="h" />
+			<part name="earth" type="h" />
+			<part name="wind" type="h" />
+			<part name="dark" type="h" />
+			<part name="holy" type="h" />
+			<part name="productionSize" type="h" id="1"/>
+			<part name="ingridientSize" type="h" id="2"/>
+			<for id="1" name="productions">
+				<part name="itemId" type="d" />
+				<part name="bodypart" type="d" />
+				<part name="type2" type="h" />	
+				<part name="count" type="Q" />
+				<part name="enchant" type="h" />
+				<part name="aug" type="d" />
+				<part name="aug" type="d" />
+				<part name="attackElement" type="h" />
+				<part name="attackElement" type="h" />
+				<part name="water" type="h" />
+				<part name="fire" type="h" />
+				<part name="earth" type="h" />
+				<part name="wind" type="h" />
+				<part name="dark" type="h" />
+				<part name="holy" type="h" />
+			</for>
+			<for id="2" name="ingridients">
+				<part name="itemId" type="d" />
+				<part name="type2" type="h" />
+				<part name="count" type="Q" />
+				<part name="enchant" type="h" />
+				<part name="aug" type="d" />
+				<part name="aug" type="d" />
+				<part name="attackElement" type="h" />
+				<part name="attackElement" type="h" />
+				<part name="water" type="h" />
+				<part name="fire" type="h" />
+				<part name="earth" type="h" />
+				<part name="wind" type="h" />
+				<part name="dark" type="h" />
+				<part name="holy" type="h" />
+			</for>
+		</for>
+	</packet>
     <packet id="D1" name="SetSummonRemainTimePacket" />
     <packet id="D2" name="PackageSendableListPacket" />
     <packet id="D3" name="EarthQuake" />
@@ -1251,7 +1352,6 @@
     <packet id="FE;005B" name="ExMPCCPartyInfoUpdate" />
     <packet id="FE;005C" name="ExPlayScene" />
     <packet id="FE;005D" name="ExSpawnEmitterPacket" />
-    <packet id="FE;005F" name="ExBasicActionList" />
     <packet id="FE;0061" name="ExAttributeEnchantResultPacket" />
     <packet id="FE;0062" name="ExChooseInventoryAttributeItemPacket" />
     <packet id="FE;0063" name="ExGetOnAirShipPacket" />
@@ -1286,7 +1386,9 @@
     <packet id="FE;0080" name="ExPrivateStoreSetWholeMsg" />
     <packet id="FE;0081" name="ExPutEnchantTargetItemResult" />
     <packet id="FE;0082" name="ExPutEnchantSupportItemResult" />
-    <packet id="FE;0083" name="ExChangeNicknameNColor" />
+    <packet id="FE;0083" name="ExChangeNicknameNColor">
+		<part name="itemObjectId" type="d" />
+	</packet>
     <packet id="FE;0084" name="ExGetBookMarkInfoPacket" />
     <packet id="FE;0085" name="ExNotifyPremiumItem" />
     <packet id="FE;0086" name="ExGetPremiumItemListPacket" />
@@ -1308,11 +1410,43 @@
     <packet id="FE;0098" name="ExBlockUpSetState" />
     <packet id="FE;0099" name="ExStartScenePlayer" />
     <packet id="FE;009A" name="ExAirShipTeleportList" />
-    <packet id="FE;009B" name="ExMpccRoomInfo" />
-    <packet id="FE;009C" name="ExListMpccWaiting" />
+    <packet id="FE;009B" name="ExMpccRoomInfo">
+		<part name="index" type="d" />
+		<part name="memberSize" type="d" />
+		<part name="minLevel" type="d" />
+        <part name="maxLevel" type="d" />
+		<part name="lootType" type="d" />
+		<part name="location" type="d" />
+		<part name="leader" type="S" />
+	</packet>
+    <packet id="FE;009C" name="ExListMpccWaiting">
+        <part name="maxSize" type="d" />
+		<part name="size" type="d" id="0"/>
+		<for id="0">
+            <part name="index" type="d" />
+            <part name="topic" type="S" />
+            <part name="memberSize" type="d" />
+            <part name="minLevel" type="d" />
+            <part name="maxLevel" type="d" />
+            <part name="minGroup" type="d" />
+            <part name="maxGroup" type="d" />
+            <part name="leaderName" type="S" />
+		</for>
+	</packet>
     <packet id="FE;009D" name="ExDissmissMpccRoom" />
     <packet id="FE;009E" name="ExManageMpccRoomMember" />
-    <packet id="FE;009F" name="ExMpccRoomMember" />
+    <packet id="FE;009F" name="ExMpccRoomMember">
+		<part name="maxSize" type="d" />
+		<part name="size" type="d" id="0"/>
+		<for id="0">
+            <part name="objectId" type="d" />
+            <part name="name" type="S" />
+            <part name="classId" type="d" />
+            <part name="level" type="d" />
+            <part name="?" type="d" />
+            <part name="location" type="d" />
+		</for>
+	</packet>
     <packet id="FE;00A1" name="ExShowSeedMapInfo" />
     <packet id="FE;00A2" name="ExMpccPartymasterList" />
     <packet id="FE;00A3" name="ExDominionWarStart">
@@ -1339,14 +1473,27 @@
         <part name="size" type="d" id="0"/>
 		<for id="0">
 			<macro id="item" />
-            <part name="?" type="d" />
+            <part name="id" type="d" />
 		</for>
         <part name="adena" type="Q" />
         <part name="?" type="d" />
         <part name="?" type="d" />
 	</packet>
     <packet id="FE;00AC" name="ExShowSentPostList" />
-    <packet id="FE;00AD" name="ExReplySentPost" />
+    <packet id="FE;00AD" name="ExReplySentPost" >
+        <part name="objectId" type="d" />
+        <part name="locked" type="d" />
+        <part name="receiver" type="S" />
+        <part name="subject" type="S" />
+        <part name="context" type="S" />
+        <part name="size" type="d" id="0"/>
+		<for id="0">
+			<macro id="item" />
+            <part name="id" type="d" />
+		</for>
+        <part name="adena" type="Q" />
+        <part name="?" type="d" />
+	</packet>
     <packet id="FE;00AE" name="ExResponseShowStepOne" />
     <packet id="FE;00AF" name="ExResponseShowStepTwo" />
     <packet id="FE;00B0" name="ExResponseShowContents" />
@@ -1358,7 +1505,7 @@
     <packet id="FE;00B6" name="ExRaidReserveResult" />
     <packet id="FE;00B7" name="ExBuySellListPacket">
       <part name="sell+refund" type="d" id="1" />
-      <switch id="1">
+      <switch id="1" name="buy/sell-refund">
         <case id="0">
           <part name="money" type="Q" />
           <part name="listId" type="d" />
@@ -1395,6 +1542,17 @@
     <packet id="FE;00BD" name="ExChangeNpcState">
       <part name="objectId" type="d" />
       <part name="state" type="d" />
+    </packet>
+    <packet id="FE;00C0" name="ExRotation">
+      <part name="objectId" type="d" />
+      <part name="heading" type="d" />
+    </packet>
+    <packet id="FE;00C3" name="ExReplyHandOverPartyMaster">
+      <part name="success" type="d" />
+    </packet>
+    <packet id="FE;00BF" name="ExSetPartyLooting">
+      <part name="success" type="d" />
+      <part name="lootType" type="d" />
     </packet>
     <packet id="FE;00C8" name="ExVoteSystemInfo">
       <part name="rec_can_give" type="d" />
@@ -1503,7 +1661,9 @@
     <packet id="1a" name="TradeRequestPacket" />
     <packet id="1b" name="AddTradeItemPacket" />
     <packet id="1c" name="TradeDonePacket" />
-    <packet id="22" name="RequestLinkHtml" />
+    <packet id="22" name="RequestLinkHtml">
+		<part name="name" type="S" />
+	</packet>
     <packet id="25" name="RequestCreatePledge" />
     <packet id="26" name="RequestJoinPledge" />
     <packet id="27" name="RequestAnswerJoinPledge" />

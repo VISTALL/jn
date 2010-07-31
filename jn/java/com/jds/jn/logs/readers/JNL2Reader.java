@@ -2,6 +2,7 @@ package com.jds.jn.logs.readers;
 
 import java.io.IOException;
 
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.*;
 import com.jds.jn.session.Session;
@@ -71,6 +72,9 @@ public class JNL2Reader extends AbstractReader
 			{				
 				_session.receiveQuitPacket(packet);
 			}
+
+			int p = (int) ((100D * (i + 1)) / size);
+			MainForm.getInstance().getProgressBar().setValue(p);
 		}
 	}
 

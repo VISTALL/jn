@@ -13,17 +13,16 @@ public class DataSwitchBlock extends DataTreeNodeContainer
 		_valuePart = vp;
 	}
 
-
 	@Override
 	public String toString()
 	{
-		SwitchCaseBlock block = (SwitchCaseBlock) this.getModelPart();
+		SwitchCaseBlock block = (SwitchCaseBlock) getModelPart();
 		SwitchPart part = block.getContainingSwitch();
 		if (block.isDefault())
 		{
 			return "Switch on '" + part.getTestPart().getName() + "' - default case";
 		}
-		return "Switch on '" + part.getTestPart().getName() + "' - case '" + this.getValuePart().readValue() + "'";
+		return "Switch on '" + part.getTestPart().getName() + "' - case '" + getValuePart().readValue() + "'";
 	}
 
 	public ValuePart getValuePart()

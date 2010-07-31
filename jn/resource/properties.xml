@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <property name="UseTray" val="false"/>
-    <property name="LastFolder" val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\"/>
-    <property name="ActiveProfile" val="L2 Epilogue"/>
+    <property name="LastFolder" val="C:\Users\VISTALL\Desktop\FreyaLogs\"/>
+    <property name="ActiveProfile" val="L2 Freya"/>
     <property name="MainVisible" val="1.0"/>
     <property name="ActiveType" val="JPCAP"/>
     <property name="PacketForm_Select_BackgroundColor" val="-256"/>
@@ -12,40 +12,48 @@
     <property name="PacketForm_NotSelect_BackgroundColor2" val="-1"/>
     <property name="PacketForm_NotSelect_ForegroundColor2" val="-16777216"/>
     <property name="SaveAsDecode" val="false"/>
-    <file val="C:\Users\VISTALL\Desktop\logs\AionGame.jnl2"/>
-    <file val="C:\Users\VISTALL\Desktop\logs\AionAuth.jnl2"/>
-    <file val="C:\Users\VISTALL\Desktop\logs\Gamw2.jnl2"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\AirField.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\AirShipTrajects.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\AirShipFiled+AirSip.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\Big.jnl"/>
-    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\ChamberOfDelusion.jnl"/>
+    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\AirShipFlyMount.jnl2"/>
+    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\WildBeast.jnl2"/>
     <profile name="L2 Epilogue" type="JPCAP">
-        <part DeviceId="0" DevicePort="0" FilterOpcodeList=""
-            LocalHost="127.0.0.1" LocalPort="0"
-            Protocol="Lineage 2 Game Server Epilogue" ProxyPacketId="0"
-            ProxyServerId="0"
-            ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
-            RemoteHost="127.0.0.1" RemotePort="0" type="Game_Server"/>
         <part DeviceId="0" DevicePort="0" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"
             Protocol="Lineage 2 Auth Server" ProxyPacketId="0"
             ProxyServerId="0"
             ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
             RemoteHost="127.0.0.1" RemotePort="0" type="Auth_Server"/>
-    </profile>
-    <profile name="Aion 1.9" type="JPCAP">
-        <part DeviceId="0" DevicePort="7778" FilterOpcodeList=""
+        <part DeviceId="0" DevicePort="0" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"
-            Protocol="Aion Game Server for client 1.9" ProxyPacketId="0"
+            Protocol="Lineage 2 Game Server Epilogue" ProxyPacketId="0"
             ProxyServerId="0"
             ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
             RemoteHost="127.0.0.1" RemotePort="0" type="Game_Server"/>
+    </profile>
+    <profile name="Aion 1.9" type="JPCAP">
         <part DeviceId="0" DevicePort="2109" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"
             Protocol="Aion Auth Server" ProxyPacketId="0"
             ProxyServerId="0"
             ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
             RemoteHost="127.0.0.1" RemotePort="0" type="Auth_Server"/>
+        <part DeviceId="0" DevicePort="7778" FilterOpcodeList=""
+            LocalHost="127.0.0.1" LocalPort="0"
+            Protocol="Aion Game Server for client 1.9" ProxyPacketId="0"
+            ProxyServerId="0"
+            ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
+            RemoteHost="127.0.0.1" RemotePort="0" type="Game_Server"/>
+    </profile>
+    <profile name="L2 Freya" type="JPCAP">
+        <part DeviceId="0" DevicePort="2106" FilterOpcodeList=""
+            LocalHost="127.0.0.1" LocalPort="0"
+            Protocol="Lineage 2 Auth Server" ProxyPacketId="0"
+            ProxyServerId="0"
+            ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
+            RemoteHost="127.0.0.1" RemotePort="0" type="Auth_Server"/>
+        <part DeviceId="0" DevicePort="7777" FilterOpcodeList=""
+            LocalHost="127.0.0.1" LocalPort="0"
+            Protocol="Lineage 2 Game Server Frey" ProxyPacketId="0"
+            ProxyServerId="0"
+            ProxyServerList="writeC(0);&#xa;writeC(0x01);&#xa;writeC(0);&#xa;writeC(0);&#xa;writeIP(127.0.0.1);&#xa;writeD(0);&#xa;writeC(0);&#xa;writeC(1);&#xa;writeH(0);&#xa;writeH(5000);&#xa;writeC(1);&#xa;writeD(1);&#xa;writeC(1);"
+            RemoteHost="127.0.0.1" RemotePort="0" type="Game_Server"/>
     </profile>
 </config>

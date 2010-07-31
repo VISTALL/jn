@@ -1,11 +1,13 @@
-package com.jds.jn.parser.packetfactory.lineage2.npc;
+package com.jds.jn.parser.packetfactory.lineage2.listeners;
 
 import java.io.*;
-import java.util.*;
 
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.lineage2.L2World;
+import com.jds.jn.parser.packetfactory.lineage2.infos.L2NpcInfo;
+import com.jds.jn.parser.packetfactory.lineage2.infos.L2SkillInfo;
 
 /**
  * Author: VISTALL
@@ -18,59 +20,33 @@ public class L2NpcSpawnListener implements IPacketListener
 	public final static int MAX_HP = 0x0a;
 	public final static int MAX_MP = 0x0c;
 
-	private static final String NPC_INFO = "NpcInfo";
 	private static final String STATUS_UPDATE = "StatusUpdate";
 	private static final String USER_INFO = "UserInfo";
 	private static final String MY_TARGET_SELECTED = "MyTargetSelected";
 	private static final String MAGIC_SKILL_USE = "MagicSkillUse";
 	
 	//values
-	private static final String OBJECT_ID = "obj_id";
+   	private int _userLevel;
 
-	private int _level;
+	private L2World _world;
 
-	private Map<Integer, NpcInfo> _npcInfos = new HashMap<Integer, NpcInfo>();
-   	private Map<Integer, NpcInfo> _npcInfosByNpcId = new TreeMap<Integer, NpcInfo>();
+	public L2NpcSpawnListener(L2World w)
+	{
+		_world = w;
+	}
 
 	@Override
 	public void invoke(DecryptPacket p)
 	{
-		if (p == null || p.getPacketFormat() == null || p.getName() == null || p.hasError())
+		if (p.getName().equalsIgnoreCase(USER_INFO))
 		{
-			return;
-		}
-
-		if(p.getName().equalsIgnoreCase(NPC_INFO))
-		{
-			int objectId = p.getInt(OBJECT_ID);
-
-			NpcInfo npc = _npcInfos.get(objectId);
-			if(npc == null)
-			{
-				npc = new NpcInfo(p);
-				_npcInfos.put(objectId, npc);
-			}
-
-			NpcInfo  list = _npcInfosByNpcId.get(npc.getNpcId());
-			if(list == null)
-			{
-				list = npc;
-				_npcInfosByNpcId.put(npc.getNpcId(), list);
-			}
-			else
-			{
-				list.addSpawnLoc(p);	
-			}
-		}
-		else if (p.getName().equalsIgnoreCase(USER_INFO))
-		{
-			_level = p.getInt("level");	
+			_userLevel = p.getInt("level");
 		}
 		else if (p.getName().equalsIgnoreCase(MAGIC_SKILL_USE))
 		{
-			int obj_id = p.getInt(OBJECT_ID);
+			int obj_id = p.getInt(L2World.OBJECT_ID);
 
-			NpcInfo npc = _npcInfos.get(obj_id);
+			L2NpcInfo npc = _world.getNpc(obj_id);
 			if(npc == null)
 			{
 			 	return;
@@ -83,29 +59,29 @@ public class L2NpcSpawnListener implements IPacketListener
 
 			if(!npc.hasSkill(id))
 			{
-				npc.addSkill(new SkillInfo(id, level, reuse, hitTime));
+				npc.addSkill(new L2SkillInfo(id, level, reuse, hitTime));
 			}
 		}
 		else if (p.getName().equalsIgnoreCase(MY_TARGET_SELECTED))
 		{
-			int obj_id = p.getInt(OBJECT_ID);
+			int obj_id = p.getInt(L2World.OBJECT_ID);
 
-			NpcInfo npc = _npcInfos.get(obj_id);
+			L2NpcInfo npc = _world.getNpc(obj_id);
 			if(npc == null)
 			{
 			 	return;
 			}
 
 			int diff = p.getInt("diff");
-			int level = _level - diff;
+			int level = _userLevel - diff;
 
 			npc.setLevel(level);
 		}
 		else if (p.getName().equalsIgnoreCase(STATUS_UPDATE))
 		{
-			int obj_id = p.getInt(OBJECT_ID);
+			int obj_id = p.getInt(L2World.OBJECT_ID);
 
-			NpcInfo npc = _npcInfos.get(obj_id);
+			L2NpcInfo npc = _world.getNpc(obj_id);
 			if(npc == null)
 			{
 			 	return;
@@ -134,7 +110,7 @@ public class L2NpcSpawnListener implements IPacketListener
 	public void close()
 	{
 	 	int id = 0;
-		String fileName = "./npc_sniff_%d.xml";
+		String fileName = "./saves/npc_data/npc_sniff_%d.xml";
 		while (new File(String.format(fileName, id)).exists())
 		{
 			id ++;
@@ -144,7 +120,7 @@ public class L2NpcSpawnListener implements IPacketListener
 		{
 			FileWriter writer = new FileWriter(String.format(fileName, id));
 			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<list>\n");
-			for(NpcInfo npc : _npcInfosByNpcId.values())
+			for(L2NpcInfo npc : _world.valuesNpc())
 			{
 				writer.write(npc.toXML());
 			}
