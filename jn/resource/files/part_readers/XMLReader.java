@@ -1,7 +1,5 @@
 package part_readers;
 
-import org.w3c.dom.*;
-
 import javax.swing.*;
 
 import java.awt.event.ActionEvent;
@@ -19,17 +17,6 @@ import com.jds.jn.parser.valuereader.ValueReader;
  */
 public class XMLReader implements ValueReader
 {
-
-	public <T extends Enum<T>> T getEnum(ValuePart part)
-	{
-		return null;
-	}
-
-	public boolean loadReaderFromXML(Node n)
-	{
-		return true;
-	}
-
 	public String read(ValuePart part)
 	{
 		if (part instanceof VisualValuePart)
@@ -46,16 +33,6 @@ public class XMLReader implements ValueReader
 		view.addActionListener(new ButtonActionListener(this.read(part)));
 		view.setActionCommand("clicked");
 		return view;
-	}
-
-	public boolean saveReaderToXML(Element element, Document doc)
-	{
-		return true;
-	}
-
-	public boolean supportsEnum()
-	{
-		return false;
 	}
 
 	class ButtonActionListener implements ActionListener

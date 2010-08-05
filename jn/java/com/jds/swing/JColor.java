@@ -11,7 +11,7 @@ public class JColor extends Color
 {
 	public JColor(Color c)
 	{
-		super(c.getRed(), c.getGreen(), c.getBlue());
+		this(c.getRed(), c.getGreen(), c.getBlue());
 	}
 
 	public JColor(int r, int g, int b)

@@ -1,13 +1,10 @@
 package part_readers;
 
-import com.jds.jn.parser.datatree.VisualValuePart;
-import com.jds.jn.parser.datatree.ValuePart;
-import com.jds.jn.parser.valuereader.ValueReader;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
 import javax.swing.*;
+
+import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
+import com.jds.jn.parser.valuereader.ValueReader;
 
 /**
  * Author: VISTALL
@@ -17,18 +14,6 @@ import javax.swing.*;
  */
 public class BooleanReader implements ValueReader
 {
-	@Override
-	public boolean loadReaderFromXML(Node n)
-	{
-		return true;
-	}
-
-	@Override
-	public boolean saveReaderToXML(Element element, Document doc)
-	{
-		return true;
-	}
-
 	public JComponent readToComponent(ValuePart part)
 	{
 		return new JLabel(read(part));
@@ -43,17 +28,5 @@ public class BooleanReader implements ValueReader
 	    boolean result = (int)((VisualValuePart)part).getValueAsInt() == 1;
 
 		return String.valueOf(result).toUpperCase();
-	}
-
-	@Override
-	public boolean supportsEnum()
-	{
-		return false;
-	}
-
-	@Override
-	public <T extends Enum<T>> T getEnum(ValuePart part)
-	{
-		return null;
 	}
 }

@@ -27,15 +27,8 @@ public class DecryptPacket implements IPacketData
 
 	protected boolean _mustUpdate = true;
 	protected String _error;
-	protected DataPacketMode _mode;
 
 	protected String[] _colorForHex;
-
-	public enum DataPacketMode
-	{
-		PARSING,
-		FORGING
-	}
 
 	public DecryptPacket(byte[] data, PacketType type, Protocol protocol)
 	{
@@ -69,8 +62,6 @@ public class DecryptPacket implements IPacketData
 		{
 			_dataFormat = _packetFormat.getDataFormat();
 		}
-
-		_mode = DataPacketMode.PARSING;
 
 		if (parse)
 		{
@@ -112,10 +103,6 @@ public class DecryptPacket implements IPacketData
 
 	public synchronized void parse()
 	{
-		if (getMode() != DataPacketMode.PARSING)
-		{
-			throw new IllegalStateException("Can not parse a non-parsing mode DataPacket");
-		}
 		if (!_mustUpdate) // could also be used to invalidate parsing results after protocol change
 		{
 			return;
@@ -243,16 +230,7 @@ public class DecryptPacket implements IPacketData
 
 	public DataTreeNodeContainer getRootNode()
 	{
-		if (getMode() == DataPacketMode.PARSING)
-		{
-			parse();
-		}
 		return _packetParts;
-	}
-
-	public DataPacketMode getMode()
-	{
-		return _mode;
 	}
 
 	public Format getDataFormat()
@@ -272,10 +250,6 @@ public class DecryptPacket implements IPacketData
 
 	public void invalidateParsing()
 	{
-		if (this.getMode() != DataPacketMode.PARSING)
-		{
-			throw new IllegalStateException("Can not invalidate parsing on a non-parsing mode DataPacket");
-		}
 		synchronized (this)
 		{
 			_mustUpdate = true;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="Jn" default="dist" basedir=".">
+<project name="Jn" default="main" basedir=".">
 	<description>jdevelopstation.com</description>
 	<property name="java" location="java"/>
 	<property name="resource" location="resource"/>
@@ -23,21 +23,23 @@
 	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpathref="svnant.classpath" />
 
 	<target name="clean" description="Removes old file.">
+		<delete dir="${build.classes}"/>
 		<delete file="${build}/jn.jar"/>
 		<delete file="${lib}/jn.jar"/>
 	</target>
 
-	<target name="init" description="Create the output directories.">
+	<target name="make" description="Create the output directories.">
 		<mkdir dir="${build}"/>
 		<mkdir dir="${build.classes}"/>
 	</target>
-	<target name="compile" depends="init" description="Compile the source.">
+
+	<target name="compile" description="Compile the source.">
 		<javac destdir="${build.classes}" optimize="off" debug="on" source="1.6" target="1.6" encoding="UTF-8" nowarn="off" srcdir="${java}">
 			<classpath refid="classpath"/>
 		</javac>
 	</target>
 
-	<target name="jar" depends="clean,compile" description="Create the jar file">
+	<target name="jar" description="Create the jar file">
 		<svn>
             <status path="${svn_root}" revisionProperty="svn.revision" />
         </svn>
@@ -51,5 +53,21 @@
 			</manifest>
 		</jar>
 	</target>
-	<target name="dist" depends="jar"/>
+
+	<target name="copy">
+		<copy todir="${build.classes}/com/jds/jn/util/logging">
+			<fileset dir="${java}/com/jds/jn/util/logging">
+				<include name="log4j.xml"/>
+				<include name="log4j.dtd"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="main">
+		<antcall target="clean"/>
+		<antcall target="make"/>
+		<antcall target="compile"/>
+		<antcall target="copy"/>
+		<antcall target="jar"/>
+	</target>
 </project>

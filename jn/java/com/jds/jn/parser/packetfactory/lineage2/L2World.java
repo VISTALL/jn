@@ -5,7 +5,7 @@ import java.util.*;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.infos.L2NpcInfo;
-import com.jds.jn.parser.packetfactory.lineage2.listeners.L2NpcBMListsListener;
+import com.jds.jn.parser.packetfactory.lineage2.listeners.*;
 
 /**
  * Author: VISTALL
@@ -24,9 +24,9 @@ public class L2World implements IPacketListener
 
 	public L2World()
 	{
-		//_listeners.add(new L2NpcSpawnListener(this));
-		//_listeners.add(new L2NpcDialogListener(this));
-		//_listeners.add(new L2NpcInfoListener(this));
+		_listeners.add(new L2NpcSpawnListener(this));
+		_listeners.add(new L2NpcDialogListener(this));
+		_listeners.add(new L2NpcInfoListener(this));
 		_listeners.add(new L2NpcBMListsListener(this));
 	}
 

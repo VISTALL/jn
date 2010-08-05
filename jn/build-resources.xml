@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project name="Jn Resources" default="dist" basedir=".">
+<project name="Jn Resources" default="main" basedir=".">
 	<description>jdevelopstation.com</description>
 	<property name="java" location="java-resource"/>
 	<property name="resource" location="resource"/>
@@ -21,12 +21,12 @@
 		<delete file="${lib}/jn-resources.jar"/>
 	</target>
 
-	<target name="init" description="Create the output directories.">
+	<target name="make" description="Create the output directories.">
 		<mkdir dir="${build}"/>
 		<mkdir dir="${build.resource}"/>
 	</target>
 
-	<target name="compile" depends="init" description="Compile the source.">
+	<target name="compile" description="Compile the source.">
 		<copy todir="${build.resource}/com/jds/jn/resources/bundle">
 			<fileset dir="${java}/com/jds/jn/resources/bundle">
 				<include name="*.properties"/>
@@ -34,21 +34,26 @@
 		</copy>
 		<copy todir="${build.resource}/com/jds/jn/resources/images">
 			<fileset dir="${java}/com/jds/jn/resources/images">
-				<include name="*.png*"/>
+				<include name="*.**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.resource}/com/jds/jn/resources/nimg">
 			<fileset dir="${java}/com/jds/jn/resources/nimg">
-				<include name="*.png*"/>
+				<include name="*.**"/>
 			</fileset>
 		</copy>
 		<copy todir="${build.resource}/com/jds/jn/resources/images/part">
 			<fileset dir="${java}/com/jds/jn/resources/images/part">
-				<include name="*.png"/>
+				<include name="*.*"/>
+			</fileset>
+		</copy>
+		<copy todir="${build.resource}/com/jds/jn/resources/datas/">
+			<fileset dir="${java}/com/jds/jn/resources/datas/">
+				<include name="*.*"/>
 			</fileset>
 		</copy>
 	</target>
-	<target name="jar" depends="clean,compile" description="Create the jar file">
+	<target name="jar" description="Create the jar file">
 		<svn>
             <status path="${svn_root}" revisionProperty="svn.revision" />
         </svn>
@@ -61,5 +66,11 @@
 			</manifest>
 		</jar>
 	</target>
-	<target name="dist" depends="jar"/>
+
+	<target name="main">
+		<antcall target="clean"/>
+		<antcall target="make"/>
+		<antcall target="compile"/>
+		<antcall target="jar"/>
+	</target>
 </project>

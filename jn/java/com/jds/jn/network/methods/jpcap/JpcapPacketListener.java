@@ -13,11 +13,11 @@ import jpcap.packet.TCPPacket;
  * Company: J Develop Station
  * Date: 20:27 07/12/2009
  */
-public class Receiver implements PacketReceiver
+public class JpcapPacketListener implements PacketReceiver
 {
 	private final Jpcap _pcap;
 
-	public Receiver(Jpcap p)
+	public JpcapPacketListener(Jpcap p)
 	{
 		_pcap = p;
 	}

@@ -1,16 +1,14 @@
 package com.jds.jn.network.methods.jpcap;
 
-import com.jds.jn.Jn;
+import java.io.IOException;
+
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.methods.IMethod;
-import com.jds.jn.network.profiles.NetworkProfile;
-import com.jds.jn.network.profiles.NetworkProfilePart;
-import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.network.profiles.*;
 import jpcap.JpcapCaptor;
 import jpcap.NetworkInterface;
-
-import java.io.IOException;
 
 /**
  * Author: VISTALL
@@ -20,7 +18,7 @@ import java.io.IOException;
  */
 public class Jpcap implements IMethod
 {
-	private final Receiver _receiver = new Receiver(this);
+	private final JpcapPacketListener _receiver = new JpcapPacketListener(this);
 	private JpcapCaptor _cap;
 	private ListenerType _type;
 	private int _port;
@@ -52,15 +50,15 @@ public class Jpcap implements IMethod
 	@Override
 	public void start() throws Exception
 	{
-		Jn.getForm().info("Start Jpcap on port " + _port);
+		MainForm.getInstance().info("Start Jpcap on port " + _port);
 		_cap.loopPacket(-1, _receiver);
 	}
 
 	@Override
 	public void stop() throws Exception
 	{
-		Jn.getForm().info("Stop Jpcap on port " + _port);
-		_cap.breakLoop();
+		MainForm.getInstance().info("Stop Jpcap on port " + _port);
+		_cap.close();
 	}
 
 	@Override
@@ -72,7 +70,7 @@ public class Jpcap implements IMethod
 	@Override
 	public long getSessionId()
 	{
-		return _port * 12646;
+		throw new IllegalArgumentException("Can't get session id from Jpcap");
 	}
 
 	@Override

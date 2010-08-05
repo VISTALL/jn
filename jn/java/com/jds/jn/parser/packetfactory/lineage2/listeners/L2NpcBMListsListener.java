@@ -57,7 +57,6 @@ public class L2NpcBMListsListener implements IPacketListener
 				DataForPart productions = (DataForPart) entryNode.getPartByName("productions");
 				DataForPart ingridients = (DataForPart) entryNode.getPartByName("ingridients");
 
-
 				for (DataForBlock block : productions.getNodes())
 				{
 					int itemId = ((VisualValuePart) block.getPartByName("itemId")).getValueAsInt();

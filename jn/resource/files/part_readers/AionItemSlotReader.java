@@ -1,13 +1,10 @@
 package part_readers;
 
-import com.jds.jn.parser.datatree.VisualValuePart;
-import com.jds.jn.parser.datatree.ValuePart;
-import com.jds.jn.parser.valuereader.ValueReader;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
 import javax.swing.*;
+
+import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
+import com.jds.jn.parser.valuereader.ValueReader;
 
 /**
  * Author: VISTALL
@@ -17,17 +14,6 @@ import javax.swing.*;
  */
 public class AionItemSlotReader implements ValueReader
 {
-
-	public <T extends Enum<T>> T getEnum(ValuePart part)
-	{
-		return null;
-	}
-
-	public boolean loadReaderFromXML(Node n)
-	{
-		return true;
-	}
-
 	public String read(ValuePart part)
 	{
 		if(!(part instanceof VisualValuePart))
@@ -40,16 +26,6 @@ public class AionItemSlotReader implements ValueReader
 	public JComponent readToComponent(ValuePart part)
 	{
 		return new JLabel(this.read(part));
-	}
-
-	public boolean saveReaderToXML(Element element, Document doc)
-	{
-		return true;
-	}
-
-	public boolean supportsEnum()
-	{
-		return false;
 	}
 
 	public int getMask(int num)

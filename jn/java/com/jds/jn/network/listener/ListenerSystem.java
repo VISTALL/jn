@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.methods.IMethod;
@@ -63,7 +64,7 @@ public class ListenerSystem
 				}
 				catch (Exception e)
 				{
-					Jn.getForm().warn("Not can start", e);
+					MainForm.getInstance().warn("Not can start", e);
 				}
 			}
 		});
@@ -71,10 +72,10 @@ public class ListenerSystem
 
 	public void stop(final ReceiveType receive, final ListenerType type)
 	{
-		//ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new Runnable()
 		{
-			//@Override
-			//public void run()
+			@Override
+			public void run()
 			{
 				try
 				{
@@ -82,10 +83,10 @@ public class ListenerSystem
 				}
 				catch (Exception e)
 				{
-					Jn.getForm().warn("Not can stop", e);
+					MainForm.getInstance().warn("Not can stop", e);
 				}
 			}
-		}//);
+		});
 	}
 
 	public void init() throws IOException

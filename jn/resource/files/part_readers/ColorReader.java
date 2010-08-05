@@ -38,20 +38,4 @@ public class ColorReader implements ValueReader
 		panel.setBackground(new Color(color));
 		return panel;
 	}
-
-	public <T extends Enum<T>> T getEnum(ValuePart part)
-	{
-		return null;
-	}
-
-	public boolean saveReaderToXML(Element element, Document doc)
-	{
-		return true;
-	}
-
-	public boolean supportsEnum()
-	{
-		return false;
-	}
-
 }

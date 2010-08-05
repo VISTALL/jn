@@ -68,15 +68,15 @@ public class SimpleResizableIcon implements ResizableIcon
 		int cx = x + this.currWidth / 2 - 1;
 		int cy = y + this.currHeight / 2 - 1;
 		Color color = null;
-		switch (this.priority.ordinal())
+		switch (this.priority)
 		{
-			case 1:
+			case TOP:
 				color = new Color(0, 0, 128);
 				break;
-			case 2:
+			case MEDIUM:
 				color = Color.blue;
 				break;
-			case 3:
+			case LOW:
 				color = new Color(128, 128, 255);
 		}
 

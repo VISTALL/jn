@@ -85,24 +85,37 @@ public class Obfuscator
 			_decodeTable3[i] = j;
 		}  */
 
+		//replace(0x12);
+		//replace(0xb1);
 
-		for (l = 0; _decodeTable1[l] != 0x12; ++l)
-		{
-		}
-
-		j = _decodeTable1[0x12];
-		_decodeTable1[0x12] = 0x12;
-		_decodeTable1[l] = j;
-
-		for (l = 0; _decodeTable1[l] != 0xb1; ++l)
-		{
-		}
-
-		j = _decodeTable1[0xb1];
-		_decodeTable1[0xb1] = 0xb1;
-		_decodeTable1[l] = j;
+		replace((byte)0x11);
 
 		_isEnable = true;
+	}
+
+	private void replace(byte val)
+	{
+		int i;
+		int j;
+		boolean flag = false;
+		for (i = 0; i < _decodeTable1.length; i++)
+		{
+			if(_decodeTable1[i] == val)
+			{
+				flag = true;
+				break;
+			}
+		}
+
+		if(!flag)
+		{
+			System.out.println("not found " + Integer.toHexString(val));
+			return;
+		}
+
+		j = _decodeTable1[val];
+		_decodeTable1[val] = val;
+		_decodeTable1[i] = j;
 	}
 
 	public int decodeSingleOpcode(int id)

@@ -454,11 +454,6 @@ public class ProtocolLoader
 				try
 				{
 					r = (ValueReader) clazz.newInstance();
-					if (!r.loadReaderFromXML(subNode)) //drop reader if loading went wrong
-					{
-						r = null;
-					}
-
 				}
 				catch (InstantiationException e)
 				{

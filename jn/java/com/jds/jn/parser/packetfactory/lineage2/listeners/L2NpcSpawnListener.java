@@ -124,6 +124,7 @@ public class L2NpcSpawnListener implements IPacketListener
 			{
 				writer.write(npc.toXML());
 			}
+			writer.write("</list>");
 			writer.close();
 		}
 		catch (IOException e)

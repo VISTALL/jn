@@ -148,7 +148,7 @@
         <part name="id" type="d" />
         <switch id="1">
           <case id="1">
-            <part name="?" type="d" />
+            <part name="creatureType" type="d" />
             <part name="?" type="d" />
             <part name="?" type="d" />
             <part name="?" type="d" />
@@ -158,10 +158,10 @@
           <case id="2">
             <part name="level" type="d" />
             <part name="?" type="c" />
-            <part name="?" type="d" />
+            <part name="creatureType" type="d" />
           </case>
           <case id="default">
-            <part name="?" type="d" />
+            <part name="creatureType" type="d" />
           </case>
         </switch>
       </for>
@@ -1352,8 +1352,19 @@
     <packet id="FE;005B" name="ExMPCCPartyInfoUpdate" />
     <packet id="FE;005C" name="ExPlayScene" />
     <packet id="FE;005D" name="ExSpawnEmitterPacket" />
-    <packet id="FE;0061" name="ExAttributeEnchantResultPacket" />
-    <packet id="FE;0062" name="ExChooseInventoryAttributeItemPacket" />
+    <packet id="FE;0061" name="ExAttributeEnchantResult">
+		<part name="result" type="d" />
+	</packet>
+    <packet id="FE;0062" name="ExChooseInventoryAttributeItem">
+		<part name="itemId" type="d" />
+		<part name="disableWater" type="d" />
+		<part name="disableFire" type="d" />
+		<part name="disableEarth" type="d" />
+		<part name="disableWind" type="d" />
+		<part name="disableDark" type="d" />
+		<part name="disableHoly" type="d" />
+		<part name="levelMax" type="d" />
+	</packet>
     <packet id="FE;0063" name="ExGetOnAirShipPacket" />
     <packet id="FE;0064" name="ExGetOffAirShipPacket" />
     <packet id="FE;0065" name="ExMoveToLocationAirShipPacket" />
@@ -1363,7 +1374,9 @@
     <packet id="FE;0069" name="ExNeedToChangeName" />
     <packet id="FE;006A" name="ExPartyPetWindowDelete" />
     <packet id="FE;006B" name="ExTutorialList" />
-    <packet id="FE;006C" name="ExRpItemLink" />
+    <packet id="FE;006C" name="ExRpItemLink">
+		<macro id="item" />
+	</packet>
     <packet id="FE;006D" name="ExMoveToLocationInAirShipPacket" />
     <packet id="FE;006E" name="ExStopMoveInAirShipPacket" />
     <packet id="FE;006F" name="ExValidateLocationInAirShipPacket" />
@@ -1372,7 +1385,11 @@
     <packet id="FE;0072" name="ExAttackInAirShipPacket" />
     <packet id="FE;0073" name="ExMagicSkillUseInAirShipPacket" />
     <packet id="FE;0074" name="ExShowBaseAttributeCancelWindow" />
-    <packet id="FE;0075" name="ExBaseAttributeCancelResult" />
+    <packet id="FE;0075" name="ExBaseAttributeCancelResult">
+		<part name="success" type="d" />
+		<part name="itemObjectId" type="d" />
+		<part name="attributeId" type="d" />		
+	</packet>
     <packet id="FE;0076" name="ExSubPledgetSkillAdd" />
     <packet id="FE;0077" name="ExResponseFreeServer" />
     <packet id="FE;0078" name="ExShowProcureCropDetailPacket" />

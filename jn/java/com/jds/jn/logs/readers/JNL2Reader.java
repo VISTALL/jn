@@ -13,7 +13,8 @@ import com.jds.jn.version_control.Version;
  * Author: VISTALL
  * Company: J Develop Station
  * Date:  10:32:04/20.06.2010
- * version control
+ *
+ * version info
  * -----------------
  * d - program type
  * d - major
@@ -24,6 +25,13 @@ import com.jds.jn.version_control.Version;
  * c - listener type
  * Q - session id
  * c - decode ?
+ * d - size of packets
+ * {
+ *    c - packet type
+ *    Q - time millis
+ *    d - size of bytes
+ *    b - bytes of size - up
+ * }
  */
 public class JNL2Reader extends AbstractReader
 {

@@ -12,8 +12,9 @@
     <property name="PacketForm_NotSelect_BackgroundColor2" val="-1"/>
     <property name="PacketForm_NotSelect_ForegroundColor2" val="-16777216"/>
     <property name="SaveAsDecode" val="false"/>
-    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\AirShipFlyMount.jnl2"/>
-    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\WildBeast.jnl2"/>
+    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\Freya\Freya Start.jnl2"/>
+    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\Freya\Freya 2.jnl2"/>
+    <file val="C:\Users\VISTALL\Desktop\FreyaLogs\FlyTransform.jnl2"/>
     <profile name="L2 Epilogue" type="JPCAP">
         <part DeviceId="0" DevicePort="0" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"
