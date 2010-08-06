@@ -53,7 +53,7 @@ public class DecryptPacket implements IPacketData
 		_buf = packet.getBuffer().clone();
 		_colorForHex = new String[packet.length()];
 
-		_packetFormat = getProtocol().getFormat(this);
+		_packetFormat = getProtocol().getPacketInfo(this);
 		if (_packetFormat == null)
 		{
 			_buf.position(0);

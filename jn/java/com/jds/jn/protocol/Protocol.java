@@ -1,5 +1,7 @@
 package com.jds.jn.protocol;
 
+import org.apache.log4j.Logger;
+
 import java.nio.ByteOrder;
 import java.util.*;
 
@@ -7,13 +9,16 @@ import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.protocoltree.*;
+import com.jds.jn.util.Util;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
- * @author Gilles Duboscq  && VISTALL
+ * @author Gilles Duboscq
+ * @author VISTALL
  */
 public class Protocol
 {
+	private static final Logger _log = Logger.getLogger(Protocol.class);
 	private Map<PacketType, PacketFamilly> _familyes = new HashMap<PacketType, PacketFamilly>();
 	private Map<String, MacroInfo> _macros = new HashMap<String, MacroInfo>();
 
@@ -28,13 +33,15 @@ public class Protocol
 		_filename = pFile;
 	}
 
-	public PacketInfo getFormat(DecryptPacket packet)
+	public PacketInfo getPacketInfo(DecryptPacket packet)
 	{
 		PacketFamilly f = _familyes.get(packet.getPacketType());
 		if (f == null)
 		{
 			return null;
 		}
+
+		PacketInfo info = null;
 
 		for (PacketInfo format : f.getFormats().values())
 		{
@@ -43,98 +50,137 @@ public class Protocol
 
 			boolean[] ok = new boolean[format.sizeId()];
 
-			for (int i = 0; i < format.sizeId(); i++)
+			PartLoop:
 			{
-				String hexStep = format.getHexForIndex(i);
-
-				if (hexStep.trim().equals(""))
+				// D0;0001
+				for (int i = 0; i < format.sizeId(); i++)
 				{
-					ok[i] = false;
-					continue;
-				}
+					String hexStep = format.getHexForIndex(i);
 
-
-				int val = -1;
-
-				int len = hexStep.length();
-				int needValue = byteCount(len);
-				if((packet.getBuffer().limit() - position) >= needValue)
-				{
-					val = read(len, packet.getBuffer(), position);
-					position += needValue;
-				}
-				else
-				{
-					ok[i] = false;
-					continue;
-				}
-
-				String hex = Integer.toHexString(val).toUpperCase();
-
-				if(hex.length() < hexStep.length())
-				{
-					String allZero = "";
-					for(int $ = 0; $ < (hexStep.length() - hex.length()); $++)
+					// если у нас ктото накосячил?
+					if (hexStep.trim().equals(""))
 					{
-						allZero += "0";
+						ok[i] = false;
+						break PartLoop;
 					}
 
-					hex = allZero + hex;
+					long val;
+
+					int len = hexStep.length();
+					int needValue = byteCount(len);
+					// если у нас достаточно для чтения
+					if ((packet.getBuffer().limit() - position) >= needValue)
+					{
+						val = read(len, packet.getBuffer(), position);
+						position += needValue;
+					}
+					else
+					{
+						ok[i] = false;
+						break PartLoop;
+					}
+
+					String hex = Long.toHexString(val).toUpperCase();
+
+					// приводим в порядок если 0x0F - F то добавляем нулик
+					if (hex.length() < hexStep.length())
+					{
+						String allZero = "";
+						for (int $ = 0; $ < (hexStep.length() - hex.length()); $++)
+						{
+							allZero += "0";
+						}
+
+						hex = allZero + hex;
+					}
+
+					// не совпадает выходим
+					if (!hex.equalsIgnoreCase(hexStep))
+					{
+						ok[i] = false;
+						break PartLoop;
+					}
+
+					ok[i] = true;
 				}
 
-				if (!hex.equalsIgnoreCase(hexStep))
+				boolean isAllOk = true;
+				for (boolean s : ok)
 				{
-					ok[i] = false;
-					continue;
+					if (!s)
+					{
+						isAllOk = false;
+					}
 				}
 
-				ok[i] = true;
-			}
-
-			boolean isAllOk = true;
-			for(boolean s : ok)
-			{
-				if(!s)
-					isAllOk = false;
-			}
-
-			if(isAllOk)
-			{
-				packet.getBuffer().position(position);
-
-				for (int j = start; j < position; j++)
+				if (isAllOk)
 				{
-					packet.setColor(j, "op");
-				}
+					packet.getBuffer().position(position);
 
-				return format;
+					for (int j = start; j < position; j++)
+					{
+						packet.setColor(j, "op");
+					}
+
+					info = format;
+					break;
+				}
 			}
 		}
 
-		return null;
+		if(info == null)
+		{
+			int size = packet.getBuffer().limit() > 10 ? 10 : packet.getBuffer().limit();
+			byte[] data = new byte[size];
+
+			packet.getBuffer().get(data);
+			packet.getBuffer().position(packet.getBuffer().position() - size);
+
+			_log.info("Unknown packet: " + Util.hexDump(data) + "; PacketType: " + packet.getPacketType());
+		}
+
+		return info;
 	}
 
 	public int byteCount(int t)
 	{
-		if(t >= 1 && t <= 2)  //c
+		if (t >= 1 && t <= 2)  //c 00
+		{
 			return 1;
-		if(t >= 3 && t <= 4) //h
+		}
+		if (t >= 3 && t <= 4) //h  0000
+		{
 			return 2;
-		if(t >= 5 && t <= 8) //d
+		}
+		if (t >= 5 && t <= 8) //d  0000.0000
+		{
 			return 4;
-
+		}
+		if (t >= 9 && t <= 12) //q 0000.0000.0000.0000
+		{
+			return 8;
+		}
 		return 0;
 	}
 
-	public int read(int t, NioBuffer b, int pos)
+	public long read(int t, NioBuffer b, int pos)
 	{
-		if(t >= 1 && t <= 2)  //c
+		if (t >= 1 && t <= 2)  //c
+		{
 			return b.getUnsigned(pos);
-		if(t >= 3 && t <= 4) //h
+		}
+		if (t >= 3 && t <= 4) //h
+		{
 			return b.getUnsignedShort(pos);
-		if(t >= 5 && t <= 8) //d
+		}
+		if (t >= 5 && t <= 8) //d
+		{
 			return b.getInt(pos);
-
+		}
+		if (t >= 9 && t <= 12) //q
+		{
+			return b.getLong(pos);
+		}
 		return 0;
 	}
 
@@ -181,12 +227,6 @@ public class Protocol
 		return _macros.get(name);
 	}
 
-	@Override
-	public String toString()
-	{
-		return getName();
-	}
-
 	public Collection<PacketFamilly> getFamilies()
 	{
 		return _familyes.values();
@@ -200,5 +240,11 @@ public class Protocol
 	public void setOrder(ByteOrder order)
 	{
 		_order = order;
+	}
+
+	@Override
+	public String toString()
+	{
+		return getName();
 	}
 }

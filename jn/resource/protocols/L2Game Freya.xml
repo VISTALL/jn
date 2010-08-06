@@ -1522,13 +1522,13 @@
     <packet id="FE;00B6" name="ExRaidReserveResult" />
     <packet id="FE;00B7" name="ExBuySellListPacket">
       <part name="sell+refund" type="d" id="1" />
-      <switch id="1" name="buy/sell-refund">
+      <switch id="1">
         <case id="0">
           <part name="money" type="Q" />
           <part name="listId" type="d" />
           <part name="buy_size" type="h" id="0" />
-          <for id="0">
-			<macro id="item" name="item" />
+          <for id="0" name="buyList">
+			<macro id="item" />
             <part name="price" type="Q" />
           </for>
         </case>
@@ -1563,6 +1563,10 @@
     <packet id="FE;00C0" name="ExRotation">
       <part name="objectId" type="d" />
       <part name="heading" type="d" />
+    </packet>
+	<packet id="FE;00C1" name="ExChangeZoneInfo">
+      <part name="?" type="d" />
+      <part name="stage" type="d" />
     </packet>
     <packet id="FE;00C3" name="ExReplyHandOverPartyMaster">
       <part name="success" type="d" />

@@ -25,6 +25,18 @@ public class DataSwitchBlock extends DataTreeNodeContainer
 		return "Switch on '" + part.getTestPart().getName() + "' - case '" + getValuePart().readValue() + "'";
 	}
 
+	public int getCaseValue()
+	{
+		SwitchCaseBlock block = (SwitchCaseBlock) getModelPart();
+		int val = Byte.MIN_VALUE;
+		if(_valuePart instanceof VisualValuePart)
+		{
+			val = ((VisualValuePart) _valuePart).getValueAsInt();
+		}
+		return block.isDefault() ? -1 : val;
+	}
+
+
 	public ValuePart getValuePart()
 	{
 		return _valuePart;
