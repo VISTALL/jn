@@ -615,15 +615,20 @@
 			<part name="allowedMap" type="d"/>
 			<part name="vitalityLevel" type="d"/>
 			<part name="specialeffects" type="d"/>
-			<!---<part name="?" type="d" />
-				  <part name="?" type="d" />
-				  <part name="?" type="d" />  -->
 		</packet>
 		<packet id="4a" name="Say2">
 			<part name="obj_id" type="d"/>
-			<part name="type" type="d"/>
-			<part name="name" type="S"/>
-			<part name="text" type="S"/>
+			<part name="type" type="d" id="0"/>
+			<switch id="0">
+				<case id="11">
+					<part name="sysstringId" type="d"/>
+					<part name="msgId" type="d"/>
+				</case>
+				<case id="default">
+					<part name="name" type="S"/>
+					<part name="text" type="S"/>
+				</case>
+			</switch>
 		</packet>
 		<packet id="54" name="MagicSkillLaunched">
 			<part name="obj_id" type="d"/>
@@ -1521,7 +1526,23 @@
 		<packet id="FE;00A7" name="ExEnchantSkillResult"/>
 		<packet id="FE;00A8" name="ExRefundList"/>
 		<packet id="FE;00A9" name="ExNoticePostArrived"/>
-		<packet id="FE;00AA" name="ExShowReceivedPostList"/>
+		<packet id="FE;00AA" name="ExShowReceivedPostList">
+			<part name="millis" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="objectId" type="d"/>
+				<part name="subject" type="S"/>
+				<part name="sender" type="S"/>
+				<part name="locked" type="d"/>
+				<part name="expiration" type="d"/>
+				<part name="unread" type="d"/>
+				<part name="?" type="d"/>
+				<part name="attachments" type="d"/>
+				<part name="forStar" type="d"/>
+				<part name="news" type="d"/>
+				<part name="?" type="d"/> <!--4012-->
+			</for>
+		</packet>
 		<packet id="FE;00AB" name="ExReplyReceivedPost">
 			<part name="objectId" type="d"/>
 			<part name="locked" type="d"/>
@@ -1538,7 +1559,21 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 		</packet>
-		<packet id="FE;00AC" name="ExShowSentPostList"/>
+		<packet id="FE;00AC" name="ExShowSentPostList">
+			<part name="millis" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="objectId" type="d"/>
+				<part name="subject" type="S"/>
+				<part name="receiverName" type="S"/>
+				<part name="locked" type="d"/>
+				<part name="expiration" type="d"/>
+				<part name="unread" type="d"/>
+				<part name="?" type="d"/>
+				<part name="attachments" type="d"/>
+				<part name="?" type="d"/>
+			</for>
+		</packet>
 		<packet id="FE;00AD" name="ExReplySentPost">
 			<part name="objectId" type="d"/>
 			<part name="locked" type="d"/>
@@ -1557,7 +1592,12 @@
 		<packet id="FE;00AF" name="ExResponseShowStepTwo"/>
 		<packet id="FE;00B0" name="ExResponseShowContents"/>
 		<packet id="FE;00B1" name="ExShowPetitionHtml"/>
-		<packet id="FE;00B2" name="ExReplyPostItemList"/>
+		<packet id="FE;00B2" name="ExReplyPostItemList">
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<macro id="item"/>
+			</for>
+		</packet>
 		<packet id="FE;00B3" name="ExChangePostState"/>
 		<packet id="FE;00B4" name="ExReplyWritePost"/>
 		<packet id="FE;00B5" name="ExRaidCharSelected"/>

@@ -23,6 +23,7 @@
     <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\AugmentationItem.jnl2"/>
     <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\partyCouple.jnl2"/>
     <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\NpcQuestLogList.jnl2"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\MailFunctionPeaceZone.jnl2"/>
     <profile name="L2 Epilogue" type="JPCAP">
         <part DeviceId="0" DevicePort="0" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"
