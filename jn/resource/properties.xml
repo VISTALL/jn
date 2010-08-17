@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <property name="UseTray" val="false"/>
-    <property name="LastFolder" val="C:\Users\VISTALL\Desktop\FreyaLogs\"/>
+    <property name="LastFolder" val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\"/>
     <property name="ActiveProfile" val="L2 Freya"/>
     <property name="MainVisible" val="1.0"/>
     <property name="ActiveType" val="JPCAP"/>
@@ -18,6 +18,11 @@
     <file val="C:\Users\VISTALL\Desktop\FreyaLogs\FlyTransform.jnl2"/>
     <file val="C:\Users\VISTALL\Desktop\FreyaLogs\FishingRank.jnl2"/>
     <file val="C:\Users\VISTALL\Desktop\FreyaLogs\FreyaQuests.jnl2"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\WildBeast.jnl2"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\WildBeastMatching.jnl2"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\AugmentationItem.jnl2"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\partyCouple.jnl2"/>
+    <file val="D:\Projects\J Develop Station\Jn\trunk\jn\resource\logs\FreyaLogs\NpcQuestLogList.jnl2"/>
     <profile name="L2 Epilogue" type="JPCAP">
         <part DeviceId="0" DevicePort="0" FilterOpcodeList=""
             LocalHost="127.0.0.1" LocalPort="0"

@@ -187,7 +187,7 @@
 			<part name="showWindow" type="h"/>
 			<part id="0" name="size" type="h"/>
 			<for id="0">
-				<macro name="item" id="item"/>
+				<macro id="item"/>
 			</for>
 			<part id="1" name="size" type="h"/>
 			<for id="1">
@@ -873,6 +873,15 @@
 			</part>
 			<part name="quest_id" type="d"/>
 		</packet>
+		<packet id="FE;00C4" name="ExQuestNpcLogList">
+			<part name="questId" type="d"/>
+			<part name="size" type="c" id="0"/>
+            <for id="0">
+                 <part name="npcId" type="d"/>
+				 <part name="unk" type="c"/>
+                 <part name="count" type="d"/>
+            </for>
+		</packet>
 		<packet id="1c" name="SendTradeDone">
 			<part name="num" type="d"/>
 		</packet>
@@ -1348,11 +1357,35 @@
 		<packet id="FE;0050" name="ExDuelUpdateUserInfo"/>
 		<packet id="FE;0051" name="ExShowVariationMakeWindow"/>
 		<packet id="FE;0052" name="ExShowVariationCancelWindow"/>
-		<packet id="FE;0053" name="ExPutItemResultForVariationMake"/>
-		<packet id="FE;0054" name="ExPutIntensiveResultForVariationMake"/>
-		<packet id="FE;0055" name="ExPutCommissionResultForVariationMake"/>
+		<packet id="FE;0053" name="ExPutItemResultForVariationMake">
+			<part name="item_object_id" type="d"/>
+			<part name="item_id" type="d"/>
+			<part name="success" type="d"/>
+		</packet>
+		<packet id="FE;0054" name="ExPutIntensiveResultForVariationMake">
+			<part name="refinerObjectId" type="d"/>
+			<part name="refinerItemId" type="d"/>
+			<part name="gameStoneObjectId" type="d"/>
+			<part name="gameStoneItem" type="Q"/>
+			<part name="success" type="d"/>
+		</packet>
+		<packet id="FE;0055" name="ExPutCommissionResultForVariationMake">
+			<part name="objectId" type="d"/>
+			<part name="itemId" type="d"/>
+			<part name="count" type="Q"/>
+			<part name="zero?" type="d"/>
+			<part name="zero?" type="d"/>
+			<part name="success" type="d"/>
+		</packet>
 		<packet id="FE;0056" name="ExVariationResult"/>
-		<packet id="FE;0057" name="ExPutItemResultForVariationCancel"/>
+		<packet id="FE;0057" name="ExPutItemResultForVariationCancel">
+			<part name="item_object_id" type="d"/>
+			<part name="item_id" type="d"/>
+			<part name="augmentation 2 byte of aug" type="d"/>
+			<part name="augmentation second 2 byte of aug" type="d"/>
+			<part name="price" type="Q"/>
+			<part name="success" type="d"/>
+		</packet>
 		<packet id="FE;0058" name="ExVariationCancelResult"/>
 		<packet id="FE;0059" name="ExDuelEnemyRelation"/>
 		<packet id="FE;005A" name="ExPlayAnimation"/>
@@ -1893,7 +1926,9 @@
 		<packet id="D0;003F" name="RequestFortressSiegeInfo"/>
 		<packet id="D0;0040" name="RequestGetBossRecord"/>
 		<packet id="D0;0041" name="RequestRefine"/>
-		<packet id="D0;0042" name="RequestConfirmCancelItem"/>
+		<packet id="D0;0042" name="RequestConfirmCancelItem">
+			<part name="objectId" type="d"/>
+		</packet>
 		<packet id="D0;0043" name="RequestRefineCancel"/>
 		<packet id="D0;0044" name="RequestExMagicSkillUseGround"/>
 		<packet id="D0;0045" name="RequestDuelSurrender"/>
@@ -1963,7 +1998,9 @@
 		<packet id="D0;007A" name="AnswerCoupleAction"/>
 		<packet id="D0;007B" name="RequestBR_EventRankerList"/>
 		<packet id="D0;007C" name="RequestAskMemberShip"/>
-		<packet id="D0;007D" name="RequestAddExpandQuestAlarm"/>
+		<packet id="D0;007D" name="RequestAddExpandQuestAlarm">
+                <part name="questId" type="d" />
+        </packet>
 		<packet id="D0;007E" name="NewVoteSystem"/>
 		<packet id="D0;007F" name="RequestBR_GamePoint"/>
 		<packet id="D0;0080" name="RequestBR_ProductList"/>
