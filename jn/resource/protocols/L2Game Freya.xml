@@ -1465,7 +1465,35 @@
 		<packet id="FE;0090" name="ExShowDominionRegistry"/>
 		<packet id="FE;0091" name="ExReplyRegisterDominion"/>
 		<packet id="FE;0093" name="ExShowOwnthingPos"/>
-		<packet id="FE;0094" name="ExCleftList"/>
+		<packet id="FE;0094" name="ExCleftList">
+			<part name="type" type="d" id="0"/>
+			<switch id="0">
+				<case id="0" name="Case 0: Total List">
+					<part name="MinMemberCount" type="d"/>
+					<part name="size" type="d" id="3"/>
+					<for id="3">
+						<part name="kills" type="d"/>
+						<part name="team" type="d"/>		
+						<part name="objectId" type="d"/>
+						<part name="name" type="S"/>
+					</for>
+				</case>
+				<case id="1" name="Case 1: Add Player">
+					<part name="size" type="d" id="1"/>
+					<for id="1">
+						<part name="objectId" type="d"/>
+						<part name="name" type="S"/>	
+					</for>
+				</case>
+				<case id="2" name="Case 2: Remove Player">
+					<part name="size" type="d" id="2"/>
+					<for id="2">
+						<part name="objectId" type="d"/>	
+					</for>
+				</case>
+				<case id="default"/>
+			</switch>
+		</packet>   			
 		<packet id="FE;0095" name="ExCleftState"/>
 		<packet id="FE;0096" name="ExDominionChannelSet"/>
 		<packet id="FE;0097" name="ExBlockUpSetList"/>
@@ -2003,7 +2031,9 @@
 		<packet id="D0;0056" name="NotifyStartMiniGame"/>
 		<packet id="D0;0057" name="RequestJoinDominionWar"/>
 		<packet id="D0;0058" name="RequestDominionInfo"/>
-		<packet id="D0;0059" name="RequestExCleftEnter"/>
+		<packet id="D0;0059" name="RequestExCleftEnter">
+			<part name="enter" type="d"/>
+		</packet>
 		<packet id="D0;005A" name="RequestExBlockGameEnter"/>
 		<packet id="D0;005B" name="EndScenePlayer"/>
 		<packet id="D0;005C" name="RequestExBlockGameVote"/>

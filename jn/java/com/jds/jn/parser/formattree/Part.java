@@ -85,9 +85,9 @@ public class Part
 	public void setName(String name)
 	{
 		_name = name;
-		if (this.getContainingFormat() != null)
+		if (getContainingFormat() != null)
 		{
-			this.getContainingFormat().triggerFormatChanged();
+			getContainingFormat().triggerFormatChanged();
 		}
 	}
 
