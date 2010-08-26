@@ -3,32 +3,33 @@ package com.jds.jn.holders;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Author: VISTALL
  * Company: J Develop Station
  * Date:  19:57:29/31.07.2010
  */
-public class ItemNameHolder
+public class SkillNameHolder
 {
-	private static final Logger _log = Logger.getLogger(ItemNameHolder.class);
-	private static ItemNameHolder _instance;
+	private static final Logger _log = Logger.getLogger(SkillNameHolder.class);
+	private static SkillNameHolder _instance;
 
-	private Map<Integer, String> _itemNames = new HashMap<Integer, String>();
+	private Map<Integer, String> _skillNames = new HashMap<Integer, String>();
 
-	public static ItemNameHolder getInstance()
+	public static SkillNameHolder getInstance()
 	{
 		if (_instance == null)
 		{
-			_instance = new ItemNameHolder();
+			_instance = new SkillNameHolder();
 		}
 		return _instance;
 	}
 
-	private ItemNameHolder()
+	private SkillNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/itemname.tsv");
+		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/skillname.tsv");
 		if(stream == null)
 		{
 			_log.info("Not exists");
@@ -49,7 +50,7 @@ public class ItemNameHolder
 				int itemId = Integer.parseInt(st[0]);
 				String itemName = st[1];
 
-				_itemNames.put(itemId, itemName);
+				_skillNames.put(itemId, itemName);
 			}
 		}
 		catch (IOException e)
@@ -68,12 +69,12 @@ public class ItemNameHolder
 			}
 		}
 
-		_log.info("Load item names " + _itemNames.size());
+		_log.info("Load skills names " + _skillNames.size());
 	}
 
-	public String name(int itemId)
+	public String name(int skillId)
 	{
-		String name = _itemNames.get(itemId);
+		String name = _skillNames.get(skillId);
 		return name == null ? "None" : name;
 	}
 }

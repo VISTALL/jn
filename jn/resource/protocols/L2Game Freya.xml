@@ -4,7 +4,9 @@
 	<!--Item Macro-->
 	<macro id="item">
 		<part name="obj_id" type="d"/>
-		<part name="item_id" type="d"/>
+		<part name="item_id" type="d">
+			<reader type="ItemName" />
+		</part>
 		<part name="equip_slot" type="d"/>
 		<part name="count" type="Q"/>
 		<part name="item type 2" type="h"/>
@@ -189,17 +191,36 @@
 			<for id="0">
 				<macro id="item"/>
 			</for>
-			<part id="1" name="size" type="h"/>
-			<for id="1">
-				<part name="?" type="c"/>
-				<part name="?" type="d"/>
-			</for>
+			<part id="1" name="size2" type="h"/>
+			<switch id="1">
+				<case id="0" />
+				<case id="default">
+					<part name="blockMode" type="c"/>
+					<for id="1">
+						<part name="item_id" type="d">
+							<reader type="ItemName" />
+						</part>
+					</for>
+				</case>
+			</switch>
 		</packet>
 		<packet id="FE;00C5" name="ExQuestItemList">
 			<part id="0" name="size" type="h"/>
 			<for id="0">
 				<macro name="item" id="item"/>
 			</for>
+			<part id="1" name="size2" type="h"/>
+			<switch id="1">
+				<case id="0" />
+				<case id="default">
+					<part name="blockMode" type="c"/>
+					<for id="1">
+						<part name="item_id" type="d">
+							<reader type="ItemName" />
+						</part>
+					</for>
+				</case>
+			</switch>
 		</packet>
 		<packet id="0D" name="NewCharacterSuccess">
 			<part id="0" name="size" type="d"/>
@@ -641,7 +662,9 @@
 			<for id="0">
 				<part name="isActive" type="d"/>
 				<part name="level" type="d"/>
-				<part name="id" type="d"/>
+				<part name="id" type="d">
+					<reader type="SkillName" />
+				</part>
 				<part name="disable" type="c"/>
 				<part name="enchanted" type="c"/>
 			</for>
@@ -1412,7 +1435,15 @@
 		</packet>
 		<packet id="FE;0063" name="ExGetOnAirShipPacket"/>
 		<packet id="FE;0064" name="ExGetOffAirShipPacket"/>
-		<packet id="FE;0065" name="ExMoveToLocationAirShipPacket"/>
+		<packet id="FE;0065" name="ExMoveToLocationAirShip">
+			<part name="object_id" type="d"/>
+			<part name="desc_x" type="d"/>
+			<part name="desc_y" type="d"/>
+			<part name="desc_z" type="d"/>
+			<part name="curr_x" type="d"/>
+			<part name="curr_y" type="d"/>
+			<part name="curr_z" type="d"/>
+		</packet>
 		<packet id="FE;0066" name="ExStopMoveAirShipPacket"/>
 		<packet id="FE;0067" name="ExShowTracePacket"/>
 		<packet id="FE;0068" name="ExItemAuctionInfoPacket"/>
@@ -1501,7 +1532,17 @@
 		<packet id="FE;0099" name="ExStartScenePlayer">
 			<part name="movieId" type="d"/>
 		</packet>
-		<packet id="FE;009A" name="ExAirShipTeleportList"/>
+		<packet id="FE;009A" name="ExAirShipTeleportList">
+			<part name="dockId" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="index" type="d"/>
+				<part name="fuel" type="d"/>
+				<part name="x" type="d"/>
+				<part name="y" type="d"/>
+				<part name="z" type="d"/>
+			</for>
+		</packet>
 		<packet id="FE;009B" name="ExMpccRoomInfo">
 			<part name="index" type="d"/>
 			<part name="memberSize" type="d"/>
@@ -2038,7 +2079,14 @@
 		<packet id="D0;005B" name="EndScenePlayer"/>
 		<packet id="D0;005C" name="RequestExBlockGameVote"/>
 		<packet id="D0;005D" name="RequestListMpccWaiting"/>
-		<packet id="D0;005E" name="RequestManageMpccRoom"/>
+		<packet id="D0;005E" name="RequestManageMpccRoom">
+			<part name="id" type="d"/>
+			<part name="memberSize" type="d"/>
+			<part name="minLevel" type="d"/>
+			<part name="maxLevel" type="d"/>
+			<part name="lootType" type="d"/>
+			<part name="topic" type="S"/>
+		</packet>
 		<packet id="D0;005F" name="RequestJoinMpccRoom"/>
 		<packet id="D0;0060" name="RequestOustFromMpccRoom"/>
 		<packet id="D0;0061" name="RequestDismissMpccRoom"/>

@@ -16,7 +16,8 @@ import com.jds.jn.parser.valuereader.ValueReader;
  * Time: 5:32:21
  */
 public class TextReader implements ValueReader
-{	public String read(ValuePart part)
+{
+	public String read(ValuePart part)
 	{
 		if (part instanceof VisualValuePart)
 		{

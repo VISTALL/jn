@@ -369,15 +369,15 @@ public class SearchPane extends JPanel
 									try
 									{
 										int value = Integer.decode(findT.getText());
-										int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
+										int partValue = gp.getInt(_currentPart.getName());
 										if (value == partValue)
 										{
 											return i;
 										}
 									}
-									catch (NumberFormatException nfe)
+									catch (Exception e)
 									{
-										//nfe.printStackTrace();
+										e.printStackTrace();
 									}
 								}
 								else

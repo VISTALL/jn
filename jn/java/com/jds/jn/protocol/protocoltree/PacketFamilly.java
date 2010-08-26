@@ -1,7 +1,7 @@
 package com.jds.jn.protocol.protocoltree;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.PacketType;
@@ -13,7 +13,7 @@ import com.jds.jn.network.packets.PacketType;
 public class PacketFamilly// extends ProtocolNode
 {
 	private final PacketType _type;
-	private Map<String, PacketInfo> _formats = new HashMap<String, PacketInfo>();
+	private Map<String, PacketInfo> _formats = new TreeMap<String, PacketInfo>();
 
 	public PacketFamilly(PacketType t)
 	{

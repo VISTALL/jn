@@ -25,7 +25,7 @@ public class AionItemSlotReader implements ValueReader
 
 	public JComponent readToComponent(ValuePart part)
 	{
-		return new JLabel(this.read(part));
+		return new JLabel(read(part));
 	}
 
 	public int getMask(int num)

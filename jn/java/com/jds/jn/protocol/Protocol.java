@@ -19,8 +19,8 @@ import com.jds.nio.buffer.NioBuffer;
 public class Protocol
 {
 	private static final Logger _log = Logger.getLogger(Protocol.class);
-	private Map<PacketType, PacketFamilly> _familyes = new HashMap<PacketType, PacketFamilly>();
-	private Map<String, MacroInfo> _macros = new HashMap<String, MacroInfo>();
+	private Map<PacketType, PacketFamilly> _familyes = new TreeMap<PacketType, PacketFamilly>();
+	private Map<String, MacroInfo> _macros = new TreeMap<String, MacroInfo>();
 
 	private String _encryption;
 	private String _name;
