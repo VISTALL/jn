@@ -1454,8 +1454,22 @@
 			<macro id="item"/>
 		</packet>
 		<packet id="FE;006D" name="ExMoveToLocationInAirShipPacket"/>
-		<packet id="FE;006E" name="ExStopMoveInAirShipPacket"/>
-		<packet id="FE;006F" name="ExValidateLocationInAirShipPacket"/>
+		<packet id="FE;006E" name="ExStopMoveInAirShipPacket">
+			<part name="player_object_id" type="d"/>
+			<part name="airship_object_id" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
+		</packet>
+		<packet id="FE;006F" name="ExValidateLocationInAirShipPacket">
+			<part name="player_object_id" type="d"/>
+			<part name="airship_object_id" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
+		</packet>
 		<packet id="FE;0070" name="ExUISettingPacket"/>
 		<packet id="FE;0071" name="ExMoveToTargetInAirShipPacket"/>
 		<packet id="FE;0072" name="ExAttackInAirShipPacket"/>
@@ -1535,7 +1549,7 @@
 		<packet id="FE;009A" name="ExAirShipTeleportList">
 			<part name="dockId" type="d"/>
 			<part name="size" type="d" id="0"/>
-			<for id="0">
+			<for id="0" name="list">
 				<part name="index" type="d"/>
 				<part name="fuel" type="d"/>
 				<part name="x" type="d"/>
@@ -1760,7 +1774,7 @@
 			<part name="y" type="d"/>
 			<part name="z" type="d"/>
 			<part name="h" type="d"/>
-			<part name="data" type="d"/>
+			<part name="boatObjectId" type="d"/>
 		</packet>
 		<packet id="5b" name="FinishRotating">
 			<part name="degree" type="d"/>

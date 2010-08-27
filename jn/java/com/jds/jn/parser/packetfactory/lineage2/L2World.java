@@ -16,7 +16,7 @@ public class L2World implements IPacketListener
 {
 	public static final String OBJECT_ID = "obj_id";
 	//listeners
-	private List<IPacketListener> _listeners = new ArrayList<IPacketListener>(4);
+	private List<IPacketListener> _listeners = new ArrayList<IPacketListener>(5);
 
 	// npcs
 	private Map<Integer, L2NpcInfo> _npcInfos = new HashMap<Integer, L2NpcInfo>();
@@ -24,10 +24,11 @@ public class L2World implements IPacketListener
 
 	public L2World()
 	{
-		_listeners.add(new L2NpcSpawnListener(this));
-		_listeners.add(new L2NpcDialogListener(this));
-		_listeners.add(new L2NpcInfoListener(this));
-		_listeners.add(new L2NpcBMListsListener(this));
+		//_listeners.add(new L2NpcSpawnListener(this));
+		//_listeners.add(new L2NpcDialogListener(this));
+		//_listeners.add(new L2NpcInfoListener(this));
+		//_listeners.add(new L2NpcBMListsListener(this));
+		_listeners.add(new L2AirShipTeleportListListener());
 	}
 
 	@Override
