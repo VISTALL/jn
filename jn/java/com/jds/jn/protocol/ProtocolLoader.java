@@ -21,6 +21,8 @@ import com.jds.jn.parser.formattree.*;
 import com.jds.jn.parser.packetreader.PacketReader;
 import com.jds.jn.parser.valuereader.ValueReader;
 import com.jds.jn.protocol.protocoltree.*;
+import com.jds.jn.util.xml.SimpleErrorHandler;
+import com.jds.jn.util.xml.SimpleDTDEntryResolver;
 
 /**
  * Author: VISTALL
@@ -42,9 +44,11 @@ public class ProtocolLoader
 		{
 			FileInputStream fis = new FileInputStream(file);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			factory.setValidating(false);
+			factory.setValidating(true);
 			factory.setIgnoringComments(false);
 			DocumentBuilder docBuilder = factory.newDocumentBuilder();
+			docBuilder.setEntityResolver(SimpleDTDEntryResolver.PROTOCOL_DTD);
+			docBuilder.setErrorHandler(new SimpleErrorHandler(file));
 			try
 			{
 				doc = docBuilder.parse(fis);

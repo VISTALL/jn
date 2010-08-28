@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
 <!--Epilogue ct2.4-->
 <protocol crypt="L2Game" name="Lineage 2 Game Server Epilogue">
   <!--Inventory Macro-->

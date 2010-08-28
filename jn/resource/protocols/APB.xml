@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
 <!--APB-->
-<protocol checksumSize="0" crypt="APBAuth" name="ABP Auth">
+<protocol crypt="APBAuth" name="ABP Auth">
   <packetfamilly way="SERVER">
      <packet id="00007D2" name="LS2GC_LOGIN_PIZZLE">
         <part name="v1" type="d" />

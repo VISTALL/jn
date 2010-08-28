@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Create by VISTALL-->
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="AionGame" name="Aion Game Server for client 1.9">
     <packetfamilly way="SERVER">
         <packet id="64" name="SM_KEY" key="true">

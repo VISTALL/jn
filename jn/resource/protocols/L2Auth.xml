@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol name="Lineage 2 Auth Server" crypt="L2Auth">
   <packetfamilly way="SERVER">
     <packet id="00" name="Init" key="true">
