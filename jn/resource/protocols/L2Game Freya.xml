@@ -864,12 +864,12 @@
 				<part name="enchant" type="c"/>
 				<part name="aurgmentationId" type="d"/>
 				<part name="transformId" type="d"/>
+				<part name="npcId" type="d"/>
+				<part name="level" type="d"/>
 				<part name="?" type="d"/>
 				<part name="?" type="d"/>
-				<part name="?" type="d"/>
-				<part name="?" type="d"/>
-				<part name="?" type="D"/>
-				<part name="?" type="D"/>
+				<part name="maxHP" type="D"/>
+				<part name="currentHP" type="D"/>
 			</for>
 		</packet>
 		<packet id="13" name="SunSet"/>
@@ -1188,7 +1188,15 @@
 		<packet id="CA" name="CastleSiegeAttackerList"/>
 		<packet id="CB" name="CastleSiegeDefenderList"/>
 		<packet id="CC" name="NickNameChanged"/>
-		<packet id="CD" name="PledgeStatusChanged"/>
+		<packet id="CD" name="PledgeStatusChanged">
+			<part name="leaderObjectId" type="d"/>
+			<part name="clanObjectId" type="d"/>
+			<part name="crestId" type="d"/>
+			<part name="level" type="d"/>
+			<part name="?" type="d"/>
+			<part name="largeCrestId" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="CE" name="RelationChanged">
 			<part name="size" type="d" id="0"/>
 			<for id="0">
@@ -1596,12 +1604,14 @@
 		</packet>
 		<packet id="FE;00A1" name="ExShowSeedMapInfo"/>
 		<packet id="FE;00A2" name="ExMpccPartymasterList"/>
-		<packet id="FE;00A3" name="ExDominionWarStart">
-			<part name="objectId" type="d"/>
-			<part name="?" type="d"/>
-			<part name="territoryId" type="d"/>
-			<part name="?" type="d"/>
-			<part name="territoryId" type="d"/>
+		<packet id="FE;00A3" name="ExDominionWarStart"> 			
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="objectId" type="d"/>
+				<part name="territoryId" type="d"/>
+				<part name="?" type="d"/>
+				<part name="territoryId" type="d"/>
+			</for>
 		</packet>
 		<packet id="FE;00A4" name="ExDominionWarEnd"/>
 		<packet id="FE;00A5" name="ExShowLines"/>
@@ -1713,6 +1723,7 @@
 				</case>
 			</switch>
 		</packet>
+		<packet id="FE;00B9" name="ExPrivateMarketList"/>
 		<packet id="FE;00C9" name="ExBR_GamePoint"/>
 		<packet id="FE;00CA" name="ExBR_ProductList"/>
 		<packet id="FE;00CB" name="ExBR_ProductInfo"/>
