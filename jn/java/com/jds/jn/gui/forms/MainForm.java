@@ -25,7 +25,7 @@ import com.jds.jn.session.Session;
 import com.jds.jn.statics.*;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.ThreadPoolManager;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.version_control.Version;
 import com.jds.swing.JTrayIcon;
 import com.sun.awt.AWTUtilities;
 import org.pushingpixels.flamingo.api.ribbon.*;

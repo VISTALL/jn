@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.*;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
-import com.jds.jn.version_control.Programs;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.version_control.Program;
+import com.jds.jn.util.version_control.Version;
 
 /**
  * Author: VISTALL
@@ -40,7 +42,7 @@ public class JNL2Reader extends AbstractReader
 	@Override
 	public boolean parseHeader() throws IOException
 	{
-		Programs p = Programs.values()[readD()];
+		Program p = Program.values()[readD()];
 		int major = readD();
 		int minor = readD();
 		byte type = readC();

@@ -17,7 +17,7 @@ import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.util.ThreadPoolManager;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.version_control.Version;
 
 /**
  * @author Ulysses R. Ribeiro
@@ -104,7 +104,8 @@ public class Session
 
 		_crypt.setProtocol(getProtocol());
 
-		List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
+		_invokes.add(L2World.getInstance());
+		/*List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
 		l.add(L2World.class);
 
 		for(Class<? extends IPacketListener> cl : l)
@@ -121,7 +122,7 @@ public class Session
 			{
 				e.printStackTrace();
 			}
-		}
+		} */
 	}
 
 	public DecryptPacket decode(NotDecryptPacket packet)
@@ -248,10 +249,10 @@ public class Session
 			@Override
 			public void run()
 			{
-				for(IPacketListener f :_invokes)
+				/*for(IPacketListener f :_invokes)
 				{
 					f.close();
-				}
+				} */
 			}
 		});
 	}

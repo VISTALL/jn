@@ -8,6 +8,7 @@ import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 
 import com.jds.jn.gui.forms.MainForm;
+import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.ThreadPoolManager;
 
@@ -21,29 +22,35 @@ public abstract class AbstractReader
 {
 	private static final Logger _log = Logger.getLogger(AbstractReader.class);
 
+	protected File _currentFile;
 	protected RandomAccessFile _file;
 	protected ByteBuffer _buffer;
 	protected FileChannel _channel;
 	protected Session _session;
 
-	private boolean _isBusy;
+	protected ReaderListener _listener;
+	protected boolean _isBusy;
 
-	public void read(File file) throws IOException
+	public void read(File file, ReaderListener listener) throws IOException
 	{
 		if(!file.exists())
 		{
 			_log.info("File not exists: " + file);
+			listener.onFinish(null);
 			return;
 		}
 
 		if(_isBusy)
 		{
-			_log.info("Reader is busy");
+			_log.info("Reader is busy: " + _currentFile.getName());
+			listener.onFinish(null);
 			return;
 		}
 
+		_listener = listener;
 		_isBusy = true;
 
+		_currentFile = file;
 		_file = new RandomAccessFile(file, "r");
 		_buffer = ByteBuffer.allocate((int) _file.length());
 		_channel = _file.getChannel();
@@ -84,11 +91,8 @@ public abstract class AbstractReader
 
 					close();
 
-					if(_session != null)
-					{
-						MainForm.getInstance().showSession(_session);
-						_session = null;
-					}
+					_listener.onFinish(_session);
+					_session = null;
 
 					MainForm.getInstance().getProgressBar().setVisible(false);
 					MainForm.getInstance().getProgressBar().setValue(0);

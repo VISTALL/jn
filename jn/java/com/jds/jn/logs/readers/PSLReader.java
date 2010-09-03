@@ -3,10 +3,12 @@ package com.jds.jn.logs.readers;
 import java.io.IOException;
 
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.*;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
-import com.jds.jn.version_control.Programs;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.version_control.Program;
+import com.jds.jn.util.version_control.Version;
 
 /**
  * Author: VISTALL
@@ -36,7 +38,7 @@ public class PSLReader extends AbstractReader
 		_isDecrypted = !readBoolC();
 
 		_session = new Session(ListenerType.Game_Server, sessionId);
-		_session.setVersion(new Version(Programs.PACKET_SAMURAI, 1, 0, Version.STABLE, 0));
+		_session.setVersion(new Version(Program.PACKET_SAMURAI, 1, 0, Version.STABLE, 0));
 
 
 		return true;

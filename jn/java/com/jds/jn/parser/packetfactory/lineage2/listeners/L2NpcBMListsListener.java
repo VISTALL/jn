@@ -156,7 +156,7 @@ public class L2NpcBMListsListener implements IPacketListener
 				writer.write(String.format("\t<tradelist npc=\"%d\" shop=\"1\" markup=\"15\">\n", buyList.getListId()));
 				for(L2ItemComponent entry : buyList.getItems())
 				{
-			   		writer.write(String.format("\t\t<item id=\"%d\" name=\"%s\"/> <!-%s--->\n", entry.getItemId(), entry.getCount(), ItemNameHolder.getInstance().name(entry.getItemId())));
+			   		writer.write(String.format("\t\t<item id=\"%d\" name=\"%s\"/> <!--%s--->\n", entry.getItemId(), entry.getCount(), ItemNameHolder.getInstance().name(entry.getItemId())));
 				}
 				writer.write("\t</tradelist>\n");
 				writer.write("</list>");

@@ -6,10 +6,12 @@ import java.io.IOException;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.*;
+import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
-import com.jds.jn.version_control.Programs;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.version_control.Program;
+import com.jds.jn.util.version_control.Version;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
@@ -61,7 +63,7 @@ public class JNLReader extends AbstractReader
 
 			_size = _buffer.getInt();
 			_session = new Session(type, sessionId);
-			_session.setVersion(new Version(Programs.JN, 1, 0, Version.M, 1));
+			_session.setVersion(new Version(Program.JN, 1, 0, Version.M, 1));
 			return true;
 		}
 		catch (Exception e)

@@ -1,5 +1,11 @@
 package com.jds.jn.statics;
 
+import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.JCommandButtonPanel;
+import org.pushingpixels.flamingo.api.ribbon.*;
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -11,13 +17,11 @@ import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
+import com.jds.jn.gui2.PacketMassAnallize.PacketMassAnalysisDialog;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.util.Bundle;
 import com.jds.swing.SimpleResizableIcon;
-import org.pushingpixels.flamingo.api.common.*;
-import org.pushingpixels.flamingo.api.ribbon.*;
-import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 
 /**
  * Author: VISTALL
@@ -74,14 +78,9 @@ public abstract class RibbonActions
 			}
 		});
 		animationBand.addCommandButton(opnFile, RibbonElementPriority.TOP);
-
-
-		//ico = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/jds/jn/resources/nimg/fsave.png"), new Dimension(15, 15));
-		//JCommandButton saveFile = new JCommandButton("Save", ico);
-		//animationBand.addCommandButton(saveFile, RibbonElementPriority.TOP);
-
 		return animationBand;
 	}
+
 
 	public static JCommandButton LISTENER_1;
 	public static JCommandButton LISTENER_2;
@@ -167,6 +166,14 @@ public abstract class RibbonActions
 			}
 		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
 
+		final RibbonApplicationMenuEntryPrimary analysis = new RibbonApplicationMenuEntryPrimary(ImageStatic.FILE_48x48, "Mass Analysis", new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				new PacketMassAnalysisDialog();
+			}
+		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
+
 		RibbonApplicationMenuEntryPrimary h = new RibbonApplicationMenuEntryPrimary(ImageStatic.HELP_48x48, Bundle.getString("Help"), new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
@@ -192,6 +199,7 @@ public abstract class RibbonActions
 		}, JCommandButton.CommandButtonKind.ACTION_ONLY);
 
 		m.addMenuEntry(fopn);
+		m.addMenuEntry(analysis);
 		m.addMenuEntry(h);
 		m.addMenuEntry(io);
 		m.addMenuEntry(amEntryExit);

@@ -10,6 +10,13 @@ import java.io.*;
  */
 public class FileUtils
 {
+	public static String getFileExtension(File f)
+	{
+		String name = f.getName();
+		int dot = name.lastIndexOf('.');
+		return name.substring(dot + 1);
+	}
+
 	public static void copy(String fileNameSource, String fileNameDecs) throws IOException
 	{
 		File fileDecs = new File(fileNameDecs);

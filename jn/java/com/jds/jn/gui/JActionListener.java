@@ -1,5 +1,7 @@
 package com.jds.jn.gui;
 
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -8,8 +10,11 @@ import java.util.Map;
 import com.jds.jn.Jn;
 import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
-import com.jds.jn.gui.dialogs.*;
+import com.jds.jn.gui.dialogs.EnterNameDialog;
+import com.jds.jn.gui.dialogs.NetworkSettingsDialog;
+import com.jds.jn.gui.dialogs.ProgramSettingsDialog;
 import com.jds.jn.gui.forms.ConsoleForm;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.logs.Writer;
 import com.jds.jn.network.listener.ListenerSystem;
@@ -19,7 +24,6 @@ import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.util.ThreadPoolManager;
-import org.pushingpixels.flamingo.api.common.JCommandButton;
 
 /**
  * Author: VISTALL
@@ -164,11 +168,11 @@ public class JActionListener
 		{
 			LastFiles.addLastFile(file.getAbsolutePath());
 			RValues.LAST_FOLDER.setVal(file.getAbsolutePath().replace(file.getName(), ""));
-			Reader.getInstance().read(file);
+			Reader.getInstance().read(file, Reader.DEFAULT_READER_LISTENER);
 		}
 		catch (Exception e)
 		{
-			Jn.getForm().warn("Failed to open file " + e.getMessage(), e);
+			MainForm.getInstance().warn("Failed to open file " + e.getMessage(), e);
 		}
 	}
 

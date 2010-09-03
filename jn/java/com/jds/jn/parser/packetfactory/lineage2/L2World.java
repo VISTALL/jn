@@ -14,6 +14,18 @@ import com.jds.jn.parser.packetfactory.lineage2.listeners.*;
  */
 public class L2World implements IPacketListener
 {
+	private static L2World _instance;
+
+	public static L2World getInstance()
+	{
+		if(_instance == null)
+		{
+			_instance = new L2World();
+		}
+
+		return _instance;
+	}
+
 	public static final String OBJECT_ID = "obj_id";
 	//listeners
 	private List<IPacketListener> _listeners = new ArrayList<IPacketListener>(5);
@@ -24,10 +36,10 @@ public class L2World implements IPacketListener
 
 	public L2World()
 	{
-		//_listeners.add(new L2NpcSpawnListener(this));
-		//_listeners.add(new L2NpcDialogListener(this));
-		//_listeners.add(new L2NpcInfoListener(this));
-		//_listeners.add(new L2NpcBMListsListener(this));
+		_listeners.add(new L2NpcSpawnListener(this));
+		_listeners.add(new L2NpcDialogListener(this));
+		_listeners.add(new L2NpcInfoListener(this));
+		_listeners.add(new L2NpcBMListsListener(this));
 		_listeners.add(new L2AirShipTeleportListListener());
 	}
 

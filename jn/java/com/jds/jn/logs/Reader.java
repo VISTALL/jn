@@ -4,15 +4,18 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Map;
 
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.forms.MainForm;
+import com.jds.jn.logs.listeners.DefaultReaderListener;
+import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.logs.readers.*;
+import com.jds.jn.util.FileUtils;
 
 /**
  * Author: VISTALL
@@ -23,7 +26,8 @@ import com.jds.jn.logs.readers.*;
 public class Reader
 {
 	private static Reader _instance;
-	private HashMap<String, AbstractReader> _readers = new HashMap<String, AbstractReader>();
+	public static final ReaderListener DEFAULT_READER_LISTENER = new DefaultReaderListener();
+	private Map<String, AbstractReader> _readers = new HashMap<String, AbstractReader>();
 
 	public static Reader getInstance()
 	{
@@ -40,6 +44,7 @@ public class Reader
 		addReader(new PSLReader());
 		addReader(new JNLReader());
 		addReader(new JNL2Reader());
+		addReader(new PLogReader());
 	}
 
 	public void addReader(AbstractReader r)
@@ -50,7 +55,7 @@ public class Reader
 	public void showChooseDialog()
 	{
 		final JFileChooser chooser = new JFileChooser(RValues.LAST_FOLDER.asString());
-		for(AbstractReader reader : _readers.values())
+		for (AbstractReader reader : _readers.values())
 		{
 			chooser.addChoosableFileFilter(new ReaderFileFilter(reader));
 		}
@@ -63,19 +68,18 @@ public class Reader
 		}
 	}
 
-	public void read(File f) throws Exception
+	public void read(File f, ReaderListener listener) throws Exception
 	{
-		Pattern p = Pattern.compile("(\\S+)\\.(\\S+)");
-		Matcher m = p.matcher(f.getName());
+		String ex = FileUtils.getFileExtension(f);
 
-		if (m.find())
+		AbstractReader reader = _readers.get(ex);
+		if (reader != null)
 		{
-			String st = m.group(2);
-			AbstractReader reader = _readers.get(st);
-			if(reader != null)
-			{
-				reader.read(f);
-			}
+			reader.read(f, listener);
+		}
+		else
+		{
+			listener.onFinish(null);
 		}
 	}
 
@@ -91,7 +95,7 @@ public class Reader
 		@Override
 		public boolean accept(File f)
 		{
-			return f.isDirectory() || f.isFile() && f.getName().endsWith("." +  _reader.getFileExtension());
+			return f.isDirectory() || f.isFile() && f.getName().endsWith("." + _reader.getFileExtension());
 		}
 
 		@Override
@@ -99,5 +103,10 @@ public class Reader
 		{
 			return String.format("%s (.%s)", _reader.getReaderInfo(), _reader.getFileExtension());
 		}
+	}
+
+	public Collection<AbstractReader> getReaders()
+	{
+		return _readers.values();
 	}
 }

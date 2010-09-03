@@ -1,21 +1,30 @@
 package com.jds.jn.util;
 
+import java.nio.ByteBuffer;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.nio.buffer.NioBuffer;
 
-import java.nio.ByteBuffer;
-import java.util.Iterator;
-import java.util.List;
-
-
 /**
  * @author Ulysses R. Ribeiro
  */
 public class Util
 {
+	public static Random _random = new Random();
+
+	public static int positiveRandom()
+	{
+		int i = _random.nextInt();
+		if(i < 0)
+			i = -i;
+		return i;
+	}
 	/**
 	 * Returns the unsigned value of a byte
 	 *

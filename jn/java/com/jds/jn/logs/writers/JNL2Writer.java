@@ -5,8 +5,8 @@ import java.util.List;
 
 import com.jds.jn.config.RValues;
 import com.jds.jn.network.packets.IPacketData;
-import com.jds.jn.version_control.Programs;
-import com.jds.jn.version_control.Version;
+import com.jds.jn.util.version_control.Program;
+import com.jds.jn.util.version_control.Version;
 
 /**
  * Author: VISTALL
@@ -32,7 +32,7 @@ public class JNL2Writer  extends AbstractWriter
 	protected void writeHeader() throws IOException
 	{
 		//
-		writeD(Programs.JN.ordinal());
+		writeD(Program.JN.ordinal());
 		writeD(Version.CURRENT.getMajor());
 		writeD(Version.CURRENT.getMinor());
 		writeC(Version.CURRENT.getType());
