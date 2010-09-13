@@ -11,8 +11,8 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.gui.models.DecPacketTableModel;
 import com.jds.jn.gui.models.NotDecPacketTableModel;
 import com.jds.jn.gui.panels.viewpane.*;
+import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.Bundle;
 
@@ -148,7 +148,7 @@ public class ViewPane extends JPanel
 		return _packetList.get_packetListPane();//_Dec_packetListPane;
 	}
 
-	public NotDecPacketListPane getNotDecPacketListPane()
+	public CryptedPacketListPane getNotDecPacketListPane()
 	{
 		return _packetList.getNotDecPacketListPane();//_notdec_packetListPane;
 	}

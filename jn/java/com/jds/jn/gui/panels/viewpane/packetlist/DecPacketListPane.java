@@ -14,7 +14,7 @@ import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.gui.listeners.protocol_manipulation.packetlist.JPacketListPopup;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetreader.PacketReader;
 
 /**
@@ -210,7 +210,7 @@ public class DecPacketListPane extends JPanel
 				{
 					return;
 				}
-				DecryptPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
+				DecryptedPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
@@ -264,7 +264,7 @@ public class DecPacketListPane extends JPanel
 					return;
 				}
 
-				DecryptPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
+				DecryptedPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
 
 				if (packet == null)
 				{
@@ -310,7 +310,7 @@ public class DecPacketListPane extends JPanel
 	{
 		_readItem.setEnabled(false);
 
-		DecryptPacket packet = getSelectedRow();
+		DecryptedPacket packet = getSelectedRow();
 		if (packet == null || packet.getPacketFormat() == null)
 		{
 			return;
@@ -331,7 +331,7 @@ public class DecPacketListPane extends JPanel
 		return _packetList.getSelectedRow();
 	}
 
-	public DecryptPacket getSelectedRow()
+	public DecryptedPacket getSelectedRow()
 	{
 		int row = _packetList.getSelectedRow();
 

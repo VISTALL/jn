@@ -2,7 +2,7 @@ package com.jds.jn.parser.datatree;
 
 import javax.swing.*;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.formattree.*;
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.valuereader.ValueReader;
@@ -36,7 +36,7 @@ public abstract class ValuePart extends DataTreeNode
 
 
 	public abstract String getValueAsString();
-	public abstract void parse(NioBuffer buf, DecryptPacket d);
+	public abstract void parse(NioBuffer buf, DecryptedPacket d);
 
 	public String getHexValueAsString()
 	{
@@ -80,7 +80,7 @@ public abstract class ValuePart extends DataTreeNode
 		}
 	}
 
-	public void updateColor(DecryptPacket a)
+	public void updateColor(DecryptedPacket a)
 	{
 		for(int index = _startPosition; index < _endPosition; index ++)
 		{

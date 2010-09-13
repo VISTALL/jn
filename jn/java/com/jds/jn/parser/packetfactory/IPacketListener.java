@@ -1,6 +1,6 @@
 package com.jds.jn.parser.packetfactory;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 
 /**
  * Author: VISTALL
@@ -9,7 +9,7 @@ import com.jds.jn.network.packets.DecryptPacket;
  */
 public interface IPacketListener
 {
-	void invoke(DecryptPacket p);
+	void invoke(DecryptedPacket p);
 
 	void close();
 }

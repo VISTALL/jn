@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.jds.jn.holders.ItemNameHolder;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.L2World;
@@ -36,7 +36,7 @@ public class L2NpcBMListsListener implements IPacketListener
 	}
 
 	@Override
-	public void invoke(DecryptPacket p)
+	public void invoke(DecryptedPacket p)
 	{
 		if (p.getName().equalsIgnoreCase(MULTI_SELL_LIST))
 		{

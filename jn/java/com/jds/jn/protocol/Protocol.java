@@ -6,7 +6,7 @@ import java.nio.ByteOrder;
 import java.util.*;
 
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.protocoltree.*;
 import com.jds.jn.util.Util;
@@ -33,7 +33,7 @@ public class Protocol
 		_filename = pFile;
 	}
 
-	public PacketInfo getPacketInfo(DecryptPacket packet)
+	public PacketInfo getPacketInfo(DecryptedPacket packet)
 	{
 		PacketFamilly f = _familyes.get(packet.getPacketType());
 		if (f == null)
@@ -48,19 +48,20 @@ public class Protocol
 			int position = packet.getBuffer().position();
 			final int start = position;
 
-			boolean[] ok = new boolean[format.sizeId()];
-
+			//boolean[] ok = new boolean[format.sizeId()];
+			boolean isAllOk = true;
 			PartLoop:
 			{
+				String[] hexArray = format.hexArray();
 				// D0;0001
-				for (int i = 0; i < format.sizeId(); i++)
+				for (int i = 0; i < hexArray.length; i++)
 				{
-					String hexStep = format.getHexForIndex(i);
+					String hexStep = hexArray[i];
 
 					// если у нас ктото накосячил?
 					if (hexStep.trim().equals(""))
 					{
-						ok[i] = false;
+						isAllOk = false;
 						break PartLoop;
 					}
 
@@ -76,7 +77,7 @@ public class Protocol
 					}
 					else
 					{
-						ok[i] = false;
+						isAllOk = false;
 						break PartLoop;
 					}
 
@@ -97,21 +98,11 @@ public class Protocol
 					// не совпадает выходим
 					if (!hex.equalsIgnoreCase(hexStep))
 					{
-						ok[i] = false;
+						isAllOk = false;
 						break PartLoop;
 					}
-
-					ok[i] = true;
 				}
 
-				boolean isAllOk = true;
-				for (boolean s : ok)
-				{
-					if (!s)
-					{
-						isAllOk = false;
-					}
-				}
 
 				if (isAllOk)
 				{

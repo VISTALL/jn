@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 
 import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.util.Bundle;
 
 /**
@@ -47,7 +47,7 @@ public class JPacketListPopup extends JPopupMenu
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			DecryptPacket packet = _pane.getSelectedRow();
+			DecryptedPacket packet = _pane.getSelectedRow();
 
 			if (packet == null)
 			{
@@ -66,7 +66,7 @@ public class JPacketListPopup extends JPopupMenu
 		{
 			_editMenu.removeAll();
 
-			DecryptPacket packet = _pane.getSelectedRow();
+			DecryptedPacket packet = _pane.getSelectedRow();
 			if(packet == null)  //wtf
 			{
 				return;

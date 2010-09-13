@@ -5,7 +5,7 @@ import java.net.InetSocketAddress;
 
 import com.jds.jn.Jn;
 import com.jds.jn.network.methods.proxy.Proxy;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.SessionTable;
 import com.jds.nio.NioSession;
@@ -103,7 +103,7 @@ public class ClientToProxyHandler implements NioHandler
 	{
 		NioBuffer buf = NioBuffer.wrap(buffer.array());
 
-		NotDecryptPacket packet = new NotDecryptPacket(PacketType.CLIENT, buf, System.currentTimeMillis());
+		CryptedPacket packet = new CryptedPacket(PacketType.CLIENT, buf, System.currentTimeMillis());
 
 		_proxy.getServerSession().put(buffer);
 

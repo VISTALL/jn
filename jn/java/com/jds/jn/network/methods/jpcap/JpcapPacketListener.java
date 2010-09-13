@@ -1,6 +1,6 @@
 package com.jds.jn.network.methods.jpcap;
 
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.CaptorSession;
 import com.jds.jn.session.SessionTable;
@@ -60,7 +60,7 @@ public class JpcapPacketListener implements PacketReceiver
 						byte[] header = new byte[2];
 						byte[] packetData = new byte[size];
 						session.getClientbuf().getNextPacket(header, packetData);
-						session.receivePacket(new NotDecryptPacket(PacketType.CLIENT, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
+						session.receivePacket(new CryptedPacket(PacketType.CLIENT, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
 					}
 				}
 				session.getClientSequenced().flush();
@@ -82,7 +82,7 @@ public class JpcapPacketListener implements PacketReceiver
 						byte[] header = new byte[2];
 						byte[] packetData = new byte[size];
 						session.getServerbuf().getNextPacket(header, packetData);
-						session.receivePacket(new NotDecryptPacket(PacketType.SERVER, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
+						session.receivePacket(new CryptedPacket(PacketType.SERVER, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
 					}
 				}
 				session.getServerSequenced().flush();

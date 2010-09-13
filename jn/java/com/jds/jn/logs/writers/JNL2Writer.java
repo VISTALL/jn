@@ -46,7 +46,7 @@ public class JNL2Writer  extends AbstractWriter
 	@Override
 	protected void writePackets() throws IOException
 	{
-		List<? extends IPacketData> packets = RValues.SAVE_AS_DECODE.asBoolean() ? _session.getDecryptPackets() :  _session.getNotDecryptPackets();
+		List<? extends IPacketData> packets = RValues.SAVE_AS_DECODE.asBoolean() ? _session.getDecryptPackets() :  _session.getCryptedPackets();
 
 		writeD(packets.size());
 

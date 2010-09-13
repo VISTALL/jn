@@ -9,8 +9,8 @@ import java.util.ResourceBundle;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
 
 /**
  * Author: VISTALL
@@ -22,7 +22,7 @@ public class PacketList extends JPanel
 {
 	private JPanel root;
 	private boolean _isHide = false;
-	protected NotDecPacketListPane _notDecPacketListPane;
+	protected CryptedPacketListPane _notDecPacketListPane;
 	protected DecPacketListPane _decPacketListPane;
 	protected ViewPane _pane;
 
@@ -35,7 +35,7 @@ public class PacketList extends JPanel
 		_pane = pane;
 		$$$setupUI$$$();
 
-		_notDecPacketListPane = new NotDecPacketListPane(_pane);
+		_notDecPacketListPane = new CryptedPacketListPane(_pane);
 		_decPacketListPane = new DecPacketListPane(_pane);
 
 		popup = new JPopupMenu();
@@ -135,7 +135,7 @@ public class PacketList extends JPanel
 		return _decPacketListPane;
 	}
 
-	public NotDecPacketListPane getNotDecPacketListPane()
+	public CryptedPacketListPane getNotDecPacketListPane()
 	{
 		return _notDecPacketListPane;
 	}

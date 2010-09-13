@@ -1,10 +1,8 @@
 package crypt;
 
-import java.util.Arrays;
-
 import com.jds.jn.Jn;
 import com.jds.jn.crypt.ProtocolCrypter;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.protocol.Protocol;
@@ -62,7 +60,7 @@ public class AionGameCrypter implements ProtocolCrypter
 
 	private boolean searchKey(byte[] raw, PacketType dir)
 	{
-		DecryptPacket packet = new DecryptPacket(raw, dir, _protocol);
+		DecryptedPacket packet = new DecryptedPacket(raw, dir, _protocol);
 
 		if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
 		{

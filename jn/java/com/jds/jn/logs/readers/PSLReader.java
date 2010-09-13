@@ -3,8 +3,8 @@ package com.jds.jn.logs.readers;
 import java.io.IOException;
 
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.CryptedPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.version_control.Program;
@@ -54,11 +54,11 @@ public class PSLReader extends AbstractReader
 			long time = readQ();
 			byte[] data = readB(packetSize - 2);
 
-			NotDecryptPacket packet = new NotDecryptPacket(type, data, time, _session.getProtocol().getOrder());
+			CryptedPacket packet = new CryptedPacket(type, data, time, _session.getProtocol().getOrder());
 
 			if(_isDecrypted)
 			{
-				DecryptPacket p = new DecryptPacket(packet, _session.getProtocol());
+				DecryptedPacket p = new DecryptedPacket(packet, _session.getProtocol());
 				_session.receiveQuitPacket(p);
 			}
 			else

@@ -4,7 +4,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 import com.jds.jn.holders.NpcNameHolder;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 
 /**
  * Author: VISTALL
@@ -36,7 +36,7 @@ public class L2NpcInfo
 	private final List<L2SpawnLocInfo> _spawns = new ArrayList<L2SpawnLocInfo>();
 
 
-	public L2NpcInfo(DecryptPacket p)
+	public L2NpcInfo(DecryptedPacket p)
 	{
 		_npcId = p.getInt("npcId") - 1000000;
 		_name = NpcNameHolder.getInstance().name(_npcId);
@@ -54,7 +54,7 @@ public class L2NpcInfo
 	}
 
 
-	public void addSpawnLoc(DecryptPacket p)
+	public void addSpawnLoc(DecryptedPacket p)
 	{
 		L2SpawnLocInfo loc =  new L2SpawnLocInfo(p);
 		if(!hasSpawn(loc))

@@ -1,6 +1,6 @@
 package com.jds.jn.parser.datatree;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.Types;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.nio.buffer.NioBuffer;
@@ -22,7 +22,7 @@ public class VisualValuePart extends ValuePart
 	}
 
 	@Override
-	public void parse(NioBuffer buf, DecryptPacket s)
+	public void parse(NioBuffer buf, DecryptedPacket s)
 	{
 		final int position = buf.position();
 

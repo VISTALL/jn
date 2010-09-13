@@ -12,8 +12,8 @@ import java.util.List;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
+import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.StringHexBuffer;
@@ -106,9 +106,9 @@ public class PLogReader extends AbstractReader
 				data[$] = buffer.nextByte();
 			}
 
-			NotDecryptPacket packet = new NotDecryptPacket(packetType, data, time, _session.getProtocol().getOrder());
+			CryptedPacket packet = new CryptedPacket(packetType, data, time, _session.getProtocol().getOrder());
 
-			DecryptPacket dp = new DecryptPacket(packet, _session.getProtocol());
+			DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
 
 			_session.receiveQuitPacket(dp);
 

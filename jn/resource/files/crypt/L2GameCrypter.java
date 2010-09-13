@@ -4,7 +4,7 @@ import java.nio.ByteOrder;
 import java.util.Arrays;
 
 import com.jds.jn.crypt.ProtocolCrypter;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.protocol.Protocol;
@@ -41,7 +41,7 @@ public class L2GameCrypter implements ProtocolCrypter
 
 		if (!_isEnables && dir == PacketType.SERVER)
 		{
-			DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
+			DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
 
 			if (packet.isKey())
 			{
@@ -93,7 +93,7 @@ public class L2GameCrypter implements ProtocolCrypter
 		return raw;
 	}
 
-	private synchronized void searchKey(DecryptPacket packet)
+	private synchronized void searchKey(DecryptedPacket packet)
 	{
 		byte[] key = new byte[16];
 
@@ -124,7 +124,7 @@ public class L2GameCrypter implements ProtocolCrypter
 
 	public void searchSeed(byte[] raw)
 	{
-		DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), PacketType.SERVER, _protocol);
+		DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), PacketType.SERVER, _protocol);
 
 		if(packet.getPacketFormat() != null && !packet.hasError())
 		{

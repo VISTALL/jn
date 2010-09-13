@@ -14,9 +14,9 @@ import com.jds.nio.buffer.NioBuffer;
  * @author Gilles Duboscq   - first version
  * @author VISTALL - full rewrite
  */
-public class DecryptPacket implements IPacketData
+public class DecryptedPacket implements IPacketData
 {
-	private final NotDecryptPacket _notDecryptPacket;
+	private final CryptedPacket _notDecryptPacket;
 	private Protocol _protocol;
 
 	private DataTreeNodeContainer _packetParts;
@@ -30,22 +30,22 @@ public class DecryptPacket implements IPacketData
 
 	protected String[] _colorForHex;
 
-	public DecryptPacket(byte[] data, PacketType type, Protocol protocol)
+	public DecryptedPacket(byte[] data, PacketType type, Protocol protocol)
 	{
 		this(data, type, protocol, true);
 	}
 
-	public DecryptPacket(byte[] data, PacketType type, Protocol protocol, boolean parse)
+	public DecryptedPacket(byte[] data, PacketType type, Protocol protocol, boolean parse)
 	{
-		this(new NotDecryptPacket(type, data, System.currentTimeMillis(), protocol.getOrder()), protocol, parse);
+		this(new CryptedPacket(type, data, System.currentTimeMillis(), protocol.getOrder()), protocol, parse);
 	}
 
-	public DecryptPacket(NotDecryptPacket packet, Protocol protocol)
+	public DecryptedPacket(CryptedPacket packet, Protocol protocol)
 	{
 		this(packet, protocol, true);
 	}
 
-	public DecryptPacket(NotDecryptPacket packet, Protocol protocol, boolean parse)
+	public DecryptedPacket(CryptedPacket packet, Protocol protocol, boolean parse)
 	{
 		_notDecryptPacket = packet;
 		_protocol = protocol;

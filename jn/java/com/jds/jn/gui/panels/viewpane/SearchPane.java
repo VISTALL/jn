@@ -10,7 +10,7 @@ import java.util.List;
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.profiles.*;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.formattree.ForPart;
@@ -335,7 +335,7 @@ public class SearchPane extends JPanel
 
 		ListenerType type = session.getListenerType();
 		NetworkProfilePart part = profile.getPart(type);
-		List<DecryptPacket> packets = session.getDecryptPackets();
+		List<DecryptedPacket> packets = session.getDecryptPackets();
 
 		if (packets == null)
 		{
@@ -347,7 +347,7 @@ public class SearchPane extends JPanel
 
 		for (int i = startIndex; i < size; i++)
 		{
-			DecryptPacket gp = packets.get(i);
+			DecryptedPacket gp = packets.get(i);
 			format = gp.getPacketFormat();
 
 			if (format != null)

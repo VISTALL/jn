@@ -1,6 +1,6 @@
 package com.jds.jn.parser.packetfactory.lineage2.infos;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 
 /**
  * Author: VISTALL
@@ -14,7 +14,7 @@ public class L2SpawnLocInfo
 	private final int _z;
 	private final int _h;
 
-	public L2SpawnLocInfo(DecryptPacket p)
+	public L2SpawnLocInfo(DecryptedPacket p)
 	{
 		_x = p.getInt("x");
 		_y = p.getInt("y");

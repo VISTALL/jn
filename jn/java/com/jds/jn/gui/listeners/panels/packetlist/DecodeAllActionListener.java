@@ -6,11 +6,11 @@ import java.util.List;
 
 import com.jds.jn.Jn;
 import com.jds.jn.gui.models.DecPacketTableModel;
+import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.NotDecPacketListPane;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
+import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.profiles.*;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.ThreadPoolManager;
@@ -22,9 +22,9 @@ import com.jds.jn.util.ThreadPoolManager;
  */
 public class DecodeAllActionListener implements ActionListener
 {
-	private final NotDecPacketListPane _pane;
+	private final CryptedPacketListPane _pane;
 
-	public DecodeAllActionListener(NotDecPacketListPane pane)
+	public DecodeAllActionListener(CryptedPacketListPane pane)
 	{
 		_pane = pane;
 	}
@@ -47,7 +47,7 @@ public class DecodeAllActionListener implements ActionListener
 					return;
 				}
 
-				List<NotDecryptPacket> packetList = session.getNotDecryptPackets();
+				List<CryptedPacket> packetList = session.getCryptedPackets();
 
 				final DecPacketListPane pane = _pane.getViewPane().getPacketListPane();
 				DecPacketTableModel model = _pane.getViewPane().getDecryptPacketTableModel();
@@ -60,13 +60,13 @@ public class DecodeAllActionListener implements ActionListener
 				int i = 1;
 				int size = packetList.size();
 
-				for (NotDecryptPacket packet : packetList)
+				for (CryptedPacket packet : packetList)
 				{
 					AddPacket:
 					{
 						if (!packet.isShow())
 						{
-							DecryptPacket datapacket = session.decode(packet);
+							DecryptedPacket datapacket = session.decode(packet);
 
 							if (datapacket.getName() != null && datapacket.getPacketFormat().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
 							{

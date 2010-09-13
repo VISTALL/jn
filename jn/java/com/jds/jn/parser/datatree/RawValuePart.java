@@ -1,7 +1,7 @@
 package com.jds.jn.parser.datatree;
 
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.util.Util;
 import com.jds.nio.buffer.NioBuffer;
@@ -22,7 +22,7 @@ public class RawValuePart extends ValuePart
 	}
 
 	@Override
-	public void parse(NioBuffer buf, DecryptPacket d)
+	public void parse(NioBuffer buf, DecryptedPacket d)
 	{
 		int pos = buf.position();
 		int size = 0;

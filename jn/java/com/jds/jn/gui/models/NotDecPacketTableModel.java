@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.Bundle;
@@ -78,7 +78,7 @@ public class NotDecPacketTableModel extends AbstractTableModel
 		return false;
 	}
 
-	public void addRow(final NotDecryptPacket packet)
+	public void addRow(final CryptedPacket packet)
 	{
 		ImageIcon icon = null;
 
@@ -104,9 +104,9 @@ public class NotDecPacketTableModel extends AbstractTableModel
 		_currentTable.add(temp);
 	}
 
-	public NotDecryptPacket getPacket(int index)
+	public CryptedPacket getPacket(int index)
 	{
-		return (NotDecryptPacket) _currentTable.get(index)[3];
+		return (CryptedPacket) _currentTable.get(index)[3];
 	}
 }
 

@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.datatree.DataForBlock;
 import com.jds.jn.parser.datatree.DataForPart;
 import com.jds.jn.parser.datatree.VisualValuePart;
@@ -25,7 +25,7 @@ public class L2AirShipTeleportListListener implements IPacketListener
 	private Map<Integer, Map<Integer, L2BoatPoint>> _list = new TreeMap<Integer, Map<Integer, L2BoatPoint>>();
 
 	@Override
-	public void invoke(DecryptPacket p)
+	public void invoke(DecryptedPacket p)
 	{
 		if (p.getName().equalsIgnoreCase(EX_AIR_SHIP_TELEPORT_LIST))
 		{

@@ -28,7 +28,7 @@ import com.jds.nio.buffer.NioBuffer;
  * Date: 25.09.2009
  * Time: 17:42:01
  */
-public class NotDecPacketListPane extends JPanel
+public class CryptedPacketListPane extends JPanel
 {
 	private JScrollPane _packetScrollPane;
 	private JTable _packetList;
@@ -38,7 +38,7 @@ public class NotDecPacketListPane extends JPanel
 	private JButton _sendServerListButton;
 	private ViewPane _pane;
 
-	public NotDecPacketListPane(ViewPane pane)
+	public CryptedPacketListPane(ViewPane pane)
 	{
 		_pane = pane;
 		$$$setupUI$$$();
@@ -81,7 +81,7 @@ public class NotDecPacketListPane extends JPanel
 
 				final DecPacketListPane pane = getViewPane().getPacketListPane();
 
-				DecryptPacket datapacket = session.decode(new NotDecryptPacket(PacketType.SERVER, buff, System.currentTimeMillis()));
+				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, buff, System.currentTimeMillis()));
 				model.addRow(datapacket);
 				session.addDecryptPacket(datapacket);
 
@@ -129,12 +129,12 @@ public class NotDecPacketListPane extends JPanel
 				{
 					return;
 				}
-				NotDecryptPacket packet = getViewPane().getNotDecryptPacketTableModel().getPacket(_packetList.getSelectedRow());
+				CryptedPacket packet = getViewPane().getNotDecryptPacketTableModel().getPacket(_packetList.getSelectedRow());
 
 
 				if (!packet.isShow())
 				{
-					DecryptPacket datapacket = session.decode(packet);
+					DecryptedPacket datapacket = session.decode(packet);
 					if (datapacket.getName() != null && datapacket.getName().equals("SM_SERVER_LIST"))
 					{
 						_sendServerListButton.setEnabled(true);
@@ -194,7 +194,7 @@ public class NotDecPacketListPane extends JPanel
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
 				int row = _packetList.getSelectedRow();
-				NotDecryptPacket packet = getViewPane().getNotDecryptPacketTableModel().getPacket(row);
+				CryptedPacket packet = getViewPane().getNotDecryptPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;

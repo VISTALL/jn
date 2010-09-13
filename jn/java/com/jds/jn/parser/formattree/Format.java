@@ -4,7 +4,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 
@@ -16,11 +16,11 @@ public class Format
 {
 	private final PacketInfo _packetInfo;
 	private final PartContainer _mainBlock;
-	private final List<WeakReference<DecryptPacket>> _formatChangeListeners;
+	private final List<WeakReference<DecryptedPacket>> _formatChangeListeners;
 
 	public Format(PacketInfo container)
 	{
-		_formatChangeListeners = new ArrayList<WeakReference<DecryptPacket>>();
+		_formatChangeListeners = new ArrayList<WeakReference<DecryptedPacket>>();
 		_mainBlock = new PartContainer(PartType.block, true);
 		_mainBlock.setContainingFormat(this);
 		_packetInfo = container;
@@ -33,9 +33,9 @@ public class Format
 
 	public void triggerFormatChanged()
 	{
-		for (WeakReference<DecryptPacket> ref : _formatChangeListeners)
+		for (WeakReference<DecryptedPacket> ref : _formatChangeListeners)
 		{
-			DecryptPacket dp = ref.get();
+			DecryptedPacket dp = ref.get();
 			if (dp != null)
 			{
 				dp.invalidateParsing();
@@ -43,9 +43,9 @@ public class Format
 		}
 	}
 
-	public void registerFormatChangeListener(DecryptPacket packet)
+	public void registerFormatChangeListener(DecryptedPacket packet)
 	{
-		_formatChangeListeners.add(new WeakReference<DecryptPacket>(packet));
+		_formatChangeListeners.add(new WeakReference<DecryptedPacket>(packet));
 	}
 
 	public PacketInfo getPacketInfo()

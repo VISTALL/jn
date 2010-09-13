@@ -2,7 +2,9 @@ package com.jds.jn.session;
 
 import org.apache.log4j.Logger;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
@@ -10,8 +12,8 @@ import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui2.MainForm.ribbon.SessionMenu.SessionRibbonTaskGroup;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.methods.IMethod;
-import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.CryptedPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.protocol.Protocol;
@@ -34,8 +36,8 @@ public class Session
 	private ProtocolCrypter _crypt;
 	private Protocol _protocol;
 
-	private final List<NotDecryptPacket> _notDecryptPackets = new ArrayList<NotDecryptPacket>();
-	private final List<DecryptPacket> _decryptPackets = new ArrayList<DecryptPacket>();
+	private final List<CryptedPacket> _notDecryptPackets = new ArrayList<CryptedPacket>();
+	private final List<DecryptedPacket> _decryptPackets = new ArrayList<DecryptedPacket>();
 
 	private final IMethod _method;
 	private final ListenerType _type;
@@ -105,10 +107,10 @@ public class Session
 		_crypt.setProtocol(getProtocol());
 
 		_invokes.add(L2World.getInstance());
-		/*List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
-		l.add(L2World.class);
+		//List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
+		//l.add(L2World.class);
 
-		for(Class<? extends IPacketListener> cl : l)
+		/*for(Class<? extends IPacketListener> cl : l)
 		{
 			try
 			{
@@ -125,13 +127,13 @@ public class Session
 		} */
 	}
 
-	public DecryptPacket decode(NotDecryptPacket packet)
+	public DecryptedPacket decode(CryptedPacket packet)
 	{
 		byte data[] = Arrays.copyOf(packet.getBuffer().array(), packet.getBuffer().array().length);
 
 		data = _crypt.decrypt(data, packet.getPacketType());
 
-		return new DecryptPacket(data, packet.getPacketType(), getProtocol());
+		return new DecryptedPacket(data, packet.getPacketType(), getProtocol());
 	}
 
 	public long getSessionId()
@@ -139,7 +141,7 @@ public class Session
 		return _sessionId;
 	}
 
-	public List<NotDecryptPacket> getNotDecryptPackets()
+	public List<CryptedPacket> getCryptedPackets()
 	{
 		return _notDecryptPackets;
 	}
@@ -154,7 +156,7 @@ public class Session
 		return _crypt;
 	}
 
-	public synchronized void receivePacket(NotDecryptPacket p)
+	public synchronized void receivePacket(CryptedPacket p)
 	{
 		 _notDecryptPackets.add(p);
 
@@ -162,7 +164,7 @@ public class Session
 		_viewPane.updateInfo(this);
 	}
 
-	public synchronized void receivePacket(DecryptPacket p)
+	public synchronized void receivePacket(DecryptedPacket p)
 	{
 		addDecryptPacket(p);
 
@@ -170,21 +172,21 @@ public class Session
 		_viewPane.updateInfo(this);
 	}
 
-	public synchronized void receiveQuitPacket(NotDecryptPacket p)
+	public synchronized void receiveQuitPacket(CryptedPacket p)
 	{
 		_notDecryptPackets.add(p);
 
 		_viewPane.getNotDecryptPacketTableModel().addRow(p);
 	}
 
-	public synchronized void receiveQuitPacket(DecryptPacket p)
+	public synchronized void receiveQuitPacket(DecryptedPacket p)
 	{
 		addDecryptPacket(p);
 
 		_viewPane.getDecryptPacketTableModel().addRow(p);
 	}
 
-	public void addDecryptPacket(DecryptPacket packet)
+	public void addDecryptPacket(DecryptedPacket packet)
 	{
 		_decryptPackets.add(packet);
 
@@ -222,12 +224,12 @@ public class Session
 		return _viewPane;
 	}
 
-	public List<DecryptPacket> getDecryptPackets()
+	public List<DecryptedPacket> getDecryptPackets()
 	{
 		return _decryptPackets;
 	}
 
-	public void fireInvokePacket(final DecryptPacket o)
+	public void fireInvokePacket(final DecryptedPacket o)
 	{
 		ThreadPoolManager.getInstance().execute(new Runnable()
 		{
@@ -244,17 +246,17 @@ public class Session
 
 	public void fireClose()
 	{
-		ThreadPoolManager.getInstance().execute(new Runnable()
+		/*ThreadPoolManager.getInstance().execute(new Runnable()
 		{
 			@Override
 			public void run()
 			{
-				/*for(IPacketListener f :_invokes)
+				for(IPacketListener f :_invokes)
 				{
 					f.close();
-				} */
+				}
 			}
-		});
+		});  */
 	}
 
 	public Version getVersion()

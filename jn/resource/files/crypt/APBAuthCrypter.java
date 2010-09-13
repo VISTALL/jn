@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
 import com.jds.jn.crypt.ProtocolCrypter;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.Protocol;
 import crypt.helpers.RC4;
@@ -29,7 +29,7 @@ public class APBAuthCrypter implements ProtocolCrypter
 		{
 			try
 			{
-				DecryptPacket packet = new DecryptPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
+				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
 				// LS2GC_LOGIN_PIZZLE
 				if(packet != null && packet.getPacketFormat() != null)
 				{

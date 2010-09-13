@@ -6,8 +6,8 @@ import java.io.IOException;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptPacket;
-import com.jds.jn.network.packets.NotDecryptPacket;
+import com.jds.jn.network.packets.CryptedPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.version_control.Program;
@@ -88,7 +88,7 @@ public class JNLReader extends AbstractReader
 						int size = _buffer.getInt();
 
 						byte[] data = readB(size);
-						NotDecryptPacket packet = new NotDecryptPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
+						CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
 
 						_session.receiveQuitPacket(packet);
 
@@ -110,8 +110,8 @@ public class JNLReader extends AbstractReader
 						PacketType type = PacketType.values()[_buffer.getInt()];
 						int size = _buffer.getInt();
 						byte[] data = readB(size);
-						NotDecryptPacket packet = new NotDecryptPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
-						DecryptPacket dp = new DecryptPacket(packet, _session.getProtocol());
+						CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
+						DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
 
 						_session.receiveQuitPacket(dp);
 

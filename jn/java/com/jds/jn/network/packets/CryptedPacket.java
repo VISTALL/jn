@@ -10,21 +10,21 @@ import com.jds.nio.buffer.NioBuffer;
  * Date: 26.08.2009
  * Time: 14:55:53
  */
-public class NotDecryptPacket  implements IPacketData
+public class CryptedPacket implements IPacketData
 {
 	private final PacketType _type;
 	private final NioBuffer _buff;
 	private boolean _isShow = false;
 	private final long _time;
 
-	public NotDecryptPacket(PacketType type, byte[] content, long t, ByteOrder order)
+	public CryptedPacket(PacketType type, byte[] content, long t, ByteOrder order)
 	{
 		_time = t;
 		_type = type;
 		_buff = NioBuffer.wrap(content).order(order);
 	}
 
-	public NotDecryptPacket(PacketType type, NioBuffer content, long t)
+	public CryptedPacket(PacketType type, NioBuffer content, long t)
 	{
 		_time = t;
 		_type = type;

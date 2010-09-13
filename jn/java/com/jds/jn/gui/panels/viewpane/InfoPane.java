@@ -30,7 +30,7 @@ public class InfoPane extends JPanel
 
 	public void update(Session sss)
 	{
-		encodep.setText(String.valueOf(sss.getNotDecryptPackets().size()));
+		encodep.setText(String.valueOf(sss.getCryptedPackets().size()));
 		decodep.setText(String.valueOf(sss.getDecryptPackets().size()));
 		_version.setText(String.valueOf(sss.getVersion()));
 		_protocol.setText(sss.getProtocol().getName());

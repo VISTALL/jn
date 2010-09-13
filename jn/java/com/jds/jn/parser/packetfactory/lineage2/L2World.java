@@ -2,7 +2,7 @@ package com.jds.jn.parser.packetfactory.lineage2;
 
 import java.util.*;
 
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.infos.L2NpcInfo;
 import com.jds.jn.parser.packetfactory.lineage2.listeners.*;
@@ -44,7 +44,7 @@ public class L2World implements IPacketListener
 	}
 
 	@Override
-	public void invoke(DecryptPacket p)
+	public void invoke(DecryptedPacket p)
 	{
 		if (p == null || p.getPacketFormat() == null || p.getName() == null || p.hasError())
 		{

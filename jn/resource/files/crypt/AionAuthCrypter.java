@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.protocol.Protocol;
@@ -53,7 +53,7 @@ public class AionAuthCrypter implements ProtocolCrypter
 
 				NewCrypt.decXORPass(potentialInit);
 
-				DecryptPacket packet = new DecryptPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
+				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
 
 				if (packet.getPacketFormat() != null && dir == PacketType.SERVER && packet.getPacketFormat().isKey())
 				{

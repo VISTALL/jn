@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
 import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.ValuePart;
@@ -63,7 +63,7 @@ public class ChangeMenu extends JMenu
 
 					pC.replace(part.getModelPart(), p);
 
-					form.setPacket(new DecryptPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
+					form.setPacket(new DecryptedPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
 					form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
 					form.updateCurrentPacket();

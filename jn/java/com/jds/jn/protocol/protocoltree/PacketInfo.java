@@ -66,14 +66,9 @@ public class PacketInfo //extends ProtocolNode
 		return _isKey;
 	}
 
-	public int sizeId()
+	public String[] hexArray()
 	{
-		return _id.split(";").length;
-	}
-
-	public String getHexForIndex(int index)
-	{
-		return _id.split(";")[index];
+		return _id.split(";");
 	}
 
 	public String getOpcodeStr()

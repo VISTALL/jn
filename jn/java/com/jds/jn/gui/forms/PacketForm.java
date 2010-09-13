@@ -17,7 +17,7 @@ import com.jds.jn.gui.models.DataPartNode;
 import com.jds.jn.gui.models.PacketViewTableModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.*;
-import com.jds.jn.network.packets.DecryptPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.Types;
 import com.jds.jn.parser.datatree.RawValuePart;
@@ -39,7 +39,7 @@ import org.jdesktop.swingx.JXTreeTable;
  */
 public class PacketForm extends JFrame
 {
-	private DecryptPacket _packet;
+	private DecryptedPacket _packet;
 	private JPanel root;
 	private PacketViewTableModel _packetViewTableModel;
 	private JTextPane _hexDumpPacket;
@@ -56,7 +56,7 @@ public class PacketForm extends JFrame
 	private int _verticalScroll;
 	private int _horizontalScroll;
 
-	public PacketForm(ViewPane pane, float persent, DecryptPacket packet, int row)
+	public PacketForm(ViewPane pane, float persent, DecryptedPacket packet, int row)
 	{
 		setPacket(packet);
 		setPane(pane);
@@ -88,7 +88,7 @@ public class PacketForm extends JFrame
 				p.setName(dialog.getText());
 				pC.addPart(p);
 
-				setPacket(new DecryptPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
+				setPacket(new DecryptedPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
 
 				getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
 
@@ -141,7 +141,7 @@ public class PacketForm extends JFrame
 
 				pC.replace(part.getModelPart(), p);
 
-				setPacket(new DecryptPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
+				setPacket(new DecryptedPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
 				getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
 
 				updateCurrentPacket();
@@ -395,12 +395,12 @@ public class PacketForm extends JFrame
 		_packetStructure.setEditable(false);
 	}
 
-	public DecryptPacket getPacket()
+	public DecryptedPacket getPacket()
 	{
 		return _packet;
 	}
 
-	public void setPacket(DecryptPacket packet)
+	public void setPacket(DecryptedPacket packet)
 	{
 		_packet = packet;
 	}
