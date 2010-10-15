@@ -1,16 +1,18 @@
 package com.jds.jn.gui.models;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.Util;
 
 /**
  * Author: VISTALL
@@ -18,9 +20,10 @@ import com.jds.jn.util.Bundle;
  * Date: 25.09.2009
  * Time: 17:55:13
  */
-@SuppressWarnings("serial")
-public class NotDecPacketTableModel extends AbstractTableModel
+public class CryptedPacketTableModel extends AbstractTableModel
 {
+
+
 	private static final String[] columnNames =
 	{
 			"S/C",
@@ -32,7 +35,7 @@ public class NotDecPacketTableModel extends AbstractTableModel
 
 	private final ViewPane _pane;
 
-	public NotDecPacketTableModel(ViewPane pane)
+	public CryptedPacketTableModel(ViewPane pane)
 	{
 		_pane = pane;
 	}
@@ -91,12 +94,10 @@ public class NotDecPacketTableModel extends AbstractTableModel
 			icon = ImageStatic.ICON_FROM_SERVER;
 		}
 
-		SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss SSSS");
-
 		Object[] temp =
 		{
 				new JLabel(icon),
-				time.format(new Date()),
+				Util.formatPacketTime(packet.getTime()),
 				String.valueOf(packet.getBuffer().limit()),
 				packet
 		};

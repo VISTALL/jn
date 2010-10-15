@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 import com.jds.jn.Jn;
-import com.jds.jn.gui.models.DecPacketTableModel;
+import com.jds.jn.gui.models.DecryptedPacketTableModel;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -50,7 +50,7 @@ public class DecodeAllActionListener implements ActionListener
 				List<CryptedPacket> packetList = session.getCryptedPackets();
 
 				final DecPacketListPane pane = _pane.getViewPane().getPacketListPane();
-				DecPacketTableModel model = _pane.getViewPane().getDecryptPacketTableModel();
+				DecryptedPacketTableModel model = _pane.getViewPane().getDecryptPacketTableModel();
 
 				_pane.getViewPane().actionEnable(false);
 

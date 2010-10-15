@@ -1,6 +1,7 @@
 package com.jds.jn.util;
 
 import java.nio.ByteBuffer;
+import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -17,6 +18,12 @@ import com.jds.nio.buffer.NioBuffer;
 public class Util
 {
 	public static Random _random = new Random();
+	private static final SimpleDateFormat PACKET_TIME_FORMAT = new SimpleDateFormat("HH:mm:ss SSSS");
+
+	public static String formatPacketTime(Long d)
+	{
+		return PACKET_TIME_FORMAT.format(d);
+	}
 
 	public static int positiveRandom()
 	{

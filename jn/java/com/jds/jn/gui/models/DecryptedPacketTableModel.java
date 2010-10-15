@@ -1,10 +1,11 @@
 package com.jds.jn.gui.models;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
@@ -23,7 +24,7 @@ import com.jds.jn.util.Util;
  * Time: 17:20:11
  */
 @SuppressWarnings("serial")
-public class DecPacketTableModel extends AbstractTableModel implements PacketTableRenderer.TooltipTable
+public class DecryptedPacketTableModel extends AbstractTableModel implements PacketTableRenderer.TooltipTable
 {
 	private static final String[] columnNames =
 	{
@@ -37,7 +38,7 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 	private List<Object[]> _currentTable = new ArrayList<Object[]>();
 	private final ViewPane _pane;
 
-	public DecPacketTableModel(ViewPane pane)
+	public DecryptedPacketTableModel(ViewPane pane)
 	{
 		_pane = pane;
 	}
@@ -164,12 +165,10 @@ public class DecPacketTableModel extends AbstractTableModel implements PacketTab
 			toolTip = "<br><font color=\"" + color + "\">" + packet.getErrorMessage() + "</font></html>";
 		}
 
-		SimpleDateFormat time = new SimpleDateFormat("HH:mm:ss SSSS");
-
 		Object[] temp =
 		{
 				new JLabel(icon),
-				time.format(new Date()),
+				Util.formatPacketTime(packet.getTime()),
 				opcode,
 				String.valueOf(packet.getSize()),
 				packet.getName(),

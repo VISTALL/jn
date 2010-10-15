@@ -18,7 +18,8 @@ import crypt.helpers.NewCrypt;
  */
 public class L2AuthCrypter implements ProtocolCrypter
 {
-	private static byte[] STATIC_BLOWFISH_KEY = {
+	private static byte[] STATIC_BLOWFISH_KEY =
+	{
 			(byte) 0x6b,
 			(byte) 0x60,
 			(byte) 0xcb,

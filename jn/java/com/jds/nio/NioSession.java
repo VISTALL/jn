@@ -1,10 +1,5 @@
 package com.jds.nio;
 
-import javolution.util.FastMap;
-import com.jds.nio.buffer.NioBuffer;
-import com.jds.nio.core.CloseType;
-import com.jds.nio.core.NioService;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -15,6 +10,12 @@ import java.nio.channels.SocketChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.jds.nio.buffer.NioBuffer;
+import com.jds.nio.core.CloseType;
+import com.jds.nio.core.NioService;
 
 /**
  * Author: VISTALL
@@ -40,7 +41,7 @@ public class NioSession
 
 	protected final Deque<NioBuffer> _sendQueue = new ArrayDeque<NioBuffer>();
 
-	protected final FastMap<String, Object> _attributes = new FastMap<String, Object>();
+	protected final Map<String, Object> _attributes = new HashMap<String, Object>();
 
 	public NioSession(SocketChannel channel, Socket socket, NioService service) throws Exception
 	{

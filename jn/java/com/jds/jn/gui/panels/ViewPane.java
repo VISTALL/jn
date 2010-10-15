@@ -8,8 +8,8 @@ import java.awt.event.MouseListener;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jds.jn.gui.models.DecPacketTableModel;
-import com.jds.jn.gui.models.NotDecPacketTableModel;
+import com.jds.jn.gui.models.DecryptedPacketTableModel;
+import com.jds.jn.gui.models.CryptedPacketTableModel;
 import com.jds.jn.gui.panels.viewpane.*;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
@@ -28,8 +28,8 @@ public class ViewPane extends JPanel
 
 	private JPanel mainPane;
 	private JTabbedPane _packetAndSearch;
-	private DecPacketTableModel _decryptPacketTableModel = new DecPacketTableModel(this);
-	private NotDecPacketTableModel _notDecryptPacketTableModel = new NotDecPacketTableModel(this);
+	private DecryptedPacketTableModel _decryptPacketTableModel = new DecryptedPacketTableModel(this);
+	private CryptedPacketTableModel _notDecryptPacketTableModel = new CryptedPacketTableModel(this);
 
 	private PacketList _packetList;
 	private SearchPane _searchPane;
@@ -128,12 +128,12 @@ public class ViewPane extends JPanel
 
 	}
 
-	public DecPacketTableModel getDecryptPacketTableModel()
+	public DecryptedPacketTableModel getDecryptPacketTableModel()
 	{
 		return _decryptPacketTableModel;
 	}
 
-	public NotDecPacketTableModel getNotDecryptPacketTableModel()
+	public CryptedPacketTableModel getCryptPacketTableModel()
 	{
 		return _notDecryptPacketTableModel;
 	}

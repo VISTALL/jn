@@ -11,7 +11,7 @@ import java.awt.*;
  * Date: 26.08.2009
  * Time: 20:57:40
  */
-public class PacketTableRender2 extends DefaultTableCellRenderer implements TableCellRenderer
+public class CryptedPacketTableRender extends DefaultTableCellRenderer implements TableCellRenderer
 {
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col)

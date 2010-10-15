@@ -1,7 +1,5 @@
 package com.jds.jn.parser.packetfactory.lineage2.infos;
 
-import javolution.util.FastMap;
-
 import java.util.*;
 
 /**
@@ -12,7 +10,7 @@ import java.util.*;
 public class L2BuyList
 {
 	private final int _listId;
-	private Map<Integer, L2ItemComponent> _items = new FastMap<Integer, L2ItemComponent>();
+	private Map<Integer, L2ItemComponent> _items = new HashMap<Integer, L2ItemComponent>();
 
 	public L2BuyList(int listId)
 	{

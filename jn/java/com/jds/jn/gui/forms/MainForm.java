@@ -1,18 +1,25 @@
 package com.jds.jn.gui.forms;
 
 import org.apache.log4j.Logger;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
+import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.SystemTray;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
 import java.util.concurrent.ScheduledFuture;
 
-import com.intellij.uiDesigner.core.*;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
@@ -22,13 +29,13 @@ import com.jds.jn.gui.panels.ViewTabbedPane;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.session.Session;
-import com.jds.jn.statics.*;
+import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.version_control.Version;
 import com.jds.swing.JTrayIcon;
 import com.sun.awt.AWTUtilities;
-import org.pushingpixels.flamingo.api.ribbon.*;
 
 /**
  * Author: VISTALL
@@ -207,13 +214,13 @@ public class MainForm extends JRibbonFrame
 		_memoryBar.setValue(persents);
 		_memoryBar.setToolTipText("Total heap size: " + max + " MB Used: " + use + "MB");
 	}
-
+	                              //TODO
 	public void showSession(Session s)
 	{
 		getViewTabbedPane().addTab(s);
 
 		s.onShow();
-
+		///
 		getRibbon().addContextualTaskGroup(s.getRibbonGroup());
 		getViewTabbedPane().fireTabsChanged();
 	}

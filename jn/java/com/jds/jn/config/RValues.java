@@ -83,7 +83,10 @@ public enum RValues
 
 	public ReceiveType asReceiveType()
 	{
-		return (ReceiveType)_val;
+		if(_val instanceof ReceiveType)
+			return (ReceiveType)_val;
+		else
+			return ReceiveType.valueOf((String)_val);
 	}
 
 	public JColor asTColor()

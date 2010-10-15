@@ -8,9 +8,9 @@ import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
 import com.jds.jn.gui.listeners.panels.packetlist.DecodeAllActionListener;
-import com.jds.jn.gui.models.DecPacketTableModel;
+import com.jds.jn.gui.models.DecryptedPacketTableModel;
 import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.gui.renders.PacketTableRender2;
+import com.jds.jn.gui.renders.CryptedPacketTableRender;
 import com.jds.jn.helpers.PacketStructureParser;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -32,7 +32,7 @@ public class CryptedPacketListPane extends JPanel
 {
 	private JScrollPane _packetScrollPane;
 	private JTable _packetList;
-	private JPanel main;
+	private JPanel _rootPane;
 	private JButton _decodeButton;
 	private JButton _decodeAllButton;
 	private JButton _sendServerListButton;
@@ -69,7 +69,7 @@ public class CryptedPacketListPane extends JPanel
 
 				Session session = getViewPane().getSession();
 
-				DecPacketTableModel model = getViewPane().getDecryptPacketTableModel();
+				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
 
 				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER);
 				if (bytes == null)
@@ -124,12 +124,12 @@ public class CryptedPacketListPane extends JPanel
 				}
 
 				final DecPacketListPane pane = getViewPane().getPacketListPane();
-				DecPacketTableModel model = getViewPane().getDecryptPacketTableModel();
+				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
 				if (_packetList.getSelectedRow() == -1)
 				{
 					return;
 				}
-				CryptedPacket packet = getViewPane().getNotDecryptPacketTableModel().getPacket(_packetList.getSelectedRow());
+				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(_packetList.getSelectedRow());
 
 
 				if (!packet.isShow())
@@ -171,30 +171,26 @@ public class CryptedPacketListPane extends JPanel
 
 	private void createUIComponents()
 	{
-		main = this;
-
+		_rootPane = this;
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-
-		_packetList = new JTable(getViewPane().getNotDecryptPacketTableModel());
+		_packetList = new JTable(getViewPane().getCryptPacketTableModel());
 		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_packetList.setDefaultRenderer(Object.class, new PacketTableRender2());
+		_packetList.setDefaultRenderer(Object.class, new CryptedPacketTableRender());
 		_packetList.getColumnModel().getColumn(0).setMaxWidth(50); //type
 		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
 		_packetList.getColumnModel().getColumn(2).setMaxWidth(300);  //
-		_packetList.addMouseListener(new MouseL());
-
+		_packetList.addMouseListener(new MouseListenerImpl());
 	}
 
-	public class MouseL implements MouseListener
+	private class MouseListenerImpl implements MouseListener
 	{
-
 		@Override
 		public void mouseClicked(MouseEvent e)
 		{
 			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
 				int row = _packetList.getSelectedRow();
-				CryptedPacket packet = getViewPane().getNotDecryptPacketTableModel().getPacket(row);
+				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(row);
 				if (packet == null)
 				{
 					return;
@@ -283,19 +279,19 @@ public class CryptedPacketListPane extends JPanel
 		createUIComponents();
 		final JPanel panel1 = new JPanel();
 		panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-		main.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-		main.setEnabled(true);
-		panel1.add(main, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+		_rootPane.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+		_rootPane.setEnabled(true);
+		panel1.add(_rootPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 		_packetScrollPane = new JScrollPane();
 		_packetScrollPane.setEnabled(true);
 		_packetScrollPane.setHorizontalScrollBarPolicy(31);
 		_packetScrollPane.setVerticalScrollBarPolicy(22);
-		main.add(_packetScrollPane, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+		_rootPane.add(_packetScrollPane, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 		_packetList.setPreferredScrollableViewportSize(new Dimension(-1, -1));
 		_packetScrollPane.setViewportView(_packetList);
 		final JPanel panel2 = new JPanel();
 		panel2.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
-		main.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+		_rootPane.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 		_decodeButton = new JButton();
 		this.$$$loadButtonText$$$(_decodeButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Decode"));
 		panel2.add(_decodeButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

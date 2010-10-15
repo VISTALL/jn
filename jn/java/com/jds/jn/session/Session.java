@@ -160,7 +160,7 @@ public class Session
 	{
 		 _notDecryptPackets.add(p);
 
-		_viewPane.getNotDecryptPacketTableModel().addRow(p);
+		_viewPane.getCryptPacketTableModel().addRow(p);
 		_viewPane.updateInfo(this);
 	}
 
@@ -176,7 +176,7 @@ public class Session
 	{
 		_notDecryptPackets.add(p);
 
-		_viewPane.getNotDecryptPacketTableModel().addRow(p);
+		_viewPane.getCryptPacketTableModel().addRow(p);
 	}
 
 	public synchronized void receiveQuitPacket(DecryptedPacket p)
