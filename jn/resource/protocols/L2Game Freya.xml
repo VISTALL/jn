@@ -1549,7 +1549,41 @@
 		</packet>   			
 		<packet id="FE;0095" name="ExCleftState"/>
 		<packet id="FE;0096" name="ExDominionChannelSet"/>
-		<packet id="FE;0097" name="ExBlockUpSetList"/>
+		<packet id="FE;0097" name="ExBlockUpSetList">
+			<part name="type" type="d" id="0" />
+			<switch id="0">
+				<case id="0" name="showAll">
+					<part name="arenaId" type="d"/>
+					<part name="?" type="d"/>
+					<part name="blueSize" type="d" id="1"/>
+					<for id="1">
+						<part name="objectId" type="d" />
+						<part name="name" type="S" />
+					</for>
+					<part name="redSize" type="d" id="2"/>
+					<for id="2">
+						<part name="objectId" type="d" />
+						<part name="name" type="S" />
+					</for>
+				</case>
+				<case id="1" name="add">
+					<part name="?" type="d"/>
+					<part name="size" type="d" id="3"/>
+					<for id="3">
+						<part name="objectId" type="d" />
+						<part name="name" type="S" />
+					</for>
+				</case>
+				<case id="2" name="remove">
+					<part name="?" type="d"/>
+					<part name="size" type="d" id="4"/>
+					<for id="4">
+						<part name="objectId" type="d" />
+					</for>
+				</case>
+				<case id="default"/>
+			</switch>
+		</packet>
 		<packet id="FE;0098" name="ExBlockUpSetState"/>
 		<packet id="FE;0099" name="ExStartScenePlayer">
 			<part name="movieId" type="d"/>
