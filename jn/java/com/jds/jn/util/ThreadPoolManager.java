@@ -25,11 +25,12 @@ public class ThreadPoolManager
 
 	ThreadPoolManager()
 	{
-		_pool = new ScheduledThreadPoolExecutor(1, new PriorityThreadFactory("ThreadPoolManager", Thread.NORM_PRIORITY));
+		_pool = new ScheduledThreadPoolExecutor(4, new PriorityThreadFactory("ThreadPoolManager", Thread.NORM_PRIORITY));
 	}
 
 	public void execute(Runnable r)
 	{
+		//new Thread(r).start(); //TODO ЧЕ ЗА БРЕД
 		_pool.execute(r);
 	}
 

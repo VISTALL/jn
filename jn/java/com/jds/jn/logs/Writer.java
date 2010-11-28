@@ -3,6 +3,7 @@ package com.jds.jn.logs;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -47,47 +48,54 @@ public class Writer
 
 	public void chooseDialog()
 	{
-		final JFileChooser c = new JFileChooser(RValues.LAST_FOLDER.asString());
-		for(AbstractWriter w : _writers.values())
+		try
 		{
-			c.addChoosableFileFilter(new WriterFileFilter(w));
-		}
-
-		final int r = c.showSaveDialog(MainForm.getInstance());
-
-		if (r == JFileChooser.APPROVE_OPTION)
-		{
-			ThreadPoolManager.getInstance().execute(new Runnable()
+			final JFileChooser c = new JFileChooser(RValues.LAST_FOLDER.asString());
+			for(AbstractWriter w : _writers.values())
 			{
-				@Override
-				public void run()
+				c.addChoosableFileFilter(new WriterFileFilter(w));
+			}
+
+			final int r = c.showSaveDialog(MainForm.getInstance());
+
+			if (r == JFileChooser.APPROVE_OPTION)
+			{
+				ThreadPoolManager.getInstance().execute(new Runnable()
 				{
-				 	Session session = MainForm.getInstance().getViewTabbedPane().getSelectedComponent().getSession();
-
-					if (session == null)
+					@Override
+					public void run()
 					{
-						return;
-					}
+						Session session = MainForm.getInstance().getViewTabbedPane().getSelectedComponent().getSession();
 
-					AbstractWriter w = ((WriterFileFilter)c.getFileFilter()).getWriter();
-
-					try
-					{
-						if(!c.getSelectedFile().getName().contains(w.getFileExtension()))
+						if (session == null)
 						{
-							w.write(new File(c.getSelectedFile().getAbsolutePath() + "." + w.getFileExtension()), session);
+							return;
 						}
-						else
+
+						AbstractWriter w = ((WriterFileFilter)c.getFileFilter()).getWriter();
+
+						try
 						{
-							w.write(c.getSelectedFile(), session);
+							if(!c.getSelectedFile().getName().contains(w.getFileExtension()))
+							{
+								w.write(new File(c.getSelectedFile().getAbsolutePath() + "." + w.getFileExtension()), session);
+							}
+							else
+							{
+								w.write(c.getSelectedFile(), session);
+							}
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
 						}
 					}
-					catch (IOException e)
-					{
-						e.printStackTrace();
-					}
-				}
-			});
+				});
+			}
+		}
+		catch (HeadlessException e)
+		{
+			e.printStackTrace();
 		}
 	}
 

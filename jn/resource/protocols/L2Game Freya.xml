@@ -1096,7 +1096,20 @@
 		<packet id="77" name="L2FriendStatusPacket"/>
 		<packet id="78" name="L2FriendSayPacket"/>
 		<packet id="7A" name="StartRotating"/>
-		<packet id="7B" name="ShowBoardPacket"/>
+		<packet id="7B" name="ShowBoard">
+			<part name="openBool" type="c"/>
+			<part name="home" type="S"/>
+			<part name="get_fav" type="S"/>
+			<part name="loc" type="S"/>
+			<part name="clan" type="S"/>
+			<part name="memo" type="S"/>
+			<part name="mail" type="S"/>
+			<part name="friend" type="S"/>
+			<part name="add_fav" type="S"/>
+			<part name="html" type="S">
+				<reader type="HTML"/>
+			</part>
+		</packet>
 		<packet id="7C" name="ChooseInventoryItemPacket"/>
 		<packet id="7D" name="Dummy"/>
 		<packet id="7E" name="MoveToLocationInVehicle"/>

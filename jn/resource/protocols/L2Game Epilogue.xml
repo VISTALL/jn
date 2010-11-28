@@ -740,7 +740,7 @@
         <part name="time" type="d" />
       </for>
     </packet>
-    <packet id="FE;00CF" name="ExBR_ExtraUserInfo">
+    <packet id="FE;00BE" name="ExBR_ExtraUserInfo">
       <part name="obj_id" type="d" />
       <part name="br_effect" type="d" />
       <part name="?" type="c" />

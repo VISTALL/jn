@@ -2,5 +2,5 @@
 <settings>
     <add key="XMX" value="-Xmx512m"/>
     <add key="XMS" value="-Xms512m"/>
-    <!--<add key="JAVA_HOME" value="E:/java/jdk_7/bin/"/>  -->
+    <add key="JAVA_HOME" value="F:/Binaries/jdk_6_18_x32/bin"/>
 </settings>

@@ -1,10 +1,25 @@
 package com.jds.jn.network.packets;
 
+import org.apache.log4j.Logger;
+
 import java.nio.BufferUnderflowException;
 
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.parser.datatree.*;
-import com.jds.jn.parser.formattree.*;
+import com.jds.jn.parser.datatree.DataForBlock;
+import com.jds.jn.parser.datatree.DataForPart;
+import com.jds.jn.parser.datatree.DataMacroPart;
+import com.jds.jn.parser.datatree.DataSwitchBlock;
+import com.jds.jn.parser.datatree.DataTreeNodeContainer;
+import com.jds.jn.parser.datatree.RawValuePart;
+import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.datatree.VisualValuePart;
+import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.Format;
+import com.jds.jn.parser.formattree.MacroPart;
+import com.jds.jn.parser.formattree.Part;
+import com.jds.jn.parser.formattree.PartContainer;
+import com.jds.jn.parser.formattree.SwitchCaseBlock;
+import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
@@ -16,6 +31,7 @@ import com.jds.nio.buffer.NioBuffer;
  */
 public class DecryptedPacket implements IPacketData
 {
+	private static final Logger _log = Logger.getLogger(DecryptedPacket.class);
 	private final CryptedPacket _notDecryptPacket;
 	private Protocol _protocol;
 
@@ -77,7 +93,7 @@ public class DecryptedPacket implements IPacketData
 			catch (Exception e)
 			{
 				_error = "Exception: " + e.getMessage();
-				MainForm.getInstance().info("Exception: " + e);
+				_log.info("Exception: " + e, e);
 			}
 		}
 	}
@@ -219,7 +235,7 @@ public class DecryptedPacket implements IPacketData
 				_error = "Error: Unparsed new type of PartContainer (" + this.getClass().getSimpleName() + ")";
 				return false;
 			}
-			else if (part.getType().isReadableType())
+			else if (part.getType() != null && part.getType().isReadableType())
 			{
 				ValuePart vp = part.getType().getValuePart(dataNode, part);
 				vp.parse(getBuffer(), this);
