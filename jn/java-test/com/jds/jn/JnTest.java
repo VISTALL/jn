@@ -1,6 +1,6 @@
 package com.jds.jn;
 
-import java.text.SimpleDateFormat;
+import com.jds.jn.util.OSUtils;
 
 /**
  * Author: VISTALL
@@ -10,8 +10,6 @@ public class JnTest
 {
 	public static void main(String... arg)
 	{
-		long l = 1341171684 * 1000L;
-
-		System.out.println(new SimpleDateFormat("HH.mm.SS dd.MM.yyyy").format(l));
+		System.out.println(OSUtils.getLibName());
 	}
 }

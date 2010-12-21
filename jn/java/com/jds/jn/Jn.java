@@ -1,21 +1,26 @@
 package com.jds.jn;
 
-import org.apache.log4j.Logger;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
 
-import javax.swing.*;
+import org.apache.log4j.Logger;
 
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.config.ConfigParser;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
 import com.jds.jn.helpers.Shutdown;
-import com.jds.jn.holders.*;
+import com.jds.jn.holders.ItemNameHolder;
+import com.jds.jn.holders.NpcNameHolder;
+import com.jds.jn.holders.SkillNameHolder;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.OSUtils;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.logging.LoggingService;
 
@@ -36,6 +41,8 @@ public class Jn
 		LoggingService.load();
 
 		_log.info("Logger init - ok");
+
+		System.loadLibrary(OSUtils.getLibName());
 
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		JFrame.setDefaultLookAndFeelDecorated(true);
