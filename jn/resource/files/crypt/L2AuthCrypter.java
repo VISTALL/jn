@@ -55,7 +55,7 @@ public class L2AuthCrypter implements ProtocolCrypter
 
 				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
 
-				if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
+				if (dir == PacketType.SERVER && packet.getPacketInfo() != null && packet.getPacketInfo().isKey())
 				{
 					RawValuePart part = (RawValuePart) packet.getRootNode().getPartByName("Blowfish key");
 					if (part == null)

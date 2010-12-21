@@ -89,7 +89,7 @@ public class PacketList extends JPanel
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				if (e.getButton() == MouseEvent.BUTTON3)
+				if(e.getButton() == MouseEvent.BUTTON3)
 				{
 					popup.show(PacketList.this, e.getX(), e.getY());
 				}

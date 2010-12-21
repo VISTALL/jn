@@ -72,7 +72,7 @@ public class JPacketListPopup extends JPopupMenu
 				return;
 			}
 
-			if(packet.getPacketFormat() == null)
+			if(packet.getPacketInfo() == null)
 			{
 				_editMenu.add(_addSubEditMenu);
 			}

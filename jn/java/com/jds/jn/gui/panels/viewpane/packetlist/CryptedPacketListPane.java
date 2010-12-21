@@ -1,12 +1,28 @@
 package com.jds.jn.gui.panels.viewpane.packetlist;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
-import com.intellij.uiDesigner.core.*;
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingUtilities;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.gui.listeners.panels.packetlist.DecodeAllActionListener;
 import com.jds.jn.gui.models.DecryptedPacketTableModel;
 import com.jds.jn.gui.panels.ViewPane;
@@ -16,8 +32,12 @@ import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.methods.proxy.Proxy;
-import com.jds.jn.network.packets.*;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.packets.CryptedPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
+import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.Util;
 import com.jds.nio.buffer.NioBuffer;
@@ -52,13 +72,13 @@ public class CryptedPacketListPane extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				NetworkProfile prof = NetworkProfiles.getInstance().active();
-				if (prof == null)
+				if(prof == null)
 				{
 					return;
 				}
 
 				NetworkProfilePart p = prof.getPart(ListenerType.Auth_Server);
-				if (p.getServerList() == null)
+				if(p.getServerList() == null)
 				{
 					return;
 				}
@@ -72,7 +92,7 @@ public class CryptedPacketListPane extends JPanel
 				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
 
 				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER);
-				if (bytes == null)
+				if(bytes == null)
 				{
 					return;
 				}
@@ -90,7 +110,7 @@ public class CryptedPacketListPane extends JPanel
 					Proxy proxy = (Proxy) ListenerSystem.getInstance().getMethod(ReceiveType.PROXY, ListenerType.Auth_Server);
 					proxy.getClientSession().put(buff);
 				}
-				catch (Exception e1)
+				catch(Exception e1)
 				{
 					e1.printStackTrace();
 				}
@@ -118,32 +138,32 @@ public class CryptedPacketListPane extends JPanel
 				Session session = getViewPane().getSession();
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
 
-				if (session.getProtocol() == null || profile == null)
+				if(session.getProtocol() == null || profile == null)
 				{
 					return;
 				}
 
 				final DecPacketListPane pane = getViewPane().getPacketListPane();
 				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
-				if (_packetList.getSelectedRow() == -1)
+				if(_packetList.getSelectedRow() == -1)
 				{
 					return;
 				}
 				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(_packetList.getSelectedRow());
 
 
-				if (!packet.isShow())
+				if(!packet.isShow())
 				{
 					DecryptedPacket datapacket = session.decode(packet);
-					if (datapacket.getName() != null && datapacket.getName().equals("SM_SERVER_LIST"))
+					if(datapacket.getName() != null && datapacket.getName().equals("SM_SERVER_LIST"))
 					{
 						_sendServerListButton.setEnabled(true);
 						_sendServerListButton.setVisible(true);
 					}
-					if (datapacket.getPacketFormat() != null)
+					if(datapacket.getPacketInfo() != null)
 					{
 						NetworkProfilePart part = profile.getPart(session.getListenerType());
-						if (part.isFiltredOpcode(datapacket.getPacketFormat().getOpcodeStr()))
+						if(part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
 						{
 							return;
 						}
@@ -187,11 +207,11 @@ public class CryptedPacketListPane extends JPanel
 		@Override
 		public void mouseClicked(MouseEvent e)
 		{
-			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
 				int row = _packetList.getSelectedRow();
 				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(row);
-				if (packet == null)
+				if(packet == null)
 				{
 					return;
 				}
@@ -235,9 +255,9 @@ public class CryptedPacketListPane extends JPanel
 	@Override
 	public void setEnabled(boolean b)
 	{
-		for (Component c : getComponents())
+		for(Component c : getComponents())
 		{
-			if (c != null)
+			if(c != null)
 			{
 				c.setEnabled(b);
 			}
@@ -318,16 +338,16 @@ public class CryptedPacketListPane extends JPanel
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -337,7 +357,7 @@ public class CryptedPacketListPane extends JPanel
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);

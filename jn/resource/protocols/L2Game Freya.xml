@@ -1526,7 +1526,18 @@
 		<packet id="FE;008A" name="ExPVPMatchCCMyRecord"/>
 		<packet id="FE;008B" name="ExPVPMatchCCRetire"/>
 		<packet id="FE;008C" name="ExShowTerritory"/>
-		<packet id="FE;008E" name="ExSendUIEventPacket"/>
+		<packet id="FE;008E" name="ExSendUIEventPacket">
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="S"/>
+			<part name="?" type="S"/>
+			<part name="?" type="S"/>
+			<part name="?" type="S"/>
+			<part name="?" type="S"/>
+			<part name="?" type="S"/>
+		</packet>
 		<packet id="FE;008F" name="ExNotifyBirthDay"/>
 		<packet id="FE;0090" name="ExShowDominionRegistry"/>
 		<packet id="FE;0091" name="ExReplyRegisterDominion"/>
@@ -1539,7 +1550,7 @@
 					<part name="size" type="d" id="3"/>
 					<for id="3">
 						<part name="kills" type="d"/>
-						<part name="team" type="d"/>		
+						<part name="team" type="d"/>
 						<part name="objectId" type="d"/>
 						<part name="name" type="S"/>
 					</for>

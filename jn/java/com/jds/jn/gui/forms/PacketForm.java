@@ -1,13 +1,41 @@
 package com.jds.jn.gui.forms;
 
-import javax.swing.*;
-import javax.swing.text.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
 
-import com.intellij.uiDesigner.core.*;
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextPane;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
+
+import org.jdesktop.swingx.JXTreeTable;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.dialogs.EnterNameDialog;
@@ -16,7 +44,9 @@ import com.jds.jn.gui.listeners.TableMouseListener;
 import com.jds.jn.gui.models.DataPartNode;
 import com.jds.jn.gui.models.PacketViewTableModel;
 import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.gui.renders.*;
+import com.jds.jn.gui.renders.IconComboBoxRenderer;
+import com.jds.jn.gui.renders.IconTableRenderer;
+import com.jds.jn.gui.renders.PacketViewTreeRenderer;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.Types;
@@ -29,7 +59,6 @@ import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.Util;
 import com.sun.awt.AWTUtilities;
-import org.jdesktop.swingx.JXTreeTable;
 
 /**
  * Author: VISTALL
@@ -59,7 +88,7 @@ public class PacketForm extends JFrame
 	public PacketForm(ViewPane pane, float persent, DecryptedPacket packet, int row)
 	{
 		setPacket(packet);
-		setPane(pane);
+		_pane = pane;
 		setRow(row);
 
 		$$$setupUI$$$();
@@ -77,12 +106,12 @@ public class PacketForm extends JFrame
 			{
 
 				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, Bundle.getString("EnterName"));
-				if (!dialog.showToWrite())
+				if(!dialog.showToWrite())
 				{
 					return;
 				}
 
-				PartContainer pC = getPacket().getPacketFormat().getDataFormat().getMainBlock();
+				PartContainer pC = getPacket().getPacketInfo().getDataFormat().getMainBlock();
 				PartType partType = PartTypeManager.getInstance().getType(getPartBox().getSelectedItem().toString());
 				Part p = new Part(partType);
 				p.setName(dialog.getText());
@@ -96,7 +125,7 @@ public class PacketForm extends JFrame
 			}
 		});
 
-		addButton.setEnabled(getPacket().getPacketFormat() != null);
+		addButton.setEnabled(getPacket().getPacketInfo() != null);
 
 		setBytesPopupMenu(new JMenu("byte[] Menu"));
 
@@ -108,24 +137,24 @@ public class PacketForm extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				Object node = getPacketStructure().getModel().getValueAt(getPacketStructure().getSelectedRow(), 0);
-				if (node == null)
+				if(node == null)
 				{
 					return;
 				}
 
-				if (!(node instanceof RawValuePart))
+				if(!(node instanceof RawValuePart))
 				{
 					return;
 				}
 
 				RawValuePart part = (RawValuePart) node;
 
-				if (!part.getClass().getSimpleName().equals("ValuePart"))
+				if(!part.getClass().getSimpleName().equals("ValuePart"))
 				{
 					return;
 				}
 				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, "Enter size");
-				if (!dialog.showToWrite())
+				if(!dialog.showToWrite())
 				{
 					return;
 				}
@@ -178,7 +207,7 @@ public class PacketForm extends JFrame
 				_verticalScroll = _scrollPane.getVerticalScrollBar().getValue();
 				_horizontalScroll = _scrollPane.getHorizontalScrollBar().getValue();
 
-				if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && node instanceof ValuePart)
+				if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1 && node instanceof ValuePart)
 				{
 					ValuePart part = (ValuePart) node;
 					part.setSelected(!part.isSelected());
@@ -187,7 +216,7 @@ public class PacketForm extends JFrame
 					getPacketStructure().setRowSelectionInterval(index, index);
 					setScroolBar();
 				}
-				else if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
+				else if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
 				{
 					getMenu().show(getPacketStructure(), e.getX(), e.getY());
 				}
@@ -241,7 +270,7 @@ public class PacketForm extends JFrame
 		s = doc.addStyle("chk", regular);
 		StyleConstants.setBackground(s, Color.GREEN);
 
-		for (Types t : Types.values())
+		for(Types t : Types.values())
 		{
 			s = doc.addStyle(t.name(), regular);
 			StyleConstants.setBackground(s, t.getColor());
@@ -251,7 +280,7 @@ public class PacketForm extends JFrame
 	public void addStyledText(String text, String style)
 	{
 		Style s = _hexStyledDoc.getStyle(style);
-		if (s == null)
+		if(s == null)
 		{
 			Jn.getForm().warn("Missing style for partType: " + style);
 			style = "base";
@@ -261,7 +290,7 @@ public class PacketForm extends JFrame
 		{
 			_hexStyledDoc.insertString(_hexStyledDoc.getLength(), text, _hexStyledDoc.getStyle(style));
 		}
-		catch (BadLocationException e)
+		catch(BadLocationException e)
 		{
 			e.printStackTrace();
 		}
@@ -273,10 +302,10 @@ public class PacketForm extends JFrame
 
 		int len = getPacket().getNotDecryptData().length;
 
-		for (int i = 0; i < len; i++)
+		for(int i = 0; i < len; i++)
 		{
 			String color = getPacket().getColor(i);
-			if (color == null)
+			if(color == null)
 			{
 				color = "base";
 			}
@@ -287,7 +316,7 @@ public class PacketForm extends JFrame
 
 			String nextColor = (i != (len - 1)) ? getPacket().getColor(i + 1) : null;
 
-			if (nextColor != null && nextColor.equals(color))
+			if(nextColor != null && nextColor.equals(color))
 			{
 				addStyledText(" ", color);
 			}
@@ -308,21 +337,11 @@ public class PacketForm extends JFrame
 
 	public void updateCurrentPacket()
 	{
-		String name = (String) getPane().getDecryptPacketTableModel().getValueAt(_row, 4);
-
-		if (name == null)
-		{
-			setTitle(Bundle.getString("Packet") + ": -");
-		}
-		else
-		{
-			setTitle(Bundle.getString("Packet") + ": " + name);
-		}
-
 		updateHexDump();
 
-		if (getPacket().getPacketFormat() != null && !getPacket().hasError())
+		if(getPacket().getPacketInfo() != null && !getPacket().hasError())
 		{
+			setTitle(Bundle.getString("Packet") + ": " + getPacket().getName());
 			DataPartNode root = new DataPartNode(getPacket().getRootNode());
 
 			getPacketViewTableModel().setRoot(root);
@@ -331,6 +350,7 @@ public class PacketForm extends JFrame
 		}
 		else
 		{
+			setTitle(Bundle.getString("Packet") + ": -");
 			getPacketViewTableModel().setRoot(null);
 		}
 	}
@@ -340,7 +360,7 @@ public class PacketForm extends JFrame
 		//add linefeeds to the dump
 		int lnCount = _hexDumpPacket.getText().length() / 48;
 		int rest = _hexDumpPacket.getText().length() % 48;
-		for (int i = 1; i <= lnCount; i++)
+		for(int i = 1; i <= lnCount; i++)
 		{
 			int pos = i * 67 - 20;
 			try
@@ -349,27 +369,27 @@ public class PacketForm extends JFrame
 				String ansci = idx == 0 ? Util.toAnsci(data, 0, 16) : Util.toAnsci(data, idx * 16, idx * 16 + 16);
 				_hexStyledDoc.replace(pos, 1, "   " + ansci + "\n", _hexStyledDoc.getStyle("base"));
 			}
-			catch (BadLocationException e1)
+			catch(BadLocationException e1)
 			{
 				e1.printStackTrace();
 			}
 		}
 		//rest
-		if (rest != 0)
+		if(rest != 0)
 		{
 			try
 			{
 				int pos = lnCount * 67 + rest;
 				String space = "";
 				int spaceCount = 48 - rest;
-				while (spaceCount-- > 0)
+				while(spaceCount-- > 0)
 				{
 					space += " ";
 				}
 				String ansci = lnCount == 0 ? Util.toAnsci(data, 0, data.length) : Util.toAnsci(data, lnCount * 16, data.length);
 				_hexStyledDoc.insertString(pos, space + "  " + ansci, _hexStyledDoc.getStyle("base"));
 			}
-			catch (BadLocationException e1)
+			catch(BadLocationException e1)
 			{
 				e1.printStackTrace();
 			}
@@ -413,11 +433,6 @@ public class PacketForm extends JFrame
 	public ViewPane getPane()
 	{
 		return _pane;
-	}
-
-	public void setPane(ViewPane pane)
-	{
-		_pane = pane;
 	}
 
 	public int getRow()
@@ -532,16 +547,16 @@ public class PacketForm extends JFrame
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -551,7 +566,7 @@ public class PacketForm extends JFrame
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);

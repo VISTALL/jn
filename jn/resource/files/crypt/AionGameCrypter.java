@@ -62,7 +62,7 @@ public class AionGameCrypter implements ProtocolCrypter
 	{
 		DecryptedPacket packet = new DecryptedPacket(raw, dir, _protocol);
 
-		if (dir == PacketType.SERVER && packet.getPacketFormat() != null && packet.getPacketFormat().isKey())
+		if (dir == PacketType.SERVER && packet.getPacketInfo() != null && packet.getPacketInfo().isKey())
 		{
 			int key;
 			VisualValuePart part = (VisualValuePart) packet.getRootNode().getPartByName("key");

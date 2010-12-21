@@ -1,17 +1,37 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 
-import com.intellij.uiDesigner.core.*;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.DecryptedPacket;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
@@ -169,9 +189,9 @@ public class SearchPane extends JPanel
 
 				_currentPart = null;
 				partselect.addItem("<none>");
-				for (Part part : _currentFormat.getDataFormat().getMainBlock().getParts())
+				for(Part part : _currentFormat.getDataFormat().getMainBlock().getParts())
 				{
-					if (part instanceof ForPart)
+					if(part instanceof ForPart)
 					{
 						continue;
 					}
@@ -188,34 +208,34 @@ public class SearchPane extends JPanel
 			{
 				_currentIndex = 0;
 				String name = (String) partselect.getSelectedItem();
-				if (name == null)
+				if(name == null)
 				{
 					return;
 				}
 
 				_currentPart = _currentFormat.getDataFormat().getMainBlock().getPartByName(name);
-				if (_currentPart == null)
+				if(_currentPart == null)
 				{
 					return;
 				}
 
 				boolean isString = _currentPart.getName().equalsIgnoreCase("s");
 
-				if ((!_stringPart || operatorSelect.getItemCount() <= 0) && isString)
+				if((!_stringPart || operatorSelect.getItemCount() <= 0) && isString)
 				{
 					operatorSelect.removeAllItems();
 					_stringPart = true;
-					for (String str : STRING_OPERATORS)
+					for(String str : STRING_OPERATORS)
 					{
 						operatorSelect.addItem(str);
 					}
 					operatorSelect.setSelectedIndex(0);
 				}
-				else if ((_stringPart || operatorSelect.getItemCount() <= 0) && !isString)
+				else if((_stringPart || operatorSelect.getItemCount() <= 0) && !isString)
 				{
 					operatorSelect.removeAllItems();
 					_stringPart = false;
-					for (String str : MATH_OPERATORS)
+					for(String str : MATH_OPERATORS)
 					{
 						operatorSelect.addItem(str);
 					}
@@ -237,16 +257,16 @@ public class SearchPane extends JPanel
 
 	public void search()
 	{
-		if (simpleSearchRadioButton.isSelected())
+		if(simpleSearchRadioButton.isSelected())
 		{
 			String findPacket = _findText.getText();
 
-			if (findPacket.equals(""))
+			if(findPacket.equals(""))
 			{
 				return;
 			}
 
-			if (_pane.getDecryptPacketTableModel().searchPacket(findPacket))
+			if(_pane.getDecryptPacketTableModel().searchPacket(findPacket))
 			{
 				found();
 			}
@@ -259,7 +279,7 @@ public class SearchPane extends JPanel
 		{
 			int index = search(_currentIndex);
 
-			if (index >= 0)
+			if(index >= 0)
 			{
 				JTable pt = _pane.getPacketListPane().getPacketTable();
 				pt.setAutoscrolls(true);
@@ -279,7 +299,7 @@ public class SearchPane extends JPanel
 	{
 		_formats.clear();
 
-		if (_pane.getSession() == null)
+		if(_pane.getSession() == null)
 		{
 			return;
 		}
@@ -287,7 +307,7 @@ public class SearchPane extends JPanel
 		Protocol currentProto = _pane.getSession().getProtocol();
 		getAllFormatsName(currentProto);
 
-		for (PacketInfo format : _formats)
+		for(PacketInfo format : _formats)
 		{
 			packetSelect.addItem(format.getOpcodeStr() + " " + format.getName());
 		}
@@ -295,7 +315,7 @@ public class SearchPane extends JPanel
 
 	private void getAllFormatsName(Protocol p)
 	{
-		for (PacketFamilly a : p.getFamilies())
+		for(PacketFamilly a : p.getFamilies())
 		{
 			_formats.addAll(a.getFormats().values());
 		}
@@ -328,7 +348,7 @@ public class SearchPane extends JPanel
 		Session session = _pane.getSession();
 		NetworkProfile profile = NetworkProfiles.getInstance().active();
 
-		if (session == null || profile == null)
+		if(session == null || profile == null)
 		{
 			return -1;
 		}
@@ -337,7 +357,7 @@ public class SearchPane extends JPanel
 		NetworkProfilePart part = profile.getPart(type);
 		List<DecryptedPacket> packets = session.getDecryptPackets();
 
-		if (packets == null)
+		if(packets == null)
 		{
 			return -1;
 		}
@@ -345,70 +365,70 @@ public class SearchPane extends JPanel
 		PacketInfo format;
 		int size = packets.size();
 
-		for (int i = startIndex; i < size; i++)
+		for(int i = startIndex; i < size; i++)
 		{
 			DecryptedPacket gp = packets.get(i);
-			format = gp.getPacketFormat();
+			format = gp.getPacketInfo();
 
-			if (format != null)
+			if(format != null)
 			{
-				if (part.isFiltredOpcode(format.getOpcodeStr()))
+				if(part.isFiltredOpcode(format.getOpcodeStr()))
 				{
 					continue;
 				}
-				if (format == _currentFormat)
+				if(format == _currentFormat)
 				{
-					if (_currentPart != null)
+					if(_currentPart != null)
 					{
 						boolean isString = _currentPart.getName().equalsIgnoreCase("s");
-						switch (operatorSelect.getSelectedIndex())
+						switch(operatorSelect.getSelectedIndex())
 						{
 							case 0: // ==
-								if (!isString)
+								if(!isString)
 								{
 									try
 									{
 										int value = Integer.decode(findT.getText());
 										int partValue = gp.getInt(_currentPart.getName());
-										if (value == partValue)
+										if(value == partValue)
 										{
 											return i;
 										}
 									}
-									catch (Exception e)
+									catch(Exception e)
 									{
 										e.printStackTrace();
 									}
 								}
 								else
 								{
-									if (gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
+									if(gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
 									{
 										return i;
 									}
 								}
 								break;
 							case 1: // !=
-								if (!isString)
+								if(!isString)
 								{
 									try
 									{
 										int value = Integer.decode(findT.getText());
 										int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 
-										if (value != partValue)
+										if(value != partValue)
 										{
 											return i;
 										}
 									}
-									catch (NumberFormatException nfe)
+									catch(NumberFormatException nfe)
 									{
 										//nfe.printStackTrace();
 									}
 								}
 								else
 								{
-									if (!gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
+									if(!gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
 									{
 										return i;
 									}
@@ -419,12 +439,12 @@ public class SearchPane extends JPanel
 								{
 									int value = Integer.decode(findT.getText());
 									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if (partValue > value)
+									if(partValue > value)
 									{
 										return i;
 									}
 								}
-								catch (NumberFormatException nfe)
+								catch(NumberFormatException nfe)
 								{
 									//nfe.printStackTrace();
 								}
@@ -434,12 +454,12 @@ public class SearchPane extends JPanel
 								{
 									int value = Integer.decode(findT.getText());
 									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if (partValue >= value)
+									if(partValue >= value)
 									{
 										return i;
 									}
 								}
-								catch (NumberFormatException nfe)
+								catch(NumberFormatException nfe)
 								{
 									//nfe.printStackTrace();
 								}
@@ -449,12 +469,12 @@ public class SearchPane extends JPanel
 								{
 									int value = Integer.decode(findT.getText());
 									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if (partValue < value)
+									if(partValue < value)
 									{
 										return i;
 									}
 								}
-								catch (NumberFormatException nfe)
+								catch(NumberFormatException nfe)
 								{
 									//nfe.printStackTrace();
 								}
@@ -464,12 +484,12 @@ public class SearchPane extends JPanel
 								{
 									int value = Integer.decode(findT.getText());
 									int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if (partValue <= value)
+									if(partValue <= value)
 									{
 										return i;
 									}
 								}
-								catch (NumberFormatException nfe)
+								catch(NumberFormatException nfe)
 								{
 									//nfe.printStackTrace();
 								}
@@ -582,16 +602,16 @@ public class SearchPane extends JPanel
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -601,7 +621,7 @@ public class SearchPane extends JPanel
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setDisplayedMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);
@@ -617,16 +637,16 @@ public class SearchPane extends JPanel
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -636,7 +656,7 @@ public class SearchPane extends JPanel
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);

@@ -46,7 +46,7 @@ public class L2World implements IPacketListener
 	@Override
 	public void invoke(DecryptedPacket p)
 	{
-		if (p == null || p.getPacketFormat() == null || p.getName() == null || p.hasError())
+		if (p == null || p.getPacketInfo() == null || p.getName() == null || p.hasError())
 		{
 			return;
 		}

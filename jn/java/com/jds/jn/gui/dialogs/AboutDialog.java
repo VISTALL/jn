@@ -33,7 +33,7 @@ public class AboutDialog extends JWindow
 		{
 			JPicturePanel.setImage(ImageIO.read(getClass().getResource("/jds/jn/resources/images/logo.png")));
 		}
-		catch (IOException e)
+		catch(IOException e)
 		{
 			e.printStackTrace();
 		}

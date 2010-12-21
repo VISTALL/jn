@@ -4,13 +4,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.jds.jn.Jn;
-import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.methods.jpcap.Jpcap;
 import com.jds.jn.network.methods.proxy.Proxy;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 
 /**
@@ -53,38 +52,24 @@ public class ListenerSystem
 
 	public void start(final ReceiveType receive, final ListenerType type)
 	{
-		ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new RunnableImpl()
 		{
 			@Override
-			public void run()
+			public void runImpl() throws Exception
 			{
-				try
-				{
-					_list.get(receive).get(type).start();
-				}
-				catch (Exception e)
-				{
-					MainForm.getInstance().warn("Not can start", e);
-				}
+				_list.get(receive).get(type).start();
 			}
 		});
 	}
 
 	public void stop(final ReceiveType receive, final ListenerType type)
 	{
-		ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new RunnableImpl()
 		{
 			@Override
-			public void run()
+			public void runImpl() throws Exception
 			{
-				try
-				{
-					_list.get(receive).get(type).stop();
-				}
-				catch (Exception e)
-				{
-					MainForm.getInstance().warn("Not can stop", e);
-				}
+				_list.get(receive).get(type).stop();
 			}
 		});
 	}

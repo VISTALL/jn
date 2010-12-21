@@ -2,12 +2,15 @@ package com.jds.jn.protocol;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.jds.jn.config.RValues;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 
 public class ProtocolManager
 {
@@ -57,7 +60,7 @@ public class ProtocolManager
 
 	public Protocol getProtocol(ListenerType t) throws IllegalArgumentException
 	{
-		NetworkProfile prof = NetworkProfiles.getInstance().getProfile(RValues.ACTIVE_PROFILE.asString());
+		NetworkProfile prof = NetworkProfiles.getInstance().active();
 		if(prof == null)
 		{
 			return null;

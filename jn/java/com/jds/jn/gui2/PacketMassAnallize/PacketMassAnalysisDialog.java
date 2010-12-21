@@ -1,21 +1,34 @@
 package com.jds.jn.gui2.PacketMassAnallize;
 
-import org.apache.log4j.Logger;
-
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayDeque;
+import java.util.Map;
 import java.util.Queue;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileFilter;
+
+import org.apache.log4j.Logger;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.gui2.PacketMassAnallize.components.ReaderInfo;
 import com.jds.jn.gui2.PacketMassAnallize.listeners.FileTypeListener;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.logs.listeners.ReaderListener;
@@ -24,7 +37,7 @@ import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.session.Session;
-import com.jds.jn.util.FileUtils;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.swing.JDirectoryChooser;
 
@@ -40,15 +53,15 @@ public class PacketMassAnalysisDialog extends JDialog
 	private class ReaderListenerImpl implements ReaderListener
 	{
 		@Override
-		public void onFinish(Session session)
+		public void onFinish(Session session, File file)
 		{
-			if (session != null)
+			if(session != null)
 			{
 				MainForm.getInstance().getProgressBar().setVisible(true);
 				MainForm.getInstance().getProgressBar().setValue(0);
 				int i = 1;
 				int size = session.getCryptedPackets().size();
-				for (CryptedPacket packet : session.getCryptedPackets())
+				for(CryptedPacket packet : session.getCryptedPackets())
 				{
 					DecryptedPacket decryptedPacket = session.decode(packet);
 					session.addDecryptPacket(decryptedPacket);
@@ -104,9 +117,9 @@ public class PacketMassAnalysisDialog extends JDialog
 		FileTypeListener fileTypeListener = new FileTypeListener(this);
 		_allFormats.addActionListener(fileTypeListener);
 		_chooseTypeRadioButton.addActionListener(fileTypeListener);
-		for (AbstractReader reader : Reader.getInstance().getReaders())
+		for(Map.Entry<AbstractReader, FileFilter> entry : Reader.getInstance().getReaders())
 		{
-			_fileTypes.addItem(new ReaderInfo(reader));
+			_fileTypes.addItem(entry.getValue());
 		}
 
 		_chooseDirectory.addActionListener(new ActionListener()
@@ -115,7 +128,7 @@ public class PacketMassAnalysisDialog extends JDialog
 			public void actionPerformed(ActionEvent e)
 			{
 				JDirectoryChooser c = new JDirectoryChooser(PacketMassAnalysisDialog.this);
-				if (c.showDirectoryDialog())
+				if(c.showDirectoryDialog())
 				{
 					_directory = c.getSelectedFolder();
 					_dirText.setText(c.getSelectedFolder().getAbsolutePath());
@@ -130,15 +143,15 @@ public class PacketMassAnalysisDialog extends JDialog
 			{
 				File[] f = _directory.listFiles();
 				_files = new ArrayDeque<File>(f.length);
-				for (File file : f)
+				for(File file : f)
 				{
-					if (_withSubdirectories.isSelected())
+					if(_withSubdirectories.isSelected())
 					{
 						read(_files, file);
 					}
 					else
 					{
-						if (file.isFile())
+						if(file.isFile())
 						{
 							_files.add(file);
 						}
@@ -167,7 +180,7 @@ public class PacketMassAnalysisDialog extends JDialog
 	private void parseNext()
 	{
 		File f = _files.poll();
-		if (f == null)
+		if(f == null)
 		{
 			_currentFile.setText("Finish");
 			finish();
@@ -179,19 +192,19 @@ public class PacketMassAnalysisDialog extends JDialog
 			_currentFile.setText(f.getName());
 			Reader.getInstance().read(f, LISTENER);
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
-			LISTENER.onFinish(null);
+			LISTENER.onFinish(null, null);
 			_log.info("Exception: " + e, e);
 		}
 	}
 
 	private void finish()
 	{
-		ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new RunnableImpl()
 		{
 			@Override
-			public void run()
+			public void runImpl()
 			{
 				L2World.getInstance().close();
 			}
@@ -200,24 +213,23 @@ public class PacketMassAnalysisDialog extends JDialog
 
 	private void read(Queue<File> list, File file)
 	{
-		if (file.isDirectory())
+		if(file.isDirectory())
 		{
-			for (File f : file.listFiles())
+			for(File f : file.listFiles())
 			{
 				read(list, f);
 			}
 		}
 		else
 		{
-			if (_allFormats.isSelected())
+			if(_allFormats.isSelected())
 			{
 				list.add(file);
 			}
 			else
 			{
-				ReaderInfo info = (ReaderInfo) _fileTypes.getSelectedItem();
-				String extenstion = FileUtils.getFileExtension(file);
-				if (extenstion.equalsIgnoreCase(info.getReader().getFileExtension()))
+				FileFilter info = (FileFilter) _fileTypes.getSelectedItem();
+				if(info.accept(file))
 				{
 					list.add(file);
 				}

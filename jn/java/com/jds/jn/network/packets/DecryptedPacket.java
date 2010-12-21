@@ -100,11 +100,11 @@ public class DecryptedPacket implements IPacketData
 
 	public String getName()
 	{
-		if (getPacketFormat() == null)
+		if (getPacketInfo() == null)
 		{
 			return null;
 		}
-		return getPacketFormat().getName();
+		return getPacketInfo().getName();
 	}
 
 	public void setColor(int index, String color)
@@ -254,7 +254,7 @@ public class DecryptedPacket implements IPacketData
 		return _dataFormat;
 	}
 
-	public PacketInfo getPacketFormat()
+	public PacketInfo getPacketInfo()
 	{
 		return _packetFormat;
 	}

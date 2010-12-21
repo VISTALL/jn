@@ -1,18 +1,18 @@
 package com.jds.jn.logs;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-
 import java.awt.HeadlessException;
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.writers.AbstractWriter;
 import com.jds.jn.logs.writers.JNL2Writer;
 import com.jds.jn.session.Session;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 
 /**
@@ -60,10 +60,10 @@ public class Writer
 
 			if (r == JFileChooser.APPROVE_OPTION)
 			{
-				ThreadPoolManager.getInstance().execute(new Runnable()
+				ThreadPoolManager.getInstance().execute(new RunnableImpl()
 				{
 					@Override
-					public void run()
+					public void runImpl()
 					{
 						Session session = MainForm.getInstance().getViewTabbedPane().getSelectedComponent().getSession();
 

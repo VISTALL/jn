@@ -1,12 +1,25 @@
 package com.jds.jn.gui.panels.viewpane.packetlist;
 
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ResourceBundle;
+
+import javax.swing.JComponent;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSlider;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -206,12 +219,12 @@ public class DecPacketListPane extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				int row = _packetList.getSelectedRow();
-				if (row == -1)
+				if(row == -1)
 				{
 					return;
 				}
 				DecryptedPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
-				if (packet == null)
+				if(packet == null)
 				{
 					return;
 				}
@@ -257,16 +270,16 @@ public class DecPacketListPane extends JPanel
 				_see.setEnabled(true);
 			}
                 */
-			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
-				if (row == -1)
+				if(row == -1)
 				{
 					return;
 				}
 
 				DecryptedPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
 
-				if (packet == null)
+				if(packet == null)
 				{
 					return;
 				}
@@ -274,7 +287,7 @@ public class DecPacketListPane extends JPanel
 				new PacketForm(getPane(), f, packet, row);
 			}
 
-			else if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
+			else if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
 			{
 				JTable table = (JTable) e.getSource();
 				_menu.show(table, e.getX(), e.getY());
@@ -311,14 +324,14 @@ public class DecPacketListPane extends JPanel
 		_readItem.setEnabled(false);
 
 		DecryptedPacket packet = getSelectedRow();
-		if (packet == null || packet.getPacketFormat() == null)
+		if(packet == null || packet.getPacketInfo() == null)
 		{
 			return;
 		}
 
-		PacketReader read = packet.getPacketFormat().getPacketReader();
+		PacketReader read = packet.getPacketInfo().getPacketReader();
 
-		if (read == null || !read.read(packet))
+		if(read == null || !read.read(packet))
 		{
 			return;
 		}
@@ -335,7 +348,7 @@ public class DecPacketListPane extends JPanel
 	{
 		int row = _packetList.getSelectedRow();
 
-		if (row == -1)
+		if(row == -1)
 		{
 			return null;
 		}

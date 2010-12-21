@@ -1,11 +1,11 @@
 package com.jds.jn.gui.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.packets.CryptedPacket;
@@ -22,8 +22,6 @@ import com.jds.jn.util.Util;
  */
 public class CryptedPacketTableModel extends AbstractTableModel
 {
-
-
 	private static final String[] columnNames =
 	{
 			"S/C",

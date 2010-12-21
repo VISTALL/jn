@@ -37,15 +37,15 @@ public class ViewTabbedPane extends JTabbedPane
 			@Override
 			public void stateChanged(ChangeEvent e)
 			{
-				for (ViewPane pane : _tabs)
+				for(ViewPane pane : _tabs)
 				{
-					if (pane != null)
+					if(pane != null)
 					{
 						MainForm.getInstance().getRibbon().setVisible(pane.getSession().getRibbonGroup(), false);
 					}
 				}
 
-				if (getSelectedComponent() != null)
+				if(getSelectedComponent() != null)
 				{
 					MainForm.getInstance().getRibbon().setVisible(getSelectedComponent().getSession().getRibbonGroup(), true);
 				}
@@ -56,7 +56,7 @@ public class ViewTabbedPane extends JTabbedPane
 	public void fireTabsChanged()
 	{
 		ChangeListener[] listeners = ((DefaultSingleSelectionModel) getModel()).getChangeListeners();
-		for (ChangeListener c : listeners)
+		for(ChangeListener c : listeners)
 		{
 			c.stateChanged(null);
 		}
@@ -72,7 +72,7 @@ public class ViewTabbedPane extends JTabbedPane
 	{
 		ViewPane viewPane = s.getViewPane();
 
-		if (viewPane == null)
+		if(viewPane == null)
 		{
 			throw new IllegalAccessError("Can't addTab without ViewPane. Wtf ?");
 		}
@@ -87,14 +87,14 @@ public class ViewTabbedPane extends JTabbedPane
 		@Override
 		public void mouseClicked(MouseEvent e)
 		{
-			if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
 			{
 				ViewPane pane = getSelectedComponent();
-				if (pane == null)
+				if(pane == null)
 				{
 					return;
 				}
-				if (pane.getSession() == null)
+				if(pane.getSession() == null)
 				{
 					return;
 				}

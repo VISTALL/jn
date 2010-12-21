@@ -52,7 +52,7 @@ public class ViewPane extends JPanel
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
-				if (e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
+				if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
 				{
 					_tabMenu.show(_packetAndSearch, e.getX(), e.getY());
 				}
@@ -104,10 +104,10 @@ public class ViewPane extends JPanel
 	{
 		int size = _packetAndSearch.getComponentCount();
 
-		for (int i = 0; i < size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			Component com = _packetAndSearch.getComponent(i);
-			if (com.equals(comp))
+			if(com.equals(comp))
 			{
 				return i;
 			}

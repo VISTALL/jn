@@ -175,16 +175,16 @@ public class EnterNameDialog extends JDialog
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -194,7 +194,7 @@ public class EnterNameDialog extends JDialog
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);

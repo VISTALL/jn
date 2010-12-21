@@ -42,7 +42,7 @@ public class SeePacketDialog extends JDialog
 		{
 			setIconImage(ImageIO.read(getClass().getResource("/jds/jn/remake/resource/img/watch.png")));
 		}
-		catch (IOException ignored)
+		catch(IOException ignored)
 		{
 		}
 	}

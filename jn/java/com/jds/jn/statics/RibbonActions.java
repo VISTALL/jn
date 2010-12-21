@@ -1,22 +1,32 @@
 package com.jds.jn.statics;
 
-import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
-import org.pushingpixels.flamingo.api.common.JCommandButton;
-import org.pushingpixels.flamingo.api.common.JCommandButtonPanel;
-import org.pushingpixels.flamingo.api.ribbon.*;
-import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
-
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+
+import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.JCommandButtonPanel;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
+import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 
 import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
+import com.jds.jn.gui2.FindPacket.listeners.FPOpenListener;
 import com.jds.jn.gui2.PacketMassAnallize.PacketMassAnalysisDialog;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.network.listener.types.ReceiveType;
@@ -77,7 +87,12 @@ public abstract class RibbonActions
 				Reader.getInstance().showChooseDialog();
 			}
 		});
+
+		JCommandButton searchPacket = new JCommandButton(Bundle.getString("SearchPacket"), ImageStatic.SEARCH_PACKET_48x48);
+		searchPacket.addActionListener(FPOpenListener.STATIC);
+
 		animationBand.addCommandButton(opnFile, RibbonElementPriority.TOP);
+		animationBand.addCommandButton(searchPacket, RibbonElementPriority.TOP);
 		return animationBand;
 	}
 

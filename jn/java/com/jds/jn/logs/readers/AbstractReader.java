@@ -1,16 +1,17 @@
 package com.jds.jn.logs.readers;
 
-import org.apache.log4j.Logger;
-
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.channels.FileChannel;
 
+import org.apache.log4j.Logger;
+
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.session.Session;
-import com.jds.jn.util.ThreadPoolManager;
 
 /**
  * Author: VISTALL
@@ -29,28 +30,25 @@ public abstract class AbstractReader
 	protected Session _session;
 
 	protected ReaderListener _listener;
-	protected boolean _isBusy;
 
 	public void read(File file, ReaderListener listener) throws IOException
 	{
 		if(!file.exists())
 		{
 			_log.info("File not exists: " + file);
-			listener.onFinish(null);
+			listener.onFinish(null, null);
 			return;
 		}
 
-		if(_isBusy)
+		if(_currentFile != null)
 		{
 			_log.info("Reader is busy: " + _currentFile.getName());
-			listener.onFinish(null);
+			listener.onFinish(null, null);
 			return;
 		}
 
 		_listener = listener;
-		_isBusy = true;
 
-		_currentFile = file;
 		_file = new RandomAccessFile(file, "r");
 		_buffer = ByteBuffer.allocate((int) _file.length());
 		_channel = _file.getChannel();
@@ -69,40 +67,33 @@ public abstract class AbstractReader
 		_file.close();
 		_channel.close();
 
-		_isBusy = false;
+		_currentFile = null;
 	}
 
 	protected void read() throws IOException
 	{
-		ThreadPoolManager.getInstance().execute(new Runnable()
-		{
-			@Override
-			public void run()
+		//ThreadPoolManager.getInstance().execute(new RunnableImpl()
+		//{
+		//	@Override
+		//	public void runImpl() throws Exception
 			{
-				try
+				MainForm.getInstance().getProgressBar().setVisible(true);
+				MainForm.getInstance().getProgressBar().setValue(0);
+
+				if (parseHeader())
 				{
-					MainForm.getInstance().getProgressBar().setVisible(true);
-					MainForm.getInstance().getProgressBar().setValue(0);
-
-					if (parseHeader())
-					{
-						parsePackets();
-					}
-
-					close();
-
-					_listener.onFinish(_session);
-					_session = null;
-
-					MainForm.getInstance().getProgressBar().setVisible(false);
-					MainForm.getInstance().getProgressBar().setValue(0);
+					parsePackets();
 				}
-				catch (IOException e)
-				{
-					_log.info("IOException: " + e, e);
-				}
+
+				File f = _currentFile;
+				close();
+				_listener.onFinish(_session, f);
+				_session = null;
+
+				MainForm.getInstance().getProgressBar().setVisible(false);
+				MainForm.getInstance().getProgressBar().setValue(0);
 			}
-		});
+		//});
 	}
 
 	public abstract boolean parseHeader() throws IOException;

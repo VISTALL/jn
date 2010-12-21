@@ -31,7 +31,7 @@ public class APBAuthCrypter implements ProtocolCrypter
 			{
 				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
 				// LS2GC_LOGIN_PIZZLE
-				if(packet != null && packet.getPacketFormat() != null)
+				if(packet != null && packet.getPacketInfo() != null)
 				{
 					MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
 

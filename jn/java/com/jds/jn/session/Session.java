@@ -1,10 +1,10 @@
 package com.jds.jn.session;
 
-import org.apache.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
@@ -18,6 +18,7 @@ import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.version_control.Version;
 
@@ -231,10 +232,10 @@ public class Session
 
 	public void fireInvokePacket(final DecryptedPacket o)
 	{
-		ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new RunnableImpl()
 		{
 			@Override
-			public void run()
+			public void runImpl()
 			{
 				for(IPacketListener f :_invokes)
 				{

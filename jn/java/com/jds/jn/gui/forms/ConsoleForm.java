@@ -23,7 +23,7 @@ public class ConsoleForm extends JFrame
 
 	public static ConsoleForm getInstance()
 	{
-		if (_instance == null)
+		if(_instance == null)
 		{
 			_instance = new ConsoleForm();
 		}
@@ -56,13 +56,13 @@ public class ConsoleForm extends JFrame
 			Class l = Class.forName(val.getLoggerName());
 			loggerName = l.getSimpleName();
 		}
-		catch (ClassNotFoundException e)
+		catch(ClassNotFoundException e)
 		{
 		}
 
 		String text = "[" + loggerName + "] " + val.getMessage();
 		writeText(text);
-		if (val.getThrowableInformation() != null)
+		if(val.getThrowableInformation() != null)
 		{
 			String t = stackTrace(val.getThrowableInformation().getThrowable());
 
@@ -80,9 +80,9 @@ public class ConsoleForm extends JFrame
 		String ee = e.getMessage();
 		StackTraceElement[] trace = e.getStackTrace();
 
-		for (StackTraceElement aTrace : trace)
+		for(StackTraceElement aTrace : trace)
 		{
-			if (aTrace == null)
+			if(aTrace == null)
 			{
 				continue;
 			}

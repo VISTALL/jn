@@ -1,7 +1,5 @@
 package com.jds.jn.logs.readers;
 
-import org.apache.log4j.Logger;
-
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -9,11 +7,13 @@ import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.CryptedPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.StringHexBuffer;
@@ -37,20 +37,18 @@ public class PLogReader extends AbstractReader
 		if (!file.exists())
 		{
 			_log.info("File not exists: " + file);
-			listener.onFinish(null);
+			listener.onFinish(null, null);
 			return;
 		}
 
-		if (_isBusy)
+		if (_currentFile != null)
 		{
 			_log.info("Reader is busy: " + _currentFile.getName());
-			listener.onFinish(null);
+			listener.onFinish(null, null);
 			return;
 		}
 
 		_listener = listener;
-		_isBusy = true;
-
 		_currentFile = file;
 		_reader = new LineNumberReader(new FileReader(file));
 
@@ -61,8 +59,7 @@ public class PLogReader extends AbstractReader
 	protected void close() throws IOException
 	{
 		_reader.close();
-
-		_isBusy = false;
+		_currentFile = null;
 	}
 
 	@Override

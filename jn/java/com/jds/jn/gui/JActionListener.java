@@ -1,11 +1,11 @@
 package com.jds.jn.gui;
 
-import org.pushingpixels.flamingo.api.common.JCommandButton;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.pushingpixels.flamingo.api.common.JCommandButton;
 
 import com.jds.jn.Jn;
 import com.jds.jn.config.LastFiles;
@@ -23,6 +23,7 @@ import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.statics.RibbonActions;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 
 /**
@@ -117,10 +118,10 @@ public class JActionListener
 				di.setVisible(true);
 				break;
 			case HIDE_SHOW:
-				ThreadPoolManager.getInstance().execute(new Runnable()
+				ThreadPoolManager.getInstance().execute(new RunnableImpl()
 				{
 					@Override
-					public void run()
+					public void runImpl()
 					{
 						Jn.getForm().setVisible(!Jn.getForm().isVisible());
 					}
@@ -139,9 +140,10 @@ public class JActionListener
 					return;
 				}
 
-				ThreadPoolManager.getInstance().execute(new Runnable()
+				ThreadPoolManager.getInstance().execute(new RunnableImpl()
 				{
-					public void run()
+					@Override
+					public void runImpl()
 					{
 						openSession(files);
 					}

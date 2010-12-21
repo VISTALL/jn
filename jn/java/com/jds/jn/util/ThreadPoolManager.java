@@ -26,15 +26,22 @@ public class ThreadPoolManager
 	ThreadPoolManager()
 	{
 		_pool = new ScheduledThreadPoolExecutor(4, new PriorityThreadFactory("ThreadPoolManager", Thread.NORM_PRIORITY));
+		scheduleAtFixedRate(new RunnableImpl()
+		{
+			@Override
+			public void runImpl()
+			{
+				_pool.purge();
+			}
+		}, 10000L, 10000L);
 	}
 
-	public void execute(Runnable r)
+	public void execute(RunnableImpl r)
 	{
-		//new Thread(r).start(); //TODO ЧЕ ЗА БРЕД
 		_pool.execute(r);
 	}
 
-	public ScheduledFuture scheduleAtFixedRate(Runnable r, long initial, long delay)
+	public ScheduledFuture scheduleAtFixedRate(RunnableImpl r, long initial, long delay)
 	{
 		try
 		{

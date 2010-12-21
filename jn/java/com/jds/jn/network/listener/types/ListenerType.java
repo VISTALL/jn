@@ -10,6 +10,7 @@ public enum ListenerType
 {
 	Auth_Server(1),
 	Game_Server(2);
+	public static final ListenerType[] VALUES = values();
 
 	private final int _id;
 

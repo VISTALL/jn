@@ -33,7 +33,7 @@ public class NetworkSettingsDialog extends JDialog
 		super(MainForm.getInstance(), "Network Settings", true);
 
 		setLocationByPlatform(false);
-		
+
 		setContentPane(contentPane);
 		getRootPane().setDefaultButton(buttonOK);
 		setSize(700, 500);
@@ -88,7 +88,7 @@ public class NetworkSettingsDialog extends JDialog
 			public void actionPerformed(ActionEvent e)
 			{
 				NetworkProfile prof = (NetworkProfile) _profiles.getSelectedItem();
-				if (prof == null)
+				if(prof == null)
 				{
 					return;
 				}
@@ -106,14 +106,14 @@ public class NetworkSettingsDialog extends JDialog
 			public void itemStateChanged(ItemEvent e)
 			{
 				NetworkProfile prof = (NetworkProfile) _profiles.getSelectedItem();
-				if (prof == null)
+				if(prof == null)
 				{
 					return;
 				}
 
 				_setTabPane.removeAll();
 
-				for (NetworkProfilePart part : prof.parts())
+				for(NetworkProfilePart part : prof.parts())
 				{
 					_setTabPane.addTab(part.getType().name().replace("_", ""), new NetworkSettingPane(part));
 				}
@@ -138,13 +138,13 @@ public class NetworkSettingsDialog extends JDialog
 		_setTabPane.removeAll();
 		_profiles.removeAllItems();
 
-		for (NetworkProfile profile : NetworkProfiles.getInstance().profiles())
+		for(NetworkProfile profile : NetworkProfiles.getInstance().profiles())
 		{
 			_profiles.addItem(profile);
 		}
 
 		NetworkProfile prof = NetworkProfiles.getInstance().getProfile(RValues.ACTIVE_PROFILE.asString());
-		if (prof != null)
+		if(prof != null)
 		{
 			_profiles.setSelectedItem(prof);
 		}
@@ -153,14 +153,14 @@ public class NetworkSettingsDialog extends JDialog
 	public void save()
 	{
 		NetworkProfile prof = (NetworkProfile) _profiles.getSelectedItem();
-		if (prof == null)
+		if(prof == null)
 		{
 			return;
 		}
 
-		for (Component component : _setTabPane.getComponents())
+		for(Component component : _setTabPane.getComponents())
 		{
-			if (component instanceof NetworkSettingPane)
+			if(component instanceof NetworkSettingPane)
 			{
 				NetworkSettingPane pane = (NetworkSettingPane) component;
 				pane.set(pane.type(), prof);

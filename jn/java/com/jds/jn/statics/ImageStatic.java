@@ -1,13 +1,14 @@
 package com.jds.jn.statics;
 
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Dimension;
 import java.util.HashMap;
 
-import com.jds.jn.parser.parttypes.PartType;
+import javax.swing.ImageIcon;
+
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+
+import com.jds.jn.parser.parttypes.PartType;
 
 /**
  * Author: VISTALL
@@ -21,6 +22,7 @@ public class ImageStatic
 	public static ResizableIcon STOP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/stop.png"), new Dimension(15, 15));
 	public static ResizableIcon SAVE_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/fsave.png"), new Dimension(15, 15));
 	public static ResizableIcon FILE_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/fopen.png"), new Dimension(15, 15));
+	public static ResizableIcon SEARCH_PACKET_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/searchPacket.png"), new Dimension(15, 15));
 	public static ResizableIcon EXIT_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/exit.png"), new Dimension(15, 15));
 	public static ResizableIcon INFO_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/info.png"), new Dimension(15, 15));
 

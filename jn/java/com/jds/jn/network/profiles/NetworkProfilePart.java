@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.config.properties.PropertyValue;
+import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.ProtocolManager;
 
 /**
  * Author: VISTALL

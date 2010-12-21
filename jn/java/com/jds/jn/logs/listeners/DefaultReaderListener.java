@@ -1,5 +1,7 @@
 package com.jds.jn.logs.listeners;
 
+import java.io.File;
+
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.session.Session;
 
@@ -11,7 +13,7 @@ import com.jds.jn.session.Session;
 public class DefaultReaderListener implements ReaderListener
 {
 	@Override
-	public void onFinish(Session session)
+	public void onFinish(Session session, File file)
 	{
 		if(session != null)
 		{

@@ -1,13 +1,5 @@
 package com.jds.jn.gui.forms;
 
-import org.apache.log4j.Logger;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
-import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.SystemTray;
@@ -16,6 +8,22 @@ import java.awt.event.ActionListener;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryUsage;
 import java.util.concurrent.ScheduledFuture;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JProgressBar;
+import javax.swing.JToolBar;
+
+import org.apache.log4j.Logger;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
+import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -32,6 +40,7 @@ import com.jds.jn.session.Session;
 import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.statics.RibbonActions;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.version_control.Version;
 import com.jds.swing.JTrayIcon;
@@ -124,7 +133,7 @@ public class MainForm extends JRibbonFrame
 
 	private void initTray()
 	{
-		if (!SystemTray.isSupported())
+		if(!SystemTray.isSupported())
 		{
 			return;
 		}
@@ -175,7 +184,7 @@ public class MainForm extends JRibbonFrame
 
 			st.add(_trayIcon);
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			_log.info("Exception: " + e, e);
 		}
@@ -183,10 +192,10 @@ public class MainForm extends JRibbonFrame
 
 	public void startMemoryBarTask()
 	{
-		_memoryBarTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new Runnable()
+		_memoryBarTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new RunnableImpl()
 		{
 			@Override
-			public void run()
+			public void runImpl()
 			{
 				updateMemoryBar();
 			}
@@ -195,7 +204,7 @@ public class MainForm extends JRibbonFrame
 
 	public void stopMemoryBarTask()
 	{
-		if (_memoryBarTask != null)
+		if(_memoryBarTask != null)
 		{
 			_memoryBarTask.cancel(true);
 			_memoryBarTask = null;
@@ -214,7 +223,8 @@ public class MainForm extends JRibbonFrame
 		_memoryBar.setValue(persents);
 		_memoryBar.setToolTipText("Total heap size: " + max + " MB Used: " + use + "MB");
 	}
-	                              //TODO
+
+	//TODO
 	public void showSession(Session s)
 	{
 		getViewTabbedPane().addTab(s);
@@ -227,7 +237,7 @@ public class MainForm extends JRibbonFrame
 
 	public void closeSessionTab(ViewPane vp)
 	{
-		if (vp == null || vp.getSession() == null)
+		if(vp == null || vp.getSession() == null)
 		{
 			return;
 		}
@@ -262,7 +272,7 @@ public class MainForm extends JRibbonFrame
 	{
 		NetworkProfile prof = NetworkProfiles.getInstance().active();
 
-		if (prof != null)
+		if(prof != null)
 		{
 			setTitle(String.format("%s - [%s]", Version.CURRENT, prof.getName()));
 		}

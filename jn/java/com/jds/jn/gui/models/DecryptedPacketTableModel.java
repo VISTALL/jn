@@ -1,11 +1,11 @@
 package com.jds.jn.gui.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
@@ -113,13 +113,13 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 				icon = ImageStatic.ICON_FROM_CLIENT;
 			}
 
-			if (packet.getPacketFormat() != null)
+			if (packet.getPacketInfo() != null)
 			{
-				if (packet.getPacketFormat().isKey())
+				if (packet.getPacketInfo().isKey())
 				{
 					icon = ImageStatic.ICON_KEY_PACKET;
 				}
-				else if (packet.getPacketFormat().isServerList())
+				else if (packet.getPacketInfo().isServerList())
 				{
 					icon = ImageStatic.ICON_SERVER_LIST_PACKET;
 				}
@@ -136,22 +136,22 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 				icon = ImageStatic.ICON_FROM_SERVER;
 			}
 
-			if (packet.getPacketFormat() != null)
+			if (packet.getPacketInfo() != null)
 			{
-				if (packet.getPacketFormat().isKey())
+				if (packet.getPacketInfo().isKey())
 				{
 					icon = ImageStatic.ICON_KEY_PACKET;
 				}
-				else if (packet.getPacketFormat().isServerList())
+				else if (packet.getPacketInfo().isServerList())
 				{
 					icon = ImageStatic.ICON_SERVER_LIST_PACKET;
 				}
 			}
 		}
 		String opcode = null;
-		if (packet.getPacketFormat() != null)
+		if (packet.getPacketInfo() != null)
 		{
-			opcode = packet.getPacketFormat().getId().toUpperCase();
+			opcode = packet.getPacketInfo().getId().toUpperCase();
 		}
 		else
 		{
@@ -198,7 +198,7 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 			return;
 		}
 
-		if (p.getPacketFormat() == null)
+		if (p.getPacketInfo() == null)
 		{
 			int id = Integer.decode(String.valueOf(_currentTable.get(row)[1]));
 
@@ -219,7 +219,7 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 		}
 		else
 		{
-			p.getPacketFormat().setName(name);
+			p.getPacketInfo().setName(name);
 		}
 
 		for (Object[] objs : _currentTable)
@@ -292,12 +292,12 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 		for (Object[] obj : _currentTable)
 		{
 			DecryptedPacket pa = (DecryptedPacket) obj[76];
-			if (pa.getPacketFormat() == null)
+			if (pa.getPacketInfo() == null)
 			{
 				continue;
 			}
 
-			if ((pa.getPacketType() == packet.getPacketType()) && (packet.getPacketFormat().getOpcodeStr().equals(pa.getPacketFormat().getOpcodeStr())))
+			if ((pa.getPacketType() == packet.getPacketType()) && (packet.getPacketInfo().getOpcodeStr().equals(pa.getPacketInfo().getOpcodeStr())))
 			{
 				DecryptedPacket newPacket = new DecryptedPacket(pa.getNotDecryptData().clone(), pa.getPacketType(), pa.getProtocol());
 				obj[3] = String.valueOf(newPacket.getSize());

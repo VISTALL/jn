@@ -9,10 +9,13 @@ import com.jds.jn.gui.models.DecryptedPacketTableModel;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.CryptedPacket;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.packets.DecryptedPacket;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.session.Session;
+import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 
 /**
@@ -33,11 +36,11 @@ public class DecodeAllActionListener implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 
-		ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new RunnableImpl()
 		{
 
 			@Override
-			public void run()
+			public void runImpl()
 			{
 				Session session = _pane.getViewPane().getSession();
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
@@ -68,15 +71,15 @@ public class DecodeAllActionListener implements ActionListener
 						{
 							DecryptedPacket datapacket = session.decode(packet);
 
-							if (datapacket.getName() != null && datapacket.getPacketFormat().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
+							if (datapacket.getName() != null && datapacket.getPacketInfo().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
 							{
 								_pane.setEnableServerListButton(true);
 							}
 
-							if (datapacket.getPacketFormat() != null)
+							if (datapacket.getPacketInfo() != null)
 							{
 								NetworkProfilePart part = profile.getPart(session.getListenerType());
-								if (part.isFiltredOpcode(datapacket.getPacketFormat().getOpcodeStr()))
+								if (part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
 								{
 									break AddPacket;
 								}

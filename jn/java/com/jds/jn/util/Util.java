@@ -20,7 +20,7 @@ public class Util
 	public static Random _random = new Random();
 	private static final SimpleDateFormat PACKET_TIME_FORMAT = new SimpleDateFormat("HH:mm:ss SSSS");
 
-	public static String formatPacketTime(Long d)
+	public static String formatPacketTime(long d)
 	{
 		return PACKET_TIME_FORMAT.format(d);
 	}

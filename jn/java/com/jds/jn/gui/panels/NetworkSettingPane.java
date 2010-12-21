@@ -53,7 +53,7 @@ public class NetworkSettingPane extends JPanel
 
 		_deviceBox.removeAllItems();
 
-		for (NetworkInterface dev : alldevs)
+		for(NetworkInterface dev : alldevs)
 		{
 			DevInfo d = new DevInfo(dev);
 			_deviceBox.addItem(d);
@@ -67,7 +67,7 @@ public class NetworkSettingPane extends JPanel
 			public void itemStateChanged(ItemEvent e)
 			{
 				DevInfo dev = (DevInfo) _deviceBox.getSelectedItem();
-				if (dev == null)
+				if(dev == null)
 				{
 					_desc.setText("");
 				}
@@ -106,7 +106,7 @@ public class NetworkSettingPane extends JPanel
 		_deviceBox.setSelectedIndex(_type.getDeviceId());
 		_packetId.setText(String.valueOf(_type.getPacketId()));
 		_serverId.setText(String.valueOf(_type.getServerId()));
-		if (_type.getServerList() != null)
+		if(_type.getServerList() != null)
 		{
 			_serverList.setText(_type.getServerList());
 		}
@@ -119,12 +119,12 @@ public class NetworkSettingPane extends JPanel
 
 		_protocols.removeAllItems();
 
-		for (Protocol rpof : ProtocolManager.getInstance().getProtocols())
+		for(Protocol rpof : ProtocolManager.getInstance().getProtocols())
 		{
 			_protocols.addItem(rpof);
 		}
 
-		if (_type.getProtocol() != null && !_type.getProtocol().equals(""))
+		if(_type.getProtocol() != null && !_type.getProtocol().equals(""))
 		{
 			Protocol prot = ProtocolManager.getInstance().getProtocolByName(_type.getProtocol());
 
@@ -178,7 +178,7 @@ public class NetworkSettingPane extends JPanel
 		part.setPacketId(Integer.parseInt(_packetId.getText()));
 		part.setServerList(generateServerList(_serverList.getText()));
 
-		if (_protocols.getSelectedItem() == null)
+		if(_protocols.getSelectedItem() == null)
 		{
 			part.setProtocol(null);
 		}
@@ -330,16 +330,16 @@ public class NetworkSettingPane extends JPanel
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -349,7 +349,7 @@ public class NetworkSettingPane extends JPanel
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setDisplayedMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);
@@ -365,16 +365,16 @@ public class NetworkSettingPane extends JPanel
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -384,7 +384,7 @@ public class NetworkSettingPane extends JPanel
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);

@@ -55,7 +55,7 @@ public class AionAuthCrypter implements ProtocolCrypter
 
 				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
 
-				if (packet.getPacketFormat() != null && dir == PacketType.SERVER && packet.getPacketFormat().isKey())
+				if (packet.getPacketInfo() != null && dir == PacketType.SERVER && packet.getPacketInfo().isKey())
 				{
 					RawValuePart part = (RawValuePart) packet.getRootNode().getPartByName("Blowfish key");
 					if (part == null)

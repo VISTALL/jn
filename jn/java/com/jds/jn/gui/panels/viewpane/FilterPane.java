@@ -1,19 +1,29 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-
-import java.awt.*;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
-import com.intellij.uiDesigner.core.*;
+import javax.swing.AbstractButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
@@ -29,10 +39,11 @@ public class FilterPane extends JPanel
 	private JPanel main;
 	private JList packetList;
 	private JCheckBox filtredCheckBox;
+	private JCheckBox _filterAll;
 
 	public boolean IS_HIDE = false;
 	private ViewPane _pane;
-	private java.util.List<PacketInfo> _formats = new ArrayList<PacketInfo>();
+	private List<PacketInfo> _formats = new ArrayList<PacketInfo>();
 
 	public FilterPane(ViewPane pa)
 	{
@@ -48,7 +59,7 @@ public class FilterPane extends JPanel
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
 				PacketInfo v = (PacketInfo) ((JList) e.getSource()).getSelectedValue();
 
-				if (_pane.getSession() == null || profile == null || v == null)
+				if(_pane.getSession() == null || profile == null || v == null)
 				{
 					return;
 				}
@@ -68,7 +79,7 @@ public class FilterPane extends JPanel
 			{
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
 				PacketInfo v = (PacketInfo) packetList.getSelectedValue();
-				if (_pane.getSession() == null || profile == null || v == null)
+				if(_pane.getSession() == null || profile == null || v == null)
 				{
 					return;
 				}
@@ -76,7 +87,7 @@ public class FilterPane extends JPanel
 				ListenerType type = _pane.getSession().getListenerType();
 				NetworkProfilePart part = profile.getPart(type);
 
-				if (part.isFiltredOpcode(v.getOpcodeStr()))
+				if(part.isFiltredOpcode(v.getOpcodeStr()))
 				{
 					part.removeFilterOpcode(v.getOpcodeStr());
 				}
@@ -84,6 +95,35 @@ public class FilterPane extends JPanel
 				{
 					part.addFilterOpcode(v.getOpcodeStr());
 				}
+			}
+		});
+
+		_filterAll.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				NetworkProfile profile = NetworkProfiles.getInstance().active();
+				if(_pane.getSession() == null || profile == null)
+				{
+					return;
+				}
+
+				ListenerType type = _pane.getSession().getListenerType();
+				NetworkProfilePart part = profile.getPart(type);
+
+				for(PacketInfo f : _formats)
+				{
+					if(_filterAll.isSelected())
+					{
+						part.addFilterOpcode(f.getOpcodeStr());
+					}
+					else
+					{
+						part.removeFilterOpcode(f.getOpcodeStr());
+					}
+				}
+				filtredCheckBox.setSelected(_filterAll.isSelected());
 			}
 		});
 	}
@@ -96,14 +136,14 @@ public class FilterPane extends JPanel
 
 	public void drawThis()
 	{
-		if (_pane == null)
+		if(_pane == null)
 		{
 			return;
 		}
 
 		_formats.clear();
 
-		if (_pane.getSession() == null)
+		if(_pane.getSession() == null)
 		{
 			return;
 		}
@@ -119,7 +159,7 @@ public class FilterPane extends JPanel
 
 	private void getAllFormatsName(Protocol p)
 	{
-		for (PacketFamilly a : p.getFamilies())
+		for(PacketFamilly a : p.getFamilies())
 		{
 			_formats.addAll(a.getFormats().values());
 		}
@@ -144,14 +184,17 @@ public class FilterPane extends JPanel
 		packetList = new JList();
 		scrollPane1.setViewportView(packetList);
 		final JPanel panel2 = new JPanel();
-		panel2.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+		panel2.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
 		main.add(panel2, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 		filtredCheckBox = new JCheckBox();
 		filtredCheckBox.setEnabled(false);
 		this.$$$loadButtonText$$$(filtredCheckBox, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("IsFilter"));
 		panel2.add(filtredCheckBox, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer1 = new Spacer();
-		panel2.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+		panel2.add(spacer1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+		_filterAll = new JCheckBox();
+		_filterAll.setText("Filter All");
+		panel2.add(_filterAll, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 	}
 
 	/**
@@ -163,16 +206,16 @@ public class FilterPane extends JPanel
 		boolean haveMnemonic = false;
 		char mnemonic = '\0';
 		int mnemonicIndex = -1;
-		for (int i = 0; i < text.length(); i++)
+		for(int i = 0; i < text.length(); i++)
 		{
-			if (text.charAt(i) == '&')
+			if(text.charAt(i) == '&')
 			{
 				i++;
-				if (i == text.length())
+				if(i == text.length())
 				{
 					break;
 				}
-				if (!haveMnemonic && text.charAt(i) != '&')
+				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
 					mnemonic = text.charAt(i);
@@ -182,7 +225,7 @@ public class FilterPane extends JPanel
 			result.append(text.charAt(i));
 		}
 		component.setText(result.toString());
-		if (haveMnemonic)
+		if(haveMnemonic)
 		{
 			component.setMnemonic(mnemonic);
 			component.setDisplayedMnemonicIndex(mnemonicIndex);

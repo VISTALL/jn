@@ -126,7 +126,7 @@ public class L2GameCrypter implements ProtocolCrypter
 	{
 		DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), PacketType.SERVER, _protocol);
 
-		if(packet.getPacketFormat() != null && !packet.hasError())
+		if(packet.getPacketInfo() != null && !packet.hasError())
 		{
 			if(packet.getRootNode().getPartByName("seed") != null)
 			{
