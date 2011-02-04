@@ -727,7 +727,16 @@
 			</for>
 		</packet>
 		<packet id="86" name="QuestList"/>
-		<packet id="9e" name="PlaySound"/>
+		<packet id="9e" name="PlaySound">
+			<part name="type" type="d"/>
+			<part name="sound" type="S"/>
+			<part name="hasCenterObject" type="d"/>
+			<part name="objectId" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="a0" name="PrivateStoreManageList"/>
 		<packet id="a3" name="ShowMiniMap">
 			<part name="mapId" type="d"/>

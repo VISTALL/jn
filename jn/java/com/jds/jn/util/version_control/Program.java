@@ -11,7 +11,8 @@ public enum Program
 	JN("Jn"),
 	JN_MODULE("Jn Module"),
 	PACKET_SAMURAI("Packet Samurai"),
-	L2PHX("L2Phx");
+	L2PHX("L2Phx"),
+	L2EX_DUMPER("l2ex.dumper");
 
 	private final String _name;
 

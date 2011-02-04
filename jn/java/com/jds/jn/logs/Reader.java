@@ -18,6 +18,7 @@ import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.logs.readers.AbstractReader;
 import com.jds.jn.logs.readers.JNL2Reader;
 import com.jds.jn.logs.readers.JNLReader;
+import com.jds.jn.logs.readers.LogReader;
 import com.jds.jn.logs.readers.PLogReader;
 import com.jds.jn.logs.readers.PSLReader;
 import com.jds.jn.util.FileUtils;
@@ -50,6 +51,7 @@ public class Reader
 		addReader(new JNLReader());
 		addReader(new JNL2Reader());
 		addReader(new PLogReader());
+		addReader(new LogReader());
 	}
 
 	public void addReader(AbstractReader r)

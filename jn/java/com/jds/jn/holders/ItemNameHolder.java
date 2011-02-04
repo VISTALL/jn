@@ -1,9 +1,13 @@
 package com.jds.jn.holders;
 
-import org.apache.log4j.Logger;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 
-import java.io.*;
-import java.util.*;
+import org.apache.log4j.Logger;
+import org.napile.primitive.maps.IntObjectMap;
+import org.napile.primitive.maps.impl.HashIntObjectMap;
 
 /**
  * Author: VISTALL
@@ -15,7 +19,7 @@ public class ItemNameHolder
 	private static final Logger _log = Logger.getLogger(ItemNameHolder.class);
 	private static ItemNameHolder _instance;
 
-	private Map<Integer, String> _itemNames = new HashMap<Integer, String>();
+	private IntObjectMap<String> _itemNames = new HashIntObjectMap<String>();
 
 	public static ItemNameHolder getInstance()
 	{
@@ -28,7 +32,7 @@ public class ItemNameHolder
 
 	private ItemNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/itemname.tsv");
+		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/itemname-e.tsv");
 		if(stream == null)
 		{
 			_log.info("Not exists");
@@ -54,7 +58,7 @@ public class ItemNameHolder
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			_log.info("Exception: " + e, e);
 		}
 		finally
 		{
@@ -67,6 +71,10 @@ public class ItemNameHolder
 				//
 			}
 		}
+		_itemNames.put(-100, "Clan Reputation");
+		_itemNames.put(-200, "Pc Bang Point");
+		_itemNames.put(-300, "Fame");
+		_itemNames.put(-400, "Hellbound Point");
 
 		_log.info("Load item names " + _itemNames.size());
 	}

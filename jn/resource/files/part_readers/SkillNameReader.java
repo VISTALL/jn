@@ -23,6 +23,6 @@ public class SkillNameReader implements ValueReader
 	@Override
 	public String read(ValuePart part)
 	{
-		return SkillNameHolder.getInstance().name(((VisualValuePart)part).getValueAsInt());
+		return SkillNameHolder.getInstance().name(((VisualValuePart)part).getValueAsInt(), 1);
 	}
 }

@@ -239,48 +239,6 @@ public class Util
 		return result.toString();
 	}
 
-	public static String makeFormatString(List<Part> parts)
-	{
-		StringBuilder tb = new StringBuilder();
-		for (Part part : parts)
-		{
-			if (part instanceof ForPart)
-			{
-				tb.append("[");
-				tb.append(makeFormatString(((ForPart) part).getModelBlock().getParts()));
-				tb.append("]");
-			}
-			else if (part instanceof SwitchPart)
-			{
-				tb.append("[");
-				Iterator<SwitchCaseBlock> i = ((SwitchPart) part).getCases(true).iterator();
-				while (i.hasNext())
-				{
-					SwitchCaseBlock entry = i.next();
-					if (entry.isDefault())
-					{
-						tb.append("default:");
-					}
-					else
-					{
-						tb.append(Integer.toString(entry.getSwitchCase()) + ":");
-					}
-					tb.append(makeFormatString(entry.getParts()));
-					if (i.hasNext())
-					{
-						tb.append("|");
-					}
-				}
-				tb.append("]");
-			}
-			else
-			{
-				tb.append(part.getType().getName());
-			}
-		}
-		return tb.toString();
-	}
-
 	public static String printData(ByteBuffer blop)
 	{
 		return printData(blop.array());

@@ -47,7 +47,7 @@ public enum RValues
 
 	RValues(Object dval)
 	{
-		this(dval, dval.getClass());	
+		this(dval, dval.getClass());
 	}
 
 	RValues(Object dval, Class<?> type)

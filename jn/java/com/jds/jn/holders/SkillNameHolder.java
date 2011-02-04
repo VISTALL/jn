@@ -1,10 +1,13 @@
 package com.jds.jn.holders;
 
-import org.apache.log4j.Logger;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import org.apache.log4j.Logger;
+import org.napile.primitive.maps.IntObjectMap;
+import org.napile.primitive.maps.impl.HashIntObjectMap;
 
 /**
  * Author: VISTALL
@@ -16,7 +19,7 @@ public class SkillNameHolder
 	private static final Logger _log = Logger.getLogger(SkillNameHolder.class);
 	private static SkillNameHolder _instance;
 
-	private Map<Integer, String> _skillNames = new HashMap<Integer, String>();
+	private IntObjectMap<String> _skillNames = new HashIntObjectMap<String>();
 
 	public static SkillNameHolder getInstance()
 	{
@@ -29,7 +32,7 @@ public class SkillNameHolder
 
 	private SkillNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/skillname.tsv");
+		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/skillname-e.tsv");
 		if(stream == null)
 		{
 			_log.info("Not exists");
@@ -47,15 +50,16 @@ public class SkillNameHolder
 					continue;
 
 				String[] st = line.split("\t");
-				int itemId = Integer.parseInt(st[0]);
-				String itemName = st[1];
+				int id = Integer.parseInt(st[0]);
+				int level = Integer.parseInt(st[1]);
+				String name = st[2];
 
-				_skillNames.put(itemId, itemName);
+				_skillNames.put(hashCode(id, level), name);
 			}
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			_log.info("Exception: " + e, e);
 		}
 		finally
 		{
@@ -72,10 +76,15 @@ public class SkillNameHolder
 		_log.info("Load skills names " + _skillNames.size());
 	}
 
-	public String name(int skillId)
+	public String name(int id, int level)
 	{
-		String name = _skillNames.get(skillId);
+		String name = _skillNames.get(hashCode(id, level));
 		return name == null ? "None" : name;
+	}
+
+	public static int hashCode(int skillId, int skillLevel)
+	{
+		return skillId * 1021 + skillLevel;
 	}
 }
 

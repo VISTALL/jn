@@ -247,17 +247,17 @@ public class Session
 
 	public void fireClose()
 	{
-		/*ThreadPoolManager.getInstance().execute(new Runnable()
+		ThreadPoolManager.getInstance().execute(new RunnableImpl()
 		{
 			@Override
-			public void run()
+			public void runImpl()
 			{
 				for(IPacketListener f :_invokes)
 				{
 					f.close();
 				}
 			}
-		});  */
+		});
 	}
 
 	public Version getVersion()

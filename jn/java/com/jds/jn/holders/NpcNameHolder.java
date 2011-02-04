@@ -1,9 +1,13 @@
 package com.jds.jn.holders;
 
-import org.apache.log4j.Logger;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 
-import java.io.*;
-import java.util.*;
+import org.apache.log4j.Logger;
+import org.napile.primitive.maps.IntObjectMap;
+import org.napile.primitive.maps.impl.HashIntObjectMap;
 
 /**
  * Author: VISTALL
@@ -15,7 +19,7 @@ public class NpcNameHolder
 	private static final Logger _log = Logger.getLogger(NpcNameHolder.class);
 	private static NpcNameHolder _instance;
 
-	private Map<Integer, String> _npcNames = new HashMap<Integer, String>();
+	private IntObjectMap<String> _npcNames = new HashIntObjectMap<String>();
 
 	public static NpcNameHolder getInstance()
 	{
@@ -28,7 +32,7 @@ public class NpcNameHolder
 
 	private NpcNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/npcname.tsv");
+		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/npcname-e.tsv");
 		if(stream == null)
 		{
 			_log.info("Not exists");
@@ -56,13 +60,13 @@ public class NpcNameHolder
 				}
 				catch (Exception e)
 				{
-					System.out.println("Line: " + line);
+					_log.info("Line: " + line, e);
 				}
 			}
 		}
 		catch (IOException e)
 		{
-			e.printStackTrace();
+			_log.info("Exception: " + e, e);
 		}
 		finally
 		{
