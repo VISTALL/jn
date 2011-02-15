@@ -2,8 +2,10 @@ package com.jds.nio;
 
 import java.io.IOException;
 import java.nio.ByteOrder;
-import java.nio.channels.*;
-import java.util.*;
+import java.nio.channels.SelectionKey;
+import java.nio.channels.ServerSocketChannel;
+import java.nio.channels.SocketChannel;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import com.jds.nio.buffer.NioBuffer;
@@ -82,18 +84,16 @@ public class NioProcessor
 				return;
 			}
 
-			while (buf.remaining() > 2 && buf.remaining() >= buf.getShort(buf.position()))
-			{
-				int size = buf.getShort() - 2;
-				NioBuffer OUT = NioBuffer.allocate(size);
-				OUT.order(ByteOrder.LITTLE_ENDIAN);
-				OUT.put(buf.array(), buf.position(), size);
-				OUT.flip();
-				//System.out.println("size: " +  size + "; position: " + buf.position() + "; limit: " + buf.limit());
-				buf.position(buf.position() + size);
+			int pos = buf.position();
+			byte[] at = new byte[buf.remaining()];
+			buf.get(at);
+			buf.position(pos);
 
-				_service.fireReceiveBuffer(nioSession, OUT);
-			}
+			//System.out.println("In: " + Util.printData(at));
+
+			NioBuffer buff0 = NioBuffer.wrap(at).order(ByteOrder.LITTLE_ENDIAN).position(0);
+
+			_service.fireReceiveBuffer(nioSession, buff0);
 
 			if (buf.hasRemaining())
 			{

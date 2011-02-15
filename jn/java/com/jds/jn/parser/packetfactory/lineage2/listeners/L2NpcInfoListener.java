@@ -41,10 +41,6 @@ public class L2NpcInfoListener   implements IPacketListener
 				list = npc;
 				_world.addNpcByNpcId(npc.getNpcId(), list);
 			}
-			else
-			{
-				list.addSpawnLoc(p);
-			}
 		}
 	}
 

@@ -1,11 +1,23 @@
 package com.jds.jn.parser.packetfactory.lineage2;
 
-import java.util.*;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
+import org.napile.primitive.maps.IntObjectMap;
+import org.napile.primitive.maps.impl.TreeIntObjectMap;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.infos.L2NpcInfo;
-import com.jds.jn.parser.packetfactory.lineage2.listeners.*;
+import com.jds.jn.parser.packetfactory.lineage2.infos.L2SpawnLocInfo;
+import com.jds.jn.parser.packetfactory.lineage2.listeners.L2AirShipTeleportListListener;
+import com.jds.jn.parser.packetfactory.lineage2.listeners.L2NpcBMListsListener;
+import com.jds.jn.parser.packetfactory.lineage2.listeners.L2NpcDialogListener;
+import com.jds.jn.parser.packetfactory.lineage2.listeners.L2NpcInfoListener;
+import com.jds.jn.parser.packetfactory.lineage2.listeners.L2NpcSpawnListener;
 
 /**
  * Author: VISTALL
@@ -14,6 +26,16 @@ import com.jds.jn.parser.packetfactory.lineage2.listeners.*;
  */
 public class L2World implements IPacketListener
 {
+	private static final String[] DIRs =
+	{
+		"./saves/",
+		"./saves/npc_data/",
+		"./saves/spawn_data/",
+		"./saves/npc_dialogs/",
+		"./saves/npc_multisell/",
+		"./saves/npc_buylist/"
+	};
+
 	private static L2World _instance;
 
 	public static L2World getInstance()
@@ -31,11 +53,15 @@ public class L2World implements IPacketListener
 	private List<IPacketListener> _listeners = new ArrayList<IPacketListener>(5);
 
 	// npcs
-	private Map<Integer, L2NpcInfo> _npcInfos = new HashMap<Integer, L2NpcInfo>();
-	private Map<Integer, L2NpcInfo> _npcInfosByNpcId = new TreeMap<Integer, L2NpcInfo>();
+	private IntObjectMap<L2NpcInfo> _npcInfos = new TreeIntObjectMap<L2NpcInfo>();
+	private IntObjectMap<L2NpcInfo> _npcInfosByNpcId = new TreeIntObjectMap<L2NpcInfo>();
+	private Set<L2SpawnLocInfo> _spawnInfo = new HashSet<L2SpawnLocInfo>();
 
 	public L2World()
 	{
+		for(String st : DIRs)
+			new File(st).mkdir();
+
 		_listeners.add(new L2NpcSpawnListener(this));
 		_listeners.add(new L2NpcDialogListener(this));
 		_listeners.add(new L2NpcInfoListener(this));
@@ -69,6 +95,11 @@ public class L2World implements IPacketListener
 	//===========================================================================================
 	// 				Npcs
 	//===========================================================================================
+	public void addSpawnInfo(L2SpawnLocInfo info)
+	{
+		_spawnInfo.add(info);
+	}
+
 	public void addNpc(int obj, L2NpcInfo npc)
 	{
 		_npcInfos.put(obj, npc);

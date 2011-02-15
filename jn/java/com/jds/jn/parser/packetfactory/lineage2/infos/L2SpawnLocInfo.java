@@ -22,14 +22,6 @@ public class L2SpawnLocInfo
 		_h = p.getInt("h");
 	}
 
-	public L2SpawnLocInfo(int x, int y, int z, int h)
-	{
-		_x = x;
-		_y = y;
-		_z = z;
-		_h = h;
-	}
-
 	public int getX()
 	{
 		return _x;

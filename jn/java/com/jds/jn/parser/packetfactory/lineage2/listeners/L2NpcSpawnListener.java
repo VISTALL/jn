@@ -1,9 +1,15 @@
 package com.jds.jn.parser.packetfactory.lineage2.listeners;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collection;
 
+import com.jds.jn.holders.NpcNameHolder;
 import com.jds.jn.network.packets.DecryptedPacket;
-import com.jds.jn.parser.datatree.*;
+import com.jds.jn.parser.datatree.DataForBlock;
+import com.jds.jn.parser.datatree.DataForPart;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.parser.packetfactory.lineage2.infos.L2NpcInfo;
@@ -110,19 +116,43 @@ public class L2NpcSpawnListener implements IPacketListener
 	public void close()
 	{
 	 	int id = 0;
-		String fileName = "./saves/npc_data/npc_sniff_%d.xml";
-		while (new File(String.format(fileName, id)).exists())
+		String npcData = "./saves/npc_data/npc_sniff_%d.xml";
+		while (new File(String.format(npcData, id)).exists())
+		{
+			id ++;
+		}
+
+		int id2 = 0;
+		String spawnData = "./saves/spawn_data/spawn_sniff_%d.xml";
+		while (new File(String.format(spawnData, id2)).exists())
 		{
 			id ++;
 		}
 
 		try
 		{
-			FileWriter writer = new FileWriter(String.format(fileName, id));
+			Collection<L2NpcInfo> npcs = _world.valuesNpc();
+			FileWriter writer = new FileWriter(String.format(npcData, id));
 			writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<list>\n");
-			for(L2NpcInfo npc : _world.valuesNpc())
+			for(L2NpcInfo npc : npcs)
 			{
 				writer.write(npc.toXML());
+			}
+			writer.write("</list>");
+			writer.close();
+
+			writer = new FileWriter(String.format(spawnData, id2));
+			writer.write(
+					"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+					"<list>\n");
+			for(L2NpcInfo npc : npcs)
+			{
+				String text =
+						"\t<spawn count=\"1\" respawn=\"60\" respawn_random=\"0\" period_of_day=\"none\">\n" +
+						"\t\t<point x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\" />\n" +
+						"\t\t<npc id=\"%d\" /><!--%s-->\n" +
+						"\t</spawn>\n";
+				writer.write(String.format(text, npc.getSpawnLoc().getX(), npc.getSpawnLoc().getY(), npc.getSpawnLoc().getZ(), npc.getSpawnLoc().getH(), npc.getNpcId(), NpcNameHolder.getInstance().name(npc.getNpcId())));
 			}
 			writer.write("</list>");
 			writer.close();

@@ -3,8 +3,6 @@ package com.jds.nio.core;
 import com.jds.nio.NioSession;
 import com.jds.nio.buffer.NioBuffer;
 
-import java.nio.ByteOrder;
-
 /**
  * Author: VISTALL
  * Company: J Develop Station
@@ -22,7 +20,6 @@ public class Protocol
 	 */
 	public NioBuffer decode(NioSession session, NioBuffer buf)
 	{
-		//System.out.println("decode buf \n" + NetworkUtil.printData(buf.array()));
 		return buf;
 	}
 
@@ -35,15 +32,6 @@ public class Protocol
 	 */
 	public NioBuffer encode(NioSession session, NioBuffer buf)
 	{
-		NioBuffer OUT = NioBuffer.allocate(1);
-		OUT.order(ByteOrder.LITTLE_ENDIAN);
-		OUT.setAutoExpand(true);
-
-		OUT.putShort((short) (buf.limit() + 2));
-		OUT.put(buf);
-		OUT.flip();
-
-		//System.out.println("encode buf \n" + NetworkUtil.printData(OUT.array()));
-		return OUT;
+		return buf;
 	}
 }
