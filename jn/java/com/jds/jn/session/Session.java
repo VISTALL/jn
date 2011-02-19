@@ -15,7 +15,6 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
-import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.util.RunnableImpl;
@@ -37,7 +36,7 @@ public class Session
 	private ProtocolCrypter _crypt;
 	private Protocol _protocol;
 
-	private final List<CryptedPacket> _notDecryptPackets = new ArrayList<CryptedPacket>();
+	private final List<CryptedPacket> _cryptedPackets = new ArrayList<CryptedPacket>();
 	private final List<DecryptedPacket> _decryptPackets = new ArrayList<DecryptedPacket>();
 
 	private final IMethod _method;
@@ -107,25 +106,8 @@ public class Session
 
 		_crypt.setProtocol(getProtocol());
 
-		_invokes.add(L2World.getInstance());
-		//List<Class<? extends IPacketListener>> l = new ArrayList<Class<? extends IPacketListener>>();
-		//l.add(L2World.class);
-
-		/*for(Class<? extends IPacketListener> cl : l)
-		{
-			try
-			{
-				_invokes.add(cl.newInstance());
-			}
-			catch (InstantiationException e)
-			{
-				e.printStackTrace();
-			}
-			catch (IllegalAccessException e)
-			{
-				e.printStackTrace();
-			}
-		} */
+		_invokes.addAll(getProtocol().getSessionListeners());
+		_invokes.addAll(getProtocol().getGlobalListeners());
 	}
 
 	public DecryptedPacket decode(CryptedPacket packet)
@@ -144,7 +126,7 @@ public class Session
 
 	public List<CryptedPacket> getCryptedPackets()
 	{
-		return _notDecryptPackets;
+		return _cryptedPackets;
 	}
 
 	public Protocol getProtocol()
@@ -159,23 +141,15 @@ public class Session
 
 	public synchronized void receivePacket(CryptedPacket p)
 	{
-		 _notDecryptPackets.add(p);
+		 _cryptedPackets.add(p);
 
 		_viewPane.getCryptPacketTableModel().addRow(p);
 		_viewPane.updateInfo(this);
 	}
 
-	public synchronized void receivePacket(DecryptedPacket p)
-	{
-		addDecryptPacket(p);
-
-		_viewPane.getDecryptPacketTableModel().addRow(p);
-		_viewPane.updateInfo(this);
-	}
-
 	public synchronized void receiveQuitPacket(CryptedPacket p)
 	{
-		_notDecryptPackets.add(p);
+		_cryptedPackets.add(p);
 
 		_viewPane.getCryptPacketTableModel().addRow(p);
 	}

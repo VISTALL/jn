@@ -2,7 +2,7 @@ package part_readers;
 
 import javax.swing.*;
 
-import com.jds.jn.holders.SkillNameHolder;
+import packet_readers.lineage2.holders.SkillNameHolder;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.valuereader.ValueReader;

@@ -1,28 +1,36 @@
 package com.jds.jn.protocol;
 
-import org.xml.sax.SAXParseException;
-
-import org.w3c.dom.*;
-
-import org.apache.log4j.Logger;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.nio.ByteOrder;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.apache.log4j.Logger;
+import org.w3c.dom.DOMException;
+import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXParseException;
 import com.jds.jn.Jn;
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.PartTypeManager;
-import com.jds.jn.parser.formattree.*;
+import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.MacroPart;
+import com.jds.jn.parser.formattree.Part;
+import com.jds.jn.parser.formattree.PartContainer;
+import com.jds.jn.parser.formattree.SwitchCaseBlock;
+import com.jds.jn.parser.formattree.SwitchPart;
+import com.jds.jn.parser.packetfactory.PacketListenerFactory;
 import com.jds.jn.parser.packetreader.PacketReader;
 import com.jds.jn.parser.valuereader.ValueReader;
-import com.jds.jn.protocol.protocoltree.*;
-import com.jds.jn.util.xml.SimpleErrorHandler;
+import com.jds.jn.protocol.protocoltree.MacroInfo;
+import com.jds.jn.protocol.protocoltree.PacketFamilly;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.util.xml.SimpleDTDEntryResolver;
+import com.jds.jn.util.xml.SimpleErrorHandler;
 
 /**
  * Author: VISTALL
@@ -118,6 +126,10 @@ public class ProtocolLoader
 						protocol.addMacro(part);
 					}
 				}
+				else if("global_listeners".equalsIgnoreCase(n.getNodeName()))
+					protocol.setGlobalListeners(PacketListenerFactory.listListeners(PacketListenerFactory.listClasses(n)));
+				else if("session_listeners".equalsIgnoreCase(n.getNodeName()))
+					protocol.setSessionListeners(PacketListenerFactory.listClasses(n));
 			}
 		}
 		catch (Exception e)

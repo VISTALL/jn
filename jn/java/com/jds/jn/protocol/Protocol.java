@@ -1,14 +1,22 @@
 package com.jds.jn.protocol;
 
-import org.apache.log4j.Logger;
-
 import java.nio.ByteOrder;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
+import org.apache.log4j.Logger;
+import com.jds.jn.config.RValues;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.protocoltree.*;
+import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.PacketListenerFactory;
+import com.jds.jn.protocol.protocoltree.MacroInfo;
+import com.jds.jn.protocol.protocoltree.PacketFamilly;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.util.Util;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -19,8 +27,12 @@ import com.jds.nio.buffer.NioBuffer;
 public class Protocol
 {
 	private static final Logger _log = Logger.getLogger(Protocol.class);
+
 	private Map<PacketType, PacketFamilly> _familyes = new TreeMap<PacketType, PacketFamilly>();
 	private Map<String, MacroInfo> _macros = new TreeMap<String, MacroInfo>();
+
+	private List<Class<IPacketListener>> _sessionListeners = Collections.emptyList();
+	private List<IPacketListener> _globalListeners = Collections.emptyList();
 
 	private String _encryption;
 	private String _name;
@@ -48,78 +60,57 @@ public class Protocol
 			int position = packet.getBuffer().position();
 			final int start = position;
 
-			//boolean[] ok = new boolean[format.sizeId()];
-			boolean isAllOk = true;
 			PartLoop:
 			{
 				String[] hexArray = format.hexArray();
 				// D0;0001
-				for (int i = 0; i < hexArray.length; i++)
+				for(String hexStep : hexArray)
 				{
-					String hexStep = hexArray[i];
-
 					// если у нас ктото накосячил?
-					if (hexStep.trim().equals(""))
-					{
-						isAllOk = false;
+					if(hexStep.trim().isEmpty())
 						break PartLoop;
-					}
 
 					long val;
 
 					int len = hexStep.length();
 					int needValue = byteCount(len);
 					// если у нас достаточно для чтения
-					if ((packet.getBuffer().limit() - position) >= needValue)
+					if((packet.getBuffer().limit() - position) >= needValue)
 					{
 						val = read(len, packet.getBuffer(), position);
 						position += needValue;
 					}
 					else
-					{
-						isAllOk = false;
 						break PartLoop;
-					}
 
 					String hex = Long.toHexString(val).toUpperCase();
 
 					// приводим в порядок если 0x0F - F то добавляем нулик
-					if (hex.length() < hexStep.length())
+					if(hex.length() < hexStep.length())
 					{
 						String allZero = "";
-						for (int $ = 0; $ < (hexStep.length() - hex.length()); $++)
-						{
+						for(int $ = 0; $ < (hexStep.length() - hex.length()); $++)
 							allZero += "0";
-						}
 
 						hex = allZero + hex;
 					}
 
 					// не совпадает выходим
-					if (!hex.equalsIgnoreCase(hexStep))
-					{
-						isAllOk = false;
+					if(!hex.equalsIgnoreCase(hexStep))
 						break PartLoop;
-					}
 				}
 
+				packet.getBuffer().position(position);
 
-				if (isAllOk)
-				{
-					packet.getBuffer().position(position);
+				for (int j = start; j < position; j++)
+					packet.setColor(j, "op");
 
-					for (int j = start; j < position; j++)
-					{
-						packet.setColor(j, "op");
-					}
-
-					info = format;
-					break;
-				}
+				info = format;
+				break;
 			}
 		}
 
-		if(info == null)
+		if(info == null && RValues.PRINT_UNKNOWN_PACKET.asBoolean())
 		{
 			int size = packet.getBuffer().limit() > 10 ? 10 : packet.getBuffer().limit();
 			byte[] data = new byte[size];
@@ -237,5 +228,25 @@ public class Protocol
 	public String toString()
 	{
 		return getName();
+	}
+
+	public List<IPacketListener> getSessionListeners()
+	{
+		return PacketListenerFactory.listListeners(_sessionListeners);
+	}
+
+	public List<IPacketListener> getGlobalListeners()
+	{
+		return _globalListeners;
+	}
+
+	public void setGlobalListeners(List<IPacketListener> globalListeners)
+	{
+		_globalListeners = globalListeners;
+	}
+
+	public void setSessionListeners(List<Class<IPacketListener>> sessionListeners)
+	{
+		_sessionListeners = sessionListeners;
 	}
 }

@@ -1,38 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!ELEMENT protocol (macro|packetfamilly)*>
+<!ELEMENT protocol (macro|packetfamilly|global_listeners|session_listeners)*>
 <!ATTLIST protocol
-			crypt CDATA #REQUIRED
-			name CDATA #REQUIRED>
+	crypt CDATA #REQUIRED
+	name CDATA #REQUIRED>
 <!ELEMENT macro (part)*>
 <!ATTLIST macro
-		id CDATA #REQUIRED
-		name CDATA #IMPLIED>
+	id CDATA #REQUIRED
+	name CDATA #IMPLIED>
 <!ELEMENT part (reader)*>
 <!ATTLIST part
-		id CDATA #IMPLIED
-		name CDATA #REQUIRED
-		size CDATA #IMPLIED
-		type CDATA #IMPLIED
-		val CDATA #IMPLIED>
+	id CDATA #IMPLIED
+	name CDATA #REQUIRED
+	size CDATA #IMPLIED
+	type CDATA #IMPLIED
+	val CDATA #IMPLIED>
 <!ELEMENT packetfamilly (packet)*>
 <!ATTLIST packetfamilly
 		way CDATA #REQUIRED>
 <!ELEMENT packet (part|for|switch|macro)*>
 <!ATTLIST packet
-		id CDATA #REQUIRED
-		key CDATA #IMPLIED
-		server_list CDATA #IMPLIED
+	id CDATA #REQUIRED
+	key CDATA #IMPLIED
+	server_list CDATA #IMPLIED
 		name CDATA #REQUIRED>
 <!ELEMENT for (part|macro|switch|for)*>
 <!ATTLIST for
-		id CDATA #REQUIRED
-		name CDATA #IMPLIED>
+	id CDATA #REQUIRED
+	name CDATA #IMPLIED>
 <!ELEMENT switch (case)*>
 <!ATTLIST switch
-		id CDATA #REQUIRED>
+	id CDATA #REQUIRED>
 <!ELEMENT case (part|for)*>
 <!ATTLIST case
-		id CDATA #REQUIRED
-		name CDATA #IMPLIED>
+	id CDATA #REQUIRED
+	name CDATA #IMPLIED>
 <!ELEMENT reader (#PCDATA)>
-<!ATTLIST reader type CDATA #REQUIRED>
+<!ATTLIST reader
+	type CDATA #REQUIRED>
+
+<!ELEMENT global_listeners (listener)*>
+<!ELEMENT session_listeners (listener)*>
+
+<!ELEMENT listener (#PCDATA)>
+<!ATTLIST listener
+	name CDATA #REQUIRED>

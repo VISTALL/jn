@@ -35,7 +35,6 @@ import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.logs.readers.AbstractReader;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
-import com.jds.jn.parser.packetfactory.lineage2.L2World;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
@@ -206,7 +205,7 @@ public class PacketMassAnalysisDialog extends JDialog
 			@Override
 			public void runImpl()
 			{
-				L2World.getInstance().close();
+				//L2World.getInstance().close();
 			}
 		});
 	}

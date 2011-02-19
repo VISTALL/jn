@@ -15,6 +15,8 @@ public enum RValues
 {
 	@PropertyValue("UseTray")
 	USE_TRAY(false),
+	@PropertyValue("PrintUnknownPacket")
+	PRINT_UNKNOWN_PACKET(true),
 	@PropertyValue("LastFolder")
 	LAST_FOLDER("./logs/"),
 	@PropertyValue("ActiveProfile")

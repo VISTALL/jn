@@ -125,7 +125,7 @@ public class AionGameCrypter implements ProtocolCrypter
 
 	public void decodeServerOpcode(byte[] raw)
 	{
-		raw[0] = (byte) ((raw[0] ^ 0xEE) - 0xAE);
+		raw[0] = (byte) ((raw[0] ^ 0xFFFFFFFF) + 68);
 	}
 
 	public void setProtocol(Protocol protocol)

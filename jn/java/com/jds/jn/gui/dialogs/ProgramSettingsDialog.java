@@ -1,12 +1,30 @@
 package com.jds.jn.gui.dialogs;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ResourceBundle;
 
-import com.intellij.uiDesigner.core.*;
+import javax.swing.AbstractButton;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSlider;
+import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.listeners.ColorChooseMouseListener;
@@ -26,6 +44,7 @@ public class ProgramSettingsDialog extends JDialog
 	private JPanel _sampleForeground4;
 	private JPanel _sampleBackground3;
 	private JPanel _sampleBackground4;
+	private JCheckBox _printUnknownPacket;
 
 	public ProgramSettingsDialog()
 	{
@@ -93,11 +112,13 @@ public class ProgramSettingsDialog extends JDialog
 		_sampleForeground3.setBackground(RValues.PACKET_FORM_SELECT_FOREGROUND_COLOR_2.asTColor());
 		_sampleBackground4.setBackground(RValues.PACKET_FORM_NOT_SELECT_BACKGROUND_COLOR_2.asTColor());
 		_sampleForeground4.setBackground(RValues.PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2.asTColor());
+		_printUnknownPacket.setSelected(RValues.PRINT_UNKNOWN_PACKET.asBoolean());
 	}
 
 	private void onOK()
 	{
 		RValues.USE_TRAY.setVal(_useTrayCheckBox.isSelected());
+		RValues.PRINT_UNKNOWN_PACKET.setVal(_printUnknownPacket.isSelected());
 		RValues.SAVE_AS_DECODE.setVal(_savePacketsInDecodeCheckBox.isSelected());
 		RValues.MAIN_VISIBLE.setVal(_mainVisible.getValue() / 100F);
 		Jn.getForm().updateVisible();
@@ -157,7 +178,7 @@ public class ProgramSettingsDialog extends JDialog
 		panel6.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 		panel5.add(panel6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 		final JPanel panel7 = new JPanel();
-		panel7.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+		panel7.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
 		panel6.add(panel7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 		_useTrayCheckBox = new JCheckBox();
 		this.$$$loadButtonText$$$(_useTrayCheckBox, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("UseTray"));
@@ -165,6 +186,9 @@ public class ProgramSettingsDialog extends JDialog
 		_savePacketsInDecodeCheckBox = new JCheckBox();
 		this.$$$loadButtonText$$$(_savePacketsInDecodeCheckBox, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("SavePacketsInDecode"));
 		panel7.add(_savePacketsInDecodeCheckBox, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_printUnknownPacket = new JCheckBox();
+		_printUnknownPacket.setText("Print to console info about unknown packet?");
+		panel7.add(_printUnknownPacket, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer2 = new Spacer();
 		panel5.add(spacer2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 		final JPanel panel8 = new JPanel();
@@ -284,9 +308,7 @@ public class ProgramSettingsDialog extends JDialog
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
