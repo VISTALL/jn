@@ -1,5 +1,8 @@
 package com.jds.jn.parser.packetfactory;
 
+import java.util.List;
+
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
 
 /**
@@ -10,6 +13,8 @@ import com.jds.jn.network.packets.DecryptedPacket;
 public interface IPacketListener
 {
 	void invoke(DecryptedPacket p);
+
+	List<JRibbonBand> getRibbonBands();
 
 	void close();
 }

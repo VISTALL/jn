@@ -1,4 +1,4 @@
-package com.jds.jn.statics;
+package com.jds.jn.util;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,6 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
 import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
 import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
-
 import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
@@ -30,7 +29,6 @@ import com.jds.jn.gui2.FindPacket.listeners.FPOpenListener;
 import com.jds.jn.gui2.PacketMassAnallize.PacketMassAnalysisDialog;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.network.listener.types.ReceiveType;
-import com.jds.jn.util.Bundle;
 import com.jds.swing.SimpleResizableIcon;
 
 /**

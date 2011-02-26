@@ -14,7 +14,7 @@ import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.*;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 /**
  * Author: VISTALL

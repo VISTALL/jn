@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.PartTypeManager;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 /**
  * Author: VISTALL

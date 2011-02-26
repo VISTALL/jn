@@ -133,9 +133,7 @@ public class InfoPane extends JPanel
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;

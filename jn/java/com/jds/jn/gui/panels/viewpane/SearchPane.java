@@ -608,9 +608,7 @@ public class SearchPane extends JPanel
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -643,9 +641,7 @@ public class SearchPane extends JPanel
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;

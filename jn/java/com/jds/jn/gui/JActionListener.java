@@ -21,8 +21,8 @@ import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
 import com.jds.jn.network.profiles.NetworkProfiles;
-import com.jds.jn.statics.ImageStatic;
-import com.jds.jn.statics.RibbonActions;
+import com.jds.jn.util.ImageStatic;
+import com.jds.jn.util.RibbonActions;
 import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 

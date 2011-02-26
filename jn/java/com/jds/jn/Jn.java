@@ -15,7 +15,7 @@ import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.OSUtils;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.logging.LoggingService;

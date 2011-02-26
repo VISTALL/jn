@@ -2,10 +2,13 @@ package packet_readers.lineage2.listeners;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.TreeMap;
 
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.datatree.DataForBlock;
 import com.jds.jn.parser.datatree.DataForPart;
@@ -23,6 +26,12 @@ public class L2AirShipTeleportListListener implements IPacketListener
 	private static final String EX_AIR_SHIP_TELEPORT_LIST = "ExAirShipTeleportList";
 
 	private Map<Integer, Map<Integer, L2BoatPoint>> _list = new TreeMap<Integer, Map<Integer, L2BoatPoint>>();
+
+	@Override
+	public List<JRibbonBand> getRibbonBands()
+	{
+		return Collections.emptyList();
+	}
 
 	@Override
 	public void invoke(DecryptedPacket p)

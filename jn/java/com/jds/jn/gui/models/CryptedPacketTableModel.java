@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.Util;
 

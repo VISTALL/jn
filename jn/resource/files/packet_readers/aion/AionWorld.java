@@ -2,10 +2,22 @@ package packet_readers.aion;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
+import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ImageStatic;
+import com.jds.swing.SimpleResizableIcon;
 import packet_readers.aion.holders.ClientStringHolder;
 import packet_readers.aion.listeners.AionNpcInfoListener;
 import packet_readers.aion.listeners.AionPlayerInfoListener;
@@ -36,6 +48,35 @@ public class AionWorld implements IPacketListener
 
 		_listeners.add(new AionNpcInfoListener(this));
 		_listeners.add(new AionPlayerInfoListener(this));
+	}
+
+	@Override
+	public List<JRibbonBand> getRibbonBands()
+	{
+		JRibbonBand aionWorldBand = new JRibbonBand("Aion World", new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 15, 15));
+		aionWorldBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(aionWorldBand));
+
+		aionWorldBand.startGroup("Search Type");
+
+		final JRadioButton allRadio = new JRadioButton("All");
+		final JRadioButton onClick = new JRadioButton("Target");
+
+		aionWorldBand.addRibbonComponent(new JRibbonComponent(allRadio));
+		aionWorldBand.addRibbonComponent(new JRibbonComponent(onClick));
+
+		ButtonGroup b = new ButtonGroup();
+		b.add(allRadio);
+		b.add(onClick);
+
+		aionWorldBand.startGroup();
+
+		final JCommandButton saveButton = new JCommandButton(Bundle.getString("Save"), ImageStatic.SAVE_48x48);
+		aionWorldBand.addCommandButton(saveButton, RibbonElementPriority.TOP);
+
+		final JCommandButton clearButton = new JCommandButton(Bundle.getString("Clear"), ImageStatic.EXIT_48x48);
+		aionWorldBand.addCommandButton(clearButton, RibbonElementPriority.TOP);
+
+		return Collections.singletonList(aionWorldBand);
 	}
 
 	@Override

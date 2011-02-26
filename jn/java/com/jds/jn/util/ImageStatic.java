@@ -1,4 +1,4 @@
-package com.jds.jn.statics;
+package com.jds.jn.util;
 
 import java.awt.Dimension;
 import java.util.HashMap;

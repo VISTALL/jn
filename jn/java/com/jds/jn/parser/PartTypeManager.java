@@ -4,7 +4,7 @@ import java.util.*;
 
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.parttypes.VisualPartType;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 
 /**

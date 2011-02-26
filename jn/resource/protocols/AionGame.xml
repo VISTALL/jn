@@ -2,9 +2,9 @@
 <!--Create by VISTALL-->
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="AionGame" name="Aion Game Server for client 2.1">
-	<global_listeners>
+	<session_listeners>
 		<listener name="aion.AionWorld" />
-	</global_listeners>
+	</session_listeners>
 	<packetfamilly way="SERVER">
 		<packet id="48" name="SM_KEY" key="true">
 			<part name="chk" type="h"/>

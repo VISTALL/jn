@@ -10,7 +10,7 @@ import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 /**
  * Author: VISTALL

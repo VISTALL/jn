@@ -4,14 +4,17 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
-import packet_readers.lineage2.holders.NpcNameHolder;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.datatree.DataForBlock;
 import com.jds.jn.parser.datatree.DataForPart;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import packet_readers.lineage2.L2World;
+import packet_readers.lineage2.holders.NpcNameHolder;
 import packet_readers.lineage2.infos.L2NpcInfo;
 import packet_readers.lineage2.infos.L2SkillInfo;
 
@@ -39,6 +42,12 @@ public class L2NpcSpawnListener implements IPacketListener
 	public L2NpcSpawnListener(L2World w)
 	{
 		_world = w;
+	}
+
+	@Override
+	public List<JRibbonBand> getRibbonBands()
+	{
+		return Collections.emptyList();
 	}
 
 	@Override

@@ -29,7 +29,7 @@
  */
 package org.pushingpixels.flamingo.api.ribbon;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +44,11 @@ import java.util.List;
  * you can have multiple task groups visible at the same time. This class is a
  * logical entity that groups ribbon tasks belonging to the same contextual
  * group.
- * 
+ *
  * @author Kirill Grouchnikov
  */
-public class RibbonContextualTaskGroup {
+public class RibbonContextualTaskGroup
+{
 	/**
 	 * The ribbon that contains this task group.
 	 */
@@ -55,7 +56,7 @@ public class RibbonContextualTaskGroup {
 
 	/**
 	 * List of all tasks.
-	 * 
+	 *
 	 * @see #RibbonContextualTaskGroup(String, Color, RibbonTask...)
 	 * @see #getTaskCount()
 	 * @see #getTask(int)
@@ -64,7 +65,7 @@ public class RibbonContextualTaskGroup {
 
 	/**
 	 * Group title.
-	 * 
+	 *
 	 * @see #RibbonContextualTaskGroup(String, Color, RibbonTask...)
 	 * @see #getTitle()
 	 * @see #setTitle(String)
@@ -73,7 +74,7 @@ public class RibbonContextualTaskGroup {
 
 	/**
 	 * Hue color for this group.
-	 * 
+	 *
 	 * @see #RibbonContextualTaskGroup(String, Color, RibbonTask...)
 	 * @see #getHueColor()
 	 */
@@ -87,77 +88,85 @@ public class RibbonContextualTaskGroup {
 
 	/**
 	 * Creates a task contextual group that contains the specified tasks.
-	 * 
-	 * @param title
-	 *            Group title.
-	 * @param hueColor
-	 *            Hue color for this group. Should be a saturated non-dark color
-	 *            for good visuals.
-	 * @param tasks
-	 *            Tasks to add to the group.
+	 *
+	 * @param title	Group title.
+	 * @param hueColor Hue color for this group. Should be a saturated non-dark color
+	 *                 for good visuals.
+	 * @param tasks	Tasks to add to the group.
 	 */
-	public RibbonContextualTaskGroup(String title, Color hueColor,
-			RibbonTask... tasks) {
+	public RibbonContextualTaskGroup(String title, Color hueColor, RibbonTask... tasks)
+	{
 		this.title = title;
 		this.hueColor = hueColor;
-		this.tasks = new ArrayList<RibbonTask>();
-		for (RibbonTask ribbonTask : tasks) {
-			ribbonTask.setContextualGroup(this);
-			this.tasks.add(ribbonTask);
-		}
+		this.tasks = new ArrayList<RibbonTask>(tasks.length);
+		for(RibbonTask ribbonTask : tasks)
+			addTask(ribbonTask);
 	}
 
 	/**
 	 * Returns the number of tasks in <code>this</code> group.
-	 * 
+	 *
 	 * @return Number of tasks in <code>this</code> group.
 	 * @see #getTask(int)
 	 */
-	public int getTaskCount() {
+	public int getTaskCount()
+	{
 		return this.tasks.size();
 	}
 
 	/**
 	 * Returns task at the specified index from <code>this</code> group.
-	 * 
-	 * @param index
-	 *            Task index.
+	 *
+	 * @param index Task index.
 	 * @return Task at the specified index.
 	 * @see #getTaskCount()
 	 */
-	public RibbonTask getTask(int index) {
+	public RibbonTask getTask(int index)
+	{
 		return this.tasks.get(index);
 	}
 
 	/**
+	 * Add  RibbonTask to tasks
+	 * @param task
+	 */
+	public void addTask(RibbonTask task)
+	{
+		task.setContextualGroup(this);
+		this.tasks.add(task);
+	}
+
+	/**
 	 * Returns the name of this group.
-	 * 
+	 *
 	 * @return The name of this group.
 	 * @see #setTitle(String)
 	 */
-	public String getTitle() {
+	public String getTitle()
+	{
 		return this.title;
 	}
 
 	/**
 	 * Returns the hue color for this group.
-	 * 
+	 *
 	 * @return The hue color for this group.
 	 */
-	public Color getHueColor() {
+	public Color getHueColor()
+	{
 		return this.hueColor;
 	}
 
 	/**
 	 * Changes the title of this ribbon contextual task group.
-	 * 
-	 * @param title
-	 *            The new title for this ribbon contextual task group.
+	 *
+	 * @param title The new title for this ribbon contextual task group.
 	 * @see #getTitle()
 	 */
-	public void setTitle(String title) {
+	public void setTitle(String title)
+	{
 		this.title = title;
-		if (this.ribbon != null)
+		if(this.ribbon != null)
 			this.ribbon.fireStateChanged();
 	}
 
@@ -167,21 +176,22 @@ public class RibbonContextualTaskGroup {
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return getTitle() + " (" + getTaskCount() + " tasks)";
 	}
 
 	/**
 	 * Associates this ribbon contextual task group with the specified ribbon.
 	 * This method is package protected and is for internal use only.
-	 * 
-	 * @param ribbon
-	 *            The associated ribbon.
+	 *
+	 * @param ribbon The associated ribbon.
 	 */
-	void setRibbon(JRibbon ribbon) {
-		if (this.ribbon != null) {
-			throw new IllegalStateException(
-					"The contextual task group already belongs to another ribbon");
+	void setRibbon(JRibbon ribbon)
+	{
+		if(this.ribbon != null)
+		{
+			throw new IllegalStateException("The contextual task group already belongs to another ribbon");
 		}
 		this.ribbon = ribbon;
 	}

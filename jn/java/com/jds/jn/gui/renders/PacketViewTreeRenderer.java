@@ -8,7 +8,7 @@ import java.awt.*;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.models.DataPartNode;
 import com.jds.jn.parser.datatree.ValuePart;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 /**
  * Author: VISTALL

@@ -13,7 +13,7 @@ import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 /**
  * Author: VISTALL

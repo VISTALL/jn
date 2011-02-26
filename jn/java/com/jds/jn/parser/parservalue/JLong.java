@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.awt.*;
 
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
 
 /**

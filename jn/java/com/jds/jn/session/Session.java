@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
 
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
@@ -44,7 +45,7 @@ public class Session
 
 	// gui
 	private final ViewPane _viewPane = new ViewPane(this);
-	private final SessionRibbonTaskGroup _ribbonGroup = new SessionRibbonTaskGroup(this);
+	private final RibbonContextualTaskGroup _ribbonGroup;
 
 	private final List<IPacketListener> _invokes = new ArrayList<IPacketListener>();
 
@@ -73,41 +74,22 @@ public class Session
 
 		_protocol = protocol;
 
-		init(true);
-	}
-
-	private void init(boolean crypted)
-	{    		
-
-		if (crypted)
+		try
 		{
-			try
-			{
-				Class<?> clazz = CLoader.getInstance().forName("crypt." + getProtocol().getEncryption() + "Crypter");
-				_crypt = (ProtocolCrypter) clazz.newInstance();
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
+			Class<?> clazz = CLoader.getInstance().forName("crypt." + getProtocol().getEncryption() + "Crypter");
+			_crypt = (ProtocolCrypter) clazz.newInstance();
 		}
-		else
+		catch (Exception e)
 		{
-			try
-			{
-				Class<?> clazz = CLoader.getInstance().forName("crypt.NullCrypter");
-				_crypt = (ProtocolCrypter) clazz.newInstance();
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-			}
+			_log.info("Exception: " + e, e);
 		}
 
 		_crypt.setProtocol(getProtocol());
 
 		_invokes.addAll(getProtocol().getSessionListeners());
 		_invokes.addAll(getProtocol().getGlobalListeners());
+
+		_ribbonGroup = new SessionRibbonTaskGroup(this);
 	}
 
 	public DecryptedPacket decode(CryptedPacket packet)
@@ -212,9 +194,7 @@ public class Session
 			public void runImpl()
 			{
 				for(IPacketListener f :_invokes)
-				{
 					f.invoke(o);
-				}
 			}
 		});
 	}
@@ -227,9 +207,7 @@ public class Session
 			public void runImpl()
 			{
 				for(IPacketListener f :_invokes)
-				{
 					f.close();
-				}
 			}
 		});
 	}
@@ -244,9 +222,14 @@ public class Session
 		_version = version;
 	}
 
-	public SessionRibbonTaskGroup getRibbonGroup()
+	public RibbonContextualTaskGroup getRibbonGroup()
 	{
 		return _ribbonGroup;
+	}
+
+	public List<IPacketListener> getInvokes()
+	{
+		return _invokes;
 	}
 }
 

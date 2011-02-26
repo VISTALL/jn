@@ -55,7 +55,7 @@ import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
 import com.jds.jn.parser.parttypes.PartType;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.Util;
 import com.sun.awt.AWTUtilities;
@@ -553,9 +553,7 @@ public class PacketForm extends JFrame
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;

@@ -81,9 +81,9 @@ public class RibbonTask {
 	 *            Bands to add to the ribbon task.
 	 */
 	public RibbonTask(String title, AbstractRibbonBand<?>... bands) {
-		if ((bands == null) || (bands.length == 0)) {
+		if ((bands == null) || (bands.length == 0))
 			throw new IllegalArgumentException("Cannot have empty ribbon task");
-		}
+
 		this.title = title;
 		this.bands = new ArrayList<AbstractRibbonBand<?>>();
 		for (AbstractRibbonBand<?> band : bands) {

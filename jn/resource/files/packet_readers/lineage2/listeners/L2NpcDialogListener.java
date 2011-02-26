@@ -1,7 +1,12 @@
 package packet_readers.lineage2.listeners;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import packet_readers.lineage2.L2World;
@@ -41,6 +46,12 @@ public class L2NpcDialogListener implements IPacketListener
 	public L2NpcDialogListener(L2World w)
 	{
 		_world = w;
+	}
+
+	@Override
+	public List<JRibbonBand> getRibbonBands()
+	{
+		return Collections.emptyList();
 	}
 
 	@Override

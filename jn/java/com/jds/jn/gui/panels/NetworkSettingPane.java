@@ -336,9 +336,7 @@ public class NetworkSettingPane extends JPanel
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -371,9 +369,7 @@ public class NetworkSettingPane extends JPanel
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;

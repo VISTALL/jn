@@ -6,7 +6,7 @@ import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;

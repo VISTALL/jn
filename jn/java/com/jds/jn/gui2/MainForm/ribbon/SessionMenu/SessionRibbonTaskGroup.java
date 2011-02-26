@@ -1,28 +1,35 @@
 package com.jds.jn.gui2.MainForm.ribbon.SessionMenu;
 
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.JCheckBox;
+
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
+import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
+import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
+import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.forms.MainForm;
+import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.session.Session;
-import com.jds.jn.statics.ImageStatic;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ImageStatic;
 import com.jds.swing.SimpleResizableIcon;
-import org.pushingpixels.flamingo.api.common.JCommandButton;
-import org.pushingpixels.flamingo.api.ribbon.*;
-import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 
 /**
  * Author: VISTALL
  * Company: J Develop Station
  * Date:  20:21:20/22.07.2010
  */
-public class SessionRibbonTaskGroup  extends RibbonContextualTaskGroup
+public class SessionRibbonTaskGroup extends RibbonContextualTaskGroup
 {
 	private final Session _session;
 
@@ -37,7 +44,7 @@ public class SessionRibbonTaskGroup  extends RibbonContextualTaskGroup
 		_session = session;
 	}
 
-	public static RibbonTask mainSessionMenu(final Session session)
+	public static RibbonTask[] mainSessionMenu(final Session session)
 	{
 		//------------------------- View Band -----------------------------------------------
 		JRibbonBand viewBand = new JRibbonBand(Bundle.getString("View"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 8, 8));
@@ -90,7 +97,18 @@ public class SessionRibbonTaskGroup  extends RibbonContextualTaskGroup
 		});
 		actionsBand.addCommandButton(closeButton, RibbonElementPriority.TOP);
 
-		return new RibbonTask(Bundle.getString("SessionMenu"), viewBand, actionsBand);
+		RibbonTask mainTask = new RibbonTask(Bundle.getString("SessionMenu"), viewBand, actionsBand);
+		List<JRibbonBand> bands = new ArrayList<JRibbonBand>(4);
+		for(IPacketListener l : session.getInvokes())
+			bands.addAll(l.getRibbonBands());
+
+		if(!bands.isEmpty())
+		{
+			RibbonTask listenerTask = new RibbonTask(Bundle.getString("Listeners"), bands.toArray(new JRibbonBand[bands.size()]));
+			return new RibbonTask[]{mainTask, listenerTask};
+		}
+		else
+			return new RibbonTask[]{mainTask};
 	}
 
 

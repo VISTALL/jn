@@ -184,9 +184,7 @@ public class ConfirmDialog extends JDialog
 			{
 				i++;
 				if(i == text.length())
-				{
 					break;
-				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;

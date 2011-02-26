@@ -1,9 +1,13 @@
 package packet_readers.lineage2.listeners;
 
 import java.io.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
+import com.jds.jn.session.Session;
 import packet_readers.lineage2.holders.ItemNameHolder;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.datatree.*;
@@ -33,6 +37,12 @@ public class L2NpcBMListsListener implements IPacketListener
 	public L2NpcBMListsListener(L2World w)
 	{
 		//
+	}
+
+	@Override
+	public List<JRibbonBand> getRibbonBands()
+	{
+		return Collections.emptyList();
 	}
 
 	@Override

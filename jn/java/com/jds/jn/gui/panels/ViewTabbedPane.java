@@ -1,13 +1,18 @@
 package com.jds.jn.gui.panels;
 
-import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.DefaultSingleSelectionModel;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
@@ -25,7 +30,7 @@ public class ViewTabbedPane extends JTabbedPane
 {
 	private JPanel root;
 	private JTabbedPane _sessionTabs;
-	private java.util.List<ViewPane> _tabs = new ArrayList<ViewPane>();
+	private List<ViewPane> _tabs = new ArrayList<ViewPane>();
 
 	public ViewTabbedPane()
 	{
@@ -38,17 +43,11 @@ public class ViewTabbedPane extends JTabbedPane
 			public void stateChanged(ChangeEvent e)
 			{
 				for(ViewPane pane : _tabs)
-				{
 					if(pane != null)
-					{
 						MainForm.getInstance().getRibbon().setVisible(pane.getSession().getRibbonGroup(), false);
-					}
-				}
 
 				if(getSelectedComponent() != null)
-				{
 					MainForm.getInstance().getRibbon().setVisible(getSelectedComponent().getSession().getRibbonGroup(), true);
-				}
 			}
 		});
 	}
@@ -57,9 +56,7 @@ public class ViewTabbedPane extends JTabbedPane
 	{
 		ChangeListener[] listeners = ((DefaultSingleSelectionModel) getModel()).getChangeListeners();
 		for(ChangeListener c : listeners)
-		{
 			c.stateChanged(null);
-		}
 	}
 
 	@Override

@@ -3,12 +3,14 @@ package packet_readers.lineage2;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.napile.primitive.maps.IntObjectMap;
 import org.napile.primitive.maps.impl.TreeIntObjectMap;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import packet_readers.lineage2.holders.ItemNameHolder;
@@ -65,6 +67,12 @@ public class L2World implements IPacketListener
 		_listeners.add(new L2NpcInfoListener(this));
 		_listeners.add(new L2NpcBMListsListener(this));
 		_listeners.add(new L2AirShipTeleportListListener());
+	}
+
+	@Override
+	public List<JRibbonBand> getRibbonBands()
+	{
+		return Collections.emptyList();
 	}
 
 	@Override

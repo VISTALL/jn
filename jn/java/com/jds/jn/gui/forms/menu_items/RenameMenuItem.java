@@ -5,7 +5,7 @@ import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
-import com.jds.jn.statics.ImageStatic;
+import com.jds.jn.util.ImageStatic;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
