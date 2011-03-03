@@ -44,9 +44,9 @@
 			<part name="unk(0x834):2000(depends on speed?)" type="h"/>
 			<part name="unk(0x834):2000" type="h"/>
 			<part name="unk(0x00)" type="c"/>
-			<part name="x" type="f"/>
-			<part name="y" type="f"/>
-			<part name="z" type="f"/>
+			<part name="move_x" type="f"/>
+			<part name="move_y" type="f"/>
+			<part name="move_z" type="f"/>
 			<part name="moveType(0x00)" type="c"/>
 			<part name="spawnStaticId" type="h"/>
 			<part name="unk(0x00)" type="c"/>
@@ -63,6 +63,7 @@
 			<part name="npcTargetObjId" type="d"/>
 		</packet>
 		<packet id="0F" name="SM_PLAYER_SPAWN">
+			<part name="chk" type="h"/>
 			<part name="worldId" type="d"/>
 			<part name="worldId + chnl" type="d"/>
 			<part name="unk" type="d"/>
@@ -71,6 +72,13 @@
 			<part name="y" type="f"/>
 			<part name="z" type="f"/>
 			<part name="heading" type="c"/>
+		</packet>
+		<packet id="29" name="SM_TARGET_SELECTED">
+			<part name="chk" type="h"/>
+			<part name="targetObjId" type="d"/>
+			<part name="level" type="h"/>
+			<part name="maxHp" type="d"/>
+			<part name="currentHp" type="d"/>
 		</packet>
 	</packetfamilly>
 	<packetfamilly way="CLIENT">

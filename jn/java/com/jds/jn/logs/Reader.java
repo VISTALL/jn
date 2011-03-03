@@ -16,6 +16,7 @@ import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.listeners.DefaultReaderListener;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.logs.readers.AbstractReader;
+import com.jds.jn.logs.readers.CapReader;
 import com.jds.jn.logs.readers.JNL2Reader;
 import com.jds.jn.logs.readers.JNLReader;
 import com.jds.jn.logs.readers.LogReader;
@@ -52,6 +53,7 @@ public class Reader
 		addReader(new JNL2Reader());
 		addReader(new PLogReader());
 		addReader(new LogReader());
+		addReader(new CapReader());
 	}
 
 	public void addReader(AbstractReader r)

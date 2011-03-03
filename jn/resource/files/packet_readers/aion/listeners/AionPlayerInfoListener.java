@@ -15,6 +15,7 @@ import packet_readers.aion.AionWorld;
 public class AionPlayerInfoListener implements IPacketListener
 {
 	private static final String SM_PLAYER_SPAWN = "SM_PLAYER_SPAWN";
+	private static final String SM_TARGET_SELECTED = "SM_TARGET_SELECTED";
 	private AionWorld _world;
 
 	public AionPlayerInfoListener(AionWorld world)
@@ -35,6 +36,10 @@ public class AionPlayerInfoListener implements IPacketListener
 		{
 			int worldId = p.getInt("worldId");
 			_world.setWorldId(worldId);
+		}
+		else if(p.getName().equalsIgnoreCase(SM_TARGET_SELECTED))
+		{
+			_world.setSelectTargetObjectId(p.getInt("targetObjId"));
 		}
 	}
 

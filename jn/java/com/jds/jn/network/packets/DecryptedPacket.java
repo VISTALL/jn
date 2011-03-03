@@ -1,9 +1,8 @@
 package com.jds.jn.network.packets;
 
-import org.apache.log4j.Logger;
-
 import java.nio.BufferUnderflowException;
 
+import org.apache.log4j.Logger;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.parser.datatree.DataForBlock;
 import com.jds.jn.parser.datatree.DataForPart;
@@ -314,6 +313,11 @@ public class DecryptedPacket implements IPacketData
 	public boolean isKey()
 	{
 		return _packetFormat != null && _packetFormat.isKey();
+	}
+
+	public float getFloat(String s)
+	{
+		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsFloat();
 	}
 
 	public double getDouble(String s)

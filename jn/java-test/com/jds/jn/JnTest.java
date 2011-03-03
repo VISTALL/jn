@@ -8,6 +8,7 @@ public class JnTest
 {
 	public static void main(String... arg)
 	{
-		System.out.println(Integer.toHexString(24));
+
+		System.out.println(Integer.toHexString((int)(System.currentTimeMillis() / 1000)));
 	}
 }
