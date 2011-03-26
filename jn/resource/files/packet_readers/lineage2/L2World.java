@@ -31,13 +31,6 @@ import packet_readers.lineage2.listeners.L2NpcSpawnListener;
  */
 public class L2World implements IPacketListener
 {
-	static
-	{
-		ItemNameHolder.getInstance();
-		NpcNameHolder.getInstance();
-		SkillNameHolder.getInstance();
-	}
-
 	private static final String[] DIRs =
 	{
 		"./saves/",
@@ -61,6 +54,10 @@ public class L2World implements IPacketListener
 	{
 		for(String st : DIRs)
 			new File(st).mkdir();
+
+		ItemNameHolder.getInstance();
+		NpcNameHolder.getInstance();
+		SkillNameHolder.getInstance();
 
 		_listeners.add(new L2NpcSpawnListener(this));
 		_listeners.add(new L2NpcDialogListener(this));

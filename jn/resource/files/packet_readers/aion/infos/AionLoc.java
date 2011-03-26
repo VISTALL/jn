@@ -23,12 +23,6 @@ public class AionLoc
 		_staticId = staticId;
 	}
 
-	@Override
-	public int hashCode()
-	{
-		return (int)(_worldId + _x + _y + _z + _staticId);
-	}
-
 	public float getX()
 	{
 		return _x;

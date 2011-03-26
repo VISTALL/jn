@@ -7,6 +7,7 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import packet_readers.aion.AionWorld;
+import packet_readers.aion.infos.AionNpc;
 
 /**
  * @author VISTALL
@@ -39,7 +40,12 @@ public class AionPlayerInfoListener implements IPacketListener
 		}
 		else if(p.getName().equalsIgnoreCase(SM_TARGET_SELECTED))
 		{
-			_world.setSelectTargetObjectId(p.getInt("targetObjId"));
+			AionNpc npc = _world.getNpc(p.getInt("targetObjId"));
+			if(npc == null)
+				return;
+
+			if(_world.isOnSelectTarget())
+				npc.setValid(true);
 		}
 	}
 

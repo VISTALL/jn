@@ -18,6 +18,7 @@ public class AionNpc
 	private final int _nameId;
 	private final int _titleId;
 	private final int _npcState;
+	private boolean _valid;
 
 	private IntObjectMap<AionLoc> _loc = new HashIntObjectMap<AionLoc>();
 
@@ -74,5 +75,15 @@ public class AionNpc
 	public Collection<AionLoc> getLocs()
 	{
 		return _loc.values();
+	}
+
+	public boolean isValid()
+	{
+		return _valid;
+	}
+
+	public void setValid(boolean valid)
+	{
+		_valid = valid;
 	}
 }

@@ -35,6 +35,7 @@ import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.ImageStatic;
 import com.jds.swing.SimpleResizableIcon;
+import packet_readers.aion.holders.ClientStringHolder;
 import packet_readers.aion.infos.AionLoc;
 import packet_readers.aion.infos.AionNpc;
 import packet_readers.aion.listeners.AionNpcInfoListener;
@@ -46,11 +47,6 @@ import packet_readers.aion.listeners.AionPlayerInfoListener;
  */
 public class AionWorld implements IPacketListener
 {
-	static
-	{
-	//	ClientStringHolder.getInstance();
-	}
-
 	public class SaveActionListener implements ActionListener
 	{
 		@Override
@@ -64,6 +60,8 @@ public class AionWorld implements IPacketListener
 				writer.write("<list>\n");
 				for(AionNpc npc : valuesNpc())
 				{
+					if(!npc.isValid())
+						continue;
 					writer.write("\t<npc id=\"" + npc.getNpcId() + "\" max_hp=\"" + npc.getMaxHP() + "\" name_id=\"" + npc.getNameId() + "\" title_id=\"" + npc.getTitleId() + "\" state=\"" + npc.getNpcState() + "\">\n");
 					for(AionLoc loc : npc.getLocs())
 					{
@@ -133,7 +131,6 @@ public class AionWorld implements IPacketListener
 	private int _worldId;
 
 	private boolean _onSelectTarget;
-	private int _selectTargetObjectId;
 
 	private JList _npcList;
 	private JLabel _maxHpLabel;
@@ -149,6 +146,8 @@ public class AionWorld implements IPacketListener
 
 		_listeners.add(new AionNpcInfoListener(this));
 		_listeners.add(new AionPlayerInfoListener(this));
+
+		ClientStringHolder.getInstance();
 	}
 
 	@Override
@@ -273,16 +272,6 @@ public class AionWorld implements IPacketListener
 		_worldId = worldId;
 	}
 
-	public int getSelectTargetObjectId()
-	{
-		return _selectTargetObjectId;
-	}
-
-	public void setSelectTargetObjectId(int selectTargetObjectId)
-	{
-		_selectTargetObjectId = selectTargetObjectId;
-	}
-
 	//===========================================================================================
 	// 				Npcs
 	//===========================================================================================
@@ -294,6 +283,9 @@ public class AionWorld implements IPacketListener
 
 	public void addNpcByNpcId(int npcId, AionNpc npc)
 	{
+		if(_npcInfosByNpcId.containsKey(npcId))
+			return;
+
 		_npcInfosByNpcId.put(npcId, npc);
 		_npcList.setListData(_npcInfosByNpcId.values().toArray());
 	}
@@ -303,9 +295,9 @@ public class AionWorld implements IPacketListener
 		return _npcInfos.get(obj);
 	}
 
-	public AionNpc getNpcByNpcId(int obj)
+	public AionNpc getNpcByNpcId(int npcId)
 	{
-		return _npcInfosByNpcId.get(obj);
+		return _npcInfosByNpcId.get(npcId);
 	}
 
 	public Collection<AionNpc> valuesNpc()

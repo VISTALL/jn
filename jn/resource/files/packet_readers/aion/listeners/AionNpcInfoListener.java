@@ -38,19 +38,14 @@ public class AionNpcInfoListener  implements IPacketListener
 			int objId = p.getInt("objId");
 			AionNpc npc = _world.getNpc(objId);
 			if(npc == null)
-			{
-				npc = new AionNpc(p);
-				_world.addNpc(objId, npc);
-				if(_world.isOnSelectTarget())
-				{
-					if(_world.getSelectTargetObjectId() == objId)
-						_world.addNpcByNpcId(npc.getNpcId(), npc);
-				}
-				else
-				{
-					_world.addNpcByNpcId(npc.getNpcId(), npc);
-				}
-			}
+				_world.addNpc(objId, npc = new AionNpc(p));
+
+			AionNpc ownerNpc = _world.getNpcByNpcId(npc.getNpcId());
+			if(ownerNpc == null)
+				_world.addNpcByNpcId(npc.getNpcId(), ownerNpc = npc);
+
+			if(!_world.isOnSelectTarget())
+				npc.setValid(true);
 
 			float x = p.getFloat("x");
 			float y = p.getFloat("y");
@@ -59,7 +54,7 @@ public class AionNpcInfoListener  implements IPacketListener
 			int spawnStaticId = p.getInt("spawnStaticId");
 
 			AionLoc loc = new AionLoc(_world.getWorldId(), x, y, z, npcHeading, spawnStaticId);
-			npc.addLoc(objId, loc);
+			ownerNpc.addLoc(objId, loc);
 		}
 	}
 
