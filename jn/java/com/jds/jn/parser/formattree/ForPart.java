@@ -1,9 +1,9 @@
 package com.jds.jn.parser.formattree;
 
+import java.util.List;
+
 import com.jds.jn.Jn;
 import com.jds.jn.parser.parttypes.PartType;
-
-import java.util.List;
 
 
 /**
@@ -12,13 +12,18 @@ import java.util.List;
 public class ForPart extends Part
 {
 	private PartContainer _modelBlock;
-	private int _forId = -1;
+	private int _forId;
+	private int _fixedSize;
 
-	public ForPart(int id)
+	public ForPart(int id, int fixedSize)
 	{
 		super(PartType.forBlock);
-		this.setForId(id);
+		_forId = id;
+		_fixedSize = fixedSize;
 		_modelBlock = new PartContainer(PartType.block);
+
+		if (getContainingFormat() != null)
+			getContainingFormat().triggerFormatChanged();
 	}
 
 	public PartContainer getModelBlock()
@@ -68,13 +73,9 @@ public class ForPart extends Part
 		return _forId;
 	}
 
-	public void setForId(int id)
+	public int getFixedSize()
 	{
-		_forId = id;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
+		return _fixedSize;
 	}
 
 	public boolean addPartAfter(Part part, Part afterPart)

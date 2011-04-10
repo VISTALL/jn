@@ -25,7 +25,8 @@
 		name CDATA #REQUIRED>
 <!ELEMENT for (part|macro|switch|for)*>
 <!ATTLIST for
-	id CDATA #REQUIRED
+	id CDATA #IMPLIED
+	fixed CDATA #IMPLIED
 	name CDATA #IMPLIED>
 <!ELEMENT switch (case)*>
 <!ATTLIST switch

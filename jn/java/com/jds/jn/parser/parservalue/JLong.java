@@ -1,8 +1,8 @@
 package com.jds.jn.parser.parservalue;
 
-import javax.swing.*;
+import java.awt.Color;
 
-import java.awt.*;
+import javax.swing.ImageIcon;
 
 import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
@@ -14,7 +14,7 @@ import com.jds.nio.buffer.NioBuffer;
  */
 public class JLong implements ParserValue<Long>
 {
-	private static final Color _color = new Color(255, 255, 128);
+	private static final Color _color = new Color(127, 127, 127);
 
 	@Override
 	public Long getValue(NioBuffer b, Object... arg)

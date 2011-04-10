@@ -229,23 +229,29 @@ public class ProtocolLoader
 			else if ("for".equalsIgnoreCase(o.getNodeName()))
 			{
 				attrs = o.getAttributes();
-				int forId;
+				int fixed = 0;
+				int forId = 0;
 				String name = "";
 
-				atr = attrs.getNamedItem("id");
-				if (atr == null)
+				atr = attrs.getNamedItem("fixed");
+				if(atr == null)
 				{
-					_log.info("Error, for doesnt have 'id'. skipping packet");
-					return false;
+					atr = attrs.getNamedItem("id");
+					if (atr == null)
+					{
+						_log.info("Error, for doesnt have 'id/fixed'. skipping packet");
+						return false;
+					}
+					else
+						forId = Integer.parseInt(atr.getNodeValue());
 				}
-				forId = Integer.parseInt(atr.getNodeValue());
+				else
+					fixed = Integer.parseInt(atr.getNodeValue());
 
 				if (attrs.getNamedItem("name") != null)
-				{
 					name = attrs.getNamedItem("name").getNodeValue();
-				}
 
-				ForPart newForPart = new ForPart(forId);
+				ForPart newForPart = new ForPart(forId, fixed);
 				newForPart.setName(name);
 				newForPart.setParentContainer(pc);
 				newForPart.setContainingFormat(pc.getContainingFormat());

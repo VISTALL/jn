@@ -1,22 +1,30 @@
 package com.jds.jn.config;
 
-import org.w3c.dom.*;
-import org.w3c.dom.ls.*;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.ls.DOMImplementationLS;
+import org.w3c.dom.ls.LSOutput;
+import org.w3c.dom.ls.LSSerializer;
 import com.jds.jn.config.properties.ObjectParse;
 import com.jds.jn.config.properties.PropertyValue;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 import com.sun.org.apache.xerces.internal.impl.Constants;
 
 /**
@@ -37,7 +45,7 @@ public class ConfigParser
 
 	public static ConfigParser getInstance()
 	{
-		if (_instance == null)
+		if(_instance == null)
 		{
 			_instance = new ConfigParser();
 		}
@@ -53,9 +61,9 @@ public class ConfigParser
 
 	private void parseAnnotations()
 	{
-		for (Field rv : RValues.class.getFields())
+		for(Field rv : RValues.class.getFields())
 		{
-			if (rv.isAnnotationPresent(PropertyValue.class))
+			if(rv.isAnnotationPresent(PropertyValue.class))
 			{
 				String t = rv.getAnnotation(PropertyValue.class).value();
 				RValues val = RValues.valueOf(rv.getName());
@@ -64,9 +72,9 @@ public class ConfigParser
 			}
 		}
 
-		for (Method getMethod : NetworkProfilePart.class.getMethods())
+		for(Method getMethod : NetworkProfilePart.class.getMethods())
 		{
-			if (getMethod.isAnnotationPresent(PropertyValue.class))
+			if(getMethod.isAnnotationPresent(PropertyValue.class))
 			{
 				try
 				{
@@ -77,7 +85,7 @@ public class ConfigParser
 					_methodValues.put(t, setMethod);
 					_methodValues2.put(getMethod, t);
 				}
-				catch (NoSuchMethodException e)
+				catch(NoSuchMethodException e)
 				{
 					System.out.println("Not find 'set' method.");
 				}
@@ -88,10 +96,8 @@ public class ConfigParser
 	public void load()
 	{
 		File file = new File("./properties.xml");
-		if (!file.exists())
-		{
+		if(!file.exists())
 			return;
-		}
 
 		try
 		{
@@ -101,64 +107,51 @@ public class ConfigParser
 			Document document = factory.newDocumentBuilder().parse(file);
 
 			NamedNodeMap map;
-			for (Node s1 = document.getFirstChild(); s1 != null; s1 = s1.getNextSibling())
-			{
-				if ("config".equalsIgnoreCase(s1.getNodeName()))
-				{
-					for (Node start0 = s1.getFirstChild(); start0 != null; start0 = start0.getNextSibling())
+			for(Node s1 = document.getFirstChild(); s1 != null; s1 = s1.getNextSibling())
+				if("config".equalsIgnoreCase(s1.getNodeName()))
+					for(Node start0 = s1.getFirstChild(); start0 != null; start0 = start0.getNextSibling())
 					{
-						if ("property".equalsIgnoreCase(start0.getNodeName()))
+						if("property".equalsIgnoreCase(start0.getNodeName()))
 						{
 							map = start0.getAttributes();
-							if (map.getNamedItem("name") == null || map.getNamedItem("val") == null)
-							{
+							if(map.getNamedItem("name") == null || map.getNamedItem("val") == null)
 								continue;
-							}
+
 							RValues rv = _rValues.get(map.getNamedItem("name").getNodeValue());
 
-							if (rv != null)
-							{
+							if(rv != null)
 								rv.setVal(ObjectParse.parse(rv.getType(), map.getNamedItem("val").getNodeValue()));
-							}
 						}
-						else if ("file".equalsIgnoreCase(start0.getNodeName()))
+						else if("file".equalsIgnoreCase(start0.getNodeName()))
 						{
 							map = start0.getAttributes();
-							if (map.getNamedItem("val") == null)
-							{
+							if(map.getNamedItem("val") == null)
 								continue;
-							}
 
 							LastFiles.addLastFile(map.getNamedItem("val").getNodeValue());
 						}
-						else if ("profile".equalsIgnoreCase(start0.getNodeName()))
+						else if("profile".equalsIgnoreCase(start0.getNodeName()))
 						{
 							map = start0.getAttributes();
-							if (map.getNamedItem("name") == null || map.getNamedItem("type") == null)
-							{
+							if(map.getNamedItem("name") == null || map.getNamedItem("type") == null)
 								continue;
-							}
 
 							NetworkProfile profile = NetworkProfiles.getInstance().newProfile(map.getNamedItem("name").getNodeValue(), ReceiveType.valueOf(map.getNamedItem("type").getNodeValue()));
 
-							for (Node partNode = start0.getFirstChild(); partNode != null; partNode = partNode.getNextSibling())
+							for(Node partNode = start0.getFirstChild(); partNode != null; partNode = partNode.getNextSibling())
 							{
-								if ("part".equalsIgnoreCase(partNode.getNodeName()))
+								if("part".equalsIgnoreCase(partNode.getNodeName()))
 								{
 									map = partNode.getAttributes();
 
-									if (map.getNamedItem("type") == null)
-									{
+									if(map.getNamedItem("type") == null)
 										continue;
-									}
 
 									ListenerType type = ListenerType.valueOf(map.getNamedItem("type").getNodeValue());
 
 									NetworkProfilePart part = profile.getPart(type);
-									if (part == null)
-									{
+									if(part == null)
 										continue;
-									}
 
 									for(int i = 0; i < map.getLength(); i++)
 									{
@@ -176,13 +169,10 @@ public class ConfigParser
 									}
 								}
 							}
-
 						}
-					}
-				}
 			}
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
@@ -193,7 +183,7 @@ public class ConfigParser
 		File file = new File("./properties.xml");
 
 
-		if (file.exists())
+		if(file.exists())
 		{
 			file.delete();
 		}
@@ -212,9 +202,9 @@ public class ConfigParser
 
 		Element root = doc.createElement("config");
 
-		for (RValues val : RValues.values())
+		for(RValues val : RValues.values())
 		{
-			if (val != null && val.getVal() != null)
+			if(val != null && val.getVal() != null)
 			{
 				Element property = doc.createElement("property");
 				property.setAttribute("name", _rValues2.get(val));
@@ -223,9 +213,9 @@ public class ConfigParser
 			}
 		}
 
-		for (String last : LastFiles.getLastFiles())
+		for(String last : LastFiles.getLastFiles())
 		{
-			if (last != null)
+			if(last != null)
 			{
 				Element lastFile = doc.createElement("file");
 				lastFile.setAttribute("val", last);
@@ -233,9 +223,9 @@ public class ConfigParser
 			}
 		}
 
-		for (NetworkProfile b : NetworkProfiles.getInstance().profiles())
+		for(NetworkProfile b : NetworkProfiles.getInstance().profiles())
 		{
-			if (b == null)
+			if(b == null)
 			{
 				continue;
 			}
@@ -244,9 +234,9 @@ public class ConfigParser
 			profileNode.setAttribute("name", b.getName());
 			profileNode.setAttribute("type", b.getType().name());
 
-			for (NetworkProfilePart part : b.parts())
+			for(NetworkProfilePart part : b.parts())
 			{
-				if (part == null)
+				if(part == null)
 				{
 					continue;
 				}
@@ -254,10 +244,10 @@ public class ConfigParser
 				Element partNode = doc.createElement("part");
 				partNode.setAttribute("type", part.getType().name());
 
-				for (Method f : NetworkProfilePart.class.getMethods())
+				for(Method f : NetworkProfilePart.class.getMethods())
 				{
 
-					if (_methodValues2.containsKey(f))
+					if(_methodValues2.containsKey(f))
 					{
 						Object obj = f.invoke(part);
 						if(obj != null)

@@ -139,43 +139,48 @@ public class DecryptedPacket implements IPacketData
 		{
 			if (part instanceof ForPart)
 			{
-				// find the size of this for in the scope
-				ValuePart vp = dataNode.getPacketValuePartById(((ForPart) part).getForId());
-				if (vp == null)
+				ForPart forPart = (ForPart)part;
+				int size = 0;
+				if(forPart.getFixedSize() > 0)
+					size = forPart.getFixedSize();
+				else
 				{
-					_error = "Error: could not find valuepart to loop on for (For " + part.getName() + " - id:" + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
-					return false;
+					// find the size of this for in the scope
+					ValuePart vp = dataNode.getPacketValuePartById(forPart.getForId());
+					if (vp == null)
+					{
+						_error = "Error: could not find valuepart to loop on for (For " + part.getName() + " - id:" + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+						return false;
+					}
+					if (!(vp instanceof VisualValuePart))
+					{
+						_error = "Error: for id didnt refer to an IntValePart in (For " + part.getName() + " - id:" + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+						return false;
+					}
+					size = ((VisualValuePart) vp).getValueAsInt();
 				}
-				if (!(vp instanceof VisualValuePart))
-				{
-					_error = "Error: for id didnt refer to an IntValePart in (For " + part.getName() + " - id:" + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
-					return false;
-				}
-				int size = ((VisualValuePart) vp).getValueAsInt();
 
 				//check size here
-				if (((ForPart) part).getModelBlock().hasConstantLength())
+				if (forPart.getModelBlock().hasConstantLength())
 				{
-					int forBlockSize = ((ForPart) part).getModelBlock().getLength();
+					int forBlockSize = forPart.getModelBlock().getLength();
 					if (size * forBlockSize > getBuffer().remaining())
 					{
-						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 						return false;
 					}
 				}
 				else if (size > getBuffer().remaining())
 				{
-					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + ((ForPart) part).getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
-				DataForPart forPart = new DataForPart(dataNode, (ForPart) part);
+				DataForPart dataForPart = new DataForPart(dataNode, forPart);
 				for (int i = 0; i < size; i++)
 				{
-					DataForBlock forBlock = new DataForBlock(forPart, ((ForPart) part).getModelBlock(), i, size);
-					if (!parse(((ForPart) part).getModelBlock(), forBlock))
-					{
+					DataForBlock forBlock = new DataForBlock(dataForPart, forPart.getModelBlock(), i, size);
+					if (!parse(forPart.getModelBlock(), forBlock))
 						return false;
-					}
 				}
 			}
 			else if (part instanceof MacroPart)
