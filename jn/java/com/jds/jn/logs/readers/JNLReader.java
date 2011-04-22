@@ -113,7 +113,7 @@ public class JNLReader extends AbstractReader
 						CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
 						DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
 
-						_session.receiveQuitPacket(dp);
+						_session.receiveQuitPacket(dp, true, true);
 
 						int p = (int) ((100D * (i + 1)) / _size);
 						MainForm.getInstance().getProgressBar().setValue(p);

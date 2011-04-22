@@ -60,7 +60,7 @@ public class PSLReader extends AbstractReader
 			if(_isDecrypted)
 			{
 				DecryptedPacket p = new DecryptedPacket(packet, _session.getProtocol());
-				_session.receiveQuitPacket(p);
+				_session.receiveQuitPacket(p, true, true);
 			}
 			else
 			{

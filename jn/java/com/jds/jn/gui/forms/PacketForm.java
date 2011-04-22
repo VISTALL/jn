@@ -49,7 +49,7 @@ import com.jds.jn.gui.renders.IconTableRenderer;
 import com.jds.jn.gui.renders.PacketViewTreeRenderer;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.PartTypeManager;
-import com.jds.jn.parser.Types;
+import com.jds.jn.parser.Type;
 import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
@@ -270,7 +270,7 @@ public class PacketForm extends JFrame
 		s = doc.addStyle("chk", regular);
 		StyleConstants.setBackground(s, Color.GREEN);
 
-		for(Types t : Types.values())
+		for(Type t : Type.values())
 		{
 			s = doc.addStyle(t.name(), regular);
 			StyleConstants.setBackground(s, t.getColor());

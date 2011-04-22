@@ -52,6 +52,24 @@ public class PacketMassAnalysisDialog extends JDialog
 	private class ReaderListenerImpl implements ReaderListener
 	{
 		@Override
+		public DecryptedPacket newPacket(Session session, CryptedPacket p)
+		{
+			return new DecryptedPacket(p, session.getProtocol(), true);
+		}
+
+		@Override
+		public void readPacket(Session session, DecryptedPacket p)
+		{
+			session.receiveQuitPacket(p, false, true);
+		}
+
+		@Override
+		public void readPacket(Session session, CryptedPacket p)
+		{
+			session.receiveQuitPacket(p);
+		}
+
+		@Override
 		public void onFinish(Session session, File file)
 		{
 			if(session != null)
@@ -63,7 +81,7 @@ public class PacketMassAnalysisDialog extends JDialog
 				for(CryptedPacket packet : session.getCryptedPackets())
 				{
 					DecryptedPacket decryptedPacket = session.decode(packet);
-					session.addDecryptPacket(decryptedPacket);
+					session.receiveQuitPacket(decryptedPacket, true, true);
 
 					int p = (int) ((100D * (i + 1)) / size);
 

@@ -1,8 +1,8 @@
 package com.jds.jn.parser.parservalue;
 
-import javax.swing.*;
+import java.awt.Color;
 
-import java.awt.*;
+import javax.swing.ImageIcon;
 
 import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
@@ -30,5 +30,11 @@ public class JFloat implements ParserValue<Float>
 	public Color getColor()
 	{
 		return Color.LIGHT_GRAY;
+	}
+
+	@Override
+	public int length()
+	{
+		return 4;
 	}
 }

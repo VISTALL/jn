@@ -100,6 +100,8 @@ public class ProtocolLoader
 			{
 				protocol.setOrder((ByteOrder)ByteOrder.class.getField(node.getNodeValue()).get(null));
 			}
+			else
+				protocol.setOrder(ByteOrder.LITTLE_ENDIAN);
 
 			for (Node n = root.getFirstChild(); n != null; n = n.getNextSibling())
 			{

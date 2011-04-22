@@ -33,4 +33,10 @@ public class JLong implements ParserValue<Long>
 	{
 		return _color;
 	}
+
+	@Override
+	public int length()
+	{
+		return 8;
+	}
 }

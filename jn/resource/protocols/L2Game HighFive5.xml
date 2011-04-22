@@ -1154,7 +1154,23 @@
 		<packet id="8D" name="Dummy"/>
 		<packet id="8E" name="PledgeShowInfoUpdatePacket"/>
 		<packet id="8F" name="ActionFail"/>
-		<packet id="90" name="AcquireSkillList"/>
+		<packet id="90" name="AcquireSkillList">
+			<part name="type" type="d" id="0"/>
+			<part name="size" type="d" id="1" />
+			<for id="1">
+				<part name="skill_id" type="d"/>
+				<part name="next_skill_level" type="d"/>
+				<part name="max_skill_level" type="d"/>
+				<part name="cost" type="d"/>
+				<part name="require" type="d"/>
+				<switch id="0">
+					<case id="3">
+						<part name="sub_unit" type="d"/>
+					</case>
+					<case id="default" />
+				</switch>
+			</for>
+		</packet>
 		<packet id="91" name="AcquireSkillInfo"/>
 		<packet id="92" name="ServerObjectInfo"/>
 		<packet id="93" name="GMHidePacket"/>
@@ -1864,16 +1880,38 @@
 			<part name="success" type="d"/>
 		</packet>
 		<packet id="FE;00D4" name="ExReceiveOlympiad">
-			<part name="page?" type="d"/>
-			<part name="size" type="d" id="0"/>
-			<for id="0">
-				<part name="?" type="d"/>
-				<part name="?" type="d"/>
-				<part name="?" type="d"/>
-				<part name="?" type="d"/>
-				<part name="player1" type="S"/>
-				<part name="player2" type="S"/>
-			</for>
+			<part name="type" type="d" id="0"/>
+			<switch id="0">
+				<case id="0">
+					<part name="size" type="d" id="1"/>
+					<part name="type?" type="d"/>
+					<for id="1">
+						<part name="index" type="d"/> <!--index of game, show +1 in client-->
+						<part name="match_type" type="d"/>     <!--game type 1 - 1x1, 2 - 3x3 ? -->
+						<part name="status" type="d"/><!--1 standby, 2 playing-->
+						<part name="player1" type="S"/>
+						<part name="player2" type="S"/>
+					</for>
+				</case>
+				<case id="1">
+					<part name="result" type="d"/>
+					<part name="result_name" type="S"/>
+					<for fixed="2">
+						<part name="team" type="d"/>
+						<part name="size" type="d" id="2"/>
+						<for id="2">
+							<part name="player_name" type="S"/>
+							<part name="clan_name" type="S"/>
+							<part name="?" type="d"/>
+							<part name="class_id" type="d"/>
+							<part name="damage" type="d"/>
+							<part name="current_points" type="d"/>
+							<part name="game_points" type="d"/>
+						</for>
+					</for>
+				</case>
+				<case id="default" />
+			</switch>
 		</packet>
 	</packetfamilly>
 	<!--__________________________________________-->

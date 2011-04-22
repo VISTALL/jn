@@ -103,7 +103,7 @@ public class CryptedPacketListPane extends JPanel
 
 				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, buff, System.currentTimeMillis()));
 				model.addRow(datapacket);
-				session.addDecryptPacket(datapacket);
+				session.receiveQuitPacket(datapacket, true, true);
 
 				try
 				{
@@ -169,7 +169,7 @@ public class CryptedPacketListPane extends JPanel
 						}
 					}
 
-					session.addDecryptPacket(datapacket);
+					session.receiveQuitPacket(datapacket, true, true);
 					model.addRow(datapacket);
 				}
 

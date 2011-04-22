@@ -50,7 +50,7 @@ public class PartTypeManager
 
 	public void initBaseTypes()
 	{
-		for(Types type : Types.values())
+		for(Type type : Type.values())
 		{
 			VisualPartType t = new VisualPartType(type.name(), type);
 

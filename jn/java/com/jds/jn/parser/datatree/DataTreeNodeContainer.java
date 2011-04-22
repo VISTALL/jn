@@ -2,6 +2,8 @@ package com.jds.jn.parser.datatree;
 
 import java.util.*;
 
+import org.napile.primitive.maps.IntObjectMap;
+import org.napile.primitive.maps.impl.HashIntObjectMap;
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.formattree.*;
 
@@ -11,8 +13,8 @@ import com.jds.jn.parser.formattree.*;
  */
 public class DataTreeNodeContainer extends DataTreeNode
 {
-	private Map<Integer, ValuePart> _partIdMap = new HashMap<Integer, ValuePart>();
-	private List<DataTreeNode> _nodes = new LinkedList<DataTreeNode>();
+	private IntObjectMap<ValuePart> _partIdMap = new HashIntObjectMap<ValuePart> ();
+	private List<DataTreeNode> _nodes = new ArrayList<DataTreeNode>();
 	private boolean _isRoot;
 
 	protected DataTreeNodeContainer(DataTreeNodeContainer container, Part part)
@@ -56,14 +58,9 @@ public class DataTreeNodeContainer extends DataTreeNode
 		ValuePart vp = _partIdMap.get(id);
 		if (vp == null && !this.isRoot())
 		{
-			return this.getParentContainer().getPacketValuePartById(id);
+			return getParentContainer().getPacketValuePartById(id);
 		}
 		return vp;
-	}
-
-	public Map<Integer, ValuePart> getPartIdMap()
-	{
-		return Collections.unmodifiableMap(_partIdMap);
 	}
 
 	public List<? extends DataTreeNode> getNodes()

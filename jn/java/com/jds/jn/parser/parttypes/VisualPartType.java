@@ -1,6 +1,6 @@
 package com.jds.jn.parser.parttypes;
 
-import com.jds.jn.parser.Types;
+import com.jds.jn.parser.Type;
 import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.formattree.Part;
@@ -12,9 +12,9 @@ import com.jds.jn.parser.formattree.Part;
  */
 public class VisualPartType extends PartType
 {
-	private Types _type;
+	private Type _type;
 
-	public VisualPartType(String name, Types t)
+	public VisualPartType(String name, Type t)
 	{
 		super(name);
 		_type = t;
@@ -31,7 +31,7 @@ public class VisualPartType extends PartType
 		return true;
 	}
 
-	public Types getType()
+	public Type getType()
 	{
 		return _type;
 	}

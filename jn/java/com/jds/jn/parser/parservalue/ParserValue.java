@@ -1,8 +1,8 @@
 package com.jds.jn.parser.parservalue;
 
-import javax.swing.*;
+import java.awt.Color;
 
-import java.awt.*;
+import javax.swing.ImageIcon;
 
 import com.jds.nio.buffer.NioBuffer;
 
@@ -18,4 +18,6 @@ public interface ParserValue<T>
 	public ImageIcon getIcon();
 
 	public Color getColor();
+
+	public int length();
 }

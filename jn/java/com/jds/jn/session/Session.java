@@ -44,8 +44,8 @@ public class Session
 	private final ListenerType _type;
 
 	// gui
-	private final ViewPane _viewPane = new ViewPane(this);
-	private final RibbonContextualTaskGroup _ribbonGroup;
+	private ViewPane _viewPane;
+	private RibbonContextualTaskGroup _ribbonGroup;
 
 	private final List<IPacketListener> _invokes = new ArrayList<IPacketListener>();
 
@@ -88,8 +88,6 @@ public class Session
 
 		_invokes.addAll(getProtocol().getSessionListeners());
 		_invokes.addAll(getProtocol().getGlobalListeners());
-
-		_ribbonGroup = new SessionRibbonTaskGroup(this);
 	}
 
 	public DecryptedPacket decode(CryptedPacket packet)
@@ -125,38 +123,35 @@ public class Session
 	{
 		 _cryptedPackets.add(p);
 
-		_viewPane.getCryptPacketTableModel().addRow(p);
-		_viewPane.updateInfo(this);
+		getViewPane().getCryptPacketTableModel().addRow(p);
+		getViewPane().updateInfo(this);
 	}
 
 	public synchronized void receiveQuitPacket(CryptedPacket p)
 	{
 		_cryptedPackets.add(p);
 
-		_viewPane.getCryptPacketTableModel().addRow(p);
+		getViewPane().getCryptPacketTableModel().addRow(p);
 	}
 
-	public synchronized void receiveQuitPacket(DecryptedPacket p)
+	public synchronized void receiveQuitPacket(DecryptedPacket p, boolean gui, boolean fire)
 	{
-		addDecryptPacket(p);
+		_decryptPackets.add(p);
 
-		_viewPane.getDecryptPacketTableModel().addRow(p);
-	}
+		if(gui)
+			getViewPane().getDecryptPacketTableModel().addRow(p);
 
-	public void addDecryptPacket(DecryptedPacket packet)
-	{
-		_decryptPackets.add(packet);
-
-		fireInvokePacket(packet);
+		if(fire)
+			fireInvokePacket(p);
 	}
 
 	public void onShow()
 	{
-		_viewPane.drawThis();
+		getViewPane().drawThis();
 
-		_viewPane.updateInfo(this);
-		_viewPane.getPacketListPane().getPacketTable().updateUI();
-		_viewPane.getNotDecPacketListPane().getPacketTable().updateUI();
+		getViewPane().updateInfo(this);
+		getViewPane().getPacketListPane().getPacketTable().updateUI();
+		getViewPane().getNotDecPacketListPane().getPacketTable().updateUI();
 	}
 
 	public void close()
@@ -178,6 +173,8 @@ public class Session
 
 	public ViewPane getViewPane()
 	{
+		if(_viewPane == null)
+			_viewPane = new ViewPane(this);
 		return _viewPane;
 	}
 
@@ -224,6 +221,8 @@ public class Session
 
 	public RibbonContextualTaskGroup getRibbonGroup()
 	{
+		if(_ribbonGroup == null)
+			_ribbonGroup = new SessionRibbonTaskGroup(this);
 		return _ribbonGroup;
 	}
 

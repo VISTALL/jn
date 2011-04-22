@@ -21,9 +21,6 @@ public class ForPart extends Part
 		_forId = id;
 		_fixedSize = fixedSize;
 		_modelBlock = new PartContainer(PartType.block);
-
-		if (getContainingFormat() != null)
-			getContainingFormat().triggerFormatChanged();
 	}
 
 	public PartContainer getModelBlock()
@@ -36,19 +33,11 @@ public class ForPart extends Part
 		getModelBlock().addPart(part);
 		part.setContainingFormat(this.getContainingFormat());
 		part.setParentContainer(this.getParentContainer()); // this can NOT be root
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public void addParts(List<Part> parts)
 	{
 		this.getModelBlock().addParts(parts);
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public Part getPartById(int id)
@@ -85,10 +74,6 @@ public class ForPart extends Part
 
 	public boolean removePart(Part part)
 	{
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 		return _modelBlock.removePart(part);
 	}
 

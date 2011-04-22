@@ -1,5 +1,9 @@
 package com.jds.jn.protocol.protocoltree;
 
+import java.util.AbstractMap;
+import java.util.Map;
+
+import com.jds.jn.parser.Type;
 import com.jds.jn.parser.formattree.Format;
 import com.jds.jn.parser.packetreader.PacketReader;
 
@@ -10,8 +14,10 @@ import com.jds.jn.parser.packetreader.PacketReader;
  * @author Gilles Duboscq
  * @author VISTALL
  */
-public class PacketInfo //extends ProtocolNode
+public class PacketInfo
 {
+	private final Map.Entry<Type, Long>[] _opcode;
+
 	private String _id;
 	private String _name;
 	private Format _format;
@@ -22,6 +28,17 @@ public class PacketInfo //extends ProtocolNode
 	public PacketInfo(String id, String name, boolean key, boolean serverList, Class<PacketReader> reader)
 	{
 		_id = id.toUpperCase();
+
+		String[] sl = hexArray();
+		_opcode = new Map.Entry[sl.length];
+		for(int i = 0; i < _opcode.length; i++)
+		{
+			Type t = getType(sl[i]);
+			long v = Long.decode("0x" + sl[i]);
+
+			_opcode[i] = new AbstractMap.SimpleEntry<Type, Long>(t, v);
+		}
+
 		_name = name;
 		_isKey = key;
 		_serverList = serverList;
@@ -39,6 +56,28 @@ public class PacketInfo //extends ProtocolNode
 		}
 
 		_format = new Format(this);
+	}
+
+	public static Type getType(String v)
+	{
+		int t = v.length();
+		if (t >= 1 && t <= 2)  //c
+		{
+			return Type.uc;
+		}
+		if (t >= 3 && t <= 4) //h
+		{
+			return Type.uh;
+		}
+		if (t >= 5 && t <= 8) //d
+		{
+			return Type.ud;
+		}
+		if (t >= 9 && t <= 12) //q
+		{
+			return Type.Q;
+		}
+		throw new IllegalArgumentException("Unknown type of opcode: " + v);
 	}
 
 	public Format getDataFormat()
@@ -90,5 +129,10 @@ public class PacketInfo //extends ProtocolNode
 	public String toString()
 	{
 		return getOpcodeStr() + " " + _name;
+	}
+
+	public Map.Entry<Type, Long>[] getOpcode()
+	{
+		return _opcode;
 	}
 }

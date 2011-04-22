@@ -112,7 +112,7 @@ public class LogReader extends AbstractReader
 
 			DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
 
-			_session.receiveQuitPacket(dp);
+			_session.receiveQuitPacket(dp, true, true);
 
 			int p = (int) ((100D * (i + 1)) / lines.size());
 			MainForm.getInstance().getProgressBar().setValue(p);

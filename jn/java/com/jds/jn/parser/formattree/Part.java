@@ -52,10 +52,6 @@ public class Part
 	public void setType(PartType type)
 	{
 		_type = type;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public PartType getType()
@@ -71,10 +67,6 @@ public class Part
 	public void setId(int id)
 	{
 		_id = id;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public String getName()
@@ -85,10 +77,6 @@ public class Part
 	public void setName(String name)
 	{
 		_name = name;
-		if (getContainingFormat() != null)
-		{
-			getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	/**
@@ -123,10 +111,6 @@ public class Part
 	public void setBSizeId(int sizeid)
 	{
 		_bxSizeId = sizeid;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public int getBSizeId()
@@ -142,19 +126,11 @@ public class Part
 	public void setDynamicBSize(boolean b)
 	{
 		_dynamicBSize = b;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public void setBSize(int size)
 	{
 		_bxSize = size;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public int getBSize()
@@ -175,10 +151,6 @@ public class Part
 	public void setReader(ValueReader r)
 	{
 		_reader = r;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public ValueReader getReader()

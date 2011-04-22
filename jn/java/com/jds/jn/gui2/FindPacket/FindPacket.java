@@ -31,6 +31,7 @@ import com.jds.jn.gui2.FindPacket.renderers.FPRenderer;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.network.listener.types.ListenerType;
+import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
@@ -48,21 +49,35 @@ public class FindPacket extends JDialog
 	private final ReaderListener LISTENER = new ReaderListener()
 	{
 		@Override
+		public DecryptedPacket newPacket(Session session, CryptedPacket p)
+		{
+			return new DecryptedPacket(p, session.getProtocol(), true);
+		}
+
+		@Override
+		public void readPacket(Session session, DecryptedPacket p)
+		{
+			session.receiveQuitPacket(p, false, false);
+		}
+
+		@Override
+		public void readPacket(Session session, CryptedPacket p)
+		{
+			session.receiveQuitPacket(p);
+		}
+
+		@Override
 		public void onFinish(Session session, File file)
 		{
 			if(session == null)
-			{
 				return;
-			}
 
 			PacketInfo packetInfo = (PacketInfo) _packetList.getSelectedItem();
 			List<DecryptedPacket> packets = session.getDecryptPackets();
 			for(DecryptedPacket packet : packets)
 			{
 				if(packet.getPacketInfo() == packetInfo)
-				{
 					((FPTableModel) _packetTable.getModel()).addRow(file.getName(), packet);
-				}
 			}
 		}
 	};

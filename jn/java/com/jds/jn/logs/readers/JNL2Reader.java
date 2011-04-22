@@ -76,7 +76,7 @@ public class JNL2Reader extends AbstractReader
 			{
 				DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
 
-				_session.receiveQuitPacket(dp);
+				_session.receiveQuitPacket(dp, true, true);
 			}
 			else
 			{				

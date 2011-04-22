@@ -30,18 +30,9 @@ public class SwitchPart extends Part
 		return c;
 	}
 
-	public Map<Integer, SwitchCaseBlock> getSwitchMap()
-	{
-		return Collections.unmodifiableMap(_casesMap);
-	}
-
 	public void setSwitchId(int id)
 	{
 		_switchId = id;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public int getSwitchId()
@@ -99,10 +90,6 @@ public class SwitchPart extends Part
 		{
 			_casesMap.put(iCase.getSwitchCase(), iCase);
 		}
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public Part getTestPart()
@@ -125,19 +112,11 @@ public class SwitchPart extends Part
 	{
 		if (_casesMap.remove(switchCase) != null)
 		{
-			if (this.getContainingFormat() != null)
-			{
-				this.getContainingFormat().triggerFormatChanged();
-			}
 			return true;
 		}
 		if (_default.getSwitchCase() == switchCase)
 		{
 			_default = null;
-			if (this.getContainingFormat() != null)
-			{
-				this.getContainingFormat().triggerFormatChanged();
-			}
 			return true;
 		}
 		return false;
@@ -154,10 +133,6 @@ public class SwitchPart extends Part
 		dcase.setContainingFormat(this.getContainingFormat());
 		dcase.setDefault(true);
 		_default = dcase;
-		if (this.getContainingFormat() != null)
-		{
-			this.getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	public SwitchCaseBlock getDefaultCase()
@@ -184,6 +159,4 @@ public class SwitchPart extends Part
 			block.setContainingFormat(format);
 		}
 	}
-
-
 }

@@ -105,9 +105,9 @@ public class PLogReader extends AbstractReader
 
 			CryptedPacket packet = new CryptedPacket(packetType, data, time, _session.getProtocol().getOrder());
 
-			DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
+			DecryptedPacket dp = _listener.newPacket(_session, packet);
 
-			_session.receiveQuitPacket(dp);
+			_listener.readPacket(_session, dp);
 
 			int p = (int) ((100D * (i + 1)) / lines.size());
 			MainForm.getInstance().getProgressBar().setValue(p);

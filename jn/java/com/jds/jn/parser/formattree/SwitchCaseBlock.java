@@ -62,9 +62,7 @@ public class SwitchCaseBlock extends PartContainer
 	public String treeString()
 	{
 		if (_isDefault)
-		{
 			return "Default";
-		}
 		return "Case 0x" + Integer.toHexString(_case) + (_case > 9 ? " (" + _case + ")" : "");
 	}
 

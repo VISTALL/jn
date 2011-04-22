@@ -67,6 +67,11 @@ public abstract class AbstractReader
 		_file.close();
 		_channel.close();
 
+		_file = null;
+		_channel = null;
+		_buffer = null;
+		_session = null;
+
 		_currentFile = null;
 	}
 
@@ -86,9 +91,9 @@ public abstract class AbstractReader
 				}
 
 				File f = _currentFile;
+				Session s = _session;
 				close();
-				_listener.onFinish(_session, f);
-				_session = null;
+				_listener.onFinish(s, f);
 
 				MainForm.getInstance().getProgressBar().setVisible(false);
 				MainForm.getInstance().getProgressBar().setValue(0);

@@ -1,8 +1,8 @@
 package com.jds.jn.parser.parservalue;
 
-import javax.swing.*;
+import java.awt.Color;
 
-import java.awt.*;
+import javax.swing.ImageIcon;
 
 import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
@@ -30,5 +30,11 @@ public class JShort implements ParserValue<Short>
 	public Color getColor()
 	{
 		return Color.ORANGE;
+	}
+
+	@Override
+	public int length()
+	{
+		return 2;
 	}
 }

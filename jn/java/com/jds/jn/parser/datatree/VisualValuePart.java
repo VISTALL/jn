@@ -1,7 +1,7 @@
 package com.jds.jn.parser.datatree;
 
 import com.jds.jn.network.packets.DecryptedPacket;
-import com.jds.jn.parser.Types;
+import com.jds.jn.parser.Type;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -13,9 +13,9 @@ import com.jds.nio.buffer.NioBuffer;
 public class VisualValuePart extends ValuePart
 {
 	private Object _value;
-	private Types _type;
+	private Type _type;
 
-	public VisualValuePart(DataTreeNodeContainer parent, Part part, Types type)
+	public VisualValuePart(DataTreeNodeContainer parent, Part part, Type type)
 	{
 		super(parent, part);
 		_type = type;
@@ -125,7 +125,7 @@ public class VisualValuePart extends ValuePart
 		{
 			return "";
 		}
-		else if (_type == Types.D || _type == Types.f)
+		else if (_type == Type.D || _type == Type.f)
 		{
 			return Double.toHexString(getValueAsLong()).toUpperCase();
 		}

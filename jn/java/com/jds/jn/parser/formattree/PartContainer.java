@@ -301,10 +301,6 @@ public class PartContainer extends Part
 		{
 			getParentContainer().invalidateLength();
 		}
-		if (getContainingFormat() != null)
-		{
-			getContainingFormat().triggerFormatChanged();
-		}
 	}
 
 	private void computeLength()

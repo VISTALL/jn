@@ -85,7 +85,7 @@ public class DecodeAllActionListener implements ActionListener
 								}
 							}
 
-							session.addDecryptPacket(datapacket);
+							session.receiveQuitPacket(datapacket, true, true);
 							model.addRow(datapacket);
 						}
 					}

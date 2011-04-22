@@ -40,7 +40,6 @@ public class DecryptedPacket implements IPacketData
 
 	protected NioBuffer _buf;
 
-	protected boolean _mustUpdate = true;
 	protected String _error;
 
 	protected String[] _colorForHex;
@@ -70,13 +69,9 @@ public class DecryptedPacket implements IPacketData
 
 		_packetFormat = getProtocol().getPacketInfo(this);
 		if (_packetFormat == null)
-		{
 			_buf.position(0);
-		}
 		else
-		{
 			_dataFormat = _packetFormat.getDataFormat();
-		}
 
 		if (parse)
 		{
@@ -118,19 +113,10 @@ public class DecryptedPacket implements IPacketData
 
 	public synchronized void parse()
 	{
-		if (!_mustUpdate) // could also be used to invalidate parsing results after protocol change
-		{
-			return;
-		}
-		_mustUpdate = false;
 		_packetParts = new DataTreeNodeContainer();
 
 		if (getDataFormat() != null)
-		{
-			getDataFormat().registerFormatChangeListener(this);
-
 			parse(getDataFormat().getMainBlock(), _packetParts);
-		}
 	}
 
 	private boolean parse(PartContainer protocolNode, DataTreeNodeContainer dataNode)
@@ -266,15 +252,6 @@ public class DecryptedPacket implements IPacketData
 	public int getSize()
 	{
 		return getBuffer().limit();
-	}
-
-	public void invalidateParsing()
-	{
-		synchronized (this)
-		{
-			_mustUpdate = true;
-			_packetParts = null;
-		}
 	}
 
 	public boolean hasError()

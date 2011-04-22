@@ -12,18 +12,20 @@ import com.jds.jn.config.RValues;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.parser.Type;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.PacketListenerFactory;
+import com.jds.jn.parser.parservalue.ParserValue;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.util.Util;
-import com.jds.nio.buffer.NioBuffer;
 
 /**
  * @author Gilles Duboscq
  * @author VISTALL
  */
+@SuppressWarnings("unchecked")
 public class Protocol
 {
 	private static final Logger _log = Logger.getLogger(Protocol.class);
@@ -49,60 +51,41 @@ public class Protocol
 	{
 		PacketFamilly f = _familyes.get(packet.getPacketType());
 		if (f == null)
-		{
 			return null;
-		}
 
 		PacketInfo info = null;
 
 		for (PacketInfo format : f.getFormats().values())
 		{
-			int position = packet.getBuffer().position();
-			final int start = position;
+			final int position = packet.getBuffer().position();
 
 			PartLoop:
 			{
-				String[] hexArray = format.hexArray();
+				Map.Entry<Type, Long>[] opcode = format.getOpcode();
 				// D0;0001
-				for(String hexStep : hexArray)
+				for(Map.Entry<Type, Long> op : opcode)
 				{
-					// если у нас ктото накосячил?
-					if(hexStep.trim().isEmpty())
-						break PartLoop;
+					ParserValue<Number> t = (ParserValue<Number>)op.getKey().getInstance();
 
-					long val;
-
-					int len = hexStep.length();
-					int needValue = byteCount(len);
+					Number val;
 					// если у нас достаточно для чтения
-					if((packet.getBuffer().limit() - position) >= needValue)
-					{
-						val = read(len, packet.getBuffer(), position);
-						position += needValue;
-					}
+					if((packet.getBuffer().limit() - packet.getBuffer().position()) >= t.length())
+						val = t.getValue(packet.getBuffer());
 					else
-						break PartLoop;
-
-					String hex = Long.toHexString(val).toUpperCase();
-
-					// приводим в порядок если 0x0F - F то добавляем нулик
-					if(hex.length() < hexStep.length())
 					{
-						String allZero = "";
-						for(int $ = 0; $ < (hexStep.length() - hex.length()); $++)
-							allZero += "0";
-
-						hex = allZero + hex;
+						packet.getBuffer().position(position);
+						break PartLoop;
 					}
 
 					// не совпадает выходим
-					if(!hex.equalsIgnoreCase(hexStep))
+					if(op.getValue().longValue() != val.longValue())
+					{
+						packet.getBuffer().position(position);
 						break PartLoop;
+					}
 				}
 
-				packet.getBuffer().position(position);
-
-				for (int j = start; j < position; j++)
+				for (int j = position; j < packet.getBuffer().position(); j++)
 					packet.setColor(j, "op");
 
 				info = format;
@@ -124,47 +107,6 @@ public class Protocol
 		return info;
 	}
 
-	public int byteCount(int t)
-	{
-		if (t >= 1 && t <= 2)  //c 00
-		{
-			return 1;
-		}
-		if (t >= 3 && t <= 4) //h  0000
-		{
-			return 2;
-		}
-		if (t >= 5 && t <= 8) //d  0000.0000
-		{
-			return 4;
-		}
-		if (t >= 9 && t <= 12) //q 0000.0000.0000.0000
-		{
-			return 8;
-		}
-		return 0;
-	}
-
-	public long read(int t, NioBuffer b, int pos)
-	{
-		if (t >= 1 && t <= 2)  //c
-		{
-			return b.getUnsigned(pos);
-		}
-		if (t >= 3 && t <= 4) //h
-		{
-			return b.getUnsignedShort(pos);
-		}
-		if (t >= 5 && t <= 8) //d
-		{
-			return b.getInt(pos);
-		}
-		if (t >= 9 && t <= 12) //q
-		{
-			return b.getLong(pos);
-		}
-		return 0;
-	}
 
 	public void setEncryption(String enc)
 	{
