@@ -35,17 +35,9 @@
           <hspacer id="9cc3f">
             <constraints/>
           </hspacer>
-          <component id="9948d" class="javax.swing.JProgressBar" binding="_readerProgress">
+          <component id="aee22" class="com.jds.swing.JWin7ProgressBar" binding="_readerProgress" custom-create="true">
             <constraints/>
-            <properties>
-              <enabled value="true"/>
-              <maximumSize width="200" height="20"/>
-              <minimumSize width="200" height="20"/>
-              <preferredSize width="200" height="20"/>
-              <stringPainted value="true"/>
-              <verifyInputWhenFocusTarget value="true"/>
-              <visible value="false"/>
-            </properties>
+            <properties/>
           </component>
           <hspacer id="10c25">
             <constraints/>

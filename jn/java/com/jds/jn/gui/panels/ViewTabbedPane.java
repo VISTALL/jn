@@ -92,9 +92,7 @@ public class ViewTabbedPane extends JTabbedPane
 					return;
 				}
 				if(pane.getSession() == null)
-				{
 					return;
-				}
 
 				// Session session = pane.getSession();
 				/*ConfirmDialog dialog = new ConfirmDialog(MainForm.getInstance(), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Message"), ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("ConfirmCloseSessionMessage"));

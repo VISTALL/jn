@@ -95,8 +95,8 @@ public abstract class AbstractReader
 				close();
 				_listener.onFinish(s, f);
 
-				MainForm.getInstance().getProgressBar().setVisible(false);
 				MainForm.getInstance().getProgressBar().setValue(0);
+				MainForm.getInstance().getProgressBar().setVisible(false);
 			}
 		//});
 	}

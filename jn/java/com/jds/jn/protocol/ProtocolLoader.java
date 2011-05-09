@@ -110,13 +110,9 @@ public class ProtocolLoader
 					PacketFamilly familly = parseFamilly(n);
 
 					if (familly != null)
-					{
 						protocol.setFamily(familly.getType(), familly);
-					}
 					else
-					{
 						_log.info("Error packetfamilly returned is null there was an error");
-					}
 				}
 				else if("macro".equalsIgnoreCase(n.getNodeName()))
 				{
@@ -124,9 +120,7 @@ public class ProtocolLoader
 					String name = map.getNamedItem("id").getNodeValue();
 					MacroInfo part = new MacroInfo(name);
 					if (parseParts(n, part.getModelBlock()))
-					{
 						protocol.addMacro(part);
-					}
 				}
 				else if("global_listeners".equalsIgnoreCase(n.getNodeName()))
 					protocol.setGlobalListeners(PacketListenerFactory.listListeners(PacketListenerFactory.listClasses(n)));

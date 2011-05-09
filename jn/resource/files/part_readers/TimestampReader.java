@@ -1,8 +1,9 @@
 package part_readers;
 
-import javax.swing.*;
+import java.text.SimpleDateFormat;
 
-import java.sql.Timestamp;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.datatree.VisualValuePart;
@@ -16,6 +17,8 @@ import com.jds.jn.parser.valuereader.ValueReader;
  */
 public class TimestampReader implements ValueReader
 {
+	private static final SimpleDateFormat FORMAT = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
+
 	public JComponent readToComponent(ValuePart part)
 	{
 		return new JLabel(read(part));
@@ -27,10 +30,17 @@ public class TimestampReader implements ValueReader
 		if(!(part instanceof VisualValuePart))
 			return "";
 
-		long result = ((VisualValuePart)part).getValueAsInt();
+		long val = 0;
+		switch(((VisualValuePart) part).getValueType())
+		{
+			case d:
+				val = ((VisualValuePart) part).getValueAsInt() * 1000L;
+				break;
+			case Q:
+				val = ((VisualValuePart) part).getValueAsLong();
+				break;
+		}
 
-		Timestamp tt = new Timestamp(result);
-
-		return tt.toString();
+		return FORMAT.format(val);
 	}
 }

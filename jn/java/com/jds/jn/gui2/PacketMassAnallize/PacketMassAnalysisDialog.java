@@ -89,8 +89,8 @@ public class PacketMassAnalysisDialog extends JDialog
 					i++;
 				}
 
-				MainForm.getInstance().getProgressBar().setVisible(false);
 				MainForm.getInstance().getProgressBar().setValue(0);
+				MainForm.getInstance().getProgressBar().setVisible(false);
 
 				session.close();
 			}

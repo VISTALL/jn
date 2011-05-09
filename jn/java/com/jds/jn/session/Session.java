@@ -157,8 +157,13 @@ public class Session
 	public void close()
 	{
 		fireClose();
-		
+
 		SessionTable.getInstance().removeGameSession(getSessionId());
+
+		_viewPane = null;
+		_ribbonGroup = null;
+		_decryptPackets.clear();
+		_cryptedPackets.clear();
 	}
 
 	public IMethod getMethod()

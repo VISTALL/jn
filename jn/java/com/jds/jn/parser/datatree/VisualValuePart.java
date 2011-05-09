@@ -140,4 +140,9 @@ public class VisualValuePart extends ValuePart
 	{
 		return 0;
 	}
+
+	public Type getValueType()
+	{
+		return _type;
+	}
 }

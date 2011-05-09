@@ -107,9 +107,7 @@ public class PacketForm extends JFrame
 
 				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, Bundle.getString("EnterName"));
 				if(!dialog.showToWrite())
-				{
 					return;
-				}
 
 				PartContainer pC = getPacket().getPacketInfo().getDataFormat().getMainBlock();
 				PartType partType = PartTypeManager.getInstance().getType(getPartBox().getSelectedItem().toString());

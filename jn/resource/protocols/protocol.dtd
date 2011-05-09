@@ -12,7 +12,7 @@
 	id CDATA #IMPLIED
 	name CDATA #REQUIRED
 	size CDATA #IMPLIED
-	type CDATA #IMPLIED
+	type CDATA #REQUIRED
 	val CDATA #IMPLIED>
 <!ELEMENT packetfamilly (packet)*>
 <!ATTLIST packetfamilly
