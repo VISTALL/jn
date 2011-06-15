@@ -23,9 +23,10 @@ public class PacketInfo
 	private Format _format;
 	private boolean _isKey;
 	private boolean _serverList;
+	private boolean _extended;
 	private PacketReader _packetReader;
 
-	public PacketInfo(String id, String name, boolean key, boolean serverList, Class<PacketReader> reader)
+	public PacketInfo(String id, String name, boolean key, boolean serverList, boolean extended, Class<PacketReader> reader)
 	{
 		_id = id.toUpperCase();
 
@@ -42,6 +43,7 @@ public class PacketInfo
 		_name = name;
 		_isKey = key;
 		_serverList = serverList;
+		_extended = extended;
 
 		if(reader != null)
 		{
@@ -134,5 +136,10 @@ public class PacketInfo
 	public Map.Entry<Type, Long>[] getOpcode()
 	{
 		return _opcode;
+	}
+
+	public boolean isExtended()
+	{
+		return _extended;
 	}
 }

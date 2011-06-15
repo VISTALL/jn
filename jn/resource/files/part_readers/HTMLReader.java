@@ -1,11 +1,19 @@
 package part_readers;
 
-import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JEditorPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
 
 import com.jds.jn.Jn;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.valuereader.ValueReader;
@@ -28,8 +36,7 @@ public class HTMLReader implements ValueReader
 	public JComponent readToComponent(ValuePart part)
 	{
 		JButton view = new JButton("View");
-		view.addActionListener(new ButtonActionListener(this.read(part)));
-		view.setActionCommand("clicked");
+		view.addActionListener(new ButtonActionListener(read(part)));
 		return view;
 	}
 
@@ -44,12 +51,22 @@ public class HTMLReader implements ValueReader
 
 		public void actionPerformed(ActionEvent e)
 		{
-			JDialog dlg = new JDialog(Jn.getForm(), "HTML");
+			final JDialog dlg = new JDialog();
+			dlg.setTitle("HTML");
 			dlg.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dlg.setSize(350, 400);
-			dlg.setLocationRelativeTo(Jn.getForm());
+			dlg.setLocationRelativeTo(MainForm.getInstance());
 
 			JTabbedPane tabPane = new JTabbedPane();
+			tabPane.registerKeyboardAction(new ActionListener()
+			{
+
+				@Override
+				public void actionPerformed(ActionEvent e)
+				{
+					dlg.dispose();
+				}
+			}, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
 			// HTML
 			JEditorPane htmlDisplay = new JEditorPane();

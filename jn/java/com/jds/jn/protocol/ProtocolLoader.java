@@ -97,17 +97,21 @@ public class ProtocolLoader
 
 			node = attr.getNamedItem("order");
 			if (node != null)
-			{
 				protocol.setOrder((ByteOrder)ByteOrder.class.getField(node.getNodeValue()).get(null));
-			}
 			else
 				protocol.setOrder(ByteOrder.LITTLE_ENDIAN);
+
+			node = attr.getNamedItem("extends");
+			if (node != null)
+				protocol.setExtends(node.getNodeValue());
+			else
+				protocol.setExtends(null);
 
 			for (Node n = root.getFirstChild(); n != null; n = n.getNextSibling())
 			{
 				if ("packetfamilly".equalsIgnoreCase(n.getNodeName()))
 				{
-					PacketFamilly familly = parseFamilly(n);
+					PacketFamilly familly = parseFamilly(protocol, n);
 
 					if (familly != null)
 						protocol.setFamily(familly.getType(), familly);
@@ -136,7 +140,7 @@ public class ProtocolLoader
 		return protocol;
 	}
 
-	private static PacketFamilly parseFamilly(Node n)
+	private static PacketFamilly parseFamilly(Protocol p, Node n)
 	{
 		NamedNodeMap map = n.getAttributes();
 		PacketType type = null;
@@ -172,6 +176,7 @@ public class ProtocolLoader
 				boolean isKey = map.getNamedItem("key") != null && Boolean.parseBoolean(map.getNamedItem("key").getNodeValue());
 				boolean server_list = map.getNamedItem("server_list") != null && Boolean.parseBoolean(map.getNamedItem("server_list").getNodeValue());
 				String reader_c = map.getNamedItem("reader") == null ? null : map.getNamedItem("reader").getNodeValue();
+				boolean extended = map.getNamedItem("extended") != null && Boolean.parseBoolean(map.getNamedItem("extended").getNodeValue());
 				Class<PacketReader> reader = null;
 
 				if(reader_c != null)
@@ -192,15 +197,13 @@ public class ProtocolLoader
 					continue;
 				}
 
-				PacketInfo format = new PacketInfo(id, name, isKey, server_list, reader);
+				PacketInfo format = new PacketInfo(id, name, isKey, server_list, extended, reader);
 
 				boolean b = parseParts(o, format.getDataFormat().getMainBlock());
 				if(!b)
-				{
 					System.out.println("Error after parsing");
-				}
 
-				familly.addPacket(format);
+				familly.addPacket(format, p);
 			}
 		}
 

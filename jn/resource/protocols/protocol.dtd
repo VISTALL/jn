@@ -2,7 +2,8 @@
 <!ELEMENT protocol (macro|packetfamilly|global_listeners|session_listeners)*>
 <!ATTLIST protocol
 	crypt CDATA #REQUIRED
-	name CDATA #REQUIRED>
+	name CDATA #REQUIRED
+	extends CDATA #IMPLIED>
 <!ELEMENT macro (part)*>
 <!ATTLIST macro
 	id CDATA #REQUIRED
@@ -22,7 +23,8 @@
 	id CDATA #REQUIRED
 	key CDATA #IMPLIED
 	server_list CDATA #IMPLIED
-		name CDATA #REQUIRED>
+	extended CDATA #IMPLIED
+	name CDATA #REQUIRED>
 <!ELEMENT for (part|macro|switch|for)*>
 <!ATTLIST for
 	id CDATA #IMPLIED

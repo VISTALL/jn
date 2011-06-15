@@ -64,9 +64,6 @@ public class Jn
 
 		CLoader.getInstance();
 
-		PartTypeManager.getInstance();
-		ProtocolManager.getInstance();
-
 		try
 		{
 			MainForm.init();
@@ -76,6 +73,9 @@ public class Jn
 		{
 			_log.info("MainForm: init fail" + e, e);
 		}
+
+		PartTypeManager.getInstance();
+		ProtocolManager.getInstance();
 
 		Runtime.getRuntime().addShutdownHook(new Shutdown());
 

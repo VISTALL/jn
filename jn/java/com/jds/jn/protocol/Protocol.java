@@ -39,6 +39,7 @@ public class Protocol
 	private String _encryption;
 	private String _name;
 	private String _filename;
+	private String _extends;
 
 	private ByteOrder _order = ByteOrder.LITTLE_ENDIAN;
 
@@ -138,6 +139,11 @@ public class Protocol
 		_familyes.put(type, fa);
 	}
 
+	public PacketFamilly getFamilly(PacketType t)
+	{
+		return _familyes.get(t);
+	}
+
 	public void addMacro(MacroInfo part)
 	{
 		if ((part = _macros.put(part.getId(), part)) != null)
@@ -190,5 +196,15 @@ public class Protocol
 	public void setSessionListeners(List<Class<IPacketListener>> sessionListeners)
 	{
 		_sessionListeners = sessionListeners;
+	}
+
+	public String getExtends()
+	{
+		return _extends;
+	}
+
+	public void setExtends(String anExtends)
+	{
+		_extends = anExtends;
 	}
 }

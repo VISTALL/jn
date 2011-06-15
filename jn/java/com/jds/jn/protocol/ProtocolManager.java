@@ -11,11 +11,12 @@ import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfilePart;
 import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.protocol.protocoltree.PacketFamilly;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
 
 public class ProtocolManager
 {
 	private Map<String, Protocol> _protocolsByName;
-	private String _protocolsDir;
 
 	private static ProtocolManager _instance;
 
@@ -23,19 +24,15 @@ public class ProtocolManager
 	{
 		if (_instance == null)
 		{
-			_instance = new ProtocolManager("./protocols/");
+			_instance = new ProtocolManager();
 		}
 		return _instance;
 	}
 
-	private ProtocolManager(String protocolsDir)
+	private ProtocolManager()
 	{
-		_protocolsDir = protocolsDir;
 		_protocolsByName = new HashMap<String, Protocol>();
-		if (_protocolsDir != null)
-		{
-			loadProtocols();
-		}
+		loadProtocols();
 	}
 
 	public Protocol getProtocolByName(String name)
@@ -46,11 +43,6 @@ public class ProtocolManager
 		}
 
 		return _protocolsByName.get(name);
-	}
-
-	public String getProtocolsDirectory()
-	{
-		return _protocolsDir;
 	}
 
 	public Collection<Protocol> getProtocols()
@@ -77,17 +69,17 @@ public class ProtocolManager
 	public void loadProtocols()
 	{
 		_protocolsByName.clear();
-		File dir = new File(_protocolsDir);
+		File dir = new File("./protocols/");
 
 		if (!dir.isDirectory())
 		{
-			MainForm.getInstance().warn("Invalid Protocols directory (" + _protocolsDir + ")");
+			MainForm.getInstance().warn("Invalid Protocols directory (" + dir.getAbsolutePath() + ")");
 			return;
 		}
 
 		File[] files = dir.listFiles(new FilenameFilter()
 		{
-
+			@Override
 			public boolean accept(File dir, String name)
 			{
 				return name.endsWith(".xml");
@@ -99,11 +91,32 @@ public class ProtocolManager
 		{
 			Protocol p = ProtocolLoader.restore(f);
 			if (p == null)
-			{
 				return;
-			}
 
 			_protocolsByName.put(p.getName(), p);
+		}
+
+		for(Protocol p : _protocolsByName.values())
+		{
+			if(p.getExtends() != null)
+			{
+				Protocol extendsProtocol = _protocolsByName.get(p.getExtends());
+				if(extendsProtocol != null)
+				{
+					for(PacketFamilly extendsFamily : extendsProtocol.getFamilies())
+						for(PacketInfo packetInfo : extendsFamily.getFormats().values())
+							if(packetInfo.isExtended())
+							{
+								PacketFamilly familly = p.getFamilly(extendsFamily.getType());
+								if(familly == null)
+									p.setFamily(extendsFamily.getType(), familly = new PacketFamilly(extendsFamily.getType()));
+
+								familly.addPacket(packetInfo, null);
+							}
+				}
+				else
+					MainForm.getInstance().warn("Not find extends protocol: " + p.getExtends() + " from " + p.getName());
+			}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE protocol SYSTEM "protocol.dtd"><!--Epilogue ct2.4-->
-<protocol crypt="L2Game" name="Lineage 2 Game Server Epilogue" extends="l2game_final">
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
+<protocol crypt="L2Game" name="l2game_final"> <!--Final ct2.3-->
 	<!--Inventory Macro-->
 	<macro id="item">
 		<part name="type" type="h"/>
@@ -1283,6 +1283,29 @@
 		<packet id="FE;007B" name="ExOlympiadSpelledInfoPacket"/>
 		<packet id="FE;007C" name="ExOlympiadModePacket"/>
 		<packet id="FE;007D" name="ExShowFortressMapInfo"/>
+		<packet id="FE;007E" name="ExPVPMatchRecord" extended="true">
+			<part name="state" type="d" /> <!--0 - preparing, 1 - start-->
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="blue_kills" type="d" />
+			<part name="red_kills" type="d" />
+			<part name="blue_size" type="d" id="0"/>
+			<for id="0">
+				<part name="name" type="S" />
+				<part name="kills" type="d" />
+				<part name="deaths" type="d" />
+			</for>
+			<part name="red_size" type="d" id="0"/>
+			<for id="0">
+				<part name="name" type="S" />
+				<part name="kills" type="d" />
+				<part name="deaths" type="d" />
+			</for>
+		</packet>
+		<packet id="FE;007F" name="ExPVPMatchUserDie" extended="true">
+			<part name="blue_kills" type="d" />
+			<part name="red_kills" type="d" />
+		</packet>
 		<packet id="FE;0080" name="ExPrivateStoreSetWholeMsg"/>
 		<packet id="FE;0081" name="ExPutEnchantTargetItemResult"/>
 		<packet id="FE;0082" name="ExPutEnchantSupportItemResult"/>

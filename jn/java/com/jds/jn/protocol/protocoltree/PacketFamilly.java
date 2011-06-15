@@ -5,6 +5,7 @@ import java.util.TreeMap;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.PacketType;
+import com.jds.jn.protocol.Protocol;
 
 /**
  * @author Gilles Duboscq
@@ -20,12 +21,15 @@ public class PacketFamilly// extends ProtocolNode
 		_type = t;
 	}
 
-	public void addPacket(PacketInfo format)
+	public void addPacket(PacketInfo format, Protocol p)
 	{
-		if ((format = _formats.put(format.getId(), format)) != null)
+		if(p != null)
 		{
-			MainForm.getInstance().info("More than 1 packet register for 1 packet id: " + format.getId());
+			if ((format = _formats.put(format.getId(), format)) != null)
+			MainForm.getInstance().info("Duplicate packet for one opcode: " + format.getId() + "; protocol:" + p.getName());
 		}
+		else
+			_formats.put(format.getId(), format);
 	}
 
 	public Map<String, PacketInfo> getFormats()
