@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_highfive5" extends="l2game_final">
-	<!--<global_listeners>
+	<global_listeners>
 		<listener name="lineage2.L2World" />
-	</global_listeners>   -->
+	</global_listeners>
 	<!--Item Macro-->
 	<macro id="item">
 		<part name="obj_id" type="d"/>

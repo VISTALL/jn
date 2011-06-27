@@ -8,6 +8,7 @@ import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
 import packet_readers.lineage2.L2World;
 import packet_readers.lineage2.infos.L2NpcInfo;
+import packet_readers.lineage2.infos.L2SpawnLocInfo;
 
 /**
  * Author: VISTALL
@@ -51,6 +52,8 @@ public class L2NpcInfoListener   implements IPacketListener
 				list = npc;
 				_world.addNpcByNpcId(npc.getNpcId(), list);
 			}
+			else
+				list.getSpawnLoc().add(new L2SpawnLocInfo(p));
 		}
 	}
 

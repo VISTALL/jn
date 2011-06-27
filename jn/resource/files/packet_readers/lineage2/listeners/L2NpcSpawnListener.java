@@ -17,6 +17,7 @@ import packet_readers.lineage2.L2World;
 import packet_readers.lineage2.holders.NpcNameHolder;
 import packet_readers.lineage2.infos.L2NpcInfo;
 import packet_readers.lineage2.infos.L2SkillInfo;
+import packet_readers.lineage2.infos.L2SpawnLocInfo;
 
 /**
  * Author: VISTALL
@@ -156,12 +157,15 @@ public class L2NpcSpawnListener implements IPacketListener
 					"<list>\n");
 			for(L2NpcInfo npc : npcs)
 			{
-				String text =
-						"\t<spawn count=\"1\" respawn=\"60\" respawn_random=\"0\" period_of_day=\"none\">\n" +
-						"\t\t<point x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\" />\n" +
-						"\t\t<npc id=\"%d\" /><!--%s-->\n" +
-						"\t</spawn>\n";
-				writer.write(String.format(text, npc.getSpawnLoc().getX(), npc.getSpawnLoc().getY(), npc.getSpawnLoc().getZ(), npc.getSpawnLoc().getH(), npc.getNpcId(), NpcNameHolder.getInstance().name(npc.getNpcId())));
+				for(L2SpawnLocInfo spawnLocInfo : npc.getSpawnLoc())
+				{
+					String text =
+							"\t<spawn count=\"1\" respawn=\"60\" respawn_random=\"0\" period_of_day=\"none\">\n" +
+							"\t\t<point x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\" />\n" +
+							"\t\t<npc id=\"%d\" /><!--%s-->\n" +
+							"\t</spawn>\n";
+					writer.write(String.format(text, spawnLocInfo.getX(), spawnLocInfo.getY(), spawnLocInfo.getZ(), spawnLocInfo.getH(), npc.getNpcId(), NpcNameHolder.getInstance().name(npc.getNpcId())));
+				}
 			}
 			writer.write("</list>");
 			writer.close();

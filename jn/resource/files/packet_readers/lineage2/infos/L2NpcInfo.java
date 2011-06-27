@@ -34,7 +34,7 @@ public class L2NpcInfo
 
 	private final Map<Integer, L2SkillInfo> _skills = new HashMap<Integer, L2SkillInfo>();
 	private final List<L2DialogInfo> _dialogs = new ArrayList<L2DialogInfo>();
-	private final L2SpawnLocInfo _spawnLocInfo;
+	private final Set<L2SpawnLocInfo> _spawnLocInfo;
 
 	public L2NpcInfo(DecryptedPacket p)
 	{
@@ -50,7 +50,8 @@ public class L2NpcInfo
 		_armor = p.getInt("armor");
 		_lhand = p.getInt("lhand");
 
-		_spawnLocInfo = new L2SpawnLocInfo(p);
+		_spawnLocInfo = new HashSet<L2SpawnLocInfo>();
+		_spawnLocInfo.add(new L2SpawnLocInfo(p));
 	}
 
 	public String toXML()
@@ -186,7 +187,7 @@ public class L2NpcInfo
 		return _dialogs;
 	}
 
-	public L2SpawnLocInfo getSpawnLoc()
+	public Set<L2SpawnLocInfo> getSpawnLoc()
 	{
 		return _spawnLocInfo;
 	}

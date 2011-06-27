@@ -4,9 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.napile.primitive.maps.IntObjectMap;
 import org.napile.primitive.maps.impl.TreeIntObjectMap;
@@ -17,7 +15,6 @@ import packet_readers.lineage2.holders.ItemNameHolder;
 import packet_readers.lineage2.holders.NpcNameHolder;
 import packet_readers.lineage2.holders.SkillNameHolder;
 import packet_readers.lineage2.infos.L2NpcInfo;
-import packet_readers.lineage2.infos.L2SpawnLocInfo;
 import packet_readers.lineage2.listeners.L2AirShipTeleportListListener;
 import packet_readers.lineage2.listeners.L2NpcBMListsListener;
 import packet_readers.lineage2.listeners.L2NpcDialogListener;
@@ -48,7 +45,6 @@ public class L2World implements IPacketListener
 	// npcs
 	private IntObjectMap<L2NpcInfo> _npcInfos = new TreeIntObjectMap<L2NpcInfo>();
 	private IntObjectMap<L2NpcInfo> _npcInfosByNpcId = new TreeIntObjectMap<L2NpcInfo>();
-	private Set<L2SpawnLocInfo> _spawnInfo = new HashSet<L2SpawnLocInfo>();
 
 	public L2World()
 	{
@@ -98,11 +94,6 @@ public class L2World implements IPacketListener
 	//===========================================================================================
 	// 				Npcs
 	//===========================================================================================
-	public void addSpawnInfo(L2SpawnLocInfo info)
-	{
-		_spawnInfo.add(info);
-	}
-
 	public void addNpc(int obj, L2NpcInfo npc)
 	{
 		_npcInfos.put(obj, npc);

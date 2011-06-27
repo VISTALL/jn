@@ -47,6 +47,9 @@ import packet_readers.aion.listeners.AionPlayerInfoListener;
  */
 public class AionWorld implements IPacketListener
 {
+	public static final String TEMPLATE =
+			"INSERT INTO spawns (spawn_id, npc_id, npc_name, map_id, x, y, z, heading, spawn_time, walker_id, random_walk, static_id, fly, respawn_time ) VALUES " +
+			"(SPAWN_ID, %d, \"NULL\", %d, %f, %f, %f, %d, 'ALL', 0, 0, %d, 0, 295);\n";
 	public class SaveActionListener implements ActionListener
 	{
 		@Override
@@ -62,14 +65,25 @@ public class AionWorld implements IPacketListener
 				{
 					if(!npc.isValid())
 						continue;
-					writer.write("\t<npc id=\"" + npc.getNpcId() + "\" max_hp=\"" + npc.getMaxHP() + "\" name_id=\"" + npc.getNameId() + "\" title_id=\"" + npc.getTitleId() + "\" state=\"" + npc.getNpcState() + "\">\n");
-					for(AionLoc loc : npc.getLocs())
+					writer.write("\t<npc id=\"" + npc.getNpcId() + "\" max_hp=\"" + npc.getMaxHP() + "\" name_id=\"" + npc.getNameId() + "\" title_id=\"" + npc.getTitleId() + "\" state=\"" + npc.getNpcState() + "\" />\n");
+					/*for(AionLoc loc : npc.getLocs())
 					{
 						writer.write("\t\t<loc x=\"" + loc.getX() + "\" y=\"" + loc.getY() + "\" z=\"" + loc.getZ() + "\" h=\"" + loc.getH() + "\" world_id=\"" + loc.getWorldId() + "\" static_object_id=\"" + loc.getStaticId() +"\" />\n");
 					}
-					writer.write("\t</npc>\n");
+					writer.write("\t</npc>\n");   */
 				}
 				writer.write("</list>");
+				writer.close();
+
+				npcFile = new File("./saves/npcs-" + format.format(System.currentTimeMillis()) + ".sql");
+				writer = new FileWriter(npcFile);
+				for(AionNpc npc : valuesNpc())
+				{
+					if(!npc.isValid())
+						continue;
+					for(AionLoc loc : npc.getLocs())
+						writer.write(String.format(TEMPLATE, npc.getNpcId(), loc.getWorldId(), loc.getX(), loc.getY(), loc.getZ(), loc.getH(), loc.getStaticId()));
+				}
 				writer.close();
 			}
 			catch(IOException ex)

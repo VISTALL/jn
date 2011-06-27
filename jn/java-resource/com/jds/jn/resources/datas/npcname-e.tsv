@@ -2423,6 +2423,9 @@
 22810	Micro Scout Golem		A9E89C
 22811	Great Chaos Golem		A9E89C
 22812	Boom Golem		A9E89C
+2081	Plague Kanabion		A9E89C
+2082	Plague Kanabion	Doppler	A9E89C
+2083	Plague Kanabion	Void	A9E89C
 22813	Demon's Banquet		A9E89C
 22814	Demon's Banquet		A9E89C
 22815	Drakos		A9E89C
@@ -2498,9 +2501,9 @@
 25023	Stakato Queen Zyrnna	Raid Boss	FE8B3F
 25024	Jeruna's Guard Captain	Raid Fighter	FE8B3F
 25025	Jeruna's Guard	Raid Fighter	FE8B3F
-25026	Katu Van Leader Atui	Raid Boss	FE8B3F
-25027	Katu Van Marksman	Raid Fighter	FE8B3F
-25028	Katu Van Raider	Raid Fighter	FE8B3F
+25026	Ketra Commander Atis	Raid Boss	FE8B3F
+25027	Ketra Marksman	Raid Fighter	FE8B3F
+25028	Ketra Raider	Raid Fighter	FE8B3F
 25029	Atraiban	Raid Boss	FE8B3F
 25030	Atraiban's Top Disciple	Raid Fighter	FE8B3F
 25031	Atraiban's Disciple	Raid Fighter	FE8B3F
@@ -2529,9 +2532,9 @@
 25054	Kernon	Raid Boss	FE8B3F
 25055	Taliadon	Raid Fighter	FE8B3F
 25056	Vemsk	Raid Fighter	FE8B3F
-25057	Biconne of Blue Sky	Raid Boss	FE8B3F
-25058	Biconne's Shooter	Raid Fighter	FE8B3F
-25059	Biconne's Warrior	Raid Fighter	FE8B3F
+25057	Beacon of Blue Sky	Raid Boss	FE8B3F
+25058	Beacon's Shooter	Raid Fighter	FE8B3F
+25059	Beacon's Warrior	Raid Fighter	FE8B3F
 25060	Unrequited Kael	Raid Boss	FE8B3F
 25061	Kael's Bead	Raid Fighter	FE8B3F
 25062	Kael's Escort	Raid Fighter	FE8B3F
@@ -2652,8 +2655,8 @@
 25179	Guardian of the Statue of Giant Karum	Raid Boss	FE8B3F
 25180	Karum's Guard	Raid Fighter	FE8B3F
 25181	Karum's Warrior	Raid Fighter	FE8B3F
-25182	Demon Kurikups	Raid Boss	FE8B3F
-25183	Kurikups' Wife	Raid Fighter	FE8B3F
+25182	Demon Kuri	Raid Boss	FE8B3F
+25183	Kuri's Wife	Raid Fighter	FE8B3F
 25184	Devil Blader of Chaos	Raid Fighter	FE8B3F
 25185	Tasaba Patriarch Hellena	Raid Boss	FE8B3F
 25186	Hellena's Marksman	Raid Fighter	FE8B3F
@@ -2701,7 +2704,7 @@
 25231	Ragoth's Guard	Raid Fighter	FE8B3F
 25232	Ragoth's Herald	Raid Fighter	FE8B3F
 25233	Spirit of Andras, the Betrayer	Raid Boss	FE8B3F
-25234	Ancient Weird Drake	Raid Boss	FE8B3F
+25234	Ancient Drake	Raid Boss	FE8B3F
 25235	Vanor Chief Kandra	Raid Boss	FE8B3F
 25236	Kandra's Healer	Raid Fighter	FE8B3F
 25237	Kandra's Guard	Raid Fighter	FE8B3F
@@ -2842,9 +2845,9 @@
 25372	Discarded Guardian	Raid Boss	FE8B3F
 25373	Malex Herald of Dagoniel 	Raid Boss	FE8B3F
 25374	Abyss Flyer	Raid Fighter	FE8B3F
-25375	Zombie Lord Farakelsus	Raid Boss	FE8B3F
-25376	Warrior Zombie of Farakelsus	Raid Fighter	FE8B3F
-25377	Priest Zombie of Farakelsus	Raid Fighter	FE8B3F
+25375	Zombie Lord Ferkel	Raid Boss	FE8B3F
+25376	Ferkel's Warrior	Raid Fighter	FE8B3F
+25377	Ferkel's Priest	Raid Fighter	FE8B3F
 25378	Madness Beast	Raid Boss	FE8B3F
 25379	Dementia Beast	Raid Fighter	FE8B3F
 25380	Kaysha Herald of Icarus	Raid Boss	FE8B3F
@@ -3174,8 +3177,8 @@
 25711	Lost Guard		FE8B3F
 25712	Lost Assistant Guard		FE8B3F
 25713	Darnels	Square	FE8B3F
-25714	Kietch	Flames	FE8B3F
-25715	Kietch's Subordinate		FE8B3F
+25714	Kechi	Flames	FE8B3F
+25715	Kechi's Subordinate		FE8B3F
 25716	Tears	Ice	FE8B3F
 25717	Tears	Ice	FE8B3F
 25718	Emerald Horn	Raid Boss	FE8B3F
@@ -3195,6 +3198,73 @@
 25732	Dragon Beast	Raid Boss	FE8B3F
 25733	Gem Dragon		A9E89C
 25734	Parasitic Leech		A9E89C
+25735	Greyclaw Kutus	Lord of Destruction	FE8B3F
+25736	Kutus' Guard	Follower of Destruction	FE8B3F
+25737	Kutus' Pawn	Follower of Destruction	FE8B3F
+25738	Lead Tracker Sharuk	Lord of Destruction	FE8B3F
+25739	Sharuk's Minion	Follower of Destruction	FE8B3F
+25740	Sharuk's Marksman	Follower of Destruction	FE8B3F
+25741	Sukar Wererat Chief	Lord of Destruction	FE8B3F
+25742	Sukar Wererat Guard	Follower of Destruction	FE8B3F
+25743	Sukar Wererat Priest	Follower of Destruction	FE8B3F
+25744	Ikuntai	Lord of Destruction	FE8B3F
+25745	Ikuntai's Servitor	Follower of Destruction	FE8B3F
+25746	Ikuntai's Pawn	Follower of Destruction	FE8B3F
+25747	Zombie Lord Crowl	Lord of Destruction	FE8B3F
+25748	Evil Spirit Archer	Follower of Destruction	FE8B3F
+25749	Evil Spirit Warrior	Follower of Destruction	FE8B3F
+25750	Zombie Lord Ferkel	Lord of Destruction	FE8B3F
+25751	Ferkel's Warrior	Follower of Destruction	FE8B3F
+25752	Ferkel's Priest	Follower of Destruction	FE8B3F
+25753	Guillotine Warden	Lord of Destruction	FE8B3F
+25754	Fire Lord Shadar	Lord of Destruction	FE8B3F
+25755	Sword of Shadar	Follower of Destruction	FE8B3F
+25756	Whip of Shadar	Follower of Destruction	FE8B3F
+25757	Soul Collector Acheron	Lord of Destruction	FE8B3F
+25758	Soul Slasher	Follower of Destruction	FE8B3F
+25759	Soul Strainer	Follower of Destruction	FE8B3F
+25760	Lord Ishka	Lord of Destruction	FE8B3F
+25761	Ishka's Elite Officer	Follower of Destruction	FE8B3F
+25762	Ishka's Elite Soldier	Follower of Destruction	FE8B3F
+25763	Demon Kuri	Lord of Destruction	FE8B3F
+25764	Kuri's Wife	Follower of Destruction	FE8B3F
+25765	Devil Blader of Chaos	Follower of Destruction	FE8B3F
+25766	Ancient Drake	Lord of Destruction	FE8B3F
+25767	Carnage Lord Gato	Lord of Destruction	FE8B3F
+25768	Gato's Marksman	Follower of Destruction	FE8B3F
+25769	Gato's Champion	Follower of Destruction	FE8B3F
+25770	Ketra Commander Atis	Lord of Destruction	FE8B3F
+25771	Ketra Marksman	Follower of Destruction	FE8B3F
+25772	Ketra Raider	Follower of Destruction	FE8B3F
+25773	Beacon of Blue Sky	Lord of Destruction	FE8B3F
+25774	Beacon's Shooter	Follower of Destruction	FE8B3F
+25775	Beacon's Warrior	Follower of Destruction	FE8B3F
+25776	Earth Protector Panathen	Lord of Destruction	FE8B3F
+25777	Panathen's Knight	Follower of Destruction	FE8B3F
+25778	Panathen's Protectors	Follower of Destruction	FE8B3F
+25779	Betrayer of Urutu Freki	Lord of Destruction	FE8B3F
+25780	Freki's Vampire Bat	Follower of Destruction	FE8B3F
+25781	Freki's Wild Bear	Follower of Destruction	FE8B3F
+25782	Nellis' Vengeful Spirit	Lord of Destruction	FE8B3F
+25783	Nellis' Follower	Follower of Destruction	FE8B3F
+25784	Rayito the Looter	Lord of Destruction	FE8B3F
+25785	Rayito's Henchman	Follower of Destruction	FE8B3F
+25786	Rayito's Henchman	Follower of Destruction	FE8B3F
+25787	Ketra's Hero Hekaton	Lord of Destruction	FE8B3F
+25788	Scout of Hekaton	Follower of Destruction	FE8B3F
+25789	Servant of Hekaton	Follower of Destruction	FE8B3F
+25790	Varka's Hero Shadith	Lord of Destruction	FE8B3F
+25791	Shadith's Royal Guard Captain	Follower of Destruction	FE8B3F
+25792	Shadith's Sentinel	Follower of Destruction	FE8B3F
+25793	Doom Blade Tanatos	Lord of Destruction	FE8B3F
+25794	Kernon	Lord of Destruction	FE8B3F
+25795	Taliadon	Follower of Destruction	FE8B3F
+25796	Vemsk	Follower of Destruction	FE8B3F
+25797	Meanas Anor	Lord of Destruction	FE8B3F
+25798	Wyvern of Marsh	Follower of Destruction	FE8B3F
+25799	Succubus of Marsh	Follower of Destruction	FE8B3F
+25800	Mammon Collector Talos	Lord of Destruction	FE8B3F
+25801	Talos' Cohort	Follower of Destruction	FE8B3F
 29001	Queen Ant		A9E89C
 29002	Queen Ant Larva		A9E89C
 29003	Nurse Ant		A9E89C
@@ -3223,7 +3293,7 @@
 29026	Pirate Zombie Captain		A9E89C
 29027	Pirate Zombie		A9E89C
 29028	Valakas	Fire Dragon	A9E89C
-29029	Lavasaurus Pustbon		A9E89C
+29029	Lavasaurus Alpha		A9E89C
 29030	Fenril Hound Kerinne	Family of Valakas	FE8B3F
 29031	Kerinne's Ifrit		A9E89C
 29032	Kerinne's Golem		A9E89C
@@ -4039,9 +4109,9 @@
 18661			A9E89C
 18662			A9E89C
 18663			A9E89C
-18664	Luckpy Luckpy	The Spirit of Pigs	A9E89C
-18665	Luckpy Luckpy	The Spirit of Pigs	A9E89C
-18666	Luckpy Luckpy	The Spirit of Pigs	A9E89C
+18664	Lucky Pig	The Spirit of Fortune	A9E89C
+18665	Lucky Pig	The Spirit of Fortune	A9E89C
+18666	Lucky Pig	The Spirit of Fortune	A9E89C
 18667	Ward of Death		A9E89C
 18668	Ward of Death		A9E89C
 18669			A9E89C
@@ -4057,8 +4127,8 @@
 18679	Energy Seed - Fire		A9E89C
 18680	Energy Seed - Wind		A9E89C
 18681	Energy Seed - Earth		A9E89C
-18682	Energy Seed - Divinity		A9E89C
-18683	Energy Seed - Darkness		A9E89C
+18682	Energy Seed - Holy		A9E89C
+18683	Energy Seed - Dark		A9E89C
 18684	Red Star Stone		A9E89C
 18685	Red Star Stone		A9E89C
 18686	Red Star Stone		A9E89C
@@ -4347,9 +4417,9 @@
 18969	Magma Drake Mother		A9E89C
 18970	Magma Drake Hatchling		A9E89C
 18971	Gem Dragon Hatchling		A9E89C
-2501	Luckpy Luckpy	The Spirit of Pigs	A9E89C
-2502	Wingless Luckpy Luckpy		A9E89C
-2503	Wingless Luckpy Luckpy		A9E89C
+2501	Lucky Pig	The Spirit of Fortune	A9E89C
+2502	Wingless Lucky Pig		A9E89C
+2503	Wingless Lucky Pig		A9E89C
 27001	Orc Sniper		A9E89C
 27002	Orc Fighter		A9E89C
 27003	Spirit Of Mirrors	Quest Monster	FF8000
@@ -6003,7 +6073,7 @@
 31537	Tunatun	Beast Herder	A9E89C
 31538	Ghost of Adventurer		A9E89C
 31539	Vulcan	Blacksmith of Flame	A9E89C
-31540	Klein	Watcher of Valakas	A9E89C
+31540	Klein	Valakas Watchman	A9E89C
 31541	Daimon's Altar		A9E89C
 31542	Yeti's Table		A9E89C
 31543	Pulin		A9E89C
@@ -7232,7 +7302,7 @@
 32794	Solina	Saintess of Elmore-Aden	A9E89C
 32795	Eris	Solina's Disciple	A9E89C
 32796	Anais	Solina's Disciple	A9E89C
-32797	Judith van Etina	Solina's Disciple	A9E89C
+32797	Jude van Etina	Solina's Disciple	A9E89C
 32798	Elcadia	Abyssal Saintess	A9E89C
 32799	Hardin	Grand Wizard	A9E89C
 32800	Frikios	Guide of Revelation	A9E89C
@@ -7323,8 +7393,8 @@
 32885	Behemoth Leader		A9E89C
 32886	Dragon Beast		A9E89C
 32887	Metar	Recipe Merchant	A9E89C
-32888	Judith van Etina's Evil Thoughts	Solina's Disciple	A9E89C
-32889	Judith van Etina's Evil Thoughts	Solina's Disciple	A9E89C
+32888	Jude van Etina's Evil Thoughts	Solina's Disciple	A9E89C
+32889	Jude van Etina's Evil Thoughts	Solina's Disciple	A9E89C
 32890	Ruiman	Warehouse Keeper of the Valley	A9E89C
 32891	Separated Soul		A9E89C
 4301	Miss Queen	Valentine Messenger	A9E89C
@@ -7342,17 +7412,20 @@
 4313	Angel Cat	Character Collector	A9E89C
 4314	Teleport Device		A9E89C
 4315	Warehouse Keeper	Fantasy Isle Warehouse Keeper 	A9E89C
-4316	Kind Sno	Photo NPC	A9E89C
-4317	Kind Sno	Photo NPC	A9E89C
-4318	Kind Sno	Photo NPC	A9E89C
-4319	Kind Sno	Photo NPC	A9E89C
-4320	Kind Sno	Photo NPC	A9E89C
-4321	Kind Sno	Photo NPC	A9E89C
-4322	Kind Sno	Photo NPC	A9E89C
-4323	Kind Sno	Photo NPC	A9E89C
+4316	Photo Snow	Photographer	A9E89C
+4317	Photo Snow	Photographer	A9E89C
+4318	Photo Snow	Photographer	A9E89C
+4319	Photo Snow	Photographer	A9E89C
+4320	Photo Snow	Photographer	A9E89C
+4321	Photo Snow	Photographer	A9E89C
+4322	Photo Snow	Photographer	A9E89C
+4323	Photo Snow	Photographer	A9E89C
 4324	Worshipper	Sinister	A9E89C
 4325	Altar Guard		A9E89C
 4326	Nevit's Herald	Invoker	A9E89C
+4327	Worshipper	Sinister	A9E89C
+4328	Altar Guard		A9E89C
+4329	Miss Queen	Happy Messenger	A9E89C
 35010	Mercenary		A9E89C
 35011	Mercenary		A9E89C
 35012	Mercenary		A9E89C
@@ -8514,24 +8587,24 @@
 36169	Mercenary Captain		A9E89C
 36170	Mercenary Private		A9E89C
 36171	Flagpole		A9E89C
-36172	Foreman	Antharas' Fortress	A9E89C
-36173	Suspicious Merchant	Antharas' Fortress	A9E89C
-36174	Guard Captain	Antharas' Fortress	A9E89C
-36175	Archer Captain	Antharas' Fortress	A9E89C
-36176	General	Antharas' Fortress	A9E89C
-36177	Support Unit Captain	Antharas' Fortress	A9E89C
-36178	Engineering Manager	Antharas' Fortress	A9E89C
-36179	Logistics Officer	Antharas' Fortress	A9E89C
+36172	Foreman	Antharas's Fortress	A9E89C
+36173	Suspicious Merchant	Antharas's Fortress	A9E89C
+36174	Guard Captain	Antharas's Fortress	A9E89C
+36175	Archer Captain	Antharas's Fortress	A9E89C
+36176	General	Antharas's Fortress	A9E89C
+36177	Support Unit Captain	Antharas's Fortress	A9E89C
+36178	Engineering Manager	Antharas's Fortress	A9E89C
+36179	Logistics Officer	Antharas's Fortress	A9E89C
 36180	Supply Box		A9E89C
-36181	Detention Camp Warden	Antharas' Fortress	A9E89C
+36181	Detention Camp Warden	Antharas's Fortress	A9E89C
 36182	Doorman		A9E89C
 36183	Doorman		A9E89C
 36184	Doorman		A9E89C
-36185	Rebel Commander	Antharas' Fortress	A9E89C
-36186	Decorated Rebel Soldier	Antharas' Fortress	A9E89C
-36187	Rebel Private	Antharas' Fortress	A9E89C
-36188	Court Guard	Antharas' Fortress	A9E89C
-36189	Guard	Antharas' Fortress	A9E89C
+36185	Rebel Commander	Antharas's Fortress	A9E89C
+36186	Decorated Rebel Soldier	Antharas's Fortress	A9E89C
+36187	Rebel Private	Antharas's Fortress	A9E89C
+36188	Court Guard	Antharas's Fortress	A9E89C
+36189	Guard	Antharas's Fortress	A9E89C
 36190	Main Machine	Control Room	A9E89C
 36191	Backup Power Unit	Control Room	A9E89C
 36192	Control Unit	Control Room	A9E89C
@@ -8548,7 +8621,7 @@
 36203	Archer	Archer	A9E89C
 36204	General	Officer's Barracks	A9E89C
 36205	Minister	Officer's Barracks	A9E89C
-36206	Ballista	Antharas' Fortress	A9E89C
+36206	Ballista	Antharas's Fortress	A9E89C
 36207	Mercenary Captain		A9E89C
 36208	Mercenary Private		A9E89C
 36209	Flagpole		A9E89C
@@ -8814,7 +8887,7 @@
 36469	Wyvern Manager	Cloud Mountain	A9E89C
 36470	Wyvern Manager	Tanor Fortress	A9E89C
 36471	Wyvern Manager	Dragonspine Fortress	A9E89C
-36472	Wyvern Manager	Antharas' Fortress	A9E89C
+36472	Wyvern Manager	Antharas's Fortress	A9E89C
 36473	Wyvern Manager	Western Fortress	A9E89C
 36474	Wyvern Manager	Hunter's Fortress	A9E89C
 36475	Wyvern Manager	Aaru Fortress	A9E89C
@@ -10017,6 +10090,7 @@
 1602	Super Kat the Cat Z		A9E89C
 1603	Super Mew the Cat Z		A9E89C
 1604	Hanbok Agathion		A9E89C
+1605	Juju Agathion		A9E89C
 12077	Wolf		A9E89C
 12311	Hatchling of the Wind		A9E89C
 12312	Hatchling of the Stars		A9E89C
@@ -10129,7 +10203,7 @@
 13098	Event Treasure Chest		A9E89C
 13099	Zaken		A9E89C
 13100	Anakim		A9E89C
-13101	Benom		A9E89C
+13101	Venom		A9E89C
 13102	Gordon		A9E89C
 13103	Ranku		A9E89C
 13104	Kiyachi		A9E89C
@@ -10376,13 +10450,13 @@
 146	Totem of Fortitude		A9E89C
 147	Party Cake		A9E89C
 148	Campfire		A9E89C
-149	Baby Rabbit		A9E89C
-150	Baby Rabbit Boss		A9E89C
-151	Gloomy Baby Rabbit		A9E89C
-152	Gloomy Baby Rabbit Boss		A9E89C
+149	Bad Bunny		A9E89C
+150	Bad Bunny Captain		A9E89C
+151	Liverless Bunny		A9E89C
+152	Liverless Bunny Captain		A9E89C
 153	Employee of Magic Research Institute	Event Manager	A9E89C
 154			A9E89C
 155			A9E89C
-156	Rabbit		A9E89C
-157	Rabbit Boss		A9E89C
+156	Big Liver Bunny		A9E89C
+157	Big Liver Bunny Captain		A9E89C
 158	Wood Horse		A9E89C
