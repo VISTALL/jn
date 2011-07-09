@@ -732,7 +732,13 @@
 				</switch>
 			</for>
 		</packet>
-		<packet id="86" name="QuestList"/>
+		<packet id="86" name="QuestList">
+			<part name="size" type="h" id="0"/>
+			<for id="0">
+				<part name="quest_id" type="d" />
+				<part name="cond" type="d" />
+			</for>
+		</packet>
 		<packet id="9e" name="PlaySound">
 			<part name="type" type="d"/>
 			<part name="sound" type="S"/>
@@ -1431,7 +1437,9 @@
 		</packet>
 		<packet id="FE;001F" name="ExFishingEndPacket"/>
 		<packet id="FE;0020" name="ExShowQuestInfoPacket"/>
-		<packet id="FE;0021" name="ExShowQuestMarkPacket"/>
+		<packet id="FE;0021" name="ExShowQuestMark">
+			<part name="quest_id" type="d" />
+		</packet>
 		<packet id="FE;0022" name="ExSendManorListPacket"/>
 		<packet id="FE;0023" name="ExShowSeedInfoPacket"/>
 		<packet id="FE;0024" name="ExShowCropInfoPacket"/>
@@ -1540,7 +1548,17 @@
 		</packet>
 		<packet id="FE;0066" name="ExStopMoveAirShipPacket"/>
 		<packet id="FE;0067" name="ExShowTracePacket"/>
-		<packet id="FE;0068" name="ExItemAuctionInfoPacket"/>
+		<packet id="FE;0068" name="ExItemAuctionInfo">
+			<part name="refresh" type="c" />
+			<part name="instance_id" type="d" />
+			<part name="bid" type="Q" />
+			<part name="time" type="d" />
+			<macro id="item" name="item" />
+
+			<part name="next_bid" type="Q" />
+			<part name="next_time" type="d" />
+			<macro name="next_item" id="item" />
+		</packet>
 		<packet id="FE;0069" name="ExNeedToChangeName"/>
 		<packet id="FE;006A" name="ExPartyPetWindowDelete"/>
 		<packet id="FE;006B" name="ExTutorialList"/>

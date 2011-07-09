@@ -26,7 +26,7 @@ public class VisualValuePart extends ValuePart
 	{
 		final int position = buf.position();
 
-		_value = _type.getInstance().getValue(buf);
+		_value = _type.getInstance().getValue(buf, getModelPart());
 
 		_startPosition = position;
 		_endPosition = buf.position();

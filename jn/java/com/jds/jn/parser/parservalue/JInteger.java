@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 
+import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -17,7 +18,7 @@ public class JInteger implements ParserValue<Integer>
 	private static final Color _color = new Color(72, 164, 255);
 
 	@Override
-	public java.lang.Integer getValue(NioBuffer b, Object... arg)
+	public java.lang.Integer getValue(NioBuffer b, Part part, Object... arg)
 	{
 		return b.getInt();
 	}

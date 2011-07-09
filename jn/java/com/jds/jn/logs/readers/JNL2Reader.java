@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.CryptedPacket;
+import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.version_control.Program;
@@ -15,7 +15,7 @@ import com.jds.jn.util.version_control.Version;
  * Author: VISTALL
  * Company: J Develop Station
  * Date:  10:32:04/20.06.2010
- *
+ * <p/>
  * version info
  * -----------------
  * d - program type
@@ -29,10 +29,10 @@ import com.jds.jn.util.version_control.Version;
  * c - decode ?
  * d - size of packets
  * {
- *    c - packet type
- *    Q - time millis
- *    d - size of bytes
- *    b - bytes of size - up
+ * c - packet type
+ * Q - time millis
+ * d - size of bytes
+ * b - bytes of size - up
  * }
  */
 public class JNL2Reader extends AbstractReader
@@ -63,7 +63,7 @@ public class JNL2Reader extends AbstractReader
 	{
 		int size = readD();
 		PacketType[] values = PacketType.values();
-		for(int i = 0; i < size; i ++)
+		for(int i = 0; i < size; i++)
 		{
 			PacketType t = values[readC()];
 			long time = readQ();
@@ -79,7 +79,7 @@ public class JNL2Reader extends AbstractReader
 				_session.receiveQuitPacket(dp, true, true);
 			}
 			else
-			{				
+			{
 				_session.receiveQuitPacket(packet);
 			}
 

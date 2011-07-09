@@ -9,24 +9,20 @@ import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date:  0:47:43/23.07.2010
+ * @author VISTALL
+ * @date 22:59/04.07.2011
  */
-public class JUnicodeString implements ParserValue<String>
+public class JLimitedUnicodeString implements ParserValue<String>
 {
 	private static Color _color = new Color(100, 255, 100);
 
 	@Override
 	public String getValue(NioBuffer b, Part part, Object... arg)
 	{
-		StringBuffer sb2 = new StringBuffer();
-		char ch;
-		while ((ch = b.getChar()) != 0)
-		{
-			sb2.append(ch);
-		}
-		return sb2.toString();
+		StringBuilder sb2 = new StringBuilder();
+		for(int i = 0; i < part.getBSize(); i++)
+			sb2.append(b.getChar());
+		return sb2.toString().trim();
 	}
 
 	@Override

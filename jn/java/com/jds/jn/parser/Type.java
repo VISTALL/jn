@@ -10,6 +10,7 @@ import com.jds.jn.parser.parservalue.JByte;
 import com.jds.jn.parser.parservalue.JDouble;
 import com.jds.jn.parser.parservalue.JFloat;
 import com.jds.jn.parser.parservalue.JInteger;
+import com.jds.jn.parser.parservalue.JLimitedUnicodeString;
 import com.jds.jn.parser.parservalue.JLong;
 import com.jds.jn.parser.parservalue.JShort;
 import com.jds.jn.parser.parservalue.JUnicodeString;
@@ -37,8 +38,8 @@ public enum Type
 	D(JDouble.class),
 
 	S(JUnicodeString.class),
-	s(JANSIString.class)
-	;
+	LS(JLimitedUnicodeString.class),
+	s(JANSIString.class);
 
 	private ParserValue<?> _instance;
 

@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 
+import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.util.ImageStatic;
 import com.jds.nio.buffer.NioBuffer;
 
@@ -15,7 +16,7 @@ import com.jds.nio.buffer.NioBuffer;
 public class JByte implements ParserValue<Byte>
 {
 	@Override
-	public Byte getValue(NioBuffer b, Object... arg)
+	public Byte getValue(NioBuffer b, Part part, Object... arg)
 	{
 		return b.get();
 	}

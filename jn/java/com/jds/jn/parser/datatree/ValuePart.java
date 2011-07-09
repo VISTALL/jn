@@ -47,9 +47,7 @@ public abstract class ValuePart extends DataTreeNode
 	{
 		ValueReader r = this.getModelPart().getReader();
 		if (r != null)
-		{
 			return r.read(this);
-		}
 		return getValueAsString();
 	}
 
@@ -57,9 +55,7 @@ public abstract class ValuePart extends DataTreeNode
 	{
 		ValueReader r = getModelPart().getReader();
 		if (r != null)
-		{
 			return r.readToComponent(this);
-		}
 		return new JLabel("");
 	}
 
@@ -71,21 +67,15 @@ public abstract class ValuePart extends DataTreeNode
 	public String getColor()
 	{
 		if(_isSelected)
-		{
 			return "selected";
-		}
 		else
-		{
 			return getNormalColor();
-		}
 	}
 
 	public void updateColor(DecryptedPacket a)
 	{
 		for(int index = _startPosition; index < _endPosition; index ++)
-		{
 			a.setColor(index,getColor());
-		}
 	}
 
 	public boolean isSelected()

@@ -80,6 +80,29 @@
 			<part name="maxHp" type="d"/>
 			<part name="currentHp" type="d"/>
 		</packet>
+		<packet id="A9" name="SM_ABYSS_RANKING_PLAYERS">
+			<part name="chk" type="h"/>
+			<part name="race" type="d"/>
+			<part name="time" type="d">
+				<reader type="Timestamp" />
+			</part>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="size" type="h" id="0"/>
+			<for id="0">
+				<part name="id" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="object_id" type="d"/>
+				<part name="race" type="d"/>
+				<part name="class" type="d"/>
+				<part name="rank ?" type="d"/>
+				<part name="points" type="Q"/>
+				<part name="level" type="h"/>
+				<part name="name" type="LS" size="26"/>
+				<part name="legion" type="LS" size="41"/>
+			</for>
+		</packet>
 	</packetfamilly>
 	<packetfamilly way="CLIENT">
 

@@ -71,7 +71,7 @@ public class Protocol
 					Number val;
 					// если у нас достаточно для чтения
 					if((packet.getBuffer().limit() - packet.getBuffer().position()) >= t.length())
-						val = t.getValue(packet.getBuffer());
+						val = t.getValue(packet.getBuffer(), null);
 					else
 					{
 						packet.getBuffer().position(position);
