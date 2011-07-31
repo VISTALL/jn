@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_highfive5" extends="l2game_final">
-	<global_listeners>
+	<!--<global_listeners>
 		<listener name="lineage2.L2World" />
-	</global_listeners>
+	</global_listeners> -->
 	<!--Item Macro-->
 	<macro id="item">
 		<part name="obj_id" type="d"/>
@@ -653,6 +653,7 @@
 				</case>
 				<case id="default">
 					<part name="name" type="S"/>
+					<part name="npc_string_id" type="d"/>
 					<part name="text" type="S"/>
 				</case>
 			</switch>
@@ -755,7 +756,9 @@
 			<part name="period" type="c"/>
 		</packet>
 		<packet id="a6" name="TutorialShowHtml">
-			<part name="html" type="S"/>
+			<part name="html" type="S">
+				<reader type="HTML" />
+			</part>
 		</packet>
 		<packet id="a7" name="TutorialShowQuestionMark"/>
 		<packet id="a8" name="TutorialShowHtml"/>
@@ -1186,7 +1189,24 @@
 			</for>
 		</packet>
 		<packet id="91" name="AcquireSkillInfo"/>
-		<packet id="92" name="ServerObjectInfo"/>
+		<packet id="92" name="ServerObjectInfo">
+			<part name="object_id" type="d"/>
+			<part name="npc_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="attackable" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
+			<part name="movement_multiplier" type="D"/>
+			<part name="attack_multiplier" type="D"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="current_hp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="type" type="d"/>
+			<part name="special_effects" type="d"/>
+		</packet>
 		<packet id="93" name="GMHidePacket"/>
 		<packet id="94" name="AcquireSkillDonePacket"/>
 		<packet id="95" name="GMViewCharacterInfoPacket"/>
@@ -1371,7 +1391,29 @@
 		<packet id="E0" name="RecipeShopItemInfoPacket"/>
 		<packet id="E1" name="RecipeShopMsgPacket"/>
 		<packet id="E2" name="ShowCalcPacket"/>
-		<packet id="E3" name="RaceMonsterStatusUpdatePacket"/>
+		<packet id="E3" name="RaceMonsterStatusUpdate">
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="object_id" type="d" />
+				<part name="npc_id" type="d" />
+				<part name="original_x" type="d" />
+				<part name="original_y" type="d" />
+				<part name="original_z" type="d" />
+				<part name="end_x" type="d" />
+				<part name="end_y" type="d" />
+				<part name="end_z" type="d" />
+				<part name="col_height" type="D" />
+				<part name="col_radius" type="D" />
+				<part name="?" type="d" />
+				<for fixed="20">
+					<part name="?" type="c" />
+				</for>
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+			</for>
+		</packet>
 		<packet id="E4" name="HennaItemInfo"/>
 		<packet id="E6" name="HennaUnequipListPacket"/>
 		<packet id="E7" name="HennaUnequipItemInfo"/>
@@ -1386,7 +1428,13 @@
 		<packet id="EE" name="HennaEquipListPacket"/>
 		<packet id="EF" name="SellListProcure"/>
 		<packet id="F0" name="GMHennaInfoPacket"/>
-		<packet id="F1" name="ShowRadarPacket"/>
+		<packet id="F1" name="ShowRadar">
+			<part name="show_radar" type="d" />
+			<part name="type" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+		</packet>
 		<packet id="F3" name="ConfirmDlgPacket"/>
 		<packet id="F4" name="PartySpelled"/>
 		<packet id="F5" name="PreviewList"/>
@@ -1879,8 +1927,27 @@
 		<packet id="FE;00D8" name="ExBR_BuyProduct"/>
 		<packet id="FE;00DC" name="ExBR_RecentProductList"/>
 		<packet id="FE;00BD" name="ExBR_LoadEventTopRankers"/>
-		<packet id="FE;00DD" name="ExBR_MinigameLoadScores"/>
-		<packet id="FE;00DE" name="ExBR_AgathionEnergyInfo"/>
+		<packet id="FE;00DD" name="ExBR_MinigameLoadScores">
+			<part name="place" type="d"/>
+			<part name="score" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<part name="last_score" type="d" />
+			<for id="0">
+				<part name="position" type="d"/>
+				<part name="name" type="S"/>
+				<part name="points" type="d"/>
+			</for>
+		</packet>
+		<packet id="FE;00DE" name="ExBR_AgathionEnergyInfo">
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="object_id" type="d"/>
+				<part name="item_id" type="d"/>
+				<part name="always 0x200000 ?" type="d"/>
+				<part name="current_energy" type="d"/>
+				<part name="max_energy" type="d"/>
+			</for>
+		</packet>
 		<packet id="FE;00BE" name="ExChangeNpcState">
 			<part name="objectId" type="d"/>
 			<part name="state" type="d"/>
