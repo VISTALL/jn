@@ -8,7 +8,7 @@
 	<macro id="item">
 		<part name="obj_id" type="d"/>
 		<part name="item_id" type="d">
-			<reader type="ItemName" />
+			<reader type="ItemName"/>
 		</part>
 		<part name="equip_slot" type="d"/>
 		<part name="count" type="Q"/>
@@ -196,12 +196,12 @@
 			</for>
 			<part id="1" name="size2" type="h"/>
 			<switch id="1">
-				<case id="0" />
+				<case id="0"/>
 				<case id="default">
 					<part name="blockMode" type="c"/>
 					<for id="1">
 						<part name="item_id" type="d">
-							<reader type="ItemName" />
+							<reader type="ItemName"/>
 						</part>
 					</for>
 				</case>
@@ -214,12 +214,12 @@
 			</for>
 			<part id="1" name="size2" type="h"/>
 			<switch id="1">
-				<case id="0" />
+				<case id="0"/>
 				<case id="default">
 					<part name="blockMode" type="c"/>
 					<for id="1">
 						<part name="item_id" type="d">
-							<reader type="ItemName" />
+							<reader type="ItemName"/>
 						</part>
 					</for>
 				</case>
@@ -254,8 +254,10 @@
 			<part name="obj_id" type="d"/>
 			<part name="type" type="d"/>
 			<part name="npc_id" type="d"/>
-			<part name="message_id" type="d"/>
-			<part name="text" type="S"/>
+			<part name="npc_string_id" type="d"/>
+			<for fixed="5">
+				<part name="arg" type="S"/>
+			</for>
 		</packet>
 		<packet id="31" name="CharInfo">
 			<part name="x" type="d"/>
@@ -378,9 +380,6 @@
 			<part name="agation" type="d"/>
 			<part name="allowedMap" type="d"/>
 			<part name="specialEffects" type="d"/>
-			<!--<part name="territoryId" type="d" />
-				  <part name="?" type="d" />
-				  <part name="?" type="d" />  -->
 		</packet>
 		<packet id="0C" name="NpcInfo">
 			<part name="obj_id" type="d"/>
@@ -670,7 +669,7 @@
 				<part name="isActive" type="d"/>
 				<part name="level" type="d"/>
 				<part name="id" type="d">
-					<reader type="SkillName" />
+					<reader type="SkillName"/>
 				</part>
 				<part name="disable" type="c"/>
 				<part name="enchanted" type="c"/>
@@ -710,9 +709,9 @@
 						<part name="z" type="d"/>
 					</case>
 					<case id="8">
-						<part name="?" type="d"/>
-						<part name="?" type="h"/>
-						<part name="?" type="h"/>
+						<part name="item_id" type="d"/>
+						<part name="augmentation1" type="h"/>
+						<part name="augmentation2" type="h"/>
 					</case>
 					<case id="9">
 						<part name="att" type="d"/>
@@ -727,7 +726,7 @@
 						<part name="name" type="S"/>
 					</case>
 					<case id="13">
-						<part name="?" type="d"/>
+						<part name="sys_string" type="d"/>
 					</case>
 					<case id="default"/>
 				</switch>
@@ -736,8 +735,8 @@
 		<packet id="86" name="QuestList">
 			<part name="size" type="h" id="0"/>
 			<for id="0">
-				<part name="quest_id" type="d" />
-				<part name="cond" type="d" />
+				<part name="quest_id" type="d"/>
+				<part name="cond" type="d"/>
 			</for>
 		</packet>
 		<packet id="9e" name="PlaySound">
@@ -757,7 +756,7 @@
 		</packet>
 		<packet id="a6" name="TutorialShowHtml">
 			<part name="html" type="S">
-				<reader type="HTML" />
+				<reader type="HTML"/>
 			</part>
 		</packet>
 		<packet id="a7" name="TutorialShowQuestionMark"/>
@@ -805,7 +804,7 @@
 		<packet id="FE;00DA" name="ExBR_ExtraUserInfo">
 			<part name="obj_id" type="d"/>
 			<part name="br_effect" type="d"/>
-			<part name="?" type="c"/>
+			<part name="lecture_mark" type="c"/>
 		</packet>
 		<packet id="CF" name="EventTrigger">
 			<part name="trapId" type="d"/>
@@ -938,11 +937,11 @@
 		<packet id="FE;00C4" name="ExQuestNpcLogList">
 			<part name="questId" type="d"/>
 			<part name="size" type="c" id="0"/>
-            <for id="0">
-                 <part name="npcId" type="d"/>
-				 <part name="unk" type="c"/>
-                 <part name="count" type="d"/>
-            </for>
+			<for id="0">
+				<part name="npcId" type="d"/>
+				<part name="unk" type="c"/>
+				<part name="count" type="d"/>
+			</for>
 		</packet>
 		<packet id="1c" name="SendTradeDone">
 			<part name="num" type="d"/>
@@ -1074,12 +1073,12 @@
 		<packet id="58" name="FriendList">
 			<part name="size" type="d" id="0"/>
 			<for id="0">
-				<part name="databaseId" type="d" />
-				<part name="name" type="S" />
-				<part name="online" type="d" />
-				<part name="obj_id if online" type="d" />
-				<part name="class_id" type="d" />
-				<part name="level" type="d" />
+				<part name="databaseId" type="d"/>
+				<part name="name" type="S"/>
+				<part name="online" type="d"/>
+				<part name="obj_id if online" type="d"/>
+				<part name="class_id" type="d"/>
+				<part name="level" type="d"/>
 			</for>
 		</packet>
 		<packet id="59" name="FriendStatus"/>
@@ -1173,7 +1172,7 @@
 		<packet id="8F" name="ActionFail"/>
 		<packet id="90" name="AcquireSkillList">
 			<part name="type" type="d" id="0"/>
-			<part name="size" type="d" id="1" />
+			<part name="size" type="d" id="1"/>
 			<for id="1">
 				<part name="skill_id" type="d"/>
 				<part name="next_skill_level" type="d"/>
@@ -1184,7 +1183,7 @@
 					<case id="3">
 						<part name="sub_unit" type="d"/>
 					</case>
-					<case id="default" />
+					<case id="default"/>
 				</switch>
 			</for>
 		</packet>
@@ -1276,23 +1275,23 @@
 		<packet id="C8" name="PackageToListPacket"/>
 		<packet id="C9" name="CastleSiegeInfoPacket"/>
 		<packet id="CA" name="CastleSiegeAttackerList">
-			<part name="id" type="d" />
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="size" type="d" />
+			<part name="id" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="size" type="d"/>
 			<part name="size" type="d" id="0"/>
 			<for id="0">
-				<part name="clan_id" type="d" />
-				<part name="name" type="S" />
-				<part name="leader_name" type="S" />
-				<part name="crest_id" type="d" />
+				<part name="clan_id" type="d"/>
+				<part name="name" type="S"/>
+				<part name="leader_name" type="S"/>
+				<part name="crest_id" type="d"/>
 				<part name="reg_time" type="d">
-					<reader type="Timestamp" />
+					<reader type="Timestamp"/>
 				</part>
-				<part name="alliance_id" type="d" />
-				<part name="alliance_name" type="S" />
-				<part name="alliance_crest_id" type="d" />
+				<part name="alliance_id" type="d"/>
+				<part name="alliance_name" type="S"/>
+				<part name="alliance_crest_id" type="d"/>
 			</for>
 		</packet>
 		<packet id="CB" name="CastleSiegeDefenderList"/>
@@ -1392,26 +1391,26 @@
 		<packet id="E1" name="RecipeShopMsgPacket"/>
 		<packet id="E2" name="ShowCalcPacket"/>
 		<packet id="E3" name="RaceMonsterStatusUpdate">
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="size" type="d" id="0" />
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="size" type="d" id="0"/>
 			<for id="0">
-				<part name="object_id" type="d" />
-				<part name="npc_id" type="d" />
-				<part name="original_x" type="d" />
-				<part name="original_y" type="d" />
-				<part name="original_z" type="d" />
-				<part name="end_x" type="d" />
-				<part name="end_y" type="d" />
-				<part name="end_z" type="d" />
-				<part name="col_height" type="D" />
-				<part name="col_radius" type="D" />
-				<part name="?" type="d" />
+				<part name="object_id" type="d"/>
+				<part name="npc_id" type="d"/>
+				<part name="original_x" type="d"/>
+				<part name="original_y" type="d"/>
+				<part name="original_z" type="d"/>
+				<part name="end_x" type="d"/>
+				<part name="end_y" type="d"/>
+				<part name="end_z" type="d"/>
+				<part name="col_height" type="D"/>
+				<part name="col_radius" type="D"/>
+				<part name="?" type="d"/>
 				<for fixed="20">
-					<part name="?" type="c" />
+					<part name="?" type="c"/>
 				</for>
-				<part name="?" type="d" />
-				<part name="?" type="d" />
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
 			</for>
 		</packet>
 		<packet id="E4" name="HennaItemInfo"/>
@@ -1422,18 +1421,18 @@
 		<packet id="EB" name="ObserverStartPacket"/>
 		<packet id="EC" name="ObserverEndPacket"/>
 		<packet id="ED" name="ChairSitPacket">
-			<part name="object_id" type="d" />
-			<part name="static_object_id" type="d" />
+			<part name="object_id" type="d"/>
+			<part name="static_object_id" type="d"/>
 		</packet>
 		<packet id="EE" name="HennaEquipListPacket"/>
 		<packet id="EF" name="SellListProcure"/>
 		<packet id="F0" name="GMHennaInfoPacket"/>
 		<packet id="F1" name="ShowRadar">
-			<part name="show_radar" type="d" />
-			<part name="type" type="d" />
-			<part name="x" type="d" />
-			<part name="y" type="d" />
-			<part name="z" type="d" />
+			<part name="show_radar" type="d"/>
+			<part name="type" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
 		</packet>
 		<packet id="F3" name="ConfirmDlgPacket"/>
 		<packet id="F4" name="PartySpelled"/>
@@ -1486,7 +1485,7 @@
 		<packet id="FE;001F" name="ExFishingEndPacket"/>
 		<packet id="FE;0020" name="ExShowQuestInfoPacket"/>
 		<packet id="FE;0021" name="ExShowQuestMark">
-			<part name="quest_id" type="d" />
+			<part name="quest_id" type="d"/>
 		</packet>
 		<packet id="FE;0022" name="ExSendManorListPacket"/>
 		<packet id="FE;0023" name="ExShowSeedInfoPacket"/>
@@ -1597,15 +1596,15 @@
 		<packet id="FE;0066" name="ExStopMoveAirShipPacket"/>
 		<packet id="FE;0067" name="ExShowTracePacket"/>
 		<packet id="FE;0068" name="ExItemAuctionInfo">
-			<part name="refresh" type="c" />
-			<part name="instance_id" type="d" />
-			<part name="bid" type="Q" />
-			<part name="time" type="d" />
-			<macro id="item" name="item" />
+			<part name="refresh" type="c"/>
+			<part name="instance_id" type="d"/>
+			<part name="bid" type="Q"/>
+			<part name="time" type="d"/>
+			<macro id="item" name="item"/>
 
-			<part name="next_bid" type="Q" />
-			<part name="next_time" type="d" />
-			<macro name="next_item" id="item" />
+			<part name="next_bid" type="Q"/>
+			<part name="next_time" type="d"/>
+			<macro name="next_item" id="item"/>
 		</packet>
 		<packet id="FE;0069" name="ExNeedToChangeName"/>
 		<packet id="FE;006A" name="ExPartyPetWindowDelete"/>
@@ -1648,8 +1647,6 @@
 		<packet id="FE;007B" name="ExOlympiadSpelledInfoPacket"/>
 		<packet id="FE;007C" name="ExOlympiadModePacket"/>
 		<packet id="FE;007D" name="ExShowFortressMapInfo"/>
-		<packet id="FE;007E" name="ExPVPMatchRecord"/>
-		<packet id="FE;007F" name="ExPVPMatchUserDie"/>
 		<packet id="FE;0080" name="ExPrivateStoreSetWholeMsg"/>
 		<packet id="FE;0081" name="ExPutEnchantTargetItemResult"/>
 		<packet id="FE;0082" name="ExPutEnchantSupportItemResult"/>
@@ -1698,50 +1695,50 @@
 					<part name="size" type="d" id="1"/>
 					<for id="1">
 						<part name="objectId" type="d"/>
-						<part name="name" type="S"/>	
+						<part name="name" type="S"/>
 					</for>
 				</case>
 				<case id="2" name="Case 2: Remove Player">
 					<part name="size" type="d" id="2"/>
 					<for id="2">
-						<part name="objectId" type="d"/>	
+						<part name="objectId" type="d"/>
 					</for>
 				</case>
 				<case id="default"/>
 			</switch>
-		</packet>   			
+		</packet>
 		<packet id="FE;0095" name="ExCleftState"/>
 		<packet id="FE;0096" name="ExDominionChannelSet"/>
 		<packet id="FE;0097" name="ExBlockUpSetList">
-			<part name="type" type="d" id="0" />
+			<part name="type" type="d" id="0"/>
 			<switch id="0">
 				<case id="0" name="showAll">
 					<part name="arenaId" type="d"/>
 					<part name="?" type="d"/>
 					<part name="blueSize" type="d" id="1"/>
 					<for id="1">
-						<part name="objectId" type="d" />
-						<part name="name" type="S" />
+						<part name="objectId" type="d"/>
+						<part name="name" type="S"/>
 					</for>
 					<part name="redSize" type="d" id="2"/>
 					<for id="2">
-						<part name="objectId" type="d" />
-						<part name="name" type="S" />
+						<part name="objectId" type="d"/>
+						<part name="name" type="S"/>
 					</for>
 				</case>
 				<case id="1" name="add">
 					<part name="?" type="d"/>
 					<part name="size" type="d" id="3"/>
 					<for id="3">
-						<part name="objectId" type="d" />
-						<part name="name" type="S" />
+						<part name="objectId" type="d"/>
+						<part name="name" type="S"/>
 					</for>
 				</case>
 				<case id="2" name="remove">
 					<part name="?" type="d"/>
 					<part name="size" type="d" id="4"/>
 					<for id="4">
-						<part name="objectId" type="d" />
+						<part name="objectId" type="d"/>
 					</for>
 				</case>
 				<case id="default"/>
@@ -1802,13 +1799,11 @@
 		<packet id="FE;00A1" name="ExShowSeedMapInfo"/>
 		<packet id="FE;00A2" name="ExMpccPartymasterList"/>
 		<packet id="FE;00A3" name="ExDominionWarStart">
-			<part name="size" type="d" id="0"/>
-			<for id="0">
-				<part name="objectId" type="d"/>
-				<part name="territoryId" type="d"/>
-				<part name="?" type="d"/>
-				<part name="territoryId" type="d"/>
-			</for>
+			<part name="objectId" type="d"/>
+			<part name="is_in_progress" type="d" id="0"/>
+			<part name="territoryId" type="d"/>
+			<part name="disguised" type="d"/>
+			<part name="territoryId" type="d"/>
 		</packet>
 		<packet id="FE;00A4" name="ExDominionWarEnd"/>
 		<packet id="FE;00A5" name="ExShowLines"/>
@@ -1830,7 +1825,8 @@
 				<part name="attachments" type="d"/>
 				<part name="forStar" type="d"/>
 				<part name="news" type="d"/>
-				<part name="?" type="d"/> <!--4012-->
+				<part name="?" type="d"/>
+				<!--4012-->
 			</for>
 		</packet>
 		<packet id="FE;00AB" name="ExReplyReceivedPost">
@@ -1931,7 +1927,7 @@
 			<part name="place" type="d"/>
 			<part name="score" type="d"/>
 			<part name="size" type="d" id="0"/>
-			<part name="last_score" type="d" />
+			<part name="last_score" type="d"/>
 			<for id="0">
 				<part name="position" type="d"/>
 				<part name="name" type="S"/>
@@ -2001,9 +1997,12 @@
 					<part name="size" type="d" id="1"/>
 					<part name="type?" type="d"/>
 					<for id="1">
-						<part name="index" type="d"/> <!--index of game, show +1 in client-->
-						<part name="match_type" type="d"/>     <!--game type 1 - 1x1, 2 - 3x3 ? -->
-						<part name="status" type="d"/><!--1 standby, 2 playing-->
+						<part name="index" type="d"/>
+						<!--index of game, show +1 in client-->
+						<part name="match_type" type="d"/>
+						<!--game type 1 - 1x1, 2 - 3x3 ? -->
+						<part name="status" type="d"/>
+						<!--1 standby, 2 playing-->
 						<part name="player1" type="S"/>
 						<part name="player2" type="S"/>
 					</for>
@@ -2025,7 +2024,7 @@
 						</for>
 					</for>
 				</case>
-				<case id="default" />
+				<case id="default"/>
 			</switch>
 		</packet>
 	</packetfamilly>
@@ -2412,8 +2411,8 @@
 		<packet id="D0;007B" name="RequestBR_EventRankerList"/>
 		<packet id="D0;007C" name="RequestAskMemberShip"/>
 		<packet id="D0;007D" name="RequestAddExpandQuestAlarm">
-                <part name="questId" type="d" />
-        </packet>
+			<part name="questId" type="d"/>
+		</packet>
 		<packet id="D0;007E" name="NewVoteSystem"/>
 		<packet id="D0;007F" name="RequestBR_GamePoint"/>
 		<packet id="D0;0080" name="RequestBR_ProductList"/>

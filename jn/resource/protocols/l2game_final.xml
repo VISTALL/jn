@@ -1295,8 +1295,8 @@
 				<part name="kills" type="d" />
 				<part name="deaths" type="d" />
 			</for>
-			<part name="red_size" type="d" id="0"/>
-			<for id="0">
+			<part name="red_size" type="d" id="1"/>
+			<for id="1">
 				<part name="name" type="S" />
 				<part name="kills" type="d" />
 				<part name="deaths" type="d" />
