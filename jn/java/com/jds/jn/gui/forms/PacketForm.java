@@ -32,7 +32,6 @@ import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 import org.jdesktop.swingx.JXTreeTable;
-
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -49,14 +48,13 @@ import com.jds.jn.gui.renders.IconTableRenderer;
 import com.jds.jn.gui.renders.PacketViewTreeRenderer;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.PartTypeManager;
-import com.jds.jn.parser.Type;
 import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
 import com.jds.jn.parser.parttypes.PartType;
-import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Util;
 import com.sun.awt.AWTUtilities;
 
@@ -268,7 +266,7 @@ public class PacketForm extends JFrame
 		s = doc.addStyle("chk", regular);
 		StyleConstants.setBackground(s, Color.GREEN);
 
-		for(Type t : Type.values())
+		for(com.jds.jn.parser.Type t : com.jds.jn.parser.Type.values())
 		{
 			s = doc.addStyle(t.name(), regular);
 			StyleConstants.setBackground(s, t.getColor());
