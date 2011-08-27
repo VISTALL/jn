@@ -1209,7 +1209,6 @@
 		<packet id="93" name="GMHidePacket"/>
 		<packet id="94" name="AcquireSkillDonePacket"/>
 		<packet id="95" name="GMViewCharacterInfoPacket"/>
-		<packet id="96" name="GMViewPledgeInfoPacket"/>
 		<packet id="97" name="GMViewSkillInfoPacket"/>
 		<packet id="98" name="GMViewMagicInfoPacket"/>
 		<packet id="99" name="GMViewQuestInfoPacket"/>
