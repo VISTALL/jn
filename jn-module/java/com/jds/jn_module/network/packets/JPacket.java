@@ -1,7 +1,5 @@
 package com.jds.jn_module.network.packets;
 
-import com.jds.jn_module.network.packets.PacketType;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -14,17 +12,20 @@ public class JPacket
 {
 	private final PacketType _type;
 	private final ByteBuffer _buff;
+	private final long _time;
 
 	public JPacket(PacketType type, byte[] content)
 	{
 		_type = type;
 		_buff = ByteBuffer.wrap(content).order(ByteOrder.LITTLE_ENDIAN);
+		_time = System.currentTimeMillis();
 	}
 
 	public JPacket(PacketType type, ByteBuffer content)
 	{
 		_type = type;
 		_buff = content;
+		_time = System.currentTimeMillis();
 	}
 
 	public ByteBuffer getBuffer()
@@ -41,6 +42,11 @@ public class JPacket
 	public String toString()
 	{
 		return "JPacket: type - " + _type.name();
+	}
+
+	public long getTime()
+	{
+		return _time;
 	}
 }
 

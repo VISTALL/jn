@@ -1,9 +1,11 @@
 package com.jds.jn_module;
 
-import com.jds.jn_module.gui.MainForm;
-
-import javax.swing.*;
 import java.io.File;
+
+import javax.swing.UIManager;
+
+import com.jds.jn.util.OSUtils;
+import com.jds.jn_module.gui.MainForm;
 
 /**
  * Author: VISTALL
@@ -12,27 +14,16 @@ import java.io.File;
  */
 public class JnModule
 {
+	public static int PORT;
 	private static MainForm _form;
-
-	public static int PORT = 7777;
 
 	public static void main(String...ar) throws Exception
 	{
-		if(ar.length > 0)
-		{
-			try
-			{
-				PORT = Integer.parseInt(ar[0]);
-			}
-			catch (NumberFormatException e)
-			{
-				//e.printStackTrace();
-			}
-		}
-		
 		File file = new File("./logs");
 		if(!file.exists())
 			file.mkdir();
+
+		System.loadLibrary(OSUtils.getLibName());
 
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
@@ -46,5 +37,4 @@ public class JnModule
 	{
 		return _form;
 	}
-
 }

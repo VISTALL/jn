@@ -1,13 +1,13 @@
 package com.jds.jn_module.logs.writer;
 
-import com.jds.jn_module.network.packets.JPacket;
-import com.jds.jn_module.network.session.Session;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import com.jds.jn_module.network.packets.JPacket;
+import com.jds.jn_module.network.session.Session;
 
 /**
  * Author: VISTALL
@@ -28,7 +28,7 @@ public class Writer
 
 	protected void close() throws IOException
 	{
-		File file = new File(String.format("./logs/session-%d.jnl", _session.getSessionId()));
+		File file = new File(String.format("./logs/session-%d.jnl2", _session.getSessionId()));
 
 		FileOutputStream stream = new FileOutputStream(file);
 		stream.write(_buf.array(), 0, _buf.position() + 10);
@@ -39,18 +39,25 @@ public class Writer
 
 	protected void writeHeader() throws IOException
 	{
-		_buf.putInt(2);
-		_buf.putLong(-2);
-		writeS("Jn Module 0.1");
+		_buf.putInt(2); // ver
+		_buf.putInt(1); // major
+		_buf.putInt(1); // minor
+		_buf.put((byte)2); // type
+		_buf.putInt(1); // number
+
+		_buf.put((byte)1); // listener type
 		_buf.putLong(_session.getSessionId());
-		_buf.putInt(_session.size());
+		_buf.put((byte) 0);
 	}
 
 	protected void writePackets() throws IOException
 	{
+		_buf.putInt(_session.size());
+
 		for (JPacket packet : _session)
 		{
-			_buf.putInt(packet.getType().ordinal());
+			_buf.put((byte)packet.getType().ordinal());
+			_buf.putLong(packet.getTime());
 			_buf.putInt(packet.getBuffer().array().length);
 			_buf.put(packet.getBuffer().array());
 		}

@@ -31,7 +31,7 @@ import com.jds.nio.buffer.NioBuffer;
 public class DecryptedPacket implements IPacketData
 {
 	private static final Logger _log = Logger.getLogger(DecryptedPacket.class);
-	private final CryptedPacket _notDecryptPacket;
+	private final CryptedPacket _cryptedPacket;
 	private Protocol _protocol;
 
 	private DataTreeNodeContainer _packetParts;
@@ -46,12 +46,12 @@ public class DecryptedPacket implements IPacketData
 
 	public DecryptedPacket(byte[] data, PacketType type, Protocol protocol)
 	{
-		this(data, type, protocol, true);
+		this(data, System.currentTimeMillis(), type, protocol, true);
 	}
 
-	public DecryptedPacket(byte[] data, PacketType type, Protocol protocol, boolean parse)
+	public DecryptedPacket(byte[] data, long time, PacketType type, Protocol protocol, boolean parse)
 	{
-		this(new CryptedPacket(type, data, System.currentTimeMillis(), protocol.getOrder()), protocol, parse);
+		this(new CryptedPacket(type, data, time, protocol.getOrder()), protocol, parse);
 	}
 
 	public DecryptedPacket(CryptedPacket packet, Protocol protocol)
@@ -61,7 +61,7 @@ public class DecryptedPacket implements IPacketData
 
 	public DecryptedPacket(CryptedPacket packet, Protocol protocol, boolean parse)
 	{
-		_notDecryptPacket = packet;
+		_cryptedPacket = packet;
 		_protocol = protocol;
 
 		_buf = packet.getBuffer().clone();
@@ -272,24 +272,24 @@ public class DecryptedPacket implements IPacketData
 	@Override
 	public PacketType getPacketType()
 	{
-		return _notDecryptPacket.getPacketType();
+		return _cryptedPacket.getPacketType();
 	}
 
 	@Override
 	public long getTime()
 	{
-		return _notDecryptPacket.getTime();
+		return _cryptedPacket.getTime();
 	}
 
 	@Override
 	public byte[] getAllData()
 	{
-		return _notDecryptPacket.getAllData();
+		return _cryptedPacket.getAllData();
 	}
 
 	public byte[] getNotDecryptData()
 	{
-		return _notDecryptPacket.getAllData();
+		return _cryptedPacket.getAllData();
 	}
 
 	public boolean isKey()

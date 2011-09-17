@@ -35,6 +35,7 @@
 			<part name="name" type="S"/>
 		</packet>
 		<packet id="D0;00BD" name="RequestMentorList" />
+		<packet id="D0;009A" name="RequestInzonePartyInfoHistory" />
 		<packet id="D0;0099" name="RequestUpdateBlockMemo">
 			<part name="name" type="S"/>
 			<part name="memo" type="S"/>
@@ -401,6 +402,9 @@
 		<packet id="FE;010D" name="ExShowUsm">
 			<part name="movie_id" type="d"/>
 		</packet>
+		<packet id="FE;0103" name="ExWaitWaitingSubStituteInfo">
+			<part name="value" type="h"/>
+		</packet>
 		<packet id="FE;011D" name="ExMentorList">
 			<part name="size" type="d"/>
 		</packet>
@@ -421,6 +425,13 @@
 		<packet id="FE;00EC" name="ExBlockAddResult">
 			<part name="result" type="d"/>
 			<part name="name" type="S" />
+		</packet>
+		<packet id="FE;00EE" name="ExBlockDetailInfo">
+			<part name="name" type="S" />
+			<part name="memo" type="S" />
+		</packet>
+		<packet id="FE;00EF" name="ExLoadInzonePartyHistory">
+			<part name="size" type="d" id="0" />
 		</packet>
 		<packet id="a6" name="TutorialShowHtml">
 			<part name="dialog-source" type="d" id="0"/>

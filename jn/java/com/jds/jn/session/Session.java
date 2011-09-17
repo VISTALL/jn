@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
-
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.gui.panels.ViewPane;
@@ -96,7 +95,7 @@ public class Session
 
 		data = _crypt.decrypt(data, packet.getPacketType());
 
-		return new DecryptedPacket(data, packet.getPacketType(), getProtocol());
+		return new DecryptedPacket(data, packet.getTime(), packet.getPacketType(), getProtocol(), true);
 	}
 
 	public long getSessionId()

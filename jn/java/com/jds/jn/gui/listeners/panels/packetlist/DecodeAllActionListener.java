@@ -4,8 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import com.jds.jn.Jn;
-import com.jds.jn.gui.models.DecryptedPacketTableModel;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -53,12 +52,11 @@ public class DecodeAllActionListener implements ActionListener
 				List<CryptedPacket> packetList = session.getCryptedPackets();
 
 				final DecPacketListPane pane = _pane.getViewPane().getPacketListPane();
-				DecryptedPacketTableModel model = _pane.getViewPane().getDecryptPacketTableModel();
 
 				_pane.getViewPane().actionEnable(false);
 
-				Jn.getForm().getProgressBar().setVisible(true);
-				Jn.getForm().getProgressBar().setValue(0);
+				MainForm.getInstance().getProgressBar().setVisible(true);
+				MainForm.getInstance().getProgressBar().setValue(0);
 
 				int i = 1;
 				int size = packetList.size();
@@ -72,17 +70,13 @@ public class DecodeAllActionListener implements ActionListener
 							DecryptedPacket datapacket = session.decode(packet);
 
 							if (datapacket.getName() != null && datapacket.getPacketInfo().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
-							{
 								_pane.setEnableServerListButton(true);
-							}
 
 							if (datapacket.getPacketInfo() != null)
 							{
 								NetworkProfilePart part = profile.getPart(session.getListenerType());
 								if (part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
-								{
 									break AddPacket;
-								}
 							}
 
 							session.receiveQuitPacket(datapacket, true, true);
@@ -92,12 +86,12 @@ public class DecodeAllActionListener implements ActionListener
 
 					int p = (int) ((100D * (i + 1)) / size);
 
-					Jn.getForm().getProgressBar().setValue(p);
+					MainForm.getInstance().getProgressBar().setValue(p);
 					i++;
 				}
 
-				Jn.getForm().getProgressBar().setValue(0);
-				Jn.getForm().getProgressBar().setVisible(false);
+				MainForm.getInstance().getProgressBar().setValue(0);
+				MainForm.getInstance().getProgressBar().setVisible(false);
 
 				_pane.getViewPane().actionEnable(true);
 
