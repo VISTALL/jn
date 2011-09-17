@@ -4,7 +4,7 @@
 	crypt CDATA #REQUIRED
 	name CDATA #REQUIRED
 	extends CDATA #IMPLIED>
-<!ELEMENT macro (part)*>
+<!ELEMENT macro (part|for)*>
 <!ATTLIST macro
 	id CDATA #REQUIRED
 	name CDATA #IMPLIED>

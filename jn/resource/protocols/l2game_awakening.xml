@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
+<protocol crypt="L2Game" name="l2game_awakening" extends="l2game_highfive5">
+	<macro id="item">
+		<part name="obj_id" type="d"/>
+		<part name="item_id" type="d">
+			<reader type="ItemName"/>
+		</part>
+		<part name="equip_slot" type="d"/>
+		<part name="count" type="Q"/>
+		<part name="item type 2" type="h"/>
+		<part name="custom item type 1" type="h"/>
+		<part name="is Equiped" type="h"/>
+		<part name="bodypart" type="d"/>
+		<part name="enchant" type="h"/>
+		<part name="custom item type 1" type="h"/>
+		<part name="augId" type="d"/>
+		<part name="lifeLeft" type="d"/>
+		<part name="timeLeft" type="d"/>
+		<part name="enabled" type="h"/>
+		<part name="attackElement" type="h"/>
+		<part name="attackElement" type="h"/>
+		<part name="water" type="h"/>
+		<part name="fire" type="h"/>
+		<part name="earth" type="h"/>
+		<part name="wind" type="h"/>
+		<part name="dark" type="h"/>
+		<part name="holy" type="h"/>
+		<part name="enchanteffect1" type="h"/>
+		<part name="enchanteffect2" type="h"/>
+		<part name="enchanteffect3" type="h"/>
+	</macro>
+	<packetfamilly way="CLIENT">
+		<packet id="D0;00B0" name="RequestCharacterNameCreatable">
+			<part name="name" type="S"/>
+		</packet>
+		<packet id="D0;00BD" name="RequestMentorList" />
+		<packet id="D0;0099" name="RequestUpdateBlockMemo">
+			<part name="name" type="S"/>
+			<part name="memo" type="S"/>
+		</packet>
+		<packet id="6A" name="RequestFriendInfoList" />
+	</packetfamilly>
+	<packetfamilly way="SERVER">
+		<packet id="32" name="UserInfo">
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="airship" type="d"/>
+			<part name="obj_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="race" type="d"/>
+			<part name="sex" type="d"/>
+			<part name="base_class" type="d"/>
+			<part name="level" type="d"/>
+			<part name="exp" type="Q"/>
+			<part name="?" type="D"/>
+			<part name="str" type="d"/>
+			<part name="dex" type="d"/>
+			<part name="con" type="d"/>
+			<part name="int" type="d"/>
+			<part name="wit" type="d"/>
+			<part name="men" type="d"/>
+			<part name="maxHP" type="d"/>
+			<part name="curHP" type="d"/>
+			<part name="maxMP" type="d"/>
+			<part name="curMP" type="d"/>
+			<part name="sp" type="d"/>
+			<part name="curLoad" type="d"/>
+			<part name="maxLoad" type="d"/>
+			<part name="is equiped weapon" type="d"/>
+			<part name="obj_id-UNDER" type="d"/>
+			<part name="obj_id-REAR" type="d"/>
+			<part name="obj_id-LEAR" type="d"/>
+			<part name="obj_id-NECK" type="d"/>
+			<part name="obj_id-RFINGER" type="d"/>
+			<part name="obj_id-LFINGER" type="d"/>
+			<part name="obj_id-HEAD" type="d"/>
+			<part name="obj_id-RHAND" type="d"/>
+			<part name="obj_id-LHAND" type="d"/>
+			<part name="obj_id-GLOVES" type="d"/>
+			<part name="obj_id-CHEST" type="d"/>
+			<part name="obj_id-LEGS" type="d"/>
+			<part name="obj_id-FEET" type="d"/>
+			<part name="obj_id-BACK" type="d"/>
+			<part name="obj_id-LRHAND" type="d"/>
+			<part name="obj_id-HAIR" type="d"/>
+			<part name="obj_id-DHAIR" type="d"/>
+			<part name="obj_id-RBRACELET" type="d"/>
+			<part name="obj_id-LBRACELET" type="d"/>
+			<part name="obj_id-DECO1" type="d"/>
+			<part name="obj_id-DECO2" type="d"/>
+			<part name="obj_id-DECO3" type="d"/>
+			<part name="obj_id-DECO4" type="d"/>
+			<part name="obj_id-DECO5" type="d"/>
+			<part name="obj_id-DECO6" type="d"/>
+			<part name="obj_id-BELT" type="d"/>
+			<part name="item_id-UNDER" type="d"/>
+			<part name="item_id-REAR" type="d"/>
+			<part name="item_id-LEAR" type="d"/>
+			<part name="item_id-NECK" type="d"/>
+			<part name="item_id-RFINGER" type="d"/>
+			<part name="item_id-LFINGER" type="d"/>
+			<part name="item_id-HEAD" type="d"/>
+			<part name="item_id-RHAND" type="d"/>
+			<part name="item_id-LHAND" type="d"/>
+			<part name="item_id-GLOVES" type="d"/>
+			<part name="item_id-CHEST" type="d"/>
+			<part name="item_id-LEGS" type="d"/>
+			<part name="item_id-FEET" type="d"/>
+			<part name="item_id-BACK" type="d"/>
+			<part name="item_id-LRHAND" type="d"/>
+			<part name="item_id-HAIR" type="d"/>
+			<part name="item_id-DHAIR" type="d"/>
+			<part name="item_id-RBRACELET" type="d"/>
+			<part name="item_id-LBRACELET" type="d"/>
+			<part name="item_id-DECO1" type="d"/>
+			<part name="item_id-DECO2" type="d"/>
+			<part name="item_id-DECO3" type="d"/>
+			<part name="item_id-DECO4" type="d"/>
+			<part name="item_id-DECO5" type="d"/>
+			<part name="item_id-DECO6" type="d"/>
+			<part name="item_id-BACK" type="d"/>
+			<part name="aurg_id-UNDER" type="d"/>
+			<part name="aurg_id-REAR" type="d"/>
+			<part name="aurg_id-LEAR" type="d"/>
+			<part name="aurg_id-NECK" type="d"/>
+			<part name="aurg_id-RFINGER" type="d"/>
+			<part name="aurg_id-LFINGER" type="d"/>
+			<part name="aurg_id-HEAD" type="d"/>
+			<part name="aurg_id-RHAND" type="d"/>
+			<part name="aurg_id-LHAND" type="d"/>
+			<part name="aurg_id-GLOVES" type="d"/>
+			<part name="aurg_id-CHEST" type="d"/>
+			<part name="aurg_id-LEGS" type="d"/>
+			<part name="aurg_id-FEET" type="d"/>
+			<part name="aurg_id-BACK" type="d"/>
+			<part name="aurg_id-LRHAND" type="d"/>
+			<part name="aurg_id-HAIR" type="d"/>
+			<part name="aurg_id-DHAIR" type="d"/>
+			<part name="aurg_id-RBRACELET" type="d"/>
+			<part name="aurg_id-LBRACELET" type="d"/>
+			<part name="aurg_id-DECO1" type="d"/>
+			<part name="aurg_id-DECO2" type="d"/>
+			<part name="aurg_id-DECO3" type="d"/>
+			<part name="aurg_id-DECO4" type="d"/>
+			<part name="aurg_id-DECO5" type="d"/>
+			<part name="aurg_id-DECO6" type="d"/>
+			<part name="aurg_id-BELT" type="d"/>
+			<part name="talismans" type="d"/>
+			<part name="cloakactive" type="d"/>
+			<part name="pAtack" type="d"/>
+			<part name="pAtackSpeed" type="d"/>
+			<part name="pDef" type="d"/>
+			<part name="evasion" type="d"/>
+			<part name="acc" type="d"/>
+			<part name="crit" type="d"/>
+			<part name="mAtack" type="d"/>
+			<part name="mAtackSpeed" type="d"/>
+			<part name="pAtackSpeed" type="d"/>
+			<part name="mDef" type="d"/>
+			<part name="mEvasion" type="d"/>
+			<part name="mAccuracy" type="d"/>
+			<part name="mCritRate" type="d"/>
+			<part name="pvp_flag" type="d"/>
+			<part name="karma" type="d"/>
+			<part name="run_spd" type="d"/>
+			<part name="walk_spd" type="d"/>
+			<part name="swim_spd" type="d"/>
+			<part name="swim_spd" type="d"/>
+			<part name="fly_run_spd" type="d"/>
+			<part name="fly_walk_spd" type="d"/>
+			<part name="fly_run_spd" type="d"/>
+			<part name="fly_walk_spd" type="d"/>
+			<part name="move_speed" type="D"/>
+			<part name="attack_speed" type="D"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="hair_stype" type="d"/>
+			<part name="hair_color" type="d"/>
+			<part name="face" type="d"/>
+			<part name="gm_commands" type="d"/>
+			<part name="title" type="S"/>
+			<part name="clan_id" type="d"/>
+			<part name="clan_crest_id" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_crest_id" type="d"/>
+			<part name="relation" type="d"/>
+			<part name="mount_type" type="c"/>
+			<part name="private_store" type="c"/>
+			<part name="can_crystalize" type="c"/>
+			<part name="pk_kills" type="d"/>
+			<part name="pvp_kills" type="d"/>
+			<part id="0" name="cubic-size" type="h"/>
+			<for id="0">
+				<part name="cubicId" type="h"/>
+			</for>
+			<part name="party_room" type="c"/>
+			<part name="abnormal" type="d"/>
+			<part name="fly" type="c"/>
+			<part name="clan_privs" type="d"/>
+			<part name="rec_left" type="h"/>
+			<part name="rec_have" type="h"/>
+			<part name="mount_id" type="d"/>
+			<part name="inventory-limit" type="h"/>
+			<part name="class_id" type="d"/>
+			<part name="?" type="d"/>
+			<part name="maxCP" type="d"/>
+			<part name="curCP" type="d"/>
+			<part name="enchant" type="c"/>
+			<part name="team" type="c"/>
+			<part name="large_clan_crest_id" type="d"/>
+			<part name="noble" type="c"/>
+			<part name="hero" type="c"/>
+			<part name="fishing" type="c"/>
+			<part name="fishing-x" type="d"/>
+			<part name="fishing-y" type="d"/>
+			<part name="fishing-z" type="d"/>
+			<part name="name-color" type="d">
+				<reader type="Color"/>
+			</part>
+			<part name="running" type="c"/>
+			<part name="pledge_class" type="d"/>
+			<part name="pledge_type" type="d"/>
+			<part name="title_color" type="d">
+				<reader type="Color"/>
+			</part>
+			<part name="cw_level" type="d"/>
+			<part name="transformation" type="d"/>
+			<part name="attackElement" type="h"/>
+			<part name="attackElement" type="h"/>
+			<part name="fire" type="h"/>
+			<part name="water" type="h"/>
+			<part name="wind" type="h"/>
+			<part name="earth" type="h"/>
+			<part name="holy" type="h"/>
+			<part name="unholy" type="h"/>
+			<part name="agathion" type="d"/>
+			<part name="fame" type="d"/>
+			<part name="allowedMap" type="d"/>
+			<part name="vitalityLevel" type="d"/>
+			<part name="specialeffects" type="d"/>
+		</packet>
+			<packet id="18" name="StatusUpdate">
+			<part name="obj_id" type="d"/>
+			<part name="receicer_id" type="d"/>
+			<part name="?" type="d"/>
+			<part id="0" name="size" type="d"/>
+			<for id="0" name="attibutes">
+				<part name="id" type="d"/>
+				<part name="value" type="d"/>
+			</for>
+		</packet>
+		<packet id="5F" name="SkillList">
+			<part id="0" name="size" type="d"/>
+			<for id="0">
+				<part name="isActive" type="d"/>
+				<part name="level" type="d"/>
+				<part name="id" type="d">
+					<reader type="SkillName"/>
+				</part>
+				<part name="skill-reuse-group" type="d"/>
+				<part name="disable" type="c"/>
+				<part name="enchanted" type="c"/>
+			</for>
+			<part name="notify-skill-id" type="d"/>
+		</packet>
+		<packet id="FE;00F9" name="ExAcquirableSkillListByClass">
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="id" type="d" />
+				<part name="level" type="d" />
+				<part name="reuse" type="d" />
+				<part name="min-level" type="h" />
+				<part name="size-of-need-items" type="d" id="1" />
+				<for id="1">
+					<part name="item-id" type="d" />
+					<part name="item-count" type="Q" />
+				</for>
+				<part name="size-of-need-skills" type="d" id="2" />
+				<for id="2">
+					<part name="skill-id" type="d" />
+					<part name="skill-count" type="d" />
+				</for>
+			</for>
+		</packet>
+		<packet id="FE;00FB" name="ExAcquireSkillInfo">
+			<part name="id" type="d" />
+			<part name="level" type="d" />
+			<part name="reuse" type="d" />
+			<part name="min-level" type="h" />
+			<part name="size-of-need-items" type="d" id="1" />
+			<for id="1">
+				<part name="item-id" type="d" />
+				<part name="item-count" type="Q" />
+			</for>
+			<part name="size-of-need-skills" type="d" id="2" />
+			<for id="2">
+				<part name="skill-id" type="d" />
+				<part name="skill-count" type="d" />
+			</for>
+		</packet>
+		<packet id="FE;00FC" name="ExNewSkillToLearnByLevelUp" />
+		<packet id="45" name="ShortCutInit">
+			<part id="0" name="size" type="d"/>
+			<for id="0">
+				<part id="1" name="type" type="d"/>
+				<part name="slot" type="d"/>
+				<part name="id" type="d"/>
+				<switch id="1">
+					<case id="1">
+						<part name="creatureType" type="d"/>
+						<part name="reuse-group" type="d"/>
+						<part name="current-reuse" type="d"/>
+						<part name="basic-reuse" type="d"/>
+						<part name="augmentation" type="d"/>
+					</case>
+					<case id="2">
+						<part name="level" type="d"/>
+						<part name="reuse-group" type="d"/>
+						<part name="?" type="c"/>
+						<part name="creatureType" type="d"/>
+					</case>
+					<case id="default">
+						<part name="creatureType" type="d"/>
+					</case>
+				</switch>
+			</for>
+		</packet>
+		<packet id="0C" name="NpcInfo">
+			<part name="obj_id" type="d"/>
+			<part name="npcId" type="d"/>
+			<part name="attackable" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
+			<part name="?" type="d"/>
+			<part name="mAttackSpeed" type="d"/>
+			<part name="pAttackSpeed" type="d"/>
+			<part name="run_spd" type="d"/>
+			<part name="walk_spd" type="d"/>
+			<part name="run_spd_" type="d"/>
+			<part name="walk_spd_" type="d"/>
+			<part name="run_spd__" type="d"/>
+			<part name="walk_spd__" type="d"/>
+			<part name="run_spd___" type="d"/>
+			<part name="walk_spd___" type="d"/>
+			<part name="move_speed" type="D"/>
+			<part name="attack_speed" type="D"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="rhand" type="d"/>
+			<part name="armor" type="d"/>
+			<part name="lhand" type="d"/>
+			<part name="?" type="c"/>
+			<part name="running" type="c"/>
+			<part name="in combat" type="c"/>
+			<part name="dead" type="c"/>
+			<part name="show spawn animation" type="c"/>
+			<part name="nameStringId" type="d"/>
+			<part name="name" type="S"/>
+			<part name="titleStringId" type="d"/>
+			<part name="title" type="S"/>
+			<part name="isPet" type="d"/>
+			<part name="pvp_flag" type="d"/>
+			<part name="karma" type="d"/>
+			<part name="abnormal" type="d"/>
+			<part name="clan_id" type="d"/>
+			<part name="clan_crest_id" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_crest_id" type="d"/>
+			<part name="?" type="c"/>
+			<part name="team" type="c"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="type" type="d"/>
+			<part name="show_name" type="c"/>
+			<part name="show_title" type="c"/>
+			<part name="specialEffects" type="d"/>
+			<part name="state" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
+		<packet id="D5" name="BlockList">
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="name" type="S" />
+				<part name="comment" type="S" />
+			</for>
+		</packet>
+		<packet id="FE;010D" name="ExShowUsm">
+			<part name="movie_id" type="d"/>
+		</packet>
+		<packet id="FE;011D" name="ExMentorList">
+			<part name="size" type="d"/>
+		</packet>
+		<packet id="FE;010F" name="ExIsCharNameCreatable">
+			<part name="response" type="d"/>
+		</packet>
+		<packet id="FE;00E5" name="ExAbnormalStatusUpdateFromTarget">
+			<part name="object-id" type="d"/>
+			<part name="size" type="h" id="0"/>
+			<for id="0">
+				<part name="skill-id" type="d" />
+				<part name="level" type="h" />
+				<part name="?" type="d" />
+				<part name="duration" type="d" />
+				<part name="effector-object-id" type="d" />
+			</for>
+		</packet>
+		<packet id="FE;00EC" name="ExBlockAddResult">
+			<part name="result" type="d"/>
+			<part name="name" type="S" />
+		</packet>
+		<packet id="a6" name="TutorialShowHtml">
+			<part name="dialog-source" type="d" id="0"/>
+			<switch id="0">
+				<case id="0">
+
+				</case>
+				<case id="1">
+					<part name="html" type="S">
+						<reader type="HTML"/>
+					</part>
+				</case>
+				<case id="2">
+					<part name="html" type="S" />
+				</case>
+			</switch>
+		</packet>
+		<packet id="41" name="WareHouseDepositList">
+			<part name="wh-type" type="h" />
+			<part name="adena" type="Q" />
+			<part name="used-slots" type="d" />
+			<part name="disable-item-size" type="h" id="0"/>
+			<for id="0">
+				<part name="item_id" type="d">
+					<reader type="ItemName"/>
+				</part>
+			</for>
+			<part name="deposit-item-size" type="h" id="1" />
+			<for id="1">
+				<macro id="item" />
+				<part name="object-id" type="d" />
+			</for>
+		</packet>
+		<packet id="42" name="WareHouseWithdrawList">
+			<part name="wh-type" type="h" />
+			<part name="adena" type="Q" />
+			<part name="size" type="h" id="0" />
+			<part name="disable-item-size" type="h" id="1"/>
+			<for id="1">
+				<part name="item_id" type="d">
+					<reader type="ItemName"/>
+				</part>
+			</for>
+			<part name="inventory-size" type="d" />
+			<for id="0">
+				<macro id="item" />
+				<part name="object-id" type="d" />
+			</for>
+		</packet>
+		<packet id="D0" name="MultiSellList">
+			<part name="listId" type="d"/>
+			<part name="page" type="d"/>
+			<part name="finished" type="d"/>
+			<part name="size of pages" type="d"/>
+			<part name="sizeOfList" type="d" id="0"/>
+			<part name="type?" type="c" />
+			<for id="0" name="entry">
+				<part name="entryId" type="d"/>
+				<part name="stackable" type="c"/>
+				<part name="?" type="h"/>
+				<part name="aug" type="d"/>
+				<part name="aug" type="d"/>
+				<part name="attackElement" type="h"/>
+				<part name="attackElement" type="h"/>
+				<part name="water" type="h"/>
+				<part name="fire" type="h"/>
+				<part name="earth" type="h"/>
+				<part name="wind" type="h"/>
+				<part name="dark" type="h"/>
+				<part name="holy" type="h"/>
+				<part name="productionSize" type="h" id="1"/>
+				<part name="ingridientSize" type="h" id="2"/>
+				<for id="1" name="productions">
+					<part name="itemId" type="d"/>
+					<part name="bodypart" type="d"/>
+					<part name="type2" type="h"/>
+					<part name="count" type="Q"/>
+					<part name="enchant" type="h"/>
+					<part name="?" type="d"/>
+					<part name="aug" type="d"/>
+					<part name="aug" type="d"/>
+					<part name="attackElement" type="h"/>
+					<part name="attackElement" type="h"/>
+					<part name="water" type="h"/>
+					<part name="fire" type="h"/>
+					<part name="earth" type="h"/>
+					<part name="wind" type="h"/>
+					<part name="dark" type="h"/>
+					<part name="holy" type="h"/>
+				</for>
+				<for id="2" name="ingridients">
+					<part name="itemId" type="d"/>
+					<part name="type2" type="h"/>
+					<part name="count" type="Q"/>
+					<part name="enchant" type="h"/>
+					<part name="aug" type="d"/>
+					<part name="aug" type="d"/>
+					<part name="attackElement" type="h"/>
+					<part name="attackElement" type="h"/>
+					<part name="water" type="h"/>
+					<part name="fire" type="h"/>
+					<part name="earth" type="h"/>
+					<part name="wind" type="h"/>
+					<part name="dark" type="h"/>
+					<part name="holy" type="h"/>
+				</for>
+			</for>
+		</packet>
+	</packetfamilly>
+</protocol>

@@ -33,6 +33,12 @@
 		<part name="enchanteffect2" type="h"/>
 		<part name="enchanteffect3" type="h"/>
 	</macro>
+	<macro id="npc_string_container">
+		<part name="npc_string_id" type="d"/>
+		<for fixed="5">
+			<part name="arg" type="S"/>
+		</for>
+	</macro>
 	<packetfamilly way="SERVER">
 		<packet id="2E" key="true" name="VersionCheck">
 			<part name="success" type="c"/>
@@ -254,10 +260,7 @@
 			<part name="obj_id" type="d"/>
 			<part name="type" type="d"/>
 			<part name="npc_id" type="d"/>
-			<part name="npc_string_id" type="d"/>
-			<for fixed="5">
-				<part name="arg" type="S"/>
-			</for>
+			<macro id="npc_string_container" />
 		</packet>
 		<packet id="31" name="CharInfo">
 			<part name="x" type="d"/>
@@ -760,7 +763,9 @@
 			</part>
 		</packet>
 		<packet id="a7" name="TutorialShowQuestionMark"/>
-		<packet id="a8" name="TutorialShowHtml"/>
+		<packet id="a8" name="TutorialShowHtml">
+			<part name="id" type="d"/>
+		</packet>
 		<packet id="a9" name="TutorialCloseHtml"/>
 		<packet id="b9" name="MyTargetSelected">
 			<part name="obj_id" type="d"/>
@@ -934,7 +939,7 @@
 			</part>
 			<part name="quest_id" type="d"/>
 		</packet>
-		<packet id="FE;00C4" name="ExQuestNpcLogList">
+		<packet id="FE;00C5" name="ExQuestNpcLogList">
 			<part name="questId" type="d"/>
 			<part name="size" type="c" id="0"/>
 			<for id="0">
@@ -1027,14 +1032,17 @@
 		<packet id="37" name="DismissPledgePacket"/>
 		<packet id="38" name="SetDismissPledgePacket"/>
 		<packet id="39" name="AskJoinPartyPacket"/>
-		<packet id="3A" name="JoinPartyPacket"/>
+		<packet id="3A" name="JoinParty">
+			<part name="type" type="d" />
+			<part name="summon_count" type="d" />
+		</packet>
 		<packet id="3B" name="WithdrawalPartyPacket"/>
 		<packet id="3C" name="OustPartyMemberPacket"/>
 		<packet id="3D" name="SetOustPartyMemberPacket"/>
 		<packet id="3E" name="DismissPartyPacket"/>
 		<packet id="3F" name="SetDismissPartyPacket"/>
-		<packet id="41" name="WareHouseDepositListPacket"/>
-		<packet id="42" name="WareHouseWithdrawListPacket"/>
+		<packet id="41" name="WareHouseDepositList"/>
+		<packet id="42" name="WareHouseWithdrawList"/>
 		<packet id="43" name="WareHouseDonePacket"/>
 		<packet id="44" name="ShortCutRegisterPacket"/>
 		<packet id="46" name="ShortCutDeletePacket"/>
@@ -1056,16 +1064,58 @@
 				<part name="maxMP" type="d"/>
 				<part name="level" type="d"/>
 				<part name="classId" type="d"/>
-				<part name="?" type="d"/>
+				<part name="sex" type="d"/>
 				<part name="race" type="d"/>
 				<part name="?" type="d"/>
 				<part name="?" type="d"/>
+				<part name="pet_id" type="d" id="1" />
+				<switch id="1">
+					<case id="0" />
+					<case id="default">
+						<part name="npc_id" type="d" />
+						<part name="type" type="d" />
+						<part name="name" type="S" />
+						<part name="current_hp" type="d" />
+						<part name="max_hp" type="d" />
+						<part name="current_mp" type="d" />
+						<part name="max_mp" type="d" />
+						<part name="level" type="d" />
+					</case>
+				</switch>
 			</for>
 		</packet>
-		<packet id="4F" name="PartySmallWindowAddPacket"/>
+		<packet id="4F" name="PartySmallWindowAdd">
+			<part name="leader_object_id" type="d"/>
+			<part name="loot_type" type="d"/>
+			<part name="object_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="curCP" type="d"/>
+			<part name="maxCP" type="d"/>
+			<part name="curHP" type="d"/>
+			<part name="maxHP" type="d"/>
+			<part name="curMP" type="d"/>
+			<part name="maxMP" type="d"/>
+			<part name="level" type="d"/>
+			<part name="classId" type="d"/>
+			<part name="sex" type="d"/>
+			<part name="race" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="50" name="PartySmallWindowDeleteAllPacket"/>
 		<packet id="51" name="PartySmallWindowDeletePacket"/>
-		<packet id="52" name="PartySmallWindowUpdatePacket"/>
+		<packet id="52" name="PartySmallWindowUpdate">
+			<part name="objectId" type="d"/>
+			<part name="name" type="S"/>
+			<part name="curCP" type="d"/>
+			<part name="maxCP" type="d"/>
+			<part name="curHP" type="d"/>
+			<part name="maxHP" type="d"/>
+			<part name="curMP" type="d"/>
+			<part name="maxMP" type="d"/>
+			<part name="level" type="d"/>
+			<part name="classId" type="d"/>
+		</packet>
 		<packet id="53" name="TradePressOwnOkPacket"/>
 		<packet id="55" name="FriendAddRequestResult"/>
 		<packet id="56" name="FriendAdd"/>
@@ -1381,7 +1431,14 @@
 		<packet id="D8" name="OnSkillRemainSec"/>
 		<packet id="D9" name="NetPingPacket"/>
 		<packet id="DA" name="DicePacket"/>
-		<packet id="DB" name="SnoopPacket"/>
+		<packet id="DB" name="Snoop">
+			<part name="object_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="object_id" type="d"/>
+			<part name="type" type="d"/>
+			<part name="speaker" type="S"/>
+			<part name="text" type="S"/>
+		</packet>
 		<packet id="DC" name="RecipeBookItemListPacket"/>
 		<packet id="DD" name="RecipeItemMakeInfoPacket"/>
 		<packet id="DE" name="RecipeShopManageListPacket"/>
@@ -1466,7 +1523,18 @@
 		<packet id="FE;0015" name="ExShowFortressInfo"/>
 		<packet id="FE;0016" name="ExShowAgitInfo"/>
 		<packet id="FE;0017" name="ExShowFortressSiegeInfo"/>
-		<packet id="FE;0018" name="ExPartyPetWindowAdd"/>
+		<packet id="FE;0018" name="ExPartyPetWindowAdd">
+			<part name="summon_object_id" type="d" />
+			<part name="npc_id" type="d" />
+			<part name="type" type="d" />
+			<part name="owner_id" type="d" />
+			<part name="name" type="S" />
+			<part name="current_hp" type="d" />
+			<part name="max_hp" type="d" />
+			<part name="current_mp" type="d" />
+			<part name="max_mp" type="d" />
+			<part name="level" type="d" />
+		</packet>
 		<packet id="FE;0019" name="ExPartyPetWindowUpdate"/>
 		<packet id="FE;001A" name="ExAskJoinMPCCPacket"/>
 		<packet id="FE;001B" name="ExPledgeEmblem"/>
@@ -1806,7 +1874,6 @@
 		</packet>
 		<packet id="FE;00A4" name="ExDominionWarEnd"/>
 		<packet id="FE;00A5" name="ExShowLines"/>
-		<packet id="FE;00A6" name="ExPartyMemberRenamed"/>
 		<packet id="FE;00A7" name="ExEnchantSkillResult"/>
 		<packet id="FE;00A8" name="ExRefundList"/>
 		<packet id="FE;00A9" name="ExNoticePostArrived"/>
@@ -1955,8 +2022,8 @@
 			<part name="?" type="d"/>
 			<part name="stage" type="d"/>
 		</packet>
-		<packet id="FE;00C3" name="ExReplyHandOverPartyMaster">
-			<part name="success" type="d"/>
+		<packet id="FE;00C4" name="ExReplyHandOverPartyMaster">
+			<part name="is_leader" type="d"/>
 		</packet>
 		<packet id="FE;00BF" name="ExSetPartyLooting">
 			<part name="success" type="d"/>

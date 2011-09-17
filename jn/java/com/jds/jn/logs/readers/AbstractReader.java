@@ -21,7 +21,7 @@ import com.jds.jn.session.Session;
  */
 public abstract class AbstractReader
 {
-	private static final Logger _log = Logger.getLogger(AbstractReader.class);
+	protected final Logger _log = Logger.getLogger(getClass());
 
 	protected File _currentFile;
 	protected RandomAccessFile _file;

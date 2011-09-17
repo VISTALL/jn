@@ -3,14 +3,15 @@ package com.jds.jn.protocol;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfilePart;
 import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 
@@ -22,7 +23,7 @@ public class ProtocolManager
 
 	public static ProtocolManager getInstance()
 	{
-		if (_instance == null)
+		if(_instance == null)
 		{
 			_instance = new ProtocolManager();
 		}
@@ -31,13 +32,13 @@ public class ProtocolManager
 
 	private ProtocolManager()
 	{
-		_protocolsByName = new HashMap<String, Protocol>();
+		_protocolsByName = new TreeMap<String, Protocol>();
 		loadProtocols();
 	}
 
 	public Protocol getProtocolByName(String name)
 	{
-		if (!_protocolsByName.containsKey(name))
+		if(!_protocolsByName.containsKey(name))
 		{
 			MainForm.getInstance().warn("Can not find protocol for name " + name);
 		}
@@ -71,7 +72,7 @@ public class ProtocolManager
 		_protocolsByName.clear();
 		File dir = new File("./protocols/");
 
-		if (!dir.isDirectory())
+		if(!dir.isDirectory())
 		{
 			MainForm.getInstance().warn("Invalid Protocols directory (" + dir.getAbsolutePath() + ")");
 			return;
@@ -87,10 +88,10 @@ public class ProtocolManager
 
 		});
 
-		for (File f : files)
+		for(File f : files)
 		{
 			Protocol p = ProtocolLoader.restore(f);
-			if (p == null)
+			if(p == null)
 				return;
 
 			_protocolsByName.put(p.getName(), p);
@@ -98,25 +99,38 @@ public class ProtocolManager
 
 		for(Protocol p : _protocolsByName.values())
 		{
+			if(p.getSuperProtocol() != null)
+				continue;
+
 			if(p.getExtends() != null)
 			{
 				Protocol extendsProtocol = _protocolsByName.get(p.getExtends());
 				if(extendsProtocol != null)
-				{
-					for(PacketFamilly extendsFamily : extendsProtocol.getFamilies())
-						for(PacketInfo packetInfo : extendsFamily.getFormats().values())
-							if(packetInfo.isExtended())
-							{
-								PacketFamilly familly = p.getFamilly(extendsFamily.getType());
-								if(familly == null)
-									p.setFamily(extendsFamily.getType(), familly = new PacketFamilly(extendsFamily.getType()));
-
-								familly.addPacket(packetInfo, null);
-							}
-				}
+					initExtendsProtocol(p, extendsProtocol);
 				else
 					MainForm.getInstance().warn("Not find extends protocol: " + p.getExtends() + " from " + p.getName());
 			}
 		}
+	}
+
+	private void initExtendsProtocol(Protocol child, Protocol parent)
+	{
+		for(PacketFamilly extendsFamily : parent.getFamilies())
+			for(PacketInfo packetInfo : extendsFamily.getFormats().values())
+			{
+				PacketFamilly familly = child.getFamilly(extendsFamily.getType());
+				if(familly == null)
+					child.setFamily(extendsFamily.getType(), familly = new PacketFamilly(extendsFamily.getType()));
+
+				familly.addPacket(packetInfo, null);
+			}
+
+		for(MacroInfo m : parent.getMacros().values())
+		{
+			if(child.getMacroInfo(m.getId()) == null)
+				child.addMacro(m);
+		}
+
+		child.setSuperProtocol(parent);
 	}
 }

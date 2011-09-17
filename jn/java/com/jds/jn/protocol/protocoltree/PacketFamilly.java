@@ -28,7 +28,7 @@ public class PacketFamilly// extends ProtocolNode
 			if ((format = _formats.put(format.getId(), format)) != null)
 			MainForm.getInstance().info("Duplicate packet for one opcode: " + format.getId() + "; protocol:" + p.getName());
 		}
-		else
+		else if(!_formats.containsKey(format.getId()))
 			_formats.put(format.getId(), format);
 	}
 

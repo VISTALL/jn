@@ -96,8 +96,8 @@ public class DecodeAllActionListener implements ActionListener
 					i++;
 				}
 
-				Jn.getForm().getProgressBar().setVisible(false);
 				Jn.getForm().getProgressBar().setValue(0);
+				Jn.getForm().getProgressBar().setVisible(false);
 
 				_pane.getViewPane().actionEnable(true);
 

@@ -39,7 +39,9 @@ public class Protocol
 	private String _encryption;
 	private String _name;
 	private String _filename;
+
 	private String _extends;
+	private Protocol _superProtocol;
 
 	private ByteOrder _order = ByteOrder.LITTLE_ENDIAN;
 
@@ -206,5 +208,20 @@ public class Protocol
 	public void setExtends(String anExtends)
 	{
 		_extends = anExtends;
+	}
+
+	public Protocol getSuperProtocol()
+	{
+		return _superProtocol;
+	}
+
+	public void setSuperProtocol(Protocol superProtocol)
+	{
+		_superProtocol = superProtocol;
+	}
+
+	public Map<String, MacroInfo> getMacros()
+	{
+		return _macros;
 	}
 }

@@ -20,6 +20,7 @@ import com.jds.jn.logs.readers.CapReader;
 import com.jds.jn.logs.readers.JNL2Reader;
 import com.jds.jn.logs.readers.JNLReader;
 import com.jds.jn.logs.readers.LogReader;
+import com.jds.jn.logs.readers.PCapReader;
 import com.jds.jn.logs.readers.PLogReader;
 import com.jds.jn.logs.readers.PSLReader;
 import com.jds.jn.util.FileUtils;
@@ -54,6 +55,7 @@ public class Reader
 		addReader(new PLogReader());
 		addReader(new LogReader());
 		addReader(new CapReader());
+		addReader(new PCapReader());
 	}
 
 	public void addReader(AbstractReader r)

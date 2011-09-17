@@ -176,7 +176,6 @@ public class ProtocolLoader
 				boolean isKey = map.getNamedItem("key") != null && Boolean.parseBoolean(map.getNamedItem("key").getNodeValue());
 				boolean server_list = map.getNamedItem("server_list") != null && Boolean.parseBoolean(map.getNamedItem("server_list").getNodeValue());
 				String reader_c = map.getNamedItem("reader") == null ? null : map.getNamedItem("reader").getNodeValue();
-				boolean extended = map.getNamedItem("extended") != null && Boolean.parseBoolean(map.getNamedItem("extended").getNodeValue());
 				Class<PacketReader> reader = null;
 
 				if(reader_c != null)
@@ -197,7 +196,7 @@ public class ProtocolLoader
 					continue;
 				}
 
-				PacketInfo format = new PacketInfo(id, name, isKey, server_list, extended, reader);
+				PacketInfo format = new PacketInfo(id, name, isKey, server_list, reader);
 
 				boolean b = parseParts(o, format.getDataFormat().getMainBlock());
 				if(!b)

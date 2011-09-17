@@ -1378,7 +1378,11 @@
 		</packet>
 		<packet id="FE;00A4" name="ExDominionWarEnd"/>
 		<packet id="FE;00A5" name="ExShowLines"/>
-		<packet id="FE;00A6" name="ExPartyMemberRenamed"/>
+		<packet id="FE;00A6" name="ExPartyMemberRenamed" extended="true">
+			<part name="objectId" type="d"/>
+			<part name="disguised" type="d"/>
+			<part name="disguisedTerritoryId" type="d"/>
+		</packet>
 		<packet id="FE;00A7" name="ExEnchantSkillResult"/>
 		<packet id="FE;00A8" name="ExRefundList"/>
 		<packet id="FE;00A9" name="ExNoticePostArrived"/>
