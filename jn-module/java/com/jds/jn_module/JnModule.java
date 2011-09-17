@@ -4,8 +4,8 @@ import java.io.File;
 
 import javax.swing.UIManager;
 
-import com.jds.jn.util.OSUtils;
 import com.jds.jn_module.gui.MainForm;
+import com.jds.jn_module.utils.OSUtils;
 
 /**
  * Author: VISTALL

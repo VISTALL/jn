@@ -1,2 +1,2 @@
-java -cp ./libs/*; com.jds.jn_module.JnModule 2106
+java -cp ./libs/*; com.jds.jn_module.JnModule
 pause
