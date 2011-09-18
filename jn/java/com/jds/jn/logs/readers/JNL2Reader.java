@@ -63,6 +63,7 @@ public class JNL2Reader extends AbstractReader
 	{
 		int size = readD();
 		PacketType[] values = PacketType.values();
+		MainForm.getInstance().getProgressBar().setMaximum(size);
 		for(int i = 0; i < size; i++)
 		{
 			PacketType t = values[readC()];
@@ -79,12 +80,9 @@ public class JNL2Reader extends AbstractReader
 				_session.receiveQuitPacket(dp, true, true);
 			}
 			else
-			{
 				_session.receiveQuitPacket(packet);
-			}
 
-			int p = (int) ((100D * (i + 1)) / size);
-			MainForm.getInstance().getProgressBar().setValue(p);
+			MainForm.getInstance().getProgressBar().setValue(i);
 		}
 	}
 

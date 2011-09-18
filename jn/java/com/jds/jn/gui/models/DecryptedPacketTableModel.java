@@ -96,9 +96,7 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 	public void addRow(DecryptedPacket packet, int row)
 	{
 		if (packet.getBuffer().array().length == 0)
-		{
 			return;
-		}
 
 		ImageIcon icon = null;
 
@@ -150,13 +148,9 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 		}
 		String opcode = null;
 		if (packet.getPacketInfo() != null)
-		{
 			opcode = packet.getPacketInfo().getId().toUpperCase();
-		}
 		else
-		{
 			opcode = Util.zeropad(Integer.toHexString(packet.getBuffer().array()[0] & 0xFF), 2).toUpperCase();
-		}
 
 		String toolTip = null;
 		if (packet.hasError())

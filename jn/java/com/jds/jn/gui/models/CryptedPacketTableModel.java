@@ -31,17 +31,9 @@ public class CryptedPacketTableModel extends AbstractTableModel
 
 	private List<Object[]> _currentTable = new ArrayList<Object[]>();
 
-	private final ViewPane _pane;
-
 	public CryptedPacketTableModel(ViewPane pane)
 	{
-		_pane = pane;
-	}
 
-	@Deprecated
-	public Object[] getRow(int id)
-	{
-		return _currentTable.get(id);
 	}
 
 	@Override
@@ -84,13 +76,9 @@ public class CryptedPacketTableModel extends AbstractTableModel
 		ImageIcon icon = null;
 
 		if (packet.getPacketType() == PacketType.CLIENT)
-		{
 			icon = ImageStatic.ICON_FROM_CLIENT;
-		}
 		else
-		{
 			icon = ImageStatic.ICON_FROM_SERVER;
-		}
 
 		Object[] temp =
 		{

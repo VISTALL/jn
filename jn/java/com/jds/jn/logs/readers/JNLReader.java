@@ -1,9 +1,8 @@
 package com.jds.jn.logs.readers;
 
-import org.apache.log4j.Logger;
-
 import java.io.IOException;
 
+import org.apache.log4j.Logger;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.CryptedPacket;
@@ -76,52 +75,37 @@ public class JNLReader extends AbstractReader
 	@Override
 	public void parsePackets() throws IOException
 	{
+		MainForm.getInstance().getProgressBar().setMaximum(_size);
 		try
 		{
 			if (!_isDecode)
 			{
 				for (int i = 0; i < _size; i++)
 				{
-					try
-					{
-						PacketType type = PacketType.values()[_buffer.getInt()];
-						int size = _buffer.getInt();
+					PacketType type = PacketType.values()[_buffer.getInt()];
+					int size = _buffer.getInt();
 
-						byte[] data = readB(size);
-						CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
+					byte[] data = readB(size);
+					CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
 
-						_session.receiveQuitPacket(packet);
+					_session.receiveQuitPacket(packet);
 
-						int p = (int) ((100D * (i + 1)) / _size);
-						MainForm.getInstance().getProgressBar().setValue(p);
-					}
-					catch (Exception e)
-					{
-						_log.info("Exception: " + e, e);
-					}
+					MainForm.getInstance().getProgressBar().setValue(i);
 				}
 			}
 			else
 			{
 				for (int i = 0; i < _size; i++)
 				{
-					try
-					{
-						PacketType type = PacketType.values()[_buffer.getInt()];
-						int size = _buffer.getInt();
-						byte[] data = readB(size);
-						CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
-						DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
+					PacketType type = PacketType.values()[_buffer.getInt()];
+					int size = _buffer.getInt();
+					byte[] data = readB(size);
+					CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
+					DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
 
-						_session.receiveQuitPacket(dp, true, true);
+					_session.receiveQuitPacket(dp, true, true);
 
-						int p = (int) ((100D * (i + 1)) / _size);
-						MainForm.getInstance().getProgressBar().setValue(p);
-					}
-					catch (Exception e)
-					{
-						_log.info("Exception: " + e, e);
-					}
+					MainForm.getInstance().getProgressBar().setValue(i);
 				}
 			}
 		}

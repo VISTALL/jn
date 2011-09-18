@@ -77,14 +77,12 @@ public class LogReader extends AbstractReader
 		List<String> lines = new ArrayList<String>();
 		String readLine = null;
 		while ((readLine = _reader.readLine()) != null)
-		{
 			lines.add(readLine);
-		}
 
-		int i = 0;
-		for(String line : lines)
+		MainForm.getInstance().getProgressBar().setMaximum(lines.size());
+		for(int i = 0; i < lines.size(); i++)
 		{
-			StringTokenizer token = new StringTokenizer(line);
+			StringTokenizer token = new StringTokenizer(lines.get(i));
 			if(token.countTokens() < 4)
 				continue;
 			token.nextToken();
@@ -114,9 +112,7 @@ public class LogReader extends AbstractReader
 
 			_session.receiveQuitPacket(dp, true, true);
 
-			int p = (int) ((100D * (i + 1)) / lines.size());
-			MainForm.getInstance().getProgressBar().setValue(p);
-			i++;
+			MainForm.getInstance().getProgressBar().setValue(i);
 		}
 	}
 

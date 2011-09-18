@@ -52,9 +52,8 @@ public class Writer
 		{
 			final JFileChooser c = new JFileChooser(RValues.LAST_FOLDER.asString());
 			for(AbstractWriter w : _writers.values())
-			{
 				c.addChoosableFileFilter(new WriterFileFilter(w));
-			}
+			c.setAcceptAllFileFilterUsed(false);
 
 			final int r = c.showSaveDialog(MainForm.getInstance());
 

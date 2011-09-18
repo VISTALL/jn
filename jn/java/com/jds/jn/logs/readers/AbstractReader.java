@@ -75,30 +75,28 @@ public abstract class AbstractReader
 		_currentFile = null;
 	}
 
-	protected void read() throws IOException
+	protected void read()
 	{
-		//ThreadPoolManager.getInstance().execute(new RunnableImpl()
-		//{
-		//	@Override
-		//	public void runImpl() throws Exception
-			{
-				MainForm.getInstance().getProgressBar().setVisible(true);
-				MainForm.getInstance().getProgressBar().setValue(0);
+		MainForm.getInstance().getProgressBar().setVisible(true);
 
-				if (parseHeader())
-				{
-					parsePackets();
-				}
+		try
+		{
+			if(parseHeader())
+				parsePackets();
 
-				File f = _currentFile;
-				Session s = _session;
-				close();
-				_listener.onFinish(s, f);
-
-				MainForm.getInstance().getProgressBar().setValue(0);
-				MainForm.getInstance().getProgressBar().setVisible(false);
-			}
-		//});
+			File f = _currentFile;
+			Session s = _session;
+			close();
+			_listener.onFinish(s, f);
+		}
+		catch(IOException e)
+		{
+			_log.warn(getClass().getSimpleName() + ".read(): " + e, e);
+		}
+		finally
+		{
+			MainForm.getInstance().getProgressBar().setVisible(false);
+		}
 	}
 
 	public abstract boolean parseHeader() throws IOException;

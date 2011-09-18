@@ -3,7 +3,7 @@ package com.jds.jn.logs;
 import java.io.File;
 import java.util.AbstractMap;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.swing.JFileChooser;
@@ -35,7 +35,7 @@ public class Reader
 {
 	private static Reader _instance;
 	public static final ReaderListener DEFAULT_READER_LISTENER = new DefaultReaderListener();
-	private Map<String, Map.Entry<AbstractReader, FileFilter>> _readers = new HashMap<String, Map.Entry<AbstractReader, FileFilter>>();
+	private Map<String, Map.Entry<AbstractReader, FileFilter>> _readers = new LinkedHashMap<String, Map.Entry<AbstractReader, FileFilter>> ();
 
 	public static Reader getInstance()
 	{
@@ -51,11 +51,12 @@ public class Reader
 	{
 		addReader(new PSLReader());
 		addReader(new JNLReader());
-		addReader(new JNL2Reader());
 		addReader(new PLogReader());
 		addReader(new LogReader());
 		addReader(new CapReader());
 		addReader(new PCapReader());
+
+		addReader(new JNL2Reader());
 	}
 
 	public void addReader(AbstractReader r)
@@ -67,9 +68,8 @@ public class Reader
 	{
 		final JFileChooser chooser = new JFileChooser(RValues.LAST_FOLDER.asString());
 		for (Map.Entry<AbstractReader, FileFilter> v : _readers.values())
-		{
 			chooser.addChoosableFileFilter(v.getValue());
-		}
+		chooser.setAcceptAllFileFilterUsed(false);
 
 		return chooser;
 	}

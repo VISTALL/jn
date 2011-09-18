@@ -3,11 +3,11 @@ package com.jds.jn_module.logs.writer;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 import com.jds.jn_module.network.packets.JPacket;
 import com.jds.jn_module.network.session.Session;
+import com.jds.jn_module.utils.buffer.NioBuffer;
 
 /**
  * Author: VISTALL
@@ -17,13 +17,14 @@ import com.jds.jn_module.network.session.Session;
 public class Writer
 {
 	protected Session _session;
-	protected ByteBuffer _buf;
+	protected NioBuffer _buf;
 
 	public Writer(Session session) throws IOException
 	{
 		_session = session;
-		_buf = ByteBuffer.allocate(65535 * 5);
+		_buf = NioBuffer.allocate(65535 * 5);
 		_buf.order(ByteOrder.LITTLE_ENDIAN);
+		_buf.setAutoExpand(true);
 	}
 
 	protected void close() throws IOException
@@ -31,7 +32,7 @@ public class Writer
 		File file = new File(String.format("./logs/session-%d.jnl2", _session.getSessionId()));
 
 		FileOutputStream stream = new FileOutputStream(file);
-		stream.write(_buf.array(), 0, _buf.position() + 10);
+		stream.write(_buf.array());
 		stream.close();
 
 		System.out.println("Success writer session " + file.getAbsolutePath() + " array " + _buf.position());

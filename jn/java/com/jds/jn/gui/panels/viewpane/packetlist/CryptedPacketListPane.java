@@ -99,7 +99,7 @@ public class CryptedPacketListPane extends JPanel
 
 				NioBuffer buff = NioBuffer.wrap(bytes);
 
-				final DecPacketListPane pane = getViewPane().getPacketListPane();
+				final DecryptedPacketListPane pane = getViewPane().getPacketListPane();
 
 				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, buff, System.currentTimeMillis()));
 				model.addRow(datapacket);
@@ -143,36 +143,31 @@ public class CryptedPacketListPane extends JPanel
 					return;
 				}
 
-				final DecPacketListPane pane = getViewPane().getPacketListPane();
+				final DecryptedPacketListPane pane = getViewPane().getPacketListPane();
 				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
 				if(_packetList.getSelectedRow() == -1)
 				{
 					return;
 				}
 				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(_packetList.getSelectedRow());
+				if(packet.isDecrypted())
+					return;
 
+				DecryptedPacket datapacket = session.decode(packet);
 
-				if(!packet.isShow())
+				if(datapacket.getName() != null && datapacket.getPacketInfo().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
+					setEnableServerListButton(true);
+
+				if(datapacket.getPacketInfo() != null)
 				{
-					DecryptedPacket datapacket = session.decode(packet);
-					if(datapacket.getName() != null && datapacket.getName().equals("SM_SERVER_LIST"))
-					{
-						_sendServerListButton.setEnabled(true);
-						_sendServerListButton.setVisible(true);
-					}
-					if(datapacket.getPacketInfo() != null)
-					{
-						NetworkProfilePart part = profile.getPart(session.getListenerType());
-						if(part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
-						{
-							return;
-						}
-					}
-
-					session.receiveQuitPacket(datapacket, true, true);
-					model.addRow(datapacket);
+					NetworkProfilePart part = profile.getPart(session.getListenerType());
+					if(part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
+						return;
 				}
 
+				session.receiveQuitPacket(datapacket, true, true);
+
+				model.addRow(datapacket);
 
 				getViewPane().updateInfo(session);
 

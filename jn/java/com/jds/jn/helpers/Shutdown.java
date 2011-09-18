@@ -1,6 +1,7 @@
 package com.jds.jn.helpers;
 
 import com.jds.jn.config.ConfigParser;
+import com.jds.jn.config.RValues;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.util.ThreadPoolManager;
 
@@ -15,6 +16,9 @@ public class Shutdown extends Thread
 	@Override
 	public void run()
 	{
+		RValues.LAST_WINDOW_POSITION_X.setVal(MainForm.getInstance().getLocation().x);
+		RValues.LAST_WINDOW_POSITION_Y.setVal(MainForm.getInstance().getLocation().y);
+
 		try
 		{
 			MainForm.getInstance().stopMemoryBarTask();

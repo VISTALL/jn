@@ -2,7 +2,9 @@ package com.jds.jn.session;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
 import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
@@ -15,9 +17,10 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.tasks.CloseTask;
+import com.jds.jn.parser.packetfactory.tasks.InvokeTask;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.ProtocolManager;
-import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.version_control.Version;
 
@@ -36,8 +39,8 @@ public class Session
 	private ProtocolCrypter _crypt;
 	private Protocol _protocol;
 
-	private final List<CryptedPacket> _cryptedPackets = new ArrayList<CryptedPacket>();
-	private final List<DecryptedPacket> _decryptPackets = new ArrayList<DecryptedPacket>();
+	private final List<CryptedPacket> _cryptedPackets = new CopyOnWriteArrayList<CryptedPacket> ();
+	private final List<DecryptedPacket> _decryptPackets = new CopyOnWriteArrayList<DecryptedPacket>();
 
 	private final IMethod _method;
 	private final ListenerType _type;
@@ -91,6 +94,7 @@ public class Session
 
 	public DecryptedPacket decode(CryptedPacket packet)
 	{
+		packet.setDecrypted(true);
 		byte data[] = Arrays.copyOf(packet.getBuffer().array(), packet.getBuffer().array().length);
 
 		data = _crypt.decrypt(data, packet.getPacketType());
@@ -118,22 +122,19 @@ public class Session
 		return _crypt;
 	}
 
-	public synchronized void receivePacket(CryptedPacket p)
-	{
-		 _cryptedPackets.add(p);
-
-		getViewPane().getCryptPacketTableModel().addRow(p);
-		getViewPane().updateInfo(this);
-	}
-
-	public synchronized void receiveQuitPacket(CryptedPacket p)
+	public void receiveQuitPacket(CryptedPacket p)
 	{
 		_cryptedPackets.add(p);
 
-		getViewPane().getCryptPacketTableModel().addRow(p);
+		ViewPane pane = getViewPane();
+
+		pane.getCryptPacketTableModel().addRow(p);
+
+		if(!pane.getPacketList().isHidden() && pane.getSelectedComponent() == pane.getInfoPane())
+			pane.updateInfo(this);
 	}
 
-	public synchronized void receiveQuitPacket(DecryptedPacket p, boolean gui, boolean fire)
+	public void receiveQuitPacket(DecryptedPacket p, boolean gui, boolean fire)
 	{
 		_decryptPackets.add(p);
 
@@ -141,7 +142,7 @@ public class Session
 			getViewPane().getDecryptPacketTableModel().addRow(p);
 
 		if(fire)
-			fireInvokePacket(p);
+			ThreadPoolManager.getInstance().execute(new InvokeTask(this, Collections.singletonList(p)));
 	}
 
 	public void onShow()
@@ -149,13 +150,14 @@ public class Session
 		getViewPane().drawThis();
 
 		getViewPane().updateInfo(this);
+
 		getViewPane().getPacketListPane().getPacketTable().updateUI();
-		getViewPane().getNotDecPacketListPane().getPacketTable().updateUI();
+		getViewPane().getCryptedPacketListPane().getPacketTable().updateUI();
 	}
 
 	public void close()
 	{
-		fireClose();
+		ThreadPoolManager.getInstance().execute(new CloseTask(this));
 
 		SessionTable.getInstance().removeGameSession(getSessionId());
 
@@ -189,28 +191,14 @@ public class Session
 
 	public void fireInvokePacket(final DecryptedPacket o)
 	{
-		ThreadPoolManager.getInstance().execute(new RunnableImpl()
-		{
-			@Override
-			public void runImpl()
-			{
-				for(IPacketListener f :_invokes)
-					f.invoke(o);
-			}
-		});
+		for(IPacketListener f : _invokes)
+			f.invoke(o);
 	}
 
 	public void fireClose()
 	{
-		ThreadPoolManager.getInstance().execute(new RunnableImpl()
-		{
-			@Override
-			public void runImpl()
-			{
-				for(IPacketListener f : _invokes)
-					f.close();
-			}
-		});
+		for(IPacketListener f : _invokes)
+			f.close();
 	}
 
 	public Version getVersion()

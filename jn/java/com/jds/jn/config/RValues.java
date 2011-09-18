@@ -41,6 +41,13 @@ public enum RValues
 	@PropertyValue("PacketForm_NotSelect_ForegroundColor2")
 	PACKET_FORM_NOT_SELECT_FOREGROUND_COLOR_2(new JColor(JColor.BLACK)),
 
+	@PropertyValue("LastWindowPositionX")
+	LAST_WINDOW_POSITION_X(0),
+	@PropertyValue("LastWindowPositionY")
+	LAST_WINDOW_POSITION_Y(0),
+	@PropertyValue("LastSearch")
+	LAST_SEARCH(""),
+
 	@PropertyValue("SaveAsDecode")
 	SAVE_AS_DECODE(false);
 
@@ -66,7 +73,12 @@ public enum RValues
 	public Class<?> getType()
 	{
 		return _type;
-	}  	
+	}
+
+	public int asInt()
+	{
+		return (Integer)_val;
+	}
 
 	public float asFloat()
 	{

@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.jds.jn.config.RValues;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.DecryptedPacket;
@@ -47,21 +48,19 @@ import com.jds.jn.session.Session;
  * Time: 14:00:20
  * Thanks: Ulysses R. Ribeiro
  */
-public class SearchPane extends JPanel
+public class SearchPane extends HiddenPanel
 {
 	private JPanel main;
 	private JTextField _findText;
 	private JButton _searchBtn;
-	private JRadioButton simpleSearchRadioButton;
+	private JRadioButton _simpleSearchRadioButton;
 	private JRadioButton advancedSearchRadioButton;
 	private JComboBox packetSelect;
 	private JComboBox partselect;
 	private JComboBox operatorSelect;
-	private JTextField findT;
+	private JTextField _simpleTextSearch;
 	private JLabel statusLable;
 	private ViewPane _pane;
-
-	public boolean IS_HIDE = false;
 
 	private PacketInfo _currentFormat;
 	private Part _currentPart;
@@ -88,7 +87,7 @@ public class SearchPane extends JPanel
 		_pane = pane;
 		$$$setupUI$$$();
 
-		simpleSearchRadioButton.addActionListener(new ActionListener()
+		_simpleSearchRadioButton.addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -97,7 +96,7 @@ public class SearchPane extends JPanel
 				packetSelect.setEnabled(false);
 				partselect.setEnabled(false);
 				operatorSelect.setEnabled(false);
-				findT.setEnabled(false);
+				_simpleTextSearch.setEnabled(false);
 
 				_findText.setEnabled(true);
 			}
@@ -114,7 +113,7 @@ public class SearchPane extends JPanel
 				packetSelect.setEnabled(true);
 				partselect.setEnabled(true);
 				operatorSelect.setEnabled(true);
-				findT.setEnabled(true);
+				_simpleTextSearch.setEnabled(true);
 
 				_findText.setEnabled(false);
 			}
@@ -145,7 +144,7 @@ public class SearchPane extends JPanel
 			}
 		});
 
-		findT.addKeyListener(new KeyListener()
+		_simpleTextSearch.addKeyListener(new KeyListener()
 		{
 
 			@Override
@@ -164,7 +163,7 @@ public class SearchPane extends JPanel
 			public void keyReleased(KeyEvent e)
 			{
 				//_pane.getPacketListPane().getSearchItem().setEnabled(!findT.getText().trim().equals(""));
-				_searchBtn.setEnabled(!findT.getText().trim().equals(""));
+				_searchBtn.setEnabled(!_simpleTextSearch.getText().trim().equals(""));
 			}
 		});
 
@@ -173,6 +172,8 @@ public class SearchPane extends JPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
+				RValues.LAST_SEARCH.setVal(_simpleTextSearch.getText());
+
 				search();
 			}
 		});
@@ -257,7 +258,7 @@ public class SearchPane extends JPanel
 
 	public void search()
 	{
-		if(simpleSearchRadioButton.isSelected())
+		if(_simpleSearchRadioButton.isSelected())
 		{
 			String findPacket = _findText.getText();
 
@@ -388,7 +389,7 @@ public class SearchPane extends JPanel
 								{
 									try
 									{
-										int value = Integer.decode(findT.getText());
+										int value = Integer.decode(_simpleTextSearch.getText());
 										int partValue = gp.getInt(_currentPart.getName());
 										if(value == partValue)
 										{
@@ -402,7 +403,7 @@ public class SearchPane extends JPanel
 								}
 								else
 								{
-									if(gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
+									if(gp.getString(_currentPart.getName()).equalsIgnoreCase(_simpleTextSearch.getText()))
 									{
 										return i;
 									}
@@ -413,7 +414,7 @@ public class SearchPane extends JPanel
 								{
 									try
 									{
-										int value = Integer.decode(findT.getText());
+										int value = Integer.decode(_simpleTextSearch.getText());
 										int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 
 										if(value != partValue)
@@ -428,7 +429,7 @@ public class SearchPane extends JPanel
 								}
 								else
 								{
-									if(!gp.getString(_currentPart.getName()).equalsIgnoreCase(findT.getText()))
+									if(!gp.getString(_currentPart.getName()).equalsIgnoreCase(_simpleTextSearch.getText()))
 									{
 										return i;
 									}
@@ -437,7 +438,7 @@ public class SearchPane extends JPanel
 							case 2: // >
 								try
 								{
-									int value = Integer.decode(findT.getText());
+									int value = Integer.decode(_simpleTextSearch.getText());
 									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if(partValue > value)
 									{
@@ -452,7 +453,7 @@ public class SearchPane extends JPanel
 							case 3: // >=
 								try
 								{
-									int value = Integer.decode(findT.getText());
+									int value = Integer.decode(_simpleTextSearch.getText());
 									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if(partValue >= value)
 									{
@@ -467,7 +468,7 @@ public class SearchPane extends JPanel
 							case 4: // <
 								try
 								{
-									int value = Integer.decode(findT.getText());
+									int value = Integer.decode(_simpleTextSearch.getText());
 									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if(partValue < value)
 									{
@@ -482,7 +483,7 @@ public class SearchPane extends JPanel
 							case 5: // <=
 								try
 								{
-									int value = Integer.decode(findT.getText());
+									int value = Integer.decode(_simpleTextSearch.getText());
 									int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
 									if(partValue <= value)
 									{
@@ -529,10 +530,10 @@ public class SearchPane extends JPanel
 		panel2.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 1, false));
 		_findText = new JTextField();
 		panel3.add(_findText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-		simpleSearchRadioButton = new JRadioButton();
-		simpleSearchRadioButton.setSelected(true);
-		this.$$$loadButtonText$$$(simpleSearchRadioButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("SimpleSearch"));
-		panel2.add(simpleSearchRadioButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_simpleSearchRadioButton = new JRadioButton();
+		_simpleSearchRadioButton.setSelected(true);
+		this.$$$loadButtonText$$$(_simpleSearchRadioButton, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("SimpleSearch"));
+		panel2.add(_simpleSearchRadioButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final JPanel panel4 = new JPanel();
 		panel4.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
 		panel1.add(panel4, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -557,9 +558,9 @@ public class SearchPane extends JPanel
 		operatorSelect = new JComboBox();
 		operatorSelect.setEnabled(false);
 		panel7.add(operatorSelect, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(100, -1), null, 0, false));
-		findT = new JTextField();
-		findT.setEnabled(false);
-		panel7.add(findT, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, -1), null, 0, false));
+		_simpleTextSearch = new JTextField();
+		_simpleTextSearch.setEnabled(false);
+		panel7.add(_simpleTextSearch, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(50, -1), null, 0, false));
 		final JPanel panel8 = new JPanel();
 		panel8.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
 		panel1.add(panel8, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -588,8 +589,8 @@ public class SearchPane extends JPanel
 		main.add(spacer3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 		ButtonGroup buttonGroup;
 		buttonGroup = new ButtonGroup();
-		buttonGroup.add(simpleSearchRadioButton);
-		buttonGroup.add(simpleSearchRadioButton);
+		buttonGroup.add(_simpleSearchRadioButton);
+		buttonGroup.add(_simpleSearchRadioButton);
 		buttonGroup.add(advancedSearchRadioButton);
 	}
 

@@ -95,9 +95,8 @@ public class DecryptedPacket implements IPacketData
 	public String getName()
 	{
 		if (getPacketInfo() == null)
-		{
 			return null;
-		}
+
 		return getPacketInfo().getName();
 	}
 

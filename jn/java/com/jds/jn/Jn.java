@@ -25,7 +25,7 @@ import com.jds.jn.util.logging.LoggingService;
  * Company: J Develop Station
  * Date: 03/01/2010
  * Time: 22:32:18
- *
+ * <p/>
  * Java sNiffer
  */
 public class Jn
@@ -57,7 +57,7 @@ public class Jn
 		ThreadPoolManager.getInstance();
 
 		NetworkProfiles.getInstance();
-		
+
 		ImageStatic.getInstance();
 
 		ListenerSystem.getInstance();
@@ -69,7 +69,7 @@ public class Jn
 			MainForm.init();
 			_log.info("MainForm: init ok");
 		}
-		catch (Exception e)
+		catch(Exception e)
 		{
 			_log.info("MainForm: init fail" + e, e);
 		}
@@ -89,10 +89,8 @@ public class Jn
 
 		_log.info(String.format("Load %d classes.", CLoader.getInstance().size()));
 
-		for (Protocol p : ProtocolManager.getInstance().getProtocols())
-		{
+		for(Protocol p : ProtocolManager.getInstance().getProtocols())
 			_log.info(String.format("Load %s protocol.", p.getName()));
-		}
 
 		SplashWindow.hideSplash();
 	}

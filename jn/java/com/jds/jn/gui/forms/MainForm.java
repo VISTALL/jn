@@ -70,7 +70,7 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		return _instance;
 	}
 
-	private JPanel _panel1;
+	private JPanel _mainPanel;
 
 	private JProgressBar _memoryBar;
 	private JButton _gcButton;
@@ -88,8 +88,10 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		super("Jn");
 
 		$$$setupUI$$$();
-		add($$$getRootComponent$$$());
+		add(_mainPanel);
+
 		//initTray();
+		setLocationRelativeTo(null);
 		setResizable(false);
 
 		setDefaultCloseOperation(EXIT_ON_CLOSE); //setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -124,18 +126,16 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 			}
 		});
 
+		if(RValues.LAST_WINDOW_POSITION_X.asInt() > 0 && RValues.LAST_WINDOW_POSITION_Y.asInt() > 0)
+			setLocation(RValues.LAST_WINDOW_POSITION_X.asInt(), RValues.LAST_WINDOW_POSITION_Y.asInt());
 	}
 
 	@Override
 	public void setVisible(boolean b)
 	{
 		super.setVisible(b);
-		if(b)
-			if(Platform.isWindows7())
-			{
-				long hwndVal = JAWTUtils.getNativePeerHandle(this);
-				_hwnd = (Pointer<Integer>) Pointer.pointerToAddress(hwndVal);
-			}
+		if(b && Platform.isWindows7() && _hwnd == null)
+			_hwnd = Pointer.pointerToAddress(JAWTUtils.getNativePeerHandle(this), Integer.class, null);
 	}
 
 	private void initTray()
@@ -200,13 +200,13 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 	public void startMemoryBarTask()
 	{
 		_memoryBarTask = ThreadPoolManager.getInstance().scheduleAtFixedRate(new RunnableImpl()
-				{
-					@Override
-					public void runImpl()
-					{
-						updateMemoryBar();
-					}
-				}, 5000, 5000);
+		{
+			@Override
+			public void runImpl()
+			{
+				updateMemoryBar();
+			}
+		}, 5000, 5000);
 	}
 
 	public void stopMemoryBarTask()
@@ -326,13 +326,13 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 	private void $$$setupUI$$$()
 	{
 		createUIComponents();
-		_panel1 = new JPanel();
-		_panel1.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+		_mainPanel = new JPanel();
+		_mainPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
 		final JToolBar toolBar1 = new JToolBar();
 		toolBar1.setEnabled(true);
 		toolBar1.setFloatable(false);
 		toolBar1.setMargin(new Insets(2, 2, 2, 2));
-		_panel1.add(toolBar1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 20), null, 0, false));
+		_mainPanel.add(toolBar1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(-1, 20), null, 0, false));
 		_consoleBtn = new JButton();
 		_consoleBtn.setBorderPainted(false);
 		_consoleBtn.setFocusPainted(false);
@@ -363,7 +363,7 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		_gcButton.setText("");
 		toolBar1.add(_gcButton);
 		_sessionTabbedPane = new ViewTabbedPane();
-		_panel1.add(_sessionTabbedPane.$$$getRootComponent$$$(), new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+		_mainPanel.add(_sessionTabbedPane.$$$getRootComponent$$$(), new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
 	}
 
 	/**
@@ -371,6 +371,6 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 	 */
 	public JComponent $$$getRootComponent$$$()
 	{
-		return _panel1;
+		return _mainPanel;
 	}
 }

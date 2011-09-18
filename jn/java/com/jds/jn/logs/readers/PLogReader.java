@@ -76,14 +76,12 @@ public class PLogReader extends AbstractReader
 		List<String> lines = new ArrayList<String>();
 		String readLine = null;
 		while ((readLine = _reader.readLine()) != null)
-		{
 			lines.add(readLine);
-		}
 
-		int i = 0;
-		for(String line : lines)
+		MainForm.getInstance().getProgressBar().setMaximum(lines.size());
+		for(int i = 0; i < lines.size(); i++)
 		{
-			StringHexBuffer buffer = new StringHexBuffer(line);
+			StringHexBuffer buffer = new StringHexBuffer(lines.get(i));
 			byte type = buffer.nextByte();
 			PacketType packetType;
 			if(type == 1 || type == 3)
@@ -109,9 +107,7 @@ public class PLogReader extends AbstractReader
 
 			_listener.readPacket(_session, dp);
 
-			int p = (int) ((100D * (i + 1)) / lines.size());
-			MainForm.getInstance().getProgressBar().setValue(p);
-			i++;
+			MainForm.getInstance().getProgressBar().setValue(i);
 		}
 	}
 

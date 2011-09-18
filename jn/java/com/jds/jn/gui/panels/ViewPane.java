@@ -1,18 +1,27 @@
 package com.jds.jn.gui.panels;
 
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import javax.accessibility.AccessibleContext;
+import javax.swing.JComponent;
+import javax.swing.JTabbedPane;
+import javax.swing.KeyStroke;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.jds.jn.gui.models.DecryptedPacketTableModel;
 import com.jds.jn.gui.models.CryptedPacketTableModel;
-import com.jds.jn.gui.panels.viewpane.*;
+import com.jds.jn.gui.models.DecryptedPacketTableModel;
+import com.jds.jn.gui.panels.viewpane.FilterPane;
+import com.jds.jn.gui.panels.viewpane.HiddenPanel;
+import com.jds.jn.gui.panels.viewpane.InfoPane;
+import com.jds.jn.gui.panels.viewpane.PacketList;
+import com.jds.jn.gui.panels.viewpane.SearchPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.Bundle;
 
@@ -22,105 +31,102 @@ import com.jds.jn.util.Bundle;
  * Date: 26.08.2009
  * Time: 17:15:02
  */
-public class ViewPane extends JPanel
+public class ViewPane extends JTabbedPane
 {
+	private class SelectionPaneListener implements ChangeListener
+	{
+		@Override
+		public void stateChanged(ChangeEvent e)
+		{
+			if(e.getSource() == getModel())
+			{
+				Component c = getSelectedComponent();
+				if(c != null)
+				{
+					c.invalidate();
+					c.repaint();
+				}
+			}
+		}
+	}
+
 	public Session _session;
 
-	private JPanel mainPane;
-	private JTabbedPane _packetAndSearch;
 	private DecryptedPacketTableModel _decryptPacketTableModel = new DecryptedPacketTableModel(this);
-	private CryptedPacketTableModel _notDecryptPacketTableModel = new CryptedPacketTableModel(this);
+	private CryptedPacketTableModel _cryptedPacketTableModel = new CryptedPacketTableModel(this);
 
 	private PacketList _packetList;
 	private SearchPane _searchPane;
 	private FilterPane _filterPane;
 	private InfoPane _infoPane;
-
-	private JPopupMenu _tabMenu;
-
 	public ViewPane(Session session)
 	{
-		$$$setupUI$$$();
-
 		_session = session;
 
-		_tabMenu = new JPopupMenu();
+		setTabPlacement(2);
 
-		_packetAndSearch.addMouseListener(new MouseListener()
-		{
-
-			@Override
-			public void mouseClicked(MouseEvent e)
-			{
-				if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
-				{
-					_tabMenu.show(_packetAndSearch, e.getX(), e.getY());
-				}
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e)
-			{
-
-			}
-		});
-
+		addChangeListener(new SelectionPaneListener());
 
 		_infoPane = new InfoPane();
 		_searchPane = new SearchPane(this);
 		_filterPane = new FilterPane(this);
 		_packetList = new PacketList(this);
+
+		registerKeyboardAction(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				setSelectedComponent(_packetList);
+				_packetList.showPane(false);
+			}
+		}, KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+		registerKeyboardAction(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				setSelectedComponent(_packetList);
+				_packetList.showPane(true);
+			}
+		}, KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
 
 	public void drawThis()
 	{
 		_filterPane.drawThis();
 
-		_packetAndSearch.addTab(Bundle.getString("PacketList"), _packetList);
-		_packetAndSearch.addTab(Bundle.getString("FindPanel"), _searchPane);
-		_packetAndSearch.addTab(Bundle.getString("Filter"), _filterPane);
-		_packetAndSearch.addTab(Bundle.getString("Info"), _infoPane);
+		addTab("PacketList", _packetList, true);
+		addTab("FindPanel", _searchPane, true);
+		addTab("Filter", _filterPane, true);
+		addTab("Info", _infoPane, true);
 	}
 
-	public int getIndex(Component comp)
+	public void addTab(String title, HiddenPanel pane, boolean bundle)
 	{
-		int size = _packetAndSearch.getComponentCount();
+		pane.setHidden(false);
+		addTab(bundle ? Bundle.getString(title) : title, pane);
+	}
 
-		for(int i = 0; i < size; i++)
+	public void removeTab(HiddenPanel tab)
+	{
+		AccessibleJTabbedPane p = (AccessibleJTabbedPane)getAccessibleContext();
+		int index = -1;
+		for(int i = 0; i < p.getAccessibleChildrenCount(); i++)
 		{
-			Component com = _packetAndSearch.getComponent(i);
-			if(com.equals(comp))
-			{
-				return i;
-			}
+			//JTabbedPane.Page
+			AccessibleContext child = (AccessibleContext)p.getAccessibleChild(i);
+			if(child.getAccessibleChild(0) == tab)
+				index = i;
 		}
 
-		return -1;
-	}
+		if(index == -1)
+			throw new IllegalArgumentException();
 
-	private void createUIComponents()
-	{
-		mainPane = this;
+		removeTabAt(index);
 
-		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+		tab.setHidden(true);
 	}
 
 	public void close()
@@ -135,7 +141,7 @@ public class ViewPane extends JPanel
 
 	public CryptedPacketTableModel getCryptPacketTableModel()
 	{
-		return _notDecryptPacketTableModel;
+		return _cryptedPacketTableModel;
 	}
 
 	public Session getSession()
@@ -143,14 +149,14 @@ public class ViewPane extends JPanel
 		return _session;
 	}
 
-	public DecPacketListPane getPacketListPane()
+	public DecryptedPacketListPane getPacketListPane()
 	{
-		return _packetList.get_packetListPane();//_Dec_packetListPane;
+		return _packetList.getDecryptedPacketListPane();
 	}
 
-	public CryptedPacketListPane getNotDecPacketListPane()
+	public CryptedPacketListPane getCryptedPacketListPane()
 	{
-		return _packetList.getNotDecPacketListPane();//_notdec_packetListPane;
+		return _packetList.getCryptedPacketListPane();
 	}
 
 	public SearchPane getSearchPane()
@@ -175,9 +181,9 @@ public class ViewPane extends JPanel
 		_packetList.setEnabled(e);
 	}
 
-	public JTabbedPane getPacketAndSearch()
+	public JTabbedPane getTabbedPane()
 	{
-		return _packetAndSearch;
+		return this;
 	}
 
 	public PacketList getPacketList()
@@ -188,34 +194,5 @@ public class ViewPane extends JPanel
 	public InfoPane getInfoPane()
 	{
 		return _infoPane;
-	}
-
-	public JPopupMenu getTabMenu()
-	{
-		return _tabMenu;
-	}
-
-	/**
-	 * Method generated by IntelliJ IDEA GUI Designer
-	 * >>> IMPORTANT!! <<<
-	 * DO NOT edit this method OR call it in your code!
-	 *
-	 * @noinspection ALL
-	 */
-	private void $$$setupUI$$$()
-	{
-		createUIComponents();
-		mainPane.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-		_packetAndSearch = new JTabbedPane();
-		_packetAndSearch.setTabPlacement(2);
-		mainPane.add(_packetAndSearch, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-	}
-
-	/**
-	 * @noinspection ALL
-	 */
-	public JComponent $$$getRootComponent$$$()
-	{
-		return mainPane;
 	}
 }

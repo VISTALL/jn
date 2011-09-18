@@ -89,6 +89,6 @@ public class ServerToProxyHandler implements NioHandler
 			return;
 		}
 
-		SessionTable.getInstance().getSession(_proxy.getSessionId()).receivePacket(packet);
+		SessionTable.getInstance().getSession(_proxy.getSessionId()).receiveQuitPacket(packet);
 	}
 }

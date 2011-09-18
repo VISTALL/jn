@@ -14,8 +14,9 @@ public class CryptedPacket implements IPacketData
 {
 	private final PacketType _type;
 	private final NioBuffer _buff;
-	private boolean _isShow = false;
 	private final long _time;
+
+	private boolean _isDecrypted;
 
 	public CryptedPacket(PacketType type, byte[] content, long t, ByteOrder order)
 	{
@@ -59,20 +60,19 @@ public class CryptedPacket implements IPacketData
 		return _time;
 	}
 
-	public boolean isShow()
-	{
-		if (!_isShow)
-		{
-			_isShow = true;
-			return false;
-		}
-
-		return _isShow;
-	}
-
 	@Override
 	public String toString()
 	{
-		return "JPacket: type - " + _type.name();
+		return "CryptedPacket: type - " + _type.name();
+	}
+
+	public boolean isDecrypted()
+	{
+		return _isDecrypted;
+	}
+
+	public void setDecrypted(boolean decrypted)
+	{
+		_isDecrypted = decrypted;
 	}
 }

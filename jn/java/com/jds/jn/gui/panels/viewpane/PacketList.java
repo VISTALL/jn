@@ -1,16 +1,26 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import javax.swing.*;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JRadioButton;
+import javax.swing.KeyStroke;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
 
 /**
  * Author: VISTALL
@@ -18,16 +28,29 @@ import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
  * Date: Sep 29, 2009
  * Time: 10:00:48 PM
  */
-public class PacketList extends JPanel
+public class PacketList extends HiddenPanel
 {
+	private class ShowPaneActionListenerImpl implements ActionListener
+	{
+		private boolean _val;
+
+		public ShowPaneActionListenerImpl(boolean val)
+		{
+			_val = val;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			showPane(_val);
+		}
+	}
+
 	private JPanel root;
-	private boolean _isHide = false;
-	protected CryptedPacketListPane _notDecPacketListPane;
-	protected DecPacketListPane _decPacketListPane;
+	protected CryptedPacketListPane _cryptedPacketListPane;
+	protected DecryptedPacketListPane _decPacketListPane;
 	protected ViewPane _pane;
 
-	private JRadioButton radio1;
-	private JRadioButton radio2;
 	private JPopupMenu popup;
 
 	public PacketList(ViewPane pane)
@@ -35,36 +58,23 @@ public class PacketList extends JPanel
 		_pane = pane;
 		$$$setupUI$$$();
 
-		_notDecPacketListPane = new CryptedPacketListPane(_pane);
-		_decPacketListPane = new DecPacketListPane(_pane);
+		_cryptedPacketListPane = new CryptedPacketListPane(_pane);
+		_decPacketListPane = new DecryptedPacketListPane(_pane);
+
+		_decPacketListPane.setVisible(false);
+		_cryptedPacketListPane.setVisible(false);
+
+		add(_decPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+		add(_cryptedPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
 
 		popup = new JPopupMenu();
 
 
-		radio1 = new JRadioButton(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("DecodeList"));
+		JRadioButton radio1 = new JRadioButton(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("DecodeList"));
+		radio1.addActionListener(new ShowPaneActionListenerImpl(false));
 
-		radio1.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				PacketList.this.remove(_notDecPacketListPane);
-				add(_decPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-				updateUI();
-			}
-		});
-
-		radio2 = new JRadioButton(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotDecodeList"));
-		radio2.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				PacketList.this.remove(_decPacketListPane);
-				add(_notDecPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-				updateUI();
-			}
-		});
+		JRadioButton radio2 = new JRadioButton(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotDecodeList"));
+		radio2.addActionListener(new ShowPaneActionListenerImpl(true));
 
 		registerKeyboardAction(new ActionListener()
 		{
@@ -125,35 +135,33 @@ public class PacketList extends JPanel
 	public void setEnabled(boolean b)
 	{
 		_decPacketListPane.setEnabled(b);
-		_notDecPacketListPane.setEnabled(b);
+		_cryptedPacketListPane.setEnabled(b);
 
 		super.setEnabled(b);
 	}
 
-	public DecPacketListPane get_packetListPane()
+	public DecryptedPacketListPane getDecryptedPacketListPane()
 	{
 		return _decPacketListPane;
 	}
 
-	public CryptedPacketListPane getNotDecPacketListPane()
+	public CryptedPacketListPane getCryptedPacketListPane()
 	{
-		return _notDecPacketListPane;
+		return _cryptedPacketListPane;
+	}
+
+	public void showPane(boolean crypted)
+	{
+		_decPacketListPane.setVisible(false);
+		_cryptedPacketListPane.setVisible(false);
+
+		(crypted ? _cryptedPacketListPane : _decPacketListPane).setVisible(true);
 	}
 
 	private void createUIComponents()
 	{
 		root = this;
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-	}
-
-	public boolean isHide()
-	{
-		return _isHide;
-	}
-
-	public void setIsHide(boolean IS_HIDE)
-	{
-		this._isHide = IS_HIDE;
 	}
 
 	/**

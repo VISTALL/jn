@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.util.Bundle;
 
@@ -28,9 +28,9 @@ public class JPacketListPopup extends JPopupMenu
 	private JMenuItem _addSubEditMenu = new JMenuItem(Bundle.getString("AddPart"));
 	private JMenuItem _renameSubEditMenu = new JMenuItem(Bundle.getString("Rename"));
 
-	private final DecPacketListPane _pane;
+	private final DecryptedPacketListPane _pane;
 
-	public JPacketListPopup(DecPacketListPane pane)
+	public JPacketListPopup(DecryptedPacketListPane pane)
 	{
 		super();
 		_pane = pane;

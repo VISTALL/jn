@@ -1,18 +1,40 @@
 package com.jds.jn.gui.dialogs;
 
-import javax.swing.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 
-import com.intellij.uiDesigner.core.*;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.panels.NetworkSettingPane;
-import com.jds.jn.network.profiles.*;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfilePart;
+import com.jds.jn.network.profiles.NetworkProfiles;
 
 public class NetworkSettingsDialog extends JDialog
 {
@@ -32,7 +54,7 @@ public class NetworkSettingsDialog extends JDialog
 	{
 		super(MainForm.getInstance(), "Network Settings", true);
 
-		setLocationByPlatform(false);
+		//setLocationByPlatform(false);
 
 		setContentPane(contentPane);
 		getRootPane().setDefaultButton(buttonOK);

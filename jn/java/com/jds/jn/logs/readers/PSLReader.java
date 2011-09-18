@@ -48,6 +48,7 @@ public class PSLReader extends AbstractReader
 	@Override
 	public void parsePackets() throws IOException
 	{
+		MainForm.getInstance().getProgressBar().setMaximum(_size);
 		for(int i = 0; i < _size; i ++)
 		{
 			PacketType type = readC() == 1 ? PacketType.SERVER : PacketType.CLIENT;
@@ -63,12 +64,9 @@ public class PSLReader extends AbstractReader
 				_session.receiveQuitPacket(p, true, true);
 			}
 			else
-			{
 				_session.receiveQuitPacket(packet);
-			}
 
-			int p = (int) ((100D * (i + 1)) / _size);
-			MainForm.getInstance().getProgressBar().setValue(p);
+			MainForm.getInstance().getProgressBar().setValue(i);
 		}
 	}
 

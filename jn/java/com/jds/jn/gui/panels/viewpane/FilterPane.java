@@ -34,14 +34,13 @@ import com.jds.jn.protocol.protocoltree.PacketInfo;
  * Date: 21.09.2009
  * Time: 16:48:51
  */
-public class FilterPane extends JPanel
+public class FilterPane extends HiddenPanel
 {
 	private JPanel main;
 	private JList packetList;
 	private JCheckBox filtredCheckBox;
 	private JCheckBox _filterAll;
 
-	public boolean IS_HIDE = false;
 	private ViewPane _pane;
 	private List<PacketInfo> _formats = new ArrayList<PacketInfo>();
 
@@ -137,16 +136,12 @@ public class FilterPane extends JPanel
 	public void drawThis()
 	{
 		if(_pane == null)
-		{
 			return;
-		}
 
 		_formats.clear();
 
 		if(_pane.getSession() == null)
-		{
 			return;
-		}
 
 		Protocol currentProto = _pane.getSession().getProtocol();
 		//

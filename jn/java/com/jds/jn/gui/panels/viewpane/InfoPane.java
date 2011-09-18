@@ -1,11 +1,16 @@
 package com.jds.jn.gui.panels.viewpane;
 
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Insets;
 import java.util.ResourceBundle;
 
-import com.intellij.uiDesigner.core.*;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.session.Session;
 
 /**
@@ -14,7 +19,7 @@ import com.jds.jn.session.Session;
  * Date: 07.10.2009
  * Time: 8:41:26
  */
-public class InfoPane extends JPanel
+public class InfoPane extends HiddenPanel
 {
 	private JPanel root;
 	private JLabel encodep;
@@ -22,7 +27,6 @@ public class InfoPane extends JPanel
 	private JLabel _version;
 	private JLabel proxy;
 	private JLabel _protocol;
-	public boolean IS_HIDE = false;
 
 	public InfoPane()
 	{

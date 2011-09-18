@@ -36,7 +36,7 @@ import com.jds.jn.parser.packetreader.PacketReader;
  * Date: 21.09.2009
  * Time: 13:54:45
  */
-public class DecPacketListPane extends JPanel
+public class DecryptedPacketListPane extends JPanel
 {
 	private JScrollPane _packetScrollPane;
 	private JTable _packetList;
@@ -48,7 +48,7 @@ public class DecPacketListPane extends JPanel
 	private JMenuItem _readItem;
 	private JMenuItem _see;
 
-	public DecPacketListPane(ViewPane pane)
+	public DecryptedPacketListPane(ViewPane pane)
 	{
 		_pane = pane;
 		_menu = new JPacketListPopup(this);

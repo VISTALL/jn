@@ -49,9 +49,13 @@ public class JWin7ProgressBar extends JProgressBar
 	@Override
 	public void setVisible(boolean aFlag)
 	{
+		setValue(0);
+		setMaximum(100);
+
 		if(_taskbarList3 != null)
 			_taskbarList3.SetProgressState(_windowsComponent.HWND(), aFlag ? ITaskbarList3.TbpFlag.TBPF_NORMAL : ITaskbarList3.TbpFlag.TBPF_NOPROGRESS);
 
 		super.setVisible(aFlag);
 	}
+
 }

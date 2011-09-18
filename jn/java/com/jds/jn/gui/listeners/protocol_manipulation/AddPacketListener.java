@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
 
 /**
  * Author: VISTALL
@@ -14,9 +14,9 @@ import com.jds.jn.gui.panels.viewpane.packetlist.DecPacketListPane;
  */
 public class AddPacketListener extends JMenuItem implements ActionListener
 {
-	private final DecPacketListPane _pane;
+	private final DecryptedPacketListPane _pane;
 
-	public AddPacketListener(DecPacketListPane pane)
+	public AddPacketListener(DecryptedPacketListPane pane)
 	{
 		_pane = pane;
 

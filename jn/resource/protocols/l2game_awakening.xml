@@ -35,6 +35,15 @@
 			<part name="name" type="S"/>
 		</packet>
 		<packet id="D0;00BD" name="RequestMentorList" />
+		<packet id="D0;00AD" name="RequestEx2ndPasswordCheck" />
+		<packet id="D0;00AE" name="RequestEx2ndPasswordVerify" />
+		<packet id="D0;00AF" name="RequestEx2ndPasswordReq" />
+		<packet id="D0;00AA" name="RequestDeletePartySubstitute" />
+		<packet id="D0;0096" name="RequestDynamicQuestProgressInfo">
+			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="D0;009A" name="RequestInzonePartyInfoHistory" />
 		<packet id="D0;0099" name="RequestUpdateBlockMemo">
 			<part name="name" type="S"/>
@@ -411,6 +420,9 @@
 		<packet id="FE;010F" name="ExIsCharNameCreatable">
 			<part name="response" type="d"/>
 		</packet>
+		<packet id="FE;0109" name="Ex2NDPasswordCheck" />
+		<packet id="FE;010a" name="Ex2NDPasswordVerify" />
+		<packet id="FE;010b" name="Ex2NDPasswordAck" />
 		<packet id="FE;00E5" name="ExAbnormalStatusUpdateFromTarget">
 			<part name="object-id" type="d"/>
 			<part name="size" type="h" id="0"/>
@@ -432,6 +444,30 @@
 		</packet>
 		<packet id="FE;00EF" name="ExLoadInzonePartyHistory">
 			<part name="size" type="d" id="0" />
+		</packet>
+		<packet id="FE;00E9" name="ExSubjobInfo">
+			<part name="type" type="c"/>
+			<part name="class-id" type="d"/>
+			<part name="race" type="d"/>
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="index" type="d"/>
+				<part name="class-id" type="d"/>
+				<part name="level" type="d"/>
+				<part name="type" type="c"/>
+			</for>
+		</packet>
+		<packet id="FE;00E8" name="ExDynamicQuest">
+			<part name="?" type="c" />
+			<part name="?" type="c" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="c" />
+			<part name="time" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
 		</packet>
 		<packet id="a6" name="TutorialShowHtml">
 			<part name="dialog-source" type="d" id="0"/>
@@ -539,6 +575,50 @@
 					<part name="holy" type="h"/>
 				</for>
 			</for>
+		</packet>
+		<packet id="92" name="ServerObjectInfo">
+			<part name="object_id" type="d"/>
+			<part name="npc_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="attackable" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
+			<part name="movement_multiplier" type="D"/>
+			<part name="attack_multiplier" type="D"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="current_hp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="type" type="d" id="0" />
+			<part name="special_effects" type="d"/>
+			<switch id="0">
+				<case id="7">
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+				</case>
+				<case id="default" />
+			</switch>
 		</packet>
 	</packetfamilly>
 </protocol>
