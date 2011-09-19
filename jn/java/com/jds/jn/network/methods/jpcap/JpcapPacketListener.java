@@ -60,7 +60,7 @@ public class JpcapPacketListener implements PacketReceiver
 						byte[] header = new byte[2];
 						byte[] packetData = new byte[size];
 						session.getClientbuf().getNextPacket(header, packetData);
-						session.receiveQuitPacket(new CryptedPacket(PacketType.CLIENT, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
+						session.receiveQuitPacket(new CryptedPacket(PacketType.CLIENT, packetData, System.currentTimeMillis()));
 					}
 				}
 				session.getClientSequenced().flush();
@@ -82,7 +82,7 @@ public class JpcapPacketListener implements PacketReceiver
 						byte[] header = new byte[2];
 						byte[] packetData = new byte[size];
 						session.getServerbuf().getNextPacket(header, packetData);
-						session.receiveQuitPacket(new CryptedPacket(PacketType.SERVER, packetData, System.currentTimeMillis(), session.getProtocol().getOrder()));
+						session.receiveQuitPacket(new CryptedPacket(PacketType.SERVER, packetData, System.currentTimeMillis()));
 					}
 				}
 				session.getServerSequenced().flush();

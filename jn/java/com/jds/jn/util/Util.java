@@ -2,14 +2,8 @@ package com.jds.jn.util;
 
 import java.nio.ByteBuffer;
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
-import com.jds.jn.parser.formattree.ForPart;
-import com.jds.jn.parser.formattree.Part;
-import com.jds.jn.parser.formattree.SwitchCaseBlock;
-import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
@@ -53,34 +47,6 @@ public class Util
 		return repeat("0", size - number.length()) + number;
 	}
 
-	/**
-	 * Returns the hex dump of the given byte array
-	 *
-	 * @param b the byte array
-	 * @return A string with the hex dump
-	 */
-	public static String rawHexDump(byte[] b)
-	{
-		if (b == null)
-		{
-			return "";
-		}
-
-		int size = b.length;
-		if (size == 0)
-		{
-			return "";
-		}
-
-		StringBuffer buf = new StringBuffer();
-		for (int i = 0; i < size; i++)
-		{
-			buf.append(zeropad(Integer.toHexString(byteToUInt(b[i])).toUpperCase(), 2));
-			buf.append(" ");
-		}
-		buf.delete(buf.length() - 1, buf.length());
-		return buf.toString();
-	}
 
 	/**
 	 * Returns the hex dump of the given byte array

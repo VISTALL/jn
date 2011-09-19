@@ -3,14 +3,13 @@ package com.jds.jn.gui2.FindPacket.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Util;
 
 /**
@@ -66,20 +65,16 @@ public class FPTableModel  extends AbstractTableModel
 
 	public void addRow(final String fileName, final DecryptedPacket packet)
 	{
-		ImageIcon icon = null;
+		JLabel icon = null;
 
 		if (packet.getPacketType() == PacketType.CLIENT)
-		{
 			icon = ImageStatic.ICON_FROM_CLIENT;
-		}
 		else
-		{
 			icon = ImageStatic.ICON_FROM_SERVER;
-		}
 
 		Object[] temp =
 		{
-				new JLabel(icon),
+				icon,
 				Util.formatPacketTime(packet.getTime()),
 				String.valueOf(packet.getBuffer().limit()),
 				fileName,

@@ -1,13 +1,12 @@
 package com.jds.jn.gui.forms.menu_items;
 
-import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JMenuItem;
+
 import com.jds.jn.gui.dialogs.EnterNameDialog;
 import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.jn.util.ImageStatic;
@@ -56,10 +55,10 @@ public class AddCasePartMenuItem extends JMenuItem
 				}
 
 
-				form.setPacket(new DecryptedPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
+				/*form.setPacket(new DecryptedPacket(form.getPacket().getCryptedData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
 				form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
-				form.updateCurrentPacket();
+				form.updateCurrentPacket();   */
 			}
 		});
 	}

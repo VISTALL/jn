@@ -56,15 +56,10 @@ public class PSLReader extends AbstractReader
 			long time = readQ();
 			byte[] data = readB(packetSize - 2);
 
-			CryptedPacket packet = new CryptedPacket(type, data, time, _session.getProtocol().getOrder());
-
 			if(_isDecrypted)
-			{
-				DecryptedPacket p = new DecryptedPacket(packet, _session.getProtocol());
-				_session.receiveQuitPacket(p, true, true);
-			}
+				_session.receiveQuitPacket(new DecryptedPacket(null, type, data, time, _session.getProtocol(), false), true, true);
 			else
-				_session.receiveQuitPacket(packet);
+				_session.receiveQuitPacket(new CryptedPacket(type, data, time));
 
 			MainForm.getInstance().getProgressBar().setValue(i);
 		}

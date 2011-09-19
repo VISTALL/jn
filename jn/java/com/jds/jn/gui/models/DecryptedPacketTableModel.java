@@ -3,7 +3,6 @@ package com.jds.jn.gui.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
@@ -13,8 +12,8 @@ import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
-import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Util;
 
 /**
@@ -98,57 +97,41 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 		if (packet.getBuffer().array().length == 0)
 			return;
 
-		ImageIcon icon = null;
+		JLabel icon = null;
 
 		if (packet.getPacketType() == PacketType.CLIENT)
 		{
 			if (packet.hasError())
-			{
 				icon = ImageStatic.ICON_FROM_CLIENT_ERROR;
-			}
 			else
-			{
 				icon = ImageStatic.ICON_FROM_CLIENT;
-			}
 
 			if (packet.getPacketInfo() != null)
 			{
 				if (packet.getPacketInfo().isKey())
-				{
 					icon = ImageStatic.ICON_KEY_PACKET;
-				}
 				else if (packet.getPacketInfo().isServerList())
-				{
 					icon = ImageStatic.ICON_SERVER_LIST_PACKET;
-				}
 			}
 		}
 		else
 		{
 			if (packet.hasError())
-			{
 				icon = ImageStatic.ICON_FROM_SERVER_ERROR;
-			}
 			else
-			{
 				icon = ImageStatic.ICON_FROM_SERVER;
-			}
 
 			if (packet.getPacketInfo() != null)
 			{
 				if (packet.getPacketInfo().isKey())
-				{
 					icon = ImageStatic.ICON_KEY_PACKET;
-				}
 				else if (packet.getPacketInfo().isServerList())
-				{
 					icon = ImageStatic.ICON_SERVER_LIST_PACKET;
-				}
 			}
 		}
 		String opcode = null;
 		if (packet.getPacketInfo() != null)
-			opcode = packet.getPacketInfo().getId().toUpperCase();
+			opcode = packet.getPacketInfo().getId();
 		else
 			opcode = Util.zeropad(Integer.toHexString(packet.getBuffer().array()[0] & 0xFF), 2).toUpperCase();
 
@@ -161,7 +144,7 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 
 		Object[] temp =
 		{
-				new JLabel(icon),
+				icon,
 				Util.formatPacketTime(packet.getTime()),
 				opcode,
 				String.valueOf(packet.getSize()),
@@ -172,13 +155,9 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 		};
 
 		if (row == -1)
-		{
 			_currentTable.add(temp);
-		}
 		else
-		{
 			_currentTable.add(row, temp);
-		}
 	}
 
 	public void setName(int row, String name)
@@ -216,19 +195,19 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 			p.getPacketInfo().setName(name);
 		}
 
-		for (Object[] objs : _currentTable)
+		/*for (Object[] objs : _currentTable)
 		{
 			String st = (String) objs[1];
 			DecryptedPacket packet = (DecryptedPacket) objs[7];
 
 			if (st.equalsIgnoreCase(OPCODE) && p.getPacketType() == packet.getPacketType())
 			{
-				DecryptedPacket newPacket = new DecryptedPacket(packet.getNotDecryptData().clone(), packet.getPacketType(), packet.getProtocol());
+				DecryptedPacket newPacket = new DecryptedPacket(packet.getCryptedData().clone(), packet.getPacketType(), packet.getProtocol());
 				objs[2] = String.valueOf(newPacket.getSize());
 				objs[3] = newPacket.getName();
 				objs[6] = newPacket;
 			}
-		}
+		}  */
 	}
 
 	public void deleteFormat(int row)
@@ -257,19 +236,19 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 			fam.remove(p.getPacketFormat()); */
 		}
 
-		for (Object[] objs : _currentTable)
+		/*for (Object[] objs : _currentTable)
 		{
 			String st = (String) objs[1];
 			DecryptedPacket packet = (DecryptedPacket) objs[7];
 
 			if (st.equalsIgnoreCase(OPCODE) && p.getPacketType() == packet.getPacketType())
 			{
-				DecryptedPacket newPacket = new DecryptedPacket(packet.getNotDecryptData().clone(), packet.getPacketType(), packet.getProtocol());
+				DecryptedPacket newPacket = new DecryptedPacket(packet.getCryptedData(), packet.getPacketType(), packet.getProtocol());
 				objs[3] = String.valueOf(newPacket.getSize());
 				objs[4] = "";
 				objs[7] = newPacket;
 			}
-		}
+		} */
 	}
 
 	public void updatePacket(int row, DecryptedPacket packet)
@@ -283,7 +262,7 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 
 	public void updatePackets(DecryptedPacket packet)
 	{
-		for (Object[] obj : _currentTable)
+		/*for (Object[] obj : _currentTable)
 		{
 			DecryptedPacket pa = (DecryptedPacket) obj[76];
 			if (pa.getPacketInfo() == null)
@@ -293,12 +272,12 @@ public class DecryptedPacketTableModel extends AbstractTableModel implements Pac
 
 			if ((pa.getPacketType() == packet.getPacketType()) && (packet.getPacketInfo().getOpcodeStr().equals(pa.getPacketInfo().getOpcodeStr())))
 			{
-				DecryptedPacket newPacket = new DecryptedPacket(pa.getNotDecryptData().clone(), pa.getPacketType(), pa.getProtocol());
+				DecryptedPacket newPacket = new DecryptedPacket(pa.getCryptedData().clone(), pa.getPacketType(), pa.getProtocol());
 				obj[3] = String.valueOf(newPacket.getSize());
 				obj[4] = newPacket.getName();
 				obj[7] = newPacket;
 			}
-		}
+		}  */
 	}
 
 	@Override

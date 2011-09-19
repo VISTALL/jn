@@ -1,5 +1,7 @@
 package com.jds.jn;
 
+import java.util.Locale;
+
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -34,6 +36,11 @@ public class Jn
 
 	public static void main(String... arg) throws Exception
 	{
+		Locale[] l = Locale.getAvailableLocales();
+		for(Locale locale : l)
+			if(locale.getLanguage().equals("ru"))
+				Locale.setDefault(locale);
+
 		LoggingService.load();
 
 		_log.info("Logger init - ok");

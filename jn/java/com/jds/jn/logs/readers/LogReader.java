@@ -9,11 +9,9 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.apache.log4j.Logger;
-
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
@@ -90,25 +88,13 @@ public class LogReader extends AbstractReader
 			int size = Integer.parseInt(token.nextToken());
 			StringHexBuffer buffer = new StringHexBuffer(token.nextToken());
 
-			PacketType packetType;
-			if(type.charAt(0) == 'I')
-			{
-				packetType = PacketType.SERVER;
-			}
-			else
-			{
-				packetType = PacketType.CLIENT;
-			}
+			PacketType packetType = type.charAt(0) == 'I' ? PacketType.SERVER : PacketType.CLIENT;
 
 			byte[] data = new byte[size];
 			for(int $ = 0; $ < data.length; $++)
-			{
 				data[$] = buffer.nextByte();
-			}
 
-			CryptedPacket packet = new CryptedPacket(packetType, data, System.currentTimeMillis(), _session.getProtocol().getOrder());
-
-			DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
+			DecryptedPacket dp = new DecryptedPacket(null, packetType, data, System.currentTimeMillis(), _session.getProtocol(), false);
 
 			_session.receiveQuitPacket(dp, true, true);
 

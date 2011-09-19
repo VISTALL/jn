@@ -1,9 +1,5 @@
 package com.jds.jn.network.packets;
 
-import java.nio.ByteOrder;
-
-import com.jds.nio.buffer.NioBuffer;
-
 /**
  * Author: VISTALL
  * Company: J Develop Station
@@ -13,39 +9,27 @@ import com.jds.nio.buffer.NioBuffer;
 public class CryptedPacket implements IPacketData
 {
 	private final PacketType _type;
-	private final NioBuffer _buff;
+	private final byte[] _data;
 	private final long _time;
 
 	private boolean _isDecrypted;
 
-	public CryptedPacket(PacketType type, byte[] content, long t, ByteOrder order)
+	public CryptedPacket(PacketType type, byte[] content, long t)
 	{
 		_time = t;
 		_type = type;
-		_buff = NioBuffer.wrap(content).order(order);
-	}
-
-	public CryptedPacket(PacketType type, NioBuffer content, long t)
-	{
-		_time = t;
-		_type = type;
-		_buff = content;
-	}
-
-	public NioBuffer getBuffer()
-	{
-		return _buff;
+		_data = content;
 	}
 
 	public int length()
 	{
-		return getAllData().length;
+		return _data.length;
 	}
 
 	@Override
 	public byte[] getAllData()
 	{
-		return getBuffer().array();
+		return _data;
 	}
 
 	@Override

@@ -51,7 +51,7 @@ public class FindPacket extends JDialog
 		@Override
 		public DecryptedPacket newPacket(Session session, CryptedPacket p)
 		{
-			return new DecryptedPacket(p, session.getProtocol(), true);
+			return new DecryptedPacket(session, p.getPacketType(), p.getAllData(), p.getTime(), session.getProtocol(), false);
 		}
 
 		@Override

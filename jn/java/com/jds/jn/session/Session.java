@@ -1,7 +1,6 @@
 package com.jds.jn.session;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -86,8 +85,6 @@ public class Session
 			_log.info("Exception: " + e, e);
 		}
 
-		_crypt.setProtocol(getProtocol());
-
 		_invokes.addAll(getProtocol().getSessionListeners());
 		_invokes.addAll(getProtocol().getGlobalListeners());
 	}
@@ -95,11 +92,8 @@ public class Session
 	public DecryptedPacket decode(CryptedPacket packet)
 	{
 		packet.setDecrypted(true);
-		byte data[] = Arrays.copyOf(packet.getBuffer().array(), packet.getBuffer().array().length);
 
-		data = _crypt.decrypt(data, packet.getPacketType());
-
-		return new DecryptedPacket(data, packet.getTime(), packet.getPacketType(), getProtocol(), true);
+		return new DecryptedPacket(this, packet.getPacketType(), packet.getAllData(), packet.getTime(), getProtocol(), true);
 	}
 
 	public long getSessionId()
@@ -141,7 +135,7 @@ public class Session
 		if(gui)
 			getViewPane().getDecryptPacketTableModel().addRow(p);
 
-		if(fire)
+		if(fire && !_invokes.isEmpty())
 			ThreadPoolManager.getInstance().execute(new InvokeTask(this, Collections.singletonList(p)));
 	}
 

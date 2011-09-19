@@ -762,7 +762,9 @@
 				<reader type="HTML"/>
 			</part>
 		</packet>
-		<packet id="a7" name="TutorialShowQuestionMark"/>
+		<packet id="a7" name="TutorialShowQuestionMark">
+			<part name="id" type="d"/>
+		</packet>
 		<packet id="a8" name="TutorialShowHtml">
 			<part name="id" type="d"/>
 		</packet>

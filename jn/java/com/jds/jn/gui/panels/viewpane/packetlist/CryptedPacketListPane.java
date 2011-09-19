@@ -91,24 +91,20 @@ public class CryptedPacketListPane extends JPanel
 
 				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
 
-				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER);
+				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER, session);
 				if(bytes == null)
-				{
 					return;
-				}
-
-				NioBuffer buff = NioBuffer.wrap(bytes);
 
 				final DecryptedPacketListPane pane = getViewPane().getPacketListPane();
 
-				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, buff, System.currentTimeMillis()));
+				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, bytes, System.currentTimeMillis()));
 				model.addRow(datapacket);
 				session.receiveQuitPacket(datapacket, true, true);
 
 				try
 				{
 					Proxy proxy = (Proxy) ListenerSystem.getInstance().getMethod(ReceiveType.PROXY, ListenerType.Auth_Server);
-					proxy.getClientSession().put(buff);
+					proxy.getClientSession().put(NioBuffer.wrap(bytes));
 				}
 				catch(Exception e1)
 				{
@@ -212,7 +208,7 @@ public class CryptedPacketListPane extends JPanel
 				}
 
 				JTextPane pane = new JTextPane();
-				pane.setText(Util.printData(packet.getBuffer().array()));
+				pane.setText(Util.printData(packet.getAllData()));
 
 				JPopupMenu m = new JPopupMenu();
 

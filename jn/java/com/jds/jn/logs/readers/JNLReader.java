@@ -11,7 +11,6 @@ import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.version_control.Program;
 import com.jds.jn.util.version_control.Version;
-import com.jds.nio.buffer.NioBuffer;
 
 /**
  * Author: VISTALL
@@ -86,7 +85,7 @@ public class JNLReader extends AbstractReader
 					int size = _buffer.getInt();
 
 					byte[] data = readB(size);
-					CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
+					CryptedPacket packet = new CryptedPacket(type, data, System.currentTimeMillis());
 
 					_session.receiveQuitPacket(packet);
 
@@ -100,8 +99,8 @@ public class JNLReader extends AbstractReader
 					PacketType type = PacketType.values()[_buffer.getInt()];
 					int size = _buffer.getInt();
 					byte[] data = readB(size);
-					CryptedPacket packet = new CryptedPacket(type, NioBuffer.wrap(data), System.currentTimeMillis());
-					DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
+
+					DecryptedPacket dp = new DecryptedPacket(null, type, data, System.currentTimeMillis(), _session.getProtocol(), false);
 
 					_session.receiveQuitPacket(dp, true, true);
 

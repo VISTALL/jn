@@ -67,6 +67,7 @@ import com.sun.awt.AWTUtilities;
  */
 public class PacketForm extends JFrame
 {
+	public static final String BASE_COLOR = "base";
 	private DecryptedPacket _packet;
 	private JPanel root;
 	private PacketViewTableModel _packetViewTableModel;
@@ -114,11 +115,11 @@ public class PacketForm extends JFrame
 				p.setName(dialog.getText());
 				pC.addPart(p);
 
-				setPacket(new DecryptedPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
+				/*	setPacket(new DecryptedPacket(getPacket().getCryptedData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
 
-				getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
+								getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
 
-				updateCurrentPacket();
+								updateCurrentPacket();   */
 			}
 		});
 
@@ -167,10 +168,10 @@ public class PacketForm extends JFrame
 
 				pC.replace(part.getModelPart(), p);
 
-				setPacket(new DecryptedPacket(getPacket().getNotDecryptData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
+				/*setPacket(new DecryptedPacket(getPacket().getCryptedData().clone(), getPacket().getPacketType(), getPacket().getProtocol()));
 				getPane().getDecryptPacketTableModel().updatePacket(getRow(), getPacket());
 
-				updateCurrentPacket();
+				updateCurrentPacket();    */
 			}
 		});
 		getBytesPopupMenu().add(changeSize);
@@ -297,33 +298,28 @@ public class PacketForm extends JFrame
 	{
 		_hexDumpPacket.setText("");
 
-		int len = getPacket().getNotDecryptData().length;
+		byte[] data = getPacket().getAllData();
+		int len = data.length;
 
 		for(int i = 0; i < len; i++)
 		{
 			String color = getPacket().getColor(i);
 			if(color == null)
-			{
-				color = "base";
-			}
+				color = BASE_COLOR;
 
-			byte b = getPacket().getNotDecryptData()[i];
+			byte b = data[i];
 
 			addStyledText(Util.zeropad(Long.toHexString(b & 0xff), 2).toUpperCase(), color);
 
 			String nextColor = (i != (len - 1)) ? getPacket().getColor(i + 1) : null;
 
 			if(nextColor != null && nextColor.equals(color))
-			{
 				addStyledText(" ", color);
-			}
 			else
-			{
-				addStyledText(" ", "base");
-			}
+				addStyledText(" ", BASE_COLOR);
 		}
 
-		addLineBreaksToHexDump(getPacket().getBuffer().array());
+		addLineBreaksToHexDump(data);
 	}
 
 	public void setScroolBar()
@@ -366,7 +362,7 @@ public class PacketForm extends JFrame
 				String ansci = idx == 0 ? Util.toAnsci(data, 0, 16) : Util.toAnsci(data, idx * 16, idx * 16 + 16);
 				_hexStyledDoc.replace(pos, 1, "   " + ansci + "\n", _hexStyledDoc.getStyle("base"));
 			}
-			catch(BadLocationException e1)
+			catch(Exception e1)
 			{
 				e1.printStackTrace();
 			}
@@ -386,7 +382,7 @@ public class PacketForm extends JFrame
 				String ansci = lnCount == 0 ? Util.toAnsci(data, 0, data.length) : Util.toAnsci(data, lnCount * 16, data.length);
 				_hexStyledDoc.insertString(pos, space + "  " + ansci, _hexStyledDoc.getStyle("base"));
 			}
-			catch(BadLocationException e1)
+			catch(Exception e1)
 			{
 				e1.printStackTrace();
 			}

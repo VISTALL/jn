@@ -1,18 +1,18 @@
 package com.jds.jn.gui.forms.menu_items;
 
-import javax.swing.*;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.network.packets.DecryptedPacket;
-import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
+import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.util.ImageStatic;
 
 /**
@@ -63,10 +63,10 @@ public class ChangeMenu extends JMenu
 
 					pC.replace(part.getModelPart(), p);
 
-					form.setPacket(new DecryptedPacket(form.getPacket().getNotDecryptData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
+					/*form.setPacket(new DecryptedPacket(form.getPacket().getCryptedData().clone(), form.getPacket().getPacketType(), form.getPacket().getProtocol()));
 					form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
 
-					form.updateCurrentPacket();
+					form.updateCurrentPacket();   */
 				}
 			});
 			add(i);

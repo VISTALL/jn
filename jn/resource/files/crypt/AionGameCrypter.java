@@ -5,7 +5,7 @@ import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.VisualValuePart;
-import com.jds.jn.protocol.Protocol;
+import com.jds.jn.session.Session;
 
 /**
  * Author: VISTALL
@@ -15,7 +15,6 @@ import com.jds.jn.protocol.Protocol;
  */
 public class AionGameCrypter implements ProtocolCrypter
 {
-	private Protocol _protocol;
 	private static byte[] staticKey = "nKO/WctQ0AVLbpzfBkS6NevDYT8ourG5CRlmdjyJ72aswx4EPq1UgZhFMXH?3iI9".getBytes();
 
 	private byte[] clientPacketkey;
@@ -23,14 +22,12 @@ public class AionGameCrypter implements ProtocolCrypter
 
 	private boolean _enabled;
 
-	public byte[] decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir, Session session)
 	{
 		if (dir == PacketType.CLIENT)
 		{
 			if (!_enabled)
-			{
 				return raw;
-			}
 
 			decode(raw, clientPacketkey);
 		}
@@ -39,28 +36,28 @@ public class AionGameCrypter implements ProtocolCrypter
 			if (!_enabled)
 			{
 				decodeServerOpcode(raw);
-				searchKey(raw, dir);
+				searchKey(session, raw, dir);
 				_enabled = true;
 			}
 			else
 			{
 				decode(raw, serverPacketkey);
 				decodeServerOpcode(raw);
-			}			
+			}
 		}
 
 		return raw;
 	}
 
 	@Override
-	public byte[] encrypt(byte[] raw, PacketType dir)
+	public byte[] encrypt(byte[] raw, PacketType dir, Session session)
 	{
 		return null;
 	}
 
-	private boolean searchKey(byte[] raw, PacketType dir)
+	private boolean searchKey(Session session, byte[] raw, PacketType dir)
 	{
-		DecryptedPacket packet = new DecryptedPacket(raw, dir, _protocol);
+		DecryptedPacket packet = new DecryptedPacket(null, dir, raw, System.currentTimeMillis(), session.getProtocol() , false);
 
 		if (dir == PacketType.SERVER && packet.getPacketInfo() != null && packet.getPacketInfo().isKey())
 		{
@@ -126,10 +123,5 @@ public class AionGameCrypter implements ProtocolCrypter
 	public void decodeServerOpcode(byte[] raw)
 	{
 		raw[0] = (byte) ((raw[0] ^ 0xFFFFFFFF) + 68);
-	}
-
-	public void setProtocol(Protocol protocol)
-	{
-		_protocol = protocol;
 	}
 }

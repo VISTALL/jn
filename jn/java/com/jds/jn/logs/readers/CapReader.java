@@ -1,7 +1,6 @@
 package com.jds.jn.logs.readers;
 
 import java.io.IOException;
-import java.nio.ByteOrder;
 
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.CryptedPacket;
@@ -94,7 +93,7 @@ public class CapReader extends AbstractReader
 				byte a2 = readC();
 
 				byte[] data = readB(makeShort(a2, a1) - 2);
-				CryptedPacket packet = new CryptedPacket(p, data, System.currentTimeMillis(), ByteOrder.LITTLE_ENDIAN);
+				CryptedPacket packet = new CryptedPacket(p, data, System.currentTimeMillis());
 
 				_session.receiveQuitPacket(packet);
 			}

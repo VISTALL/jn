@@ -101,9 +101,7 @@ public class ClientToProxyHandler implements NioHandler
 	@Override
 	public void receive(NioSession nioSession, NioBuffer buffer)
 	{
-		NioBuffer buf = NioBuffer.wrap(buffer.array());
-
-		CryptedPacket packet = new CryptedPacket(PacketType.CLIENT, buf, System.currentTimeMillis());
+		CryptedPacket packet = new CryptedPacket(PacketType.CLIENT, buffer.array(), System.currentTimeMillis());
 
 		_proxy.getServerSession().put(buffer);
 

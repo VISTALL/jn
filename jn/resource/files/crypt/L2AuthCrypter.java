@@ -8,7 +8,7 @@ import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.RawValuePart;
-import com.jds.jn.protocol.Protocol;
+import com.jds.jn.session.Session;
 import crypt.helpers.NewCrypt;
 
 /**
@@ -37,12 +37,12 @@ public class L2AuthCrypter implements ProtocolCrypter
 			(byte) 0x6c,
 			(byte) 0x6c
 	};
-	private Protocol _protocol;
+
 	private NewCrypt _crypt;
 	private NewCrypt _initcrypt = new NewCrypt(STATIC_BLOWFISH_KEY);
 
 	@Override
-	public byte[] decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir, Session session)
 	{
 		try
 		{
@@ -53,7 +53,7 @@ public class L2AuthCrypter implements ProtocolCrypter
 
 				NewCrypt.decXORPass(potentialInit);
 
-				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(potentialInit, potentialInit.length), dir, _protocol);
+				DecryptedPacket packet = new DecryptedPacket(session, dir, potentialInit, System.currentTimeMillis(), session.getProtocol(), false);
 
 				if (dir == PacketType.SERVER && packet.getPacketInfo() != null && packet.getPacketInfo().isKey())
 				{
@@ -101,7 +101,7 @@ public class L2AuthCrypter implements ProtocolCrypter
 	}
 
 	@Override
-	public byte[] encrypt(byte[] raw, PacketType dir)
+	public byte[] encrypt(byte[] raw, PacketType dir, Session session)
 	{
 		try
 		{
@@ -112,11 +112,5 @@ public class L2AuthCrypter implements ProtocolCrypter
 			e.printStackTrace();
 		}
 		return null;
-	}
-
-	@Override
-	public void setProtocol(Protocol protocol)
-	{
-		_protocol = protocol;
 	}
 }

@@ -49,7 +49,7 @@ public class PacketInfo
 			{
 				_packetReader = reader.newInstance();
 			}
-			catch (Exception e)
+			catch(Exception e)
 			{
 				e.printStackTrace();
 			}
@@ -61,19 +61,19 @@ public class PacketInfo
 	public static Type getType(String v)
 	{
 		int t = v.length();
-		if (t >= 1 && t <= 2)  //c
+		if(t >= 1 && t <= 2)  //c
 		{
 			return Type.uc;
 		}
-		if (t >= 3 && t <= 4) //h
+		if(t >= 3 && t <= 4) //h
 		{
 			return Type.uh;
 		}
-		if (t >= 5 && t <= 8) //d
+		if(t >= 5 && t <= 8) //d
 		{
 			return Type.ud;
 		}
-		if (t >= 9 && t <= 12) //q
+		if(t >= 9 && t <= 12) //q
 		{
 			return Type.Q;
 		}
@@ -123,7 +123,7 @@ public class PacketInfo
 	public String getId()
 	{
 		return _id;
-	}	
+	}
 
 	@Override
 	public String toString()

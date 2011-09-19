@@ -86,6 +86,7 @@ public class SearchPane extends HiddenPanel
 	{
 		_pane = pane;
 		$$$setupUI$$$();
+		_findText.setText(RValues.LAST_SEARCH.asString());
 
 		_simpleSearchRadioButton.addActionListener(new ActionListener()
 		{
@@ -172,7 +173,7 @@ public class SearchPane extends HiddenPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				RValues.LAST_SEARCH.setVal(_simpleTextSearch.getText());
+				RValues.LAST_SEARCH.setVal(_findText.getText());
 
 				search();
 			}
@@ -254,6 +255,8 @@ public class SearchPane extends HiddenPanel
 				_currentIndex = 0;
 			}
 		});
+
+		_searchBtn.setEnabled(!_findText.getText().trim().equals(""));
 	}
 
 	public void search()

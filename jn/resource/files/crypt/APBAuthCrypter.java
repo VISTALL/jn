@@ -2,12 +2,11 @@ package crypt;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
 
 import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.Protocol;
+import com.jds.jn.session.Session;
 import crypt.helpers.RC4;
 
 /**
@@ -17,21 +16,20 @@ import crypt.helpers.RC4;
  */
 public class APBAuthCrypter implements ProtocolCrypter
 {
-	private Protocol _protocol;
 	private RC4 _crypt;
 
 	private boolean _first = true;
 
 	@Override
-	public byte[] decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir, Session session)
 	{
 		if(_crypt == null && _first)
 		{
 			try
 			{
-				DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
+				DecryptedPacket packet = new DecryptedPacket(null, dir, raw, System.currentTimeMillis(), session.getProtocol(), false);
 				// LS2GC_LOGIN_PIZZLE
-				if(packet != null && packet.getPacketInfo() != null)
+				if(packet.getPacketInfo() != null)
 				{
 					MessageDigest sha1 = MessageDigest.getInstance("SHA-1");
 
@@ -67,14 +65,8 @@ public class APBAuthCrypter implements ProtocolCrypter
 
 
 	@Override
-	public byte[] encrypt(byte[] raw, PacketType dir)
+	public byte[] encrypt(byte[] raw, PacketType dir, Session session)
 	{
 		return new byte[0];
-	}
-
-	@Override
-	public void setProtocol(Protocol protocol)
-	{
-		_protocol = protocol;
 	}
 }

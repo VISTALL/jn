@@ -3,15 +3,13 @@ package com.jds.jn.gui.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.table.AbstractTableModel;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Bundle;
+import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.Util;
 
 /**
@@ -59,9 +57,8 @@ public class CryptedPacketTableModel extends AbstractTableModel
 	{
 		Object[] tableRow = _currentTable.get(row);
 		if (tableRow != null)
-		{
 			return tableRow[col];
-		}
+
 		return "";
 	}
 
@@ -73,18 +70,11 @@ public class CryptedPacketTableModel extends AbstractTableModel
 
 	public void addRow(final CryptedPacket packet)
 	{
-		ImageIcon icon = null;
-
-		if (packet.getPacketType() == PacketType.CLIENT)
-			icon = ImageStatic.ICON_FROM_CLIENT;
-		else
-			icon = ImageStatic.ICON_FROM_SERVER;
-
 		Object[] temp =
 		{
-				new JLabel(icon),
+				(packet.getPacketType() == PacketType.SERVER ? ImageStatic.ICON_FROM_SERVER : ImageStatic.ICON_FROM_CLIENT),
 				Util.formatPacketTime(packet.getTime()),
-				String.valueOf(packet.getBuffer().limit()),
+				String.valueOf(packet.length()),
 				packet
 		};
 

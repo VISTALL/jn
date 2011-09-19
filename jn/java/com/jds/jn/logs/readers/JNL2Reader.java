@@ -71,16 +71,10 @@ public class JNL2Reader extends AbstractReader
 			int sizeArray = readD();
 			byte[] data = readB(sizeArray);
 
-			CryptedPacket packet = new CryptedPacket(t, data, time, _session.getProtocol().getOrder());
-
 			if(_isDecrypted)
-			{
-				DecryptedPacket dp = new DecryptedPacket(packet, _session.getProtocol());
-
-				_session.receiveQuitPacket(dp, true, true);
-			}
+				_session.receiveQuitPacket(new DecryptedPacket(null, t, data, time, _session.getProtocol(), true), true, false);
 			else
-				_session.receiveQuitPacket(packet);
+				_session.receiveQuitPacket(new CryptedPacket(t, data, time));
 
 			MainForm.getInstance().getProgressBar().setValue(i);
 		}

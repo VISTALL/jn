@@ -97,11 +97,9 @@ public class PLogReader extends AbstractReader
 			int size = buffer.nextShort();
 			byte[] data = new byte[size - 2];
 			for(int $ = 0; $ < data.length; $++)
-			{
 				data[$] = buffer.nextByte();
-			}
 
-			CryptedPacket packet = new CryptedPacket(packetType, data, time, _session.getProtocol().getOrder());
+			CryptedPacket packet = new CryptedPacket(packetType, data, time);
 
 			DecryptedPacket dp = _listener.newPacket(_session, packet);
 

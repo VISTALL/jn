@@ -7,7 +7,7 @@ import com.jds.jn.crypt.ProtocolCrypter;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.datatree.VisualValuePart;
-import com.jds.jn.protocol.Protocol;
+import com.jds.jn.session.Session;
 import com.jds.nio.buffer.NioBuffer;
 import crypt.helpers.Obfuscator;
 
@@ -19,7 +19,6 @@ import crypt.helpers.Obfuscator;
  */
 public class L2GameCrypter implements ProtocolCrypter
 {
-	private Protocol _protocol;
 	private boolean _isEnables;
 
 	private byte[] _inKey;
@@ -27,34 +26,29 @@ public class L2GameCrypter implements ProtocolCrypter
 
 	private Obfuscator _obs = new Obfuscator();
 
-
 	private final Object _clientLock = new Object();
 	private final Object _serverLock = new Object();
 
 	@Override
-	public byte[] decrypt(byte[] raw, PacketType dir)
+	public byte[] decrypt(byte[] raw, PacketType dir, Session session)
 	{
-		if (!_isEnables && dir == PacketType.CLIENT)
-		{
+		if(!_isEnables && dir == PacketType.CLIENT)
 			return raw;
-		}
 
-		if (!_isEnables && dir == PacketType.SERVER)
+		if(!_isEnables && dir == PacketType.SERVER)
 		{
-			DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), dir, _protocol);
+			DecryptedPacket packet = new DecryptedPacket(null, PacketType.SERVER, raw, System.currentTimeMillis(), session.getProtocol(), false);
 
-			if (packet.isKey())
-			{
+			if(packet.isKey())
 				searchKey(packet);
-			}
 
 			return raw;
 		}
 
-		switch (dir)
+		switch(dir)
 		{
 			case CLIENT:
-				synchronized (_clientLock)
+				synchronized(_clientLock)
 				{
 					decode(raw, _outKey);
 
@@ -65,27 +59,25 @@ public class L2GameCrypter implements ProtocolCrypter
 					if(val != 0xD0)
 					{
 						val = _obs.decodeSingleOpcode(val);
-						buff.put(0, (byte)val);
+						buff.put(0, (byte) val);
 					}
 					else
 					{
-						buff.put(0, (byte)val);
+						buff.put(0, (byte) val);
 
 						int second = _obs.decodeDoubleOpcode(buff.getUnsignedShort(1));
-						buff.putShort(1, (short)second);
+						buff.putShort(1, (short) second);
 					}
-					
+
 					return buff.array();
 				}
 			case SERVER:
-				synchronized (_serverLock)
+				synchronized(_serverLock)
 				{
 					decode(raw, _inKey);
 
 					if(raw[0] == 0x0B)
-					{
-						searchSeed(raw);
-					}
+						searchSeed(session, raw);
 				}
 				break;
 		}
@@ -97,7 +89,7 @@ public class L2GameCrypter implements ProtocolCrypter
 	{
 		byte[] key = new byte[16];
 
-		for (int i = 0; i < 8; i++)
+		for(int i = 0; i < 8; i++)
 		{
 			VisualValuePart part = (VisualValuePart) packet.getRootNode().getPartByName("key" + i); // key
 			key[i] = part.getValueAsByte();
@@ -122,9 +114,9 @@ public class L2GameCrypter implements ProtocolCrypter
 		_isEnables = true;
 	}
 
-	public void searchSeed(byte[] raw)
+	public void searchSeed(Session session, byte[] raw)
 	{
-		DecryptedPacket packet = new DecryptedPacket(Arrays.copyOf(raw, raw.length), PacketType.SERVER, _protocol);
+		DecryptedPacket packet = new DecryptedPacket(null, PacketType.SERVER, raw, System.currentTimeMillis(), session.getProtocol(), false);
 
 		if(packet.getPacketInfo() != null && !packet.hasError())
 		{
@@ -133,10 +125,8 @@ public class L2GameCrypter implements ProtocolCrypter
 				_obs.disable();
 				int seed = packet.getInt("seed");
 				if(seed != 0)
-				{
 					_obs.init_tables(seed);
-				}
-			}	
+			}
 		}
 	}
 
@@ -145,7 +135,7 @@ public class L2GameCrypter implements ProtocolCrypter
 		int size = raw.length;
 		int temp = 0;
 
-		for (int i = 0; i < size; i++)
+		for(int i = 0; i < size; i++)
 		{
 			int temp2 = raw[i] & 0xFF;
 			raw[i] = (byte) (temp2 ^ key[i & 15] ^ temp);
@@ -166,14 +156,8 @@ public class L2GameCrypter implements ProtocolCrypter
 	}
 
 	@Override
-	public byte[] encrypt(byte[] raw, PacketType dir)
+	public byte[] encrypt(byte[] raw, PacketType dir, Session session)
 	{
 		return null;
-	}
-
-	@Override
-	public void setProtocol(Protocol protocol)
-	{
-		_protocol = protocol;
 	}
 }

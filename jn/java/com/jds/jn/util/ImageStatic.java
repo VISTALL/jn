@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
@@ -70,14 +71,14 @@ public class ImageStatic
 
 	public static final ImageIcon PART_LONG = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/part/long.png"));
 
-	public static final ImageIcon ICON_FROM_SERVER = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/se_packet.png"));
-	public static final ImageIcon ICON_FROM_CLIENT = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/cl_packet.png"));
+	public static final JLabel ICON_FROM_SERVER = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/se_packet.png")));
+	public static final JLabel ICON_FROM_CLIENT = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/cl_packet.png")));
 
-	public static final ImageIcon ICON_FROM_SERVER_ERROR = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/se_packet_error.png"));
-	public static final ImageIcon ICON_FROM_CLIENT_ERROR = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/cl_packet_error.png"));
+	public static final JLabel ICON_FROM_SERVER_ERROR = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/se_packet_error.png")));
+	public static final JLabel ICON_FROM_CLIENT_ERROR = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/cl_packet_error.png")));
 
-	public static final ImageIcon ICON_KEY_PACKET = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/key_packet.png"));
-	public static final ImageIcon ICON_SERVER_LIST_PACKET = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/serverlist_packet.png"));
+	public static final JLabel ICON_KEY_PACKET = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/key_packet.png")));
+	public static final JLabel ICON_SERVER_LIST_PACKET = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/serverlist_packet.png")));
 
 	private HashMap<PartType, ImageIcon> _iconMap;
 	public static ImageStatic _instance;

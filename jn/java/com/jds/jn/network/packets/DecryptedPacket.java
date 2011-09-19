@@ -1,6 +1,7 @@
 package com.jds.jn.network.packets;
 
 import java.nio.BufferUnderflowException;
+import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 import com.jds.jn.gui.forms.MainForm;
@@ -22,6 +23,7 @@ import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.jn.session.Session;
 import com.jds.nio.buffer.NioBuffer;
 
 /**
@@ -31,7 +33,6 @@ import com.jds.nio.buffer.NioBuffer;
 public class DecryptedPacket implements IPacketData
 {
 	private static final Logger _log = Logger.getLogger(DecryptedPacket.class);
-	private final CryptedPacket _cryptedPacket;
 	private Protocol _protocol;
 
 	private DataTreeNodeContainer _packetParts;
@@ -44,28 +45,23 @@ public class DecryptedPacket implements IPacketData
 
 	protected String[] _colorForHex;
 
-	public DecryptedPacket(byte[] data, PacketType type, Protocol protocol)
-	{
-		this(data, System.currentTimeMillis(), type, protocol, true);
-	}
+	private final byte[] _cryptedData;
+	private final long _time;
+	private final PacketType _packetType;
 
-	public DecryptedPacket(byte[] data, long time, PacketType type, Protocol protocol, boolean parse)
+	public DecryptedPacket(Session session, PacketType type, byte[] data, long time, Protocol protocol, boolean decode)
 	{
-		this(new CryptedPacket(type, data, time, protocol.getOrder()), protocol, parse);
-	}
-
-	public DecryptedPacket(CryptedPacket packet, Protocol protocol)
-	{
-		this(packet, protocol, true);
-	}
-
-	public DecryptedPacket(CryptedPacket packet, Protocol protocol, boolean parse)
-	{
-		_cryptedPacket = packet;
+		_packetType = type;
 		_protocol = protocol;
+		_cryptedData = data;
+		_time = time;
 
-		_buf = packet.getBuffer().clone();
-		_colorForHex = new String[packet.length()];
+		byte[] decrypted = Arrays.copyOf(data, data.length);
+
+		_buf = NioBuffer.wrap(decode ? session.getCrypt().decrypt(decrypted, type, session) : decrypted);
+		_buf.order(protocol.getOrder());
+
+		_colorForHex = new String[decrypted.length];
 
 		_packetFormat = getProtocol().getPacketInfo(this);
 		if (_packetFormat == null)
@@ -73,22 +69,19 @@ public class DecryptedPacket implements IPacketData
 		else
 			_dataFormat = _packetFormat.getDataFormat();
 
-		if (parse)
+		try
 		{
-			try
-			{
-				parse();
-			}
-			catch (BufferUnderflowException e)
-			{
-				_error = "Insuficient data for the specified format";
-				MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
-			}
-			catch (Exception e)
-			{
-				_error = "Exception: " + e.getMessage();
-				_log.info("Exception: " + e, e);
-			}
+			parse();
+		}
+		catch (BufferUnderflowException e)
+		{
+			_error = "Insuficient data for the specified format";
+			MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+		}
+		catch (Exception e)
+		{
+			_error = "Exception: " + e.getMessage();
+			_log.info("Exception: " + e, e);
 		}
 	}
 
@@ -271,24 +264,24 @@ public class DecryptedPacket implements IPacketData
 	@Override
 	public PacketType getPacketType()
 	{
-		return _cryptedPacket.getPacketType();
+		return _packetType;
 	}
 
 	@Override
 	public long getTime()
 	{
-		return _cryptedPacket.getTime();
+		return _time;
 	}
 
 	@Override
 	public byte[] getAllData()
 	{
-		return _cryptedPacket.getAllData();
+		return _buf.array();
 	}
 
-	public byte[] getNotDecryptData()
+	public byte[] getCryptedData()
 	{
-		return _cryptedPacket.getAllData();
+		return _cryptedData;
 	}
 
 	public boolean isKey()
