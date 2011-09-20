@@ -122,9 +122,9 @@ public class Session
 
 		ViewPane pane = getViewPane();
 
-		pane.getCryptPacketTableModel().addRow(p);
+		pane.getCryptedPacketListModel().addRow(p);
 
-		if(!pane.getPacketList().isHidden() && pane.getSelectedComponent() == pane.getInfoPane())
+		if(!pane.getPacketListPane().isHidden() && pane.getSelectedComponent() == pane.getInfoPane())
 			pane.updateInfo(this);
 	}
 
@@ -132,10 +132,16 @@ public class Session
 	{
 		_decryptPackets.add(p);
 
+		boolean isUnknown = p.getPacketInfo() == null;
 		if(gui)
-			getViewPane().getDecryptPacketTableModel().addRow(p);
+		{
+			getViewPane().getDecryptPacketListModel().addRow(p);
 
-		if(fire && !_invokes.isEmpty())
+			if(isUnknown)
+				getViewPane().getUnknownPacketListModel().addRow(p);
+		}
+
+		if(!isUnknown && fire && !_invokes.isEmpty())
 			ThreadPoolManager.getInstance().execute(new InvokeTask(this, Collections.singletonList(p)));
 	}
 
@@ -145,7 +151,7 @@ public class Session
 
 		getViewPane().updateInfo(this);
 
-		getViewPane().getPacketListPane().getPacketTable().updateUI();
+		getViewPane().getDecryptedPacketListPane().getPacketTable().updateUI();
 		getViewPane().getCryptedPacketListPane().getPacketTable().updateUI();
 	}
 

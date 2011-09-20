@@ -31,6 +31,15 @@
 		<part name="enchanteffect3" type="h"/>
 	</macro>
 	<packetfamilly way="CLIENT">
+		<packet id="D0;007B" name="RequestBR_EventRankerList"/>
+		<packet id="D0;0089" name="RequestBR_GamePoint"/>
+		<packet id="D0;008A" name="RequestBR_ProductList"/>
+		<packet id="D0;008B" name="RequestBR_ProductInfo"/>
+		<packet id="D0;008C" name="RequestBR_BuyProduct"/>
+		<packet id="D0;008D" name="RequestBR_RecentProductList"/>
+		<packet id="D0;008E" name="RequestBR_MinigameLoadScores"/>
+		<packet id="D0;008F" name="RequestBR_MinigameInsertScore"/>
+		<packet id="D0;0090" name="RequestBR_LectureMark"/>
 		<packet id="D0;00B0" name="RequestCharacterNameCreatable">
 			<part name="name" type="S"/>
 		</packet>
@@ -39,9 +48,46 @@
 		<packet id="D0;00AE" name="RequestEx2ndPasswordVerify" />
 		<packet id="D0;00AF" name="RequestEx2ndPasswordReq" />
 		<packet id="D0;00AA" name="RequestDeletePartySubstitute" />
+		<packet id="D0;00A4" name="RequestCallToChangeClass" />
+		<packet id="D0;00A5" name="RequestChangeToAwakenedClass" />
+		<packet id="D0;00A7" name="RequestUserStatistics" />
 		<packet id="D0;00B3" name="RequestFirstPlayStart" />
 		<packet id="D0;00B7" name="SendChangeAttributeTargetItem" />
 		<packet id="D0;00B8" name="RequestChangeAttributeItem" />
+		<packet id="D0;00B4" name="RequestFlyMoveStart" />
+		<packet id="D0;0092" name="RequestCrystallizeItemCancel" />
+		<packet id="D0;0091" name="RequestCrystallizeEstimate">
+			<part name="object_id" type="d" />
+			<part name="count" type="Q" />
+		</packet>
+		<packet id="D0;009C" name="RequestCommissionInfo">
+			<part name="object_id" type="d" />
+		</packet>
+		<packet id="D0;0080" name="RequestGetOffShuttle">
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+		</packet>
+		<packet id="D0;007F" name="RequestGetOnShuttle">
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+		</packet>
+		<packet id="D0;0081" name="RequestMTLInShuttle">
+			<part name="id" type="d" />
+			<part name="start_x" type="d" />
+			<part name="start_y" type="d" />
+			<part name="start_z" type="d" />
+			<part name="end_x" type="d" />
+			<part name="end_y" type="d" />
+			<part name="end_z" type="d" />
+		</packet>
+		<packet id="D0;0093" name="RequestExEscapeScene" />
+		<packet id="D0;0094" name="RequestFlyMove">
+			<part name="type" type="d" />
+		</packet>
 		<packet id="D0;00B9" name="RequestChangeAttributeCancel" />
 		<packet id="D0;00BA" name="RequestExchangeSubstitute" />
 		<packet id="D0;00BE" name="RequestMenteeAdd" />
@@ -61,14 +107,27 @@
 			<part name="?" type="d"/>
 			<part name="?" type="S"/>
 		</packet>
+		<packet id="D0;009D" name="RequestCommissionRegister">
+			<part name="item-object-id" type="d"/>
+			<part name="?" type="S"/>
+			<part name="price" type="Q"/>
+			<part name="count" type="Q"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="D0;009A" name="RequestInzonePartyInfoHistory" />
 		<packet id="D0;009B" name="RequestCommissionRegistrableItemList" />
 		<packet id="D0;009E" name="RequestCommissionCancel" />
-		<packet id="D0;009F" name="RequestCommissionDelete" />
-		<packet id="D0;00A1" name="RequestCommissionBuyInfo" />
+		<packet id="D0;009F" name="RequestCommissionDelete">
+			<part name="object_id" type="Q"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
+		<packet id="D0;00A1" name="RequestCommissionBuyInfo">
+			<part name="object_id" type="Q"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="D0;00A2" name="RequestCommissionBuyItem" />
 		<packet id="D0;00A3" name="RequestCommissionRegisteredItem" />
-		<packet id="D0;00A7" name="RequestUserStatistics" />
 		<packet id="D0;0099" name="RequestUpdateBlockMemo">
 			<part name="name" type="S"/>
 			<part name="memo" type="S"/>
@@ -275,7 +334,7 @@
 			<part name="vitalityLevel" type="d"/>
 			<part name="specialeffects" type="d"/>
 		</packet>
-			<packet id="18" name="StatusUpdate">
+		<packet id="18" name="StatusUpdate">
 			<part name="obj_id" type="d"/>
 			<part name="receicer_id" type="d"/>
 			<part name="?" type="d"/>
@@ -335,10 +394,102 @@
 			</for>
 		</packet>
 		<packet id="FE;00FC" name="ExNewSkillToLearnByLevelUp" />
+		<packet id="FE;00E7" name="ExFlyMove">
+			<part name="object_id" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="point-id" type="d" />
+				<part name="?" type="d" />
+				<part name="x" type="d" />
+				<part name="y" type="d" />
+				<part name="z" type="d" />
+			</for>
+		</packet>
+		<packet id="FE;00E0" name="ExGetCrystalizingEstimation">
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="item_id" type="d" />
+				<part name="count" type="Q" />
+				<part name="chance" type="D" />
+			</for>
+		</packet>
+		<packet id="FE;00CA" name="ExShuttleInfo">
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="point-id" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+			</for>
+		</packet>
+		<packet id="FE;00CD" name="ExShuttleMove">
+			<part name="id" type="d" />
+			<part name="speed" type="d" />
+			<part name="?" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+		</packet>
+		<packet id="FE;00CC" name="ExShuttleGetOff">
+			<part name="object_id" type="d" />
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+		</packet>
+		<packet id="FE;00CB" name="ExShuttleGetOn">
+			<part name="object_id" type="d" />
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+		</packet>
+		<packet id="FE;00CF" name="ExStopMoveInShuttle">
+			<part name="object_id" type="d" />
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+			<part name="h" type="d" />
+		</packet>
+		<packet id="FE;00CE" name="ExMTLInShuttle">
+			<part name="object_id" type="d" />
+			<part name="id" type="d" />
+			<part name="start_x" type="d" />
+			<part name="start_y" type="d" />
+			<part name="start_z" type="d" />
+			<part name="end_x" type="d" />
+			<part name="end_y" type="d" />
+			<part name="end_z" type="d" />
+		</packet>
 		<packet id="FE;00FA" name="ExMagicAttackInfo">
 			<part name="player-object-id" type="d"/>
 			<part name="npc-object-id" type="d"/>
 			<part name="type?" type="d"/>
+		</packet>
+		<packet id="FE;00EA" name="ExChangeMPCost">
+			<part name="type" type="d"/>
+			<part name="value" type="D"/>
 		</packet>
 		<packet id="45" name="ShortCutInit">
 			<part id="0" name="size" type="d"/>
@@ -453,6 +604,7 @@
 		<packet id="FE;010a" name="Ex2NDPasswordVerify" />
 		<packet id="FE;010b" name="Ex2NDPasswordAck" />
 		<packet id="FE;0102" name="ExLoadStatHotLink" />
+		<packet id="FE;0114" name="ExNotifyFlyMoveStart" />
 		<packet id="FE;00F1" name="ExShowCommission">
 			<part name="response" type="d"/>
 		</packet>
@@ -460,19 +612,77 @@
 			<part name="class-id" type="d"/>
 			<part name="?" type="d"/>
 		</packet>
+		<packet id="FE;00F5" name="ExResponseCommissionDelete">
+			<part name="response" type="d"/>
+		</packet>
+		<packet id="FE;00F4" name="ExResponseCommissionRegister">
+			<part name="response" type="d"/>
+		</packet>
+		<packet id="FE;00F3" name="ExResponseCommissionInfo">
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="Q"/>
+			<part name="?" type="Q"/>
+			<part name="?" type="d"/>
+		</packet>
+		<packet id="FE;00F7" name="ExResponseCommissionBuyInfo">
+			<part name="?" type="d"/>
+			<part name="?" type="Q"/>
+			<part name="?" type="Q"/>
+		</packet>
+		<packet id="FE;00F8" name="ExResponseCommissionBuyItem">
+			<part name="response" type="d"/>
+		</packet>
 		<packet id="FE;00F6" name="ExResponseCommissionList">
 			<part name="type" type="d" id="0"/>
 			<switch id="0">
 				<case id="-1" />
+				<case id="-2" />
+				<case id="2">
+					<part name="time" type="d">
+						<reader type="Timestamp" />
+					</part>
+					<part name="?" type="d" />
+					<part name="items-size" type="d" id="1" />
+					<for id="1">
+						<part name="object_id" type="Q" />
+						<part name="price" type="Q" />
+						<part name="?" type="d" />
+						<part name="?" type="d" />
+						<part name="time" type="d">
+							<reader type="Timestamp" />
+						</part>
+						<part name="name" type="S" />
+
+						<part name="?" type="d" />
+						<part name="item-id" type="d" />
+						<part name="count" type="Q" />
+						<part name="item-type-2" type="h" />
+						<part name="custom-item-type-1" type="h" />
+						<part name="bodypart?" type="d" />
+						<part name="enchant?" type="h"/>
+						<part name="attack-element" type="h"/>
+						<part name="attack-value" type="h"/>
+						<part name="water" type="h"/>
+						<part name="fire" type="h"/>
+						<part name="earth" type="h"/>
+						<part name="wind" type="h"/>
+						<part name="dark" type="h"/>
+						<part name="holy" type="h"/>
+						<part name="enchant-effect-1" type="h"/>
+						<part name="enchant-effect-2" type="h"/>
+						<part name="enchant-effect-3" type="h"/>
+					</for>
+				</case>
 				<case id="3">
 					<part name="time" type="d">
 						<reader type="Timestamp" />
 					</part>
 					<part name="?" type="d" />
-					<part name="?" type="d" id="1" />
+					<part name="items-size" type="d" id="1" />
 					<for id="1">
-						<part name="?" type="Q" />
-						<part name="?" type="Q" />
+						<part name="object_id" type="Q" />
+						<part name="price" type="Q" />
 						<part name="?" type="d" />
 						<part name="?" type="d" />
 						<part name="time" type="d">
@@ -705,6 +915,47 @@
 				</case>
 				<case id="default" />
 			</switch>
+		</packet>
+		<packet id="FE;00B7" name="ExBuySellListPacket">
+			<part name="type" type="d" id="1"/>
+			<switch id="1">
+				<case id="0">
+					<part name="money" type="Q"/>
+					<part name="listId" type="d"/>
+					<part name="slots" type="d"/>
+					<part name="buy_size" type="h" id="0"/>
+					<for id="0" name="buyList">
+						<macro id="item"/>
+						<part name="price" type="Q"/>
+					</for>
+				</case>
+				<case id="1">
+					<part name="slots" type="d"/>
+					<part name="sell_size" type="h" id="2"/>
+					<for id="2">
+						<macro id="item" name="item"/>
+						<part name="price" type="Q"/>
+					</for>
+					<part name="refund_size" type="h" id="3"/>
+					<for id="3">
+						<macro id="item" name="item"/>
+						<part name="refune_id" type="d"/>
+						<part name="price" type="Q"/>
+					</for>
+					<part name="end" type="c"/>
+				</case>
+			</switch>
+		</packet>
+		<packet id="FE;00DB" name="ExBR_BroadcastEventState">
+			<part name="eventId" type="d"/>
+			<part name="eventState" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
 		</packet>
 	</packetfamilly>
 </protocol>

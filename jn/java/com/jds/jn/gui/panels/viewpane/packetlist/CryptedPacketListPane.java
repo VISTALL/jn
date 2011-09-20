@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
 import javax.swing.AbstractButton;
@@ -18,13 +18,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingUtilities;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.gui.listeners.panels.packetlist.DecodeAllActionListener;
-import com.jds.jn.gui.models.DecryptedPacketTableModel;
+import com.jds.jn.gui.models.packetlist.DecryptedPacketListModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.CryptedPacketTableRender;
 import com.jds.jn.helpers.PacketStructureParser;
@@ -50,6 +49,30 @@ import com.jds.nio.buffer.NioBuffer;
  */
 public class CryptedPacketListPane extends JPanel
 {
+	private class MouseListenerImpl extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent e)
+		{
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+			{
+				int row = _packetList.getSelectedRow();
+				CryptedPacket packet = getViewPane().getCryptedPacketListModel().getPacket(row);
+				if(packet == null)
+					return;
+
+				JTextPane pane = new JTextPane();
+				pane.setText(Util.printData(packet.getAllData()));
+
+				JPopupMenu m = new JPopupMenu();
+
+				m.add(pane);
+
+				m.show(_packetList, e.getX(), e.getY());
+			}
+		}
+	}
+
 	private JScrollPane _packetScrollPane;
 	private JTable _packetList;
 	private JPanel _rootPane;
@@ -73,15 +96,12 @@ public class CryptedPacketListPane extends JPanel
 			{
 				NetworkProfile prof = NetworkProfiles.getInstance().active();
 				if(prof == null)
-				{
 					return;
-				}
 
 				NetworkProfilePart p = prof.getPart(ListenerType.Auth_Server);
 				if(p.getServerList() == null)
-				{
 					return;
-				}
+
 				PacketStructureParser parser = new PacketStructureParser(p.getServerList());
 				parser.parse();
 
@@ -89,13 +109,13 @@ public class CryptedPacketListPane extends JPanel
 
 				Session session = getViewPane().getSession();
 
-				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
+				DecryptedPacketListModel model = getViewPane().getDecryptPacketListModel();
 
 				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER, session);
 				if(bytes == null)
 					return;
 
-				final DecryptedPacketListPane pane = getViewPane().getPacketListPane();
+				final DecryptedPacketListPane pane = getViewPane().getDecryptedPacketListPane();
 
 				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, bytes, System.currentTimeMillis()));
 				model.addRow(datapacket);
@@ -112,16 +132,6 @@ public class CryptedPacketListPane extends JPanel
 				}
 
 				getViewPane().updateInfo(session);
-
-				SwingUtilities.invokeLater(new Runnable()
-				{
-
-					@Override
-					public void run()
-					{
-						pane.getPacketTable().updateUI();
-					}
-				});
 			}
 		});
 
@@ -135,17 +145,15 @@ public class CryptedPacketListPane extends JPanel
 				NetworkProfile profile = NetworkProfiles.getInstance().active();
 
 				if(session.getProtocol() == null || profile == null)
-				{
 					return;
-				}
 
-				final DecryptedPacketListPane pane = getViewPane().getPacketListPane();
-				DecryptedPacketTableModel model = getViewPane().getDecryptPacketTableModel();
+				final DecryptedPacketListPane pane = getViewPane().getDecryptedPacketListPane();
+				DecryptedPacketListModel model = getViewPane().getDecryptPacketListModel();
 				if(_packetList.getSelectedRow() == -1)
 				{
 					return;
 				}
-				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(_packetList.getSelectedRow());
+				CryptedPacket packet = getViewPane().getCryptedPacketListModel().getPacket(_packetList.getSelectedRow());
 				if(packet.isDecrypted())
 					return;
 
@@ -166,16 +174,6 @@ public class CryptedPacketListPane extends JPanel
 				model.addRow(datapacket);
 
 				getViewPane().updateInfo(session);
-
-				SwingUtilities.invokeLater(new Runnable()
-				{
-
-					@Override
-					public void run()
-					{
-						pane.getPacketTable().updateUI();
-					}
-				});
 			}
 		});
 	}
@@ -184,7 +182,7 @@ public class CryptedPacketListPane extends JPanel
 	{
 		_rootPane = this;
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-		_packetList = new JTable(getViewPane().getCryptPacketTableModel());
+		_packetList = new JTable(getViewPane().getCryptedPacketListModel());
 		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		_packetList.setDefaultRenderer(Object.class, new CryptedPacketTableRender());
 		_packetList.getColumnModel().getColumn(0).setMaxWidth(50); //type
@@ -193,66 +191,12 @@ public class CryptedPacketListPane extends JPanel
 		_packetList.addMouseListener(new MouseListenerImpl());
 	}
 
-	private class MouseListenerImpl implements MouseListener
-	{
-		@Override
-		public void mouseClicked(MouseEvent e)
-		{
-			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
-			{
-				int row = _packetList.getSelectedRow();
-				CryptedPacket packet = getViewPane().getCryptPacketTableModel().getPacket(row);
-				if(packet == null)
-				{
-					return;
-				}
-
-				JTextPane pane = new JTextPane();
-				pane.setText(Util.printData(packet.getAllData()));
-
-				JPopupMenu m = new JPopupMenu();
-
-				m.add(pane);
-
-				m.show(_packetList, e.getX(), e.getY());
-			}
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e)
-		{
-
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e)
-		{
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e)
-		{
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e)
-		{
-
-		}
-	}
-
 	@Override
 	public void setEnabled(boolean b)
 	{
 		for(Component c : getComponents())
-		{
 			if(c != null)
-			{
 				c.setEnabled(b);
-			}
-		}
 
 		super.setEnabled(b);
 	}

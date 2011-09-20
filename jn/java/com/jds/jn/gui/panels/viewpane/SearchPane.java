@@ -270,7 +270,7 @@ public class SearchPane extends HiddenPanel
 				return;
 			}
 
-			if(_pane.getDecryptPacketTableModel().searchPacket(findPacket))
+			if(_pane.getDecryptPacketListModel().searchPacket(findPacket))
 			{
 				found();
 			}
@@ -285,7 +285,7 @@ public class SearchPane extends HiddenPanel
 
 			if(index >= 0)
 			{
-				JTable pt = _pane.getPacketListPane().getPacketTable();
+				JTable pt = _pane.getDecryptedPacketListPane().getPacketTable();
 				pt.setAutoscrolls(true);
 				pt.getSelectionModel().setSelectionInterval(index, index);
 				pt.scrollRectToVisible(pt.getCellRect(index, 0, true));

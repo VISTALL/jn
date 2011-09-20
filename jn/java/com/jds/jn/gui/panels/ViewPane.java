@@ -1,6 +1,5 @@
 package com.jds.jn.gui.panels;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
@@ -10,18 +9,18 @@ import javax.accessibility.AccessibleContext;
 import javax.swing.JComponent;
 import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
-import com.jds.jn.gui.models.CryptedPacketTableModel;
-import com.jds.jn.gui.models.DecryptedPacketTableModel;
+import com.jds.jn.gui.models.packetlist.CryptedPacketListModel;
+import com.jds.jn.gui.models.packetlist.DecryptedPacketListModel;
+import com.jds.jn.gui.models.packetlist.UnknownPacketListModel;
 import com.jds.jn.gui.panels.viewpane.FilterPane;
 import com.jds.jn.gui.panels.viewpane.HiddenPanel;
 import com.jds.jn.gui.panels.viewpane.InfoPane;
-import com.jds.jn.gui.panels.viewpane.PacketList;
+import com.jds.jn.gui.panels.viewpane.PacketListPane;
 import com.jds.jn.gui.panels.viewpane.SearchPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.UnknownPacketListPane;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.Bundle;
 
@@ -33,52 +32,35 @@ import com.jds.jn.util.Bundle;
  */
 public class ViewPane extends JTabbedPane
 {
-	private class SelectionPaneListener implements ChangeListener
-	{
-		@Override
-		public void stateChanged(ChangeEvent e)
-		{
-			if(e.getSource() == getModel())
-			{
-				Component c = getSelectedComponent();
-				if(c != null)
-				{
-					c.invalidate();
-					c.repaint();
-				}
-			}
-		}
-	}
-
 	public Session _session;
 
-	private DecryptedPacketTableModel _decryptPacketTableModel = new DecryptedPacketTableModel(this);
-	private CryptedPacketTableModel _cryptedPacketTableModel = new CryptedPacketTableModel(this);
+	private DecryptedPacketListModel _decryptPacketListModel = new DecryptedPacketListModel(this);
+	private CryptedPacketListModel _cryptedPacketListModel = new CryptedPacketListModel(this);
+	private UnknownPacketListModel _unknownPacketListModel = new UnknownPacketListModel(this);
 
-	private PacketList _packetList;
+	private PacketListPane _packetListPane;
 	private SearchPane _searchPane;
 	private FilterPane _filterPane;
 	private InfoPane _infoPane;
+
 	public ViewPane(Session session)
 	{
 		_session = session;
 
-		setTabPlacement(2);
-
-		addChangeListener(new SelectionPaneListener());
+		setTabPlacement(LEFT);
 
 		_infoPane = new InfoPane();
 		_searchPane = new SearchPane(this);
 		_filterPane = new FilterPane(this);
-		_packetList = new PacketList(this);
+		_packetListPane = new PacketListPane(this);
 
 		registerKeyboardAction(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				setSelectedComponent(_packetList);
-				_packetList.showPane(false);
+				setSelectedComponent(_packetListPane);
+				_packetListPane.showPane(_packetListPane.getDecryptedPacketListPane());
 			}
 		}, KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
@@ -87,17 +69,36 @@ public class ViewPane extends JTabbedPane
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				setSelectedComponent(_packetList);
-				_packetList.showPane(true);
+				setSelectedComponent(_packetListPane);
+				_packetListPane.showPane(_packetListPane.getCryptedPacketListPane());
 			}
 		}, KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+		registerKeyboardAction(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				setSelectedComponent(_packetListPane);
+				_packetListPane.showPane(_packetListPane.getUnknownPacketListPane());
+			}
+		}, KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
+
+		registerKeyboardAction(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				setSelectedComponent(_searchPane);
+			}
+		}, KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
 
 	public void drawThis()
 	{
 		_filterPane.drawThis();
 
-		addTab("PacketList", _packetList, true);
+		addTab("PacketList", _packetListPane, true);
 		addTab("FindPanel", _searchPane, true);
 		addTab("Filter", _filterPane, true);
 		addTab("Info", _infoPane, true);
@@ -134,14 +135,14 @@ public class ViewPane extends JTabbedPane
 
 	}
 
-	public DecryptedPacketTableModel getDecryptPacketTableModel()
+	public DecryptedPacketListModel getDecryptPacketListModel()
 	{
-		return _decryptPacketTableModel;
+		return _decryptPacketListModel;
 	}
 
-	public CryptedPacketTableModel getCryptPacketTableModel()
+	public CryptedPacketListModel getCryptedPacketListModel()
 	{
-		return _cryptedPacketTableModel;
+		return _cryptedPacketListModel;
 	}
 
 	public Session getSession()
@@ -149,14 +150,19 @@ public class ViewPane extends JTabbedPane
 		return _session;
 	}
 
-	public DecryptedPacketListPane getPacketListPane()
+	public DecryptedPacketListPane getDecryptedPacketListPane()
 	{
-		return _packetList.getDecryptedPacketListPane();
+		return _packetListPane.getDecryptedPacketListPane();
 	}
 
 	public CryptedPacketListPane getCryptedPacketListPane()
 	{
-		return _packetList.getCryptedPacketListPane();
+		return _packetListPane.getCryptedPacketListPane();
+	}
+
+	public UnknownPacketListPane getUnknownPacketListPane()
+	{
+		return _packetListPane.getUnknownPacketListPane();
 	}
 
 	public SearchPane getSearchPane()
@@ -178,21 +184,21 @@ public class ViewPane extends JTabbedPane
 	{
 		setEnabled(e);
 
-		_packetList.setEnabled(e);
+		_packetListPane.setEnabled(e);
 	}
 
-	public JTabbedPane getTabbedPane()
+	public PacketListPane getPacketListPane()
 	{
-		return this;
-	}
-
-	public PacketList getPacketList()
-	{
-		return _packetList;
+		return _packetListPane;
 	}
 
 	public InfoPane getInfoPane()
 	{
 		return _infoPane;
+	}
+
+	public UnknownPacketListModel getUnknownPacketListModel()
+	{
+		return _unknownPacketListModel;
 	}
 }

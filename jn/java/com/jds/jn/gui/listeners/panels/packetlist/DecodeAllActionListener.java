@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
-import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
@@ -105,11 +104,7 @@ public class DecodeAllActionListener implements ActionListener
 		for(DecryptedPacket p : packets)
 			session.receiveQuitPacket(p, true, false);
 
-		final DecryptedPacketListPane pane = _pane.getViewPane().getPacketListPane();
-
 		_pane.getViewPane().updateInfo(session);
-
-		pane.getPacketTable().updateUI();
 
 		ThreadPoolManager.getInstance().execute(new InvokeTask(session, packets));
 	}

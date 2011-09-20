@@ -1,8 +1,14 @@
 package com.jds.jn.gui.models;
 
-import com.jds.jn.parser.datatree.*;
-import com.jds.jn.parser.formattree.*;
 import org.jdesktop.swingx.treetable.DefaultMutableTreeTableNode;
+import com.jds.jn.parser.datatree.DataForBlock;
+import com.jds.jn.parser.datatree.DataSwitchBlock;
+import com.jds.jn.parser.datatree.DataTreeNode;
+import com.jds.jn.parser.datatree.DataTreeNodeContainer;
+import com.jds.jn.parser.datatree.ValuePart;
+import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.MacroPart;
+import com.jds.jn.parser.formattree.SwitchCaseBlock;
 
 public class DataPartNode extends DefaultMutableTreeTableNode
 {
@@ -91,4 +97,5 @@ public class DataPartNode extends DefaultMutableTreeTableNode
 	{
 		return _node;
 	}
+
 }

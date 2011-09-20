@@ -65,8 +65,8 @@ public class RenameMenuItem extends JMenuItem
 					if (dialog.showToWrite())
 					{
 						block.setName(dialog.getText());
-						form.getPane().getDecryptPacketTableModel().updatePacket(form.getRow(), form.getPacket());
-						form.getPane().getDecryptPacketTableModel().updatePackets(form.getPacket());
+						form.getPane().getDecryptPacketListModel().updatePacket(form.getRow(), form.getPacket());
+						form.getPane().getDecryptPacketListModel().updatePackets(form.getPacket());
 						form.updateCurrentPacket();
 						form.getPacketStructure().updateUI();
 					}

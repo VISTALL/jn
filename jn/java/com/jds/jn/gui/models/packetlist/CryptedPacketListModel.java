@@ -1,4 +1,4 @@
-package com.jds.jn.gui.models;
+package com.jds.jn.gui.models.packetlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import com.jds.jn.util.Util;
  * Date: 25.09.2009
  * Time: 17:55:13
  */
-public class CryptedPacketTableModel extends AbstractTableModel
+public class CryptedPacketListModel extends AbstractTableModel
 {
 	private static final String[] columnNames =
 	{
@@ -29,7 +29,7 @@ public class CryptedPacketTableModel extends AbstractTableModel
 
 	private List<Object[]> _currentTable = new ArrayList<Object[]>();
 
-	public CryptedPacketTableModel(ViewPane pane)
+	public CryptedPacketListModel(ViewPane pane)
 	{
 
 	}
@@ -79,6 +79,8 @@ public class CryptedPacketTableModel extends AbstractTableModel
 		};
 
 		_currentTable.add(temp);
+
+		fireTableRowsInserted(_currentTable.size(), _currentTable.size());
 	}
 
 	public CryptedPacket getPacket(int index)

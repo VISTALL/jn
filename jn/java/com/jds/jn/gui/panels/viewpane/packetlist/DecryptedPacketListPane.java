@@ -5,8 +5,8 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ResourceBundle;
 
 import javax.swing.JComponent;
@@ -38,6 +38,38 @@ import com.jds.jn.parser.packetreader.PacketReader;
  */
 public class DecryptedPacketListPane extends JPanel
 {
+	private class MouseListenerImpl extends MouseAdapter
+	{
+       	@Override
+		public void mouseClicked(MouseEvent e)
+		{
+			int row = _packetList.rowAtPoint(e.getPoint());
+			/*if (row != -1)
+			{
+				_see.setEnabled(true);
+			}
+                */
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+			{
+				if(row == -1)
+					return;
+
+				DecryptedPacket packet = getPane().getDecryptPacketListModel().getPacket(row);
+
+				if(packet == null)
+					return;
+				float f = _transperyPacket.getValue() / 100F;
+				new PacketForm(getPane(), f, packet, row);
+			}
+
+			else if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
+			{
+				JTable table = (JTable) e.getSource();
+				_menu.show(table, e.getX(), e.getY());
+			}
+		}
+	}
+
 	private JScrollPane _packetScrollPane;
 	private JTable _packetList;
 	private JSlider _transperyPacket;
@@ -223,7 +255,7 @@ public class DecryptedPacketListPane extends JPanel
 				{
 					return;
 				}
-				DecryptedPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
+				DecryptedPacket packet = getPane().getDecryptPacketListModel().getPacket(row);
 				if(packet == null)
 				{
 					return;
@@ -245,78 +277,16 @@ public class DecryptedPacketListPane extends JPanel
 
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 
-
-		_packetList = new JTable(getPane().getDecryptPacketTableModel());
+		_packetList = new JTable(getPane().getDecryptPacketListModel());
 		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_packetList.setDefaultRenderer(Object.class, new PacketTableRenderer(getPane().getDecryptPacketTableModel()));
+		_packetList.setDefaultRenderer(Object.class, new PacketTableRenderer(getPane().getDecryptPacketListModel()));
 		_packetList.getColumnModel().getColumn(0).setMaxWidth(30); //type
 		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
 		_packetList.getColumnModel().getColumn(2).setMaxWidth(50); //id
 		_packetList.getColumnModel().getColumn(3).setMaxWidth(50);  //lenght
 		_packetList.getColumnModel().getColumn(4).setMaxWidth(180); //name
 
-		_packetList.addMouseListener(new MouseL());
-	}
-
-	public class MouseL implements MouseListener
-	{
-
-		@Override
-		public void mouseClicked(MouseEvent e)
-		{
-			int row = _packetList.rowAtPoint(e.getPoint());
-			/*if (row != -1)
-			{
-				_see.setEnabled(true);
-			}
-                */
-			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
-			{
-				if(row == -1)
-				{
-					return;
-				}
-
-				DecryptedPacket packet = getPane().getDecryptPacketTableModel().getPacket(row);
-
-				if(packet == null)
-				{
-					return;
-				}
-				float f = _transperyPacket.getValue() / 100F;
-				new PacketForm(getPane(), f, packet, row);
-			}
-
-			else if(e.getClickCount() == 1 && e.getButton() == MouseEvent.BUTTON3)
-			{
-				JTable table = (JTable) e.getSource();
-				_menu.show(table, e.getX(), e.getY());
-			}
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e)
-		{
-
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent e)
-		{
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e)
-		{
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e)
-		{
-
-		}
+		_packetList.addMouseListener(new MouseListenerImpl());
 	}
 
 	public void activeReadItem()
@@ -353,7 +323,7 @@ public class DecryptedPacketListPane extends JPanel
 			return null;
 		}
 
-		return getPane().getDecryptPacketTableModel().getPacket(row);
+		return getPane().getDecryptPacketListModel().getPacket(row);
 	}
 
 	public float getTransientValue()

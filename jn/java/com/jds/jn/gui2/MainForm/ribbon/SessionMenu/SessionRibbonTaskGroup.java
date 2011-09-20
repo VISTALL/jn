@@ -52,7 +52,7 @@ public class SessionRibbonTaskGroup extends RibbonContextualTaskGroup
 
 		final JCheckBox packetList = new JCheckBox(Bundle.getString("PacketList"));
 		packetList.setSelected(true);
-		packetList.addActionListener(new HidePaneListener(session, session.getViewPane().getPacketList()));
+		packetList.addActionListener(new HidePaneListener(session, session.getViewPane().getPacketListPane()));
 
 	   	final JCheckBox search = new JCheckBox(Bundle.getString("FindPanel"));
 		search.setSelected(true);
