@@ -50,6 +50,10 @@
 		<packet id="D0;00AA" name="RequestDeletePartySubstitute" />
 		<packet id="D0;00A4" name="RequestCallToChangeClass" />
 		<packet id="D0;00A5" name="RequestChangeToAwakenedClass" />
+		<packet id="D0;00A6" name="RequestWorldStatistics">
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="D0;00A7" name="RequestUserStatistics" />
 		<packet id="D0;00B3" name="RequestFirstPlayStart" />
 		<packet id="D0;00B7" name="SendChangeAttributeTargetItem" />
@@ -147,7 +151,7 @@
 			<part name="base_class" type="d"/>
 			<part name="level" type="d"/>
 			<part name="exp" type="Q"/>
-			<part name="?" type="D"/>
+			<part name="exp_percent" type="D"/>
 			<part name="str" type="d"/>
 			<part name="dex" type="d"/>
 			<part name="con" type="d"/>
@@ -581,6 +585,137 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 		</packet>
+		<packet id="31" name="CharInfo">
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="?" type="d"/>
+			<part name="obj_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="race" type="d"/>
+			<part name="sex" type="d"/>
+			<part name="base_class" type="d"/>
+			<part name="under-itemId" type="d"/>
+			<part name="head-itemId" type="d"/>
+			<part name="rhand-itemId" type="d"/>
+			<part name="lhand-itemId" type="d"/>
+			<part name="gloves-itemId" type="d"/>
+			<part name="chest-itemId" type="d"/>
+			<part name="legs-itemId" type="d"/>
+			<part name="feet-itemId" type="d"/>
+			<part name="back-itemId" type="d"/>
+			<part name="lrhand-itemId" type="d"/>
+			<part name="hair-itemId" type="d"/>
+			<part name="dhair-itemId" type="d"/>
+			<part name="rbracelet-itemId" type="d"/>
+			<part name="lbracelet-itemId" type="d"/>
+			<part name="deco1-itemId" type="d"/>
+			<part name="deco2-itemId" type="d"/>
+			<part name="deco3-itemId" type="d"/>
+			<part name="deco4-itemId" type="d"/>
+			<part name="deco5-itemId" type="d"/>
+			<part name="deco6-itemId" type="d"/>
+			<part name="belt-itemId" type="d"/>
+			<part name="under-augId" type="d"/>
+			<part name="head-augId" type="d"/>
+			<part name="rhand-augId" type="d"/>
+			<part name="lhand-augId" type="d"/>
+			<part name="gloves-augId" type="d"/>
+			<part name="chest-augId" type="d"/>
+			<part name="legs-augId" type="d"/>
+			<part name="feet-augId" type="d"/>
+			<part name="back-augId" type="d"/>
+			<part name="lrhand-augId" type="d"/>
+			<part name="hair-augId" type="d"/>
+			<part name="dhair-augId" type="d"/>
+			<part name="rbracelet-augId" type="d"/>
+			<part name="lbracelet-augId" type="d"/>
+			<part name="deco1-augId" type="d"/>
+			<part name="deco2-augId" type="d"/>
+			<part name="deco3-augId" type="d"/>
+			<part name="deco4-augId" type="d"/>
+			<part name="deco5-augId" type="d"/>
+			<part name="deco6-augId" type="d"/>
+			<part name="belt-augId" type="d"/>
+			<part name="talismanCount" type="d"/>
+			<part name="activeCloak" type="d"/>
+			<part name="pvpFlag" type="d"/>
+			<part name="karma" type="d"/>
+			<part name="mAttackSpeed" type="d"/>
+			<part name="pAtttackSpeed" type="d"/>
+			<part name="?" type="d"/>
+			<part name="runSpeed" type="d"/>
+			<part name="walkSpeed" type="d"/>
+			<part name="sweemRunSpeed" type="d"/>
+			<part name="sweemWalkSpeed" type="d"/>
+			<part name="flyRunSpeed" type="d"/>
+			<part name="flyWalkSpeed" type="d"/>
+			<part name="flyRunSpeed" type="d"/>
+			<part name="flyWalkSpeed" type="d"/>
+			<part name="moveMulti" type="D"/>
+			<part name="attackMulti" type="D"/>
+			<part name="colRadius" type="D"/>
+			<part name="colHeight" type="D"/>
+			<part name="hairStyle" type="d"/>
+			<part name="hairColor" type="d"/>
+			<part name="face" type="d"/>
+			<part name="title" type="S"/>
+			<part name="clan_id" type="d"/>
+			<part name="clan_crest_id" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_crest_id" type="d"/>
+			<part name="sit" type="c"/>
+			<part name="run" type="c"/>
+			<part name="combat" type="c"/>
+			<part name="dead" type="c"/>
+			<part name="invis" type="c"/>
+			<part name="mount_type" type="c"/>
+			<part name="private_store" type="c"/>
+			<part name="cubic_size" type="h" id="0"/>
+			<for id="0">
+				<part name="cubicId" type="h"/>
+			</for>
+			<part name="partyRoom" type="c"/>
+			<part name="abnormalEffects" type="d"/>
+			<part name="flying" type="c"/>
+			<part name="rec_have" type="h"/>
+			<part name="mount_id" type="d"/>
+			<part name="class_Id" type="d"/>
+			<part name="?" type="d"/>
+			<part name="enchant" type="c"/>
+			<part name="team" type="c"/>
+			<part name="large_crest_id" type="d"/>
+			<part name="noble" type="c"/>
+			<part name="hero" type="c"/>
+			<part name="fishing" type="c"/>
+			<part name="fish-x" type="d"/>
+			<part name="fish-y" type="d"/>
+			<part name="fish-z" type="d"/>
+			<part name="name_color" type="d">
+				<reader type="Color"/>
+			</part>
+			<part name="h" type="d"/>
+			<part name="plegde_class" type="d"/>
+			<part name="pledge_type" type="d"/>
+			<part name="title_color" type="d">
+				<reader type="Color"/>
+			</part>
+			<part name="cw_level" type="d"/>
+			<part name="clan_reputation" type="d"/>
+			<part name="transformation" type="d"/>
+			<part name="agation" type="d"/>
+			<part name="allowedMap" type="d"/>
+			<part name="specialEffects" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="D5" name="BlockList">
 			<part name="size" type="d" id="0" />
 			<for id="0">
@@ -599,6 +734,42 @@
 		</packet>
 		<packet id="FE;010F" name="ExIsCharNameCreatable">
 			<part name="response" type="d"/>
+		</packet>
+		<packet id="FE;010E" name="ExShowStatPage">
+			<part name="response" type="d"/>
+		</packet>
+		<packet id="FE;0100" name="ExLoadStatWorldRank">
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="place" type="h"/>
+				<part name="?" type="d"/>
+				<part name="name" type="S"/>
+				<part name="points" type="Q"/>
+				<part name="?" type="h"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+			</for>
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="place" type="h"/>
+				<part name="?" type="d"/>
+				<part name="name" type="S"/>
+				<part name="points" type="Q"/>
+				<part name="?" type="h"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+			</for>
+		</packet>
+		<packet id="FE;0101" name="ExLoadStatUser">
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="statistic-id" type="d"/>
+				<part name="?" type="d"/>
+				<part name="points" type="Q"/>
+				<part name="points" type="Q"/>
+			</for>
 		</packet>
 		<packet id="FE;0109" name="Ex2NDPasswordCheck" />
 		<packet id="FE;010a" name="Ex2NDPasswordVerify" />
@@ -956,6 +1127,35 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
+		</packet>
+		<packet id="54" name="MagicSkillLaunched">
+			<part name="setup_gauge" type="d"/>
+			<part name="obj_id" type="d"/>
+			<part name="skill_id" type="d"/>
+			<part name="skill_level" type="d"/>
+			<part name="target-size" type="d" id="0"/>
+			<for id="0">
+				<part name="target_obj_id" type="d"/>
+			</for>
+		</packet>
+		<packet id="48" name="MagicSkillUse">
+			<part name="setup_gauge" type="d"/>
+			<part name="obj_id" type="d"/>
+			<part name="target_obj_id" type="d"/>
+			<part name="?" type="c"/>
+			<part name="skillId" type="d"/>
+			<part name="skillLevel" type="d"/>
+			<part name="hitTime" type="d"/>
+			<part name="reuse-group" type="d"/>
+			<part name="reuse" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="?" type="h"/>
+			<part name="?" type="h"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
 		</packet>
 	</packetfamilly>
 </protocol>

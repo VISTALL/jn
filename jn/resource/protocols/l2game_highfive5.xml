@@ -2390,7 +2390,11 @@
 		<packet id="D0;0038" name="MoveToLocationAirShip"/>
 		<packet id="D0;0039" name="RequestBidItemAuction"/>
 		<packet id="D0;003A" name="RequestInfoItemAuction"/>
-		<packet id="D0;003B" name="RequestExChangeName"/>
+		<packet id="D0;003B" name="RequestExChangeName">
+			<part name="type" type="d" />
+			<part name="reason" type="d" />
+			<part name="name" type="S" />
+		</packet>
 		<packet id="D0;003C" name="RequestAllCastleInfo"/>
 		<packet id="D0;003D" name="RequestAllFortressInfo"/>
 		<packet id="D0;003E" name="RequestAllAgitInfo"/>
