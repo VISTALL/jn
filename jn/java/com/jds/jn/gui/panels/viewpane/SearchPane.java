@@ -5,11 +5,13 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
@@ -40,6 +42,8 @@ import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.session.Session;
+import com.jds.swing.XCheckedButton;
+import com.jds.swing.XJPopupMenu;
 
 /**
  * Author: VISTALL
@@ -67,7 +71,8 @@ public class SearchPane extends HiddenPanel
 	private int _currentIndex;
 	private boolean _stringPart;
 
-	private static final String[] MATH_OPERATORS = {
+	private static final String[] MATH_OPERATORS = 
+	{
 			"==",
 			"!=",
 			">",
@@ -75,17 +80,21 @@ public class SearchPane extends HiddenPanel
 			"<",
 			"<="
 	};
-	private static final String[] STRING_OPERATORS = {
+	private static final String[] STRING_OPERATORS = 
+	{
 			"==",
 			"!="
 	};
 
 	private List<PacketInfo> _formats = new ArrayList<PacketInfo>();
 
+	private XJPopupMenu _menuFindSimple = new XJPopupMenu();
+
 	public SearchPane(ViewPane pane)
 	{
 		_pane = pane;
 		$$$setupUI$$$();
+		setPackets();
 		_findText.setText(RValues.LAST_SEARCH.asString());
 
 		_simpleSearchRadioButton.addActionListener(new ActionListener()
@@ -109,8 +118,6 @@ public class SearchPane extends HiddenPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				setPackets();
-
 				packetSelect.setEnabled(true);
 				partselect.setEnabled(true);
 				operatorSelect.setEnabled(true);
@@ -120,46 +127,53 @@ public class SearchPane extends HiddenPanel
 			}
 		});
 
-		_findText.addKeyListener(new KeyListener()
+		_findText.addKeyListener(new KeyAdapter()
 		{
-
-			@Override
-			public void keyTyped(KeyEvent e)
-			{
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-
-			}
-
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
-				/*
-				TODO _pane.getPacketListPane().getSearchItem().setEnabled(!_findText.getText().trim().equals(""));
-				*/
 				_searchBtn.setEnabled(!_findText.getText().trim().equals(""));
+				_menuFindSimple.removeItems();
+
+				Set<String> set = new TreeSet<String>();
+				for(PacketInfo packetInfo : _formats)
+					if(packetInfo.getName().startsWith(_findText.getText()))
+						set.add(packetInfo.getName());
+
+				if(!set.isEmpty())
+				{
+					_menuFindSimple.setPopupSize(_findText.getWidth(), set.size() > 10 ? 200 : 20 * set.size());
+					_menuFindSimple.setFocusable(false);
+
+					int i = 0;
+					for(final String str : set)
+					{
+						XCheckedButton item = new XCheckedButton(str);
+						item.setSize(_findText.getWidth(), 20);
+						item.addActionListener(new ActionListener()
+						{
+							@Override
+							public void actionPerformed(ActionEvent e)
+							{
+								_findText.setText(str);
+							}
+						});
+
+						_menuFindSimple.add(item);
+
+						if(++i >= 10)
+							break;
+					}
+
+					_menuFindSimple.show(_findText, 0, _findText.getY() + _findText.getHeight());
+				}
+				else 
+					_menuFindSimple.setVisible(false);
 			}
 		});
 
-		_simpleTextSearch.addKeyListener(new KeyListener()
+		_simpleTextSearch.addKeyListener(new KeyAdapter()
 		{
-
-			@Override
-			public void keyTyped(KeyEvent e)
-			{
-
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e)
-			{
-
-			}
-
 			@Override
 			public void keyReleased(KeyEvent e)
 			{
@@ -304,25 +318,19 @@ public class SearchPane extends HiddenPanel
 		_formats.clear();
 
 		if(_pane.getSession() == null)
-		{
 			return;
-		}
 
 		Protocol currentProto = _pane.getSession().getProtocol();
 		getAllFormatsName(currentProto);
 
 		for(PacketInfo format : _formats)
-		{
 			packetSelect.addItem(format.getOpcodeStr() + " " + format.getName());
-		}
 	}
 
 	private void getAllFormatsName(Protocol p)
 	{
 		for(PacketFamilly a : p.getFamilies())
-		{
 			_formats.addAll(a.getFormats().values());
-		}
 	}
 
 	public String getFindText()

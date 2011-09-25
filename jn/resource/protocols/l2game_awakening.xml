@@ -97,8 +97,13 @@
 		<packet id="D0;00BE" name="RequestMenteeAdd" />
 		<packet id="D0;00BC" name="RequestMentorCancel" />
 		<packet id="D0;00BB" name="ConfirmMenteeAdd" />
-		<packet id="D0;0097" name="RequestFriendDetailInfo" />
-		<packet id="D0;0098" name="RequestUpdateFriendMemo" />
+		<packet id="D0;0097" name="RequestFriendDetailInfo">
+			<part name="name" type="S"/>
+		</packet>
+		<packet id="D0;0098" name="RequestUpdateFriendMemo">
+			<part name="name" type="S"/>
+			<part name="memo" type="S"/>
+		</packet>
 		<packet id="D0;0096" name="RequestDynamicQuestProgressInfo">
 			<part name="?" type="c"/>
 			<part name="?" type="d"/>
@@ -890,6 +895,10 @@
 				<macro id="item" />
 			</for>
 		</packet>
+		<packet id="FE;00FF" name="ExTacticalSign">
+			<part name="object_id" type="d" />
+			<part name="tactical_sign" type="d" />
+		</packet>
 		<packet id="FE;00E5" name="ExAbnormalStatusUpdateFromTarget">
 			<part name="object-id" type="d"/>
 			<part name="size" type="h" id="0"/>
@@ -1156,6 +1165,107 @@
 			<part name="x" type="d"/>
 			<part name="y" type="d"/>
 			<part name="z" type="d"/>
+		</packet>
+		<packet id="4E" name="PartySmallWindowAll">
+			<part name="leaderObjectId" type="d"/>
+			<part name="lootType" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="objectId" type="d"/>
+				<part name="name" type="S"/>
+				<part name="curCP" type="d"/>
+				<part name="maxCP" type="d"/>
+				<part name="curHP" type="d"/>
+				<part name="maxHP" type="d"/>
+				<part name="curMP" type="d"/>
+				<part name="maxMP" type="d"/>
+				<part name="vitality" type="d"/>
+				<part name="level" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="sex" type="d"/>
+				<part name="race" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="pet_id" type="d" id="1" />
+				<switch id="1">
+					<case id="0" />
+					<case id="default">
+						<part name="npc_id" type="d" />
+						<part name="type" type="d" />
+						<part name="name" type="S" />
+						<part name="current_hp" type="d" />
+						<part name="max_hp" type="d" />
+						<part name="current_mp" type="d" />
+						<part name="max_mp" type="d" />
+						<part name="level" type="d" />
+					</case>
+				</switch>
+			</for>
+		</packet>
+		<packet id="4F" name="PartySmallWindowAdd">
+			<part name="leader_object_id" type="d"/>
+			<part name="loot_type" type="d"/>
+			<part name="object_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="curCP" type="d"/>
+			<part name="maxCP" type="d"/>
+			<part name="curHP" type="d"/>
+			<part name="maxHP" type="d"/>
+			<part name="curMP" type="d"/>
+			<part name="maxMP" type="d"/>
+			<part name="vitality" type="d"/>
+			<part name="level" type="d"/>
+			<part name="classId" type="d"/>
+			<part name="sex" type="d"/>
+			<part name="race" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
+		<packet id="52" name="PartySmallWindowUpdate">
+			<part name="objectId" type="d"/>
+			<part name="name" type="S"/>
+			<part name="curCP" type="d"/>
+			<part name="maxCP" type="d"/>
+			<part name="curHP" type="d"/>
+			<part name="maxHP" type="d"/>
+			<part name="curMP" type="d"/>
+			<part name="maxMP" type="d"/>
+			<part name="level" type="d"/>
+			<part name="classId" type="d"/>
+			<part name="vitality" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
+		<packet id="75" name="L2FriendList">
+			<part id="0" name="size" type="d" />
+			<for id="0">
+				<part name="database-id" type="d" />
+				<part name="name" type="S" />
+				<part name="online" type="d" />
+				<part name="object-id" type="d" />
+				<part name="level" type="d" />
+				<part name="class-id" type="d" />
+				<part name="memo" type="S" />
+			</for>
+		</packet>
+		<packet id="FE;00EB" name="ExFriendDetailInfo">
+			<part name="database-id" type="d" />
+			<part name="name" type="S" />
+			<part name="?" type="d" />
+			<part name="object-id" type="d" />
+			<part name="level" type="h" />
+			<part name="class-id" type="h" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="S" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="S" />
+			<part name="?" type="c" />
+			<part name="?" type="c" />
+			<part name="?" type="d" />
+			<part name="memo" type="S" />
 		</packet>
 	</packetfamilly>
 </protocol>

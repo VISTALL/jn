@@ -3,12 +3,13 @@ package com.jds.jn.util;
 import java.awt.Dimension;
 import java.util.HashMap;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import org.jdesktop.swingx.icon.EmptyIcon;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-
 import com.jds.jn.parser.parttypes.PartType;
 
 /**
@@ -70,6 +71,8 @@ public class ImageStatic
 	public static final ImageIcon PART_FLOAT = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/part/float.png"));
 
 	public static final ImageIcon PART_LONG = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/part/long.png"));
+
+	public static final Icon EMPTY_ICON = new EmptyIcon();
 
 	public static final JLabel ICON_FROM_SERVER = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/se_packet.png")));
 	public static final JLabel ICON_FROM_CLIENT = new JLabel(new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/cl_packet.png")));
