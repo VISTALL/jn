@@ -1252,19 +1252,19 @@
 		<packet id="FE;00EB" name="ExFriendDetailInfo">
 			<part name="database-id" type="d" />
 			<part name="name" type="S" />
-			<part name="?" type="d" />
+			<part name="online" type="d" />
 			<part name="object-id" type="d" />
 			<part name="level" type="h" />
 			<part name="class-id" type="h" />
+			<part name="clan-id" type="d" />
 			<part name="?" type="d" />
+			<part name="clan-name" type="S" />
+			<part name="ally-id" type="d" />
 			<part name="?" type="d" />
-			<part name="?" type="S" />
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="?" type="S" />
-			<part name="?" type="c" />
-			<part name="?" type="c" />
-			<part name="?" type="d" />
+			<part name="ally-name" type="S" />
+			<part name="create-month" type="c" />
+			<part name="create-day" type="c" />
+			<part name="last-access-diff" type="d" />
 			<part name="memo" type="S" />
 		</packet>
 	</packetfamilly>
