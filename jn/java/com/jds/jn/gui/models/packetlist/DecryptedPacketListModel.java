@@ -1,12 +1,13 @@
 package com.jds.jn.gui.models.packetlist;
 
+import java.lang.ref.WeakReference;
+
 import javax.swing.JLabel;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
-import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.ImageStatic;
@@ -104,7 +105,7 @@ public class DecryptedPacketListModel extends PacketListModel<DecryptedPacket> i
 				packet.getName(),
 				toolTip,
 				false,
-				packet
+				new WeakReference<DecryptedPacket>(packet)
 		};
 
 		if(row == -1)
@@ -130,7 +131,7 @@ public class DecryptedPacketListModel extends PacketListModel<DecryptedPacket> i
 		{
 			int id = Integer.decode(String.valueOf(_currentTable.get(row)[1]));
 
-			Protocol prot = p.getProtocol();
+			//Protocol prot = p.getProtocol();
 			PacketFamilly fam;
 			/*
 							if (p.getPacketType() == PacketType.CLIENT)
@@ -170,13 +171,13 @@ public class DecryptedPacketListModel extends PacketListModel<DecryptedPacket> i
 		String OPCODE = (String) _currentTable.get(row)[1];
 		DecryptedPacket p = (DecryptedPacket) _currentTable.get(row)[7];
 
-		if(p.getDataFormat() == null)
+		if(p.getPacketInfo() == null)
 		{
 			return;
 		}
 		else
 		{
-			Protocol prot = p.getProtocol();
+			//Protocol prot = p.getProtocol();
 			PacketFamilly fam;
 
 			/*if (p.getPacketType() == PacketType.CLIENT)

@@ -1,5 +1,7 @@
 package com.jds.jn.gui.models.packetlist;
 
+import java.lang.ref.WeakReference;
+
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.util.Bundle;
@@ -40,7 +42,7 @@ public class CryptedPacketListModel extends PacketListModel<CryptedPacket>
 			(packet.getPacketType() == PacketType.SERVER ? ImageStatic.ICON_FROM_SERVER : ImageStatic.ICON_FROM_CLIENT),
 			Util.formatPacketTime(packet.getTime()),
 			packet.length(),
-			packet
+			new WeakReference<CryptedPacket>(packet)
 		};
 
 		_currentTable.add(temp);

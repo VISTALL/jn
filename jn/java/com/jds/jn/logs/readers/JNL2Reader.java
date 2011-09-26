@@ -85,9 +85,9 @@ public class JNL2Reader extends AbstractReader
 		}
 
 		if(_isDecrypted)
-			_session.receiveQuitPackets((List<DecryptedPacket>)packets, true, false);
+			_session.receiveDecryptedPackets((List<DecryptedPacket>) packets);
 		else
-			_session.receiveQuitPackets((List<CryptedPacket>)packets, false);
+			_session.receiveCryptedPackets((List<CryptedPacket>) packets);
 	}
 
 	@Override

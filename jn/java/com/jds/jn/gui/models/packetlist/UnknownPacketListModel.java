@@ -1,5 +1,7 @@
 package com.jds.jn.gui.models.packetlist;
 
+import java.lang.ref.WeakReference;
+
 import javax.swing.JLabel;
 
 import com.jds.jn.gui.renders.PacketTableRenderer;
@@ -101,7 +103,7 @@ public class UnknownPacketListModel extends PacketListModel<DecryptedPacket> imp
 				packet.getName(),
 				toolTip,
 				false,
-				packet
+				new WeakReference<DecryptedPacket>(packet)
 		};
 
 		if(row == -1)

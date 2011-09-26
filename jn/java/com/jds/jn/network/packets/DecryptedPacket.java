@@ -14,7 +14,6 @@ import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.formattree.ForPart;
-import com.jds.jn.parser.formattree.Format;
 import com.jds.jn.parser.formattree.MacroPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
@@ -33,10 +32,9 @@ import com.jds.nio.buffer.NioBuffer;
 public class DecryptedPacket implements IPacket
 {
 	private static final Logger _log = Logger.getLogger(DecryptedPacket.class);
-	private Protocol _protocol;
 
 	private DataTreeNodeContainer _packetParts;
-	private Format _dataFormat;
+
 	private PacketInfo _packetFormat;
 
 	protected String _error;
@@ -51,7 +49,6 @@ public class DecryptedPacket implements IPacket
 	public DecryptedPacket(Session session, PacketType type, byte[] data, long time, Protocol protocol, boolean decode)
 	{
 		_packetType = type;
-		_protocol = protocol;
 		_cryptedData = data;
 		_time = time;
 
@@ -62,25 +59,23 @@ public class DecryptedPacket implements IPacket
 		NioBuffer buf = NioBuffer.wrap(_decryptedData);
 		buf.order(protocol.getOrder());
 
-		_packetFormat = getProtocol().getPacketInfo(this, buf);
-		if (_packetFormat == null)
-			buf.position(0);
-		else
-			_dataFormat = _packetFormat.getDataFormat();
-
-		try
+		_packetFormat = protocol.getPacketInfo(this, buf);
+		if(_packetFormat != null)
 		{
-			parse(buf);
-		}
-		catch (BufferUnderflowException e)
-		{
-			_error = "Insuficient data for the specified format";
-			MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
-		}
-		catch (Exception e)
-		{
-			_error = "Exception: " + e.getMessage();
-			_log.info("Exception: " + e, e);
+			try
+			{
+				parse(protocol, buf);
+			}
+			catch (BufferUnderflowException e)
+			{
+				_error = "Insuficient data for the specified format";
+				MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+			}
+			catch (Exception e)
+			{
+				_error = "Exception: " + e.getMessage();
+				_log.info("Exception: " + e, e);
+			}
 		}
 	}
 
@@ -102,15 +97,14 @@ public class DecryptedPacket implements IPacket
 		return _colorForHex[index];
 	}
 
-	public synchronized void parse(NioBuffer buff)
+	public void parse(Protocol protocol, NioBuffer buff)
 	{
 		_packetParts = new DataTreeNodeContainer();
 
-		if (_dataFormat != null)
-			parse(buff, _dataFormat.getMainBlock(), _packetParts);
+		parse(protocol, buff, _packetFormat.getDataFormat().getMainBlock(), _packetParts);
 	}
 
-	private boolean parse(NioBuffer buff, PartContainer protocolNode, DataTreeNodeContainer dataNode)
+	private boolean parse(Protocol protocol, NioBuffer buff, PartContainer protocolNode, DataTreeNodeContainer dataNode)
 	{
 		for (Part part : protocolNode.getParts())
 		{
@@ -156,13 +150,13 @@ public class DecryptedPacket implements IPacket
 				for (int i = 0; i < size; i++)
 				{
 					DataForBlock forBlock = new DataForBlock(dataForPart, forPart.getModelBlock(), i, size);
-					if (!parse(buff, forPart.getModelBlock(), forBlock))
+					if (!parse(protocol, buff, forPart.getModelBlock(), forBlock))
 						return false;
 				}
 			}
 			else if (part instanceof MacroPart)
 			{
-				MacroInfo macro = _protocol.getMacroInfo(((MacroPart)part).getMacroId());
+				MacroInfo macro = protocol.getMacroInfo(((MacroPart)part).getMacroId());
 				if(macro == null)
 				{
 					_error = "Not find macro by id: " + ((MacroPart)part).getMacroId();
@@ -180,7 +174,7 @@ public class DecryptedPacket implements IPacket
 				}
 
 				DataMacroPart macroPart = new DataMacroPart(dataNode, (MacroPart)part);
-				if (!parse(buff, macro.getModelBlock(), macroPart))
+				if (!parse(protocol, buff, macro.getModelBlock(), macroPart))
 					return false;
 			}
 			else if (part instanceof SwitchPart)
@@ -205,7 +199,7 @@ public class DecryptedPacket implements IPacket
 				}
 
 				DataSwitchBlock caseBlock = new DataSwitchBlock(dataNode, caseBlockFormat, vp);
-				if (!parse(buff, caseBlockFormat, caseBlock))
+				if (!parse(protocol, buff, caseBlockFormat, caseBlock))
 					return false;
 			}
 			else if (part instanceof PartContainer)
@@ -225,11 +219,6 @@ public class DecryptedPacket implements IPacket
 	public DataTreeNodeContainer getRootNode()
 	{
 		return _packetParts;
-	}
-
-	public Format getDataFormat()
-	{
-		return _dataFormat;
 	}
 
 	public PacketInfo getPacketInfo()
@@ -298,10 +287,5 @@ public class DecryptedPacket implements IPacket
 	public byte[] getBytes(String s)
 	{
 		return ((RawValuePart)getRootNode().getPartByName(s)).getBytes();
-	}
-
-	public Protocol getProtocol()
-	{
-		return _protocol;
 	}
 }
