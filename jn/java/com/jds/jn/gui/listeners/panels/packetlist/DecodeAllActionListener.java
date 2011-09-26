@@ -101,8 +101,7 @@ public class DecodeAllActionListener implements ActionListener
 	{
 		Session session = _pane.getViewPane().getSession();
 
-		for(DecryptedPacket p : packets)
-			session.receiveQuitPacket(p, true, false);
+		session.receiveQuitPackets(packets, true, false);
 
 		_pane.getViewPane().updateInfo(session);
 

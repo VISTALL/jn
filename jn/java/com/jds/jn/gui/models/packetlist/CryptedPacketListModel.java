@@ -21,7 +21,6 @@ public class CryptedPacketListModel extends PacketListModel<CryptedPacket>
 			Bundle.getString("Length")
 	};
 
-
 	public CryptedPacketListModel()
 	{
 

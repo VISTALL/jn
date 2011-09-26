@@ -121,13 +121,24 @@ public class Session
 		_cryptedPackets.add(p);
 
 		ViewPane pane = getViewPane();
-		pane.getCryptedPacketListPane().getModel().addRow(-1, p, update);
+		pane.getCryptedPacketListPane().getModel().addRow(-1, p, update); 
 
 		if(update)
 		{
 			if(!pane.getPacketListPane().isHidden() && pane.getSelectedComponent() == pane.getInfoPane())
 				pane.updateInfo(this);
-		}
+		} 
+	}
+
+	public void receiveQuitPackets(List<CryptedPacket> packets, boolean update)
+	{
+		_cryptedPackets.addAll(packets);
+
+		for(CryptedPacket p : packets)
+			getViewPane().getCryptedPacketListPane().getModel().addRow(-1, p, update);
+
+		if(update)
+			getViewPane().updateInfo(this);
 	}
 
 	public void receiveQuitPacket(DecryptedPacket p, boolean gui, boolean fire)
@@ -145,6 +156,23 @@ public class Session
 
 		if(!isUnknown && fire && !_invokes.isEmpty())
 			ThreadPoolManager.getInstance().execute(new InvokeTask(this, Collections.singletonList(p)));
+	}
+
+	public void receiveQuitPackets(List<DecryptedPacket> packets, boolean gui, boolean fire)
+	{
+		_decryptPackets.addAll(packets);
+
+		for(DecryptedPacket p : packets)
+		{
+			boolean isUnknown = p.getPacketInfo() == null;
+			if(gui)
+			{
+				getViewPane().getDecryptedPacketListPane().getModel().addRow(-1, p, true);
+
+				if(isUnknown)
+					getViewPane().getUnknownPacketListPane().getModel().addRow(-1, p, true);
+			}
+		}
 	}
 
 	public void onShow()

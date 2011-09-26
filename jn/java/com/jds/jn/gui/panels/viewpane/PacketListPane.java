@@ -126,6 +126,9 @@ public class PacketListPane extends HiddenPanel
 					break;
 				}
 
+		if(_selectedPanel == null)
+			setSelectedPanel(_panels[0]);
+
 		getSelectedPanel().getModel().refresh();
 	}
 

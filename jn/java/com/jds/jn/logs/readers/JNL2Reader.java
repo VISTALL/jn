@@ -1,6 +1,8 @@
 package com.jds.jn.logs.readers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -59,11 +61,14 @@ public class JNL2Reader extends AbstractReader
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void parsePackets() throws IOException
 	{
 		int size = readD();
 		PacketType[] values = PacketType.values();
 		MainForm.getInstance().getProgressBar().setMaximum(size);
+
+		List packets = new ArrayList(size);
 		for(int i = 0; i < size; i++)
 		{
 			PacketType t = values[readC()];
@@ -72,12 +77,17 @@ public class JNL2Reader extends AbstractReader
 			byte[] data = readB(sizeArray);
 
 			if(_isDecrypted)
-				_session.receiveQuitPacket(new DecryptedPacket(null, t, data, time, _session.getProtocol(), true), true, false);
+				packets.add(new DecryptedPacket(null, t, data, time, _session.getProtocol(), true));
 			else
-				_session.receiveQuitPacket(new CryptedPacket(t, data, time), false);
+				packets.add(new CryptedPacket(t, data, time));
 
 			MainForm.getInstance().getProgressBar().setValue(i);
 		}
+
+		if(_isDecrypted)
+			_session.receiveQuitPackets((List<DecryptedPacket>)packets, true, false);
+		else
+			_session.receiveQuitPackets((List<CryptedPacket>)packets, false);
 	}
 
 	@Override
