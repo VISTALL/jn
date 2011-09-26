@@ -1,4 +1,4 @@
-package com.jds.jn.protocol;
+package com.jds.jn.data.xml.holder;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -11,37 +11,33 @@ import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfilePart;
 import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.ProtocolLoader;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.jn.util.xml.AbstractHolder;
 
-public class ProtocolManager
+public class ProtocolHolder extends AbstractHolder
 {
-	private Map<String, Protocol> _protocolsByName;
+	private Map<String, Protocol> _protocolsByName = new TreeMap<String, Protocol>();
 
-	private static ProtocolManager _instance;
+	private static ProtocolHolder _instance = new ProtocolHolder();
 
-	public static ProtocolManager getInstance()
+	public static ProtocolHolder getInstance()
 	{
-		if(_instance == null)
-		{
-			_instance = new ProtocolManager();
-		}
 		return _instance;
 	}
 
-	private ProtocolManager()
+	private ProtocolHolder()
 	{
-		_protocolsByName = new TreeMap<String, Protocol>();
 		loadProtocols();
 	}
 
 	public Protocol getProtocolByName(String name)
 	{
 		if(!_protocolsByName.containsKey(name))
-		{
 			MainForm.getInstance().warn("Can not find protocol for name " + name);
-		}
 
 		return _protocolsByName.get(name);
 	}
@@ -55,14 +51,11 @@ public class ProtocolManager
 	{
 		NetworkProfile prof = NetworkProfiles.getInstance().active();
 		if(prof == null)
-		{
 			return null;
-		}
+
 		NetworkProfilePart part = prof.getPart(t);
 		if(part == null)
-		{
 			return null;
-		}
 
 		return getProtocolByName(part.getProtocol());
 	}
@@ -133,5 +126,17 @@ public class ProtocolManager
 		}
 
 		child.setSuperProtocol(parent);
+	}
+
+	@Override
+	public int size()
+	{
+		return _protocolsByName.size();
+	}
+
+	@Override
+	public void clear()
+	{
+		_protocolsByName.clear();
 	}
 }

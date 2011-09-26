@@ -1,17 +1,18 @@
 package com.jds.jn.util.xml;
 
+import java.io.File;
+
 import org.apache.log4j.Logger;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-
-import java.io.File;
 
 /**
  * Author: VISTALL
  * Company: J Develop Station
  * Date:  15:05:56/28.08.2010
  */
+@Deprecated
 public class SimpleErrorHandler implements ErrorHandler
 {
 	private static final Logger _log = Logger.getLogger(SimpleErrorHandler.class);

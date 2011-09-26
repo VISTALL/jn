@@ -4,15 +4,14 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import com.intellij.uiDesigner.core.*;
+import com.jds.jn.data.xml.holder.ProtocolHolder;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfilePart;
 import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolManager;
 import jpcap.JpcapCaptor;
 import jpcap.NetworkInterface;
 
@@ -119,14 +118,14 @@ public class NetworkSettingPane extends JPanel
 
 		_protocols.removeAllItems();
 
-		for(Protocol rpof : ProtocolManager.getInstance().getProtocols())
+		for(Protocol rpof : ProtocolHolder.getInstance().getProtocols())
 		{
 			_protocols.addItem(rpof);
 		}
 
 		if(_type.getProtocol() != null && !_type.getProtocol().equals(""))
 		{
-			Protocol prot = ProtocolManager.getInstance().getProtocolByName(_type.getProtocol());
+			Protocol prot = ProtocolHolder.getInstance().getProtocolByName(_type.getProtocol());
 
 			_protocols.setSelectedItem(prot);
 		}

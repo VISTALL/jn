@@ -27,6 +27,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.Jn;
 import com.jds.jn.config.RValues;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.listeners.ColorChooseMouseListener;
 
 public class ProgramSettingsDialog extends JDialog
@@ -48,7 +49,7 @@ public class ProgramSettingsDialog extends JDialog
 
 	public ProgramSettingsDialog()
 	{
-		super(Jn.getForm(), "Program Settings", true);
+		super(MainForm.getInstance(), "Program Settings", true);
 
 		setContentPane(contentPane);
 		getRootPane().setDefaultButton(buttonOK);
@@ -99,6 +100,7 @@ public class ProgramSettingsDialog extends JDialog
 		load();
 
 		setSize(600, 400);
+		setLocationRelativeTo(null);
 	}
 
 	public void load()

@@ -1,9 +1,8 @@
-package com.jds.jn.helpers;
+package com.jds.jn.util;
 
 import com.jds.jn.config.ConfigParser;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.util.ThreadPoolManager;
 
 /**
  * Author: VISTALL

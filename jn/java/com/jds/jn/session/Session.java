@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.crypt.ProtocolCrypter;
+import com.jds.jn.data.xml.holder.ProtocolHolder;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui2.MainForm.ribbon.SessionMenu.SessionRibbonTaskGroup;
 import com.jds.jn.network.listener.types.ListenerType;
@@ -19,7 +20,6 @@ import com.jds.jn.parser.packetfactory.IPacketListener;
 import com.jds.jn.parser.packetfactory.tasks.CloseTask;
 import com.jds.jn.parser.packetfactory.tasks.InvokeTask;
 import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.version_control.Version;
 
@@ -66,7 +66,7 @@ public class Session
 		_type = type;
 		_sessionId = sessionId;
 
-		Protocol protocol = ProtocolManager.getInstance().getProtocol(type);
+		Protocol protocol = ProtocolHolder.getInstance().getProtocol(type);
 		if(protocol == null)
 		{
 			_log.info("Not find protocol for type: " + type);

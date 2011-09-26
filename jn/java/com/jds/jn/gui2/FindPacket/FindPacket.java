@@ -24,6 +24,7 @@ import org.jdesktop.swingx.JXTable;
 
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.jds.jn.data.xml.holder.ProtocolHolder;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.gui2.FindPacket.models.FPTableModel;
@@ -34,7 +35,6 @@ import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolManager;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.session.Session;
@@ -108,7 +108,7 @@ public class FindPacket extends JDialog
 			{
 				_packetList.removeAllItems();
 				ListenerType type = (ListenerType) _listeners.getSelectedItem();
-				Protocol protocol = ProtocolManager.getInstance().getProtocol(type);
+				Protocol protocol = ProtocolHolder.getInstance().getProtocol(type);
 				if(protocol == null)
 				{
 					return;
@@ -221,6 +221,7 @@ public class FindPacket extends JDialog
 
 		setResizable(false);
 		setSize(450, 600);
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

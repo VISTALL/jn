@@ -1,10 +1,5 @@
 package com.jds.jn.util;
 
-import java.awt.Component;
-import java.lang.reflect.Field;
-
-import sun.awt.windows.WToolkit;
-
 /**
  * Author: VISTALL
  * Company: J Develop Station
@@ -12,43 +7,9 @@ import sun.awt.windows.WToolkit;
  */
 public class OSUtils
 {
-	public static long getHWnd(Component comp)
+	public static String getLibName(String lib)
 	{
-		Object peer = WToolkit.targetToPeer(comp);
-		try
-		{
-			Class c = peer.getClass();
-			Field f = getDeclaredField(c, "hwnd");
-			f.setAccessible(true);
-			Object result = f.get(peer);
-			return (Long) result;
-		}
-		catch(Throwable t)
-		{
-			throw new RuntimeException(t.toString());
-		}
-	}
-
-	public static Field getDeclaredField(Class clazz, String fieldName) throws NoSuchFieldException
-	{
-		Class c = clazz;
-		while(c != null && c != Object.class)
-		{
-			try
-			{
-				return c.getDeclaredField(fieldName);
-			}
-			catch(NoSuchFieldException e)
-			{
-			}
-			c = c.getSuperclass();
-		}
-		throw new NoSuchFieldException(fieldName);
-	}
-
-	public static String getLibName()
-	{
-		StringBuilder buf = new StringBuilder("jpcap-");
+		StringBuilder buf = new StringBuilder(lib);
 		boolean win = isWindows();
 		boolean mac = isMac();
 		boolean unix = isUnix();

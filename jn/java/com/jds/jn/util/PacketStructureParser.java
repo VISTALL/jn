@@ -1,13 +1,13 @@
-package com.jds.jn.helpers;
-
-import com.jds.jn.Jn;
-import com.jds.nio.buffer.NioBuffer;
+package com.jds.jn.util;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteOrder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.jds.jn.Jn;
+import com.jds.nio.buffer.NioBuffer;
 
 /**
  * Author: VISTALL

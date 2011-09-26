@@ -129,6 +129,7 @@ public class PacketMassAnalysisDialog extends JDialog
 		setResizable(true);
 		setTitle("Mass Analysis");
 		setSize(600, 350);
+		setLocationRelativeTo(null);
 		setVisible(true);
 
 		FileTypeListener fileTypeListener = new FileTypeListener(this);

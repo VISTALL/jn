@@ -27,7 +27,7 @@ import com.jds.jn.gui.models.packetlist.CryptedPacketListModel;
 import com.jds.jn.gui.models.packetlist.DecryptedPacketListModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.CryptedPacketTableRender;
-import com.jds.jn.helpers.PacketStructureParser;
+import com.jds.jn.util.PacketStructureParser;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;

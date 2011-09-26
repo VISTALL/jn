@@ -92,13 +92,9 @@ public class Reader
 
 		Map.Entry<AbstractReader, FileFilter> entry = _readers.get(ex);
 		if (entry != null)
-		{
 			entry.getKey().read(f, listener);
-		}
 		else
-		{
 			listener.onFinish(null, null);
-		}
 	}
 
 	private class ReaderFileFilter extends FileFilter

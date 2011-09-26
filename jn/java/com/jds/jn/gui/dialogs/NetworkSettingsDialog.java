@@ -54,11 +54,10 @@ public class NetworkSettingsDialog extends JDialog
 	{
 		super(MainForm.getInstance(), "Network Settings", true);
 
-		//setLocationByPlatform(false);
-
 		setContentPane(contentPane);
 		getRootPane().setDefaultButton(buttonOK);
 		setSize(700, 500);
+		setLocationRelativeTo(null);
 
 		buttonOK.addActionListener(new ActionListener()
 		{
@@ -157,28 +156,25 @@ public class NetworkSettingsDialog extends JDialog
 
 	public void load()
 	{
+		_protocolDir.setText(RValues.PROTOCOL_DIR.asString());
 		_setTabPane.removeAll();
 		_profiles.removeAllItems();
 
 		for(NetworkProfile profile : NetworkProfiles.getInstance().profiles())
-		{
 			_profiles.addItem(profile);
-		}
 
 		NetworkProfile prof = NetworkProfiles.getInstance().getProfile(RValues.ACTIVE_PROFILE.asString());
 		if(prof != null)
-		{
 			_profiles.setSelectedItem(prof);
-		}
 	}
 
 	public void save()
 	{
+		_protocolDir.setText(_protocolDir.getText());
+
 		NetworkProfile prof = (NetworkProfile) _profiles.getSelectedItem();
 		if(prof == null)
-		{
 			return;
-		}
 
 		for(Component component : _setTabPane.getComponents())
 		{
