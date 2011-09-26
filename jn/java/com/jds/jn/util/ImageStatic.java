@@ -35,6 +35,7 @@ public class ImageStatic
 
 	public static ResizableIcon DOC_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/JnDoc24.png"), new Dimension(15, 15));
 	public static ResizableIcon HELP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/help.png"), new Dimension(15, 15));
+	public static ResizableIcon REFRESH_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/refresh.png"), new Dimension(15, 15));
 
 	public static ResizableIcon JN_ICON_32 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_32.png"), new Dimension(32, 32));
 	public static ResizableIcon JN_ICON_16 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_16.png"), new Dimension(16, 16));

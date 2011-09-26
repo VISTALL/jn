@@ -776,6 +776,20 @@
 				<part name="points" type="Q"/>
 			</for>
 		</packet>
+		<packet id="FE;0117" name="ExChangeAttributeItemList">
+			<part name="response?" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<macro id="item" />
+			</for>
+		</packet>
+		<packet id="FE;0118" name="ExChangeAttributeInfo">
+			<part name="response?" type="d"/>
+			<part name="?" type="d" />
+		</packet>
+		<packet id="FE;0119" name="ExChangeAttributeOk">
+			<part name="object-id" type="d"/>
+		</packet>
 		<packet id="FE;0109" name="Ex2NDPasswordCheck" />
 		<packet id="FE;010a" name="Ex2NDPasswordVerify" />
 		<packet id="FE;010b" name="Ex2NDPasswordAck" />

@@ -116,16 +116,18 @@ public class Session
 		return _crypt;
 	}
 
-	public void receiveQuitPacket(CryptedPacket p)
+	public void receiveQuitPacket(CryptedPacket p, boolean update)
 	{
 		_cryptedPackets.add(p);
 
 		ViewPane pane = getViewPane();
+		pane.getCryptedPacketListPane().getModel().addRow(-1, p, update);
 
-		pane.getCryptedPacketListModel().addRow(p);
-
-		if(!pane.getPacketListPane().isHidden() && pane.getSelectedComponent() == pane.getInfoPane())
-			pane.updateInfo(this);
+		if(update)
+		{
+			if(!pane.getPacketListPane().isHidden() && pane.getSelectedComponent() == pane.getInfoPane())
+				pane.updateInfo(this);
+		}
 	}
 
 	public void receiveQuitPacket(DecryptedPacket p, boolean gui, boolean fire)
@@ -135,10 +137,10 @@ public class Session
 		boolean isUnknown = p.getPacketInfo() == null;
 		if(gui)
 		{
-			getViewPane().getDecryptPacketListModel().addRow(p);
+			getViewPane().getDecryptedPacketListPane().getModel().addRow(-1, p, true);
 
 			if(isUnknown)
-				getViewPane().getUnknownPacketListModel().addRow(p);
+				getViewPane().getUnknownPacketListPane().getModel().addRow(-1, p, true);
 		}
 
 		if(!isUnknown && fire && !_invokes.isEmpty())

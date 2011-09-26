@@ -1,9 +1,12 @@
 package com.jds.jn.gui.renders;
 
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Component;
+
+import javax.swing.JComponent;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
 
 /**
  * Author: VISTALL
@@ -34,9 +37,7 @@ public class PacketTableRenderer extends DefaultTableCellRenderer implements Tab
 			}
 		}
 		else
-		{
 			c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, col);
-		}
 
 		if (c instanceof JComponent)
 		{
@@ -45,13 +46,10 @@ public class PacketTableRenderer extends DefaultTableCellRenderer implements Tab
 		}
 
 		if (_table.getIsMarked(row) && !isSelected)
-		{
 			c.setBackground(Color.YELLOW);
-		}
 		else if (!isSelected)
-		{
 			c.setBackground(table.getBackground());
-		}
+
 
 		return c;
 	}

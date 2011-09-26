@@ -98,23 +98,24 @@ public class ProtocolManager
 		}
 
 		for(Protocol p : _protocolsByName.values())
-		{
-			if(p.getSuperProtocol() != null)
-				continue;
-
-			if(p.getExtends() != null)
-			{
-				Protocol extendsProtocol = _protocolsByName.get(p.getExtends());
-				if(extendsProtocol != null)
-					initExtendsProtocol(p, extendsProtocol);
-				else
-					MainForm.getInstance().warn("Not find extends protocol: " + p.getExtends() + " from " + p.getName());
-			}
-		}
+			initExtendsProtocol(p);
 	}
 
-	private void initExtendsProtocol(Protocol child, Protocol parent)
+	private void initExtendsProtocol(Protocol child)
 	{
+		if(child.getExtends() == null || child.getSuperProtocol() != null)
+			return;
+
+		Protocol parent = _protocolsByName.get(child.getExtends());
+		if(parent == null)
+		{
+			MainForm.getInstance().warn("Not find extends protocol: " + child.getExtends() + " from " + child.getName());
+			return;
+		}
+
+		if(parent.getExtends() != null)
+			initExtendsProtocol(parent);
+
 		for(PacketFamilly extendsFamily : parent.getFamilies())
 			for(PacketInfo packetInfo : extendsFamily.getFormats().values())
 			{

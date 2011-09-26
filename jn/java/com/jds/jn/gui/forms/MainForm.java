@@ -106,7 +106,7 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		getRibbon().setApplicationMenu(menu);
 
 		getRibbon().addTask(new RibbonTask(Bundle.getString("Main"), RibbonActions.files(), RibbonActions.listeners()));
-		getRibbon().addTask(new RibbonTask(Bundle.getString("Settings"), RibbonActions.settings()));
+		getRibbon().addTask(new RibbonTask(Bundle.getString("Settings"), RibbonActions.settings(), RibbonActions.protocolActions()));
 
 		_gcButton.addActionListener(new ActionListener()
 		{

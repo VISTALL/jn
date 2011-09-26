@@ -29,6 +29,7 @@ import com.jds.jn.gui2.FindPacket.listeners.FPOpenListener;
 import com.jds.jn.gui2.PacketMassAnallize.PacketMassAnalysisDialog;
 import com.jds.jn.logs.Reader;
 import com.jds.jn.network.listener.types.ReceiveType;
+import com.jds.jn.protocol.ProtocolManager;
 import com.jds.swing.SimpleResizableIcon;
 
 /**
@@ -66,6 +67,25 @@ public abstract class RibbonActions
 		});
 
 		animationBand.addCommandButton(networkS, RibbonElementPriority.TOP);
+
+		return animationBand;
+	}
+
+	public static JRibbonBand protocolActions()
+	{
+		JRibbonBand animationBand = new JRibbonBand(Bundle.getString("Protocols"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 50, 50));
+		animationBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(animationBand));
+
+		final JCommandButton jCommandButton = new JCommandButton(Bundle.getString("ReloadProtocol"), ImageStatic.REFRESH_48x48);
+		animationBand.addCommandButton(jCommandButton, RibbonElementPriority.TOP);
+		jCommandButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				ProtocolManager.getInstance().loadProtocols();
+			}
+		});
 
 		return animationBand;
 	}

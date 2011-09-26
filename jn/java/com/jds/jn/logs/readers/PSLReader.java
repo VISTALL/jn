@@ -59,7 +59,7 @@ public class PSLReader extends AbstractReader
 			if(_isDecrypted)
 				_session.receiveQuitPacket(new DecryptedPacket(null, type, data, time, _session.getProtocol(), false), true, true);
 			else
-				_session.receiveQuitPacket(new CryptedPacket(type, data, time));
+				_session.receiveQuitPacket(new CryptedPacket(type, data, time), false);
 
 			MainForm.getInstance().getProgressBar().setValue(i);
 		}

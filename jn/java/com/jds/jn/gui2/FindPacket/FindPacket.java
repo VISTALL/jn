@@ -63,7 +63,7 @@ public class FindPacket extends JDialog
 		@Override
 		public void readPacket(Session session, CryptedPacket p)
 		{
-			session.receiveQuitPacket(p);
+			session.receiveQuitPacket(p, false);
 		}
 
 		@Override

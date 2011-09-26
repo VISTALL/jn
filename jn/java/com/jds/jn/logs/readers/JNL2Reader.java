@@ -74,7 +74,7 @@ public class JNL2Reader extends AbstractReader
 			if(_isDecrypted)
 				_session.receiveQuitPacket(new DecryptedPacket(null, t, data, time, _session.getProtocol(), true), true, false);
 			else
-				_session.receiveQuitPacket(new CryptedPacket(t, data, time));
+				_session.receiveQuitPacket(new CryptedPacket(t, data, time), false);
 
 			MainForm.getInstance().getProgressBar().setValue(i);
 		}

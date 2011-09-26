@@ -95,7 +95,7 @@ public class CapReader extends AbstractReader
 				byte[] data = readB(makeShort(a2, a1) - 2);
 				CryptedPacket packet = new CryptedPacket(p, data, System.currentTimeMillis());
 
-				_session.receiveQuitPacket(packet);
+				_session.receiveQuitPacket(packet, false);
 			}
 			catch(Exception e)
 			{

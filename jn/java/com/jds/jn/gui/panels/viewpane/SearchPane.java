@@ -280,18 +280,12 @@ public class SearchPane extends HiddenPanel
 			String findPacket = _findText.getText();
 
 			if(findPacket.equals(""))
-			{
 				return;
-			}
 
-			if(_pane.getDecryptPacketListModel().searchPacket(findPacket))
-			{
+			if(_pane.getDecryptedPacketListPane().getModel().searchPacket(_pane, findPacket))
 				found();
-			}
 			else
-			{
-				notfound();
-			}
+				notFound();
 		}
 		else
 		{
@@ -308,7 +302,7 @@ public class SearchPane extends HiddenPanel
 			}
 			else
 			{
-				notfound();
+				notFound();
 			}
 		}
 	}
@@ -349,7 +343,7 @@ public class SearchPane extends HiddenPanel
 		statusLable.setForeground(Color.GREEN);
 	}
 
-	public void notfound()
+	public void notFound()
 	{
 		statusLable.setText(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotFound"));
 		statusLable.setForeground(Color.RED);

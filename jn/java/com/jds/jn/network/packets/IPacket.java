@@ -5,7 +5,7 @@ package com.jds.jn.network.packets;
  * Company: J Develop Station
  * Date:  10:41:35/20.06.2010
  */
-public interface IPacketData
+public interface IPacket
 {
 	PacketType getPacketType() ;
 

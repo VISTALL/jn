@@ -7,7 +7,6 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ResourceBundle;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComponent;
@@ -21,7 +20,9 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
+import com.jds.jn.gui.panels.viewpane.packetlist.PacketListPanel;
 import com.jds.jn.gui.panels.viewpane.packetlist.UnknownPacketListPane;
+import com.jds.jn.util.Bundle;
 
 /**
  * Author: VISTALL
@@ -31,11 +32,17 @@ import com.jds.jn.gui.panels.viewpane.packetlist.UnknownPacketListPane;
  */
 public class PacketListPane extends HiddenPanel
 {
+	private static final String[] NAMES = new String[]{
+			"CryptedPacketList",
+			"DecodePacketList",
+			"UnknownPacketList"
+	};
+
 	private class ShowPaneActionListenerImpl implements ActionListener
 	{
-		private JPanel _val;
+		private PacketListPanel<?> _val;
 
-		public ShowPaneActionListenerImpl(JPanel val)
+		public ShowPaneActionListenerImpl(PacketListPanel<?> val)
 		{
 			_val = val;
 		}
@@ -43,44 +50,41 @@ public class PacketListPane extends HiddenPanel
 		@Override
 		public void actionPerformed(ActionEvent e)
 		{
-			showPane(_val);
+			setSelectedPanel(_val);
 		}
 	}
 
 	private JPanel root;
-	private CryptedPacketListPane _cryptedPacketListPane;
-	private DecryptedPacketListPane _decryptedPacketListPane;
-	private UnknownPacketListPane _unknownPacketListPane;
+
+	private PacketListPanel[] _panels = new PacketListPanel[3];
+
+	private PacketListPanel<?> _selectedPanel;
 
 	public PacketListPane(ViewPane pane)
 	{
 		$$$setupUI$$$();
 
-		_cryptedPacketListPane = new CryptedPacketListPane(pane);
-		_decryptedPacketListPane = new DecryptedPacketListPane(pane);
-		_unknownPacketListPane = new UnknownPacketListPane(pane);
-
-		add(_decryptedPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-		add(_cryptedPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-		add(_unknownPacketListPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+		_panels[0] = new CryptedPacketListPane(pane);
+		_panels[1] = new DecryptedPacketListPane(pane);
+		_panels[2] = new UnknownPacketListPane(pane);
 
 		final JPopupMenu popupMenu = new JPopupMenu();
 
 		ButtonGroup group = new ButtonGroup();
-		JRadioButton radio = new JRadioButton(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("DecodeList"));
-		radio.addActionListener(new ShowPaneActionListenerImpl(_decryptedPacketListPane));
-		group.add(radio);
-		popupMenu.add(radio);
 
-		radio = new JRadioButton(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotDecodeList"));
-		radio.addActionListener(new ShowPaneActionListenerImpl(_cryptedPacketListPane));
-		group.add(radio);
-		popupMenu.add(radio);
+		for(int i = 0; i < _panels.length; i++)
+		{
+			PacketListPanel p = _panels[i];
 
-		radio = new JRadioButton("Unknown Packet List");
-		radio.addActionListener(new ShowPaneActionListenerImpl(_unknownPacketListPane));
-		group.add(radio);
-		popupMenu.add(radio);
+			JRadioButton radio = new JRadioButton(Bundle.getString(NAMES[i]));
+			radio.addActionListener(new ShowPaneActionListenerImpl(p));
+			group.add(radio);
+			popupMenu.add(radio);
+
+			p.setRadioButton(radio);
+			p.setVisible(false);
+			add(p, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+		}
 
 		registerKeyboardAction(new ActionListener()
 		{
@@ -93,7 +97,6 @@ public class PacketListPane extends HiddenPanel
 
 		addMouseListener(new MouseAdapter()
 		{
-
 			@Override
 			public void mouseClicked(MouseEvent e)
 			{
@@ -106,34 +109,58 @@ public class PacketListPane extends HiddenPanel
 	@Override
 	public void setEnabled(boolean b)
 	{
-		_decryptedPacketListPane.setEnabled(b);
-		_cryptedPacketListPane.setEnabled(b);
+		for(JPanel p : _panels)
+			p.setEnabled(b);
 
 		super.setEnabled(b);
 	}
 
+	@Override
+	public void refresh()
+	{
+		if(_selectedPanel == null)
+			for(PacketListPanel<?> p : _panels)
+				if(p.getModel().size() > 0)
+				{
+					setSelectedPanel(p);
+					break;
+				}
+
+		getSelectedPanel().getModel().refresh();
+	}
+
 	public DecryptedPacketListPane getDecryptedPacketListPane()
 	{
-		return _decryptedPacketListPane;
+		return (DecryptedPacketListPane) _panels[1];
 	}
 
 	public CryptedPacketListPane getCryptedPacketListPane()
 	{
-		return _cryptedPacketListPane;
+		return (CryptedPacketListPane) _panels[0];
 	}
 
 	public UnknownPacketListPane getUnknownPacketListPane()
 	{
-		return _unknownPacketListPane;
+		return (UnknownPacketListPane) _panels[2];
 	}
 
-	public void showPane(JPanel panel)
+	public void setSelectedPanel(PacketListPanel<?> p)
 	{
-		_decryptedPacketListPane.setVisible(false);
-		_cryptedPacketListPane.setVisible(false);
-		_unknownPacketListPane.setVisible(false);
+		PacketListPanel<?> old = _selectedPanel;
+		if(old != null)
+		{
+			old.getRadioButton().setSelected(false);
+			old.setVisible(false);
+		}
 
-		panel.setVisible(true);
+		p.getRadioButton().setSelected(true);
+		p.setVisible(true);
+		_selectedPanel = p;
+	}
+
+	public PacketListPanel<?> getSelectedPanel()
+	{
+		return _selectedPanel;
 	}
 
 	private void createUIComponents()
@@ -161,5 +188,4 @@ public class PacketListPane extends HiddenPanel
 	{
 		return root;
 	}
-
 }

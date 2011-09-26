@@ -29,7 +29,7 @@ public class DefaultReaderListener implements ReaderListener
 	@Override
 	public void readPacket(Session session, CryptedPacket p)
 	{
-		session.receiveQuitPacket(p);
+		session.receiveQuitPacket(p, true);
 	}
 
 	@Override

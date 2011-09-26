@@ -87,7 +87,7 @@ public class JNLReader extends AbstractReader
 					byte[] data = readB(size);
 					CryptedPacket packet = new CryptedPacket(type, data, System.currentTimeMillis());
 
-					_session.receiveQuitPacket(packet);
+					_session.receiveQuitPacket(packet, false);
 
 					MainForm.getInstance().getProgressBar().setValue(i);
 				}

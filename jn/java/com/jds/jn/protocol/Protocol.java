@@ -20,6 +20,7 @@ import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
 import com.jds.jn.util.Util;
+import com.jds.nio.buffer.NioBuffer;
 
 /**
  * @author Gilles Duboscq
@@ -50,7 +51,7 @@ public class Protocol
 		_filename = pFile;
 	}
 
-	public PacketInfo getPacketInfo(DecryptedPacket packet)
+	public PacketInfo getPacketInfo(DecryptedPacket packet, NioBuffer buf)
 	{
 		PacketFamilly f = _familyes.get(packet.getPacketType());
 		if (f == null)
@@ -60,7 +61,7 @@ public class Protocol
 
 		for (PacketInfo format : f.getFormats().values())
 		{
-			final int position = packet.getBuffer().position();
+			final int position = buf.position();
 
 			PartLoop:
 			{
@@ -72,23 +73,23 @@ public class Protocol
 
 					Number val;
 					// если у нас достаточно для чтения
-					if((packet.getBuffer().limit() - packet.getBuffer().position()) >= t.length())
-						val = t.getValue(packet.getBuffer(), null);
+					if((buf.limit() - buf.position()) >= t.length())
+						val = t.getValue(buf, null);
 					else
 					{
-						packet.getBuffer().position(position);
+						buf.position(position);
 						break PartLoop;
 					}
 
 					// не совпадает выходим
 					if(op.getValue().longValue() != val.longValue())
 					{
-						packet.getBuffer().position(position);
+						buf.position(position);
 						break PartLoop;
 					}
 				}
 
-				for (int j = position; j < packet.getBuffer().position(); j++)
+				for (int j = position; j < buf.position(); j++)
 					packet.setColor(j, "op");
 
 				info = format;
@@ -98,11 +99,11 @@ public class Protocol
 
 		if(info == null && RValues.PRINT_UNKNOWN_PACKET.asBoolean())
 		{
-			int size = packet.getBuffer().limit() > 10 ? 10 : packet.getBuffer().limit();
+			int size = buf.limit() > 10 ? 10 : buf.limit();
 			byte[] data = new byte[size];
 
-			packet.getBuffer().get(data);
-			packet.getBuffer().position(packet.getBuffer().position() - size);
+			buf.get(data);
+			buf.position(buf.position() - size);
 
 			_log.info("Unknown packet: " + Util.hexDump(data) + "; PacketType: " + packet.getPacketType());
 		}

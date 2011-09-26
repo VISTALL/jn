@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.jds.jn.config.RValues;
-import com.jds.jn.network.packets.IPacketData;
+import com.jds.jn.network.packets.IPacket;
 import com.jds.jn.util.version_control.Program;
 import com.jds.jn.util.version_control.Version;
 
@@ -46,11 +46,11 @@ public class JNL2Writer  extends AbstractWriter
 	@Override
 	protected void writePackets() throws IOException
 	{
-		List<? extends IPacketData> packets = RValues.SAVE_AS_DECODE.asBoolean() ? _session.getDecryptPackets() :  _session.getCryptedPackets();
+		List<? extends IPacket> packets = RValues.SAVE_AS_DECODE.asBoolean() ? _session.getDecryptPackets() :  _session.getCryptedPackets();
 
 		writeD(packets.size());
 
-		for (IPacketData p : packets)
+		for (IPacket p : packets)
 		{
 			writeC(p.getPacketType().ordinal());
 			writeQ(p.getTime());

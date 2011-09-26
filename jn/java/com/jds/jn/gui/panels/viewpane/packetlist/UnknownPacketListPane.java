@@ -13,6 +13,8 @@ import javax.swing.ListSelectionModel;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.gui.forms.PacketForm;
+import com.jds.jn.gui.models.packetlist.PacketListModel;
+import com.jds.jn.gui.models.packetlist.UnknownPacketListModel;
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
 import com.jds.jn.network.packets.DecryptedPacket;
@@ -21,7 +23,7 @@ import com.jds.jn.network.packets.DecryptedPacket;
  * @author VISTALL
  * @date 17:11/20.09.2011
  */
-public class UnknownPacketListPane extends JPanel
+public class UnknownPacketListPane extends PacketListPanel<DecryptedPacket>
 {
 	private class MouseListenerImpl extends MouseAdapter
 	{
@@ -35,7 +37,7 @@ public class UnknownPacketListPane extends JPanel
 				if(row == -1)
 					return;
 
-				DecryptedPacket packet = _viewPane.getUnknownPacketListModel().getPacket(row);
+				DecryptedPacket packet = _model.getPacket(row);
 
 				if(packet == null)
 					return;
@@ -44,6 +46,8 @@ public class UnknownPacketListPane extends JPanel
 			}
 		}
 	}
+
+	private UnknownPacketListModel _model = new UnknownPacketListModel();
 
 	private JPanel _root;
 	private JTable _table;
@@ -57,15 +61,21 @@ public class UnknownPacketListPane extends JPanel
 		$$$setupUI$$$();
 	}
 
+	@Override
+	public PacketListModel<DecryptedPacket> getModel()
+	{
+		return _model;
+	}
+
 	private void createUIComponents()
 	{
 		_root = this;
 
 		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
 
-		_table = new JTable(_viewPane.getUnknownPacketListModel());
+		_table = new JTable(_model);
 		_table.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_table.setDefaultRenderer(Object.class, new PacketTableRenderer(_viewPane.getUnknownPacketListModel()));
+		_table.setDefaultRenderer(Object.class, new PacketTableRenderer(_model));
 		_table.getColumnModel().getColumn(0).setMaxWidth(30); //type
 		_table.getColumnModel().getColumn(1).setMaxWidth(115); //time
 		_table.getColumnModel().getColumn(2).setMaxWidth(50); //id

@@ -19,4 +19,9 @@ public class HiddenPanel extends JPanel
 	{
 		_hidden = hidden;
 	}
+
+	public void refresh()
+	{
+		//
+	}
 }

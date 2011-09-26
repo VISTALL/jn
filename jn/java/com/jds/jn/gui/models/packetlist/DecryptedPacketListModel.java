@@ -1,10 +1,6 @@
 package com.jds.jn.gui.models.packetlist;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JLabel;
-import javax.swing.table.AbstractTableModel;
 
 import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
@@ -22,8 +18,7 @@ import com.jds.jn.util.Util;
  * Date: 26.08.2009
  * Time: 17:20:11
  */
-@SuppressWarnings("serial")
-public class DecryptedPacketListModel extends AbstractTableModel implements PacketTableRenderer.TooltipTable
+public class DecryptedPacketListModel extends PacketListModel<DecryptedPacket> implements PacketTableRenderer.TooltipTable
 {
 	private static final String[] columnNames = {
 			"S/C",
@@ -33,47 +28,10 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 			Bundle.getString("Name")
 	};
 
-	private List<Object[]> _currentTable = new ArrayList<Object[]>();
-	private final ViewPane _pane;
 
-	public DecryptedPacketListModel(ViewPane pane)
+	public DecryptedPacketListModel()
 	{
-		_pane = pane;
-	}
 
-	@Override
-	public int getColumnCount()
-	{
-		return columnNames.length;
-	}
-
-	@Override
-	public int getRowCount()
-	{
-		return _currentTable.size();
-	}
-
-	@Override
-	public String getColumnName(int col)
-	{
-		return columnNames[col];
-	}
-
-	@Override
-	public Object getValueAt(int row, int col)
-	{
-		Object[] tableRow = _currentTable.get(row);
-		if(tableRow != null)
-		{
-			return tableRow[col];
-		}
-		return "";
-	}
-
-	@Override
-	public boolean isCellEditable(int row, int col)
-	{
-		return false;
 	}
 
 	public DecryptedPacket getPacket(int row)
@@ -81,19 +39,16 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 		return (DecryptedPacket) _currentTable.get(row)[7];
 	}
 
-	public void clear()
+	@Override
+	protected String[] getColumnNames()
 	{
-		_currentTable.clear();
+		return columnNames;
 	}
 
-	public void addRow(DecryptedPacket packet)
+	@Override
+	public void addRow(int row, DecryptedPacket packet, boolean fireInsertRow)
 	{
-		addRow(packet, -1);
-	}
-
-	public void addRow(DecryptedPacket packet, int row)
-	{
-		if(packet.getBuffer().array().length == 0)
+		if(packet.getAllData().length == 0)
 			return;
 
 		JLabel icon = null;
@@ -132,7 +87,7 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 		if(packet.getPacketInfo() != null)
 			opcode = packet.getPacketInfo().getId();
 		else
-			opcode = Util.zeropad(Integer.toHexString(packet.getBuffer().array()[0] & 0xFF), 2).toUpperCase();
+			opcode = Util.zeropad(Integer.toHexString(packet.getAllData()[0] & 0xFF), 2).toUpperCase();
 
 		String toolTip = null;
 		if(packet.hasError())
@@ -145,7 +100,7 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 				icon,
 				Util.formatPacketTime(packet.getTime()),
 				opcode,
-				String.valueOf(packet.getSize()),
+				packet.getAllData().length,
 				packet.getName(),
 				toolTip,
 				false,
@@ -157,7 +112,7 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 		else
 			_currentTable.add(row, temp);
 
-		fireTableRowsInserted(row == -1 ? _currentTable.size() : row, row == -1 ? _currentTable.size() : row);
+		super.addRow(row, packet, fireInsertRow);
 	}
 
 	public void setName(int row, String name)
@@ -255,7 +210,7 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 	{
 		Object[] objs = _currentTable.get(row);
 
-		objs[2] = String.valueOf(packet.getSize());
+		objs[2] = String.valueOf(packet.getAllData().length);
 		objs[3] = packet.getName();
 		objs[6] = packet;
 	}
@@ -296,15 +251,15 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 		return false;
 	}
 
-	public boolean searchPacket(String findPacket)
+	public boolean searchPacket(ViewPane viewPane, String findPacket)
 	{
-		int last = _pane.getDecryptedPacketListPane().getPacketTable().getSelectionModel().getMinSelectionIndex();
+		int last = viewPane.getDecryptedPacketListPane().getPacketTable().getSelectionModel().getMinSelectionIndex();
 
 		int index = 0;
 
-		while(_pane.getDecryptedPacketListPane().getPacketTable().getModel().getRowCount() != index)
+		while(viewPane.getDecryptedPacketListPane().getPacketTable().getModel().getRowCount() != index)
 		{
-			String packet = (String) _pane.getDecryptedPacketListPane().getPacketTable().getModel().getValueAt(index, 4);
+			String packet = (String) viewPane.getDecryptedPacketListPane().getPacketTable().getModel().getValueAt(index, 4);
 
 			if(packet == null)
 			{
@@ -316,9 +271,9 @@ public class DecryptedPacketListModel extends AbstractTableModel implements Pack
 			{
 				if(packet.startsWith(findPacket))
 				{
-					_pane.getDecryptedPacketListPane().getPacketTable().setAutoscrolls(true);
-					_pane.getDecryptedPacketListPane().getPacketTable().getSelectionModel().setSelectionInterval(index, index);
-					_pane.getDecryptedPacketListPane().getPacketTable().scrollRectToVisible(_pane.getDecryptedPacketListPane().getPacketTable().getCellRect(index, 0, true));
+					viewPane.getDecryptedPacketListPane().getPacketTable().setAutoscrolls(true);
+					viewPane.getDecryptedPacketListPane().getPacketTable().getSelectionModel().setSelectionInterval(index, index);
+					viewPane.getDecryptedPacketListPane().getPacketTable().scrollRectToVisible(viewPane.getDecryptedPacketListPane().getPacketTable().getCellRect(index, 0, true));
 					return true;
 				}
 			}

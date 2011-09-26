@@ -6,7 +6,7 @@ package com.jds.jn.network.packets;
  * Date: 26.08.2009
  * Time: 14:55:53
  */
-public class CryptedPacket implements IPacketData
+public class CryptedPacket implements IPacket
 {
 	private final PacketType _type;
 	private final byte[] _data;

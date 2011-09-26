@@ -1,11 +1,5 @@
 package com.jds.jn.gui.models.packetlist;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.table.AbstractTableModel;
-
-import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.util.Bundle;
@@ -18,7 +12,7 @@ import com.jds.jn.util.Util;
  * Date: 25.09.2009
  * Time: 17:55:13
  */
-public class CryptedPacketListModel extends AbstractTableModel
+public class CryptedPacketListModel extends PacketListModel<CryptedPacket>
 {
 	private static final String[] columnNames =
 	{
@@ -27,60 +21,32 @@ public class CryptedPacketListModel extends AbstractTableModel
 			Bundle.getString("Length")
 	};
 
-	private List<Object[]> _currentTable = new ArrayList<Object[]>();
 
-	public CryptedPacketListModel(ViewPane pane)
+	public CryptedPacketListModel()
 	{
 
 	}
 
 	@Override
-	public int getColumnCount()
+	protected String[] getColumnNames()
 	{
-		return columnNames.length;
+		return columnNames;
 	}
 
 	@Override
-	public int getRowCount()
-	{
-		return _currentTable.size();
-	}
-
-	@Override
-	public String getColumnName(int col)
-	{
-		return columnNames[col];
-	}
-
-	@Override
-	public Object getValueAt(int row, int col)
-	{
-		Object[] tableRow = _currentTable.get(row);
-		if (tableRow != null)
-			return tableRow[col];
-
-		return "";
-	}
-
-	@Override
-	public boolean isCellEditable(int row, int col)
-	{
-		return false;
-	}
-
-	public void addRow(final CryptedPacket packet)
+	public void addRow(int index, final CryptedPacket packet, boolean fireInsertRow)
 	{
 		Object[] temp =
 		{
-				(packet.getPacketType() == PacketType.SERVER ? ImageStatic.ICON_FROM_SERVER : ImageStatic.ICON_FROM_CLIENT),
-				Util.formatPacketTime(packet.getTime()),
-				String.valueOf(packet.length()),
-				packet
+			(packet.getPacketType() == PacketType.SERVER ? ImageStatic.ICON_FROM_SERVER : ImageStatic.ICON_FROM_CLIENT),
+			Util.formatPacketTime(packet.getTime()),
+			packet.length(),
+			packet
 		};
 
 		_currentTable.add(temp);
 
-		fireTableRowsInserted(_currentTable.size(), _currentTable.size());
+		super.addRow(index, packet, fireInsertRow);
 	}
 
 	public CryptedPacket getPacket(int index)

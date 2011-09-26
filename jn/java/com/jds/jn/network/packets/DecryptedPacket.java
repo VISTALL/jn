@@ -30,7 +30,7 @@ import com.jds.nio.buffer.NioBuffer;
  * @author Gilles Duboscq   - first version
  * @author VISTALL - full rewrite
  */
-public class DecryptedPacket implements IPacketData
+public class DecryptedPacket implements IPacket
 {
 	private static final Logger _log = Logger.getLogger(DecryptedPacket.class);
 	private Protocol _protocol;
@@ -39,12 +39,11 @@ public class DecryptedPacket implements IPacketData
 	private Format _dataFormat;
 	private PacketInfo _packetFormat;
 
-	protected NioBuffer _buf;
-
 	protected String _error;
 
 	protected String[] _colorForHex;
 
+	private final byte[] _decryptedData;
 	private final byte[] _cryptedData;
 	private final long _time;
 	private final PacketType _packetType;
@@ -57,21 +56,21 @@ public class DecryptedPacket implements IPacketData
 		_time = time;
 
 		byte[] decrypted = Arrays.copyOf(data, data.length);
+		_decryptedData = decode ? session.getCrypt().decrypt(decrypted, type, session) : decrypted;
+		_colorForHex = new String[_decryptedData.length];
 
-		_buf = NioBuffer.wrap(decode ? session.getCrypt().decrypt(decrypted, type, session) : decrypted);
-		_buf.order(protocol.getOrder());
+		NioBuffer buf = NioBuffer.wrap(_decryptedData);
+		buf.order(protocol.getOrder());
 
-		_colorForHex = new String[decrypted.length];
-
-		_packetFormat = getProtocol().getPacketInfo(this);
+		_packetFormat = getProtocol().getPacketInfo(this, buf);
 		if (_packetFormat == null)
-			_buf.position(0);
+			buf.position(0);
 		else
 			_dataFormat = _packetFormat.getDataFormat();
 
 		try
 		{
-			parse();
+			parse(buf);
 		}
 		catch (BufferUnderflowException e)
 		{
@@ -103,15 +102,15 @@ public class DecryptedPacket implements IPacketData
 		return _colorForHex[index];
 	}
 
-	public synchronized void parse()
+	public synchronized void parse(NioBuffer buff)
 	{
 		_packetParts = new DataTreeNodeContainer();
 
-		if (getDataFormat() != null)
-			parse(getDataFormat().getMainBlock(), _packetParts);
+		if (_dataFormat != null)
+			parse(buff, _dataFormat.getMainBlock(), _packetParts);
 	}
 
-	private boolean parse(PartContainer protocolNode, DataTreeNodeContainer dataNode)
+	private boolean parse(NioBuffer buff, PartContainer protocolNode, DataTreeNodeContainer dataNode)
 	{
 		for (Part part : protocolNode.getParts())
 		{
@@ -142,13 +141,13 @@ public class DecryptedPacket implements IPacketData
 				if (forPart.getModelBlock().hasConstantLength())
 				{
 					int forBlockSize = forPart.getModelBlock().getLength();
-					if (size * forBlockSize > getBuffer().remaining())
+					if (size * forBlockSize > buff.remaining())
 					{
 						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 						return false;
 					}
 				}
-				else if (size > getBuffer().remaining())
+				else if (size > buff.remaining())
 				{
 					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
@@ -157,7 +156,7 @@ public class DecryptedPacket implements IPacketData
 				for (int i = 0; i < size; i++)
 				{
 					DataForBlock forBlock = new DataForBlock(dataForPart, forPart.getModelBlock(), i, size);
-					if (!parse(forPart.getModelBlock(), forBlock))
+					if (!parse(buff, forPart.getModelBlock(), forBlock))
 						return false;
 				}
 			}
@@ -173,7 +172,7 @@ public class DecryptedPacket implements IPacketData
 				if (macro.getModelBlock().hasConstantLength())
 				{
 					int macroSize = macro.getModelBlock().getLength();
-					if (macroSize > getBuffer().remaining())
+					if (macroSize > buff.remaining())
 					{
 						_error =  "Incorrect buffer to read macro " + part.getName();
 						return false;
@@ -181,10 +180,8 @@ public class DecryptedPacket implements IPacketData
 				}
 
 				DataMacroPart macroPart = new DataMacroPart(dataNode, (MacroPart)part);
-				if (!parse(macro.getModelBlock(), macroPart))
-				{
+				if (!parse(buff, macro.getModelBlock(), macroPart))
 					return false;
-				}
 			}
 			else if (part instanceof SwitchPart)
 			{
@@ -206,11 +203,10 @@ public class DecryptedPacket implements IPacketData
 					_error = "Error: no such case: " + ((VisualValuePart) vp).getValueAsInt() + " for (Switch " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
+
 				DataSwitchBlock caseBlock = new DataSwitchBlock(dataNode, caseBlockFormat, vp);
-				if (!parse(caseBlockFormat, caseBlock))
-				{
+				if (!parse(buff, caseBlockFormat, caseBlock))
 					return false;
-				}
 			}
 			else if (part instanceof PartContainer)
 			{
@@ -220,7 +216,7 @@ public class DecryptedPacket implements IPacketData
 			else if (part.getType() != null && part.getType().isReadableType())
 			{
 				ValuePart vp = part.getType().getValuePart(dataNode, part);
-				vp.parse(getBuffer(), this);
+				vp.parse(buff, this);
 			}
 		}
 		return true;
@@ -241,11 +237,6 @@ public class DecryptedPacket implements IPacketData
 		return _packetFormat;
 	}
 
-	public int getSize()
-	{
-		return getBuffer().limit();
-	}
-
 	public boolean hasError()
 	{
 		return _error != null;
@@ -254,11 +245,6 @@ public class DecryptedPacket implements IPacketData
 	public String getErrorMessage()
 	{
 		return _error != null ? _error : null;
-	}
-
-	public NioBuffer getBuffer()
-	{
-		return _buf;
 	}
 
 	@Override
@@ -276,7 +262,7 @@ public class DecryptedPacket implements IPacketData
 	@Override
 	public byte[] getAllData()
 	{
-		return _buf.array();
+		return _decryptedData;
 	}
 
 	public byte[] getCryptedData()

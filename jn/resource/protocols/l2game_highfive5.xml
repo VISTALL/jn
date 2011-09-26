@@ -1186,7 +1186,6 @@
 		<packet id="6F" name="OnGetOffVehicle"/>
 		<packet id="70" name="TradeRequestPacket"/>
 		<packet id="71" name="RestartResponsePacket"/>
-		<packet id="72" name="MoveToPawn"/>
 		<packet id="76" name="L2FriendPacket"/>
 		<packet id="77" name="L2FriendStatusPacket"/>
 		<packet id="78" name="L2FriendSayPacket"/>
@@ -1702,7 +1701,13 @@
 		<packet id="FE;0071" name="ExMoveToTargetInAirShipPacket"/>
 		<packet id="FE;0072" name="ExAttackInAirShipPacket"/>
 		<packet id="FE;0073" name="ExMagicSkillUseInAirShipPacket"/>
-		<packet id="FE;0074" name="ExShowBaseAttributeCancelWindow"/>
+		<packet id="FE;0074" name="ExShowBaseAttributeCancelWindow">
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="object-id" type="d" />
+				<part name="price" type="Q" />
+			</for>
+		</packet>
 		<packet id="FE;0075" name="ExBaseAttributeCancelResult">
 			<part name="success" type="d"/>
 			<part name="itemObjectId" type="d"/>

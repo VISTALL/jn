@@ -1,16 +1,17 @@
 package com.jds.jn.gui.forms.menu_items;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
+
+import javax.swing.JMenuItem;
+
 import com.jds.jn.gui.dialogs.EnterNameDialog;
 import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.util.ImageStatic;
-
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ResourceBundle;
 
 /**
  * Author: VISTALL
@@ -65,8 +66,8 @@ public class RenameMenuItem extends JMenuItem
 					if (dialog.showToWrite())
 					{
 						block.setName(dialog.getText());
-						form.getPane().getDecryptPacketListModel().updatePacket(form.getRow(), form.getPacket());
-						form.getPane().getDecryptPacketListModel().updatePackets(form.getPacket());
+						form.getPane().getDecryptedPacketListPane().getModel().updatePacket(form.getRow(), form.getPacket());
+						form.getPane().getDecryptedPacketListPane().getModel().updatePackets(form.getPacket());
 						form.updateCurrentPacket();
 						form.getPacketStructure().updateUI();
 					}

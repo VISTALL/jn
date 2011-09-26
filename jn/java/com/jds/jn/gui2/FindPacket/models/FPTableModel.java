@@ -76,7 +76,7 @@ public class FPTableModel  extends AbstractTableModel
 		{
 				icon,
 				Util.formatPacketTime(packet.getTime()),
-				String.valueOf(packet.getBuffer().limit()),
+				String.valueOf(packet.getAllData().length),
 				fileName,
 				packet
 		};

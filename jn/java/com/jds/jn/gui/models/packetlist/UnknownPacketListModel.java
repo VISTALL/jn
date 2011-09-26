@@ -1,12 +1,7 @@
 package com.jds.jn.gui.models.packetlist;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JLabel;
-import javax.swing.table.AbstractTableModel;
 
-import com.jds.jn.gui.panels.ViewPane;
 import com.jds.jn.gui.renders.PacketTableRenderer;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
@@ -18,7 +13,7 @@ import com.jds.jn.util.Util;
  * @author VISTALL
  * @date 17:15/20.09.2011
  */
-public class UnknownPacketListModel extends AbstractTableModel implements PacketTableRenderer.TooltipTable
+public class UnknownPacketListModel extends PacketListModel<DecryptedPacket> implements PacketTableRenderer.TooltipTable
 {
 	private static final String[] columnNames =
 	{
@@ -29,66 +24,28 @@ public class UnknownPacketListModel extends AbstractTableModel implements Packet
 			Bundle.getString("Name")
 	};
 
-	private List<Object[]> _currentTable = new ArrayList<Object[]>();
 
-	public UnknownPacketListModel(ViewPane pane)
+	public UnknownPacketListModel()
 	{
-
+		//
 	}
 
-	@Override
-	public int getColumnCount()
-	{
-		return columnNames.length;
-	}
-
-	@Override
-	public int getRowCount()
-	{
-		return _currentTable.size();
-	}
-
-	@Override
-	public String getColumnName(int col)
-	{
-		return columnNames[col];
-	}
-
-	@Override
-	public Object getValueAt(int row, int col)
-	{
-		Object[] tableRow = _currentTable.get(row);
-		if(tableRow != null)
-		{
-			return tableRow[col];
-		}
-		return "";
-	}
-
-	@Override
-	public boolean isCellEditable(int row, int col)
-	{
-		return false;
-	}
 
 	public DecryptedPacket getPacket(int row)
 	{
 		return (DecryptedPacket) _currentTable.get(row)[7];
 	}
 
-	public void clear()
+	@Override
+	protected String[] getColumnNames()
 	{
-		_currentTable.clear();
+		return columnNames;
 	}
 
-	public void addRow(DecryptedPacket packet)
+	@Override
+	public void addRow(int row, DecryptedPacket packet, boolean fireInsertRow)
 	{
-		addRow(packet, -1);
-	}
-
-	public void addRow(DecryptedPacket packet, int row)
-	{
-		if(packet.getBuffer().array().length == 0)
+		if(packet.getAllData().length == 0)
 			return;
 
 		JLabel icon = null;
@@ -127,7 +84,7 @@ public class UnknownPacketListModel extends AbstractTableModel implements Packet
 		if(packet.getPacketInfo() != null)
 			opcode = packet.getPacketInfo().getId();
 		else
-			opcode = Util.zeropad(Integer.toHexString(packet.getBuffer().array()[0] & 0xFF), 2).toUpperCase();
+			opcode = Util.zeropad(Integer.toHexString(packet.getAllData()[0] & 0xFF), 2).toUpperCase();
 
 		String toolTip = null;
 		if(packet.hasError())
@@ -140,7 +97,7 @@ public class UnknownPacketListModel extends AbstractTableModel implements Packet
 				icon,
 				Util.formatPacketTime(packet.getTime()),
 				opcode,
-				String.valueOf(packet.getSize()),
+				packet.getAllData().length,
 				packet.getName(),
 				toolTip,
 				false,
@@ -152,7 +109,7 @@ public class UnknownPacketListModel extends AbstractTableModel implements Packet
 		else
 			_currentTable.add(row, temp);
 
-		fireTableRowsInserted(row == -1 ? _currentTable.size() : row, row == -1 ? _currentTable.size() : row);
+		super.addRow(row, packet, fireInsertRow);
 	}
 
 	@Override
