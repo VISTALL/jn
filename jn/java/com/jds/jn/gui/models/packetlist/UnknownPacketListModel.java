@@ -32,10 +32,10 @@ public class UnknownPacketListModel extends PacketListModel<DecryptedPacket> imp
 		//
 	}
 
-
 	public DecryptedPacket getPacket(int row)
 	{
-		return (DecryptedPacket) _currentTable.get(row)[7];
+		WeakReference ref = (WeakReference)_currentTable.get(row)[7];
+		return (DecryptedPacket) ref.get();
 	}
 
 	@Override

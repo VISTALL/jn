@@ -11,7 +11,7 @@ import com.jds.jn.protocol.Protocol;
  * @author Gilles Duboscq
  * @author VISTALL
  */
-public class PacketFamilly// extends ProtocolNode
+public class PacketFamilly
 {
 	private final PacketType _type;
 	private Map<String, PacketInfo> _formats = new TreeMap<String, PacketInfo>();

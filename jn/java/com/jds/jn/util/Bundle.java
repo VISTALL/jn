@@ -9,8 +9,15 @@ import java.util.ResourceBundle;
  */
 public class Bundle
 {
+	private static ResourceBundle _bundle;
+
+	static
+	{
+		_bundle = ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle");
+	}
+
 	public static String getString(String t, Object... at)
 	{
-		return String.format(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString(t), at);
+		return String.format(_bundle.getString(t), at);
 	}
 }

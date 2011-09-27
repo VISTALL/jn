@@ -9,15 +9,18 @@ import javax.swing.UIManager;
 import org.apache.log4j.Logger;
 import com.jds.jn.classes.CLoader;
 import com.jds.jn.config.ConfigParser;
+import com.jds.jn.data.xml.Parsers;
 import com.jds.jn.data.xml.holder.ProtocolHolder;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui.forms.SplashWindow;
-import com.jds.jn.util.Shutdown;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.protocol.Protocol;
-import com.jds.jn.util.*;
+import com.jds.jn.util.ImageStatic;
+import com.jds.jn.util.OSUtils;
+import com.jds.jn.util.Shutdown;
+import com.jds.jn.util.ThreadPoolManager;
 import com.jds.jn.util.logging.LoggingService;
 
 /**
@@ -80,7 +83,7 @@ public class Jn
 		}
 
 		PartTypeManager.getInstance();
-		ProtocolHolder.getInstance();
+		Parsers.parseAll();
 
 		Runtime.getRuntime().addShutdownHook(new Shutdown());
 

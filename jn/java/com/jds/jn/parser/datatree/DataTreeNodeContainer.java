@@ -1,11 +1,16 @@
 package com.jds.jn.parser.datatree;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.napile.primitive.Containers;
 import org.napile.primitive.maps.IntObjectMap;
 import org.napile.primitive.maps.impl.HashIntObjectMap;
+import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.MacroPart;
+import com.jds.jn.parser.formattree.Part;
+import com.jds.jn.parser.formattree.PartContainer;
 import com.jds.jn.parser.parttypes.PartType;
-import com.jds.jn.parser.formattree.*;
 
 
 /**
@@ -13,7 +18,7 @@ import com.jds.jn.parser.formattree.*;
  */
 public class DataTreeNodeContainer extends DataTreeNode
 {
-	private IntObjectMap<ValuePart> _partIdMap = new HashIntObjectMap<ValuePart> ();
+	private IntObjectMap<ValuePart> _partIdMap = Containers.emptyIntObjectMap();
 	private List<DataTreeNode> _nodes = new ArrayList<DataTreeNode>();
 	private boolean _isRoot;
 
@@ -43,6 +48,9 @@ public class DataTreeNodeContainer extends DataTreeNode
 		_nodes.add(node);
 		if (node instanceof ValuePart && node.getModelPart().getId() != -1)
 		{
+			if(_partIdMap == Containers.<ValuePart>emptyIntObjectMap())
+				_partIdMap = new HashIntObjectMap<ValuePart>(4);
+
 			_partIdMap.put(node.getModelPart().getId(), (ValuePart) node);
 		}
 	}
@@ -57,9 +65,7 @@ public class DataTreeNodeContainer extends DataTreeNode
 	{
 		ValuePart vp = _partIdMap.get(id);
 		if (vp == null && !this.isRoot())
-		{
 			return getParentContainer().getPacketValuePartById(id);
-		}
 		return vp;
 	}
 

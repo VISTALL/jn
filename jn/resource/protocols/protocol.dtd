@@ -17,7 +17,7 @@
 	val CDATA #IMPLIED>
 <!ELEMENT packetfamilly (packet)*>
 <!ATTLIST packetfamilly
-		way CDATA #REQUIRED>
+	way CDATA #REQUIRED>
 <!ELEMENT packet (part|for|switch|macro)*>
 <!ATTLIST packet
 	id CDATA #REQUIRED

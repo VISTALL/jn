@@ -23,7 +23,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
 import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
-import com.jds.jn.data.xml.holder.ProtocolHolder;
+import com.jds.jn.data.xml.parser.ProtocolParser;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui2.FindPacket.listeners.FPOpenListener;
@@ -83,7 +83,7 @@ public abstract class RibbonActions
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				ProtocolHolder.getInstance().loadProtocols();
+				ProtocolParser.getInstance().reload();
 			}
 		});
 

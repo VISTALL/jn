@@ -8,5 +8,7 @@ package com.jds.jn.network.packets;
 public enum PacketType
 {
 	SERVER,
-	CLIENT
+	CLIENT;
+
+	public static final PacketType[] VALUES = values();
 }

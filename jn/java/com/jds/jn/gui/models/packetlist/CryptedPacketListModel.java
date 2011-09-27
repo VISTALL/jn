@@ -50,9 +50,10 @@ public class CryptedPacketListModel extends PacketListModel<CryptedPacket>
 		super.addRow(index, packet, fireInsertRow);
 	}
 
-	public CryptedPacket getPacket(int index)
+	public CryptedPacket getPacket(int row)
 	{
-		return (CryptedPacket) _currentTable.get(index)[3];
+		WeakReference ref = (WeakReference)_currentTable.get(row)[3];
+		return (CryptedPacket) ref.get();
 	}
 }
 

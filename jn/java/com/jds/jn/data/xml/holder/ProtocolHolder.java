@@ -1,7 +1,5 @@
 package com.jds.jn.data.xml.holder;
 
-import java.io.File;
-import java.io.FilenameFilter;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
@@ -12,7 +10,6 @@ import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfilePart;
 import com.jds.jn.network.profiles.NetworkProfiles;
 import com.jds.jn.protocol.Protocol;
-import com.jds.jn.protocol.ProtocolLoader;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
@@ -31,7 +28,12 @@ public class ProtocolHolder extends AbstractHolder
 
 	private ProtocolHolder()
 	{
-		loadProtocols();
+		//
+	}
+
+	public void addProtocol(Protocol protocol)
+	{
+		_protocolsByName.put(protocol.getName(), protocol);
 	}
 
 	public Protocol getProtocolByName(String name)
@@ -60,39 +62,6 @@ public class ProtocolHolder extends AbstractHolder
 		return getProtocolByName(part.getProtocol());
 	}
 
-	public void loadProtocols()
-	{
-		_protocolsByName.clear();
-		File dir = new File("./protocols/");
-
-		if(!dir.isDirectory())
-		{
-			MainForm.getInstance().warn("Invalid Protocols directory (" + dir.getAbsolutePath() + ")");
-			return;
-		}
-
-		File[] files = dir.listFiles(new FilenameFilter()
-		{
-			@Override
-			public boolean accept(File dir, String name)
-			{
-				return name.endsWith(".xml");
-			}
-
-		});
-
-		for(File f : files)
-		{
-			Protocol p = ProtocolLoader.restore(f);
-			if(p == null)
-				return;
-
-			_protocolsByName.put(p.getName(), p);
-		}
-
-		for(Protocol p : _protocolsByName.values())
-			initExtendsProtocol(p);
-	}
 
 	private void initExtendsProtocol(Protocol child)
 	{
@@ -114,7 +83,7 @@ public class ProtocolHolder extends AbstractHolder
 			{
 				PacketFamilly familly = child.getFamilly(extendsFamily.getType());
 				if(familly == null)
-					child.setFamily(extendsFamily.getType(), familly = new PacketFamilly(extendsFamily.getType()));
+					child.setFamily(familly = new PacketFamilly(extendsFamily.getType()));
 
 				familly.addPacket(packetInfo, null);
 			}
@@ -126,6 +95,14 @@ public class ProtocolHolder extends AbstractHolder
 		}
 
 		child.setSuperProtocol(parent);
+	}
+
+
+	@Override
+	protected void process()
+	{
+		for(Protocol p : _protocolsByName.values())
+			initExtendsProtocol(p);
 	}
 
 	@Override

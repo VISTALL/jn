@@ -1087,8 +1087,8 @@
 				<case id="7">
 					<part name="statistic-name-id" type="d"/>
 					<part name="?" type="d"/>
-					<part name="?" type="d"/>
-					<part name="?" type="d"/>
+					<part name="social-id" type="d"/>
+					<part name="percent-of-done-social" type="d"/>
 					<part name="first-class-id" type="d"/>
 					<part name="race" type="d"/>
 					<part name="sex" type="d"/>

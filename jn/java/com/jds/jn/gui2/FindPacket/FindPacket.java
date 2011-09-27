@@ -4,8 +4,8 @@ import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.List;
 
@@ -21,7 +21,6 @@ import javax.swing.ListSelectionModel;
 
 import org.apache.log4j.Logger;
 import org.jdesktop.swingx.JXTable;
-
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.jds.jn.data.xml.holder.ProtocolHolder;
@@ -166,7 +165,7 @@ public class FindPacket extends JDialog
 			}
 		});
 
-		_packetTable.addMouseListener(new MouseListener()
+		_packetTable.addMouseListener(new MouseAdapter()
 		{
 			@Override
 			public void mouseClicked(MouseEvent e)
@@ -192,30 +191,6 @@ public class FindPacket extends JDialog
 					}
 					new PacketForm(null, 1F, packet, row);
 				}
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e)
-			{
-
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e)
-			{
-
 			}
 		});
 

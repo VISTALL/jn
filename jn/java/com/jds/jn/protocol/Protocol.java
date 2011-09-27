@@ -1,7 +1,6 @@
 package com.jds.jn.protocol;
 
 import java.nio.ByteOrder;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +30,7 @@ public class Protocol
 {
 	private static final Logger _log = Logger.getLogger(Protocol.class);
 
-	private Map<PacketType, PacketFamilly> _familyes = new TreeMap<PacketType, PacketFamilly>();
+	private PacketFamilly[] _familyes = new PacketFamilly[PacketType.VALUES.length];
 	private Map<String, MacroInfo> _macros = new TreeMap<String, MacroInfo>();
 
 	private List<Class<IPacketListener>> _sessionListeners = Collections.emptyList();
@@ -53,7 +52,7 @@ public class Protocol
 
 	public PacketInfo getPacketInfo(DecryptedPacket packet, NioBuffer buf)
 	{
-		PacketFamilly f = _familyes.get(packet.getPacketType());
+		PacketFamilly f = getFamilly(packet.getPacketType());
 		if (f == null)
 			return null;
 
@@ -137,14 +136,14 @@ public class Protocol
 		return _filename;
 	}
 
-	public void setFamily(PacketType type, PacketFamilly fa)
+	public void setFamily(PacketFamilly fa)
 	{
-		_familyes.put(type, fa);
+		_familyes[fa.getType().ordinal()] = fa;
 	}
 
 	public PacketFamilly getFamilly(PacketType t)
 	{
-		return _familyes.get(t);
+		return _familyes[t.ordinal()];
 	}
 
 	public void addMacro(MacroInfo part)
@@ -160,9 +159,9 @@ public class Protocol
 		return _macros.get(name);
 	}
 
-	public Collection<PacketFamilly> getFamilies()
+	public PacketFamilly[] getFamilies()
 	{
-		return _familyes.values();
+		return _familyes;
 	}
 
 	public ByteOrder getOrder()
