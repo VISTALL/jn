@@ -58,7 +58,7 @@ public class L2NpcInfoListener extends L2AbstractListener
 		for (L2NpcInfo npc : _world.valuesNpc())
 			for (L2DialogInfo d : npc.getDialogs())
 			{
-				FileWriter writer = new FileWriter(getLogFile(d.getQuestId() == 0 ? ("npc_dialogs/" + npc.getNpcId()) : ("npc_dialogs/" + npc.getNpcId() + "-quest-" + d.getQuestId()), "htm"));
+				FileWriter writer = new FileWriter(getLogFile(d.getQuestId() == 0 ? ("npc_dialogs/" + npc.getNpcId() + "-") : ("npc_dialogs/" + npc.getNpcId() + "-quest-" + d.getQuestId()), "htm"));
 				writer.write(d.getDialog());
 				writer.close();
 			}

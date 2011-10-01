@@ -9,14 +9,22 @@ import java.util.List;
  */
 public class L2MultiSell
 {
+	public static enum MultisellType
+	{
+		NORMAL_SELL,
+		DYE_SELL;
+
+		public static final MultisellType[] VALUES = values();
+	}
+
 	private final int _id;
-	private final int _type;
+	private final MultisellType _type;
 	private List<L2MultiSellEntry> _entries = new ArrayList<L2MultiSellEntry>();
 
 	public L2MultiSell(int id, int type)
 	{
 		_id = id;
-		_type = type;
+		_type = MultisellType.VALUES[type];
 	}
 
 	public void addEntry(L2MultiSellEntry p)
@@ -34,7 +42,7 @@ public class L2MultiSell
 		return _id;
 	}
 
-	public int getType()
+	public MultisellType getType()
 	{
 		return _type;
 	}

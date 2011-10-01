@@ -137,7 +137,7 @@ public class L2NpcBMListsListener extends L2AbstractListener
 			writer.write("<?xml version='1.0' encoding='utf-8'?>\n");
 			writer.write("<!DOCTYPE list SYSTEM \"multisell.dtd\">\n");
 			writer.write("<list>\n");
-			writer.write(String.format("\t<multisell id=\"%d\" type=\"%d\">\n", multisell.getId(), multisell.getType()));
+			writer.write(String.format("\t<multisell id=\"%d\" type=\"%s\">\n", multisell.getId(), multisell.getType().name()));
 			for(L2MultiSellEntry entry : multisell.getEntries())
 			{
 				writer.write(String.format("\t\t<item id=\"%d\">\n", entry.getId()));
