@@ -1,37 +1,34 @@
 package packet_readers.aion.listeners;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
-import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import com.jds.jn.network.packets.DecryptedPacket;
-import com.jds.jn.parser.packetfactory.IPacketListener;
-import packet_readers.aion.AionWorld;
+import packet_readers.aion.AionAbstractListener;
 import packet_readers.aion.infos.AionNpc;
 
 /**
  * @author VISTALL
  * @date 17:23/15.02.2011
  */
-public class AionPlayerInfoListener implements IPacketListener
+public class AionPlayerInfoListener extends AionAbstractListener
 {
 	private static final String SM_PLAYER_SPAWN = "SM_PLAYER_SPAWN";
 	private static final String SM_TARGET_SELECTED = "SM_TARGET_SELECTED";
-	private AionWorld _world;
 
-	public AionPlayerInfoListener(AionWorld world)
+	public AionPlayerInfoListener()
 	{
-		_world = world;
+		//
 	}
 
 	@Override
-	public List<JRibbonBand> getRibbonBands()
+	public List<String> getPackets()
 	{
-		return Collections.emptyList();
+		return Arrays.asList(SM_PLAYER_SPAWN, SM_TARGET_SELECTED);
 	}
 
 	@Override
-	public void invoke(DecryptedPacket p)
+	public void invokeImpl(DecryptedPacket p)
 	{
 		if(p.getName().equalsIgnoreCase(SM_PLAYER_SPAWN))
 		{
@@ -47,11 +44,5 @@ public class AionPlayerInfoListener implements IPacketListener
 			if(_world.isOnSelectTarget())
 				npc.setValid(true);
 		}
-	}
-
-	@Override
-	public void close()
-	{
-
 	}
 }

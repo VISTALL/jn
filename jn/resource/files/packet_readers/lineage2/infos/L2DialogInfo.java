@@ -29,11 +29,7 @@ public class L2DialogInfo
 	@Override
 	public boolean equals(Object b)
 	{
-		if(b instanceof L2DialogInfo)
-		{
-			return _dialog.equals(((L2DialogInfo) b).getDialog());
-		}
+		return b instanceof L2DialogInfo && _dialog.equals(((L2DialogInfo) b).getDialog());
 
-		return false;
 	}
 }

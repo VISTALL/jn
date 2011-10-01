@@ -27,7 +27,7 @@ import com.jds.nio.buffer.NioBuffer;
 
 /**
  * @author Gilles Duboscq   - first version
- * @author VISTALL - full rewrite
+ * @author VISTALL - rewrite
  */
 public class DecryptedPacket implements IPacket
 {

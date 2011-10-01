@@ -12,7 +12,7 @@ import com.jds.jn.network.packets.DecryptedPacket;
  * Company: J Develop Station
  * Date:  17:58:15/05.06.2010
  */
-public class L2NpcInfo
+public class L2NpcInfo extends L2DialogObject
 {
 	private final String _name;
 	private final int _npcId;
@@ -24,8 +24,8 @@ public class L2NpcInfo
 	private final double _collisionRadius;
 	private final double _collisionHeight;
 
-	private int _hp = 100;
-	private int _mp = 100;
+	private final int _hp;
+	private final int _mp;
 	private int _level = 1;
 
 	private final int _rhand;
@@ -33,7 +33,6 @@ public class L2NpcInfo
 	private final int _lhand;
 
 	private final Map<Integer, L2SkillInfo> _skills = new HashMap<Integer, L2SkillInfo>();
-	private final List<L2DialogInfo> _dialogs = new ArrayList<L2DialogInfo>();
 	private final Set<L2SpawnLocInfo> _spawnLocInfo;
 
 	public L2NpcInfo(DecryptedPacket p)
@@ -49,6 +48,8 @@ public class L2NpcInfo
 		_rhand = p.getInt("rhand");
 		_armor = p.getInt("armor");
 		_lhand = p.getInt("lhand");
+		_hp = p.getInt("max_hp");
+		_mp = p.getInt("max_mp");
 
 		_spawnLocInfo = new HashSet<L2SpawnLocInfo>();
 		_spawnLocInfo.add(new L2SpawnLocInfo(p));
@@ -61,7 +62,7 @@ public class L2NpcInfo
 				"\t\t<set name=\"collision_radius\" val=\"%collisionRadius%\" />\n" +
 				"\t\t<set name=\"collision_height\" val=\"%collisionHeight%\" />\n" +
 				"\t\t<set name=\"level\" val=\"%level%\" />\n" +
-				"\t\t<set name=\"type\" val=\"L2Npc\" />\n" +
+				"\t\t<set name=\"type\" val=\"Npc\" />\n" +
 				"\t\t<set name=\"ai_type\" val=\"NpcAI\" />\n" +
 				"\t\t<set name=\"baseAtkRange\" val=\"40\" />\n" +
 				"\t\t<set name=\"baseHpMax\" val=\"%hp%\" />\n" +
@@ -97,19 +98,13 @@ public class L2NpcInfo
 			xml += "\t\t<equip>\n";
 
 			if(_armor != 0)
-			{
 				xml += "\t\t\t<armor item_id=\"%armor%\" />\n";
-			}
 
 			if(_lhand != 0)
-			{
 				xml += "\t\t\t<lhand item_id=\"%lhand%\" />\n";
-			}
 
 			if(_rhand != 0)
-			{
 				xml += "\t\t\t<rhand item_id=\"%rhand%\" />\n";
-			}
 
 			xml += "\t\t</equip>\n";
 		}
@@ -118,10 +113,7 @@ public class L2NpcInfo
 		{
 			xml += "\t\t<skills>\n";
 			for(L2SkillInfo info : _skills.values())
-			{
-				xml += String.format("\t\t\t<!--Hit time: %d; Reuse: %d-->\n", info.getHitTime(), info.getReuse());
 				xml += String.format("\t\t\t<skill id=\"%d\" level=\"%d\" /> <!--%s-->\n", info.getId(), info.getLevel(), SkillNameHolder.getInstance().name(info.getId(), info.getLevel()));
-			}
 			xml += "\t\t</skills>\n";
 		}
 
@@ -146,16 +138,6 @@ public class L2NpcInfo
 		return xml;
 	}
 
-	public void setHp(int hp)
-	{
-		_hp = hp;
-	}
-
-	public void setMp(int mp)
-	{
-		_mp = mp;
-	}
-
 	public void setLevel(int level)
 	{
 		_level = level;
@@ -174,17 +156,6 @@ public class L2NpcInfo
 	public int getNpcId()
 	{
 		return _npcId;
-	}
-
-	public void addDialog(L2DialogInfo t)
-	{
-		if(!_dialogs.contains(t))
-			_dialogs.add(t);
-	}
-
-	public List<L2DialogInfo> getDialogs()
-	{
-		return _dialogs;
 	}
 
 	public Set<L2SpawnLocInfo> getSpawnLoc()

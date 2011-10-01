@@ -1,6 +1,7 @@
 package com.jds.jn.protocol;
 
 import java.nio.ByteOrder;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.Type;
 import com.jds.jn.parser.packetfactory.IPacketListener;
-import com.jds.jn.parser.packetfactory.PacketListenerFactory;
+import com.jds.jn.util.ClassUtil;
 import com.jds.jn.parser.parservalue.ParserValue;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
@@ -146,6 +147,11 @@ public class Protocol
 		return _familyes[t.ordinal()];
 	}
 
+	public Collection<PacketInfo> getFamillyPackets(PacketType t)
+	{
+		return _familyes[t.ordinal()] == null ? Collections.<PacketInfo>emptyList() : _familyes[t.ordinal()].getFormats().values();
+	}
+
 	public void addMacro(MacroInfo part)
 	{
 		if ((part = _macros.put(part.getId(), part)) != null)
@@ -182,7 +188,7 @@ public class Protocol
 
 	public List<IPacketListener> getSessionListeners()
 	{
-		return PacketListenerFactory.listListeners(_sessionListeners);
+		return ClassUtil.newInstancesFrom(_sessionListeners);
 	}
 
 	public List<IPacketListener> getGlobalListeners()

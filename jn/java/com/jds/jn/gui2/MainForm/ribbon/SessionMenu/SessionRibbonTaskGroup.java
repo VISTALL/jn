@@ -18,7 +18,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.ListenerInvoker;
 import com.jds.jn.session.Session;
 import com.jds.jn.util.Bundle;
 import com.jds.jn.util.ImageStatic;
@@ -99,7 +99,7 @@ public class SessionRibbonTaskGroup extends RibbonContextualTaskGroup
 
 		RibbonTask mainTask = new RibbonTask(Bundle.getString("SessionMenu"), viewBand, actionsBand);
 		List<JRibbonBand> bands = new ArrayList<JRibbonBand>(4);
-		for(IPacketListener l : session.getInvokes())
+		for(ListenerInvoker l : session.getInvokes())
 			bands.addAll(l.getRibbonBands());
 
 		if(!bands.isEmpty())

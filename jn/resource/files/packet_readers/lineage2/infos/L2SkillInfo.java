@@ -1,9 +1,8 @@
 package packet_readers.lineage2.infos;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date:  21:14:19/17.06.2010
+ * @author VISTALL
+ * @date  21:14:19/17.06.2010
  */
 public class L2SkillInfo
 {
@@ -11,13 +10,15 @@ public class L2SkillInfo
 	private final int _level;
 	private final int _reuse;
 	private final int _hitTime;
+	private final int _reuseGroup;
 
-	public L2SkillInfo(int id, int level, int reuse, int hitTime)
+	public L2SkillInfo(int id, int level, int reuse, int hitTime, int reuseGroup)
 	{
 		_id = id;
 		_level = level;
 		_reuse = reuse;
 		_hitTime = hitTime;
+		_reuseGroup = reuseGroup;
 	}
 
 	public int getId()
@@ -38,5 +39,10 @@ public class L2SkillInfo
 	public int getHitTime()
 	{
 		return _hitTime;
+	}
+
+	public int getReuseGroup()
+	{
+		return _reuseGroup;
 	}
 }

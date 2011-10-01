@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_awakening" extends="l2game_highfive5">
+	<session_listeners>
+		<listener name="lineage2.listeners.L2MagicSkillUserListener" />
+		<listener name="lineage2.listeners.L2AirShipTeleportListListener" />
+		<listener name="lineage2.listeners.L2NpcBMListsListener" />
+		<listener name="lineage2.listeners.L2NpcDialogListener" />
+		<listener name="lineage2.listeners.L2NpcInfoListener" />
+		<listener name="lineage2.listeners.L2NpcSpawnListener" />
+		<listener name="lineage2.listeners.L2ServerObjectInfoListener" />
+	</session_listeners>
 	<macro id="item">
 		<part name="obj_id" type="d"/>
 		<part name="item_id" type="d">
@@ -454,7 +463,7 @@
 		<packet id="FE;00CD" name="ExShuttleMove">
 			<part name="id" type="d" />
 			<part name="speed" type="d" />
-			<part name="?" type="d" />
+			<part name="rotation-speed" type="d" />
 			<part name="x" type="d" />
 			<part name="y" type="d" />
 			<part name="z" type="d" />
@@ -527,7 +536,7 @@
 			</for>
 		</packet>
 		<packet id="0C" name="NpcInfo">
-			<part name="obj_id" type="d"/>
+			<part name="object-id" type="d"/>
 			<part name="npcId" type="d"/>
 			<part name="attackable" type="d"/>
 			<part name="x" type="d"/>
@@ -582,13 +591,14 @@
 			<part name="specialEffects" type="d"/>
 			<part name="state" type="d"/>
 			<part name="?" type="d"/>
+			<part name="current_hp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="current_mp" type="d"/>
+			<part name="max_mp" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
+			<part name="?" type="c"/>
 		</packet>
 		<packet id="31" name="CharInfo">
 			<part name="x" type="d"/>
@@ -1013,7 +1023,7 @@
 			<part name="finished" type="d"/>
 			<part name="size of pages" type="d"/>
 			<part name="sizeOfList" type="d" id="0"/>
-			<part name="type?" type="c" />
+			<part name="type" type="c" />
 			<for id="0" name="entry">
 				<part name="entryId" type="d"/>
 				<part name="stackable" type="c"/>
@@ -1067,7 +1077,7 @@
 			</for>
 		</packet>
 		<packet id="92" name="ServerObjectInfo">
-			<part name="object_id" type="d"/>
+			<part name="object-id" type="d"/>
 			<part name="npc_id" type="d"/>
 			<part name="name" type="S"/>
 			<part name="attackable" type="d"/>
@@ -1163,12 +1173,12 @@
 		</packet>
 		<packet id="48" name="MagicSkillUse">
 			<part name="setup_gauge" type="d"/>
-			<part name="obj_id" type="d"/>
-			<part name="target_obj_id" type="d"/>
+			<part name="object-id" type="d"/>
+			<part name="target-object-id" type="d"/>
 			<part name="?" type="c"/>
-			<part name="skillId" type="d"/>
-			<part name="skillLevel" type="d"/>
-			<part name="hitTime" type="d"/>
+			<part name="skill-id" type="d"/>
+			<part name="skill-level" type="d"/>
+			<part name="hit-time" type="d"/>
 			<part name="reuse-group" type="d"/>
 			<part name="reuse" type="d"/>
 			<part name="x" type="d"/>
@@ -1280,6 +1290,27 @@
 			<part name="create-day" type="c" />
 			<part name="last-access-diff" type="d" />
 			<part name="memo" type="S" />
+		</packet>
+		<packet id="33" name="Attack">
+			<part name="object-id" type="d"/>
+			<part name="target-object-id" type="d"/>
+			<part name="?" type="c"/>
+			<part name="damage" type="d"/>
+			<part name="flags" type="d"/>
+			<part name="soul-shots" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="hits" type="h" id="0"/>
+			<for id="0">
+				<part name="target-object-id" type="d"/>
+				<part name="damage" type="d"/>
+				<part name="flags" type="d"/>
+				<part name="soul-shots" type="d"/>
+			</for>
+			<part name="target-x" type="d"/>
+			<part name="target-y" type="d"/>
+			<part name="target-z" type="d"/>
 		</packet>
 	</packetfamilly>
 </protocol>

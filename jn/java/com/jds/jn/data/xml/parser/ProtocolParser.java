@@ -20,7 +20,7 @@ import com.jds.jn.parser.formattree.PartContainer;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.jn.parser.packetfactory.IPacketListener;
-import com.jds.jn.parser.packetfactory.PacketListenerFactory;
+import com.jds.jn.util.ClassUtil;
 import com.jds.jn.parser.packetreader.PacketReader;
 import com.jds.jn.parser.valuereader.ValueReader;
 import com.jds.jn.protocol.Protocol;
@@ -128,7 +128,7 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				protocol.addMacro(part);
 			}
 			else if(element.getName().equals("global_listeners"))
-				protocol.setGlobalListeners(PacketListenerFactory.listListeners(listClasses(element)));
+				protocol.setGlobalListeners(ClassUtil.newInstancesFrom(listClasses(element)));
 			else if(element.getName().equals("session_listeners"))
 				protocol.setSessionListeners(listClasses(element));
 		}

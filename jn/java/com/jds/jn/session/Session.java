@@ -2,7 +2,9 @@ package com.jds.jn.session;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.apache.log4j.Logger;
@@ -17,10 +19,12 @@ import com.jds.jn.network.methods.IMethod;
 import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.parser.packetfactory.IPacketListener;
+import com.jds.jn.parser.packetfactory.ListenerInvoker;
 import com.jds.jn.parser.packetfactory.tasks.CloseTask;
 import com.jds.jn.parser.packetfactory.tasks.InvokeTask;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.util.ThreadPoolManager;
+import com.jds.jn.util.iterator.JoinedIterator;
 import com.jds.jn.util.version_control.Version;
 
 /**
@@ -48,7 +52,8 @@ public class Session
 	private ViewPane _viewPane;
 	private RibbonContextualTaskGroup _ribbonGroup;
 
-	private final List<IPacketListener> _invokes = new ArrayList<IPacketListener>();
+	private List<ListenerInvoker> _invokes = Collections.emptyList();
+	private Map<Object, Object> _vars = Collections.emptyMap();
 
 	public Session(IMethod iMethod, long sessionId)
 	{
@@ -85,8 +90,13 @@ public class Session
 			_log.info("Exception: " + e, e);
 		}
 
-		_invokes.addAll(getProtocol().getSessionListeners());
-		_invokes.addAll(getProtocol().getGlobalListeners());
+		List<IPacketListener> l1 = getProtocol().getSessionListeners(), l2 = getProtocol().getGlobalListeners();
+		if(!l1.isEmpty() || !l2.isEmpty())
+		{
+			_invokes = new ArrayList<ListenerInvoker>(l1.size() + l2.size());
+			for(JoinedIterator<IPacketListener> iterator = new JoinedIterator<IPacketListener>(l1.iterator(), l2.iterator()); iterator.hasNext();)
+				_invokes.add(new ListenerInvoker(iterator.next(), _protocol));
+		}
 	}
 
 	public DecryptedPacket decode(CryptedPacket packet)
@@ -193,6 +203,7 @@ public class Session
 
 		_viewPane = null;
 		_ribbonGroup = null;
+		_vars = Collections.emptyMap();
 		_decryptPackets.clear();
 		_cryptedPackets.clear();
 	}
@@ -221,13 +232,13 @@ public class Session
 
 	public void fireInvokePacket(final DecryptedPacket o)
 	{
-		for(IPacketListener f : _invokes)
-			f.invoke(o);
+		for(ListenerInvoker f : _invokes)
+			f.invoke(this, o);
 	}
 
 	public void fireClose()
 	{
-		for(IPacketListener f : _invokes)
+		for(ListenerInvoker f : _invokes)
 			f.close();
 	}
 
@@ -248,9 +259,23 @@ public class Session
 		return _ribbonGroup;
 	}
 
-	public List<IPacketListener> getInvokes()
+	public List<ListenerInvoker> getInvokes()
 	{
 		return _invokes;
+	}
+
+	public <T> void setVar(Object key, T var)
+	{
+		if(_vars == Collections.<Object, Object>emptyMap())
+			_vars = new HashMap<Object, Object>();
+
+		_vars.put(key, var);
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T> T getVar(Object key)
+	{
+		return (T)_vars.get(key);
 	}
 }
 
