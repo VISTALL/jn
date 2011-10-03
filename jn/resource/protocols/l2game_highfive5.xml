@@ -1881,6 +1881,10 @@
 		<packet id="FE;00A7" name="ExEnchantSkillResult"/>
 		<packet id="FE;00A8" name="ExRefundList"/>
 		<packet id="FE;00A9" name="ExNoticePostArrived"/>
+		<packet id="FE;00BB" name="ExAskCoupleAction">
+			<part name="action-id" type="d"/>
+			<part name="object-id" type="d"/>
+		</packet>
 		<packet id="FE;00AA" name="ExShowReceivedPostList">
 			<part name="millis" type="d"/>
 			<part name="size" type="d" id="0"/>
@@ -2070,7 +2074,7 @@
 						<part name="index" type="d"/>
 						<!--index of game, show +1 in client-->
 						<part name="match_type" type="d"/>
-						<!--game type 1 - 1x1, 2 - 3x3 ? -->
+						<!--game type 1 - 1x1, 2 - 1x1, 0 -3x3 -->
 						<part name="status" type="d"/>
 						<!--1 standby, 2 playing-->
 						<part name="player1" type="S"/>
@@ -2138,9 +2142,7 @@
 		<packet id="74" name="SendBypassBuildCmd">
 			<part name="command" type="S"/>
 		</packet>
-		<packet id="56" name="NotifyStartMiniGame">
-			<part name="time" type="d"/>
-		</packet>
+		<packet id="56" name="NotifyStartMiniGame" />
 		<packet id="23" name="RequestBypassToServer">
 			<part name="command" type="S"/>
 		</packet>

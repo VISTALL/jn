@@ -40,6 +40,7 @@
 		<part name="enchanteffect3" type="h"/>
 	</macro>
 	<packetfamilly way="CLIENT">
+		<packet id="D0;00AC" name="Request24HzSessionID"/>
 		<packet id="D0;007B" name="RequestBR_EventRankerList"/>
 		<packet id="D0;0089" name="RequestBR_GamePoint"/>
 		<packet id="D0;008A" name="RequestBR_ProductList"/>
@@ -56,7 +57,12 @@
 		<packet id="D0;00AD" name="RequestEx2ndPasswordCheck" />
 		<packet id="D0;00AE" name="RequestEx2ndPasswordVerify" />
 		<packet id="D0;00AF" name="RequestEx2ndPasswordReq" />
-		<packet id="D0;00AA" name="RequestDeletePartySubstitute" />
+		<packet id="D0;00A8" name="RequestRegistPartySubstitute">
+			<part name="object-id" type="d" />
+		</packet>
+		<packet id="D0;00AB" name="RequestAcceptWaitingSubstitute" />
+		<packet id="D0;00AA" name="RequestRegistWaitingSubstitute" />
+		<packet id="D0;00A9" name="RequestDeletePartySubstitute" />
 		<packet id="D0;00A4" name="RequestCallToChangeClass" />
 		<packet id="D0;00A5" name="RequestChangeToAwakenedClass" />
 		<packet id="D0;00A6" name="RequestWorldStatistics">
@@ -724,12 +730,13 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
+			<part name="current_cp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="current_mp" type="d"/>
+			<part name="max_mp" type="d"/>
 			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
+			<part name="?" type="c"/>
 		</packet>
 		<packet id="D5" name="BlockList">
 			<part name="size" type="d" id="0" />
@@ -803,8 +810,17 @@
 		<packet id="FE;0109" name="Ex2NDPasswordCheck" />
 		<packet id="FE;010a" name="Ex2NDPasswordVerify" />
 		<packet id="FE;010b" name="Ex2NDPasswordAck" />
+		<packet id="FE;011b" name="ExExchangeSubstitute" />
 		<packet id="FE;0102" name="ExLoadStatHotLink" />
 		<packet id="FE;0114" name="ExNotifyFlyMoveStart" />
+		<packet id="FE;0105" name="ExRegistPartySubstitute" />
+		<packet id="FE;0107" name="ExTimeOverPartySubstitute" />
+		<packet id="FE;0108" name="ExGet24HzSessionID">
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+		</packet>
 		<packet id="FE;00F1" name="ExShowCommission">
 			<part name="response" type="d"/>
 		</packet>
@@ -1311,6 +1327,61 @@
 			<part name="target-x" type="d"/>
 			<part name="target-y" type="d"/>
 			<part name="target-z" type="d"/>
+		</packet>
+		<packet id="9F" name="StaticObject">
+			<part name="id" type="d"/>
+			<part name="objectId" type="d"/>
+			<part name="type" type="d" id="0"/>
+			<part name="targetable" type="d"/>
+			<part name="meshIndex" type="d"/>
+			<part name="open" type="d"/>
+			<part name="enemy" type="d"/>
+			<part name="currentHP" type="d"/>
+			<part name="maxHP" type="d"/>
+			<part name="hpVisible" type="d"/>
+			<part name="damage" type="d"/>
+			<switch id="0">
+				<case id="4">
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="?" type="d"/>
+					<part name="name" type="S"/>
+				</case>
+				<case id="default" />
+			</switch>
+		</packet>
+		<packet id="FE;00AC" name="ExShowSentPostList">
+			<part name="millis" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="objectId" type="d"/>
+				<part name="subject" type="S"/>
+				<part name="receiverName" type="S"/>
+				<part name="locked" type="d"/>
+				<part name="expiration" type="d"/>
+				<part name="unread" type="d"/>
+				<part name="?" type="d"/>
+				<part name="attachments" type="d"/>
+			</for>
+		</packet>
+		<packet id="FE;00AA" name="ExShowReceivedPostList">
+			<part name="millis" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="objectId" type="d"/>
+				<part name="subject" type="S"/>
+				<part name="sender" type="S"/>
+				<part name="locked" type="d"/>
+				<part name="expiration" type="d"/>
+				<part name="unread" type="d"/>
+				<part name="?" type="d"/>
+				<part name="attachments" type="d"/>
+				<part name="forStar" type="d"/>
+				<part name="news" type="d"/>
+			</for>
+			<part name="?(100)" type="d"/>
+			<part name="?(1000)" type="d"/>
 		</packet>
 	</packetfamilly>
 </protocol>
