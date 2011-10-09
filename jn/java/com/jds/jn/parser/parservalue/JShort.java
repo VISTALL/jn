@@ -13,10 +13,10 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:46:21/07.04.2010
  */
-public class JShort implements ParserValue<Short>
+public class JShort extends ParserValue.DigitalValueParser<Short>
 {
 	@Override
-	public java.lang.Short getValue(NioBuffer b, Part part, Object... arg)
+	public java.lang.Short getValue(NioBuffer b, Part part)
 	{
 		return b.getShort();
 	}

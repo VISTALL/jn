@@ -31,6 +31,12 @@ public class VisualPartType extends PartType
 		return true;
 	}
 
+	@Override
+	public PartValueType getValueType()
+	{
+		return _type.getInstance().getValueType();
+	}
+
 	public Type getType()
 	{
 		return _type;

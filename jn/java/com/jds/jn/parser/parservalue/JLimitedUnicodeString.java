@@ -12,12 +12,12 @@ import com.jds.nio.buffer.NioBuffer;
  * @author VISTALL
  * @date 22:59/04.07.2011
  */
-public class JLimitedUnicodeString implements ParserValue<String>
+public class JLimitedUnicodeString extends ParserValue.StringValueParser
 {
 	private static Color _color = new Color(100, 255, 100);
 
 	@Override
-	public String getValue(NioBuffer b, Part part, Object... arg)
+	public String getValue(NioBuffer b, Part part)
 	{
 		StringBuilder sb2 = new StringBuilder();
 		for(int i = 0; i < part.getBSize(); i++)

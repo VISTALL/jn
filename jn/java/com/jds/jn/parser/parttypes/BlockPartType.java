@@ -38,6 +38,12 @@ public class BlockPartType extends PartType
 		return false;
 	}
 
+	@Override
+	public PartValueType getValueType()
+	{
+		return PartValueType.BLOB;
+	}
+
 	public blockType getType()
 	{
 		return _type;

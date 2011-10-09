@@ -1143,8 +1143,41 @@
 		<packet id="C5" name="ReplyStopAllianceWarPacket"/>
 		<packet id="C6" name="SurrenderAllianceWarPacket"/>
 		<packet id="C8" name="PackageToListPacket"/>
-		<packet id="C9" name="CastleSiegeInfoPacket"/>
-		<packet id="CA" name="CastleSiegeAttackerList"/>
+		<packet id="C9" name="CastleSiegeInfo">
+			<part name="id" type="d" />
+			<part name="leader" type="d" />
+			<part name="owner-object-id" type="d" />
+			<part name="owner-name" type="S" />
+			<part name="leader-name" type="S" />
+			<part name="ally-object-id" type="d" />
+			<part name="ally-name" type="S" />
+			<part name="current-date" type="d" />
+			<part name="siege-date" type="d" />
+			<part name="select-time-size" type="d" id="0" />
+			<for id="0">
+				<part name="select-date" type="d" />
+			</for>
+		</packet>
+		<packet id="CA" name="CastleSiegeAttackerList">
+			<part name="id" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="size" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="clan_id" type="d"/>
+				<part name="name" type="S"/>
+				<part name="leader_name" type="S"/>
+				<part name="crest_id" type="d"/>
+				<part name="reg_time" type="d">
+					<reader type="Timestamp"/>
+				</part>
+				<part name="alliance_id" type="d"/>
+				<part name="alliance_name" type="S"/>
+				<part name="alliance_crest_id" type="d"/>
+			</for>
+		</packet>
 		<packet id="CB" name="CastleSiegeDefenderList"/>
 		<packet id="CC" name="NickNameChanged"/>
 		<packet id="CD" name="PledgeStatusChanged"/>

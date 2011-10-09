@@ -13,10 +13,10 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:53:13/07.04.2010
  */
-public class JByte implements ParserValue<Byte>
+public class JByte extends ParserValue.DigitalValueParser<Byte>
 {
 	@Override
-	public Byte getValue(NioBuffer b, Part part, Object... arg)
+	public Byte getValue(NioBuffer b, Part part)
 	{
 		return b.get();
 	}

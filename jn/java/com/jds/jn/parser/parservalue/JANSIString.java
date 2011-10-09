@@ -13,12 +13,12 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  13:31:55/23.07.2010
  */
-public class JANSIString implements ParserValue<String>
+public class JANSIString extends ParserValue.StringValueParser
 {
 	private static Color _color = new Color(100, 255, 100);
 
 	@Override
-	public String getValue(NioBuffer b, Part part, Object... arg)
+	public String getValue(NioBuffer b, Part part)
 	{
 		StringBuilder sb2 = new StringBuilder();
 		byte ch;

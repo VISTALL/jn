@@ -36,6 +36,11 @@
 			<part name="arg" type="S"/>
 		</for>
 	</macro>
+	<macro id="loc">
+		<part name="x" type="d" />
+		<part name="y" type="d" />
+		<part name="z" type="d" />
+	</macro>
 	<packetfamilly way="SERVER">
 		<packet id="2E" key="true" name="VersionCheck">
 			<part name="success" type="c"/>
@@ -1320,28 +1325,6 @@
 		<packet id="C5" name="ReplyStopAllianceWarPacket"/>
 		<packet id="C6" name="SurrenderAllianceWarPacket"/>
 		<packet id="C8" name="PackageToListPacket"/>
-		<packet id="C9" name="CastleSiegeInfoPacket"/>
-		<packet id="CA" name="CastleSiegeAttackerList">
-			<part name="id" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="size" type="d"/>
-			<part name="size" type="d" id="0"/>
-			<for id="0">
-				<part name="clan_id" type="d"/>
-				<part name="name" type="S"/>
-				<part name="leader_name" type="S"/>
-				<part name="crest_id" type="d"/>
-				<part name="reg_time" type="d">
-					<reader type="Timestamp"/>
-				</part>
-				<part name="alliance_id" type="d"/>
-				<part name="alliance_name" type="S"/>
-				<part name="alliance_crest_id" type="d"/>
-			</for>
-		</packet>
-		<packet id="CB" name="CastleSiegeDefenderList"/>
 		<packet id="CC" name="NickNameChanged"/>
 		<packet id="CD" name="PledgeStatusChanged">
 			<part name="leaderObjectId" type="d"/>
@@ -1422,7 +1405,12 @@
 		<packet id="D1" name="SetSummonRemainTimePacket"/>
 		<packet id="D2" name="PackageSendableListPacket"/>
 		<packet id="D3" name="EarthQuake"/>
-		<packet id="D4" name="FlyToLocation"/>
+		<packet id="D4" name="FlyToLocation">
+			<part name="object-id" type="d" />
+			<macro id="loc" name="desc-loc"/>
+			<macro id="loc" name="src-loc"/>
+			<part name="type" type="d" />
+		</packet>
 		<packet id="D5" name="BlockListPacket"/>
 		<packet id="D6" name="SpecialCamera"/>
 		<packet id="D7" name="NormalCamera"/>

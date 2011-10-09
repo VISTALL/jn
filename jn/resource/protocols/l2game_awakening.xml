@@ -603,7 +603,9 @@
 			<part name="max_mp" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
-			<part name="?" type="d"/>
+			<part name="?" type="d">
+				<reader type="Color"/>
+			</part>
 			<part name="?" type="c"/>
 		</packet>
 		<packet id="31" name="CharInfo">

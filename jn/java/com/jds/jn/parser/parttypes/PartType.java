@@ -9,6 +9,13 @@ import com.jds.jn.parser.parttypes.BlockPartType.blockType;
 
 public abstract class PartType
 {
+	public static enum PartValueType
+	{
+		STRING,
+		DIGITAL,
+		BLOB
+	}
+
 	private final String _name;
 
 	public static final PartType b = new RawPartType("b");
@@ -31,6 +38,8 @@ public abstract class PartType
 	public abstract ValuePart getValuePart(DataTreeNodeContainer parent, Part part);
 
 	public abstract boolean isReadableType();
+
+	public abstract PartValueType getValueType();
 
 	//public abstract boolean isBlockType();
 

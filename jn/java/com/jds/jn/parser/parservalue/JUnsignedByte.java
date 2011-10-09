@@ -13,10 +13,10 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:52:51/07.04.2010
  */
-public class JUnsignedByte implements ParserValue<Short>
+public class JUnsignedByte extends ParserValue.DigitalValueParser<Short>
 {
 	@Override
-	public Short getValue(NioBuffer b, Part part, Object... arg)
+	public Short getValue(NioBuffer b, Part part)
 	{
 		return b.getUnsigned();
 	}

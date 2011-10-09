@@ -13,10 +13,10 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:56:56/07.04.2010
  */
-public class JDouble  implements ParserValue<Double>
+public class JDouble extends ParserValue.DigitalValueParser<Double>
 {
 	@Override
-	public Double getValue(NioBuffer b, Part part, Object... arg)
+	public Double getValue(NioBuffer b, Part part)
 	{
 		return b.getDouble();
 	}

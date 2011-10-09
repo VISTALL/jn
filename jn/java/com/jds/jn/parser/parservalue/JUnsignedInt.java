@@ -13,12 +13,12 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:45:06/07.04.2010
  */
-public class JUnsignedInt implements ParserValue<Long>
+public class JUnsignedInt extends ParserValue.DigitalValueParser<Long>
 {
 	private static final Color _color = new Color(72, 164, 255);
 
 	@Override
-	public Long getValue(NioBuffer b, Part part, Object... arg)
+	public Long getValue(NioBuffer b, Part part)
 	{
 		return b.getUnsignedInt();
 	}

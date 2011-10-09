@@ -13,12 +13,12 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:54:31/07.04.2010
  */
-public class JBitCountShort implements ParserValue<Integer>
+public class JBitCountShort extends ParserValue.DigitalValueParser<Integer>
 {
 	private static final Color _color = new Color(189, 148, 6);
 
 	@Override
-	public Integer getValue(NioBuffer b, Part part, Object... arg)
+	public Integer getValue(NioBuffer b, Part part)
 	{
 		return Integer.bitCount(b.getShort());
 	}

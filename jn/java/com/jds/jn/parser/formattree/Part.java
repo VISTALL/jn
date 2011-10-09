@@ -19,7 +19,6 @@ public class Part
 	private int _bxSize;
 	private boolean _dynamicBSize = false;
 	private boolean _isRoot;
-	private boolean _isRealPart;
 	private ValueReader _reader;
 	private boolean _invert;
 
@@ -28,7 +27,7 @@ public class Part
 		setType(type);
 		setId(id);
 		setName(name);
-		_isRealPart = true;
+
 		_invert = invert;
 	}
 
@@ -46,7 +45,6 @@ public class Part
 	{
 		this.setType(type);
 		_isRoot = isRoot;
-		_isRealPart = false;
 	}
 
 	public void setType(PartType type)
@@ -105,7 +103,7 @@ public class Part
 	@Override
 	public String toString()
 	{
-		return this.getType().getName();
+		return getName();
 	}
 
 	public void setBSizeId(int sizeid)
@@ -141,11 +139,6 @@ public class Part
 	public boolean isRoot()
 	{
 		return _isRoot;
-	}
-
-	public boolean isRealPart()
-	{
-		return _isRealPart;
 	}
 
 	public void setReader(ValueReader r)

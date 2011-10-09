@@ -13,19 +13,18 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  0:47:43/23.07.2010
  */
-public class JUnicodeString implements ParserValue<String>
+public class JUnicodeString extends ParserValue.StringValueParser
 {
 	private static Color _color = new Color(100, 255, 100);
 
 	@Override
-	public String getValue(NioBuffer b, Part part, Object... arg)
+	public String getValue(NioBuffer b, Part part)
 	{
-		StringBuffer sb2 = new StringBuffer();
+		StringBuilder sb2 = new StringBuilder();
 		char ch;
 		while ((ch = b.getChar()) != 0)
-		{
 			sb2.append(ch);
-		}
+
 		return sb2.toString();
 	}
 

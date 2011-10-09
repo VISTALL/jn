@@ -32,4 +32,9 @@ public class RawPartType extends PartType
 		return 0;
 	}
 
+	@Override
+	public PartValueType getValueType()
+	{
+		return PartValueType.BLOB;
+	}
 }

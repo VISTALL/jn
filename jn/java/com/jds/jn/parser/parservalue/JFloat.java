@@ -13,10 +13,10 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:56:15/07.04.2010
  */
-public class JFloat implements ParserValue<Float>
+public class JFloat extends ParserValue.DigitalValueParser<Float>
 {
 	@Override
-	public Float getValue(NioBuffer b, Part part, Object... arg)
+	public Float getValue(NioBuffer b, Part part)
 	{
 		return b.getFloat();
 	}

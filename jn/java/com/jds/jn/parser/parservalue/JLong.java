@@ -13,12 +13,12 @@ import com.jds.nio.buffer.NioBuffer;
  * Company: J Develop Station
  * Date:  15:57:20/07.04.2010
  */
-public class JLong implements ParserValue<Long>
+public class JLong extends ParserValue.DigitalValueParser<Long>
 {
 	private static final Color _color = new Color(127, 127, 127);
 
 	@Override
-	public Long getValue(NioBuffer b, Part part, Object... arg)
+	public Long getValue(NioBuffer b, Part part)
 	{
 		return b.getLong();
 	}
