@@ -1384,6 +1384,21 @@
 			</for>
 			<part name="?(100)" type="d"/>
 			<part name="?(1000)" type="d"/>
+			<part name="?(1000)" type="d"/>
+		</packet>
+		<packet id="00" name="Die">
+			<part name="object-id" type="d" />
+			<part name="to-village" type="d" />
+			<part name="to-clanhall" type="d" />
+			<part name="to-castle" type="d" />
+			<part name="to-flag" type="d" />
+			<part name="sweepable" type="d" />
+			<part name="fixed" type="d" />
+			<part name="to-fortress" type="d" />
+			<part name="spawn-animation" type="c" />
+			<part name="agathion-res" type="d" />
+			<part name="free-space" type="d" />
+			<part name="?" type="d" />
 		</packet>
 	</packetfamilly>
 </protocol>
