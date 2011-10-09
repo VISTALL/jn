@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -19,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.intellij.uiDesigner.core.GridConstraints;
@@ -26,19 +28,26 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.panels.ViewPane;
+import com.jds.jn.network.listener.types.ListenerType;
+import com.jds.jn.network.packets.DecryptedPacket;
+import com.jds.jn.network.profiles.NetworkProfile;
+import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.parser.datatree.DataTreeNode;
+import com.jds.jn.parser.datatree.VisualValuePart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.parttypes.PartType;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.jn.session.Session;
+import com.jds.jn.util.Bundle;
 import com.jds.swing.XCheckedButton;
 import com.jds.swing.XJPopupMenu;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date: 21.09.2009
+ * @author VISTALL
+ * @date 21.09.2009
  * Time: 14:00:20
  * Thanks: Ulysses R. Ribeiro
  */
@@ -53,7 +62,7 @@ public class SearchPane extends HiddenPanel
 	private JComboBox _partSelect;
 	private JComboBox _operatorSelect;
 	private JTextField _operatorEqual;
-	private JLabel statusLable;
+	private JLabel _statusLabel;
 	private ViewPane _pane;
 
 	private int _currentIndex;
@@ -67,8 +76,8 @@ public class SearchPane extends HiddenPanel
 			"<="
 	};
 	private static final String[] STRING_OPERATORS = {
-			"==",
-			"!="
+			"equal",
+			"not equal"
 	};
 
 	private Map<String, PacketInfo> _formats = new HashMap<String, PacketInfo>();
@@ -79,10 +88,8 @@ public class SearchPane extends HiddenPanel
 	{
 		_pane = pane;
 		$$$setupUI$$$();
-		setPackets();
 
 		_findText.setText(RValues.LAST_SEARCH.asString());
-		updatePartFields();
 
 		_findText.addKeyListener(new KeyAdapter()
 		{
@@ -114,7 +121,7 @@ public class SearchPane extends HiddenPanel
 							{
 								_findText.setText(str);
 
-								updatePartFields();
+								checkPartFields();
 							}
 						});
 
@@ -129,16 +136,16 @@ public class SearchPane extends HiddenPanel
 				else
 					_menuFindSimple.setVisible(false);
 
-				updatePartFields();
+				checkPartFields();
 			}
 		});
 
 		_operatorEqual.addKeyListener(new KeyAdapter()
 		{
 			@Override
-			public void keyPressed(KeyEvent e)
+			public void keyReleased(KeyEvent e)
 			{
-				_searchBtn.setEnabled(!_operatorEqual.getText().trim().equals(""));
+				checkOperatorEqualValue();
 			}
 		});
 
@@ -159,23 +166,7 @@ public class SearchPane extends HiddenPanel
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				_currentIndex = 0;
-				_operatorSelect.removeAllItems();
-
-				PacketInfo packetInfo = _formats.get(_findText.getText());
-				if(packetInfo == null)
-					return;
-
-				Object selected = _partSelect.getSelectedItem();
-				if(selected != null && selected != NONE)
-				{
-					Part part = (Part) selected;
-
-					for(String str : (part.getType().getValueType() == PartType.PartValueType.STRING ? STRING_OPERATORS : MATH_OPERATORS))
-						_operatorSelect.addItem(str);
-
-					_operatorSelect.setSelectedIndex(0);
-				}
+				checkOperators();
 			}
 		});
 
@@ -189,10 +180,68 @@ public class SearchPane extends HiddenPanel
 			}
 		});
 
+
+		buildPacketCache();
+
+		checkPartFields();
+		checkOperators();
+
 		_searchBtn.setEnabled(!_findText.getText().trim().equals(""));
 	}
 
-	private void updatePartFields()
+	private void checkOperators()
+	{
+		_currentIndex = 0;
+		_operatorSelect.removeAllItems();
+
+		Object selected = _partSelect.getSelectedItem();
+		if(selected != null && selected != NONE)
+		{
+			Part part = (Part) selected;
+
+			for(String str : (part.getType().getValueType() == PartType.PartValueType.STRING ? STRING_OPERATORS : MATH_OPERATORS))
+				_operatorSelect.addItem(str);
+
+			_operatorSelect.setSelectedIndex(0);
+
+			checkOperatorEqualValue();
+		}
+
+		_operatorSelect.setEnabled(selected != null && selected != NONE);
+		_operatorEqual.setEnabled(selected != null && selected != NONE);
+
+		checkOperatorEqualValue();
+	}
+
+	private void checkOperatorEqualValue()
+	{
+		boolean passed = true;
+		checkLoop:
+		{
+			PacketInfo packetInfo = _formats.get(_findText.getText());
+			if(packetInfo == null)
+				break checkLoop;
+
+			Object selectedPart = _partSelect.getSelectedItem();
+			if(!(selectedPart instanceof Part))
+				break checkLoop;
+
+			if(((Part) selectedPart).getType().getValueType() == PartType.PartValueType.DIGITAL)
+				try
+				{
+					Long.decode(_operatorEqual.getText());
+				}
+				catch(NumberFormatException ex)
+				{
+					passed = false;
+				}
+		}
+
+		_searchBtn.setEnabled(passed);
+		setStatusLabel(passed ? null : "IncorrectValue", Color.RED);
+	}
+
+	private void checkPartFields()
 	{
 		PacketInfo packetInfo = _formats.get(_findText.getText());
 		_partSelect.removeAllItems();
@@ -215,17 +264,13 @@ public class SearchPane extends HiddenPanel
 
 	public void search()
 	{
-		/*if(_simpleSearchRadioButton.isSelected())
+		Object selected = _partSelect.getSelectedItem();
+		if(selected == null || selected == NONE)
 		{
-			String findPacket = _findText.getText();
-
-			if(findPacket.equals(""))
-				return;
-
-			if(_pane.getDecryptedPacketListPane().getModel().searchPacket(_pane, findPacket))
-				found();
+			if(_pane.getDecryptedPacketListPane().getModel().searchPacket(_pane, _findText.getText()))
+				setStatusLabel("Found", Color.GREEN);
 			else
-				notFound();
+				setStatusLabel("NotFound", Color.RED);
 		}
 		else
 		{
@@ -238,16 +283,14 @@ public class SearchPane extends HiddenPanel
 				pt.getSelectionModel().setSelectionInterval(index, index);
 				pt.scrollRectToVisible(pt.getCellRect(index, 0, true));
 				_currentIndex = index + 1;
-				found();
+				setStatusLabel("Found", Color.GREEN);
 			}
 			else
-			{
-				notFound();
-			}
-		}  */
+				setStatusLabel("NotFound", Color.RED);
+		}
 	}
 
-	private void setPackets()
+	private void buildPacketCache()
 	{
 		_formats.clear();
 
@@ -265,188 +308,103 @@ public class SearchPane extends HiddenPanel
 				_formats.put(pi.getName(), pi);
 	}
 
-	public String getFindText()
-	{
-		return _findText.getText();
-	}
-
 	private void createUIComponents()
 	{
 		main = this;
 	}
 
-	public void found()
+	public void setStatusLabel(String text, Color color)
 	{
-		statusLable.setText(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("Found"));
-		statusLable.setForeground(Color.GREEN);
-	}
-
-	public void notFound()
-	{
-		statusLable.setText(ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotFound"));
-		statusLable.setForeground(Color.RED);
+		if(text != null)
+		{
+			_statusLabel.setText(Bundle.getString(text));
+			_statusLabel.setForeground(color);
+		}
+		else
+			_statusLabel.setText("");
 	}
 
 	public int search(int startIndex)
 	{
-		/*Session session = _pane.getSession();
+		Session session = _pane.getSession();
 		NetworkProfile profile = NetworkProfiles.getInstance().active();
 
 		if(session == null || profile == null)
-		{
 			return -1;
-		}
 
 		ListenerType type = session.getListenerType();
-		NetworkProfilePart part = profile.getPart(type);
 		List<DecryptedPacket> packets = session.getDecryptPackets();
 
-		if(packets == null)
-		{
-			return -1;
-		}
+		PacketInfo packetInfo = _formats.get(_findText.getText());
+		Part selectedPart = (Part) _partSelect.getSelectedItem();
 
-		PacketInfo format;
 		int size = packets.size();
+
+		Object value = null;
+		if(selectedPart.getType().getValueType() == PartType.PartValueType.STRING)
+			value = _operatorEqual.getText();
+		else
+		{
+			try
+			{
+				value = Long.decode(_operatorEqual.getText());
+			}
+			catch(NumberFormatException e)
+			{
+				value = Long.MIN_VALUE;
+			}
+		}
 
 		for(int i = startIndex; i < size; i++)
 		{
 			DecryptedPacket gp = packets.get(i);
-			format = gp.getPacketInfo();
+			PacketInfo format = gp.getPacketInfo();
+			if(format == null || gp.hasError())
+				continue;
 
-			if(format != null)
+			DataTreeNode p = gp.getRootNode().getPartByName(selectedPart.getName());
+			if(!(p instanceof VisualValuePart))
+				continue;
+
+			Object partValue = ((VisualValuePart) p).getValue();
+
+			if(format == packetInfo)
 			{
-				if(part.isFiltredOpcode(format.getOpcodeStr()))
+				Long longValue = null, selectedLongValue = null;
+				if(selectedPart.getType().getValueType() == PartType.PartValueType.DIGITAL)
 				{
-					continue;
+					longValue = ((Number) partValue).longValue();
+					selectedLongValue = ((Number) value).longValue();
 				}
-				if(format == _currentFormat)
+				switch(_operatorSelect.getSelectedIndex())
 				{
-					if(_currentPart != null)
-					{
-						boolean isString = _currentPart.getName().equalsIgnoreCase("s");
-						switch(_operatorSelect.getSelectedIndex())
-						{
-							case 0: // ==
-								if(!isString)
-								{
-									try
-									{
-										int value = Integer.decode(_operatorEqual.getText());
-										int partValue = gp.getInt(_currentPart.getName());
-										if(value == partValue)
-										{
-											return i;
-										}
-									}
-									catch(Exception e)
-									{
-										e.printStackTrace();
-									}
-								}
-								else
-								{
-									if(gp.getString(_currentPart.getName()).equalsIgnoreCase(_operatorEqual.getText()))
-									{
-										return i;
-									}
-								}
-								break;
-							case 1: // !=
-								if(!isString)
-								{
-									try
-									{
-										int value = Integer.decode(_operatorEqual.getText());
-										int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-
-										if(value != partValue)
-										{
-											return i;
-										}
-									}
-									catch(NumberFormatException nfe)
-									{
-										//nfe.printStackTrace();
-									}
-								}
-								else
-								{
-									if(!gp.getString(_currentPart.getName()).equalsIgnoreCase(_operatorEqual.getText()))
-									{
-										return i;
-									}
-								}
-								break;
-							case 2: // >
-								try
-								{
-									int value = Integer.decode(_operatorEqual.getText());
-									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if(partValue > value)
-									{
-										return i;
-									}
-								}
-								catch(NumberFormatException nfe)
-								{
-									//nfe.printStackTrace();
-								}
-								break;
-							case 3: // >=
-								try
-								{
-									int value = Integer.decode(_operatorEqual.getText());
-									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if(partValue >= value)
-									{
-										return i;
-									}
-								}
-								catch(NumberFormatException nfe)
-								{
-									//nfe.printStackTrace();
-								}
-								break;
-							case 4: // <
-								try
-								{
-									int value = Integer.decode(_operatorEqual.getText());
-									int partValue = (int) ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if(partValue < value)
-									{
-										return i;
-									}
-								}
-								catch(NumberFormatException nfe)
-								{
-									//nfe.printStackTrace();
-								}
-								break;
-							case 5: // <=
-								try
-								{
-									int value = Integer.decode(_operatorEqual.getText());
-									int partValue = ((VisualValuePart) gp.getRootNode().getPartByName(_currentPart.getName())).getValueAsInt();
-									if(partValue <= value)
-									{
-										return i;
-									}
-								}
-								catch(NumberFormatException nfe)
-								{
-									//nfe.printStackTrace();
-								}
-								break;
-						}
-					}
-					else
-					{
-						return i;
-					}
+					case 0: // ==
+						if(value.equals(partValue))
+							return i;
+						break;
+					case 1: // !=
+						if(!value.equals(partValue))
+							return i;
+						break;
+					case 2: // >
+						if(selectedLongValue > longValue)
+							return i;
+						break;
+					case 3: // >=
+						if(selectedLongValue > longValue)
+							return i;
+						break;
+					case 4: // <
+						if(selectedLongValue < longValue)
+							return i;
+						break;
+					case 5: // <=
+						if(selectedLongValue <= longValue)
+							return i;
+						break;
 				}
 			}
-		}     */
+		}
 
 		return -1;
 	}
@@ -473,10 +431,10 @@ public class SearchPane extends HiddenPanel
 		panel2.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final Spacer spacer1 = new Spacer();
 		panel2.add(spacer1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-		statusLable = new JLabel();
-		statusLable.setForeground(new Color(-52429));
-		this.$$$loadLabelText$$$(statusLable, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotFound"));
-		panel2.add(statusLable, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+		_statusLabel = new JLabel();
+		_statusLabel.setForeground(new Color(-52429));
+		this.$$$loadLabelText$$$(_statusLabel, ResourceBundle.getBundle("com/jds/jn/resources/bundle/LanguageBundle").getString("NotFound"));
+		panel2.add(_statusLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final JPanel panel3 = new JPanel();
 		panel3.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
 		panel1.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));

@@ -145,4 +145,9 @@ public class VisualValuePart extends ValuePart
 	{
 		return _type;
 	}
+
+	public Object getValue()
+	{
+		return _value;
+	}
 }

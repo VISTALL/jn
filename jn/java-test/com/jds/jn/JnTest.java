@@ -1,6 +1,10 @@
 package com.jds.jn;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 
@@ -18,7 +22,18 @@ public class JnTest
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		JFrame f = new JFrame();
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		JTabs t = new JTabs();
+		t.registerTopPanel(KeyEvent.VK_F, KeyEvent.CTRL_DOWN_MASK, new JTabs.PanelFactory()
+		{
+			@Override
+			public JPanel newInstance()
+			{
+				JPanel p = new JPanel();
+				p.add(new JLabel("test"));
+				return p;
+			}
+		});
 		f.add(t);
 
 		t.addTab(new JTab(new JTextArea("dsadsad")).setTitle("AAAAAAAAAA"));
