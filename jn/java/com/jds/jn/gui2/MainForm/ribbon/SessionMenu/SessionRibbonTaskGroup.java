@@ -54,10 +54,6 @@ public class SessionRibbonTaskGroup extends RibbonContextualTaskGroup
 		packetList.setSelected(true);
 		packetList.addActionListener(new HidePaneListener(session, session.getViewPane().getPacketListPane()));
 
-	   	final JCheckBox search = new JCheckBox(Bundle.getString("FindPanel"));
-		search.setSelected(true);
-		search.addActionListener(new HidePaneListener(session, session.getViewPane().getSearchPane()));
-
 		final JCheckBox filter = new JCheckBox(Bundle.getString("Filter"));
 		filter.setSelected(true);
 		filter.addActionListener(new HidePaneListener(session, session.getViewPane().getFilterPane()));
@@ -67,7 +63,6 @@ public class SessionRibbonTaskGroup extends RibbonContextualTaskGroup
 		info.addActionListener(new HidePaneListener(session, session.getViewPane().getInfoPane()));
 
 		viewBand.addRibbonComponent(new JRibbonComponent(packetList));
-		viewBand.addRibbonComponent(new JRibbonComponent(search));
 		viewBand.addRibbonComponent(new JRibbonComponent(filter));
 		viewBand.addRibbonComponent(new JRibbonComponent(info));
 

@@ -16,7 +16,6 @@ import com.jds.jn.gui.panels.viewpane.FilterPane;
 import com.jds.jn.gui.panels.viewpane.HiddenPanel;
 import com.jds.jn.gui.panels.viewpane.InfoPane;
 import com.jds.jn.gui.panels.viewpane.PacketListPane;
-import com.jds.jn.gui.panels.viewpane.SearchPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.CryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.DecryptedPacketListPane;
 import com.jds.jn.gui.panels.viewpane.packetlist.UnknownPacketListPane;
@@ -34,7 +33,6 @@ public class ViewPane extends JTabbedPane
 	public Session _session;
 
 	private PacketListPane _packetListPane;
-	private SearchPane _searchPane;
 	private FilterPane _filterPane;
 	private InfoPane _infoPane;
 
@@ -45,7 +43,6 @@ public class ViewPane extends JTabbedPane
 		setTabPlacement(LEFT);
 
 		_infoPane = new InfoPane();
-		_searchPane = new SearchPane(this);
 		_filterPane = new FilterPane(this);
 		_packetListPane = new PacketListPane(this);
 
@@ -87,15 +84,6 @@ public class ViewPane extends JTabbedPane
 				_packetListPane.setSelectedPanel(_packetListPane.getUnknownPacketListPane());
 			}
 		}, KeyStroke.getKeyStroke(KeyEvent.VK_U, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
-
-		registerKeyboardAction(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				setSelectedComponent(_searchPane);
-			}
-		}, KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK), JComponent.WHEN_IN_FOCUSED_WINDOW);
 	}
 
 	public void drawThis()
@@ -103,7 +91,6 @@ public class ViewPane extends JTabbedPane
 		_filterPane.drawThis();
 
 		addTab("PacketList", _packetListPane, true);
-		addTab("FindPanel", _searchPane, true);
 		addTab("Filter", _filterPane, true);
 		addTab("Info", _infoPane, true);
 	}
@@ -157,11 +144,6 @@ public class ViewPane extends JTabbedPane
 	public UnknownPacketListPane getUnknownPacketListPane()
 	{
 		return _packetListPane.getUnknownPacketListPane();
-	}
-
-	public SearchPane getSearchPane()
-	{
-		return _searchPane;
 	}
 
 	public FilterPane getFilterPane()
