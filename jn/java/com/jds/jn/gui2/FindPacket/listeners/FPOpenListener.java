@@ -3,7 +3,7 @@ package com.jds.jn.gui2.FindPacket.listeners;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.jds.jn.gui2.FindPacket.FindPacket;
+import com.jds.jn.gui2.FindPacket.FindPacketDialog;
 
 /**
  * Author: VISTALL
@@ -16,6 +16,6 @@ public class FPOpenListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		new FindPacket();
+		new FindPacketDialog();
 	}
 }

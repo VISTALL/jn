@@ -1181,7 +1181,6 @@
 		<packet id="68" name="ReplySurrenderPledgeWarPacket"/>
 		<packet id="69" name="SetPledgeCrestPacket"/>
 		<packet id="6A" name="PledgeCrest"/>
-		<packet id="6B" name="SetupGaugePacket"/>
 		<packet id="6C" name="OnVehicleDeparture"/>
 		<packet id="6D" name="OnVehicleCheckLocation"/>
 		<packet id="6E" name="OnGetOnVehicle"/>
@@ -1294,7 +1293,78 @@
 		<packet id="AF" name="AllianceCrest"/>
 		<packet id="B0" name="ServerCloseSocketPacket"/>
 		<packet id="B1" name="PetStatusShow"/>
-		<packet id="B2" name="PetInfo"/>
+		<packet id="B2" name="PetInfo">
+			<part name="pet-type" type="d"/>
+			<part name="obj_id" type="d"/>
+			<part name="npcId" type="d"/>
+			<part name="attackable" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
+			<part name="?" type="d"/>
+			<part name="mAttackSpeed" type="d"/>
+			<part name="pAttackSpeed" type="d"/>
+			<part name="run_spd" type="d"/>
+			<part name="walk_spd" type="d"/>
+			<part name="swim-run-speed" type="d"/>
+			<part name="swim-walk-speed" type="d"/>
+			<part name="ride-run-speed" type="d"/>
+			<part name="ride-walk-speed" type="d"/>
+			<part name="fly-run-speed" type="d"/>
+			<part name="fly-walk-speed" type="d"/>
+			<part name="move_speed" type="D"/>
+			<part name="attack_speed" type="D"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="rhand" type="d"/>
+			<part name="armor" type="d"/>
+			<part name="lhand" type="d"/>
+			<part name="?" type="c"/>
+			<part name="running" type="c"/>
+			<part name="in combat" type="c"/>
+			<part name="dead" type="c"/>
+			<part name="show spawn animation" type="c"/>
+			<part name="nameStringId" type="d"/>
+			<part name="name" type="S"/>
+			<part name="titleStringId" type="d"/>
+			<part name="title" type="S"/>
+			<part name="isPet" type="d"/>
+			<part name="pvp_flag" type="d"/>
+			<part name="karma" type="d"/>
+			<part name="current-feed" type="d"/>
+			<part name="max-feed" type="d"/>
+			<part name="current-hp" type="d"/>
+			<part name="max-hp" type="d"/>
+			<part name="current-mp" type="d"/>
+			<part name="max-mp" type="d"/>
+			<part name="sp" type="d"/>
+			<part name="level" type="d"/>
+			<part name="exp" type="Q"/>
+			<part name="exp-this-level" type="Q"/>
+			<part name="exp-next-level" type="Q"/>
+			<part name="current-load" type="d"/>
+			<part name="max-load" type="d"/>
+			<part name="p-attack" type="d"/>
+			<part name="p-def" type="d"/>
+			<part name="m-attack" type="d"/>
+			<part name="m-def" type="d"/>
+			<part name="accuracy" type="d"/>
+			<part name="evasion" type="d"/>
+			<part name="critical" type="d"/>
+			<part name="?" type="d"/>
+			<part name="p-attack-speed" type="d"/>
+			<part name="m-attack-speed" type="d"/>
+			<part name="abnormal" type="d"/>
+			<part name="rideable" type="h"/>
+			<part name="move-type" type="c"/>
+			<part name="?" type="h"/>
+			<part name="team" type="c"/>
+			<part name="soul-shots" type="d"/>
+			<part name="spirit-shots" type="d"/>
+			<part name="form" type="d"/>
+			<part name="abnormal-effect2" type="d"/>
+		</packet>
 		<packet id="B3" name="PetItemList">
 			<part id="0" name="size" type="h"/>
 			<for id="0">

@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.network.listener.types.ListenerType;
-import com.jds.jn.network.packets.CryptedPacket;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.session.Session;
@@ -22,9 +20,8 @@ import com.jds.jn.util.version_control.Program;
 import com.jds.jn.util.version_control.Version;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date:  14:41:18/03.09.2010
+ * @author VISTALL
+ * @date  14:41:18/03.09.2010
  */
 public class PLogReader extends AbstractReader
 {
@@ -79,19 +76,16 @@ public class PLogReader extends AbstractReader
 			lines.add(readLine);
 
 		MainForm.getInstance().getProgressBar().setMaximum(lines.size());
+		List<DecryptedPacket> packets = new ArrayList<DecryptedPacket>(lines.size());
 		for(int i = 0; i < lines.size(); i++)
 		{
 			StringHexBuffer buffer = new StringHexBuffer(lines.get(i));
 			byte type = buffer.nextByte();
 			PacketType packetType;
 			if(type == 1 || type == 3)
-			{
 				packetType = PacketType.SERVER;
-			}
 			else
-			{
 				packetType = PacketType.CLIENT;
-			}
 
 			long time = buffer.nextLong();
 			int size = buffer.nextShort();
@@ -99,14 +93,13 @@ public class PLogReader extends AbstractReader
 			for(int $ = 0; $ < data.length; $++)
 				data[$] = buffer.nextByte();
 
-			CryptedPacket packet = new CryptedPacket(packetType, data, time);
-
-			DecryptedPacket dp = _listener.newPacket(_session, packet);
-
-			_listener.readPacket(_session, dp);
+			DecryptedPacket dp = new DecryptedPacket(_session, packetType, data, time, _session.getProtocol(), false);
+			packets.add(dp);
 
 			MainForm.getInstance().getProgressBar().setValue(i);
 		}
+
+		_session.receiveDecryptedPackets(packets);
 	}
 
 	@Override

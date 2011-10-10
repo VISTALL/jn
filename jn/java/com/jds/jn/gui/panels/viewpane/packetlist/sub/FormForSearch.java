@@ -89,8 +89,6 @@ public class FormForSearch extends JPanel
 		_pane = pane;
 		$$$setupUI$$$();
 
-		_findText.setText(RValues.LAST_SEARCH.asString());
-
 		_findText.addKeyListener(new KeyAdapter()
 		{
 			@Override
@@ -311,6 +309,7 @@ public class FormForSearch extends JPanel
 	private void createUIComponents()
 	{
 		main = this;
+		_findText = new JTextField(RValues.LAST_SEARCH.asString());
 	}
 
 	public void setStatusLabel(String text, Color color)
@@ -442,7 +441,6 @@ public class FormForSearch extends JPanel
 		_searchBtn.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/images/find.png")));
 		_searchBtn.setText("");
 		panel2.add(_searchBtn, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-		_findText = new JTextField();
 		panel1.add(_findText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 		final JPanel panel3 = new JPanel();
 		panel3.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));

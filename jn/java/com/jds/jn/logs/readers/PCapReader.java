@@ -44,6 +44,7 @@ public class PCapReader extends AbstractReader
 			return;
 		}
 
+		_currentFile = file;
 		_listener = listener;
 
 		_jpcap = JpcapCaptor.openFile(file.getAbsolutePath());

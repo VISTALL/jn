@@ -13,7 +13,6 @@ import com.jds.jn.config.RValues;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.logs.listeners.DefaultReaderListener;
 import com.jds.jn.logs.listeners.ReaderListener;
 import com.jds.jn.logs.readers.AbstractReader;
 import com.jds.jn.logs.readers.CapReader;
@@ -23,27 +22,33 @@ import com.jds.jn.logs.readers.LogReader;
 import com.jds.jn.logs.readers.PCapReader;
 import com.jds.jn.logs.readers.PLogReader;
 import com.jds.jn.logs.readers.PSLReader;
+import com.jds.jn.session.Session;
 import com.jds.jn.util.FileUtils;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date: 23.09.2009
- * Time: 21:40:56
+ * @author VISTALL
+ * @date 21:40:56/23.09.2009
  */
 public class Reader
 {
-	private static Reader _instance;
-	public static final ReaderListener DEFAULT_READER_LISTENER = new DefaultReaderListener();
+	private static Reader _instance = new Reader();
+
+	public static final ReaderListener DEFAULT_READER_LISTENER = new ReaderListener()
+	{
+		@Override
+		public void onFinish(Session session, File file)
+		{
+			if(session != null)
+			{
+				MainForm.getInstance().showSession(session);
+			}
+		}
+	};
+
 	private Map<String, Map.Entry<AbstractReader, FileFilter>> _readers = new LinkedHashMap<String, Map.Entry<AbstractReader, FileFilter>> ();
 
 	public static Reader getInstance()
 	{
-		if (_instance == null)
-		{
-			_instance = new Reader();
-		}
-
 		return _instance;
 	}
 

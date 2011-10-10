@@ -51,9 +51,7 @@ public class FPTableModel  extends AbstractTableModel
 	{
 		Object[] tableRow = _currentTable.get(row);
 		if (tableRow != null)
-		{
 			return tableRow[col];
-		}
 		return "";
 	}
 
@@ -82,6 +80,8 @@ public class FPTableModel  extends AbstractTableModel
 		};
 
 		_currentTable.add(temp);
+
+		fireTableRowsInserted(_currentTable.size(), _currentTable.size());
 	}
 
 	public DecryptedPacket getPacket(int index)

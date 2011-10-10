@@ -1014,7 +1014,12 @@
 		<packet id="68" name="ReplySurrenderPledgeWarPacket"/>
 		<packet id="69" name="SetPledgeCrestPacket"/>
 		<packet id="6A" name="PledgeCrest"/>
-		<packet id="6B" name="SetupGaugePacket"/>
+		<packet id="6B" name="SetupGauge">
+			<part name="object-id" type="d" />
+			<part name="type" type="d" />
+			<part name="current-time" type="d" />
+			<part name="max-time" type="d" />
+		</packet>
 		<packet id="6C" name="OnVehicleDeparture"/>
 		<packet id="6D" name="OnVehicleCheckLocation"/>
 		<packet id="6E" name="OnGetOnVehicle"/>

@@ -48,6 +48,7 @@ public abstract class AbstractReader
 		}
 
 		_listener = listener;
+		_currentFile = file;
 
 		_file = new RandomAccessFile(file, "r");
 		_buffer = ByteBuffer.allocate((int) _file.length());
@@ -140,9 +141,8 @@ public abstract class AbstractReader
 			char ch;
 
 			while ((ch = _buffer.getChar()) != 0)
-			{
 				tb.append(ch);
-			}
+
 			String str = tb.toString();
 			tb.reverse();
 			return str;

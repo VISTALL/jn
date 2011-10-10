@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -41,35 +42,23 @@ import com.jds.jn.util.Bundle;
 import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
 
-public class FindPacket extends JDialog
+public class FindPacketDialog extends JDialog
 {
-	private static final Logger _log = Logger.getLogger(FindPacket.class);
+	private static final Logger _log = Logger.getLogger(FindPacketDialog.class);
 
 	private final ReaderListener LISTENER = new ReaderListener()
 	{
-		@Override
-		public DecryptedPacket newPacket(Session session, CryptedPacket p)
-		{
-			return new DecryptedPacket(session, p.getPacketType(), p.getAllData(), p.getTime(), session.getProtocol(), false);
-		}
-
-		@Override
-		public void readPacket(Session session, DecryptedPacket p)
-		{
-			session.receiveQuitPacket(p, false, false);
-		}
-
-		@Override
-		public void readPacket(Session session, CryptedPacket p)
-		{
-			session.receiveQuitPacket(p, false);
-		}
-
 		@Override
 		public void onFinish(Session session, File file)
 		{
 			if(session == null)
 				return;
+
+			List<DecryptedPacket> tempList = new ArrayList<DecryptedPacket>(session.getCryptedPackets().size());
+			for(CryptedPacket cryptedPacket : session.getCryptedPackets())
+				tempList.add(session.decode(cryptedPacket));
+			session.receiveDecryptedPackets(tempList);
+
 
 			PacketInfo packetInfo = (PacketInfo) _packetList.getSelectedItem();
 			List<DecryptedPacket> packets = session.getDecryptPackets();
@@ -87,7 +76,7 @@ public class FindPacket extends JDialog
 	private JComboBox _listeners;
 	private JTable _packetTable;
 
-	public FindPacket()
+	public FindPacketDialog()
 	{
 		super(MainForm.getInstance());
 		$$$setupUI$$$();
@@ -96,9 +85,8 @@ public class FindPacket extends JDialog
 
 		_chooseFiles.setText(Bundle.getString("SelectFiles"));
 		for(ListenerType type : ListenerType.VALUES)
-		{
 			_listeners.addItem(type);
-		}
+	
 		_listeners.setSelectedItem(null);
 		_listeners.addActionListener(new ActionListener()
 		{
@@ -109,16 +97,10 @@ public class FindPacket extends JDialog
 				ListenerType type = (ListenerType) _listeners.getSelectedItem();
 				Protocol protocol = ProtocolHolder.getInstance().getProtocol(type);
 				if(protocol == null)
-				{
 					return;
-				}
 				for(PacketFamilly familly : protocol.getFamilies())
-				{
 					for(PacketInfo info : familly.getFormats().values())
-					{
 						_packetList.addItem(info);
-					}
-				}
 			}
 		});
 
@@ -135,7 +117,7 @@ public class FindPacket extends JDialog
 						JFileChooser chooser = Reader.getInstance().getFileChooser();
 						chooser.setMultiSelectionEnabled(true);
 
-						int returnVal = chooser.showOpenDialog(FindPacket.this);
+						int returnVal = chooser.showOpenDialog(FindPacketDialog.this);
 						if(returnVal == JFileChooser.APPROVE_OPTION)
 						{
 							File[] files = chooser.getSelectedFiles();
@@ -150,15 +132,6 @@ public class FindPacket extends JDialog
 									_log.info("Exception: " + e1, e1);
 								}
 							}
-
-							ThreadPoolManager.getInstance().execute(new RunnableImpl()
-							{
-								@Override
-								protected void runImpl() throws Throwable
-								{
-									_packetTable.invalidate();
-								}
-							});
 						}
 					}
 				});
