@@ -103,6 +103,7 @@
 			<part name="end_y" type="d" />
 			<part name="end_z" type="d" />
 		</packet>
+		<packet id="D0;0082" name="CannotMoveAnymoreInShuttle" />
 		<packet id="D0;0093" name="RequestExEscapeScene" />
 		<packet id="D0;0094" name="RequestFlyMove">
 			<part name="type" type="d" />
@@ -441,29 +442,28 @@
 			</for>
 		</packet>
 		<packet id="FE;00CA" name="ExShuttleInfo">
-			<part name="id" type="d" />
+			<part name="shuttle-id" type="d" />
 			<part name="x" type="d" />
 			<part name="y" type="d" />
 			<part name="z" type="d" />
-			<part name="?" type="d" />
-			<part name="?" type="d" />
+			<part name="h" type="d" />
+			<part name="id" type="d" />
 
 			<part name="size" type="d" id="0" />
 			<for id="0">
 				<part name="point-id" type="d" />
-				<part name="?" type="d" />
-				<part name="?" type="d" />
-				<part name="?" type="d" />
+				<part name="x" type="d" />
+				<part name="y" type="d" />
+				<part name="z" type="d" />
 
-				<part name="?" type="d" />
-				<part name="?" type="d" />
-				<part name="?" type="d" />
-				<part name="?" type="d" />
-
-				<part name="?" type="d" />
-				<part name="?" type="d" />
-				<part name="?" type="d" />
-				<part name="?" type="d" />
+				<part name="x" type="d" />
+				<part name="y" type="d" />
+				<part name="z" type="d" />
+				<part name="x" type="d" />
+				<part name="y" type="d" />
+				<part name="z" type="d" />
+				<part name="is-current-point" type="d" />
+				<part name="is-open" type="d" />
 			</for>
 		</packet>
 		<packet id="FE;00CD" name="ExShuttleMove">
@@ -496,15 +496,23 @@
 			<part name="z" type="d" />
 			<part name="h" type="d" />
 		</packet>
+		<packet id="FE;00D0" name="ExValidateLocationInShuttle">
+			<part name="object_id" type="d" />
+			<part name="id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+			<part name="h" type="d" />
+		</packet>
 		<packet id="FE;00CE" name="ExMTLInShuttle">
 			<part name="object_id" type="d" />
 			<part name="id" type="d" />
-			<part name="start_x" type="d" />
-			<part name="start_y" type="d" />
-			<part name="start_z" type="d" />
 			<part name="end_x" type="d" />
 			<part name="end_y" type="d" />
 			<part name="end_z" type="d" />
+			<part name="start_x" type="d" />
+			<part name="start_y" type="d" />
+			<part name="start_z" type="d" />
 		</packet>
 		<packet id="FE;00FA" name="ExMagicAttackInfo">
 			<part name="player-object-id" type="d"/>
@@ -756,6 +764,7 @@
 		<packet id="FE;011D" name="ExMentorList">
 			<part name="size" type="d"/>
 		</packet>
+		<packet id="FE;011E" name="ListMenteeWaiting" />
 		<packet id="FE;010F" name="ExIsCharNameCreatable">
 			<part name="response" type="d"/>
 		</packet>
