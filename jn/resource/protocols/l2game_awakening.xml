@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_awakening" extends="l2game_highfive5">
-	<session_listeners>
+	<!---<session_listeners>
 		<listener name="lineage2.listeners.L2MagicSkillUserListener" />
 		<listener name="lineage2.listeners.L2AirShipTeleportListListener" />
 		<listener name="lineage2.listeners.L2NpcBMListsListener" />
@@ -9,7 +9,8 @@
 		<listener name="lineage2.listeners.L2NpcInfoListener" />
 		<listener name="lineage2.listeners.L2NpcSpawnListener" />
 		<listener name="lineage2.listeners.L2ServerObjectInfoListener" />
-	</session_listeners>
+		<listener name="lineage2.listeners.L2JumpListener" />
+	</session_listeners>  -->
 	<macro id="item">
 		<part name="obj_id" type="d"/>
 		<part name="item_id" type="d">
@@ -74,6 +75,28 @@
 		<packet id="D0;00B7" name="SendChangeAttributeTargetItem" />
 		<packet id="D0;00B8" name="RequestChangeAttributeItem" />
 		<packet id="D0;00B4" name="RequestFlyMoveStart" />
+		<packet id="D0;00B5" name="RequestHardwareInfo">
+			<part name="?" type="S" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="S" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+			<part name="?" type="S" />
+			<part name="?" type="S" />
+		</packet>
 		<packet id="D0;0092" name="RequestCrystallizeItemCancel" />
 		<packet id="D0;0091" name="RequestCrystallizeEstimate">
 			<part name="object_id" type="d" />
@@ -106,13 +129,14 @@
 		<packet id="D0;0082" name="CannotMoveAnymoreInShuttle" />
 		<packet id="D0;0093" name="RequestExEscapeScene" />
 		<packet id="D0;0094" name="RequestFlyMove">
-			<part name="type" type="d" />
+			<part name="node" type="d" />
 		</packet>
 		<packet id="D0;00B9" name="RequestChangeAttributeCancel" />
 		<packet id="D0;00BA" name="RequestExchangeSubstitute" />
 		<packet id="D0;00BE" name="RequestMenteeAdd" />
 		<packet id="D0;00BC" name="RequestMentorCancel" />
 		<packet id="D0;00BB" name="ConfirmMenteeAdd" />
+		<packet id="D0;00BF" name="RequestMenteeWaitingList" />
 		<packet id="D0;0097" name="RequestFriendDetailInfo">
 			<part name="name" type="S"/>
 		</packet>
@@ -421,9 +445,9 @@
 		<packet id="FE;00FC" name="ExNewSkillToLearnByLevelUp" />
 		<packet id="FE;00E7" name="ExFlyMove">
 			<part name="object_id" type="d" />
+			<part name="type" type="d" />
 			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="?" type="d" />
+			<part name="id" type="d" />
 			<part name="size" type="d" id="0" />
 			<for id="0">
 				<part name="point-id" type="d" />
@@ -442,28 +466,20 @@
 			</for>
 		</packet>
 		<packet id="FE;00CA" name="ExShuttleInfo">
-			<part name="shuttle-id" type="d" />
+			<part name="shuttle-object-id" type="d" />
 			<part name="x" type="d" />
 			<part name="y" type="d" />
 			<part name="z" type="d" />
 			<part name="h" type="d" />
 			<part name="id" type="d" />
-
 			<part name="size" type="d" id="0" />
 			<for id="0">
 				<part name="point-id" type="d" />
-				<part name="x" type="d" />
-				<part name="y" type="d" />
-				<part name="z" type="d" />
-
-				<part name="x" type="d" />
-				<part name="y" type="d" />
-				<part name="z" type="d" />
-				<part name="x" type="d" />
-				<part name="y" type="d" />
-				<part name="z" type="d" />
-				<part name="is-current-point" type="d" />
+				<macro id="loc" name="point1" />
+				<macro id="loc" name="point2" />
+				<macro id="loc" name="point3" />
 				<part name="is-open" type="d" />
+				<part name="is-current-point" type="d" />
 			</for>
 		</packet>
 		<packet id="FE;00CD" name="ExShuttleMove">
@@ -764,12 +780,21 @@
 		<packet id="FE;011D" name="ExMentorList">
 			<part name="size" type="d"/>
 		</packet>
-		<packet id="FE;011E" name="ListMenteeWaiting" />
+		<packet id="FE;011E" name="ExMentorAdd" />
+		<packet id="FE;011F" name="ListMenteeWaiting" />
 		<packet id="FE;010F" name="ExIsCharNameCreatable">
 			<part name="response" type="d"/>
 		</packet>
 		<packet id="FE;010E" name="ExShowStatPage">
 			<part name="response" type="d"/>
+		</packet>
+		<packet id="FE;010C" name="ExFlyMoveBroadcast">
+			<part name="object-id" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<macro id="loc" name="src-loc" />
+			<part name="?" type="d"/>
+			<macro id="loc" name="desc-loc" />
 		</packet>
 		<packet id="FE;0100" name="ExLoadStatWorldRank">
 			<part name="?" type="d" />

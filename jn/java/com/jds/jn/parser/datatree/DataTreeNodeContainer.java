@@ -116,6 +116,15 @@ public class DataTreeNodeContainer extends DataTreeNode
 		return null;
 	}
 
+	public DataForPart getFirstForById(int id)
+	{
+		for (DataTreeNode node : this.getNodes())
+		{
+			if (node.getModelPart() instanceof ForPart && ((ForPart) node.getModelPart()).getForId() == id)
+				return (DataForPart)node;
+		}
+		return null;
+	}
 
 	@Override
 	public int getBytesSize()

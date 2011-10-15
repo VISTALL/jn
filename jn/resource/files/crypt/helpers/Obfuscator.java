@@ -37,7 +37,7 @@ public class Obfuscator
 		int l = 0;
 
 		_firstSize = 0xd0;   //длина первых опкодов
-		_secondSize = 0xBE;   //длина вторых опкодов
+		_secondSize = 0xBF;   //длина вторых опкодов
 	//	_thirdSize = 0x06;   //длина треьих опкодов
 
 		_decodeTable1 = new int[_firstSize + 1];

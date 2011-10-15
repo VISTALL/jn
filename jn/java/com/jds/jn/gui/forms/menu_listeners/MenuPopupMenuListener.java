@@ -1,16 +1,26 @@
 package com.jds.jn.gui.forms.menu_listeners;
 
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+
 import com.jds.jn.gui.forms.PacketForm;
-import com.jds.jn.gui.forms.menu_items.*;
+import com.jds.jn.gui.forms.menu_items.AddAfterMenu;
+import com.jds.jn.gui.forms.menu_items.AddCasePartMenuItem;
+import com.jds.jn.gui.forms.menu_items.AddMenu;
+import com.jds.jn.gui.forms.menu_items.ChangeIdItem;
+import com.jds.jn.gui.forms.menu_items.ChangeMenu;
+import com.jds.jn.gui.forms.menu_items.CopyValueMenuItem;
+import com.jds.jn.gui.forms.menu_items.DeleteMenuItem;
+import com.jds.jn.gui.forms.menu_items.DeleteSwitchMenuItem;
+import com.jds.jn.gui.forms.menu_items.RenameMenuItem;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.jn.util.ImageStatic;
-
-import javax.swing.*;
-import javax.swing.event.PopupMenuEvent;
-import javax.swing.event.PopupMenuListener;
 
 /**
  * Author: VISTALL
@@ -42,6 +52,7 @@ public class MenuPopupMenuListener implements PopupMenuListener
 		{
 			ValuePart part = (ValuePart) node;
 
+			_menu.add(new CopyValueMenuItem(_form));
 			_menu.add(new RenameMenuItem(_form));
 			_menu.add(new AddMenu(_form));
 			_menu.add(new AddAfterMenu(_form));
