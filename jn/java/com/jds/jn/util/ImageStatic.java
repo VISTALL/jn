@@ -20,26 +20,26 @@ import com.jds.jn.parser.parttypes.PartType;
  */
 public class ImageStatic
 {
-	public static ResizableIcon START_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/start.png"), new Dimension(15, 15));
-	public static ResizableIcon STOP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/stop.png"), new Dimension(15, 15));
-	public static ResizableIcon SAVE_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/fsave.png"), new Dimension(15, 15));
-	public static ResizableIcon FILE_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/fopen.png"), new Dimension(15, 15));
+	public static ResizableIcon START_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/start.png"), new Dimension(15, 15));
+	public static ResizableIcon STOP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/stop.png"), new Dimension(15, 15));
+	public static ResizableIcon SAVE_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/fsave.png"), new Dimension(15, 15));
+	public static ResizableIcon FILE_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/fopen.png"), new Dimension(15, 15));
 	public static ResizableIcon SEARCH_PACKET_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/searchPacket.png"), new Dimension(15, 15));
-	public static ResizableIcon EXIT_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/exit.png"), new Dimension(15, 15));
-	public static ResizableIcon INFO_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/info.png"), new Dimension(15, 15));
+	public static ResizableIcon EXIT_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/exit.png"), new Dimension(15, 15));
+	public static ResizableIcon INFO_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/info.png"), new Dimension(15, 15));
 
-	public static ResizableIcon PROGRAM_SET_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/pset.png"), new Dimension(15, 15));
-	public static ResizableIcon PROGRAM_SET_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/pset2.png"), new Dimension(15, 15));
-	public static ResizableIcon NETWORK_SET_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/nset.png"), new Dimension(15, 15));
-	public static ResizableIcon NETWORK_SET_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/nset2.png"), new Dimension(15, 15));
+	public static ResizableIcon PROGRAM_SET_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/pset.png"), new Dimension(15, 15));
+	public static ResizableIcon PROGRAM_SET_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/pset2.png"), new Dimension(15, 15));
+	public static ResizableIcon NETWORK_SET_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/nset.png"), new Dimension(15, 15));
+	public static ResizableIcon NETWORK_SET_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/nset2.png"), new Dimension(15, 15));
 
-	public static ResizableIcon DOC_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/JnDoc24.png"), new Dimension(15, 15));
-	public static ResizableIcon HELP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/help.png"), new Dimension(15, 15));
-	public static ResizableIcon REFRESH_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/refresh.png"), new Dimension(15, 15));
+	public static ResizableIcon DOC_24x24 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/JnDoc24.png"), new Dimension(15, 15));
+	public static ResizableIcon HELP_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/help.png"), new Dimension(15, 15));
+	public static ResizableIcon REFRESH_48x48 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/refresh.png"), new Dimension(15, 15));
 
-	public static ResizableIcon JN_ICON_32 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_32.png"), new Dimension(32, 32));
-	public static ResizableIcon JN_ICON_16 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_16.png"), new Dimension(16, 16));
-	public static ResizableIcon JN_ICON_64 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/nimg/icon_64.png"), new Dimension(64, 64));
+	public static ResizableIcon JN_ICON_32 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/icon_32.png"), new Dimension(32, 32));
+	public static ResizableIcon JN_ICON_16 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/icon_16.png"), new Dimension(16, 16));
+	public static ResizableIcon JN_ICON_64 = ImageWrapperResizableIcon.getIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/icon_64.png"), new Dimension(64, 64));
 
 
 	public static final ImageIcon ICON_PLUS = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/add.png"));
@@ -49,6 +49,8 @@ public class ImageStatic
 	public static final ImageIcon ICON_PACKET = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/packet.png"));
 	public static final ImageIcon WARNING = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/warning.png"));
 	public static final ImageIcon PART_ID = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/id.png"));
+	public static final ImageIcon COPY = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/copy.png"));
+	public static final ImageIcon FIND = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/find.png"));
 
 	public static final ImageIcon CLOSE_ICON = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/close.png"));
 	public static final ImageIcon OPEN_ICON = new ImageIcon(ImageStatic.class.getResource("/com/jds/jn/resources/images/open.png"));

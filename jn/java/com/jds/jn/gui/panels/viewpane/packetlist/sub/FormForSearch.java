@@ -28,7 +28,6 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.jds.jn.config.RValues;
 import com.jds.jn.gui.panels.ViewPane;
-import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.packets.DecryptedPacket;
 import com.jds.jn.network.profiles.NetworkProfile;
 import com.jds.jn.network.profiles.NetworkProfiles;
@@ -65,8 +64,6 @@ public class FormForSearch extends JPanel
 	private JLabel _statusLabel;
 	private ViewPane _pane;
 
-	private int _currentIndex;
-
 	private static final String[] MATH_OPERATORS = {
 			"==",
 			"!=",
@@ -76,8 +73,8 @@ public class FormForSearch extends JPanel
 			"<="
 	};
 	private static final String[] STRING_OPERATORS = {
-			"equal",
-			"not equal"
+			"equals",
+			"equalsIgnoreCase"
 	};
 
 	private Map<String, PacketInfo> _formats = new HashMap<String, PacketInfo>();
@@ -168,17 +165,6 @@ public class FormForSearch extends JPanel
 			}
 		});
 
-		_operatorSelect.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				_currentIndex = 0;
-			}
-		});
-
-
 		buildPacketCache();
 
 		checkPartFields();
@@ -189,7 +175,6 @@ public class FormForSearch extends JPanel
 
 	private void checkOperators()
 	{
-		_currentIndex = 0;
 		_operatorSelect.removeAllItems();
 
 		Object selected = _partSelect.getSelectedItem();
@@ -272,7 +257,7 @@ public class FormForSearch extends JPanel
 		}
 		else
 		{
-			int index = search(_currentIndex);
+			int index = search0();
 
 			if(index >= 0)
 			{
@@ -280,7 +265,7 @@ public class FormForSearch extends JPanel
 				pt.setAutoscrolls(true);
 				pt.getSelectionModel().setSelectionInterval(index, index);
 				pt.scrollRectToVisible(pt.getCellRect(index, 0, true));
-				_currentIndex = index + 1;
+
 				setStatusLabel("Found", Color.GREEN);
 			}
 			else
@@ -323,7 +308,7 @@ public class FormForSearch extends JPanel
 			_statusLabel.setText("");
 	}
 
-	public int search(int startIndex)
+	private int search0()
 	{
 		Session session = _pane.getSession();
 		NetworkProfile profile = NetworkProfiles.getInstance().active();
@@ -331,7 +316,6 @@ public class FormForSearch extends JPanel
 		if(session == null || profile == null)
 			return -1;
 
-		ListenerType type = session.getListenerType();
 		List<DecryptedPacket> packets = session.getDecryptPackets();
 
 		PacketInfo packetInfo = _formats.get(_findText.getText());
@@ -354,11 +338,16 @@ public class FormForSearch extends JPanel
 			}
 		}
 
+		int prevResult = search0();
+		int startIndex = _pane.getDecryptedPacketListPane().getPacketTable().getSelectedRow();
+		if(startIndex == prevResult)
+			startIndex++;
+
 		for(int i = startIndex; i < size; i++)
 		{
 			DecryptedPacket gp = packets.get(i);
 			PacketInfo format = gp.getPacketInfo();
-			if(format == null || gp.hasError())
+			if(format != packetInfo || gp.hasError())
 				continue;
 
 			DataTreeNode p = gp.getRootNode().getPartByName(selectedPart.getName());
@@ -367,45 +356,66 @@ public class FormForSearch extends JPanel
 
 			Object partValue = ((VisualValuePart) p).getValue();
 
-			if(format == packetInfo)
+			switch(selectedPart.getType().getValueType())
 			{
-				Long longValue = null, selectedLongValue = null;
-				if(selectedPart.getType().getValueType() == PartType.PartValueType.DIGITAL)
-				{
-					longValue = ((Number) partValue).longValue();
-					selectedLongValue = ((Number) value).longValue();
-				}
-				switch(_operatorSelect.getSelectedIndex())
-				{
-					case 0: // ==
-						if(value.equals(partValue))
-							return i;
-						break;
-					case 1: // !=
-						if(!value.equals(partValue))
-							return i;
-						break;
-					case 2: // >
-						if(selectedLongValue > longValue)
-							return i;
-						break;
-					case 3: // >=
-						if(selectedLongValue > longValue)
-							return i;
-						break;
-					case 4: // <
-						if(selectedLongValue < longValue)
-							return i;
-						break;
-					case 5: // <=
-						if(selectedLongValue <= longValue)
-							return i;
-						break;
-				}
+				case DIGITAL:
+					Long longValue = ((Number) partValue).longValue();
+					Long selectedLongValue = ((Number) value).longValue();
+					switch(_operatorSelect.getSelectedIndex())
+					{
+						case 0: // ==
+							if(selectedLongValue.equals(longValue))
+								return i;
+							break;
+						case 1: // !=
+							if(!selectedLongValue.equals(longValue))
+								return i;
+							break;
+						case 2: // >
+							if(selectedLongValue > longValue)
+								return i;
+							break;
+						case 3: // >=
+							if(selectedLongValue > longValue)
+								return i;
+							break;
+						case 4: // <
+							if(selectedLongValue < longValue)
+								return i;
+							break;
+						case 5: // <=
+							if(selectedLongValue <= longValue)
+								return i;
+							break;
+					}
+					break;
+				case STRING:
+					switch(_operatorSelect.getSelectedIndex())
+					{
+						case 0: // equals
+							if(value.equals(partValue))
+								return i;
+							break;
+						case 1: // equalsIgnoreCase
+							if(((String) value).equalsIgnoreCase((String) partValue))
+								return i;
+							break;
+					}
+					break;
 			}
 		}
 
 		return -1;
+	}
+
+	public JTextField getFindText()
+	{
+		return _findText;
+	}
+
+	public JTextField getOperatorEqual()
+	{
+		return _operatorEqual;
 	}
 
 	/**

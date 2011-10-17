@@ -27,24 +27,22 @@ import javax.swing.JMenuItem;
 import com.jds.jn.gui.forms.PacketForm;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.util.Bundle;
-import com.jds.jn.util.ClipboardUtil;
 import com.jds.jn.util.ImageStatic;
 
 /**
  * @author VISTALL
  * @date 20:40/13.10.2011
  */
-public class CopyValueMenuItem extends JMenuItem
+public class SearchThisValueMenuItem extends JMenuItem
 {
-	public CopyValueMenuItem(final PacketForm form)
+	public SearchThisValueMenuItem(final PacketForm form)
 	{
-		super(Bundle.getString("CopyValue"));
+		super(Bundle.getString("SearchThisValue"));
 
-		setIcon(ImageStatic.COPY);
+		setIcon(ImageStatic.FIND);
 
 		addActionListener(new ActionListener()
 		{
-
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
@@ -68,7 +66,8 @@ public class CopyValueMenuItem extends JMenuItem
 					default:
 						return;
 				}
-				ClipboardUtil.setClipboard(value);
+
+				form.getPane().getDecryptedPacketListPane().getFormForSearch().getOperatorEqual().setText(value);
 			}
 		});
 	}

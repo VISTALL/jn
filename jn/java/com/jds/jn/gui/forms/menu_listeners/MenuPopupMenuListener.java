@@ -16,6 +16,7 @@ import com.jds.jn.gui.forms.menu_items.CopyValueMenuItem;
 import com.jds.jn.gui.forms.menu_items.DeleteMenuItem;
 import com.jds.jn.gui.forms.menu_items.DeleteSwitchMenuItem;
 import com.jds.jn.gui.forms.menu_items.RenameMenuItem;
+import com.jds.jn.gui.forms.menu_items.SearchThisValueMenuItem;
 import com.jds.jn.parser.datatree.DataSwitchBlock;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
@@ -53,6 +54,8 @@ public class MenuPopupMenuListener implements PopupMenuListener
 			ValuePart part = (ValuePart) node;
 
 			_menu.add(new CopyValueMenuItem(_form));
+			_menu.add(new SearchThisValueMenuItem(_form));
+			_menu.addSeparator();
 			_menu.add(new RenameMenuItem(_form));
 			_menu.add(new AddMenu(_form));
 			_menu.add(new AddAfterMenu(_form));

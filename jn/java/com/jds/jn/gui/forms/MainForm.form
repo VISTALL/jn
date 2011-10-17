@@ -58,7 +58,7 @@
               <contentAreaFilled value="true"/>
               <defaultCapable value="false"/>
               <focusPainted value="false"/>
-              <icon value="com/jds/jn/resources/nimg/gc.png"/>
+              <icon value="com/jds/jn/resources/images/gc.png"/>
               <requestFocusEnabled value="false"/>
               <rolloverEnabled value="true"/>
               <text value=""/>

@@ -72,8 +72,15 @@
 		</packet>
 		<packet id="D0;00A7" name="RequestUserStatistics" />
 		<packet id="D0;00B3" name="RequestFirstPlayStart" />
-		<packet id="D0;00B7" name="SendChangeAttributeTargetItem" />
-		<packet id="D0;00B8" name="RequestChangeAttributeItem" />
+		<packet id="D0;00B7" name="SendChangeAttributeTargetItem">
+			<part name="responce?" type="d"/>
+			<part name="object-id" type="d"/>
+		</packet>
+		<packet id="D0;00B8" name="RequestChangeAttributeItem">
+			<part name="responce?" type="d"/>
+			<part name="object-id" type="d"/>
+			<part name="attribute" type="d"/>
+		</packet>
 		<packet id="D0;00B4" name="RequestFlyMoveStart" />
 		<packet id="D0;00B5" name="RequestHardwareInfo">
 			<part name="?" type="S" />
@@ -838,7 +845,7 @@
 		</packet>
 		<packet id="FE;0118" name="ExChangeAttributeInfo">
 			<part name="response?" type="d"/>
-			<part name="?" type="d" />
+			<part name="bit-mask" type="d" />
 		</packet>
 		<packet id="FE;0119" name="ExChangeAttributeOk">
 			<part name="object-id" type="d"/>

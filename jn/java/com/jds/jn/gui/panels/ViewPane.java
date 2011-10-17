@@ -23,10 +23,8 @@ import com.jds.jn.session.Session;
 import com.jds.jn.util.Bundle;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date: 26.08.2009
- * Time: 17:15:02
+ * @author VISTALL
+ * @date 17:15:02/26.08.2009
  */
 public class ViewPane extends JTabbedPane
 {

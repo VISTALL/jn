@@ -99,7 +99,7 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		setExtendedState(JFrame.MAXIMIZED_HORIZ);
 
 		setMainAppIcon(ImageStatic.JN_ICON_32);
-		setIconImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/icon_64.png")));
+		setIconImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/images/icon_64.png")));
 
 		RibbonApplicationMenu menu = new RibbonApplicationMenu();
 		RibbonActions.ribbonMenu(menu);
@@ -357,7 +357,7 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		_gcButton.setContentAreaFilled(true);
 		_gcButton.setDefaultCapable(false);
 		_gcButton.setFocusPainted(false);
-		_gcButton.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/nimg/gc.png")));
+		_gcButton.setIcon(new ImageIcon(getClass().getResource("/com/jds/jn/resources/images/gc.png")));
 		_gcButton.setRequestFocusEnabled(false);
 		_gcButton.setRolloverEnabled(true);
 		_gcButton.setText("");

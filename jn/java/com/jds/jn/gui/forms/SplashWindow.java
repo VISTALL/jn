@@ -1,10 +1,11 @@
 package com.jds.jn.gui.forms;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+import javax.swing.JWindow;
 
 import com.jds.swing.JPicturePanel;
 
@@ -53,7 +54,7 @@ public class SplashWindow extends JWindow
 		JPicturePanel pp = new JPicturePanel();
 		try
 		{
-			pp.setImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/nimg/logo.png")));
+			pp.setImage(ImageIO.read(getClass().getResource("/com/jds/jn/resources/images/logo.png")));
 		}
 		catch (IOException e)
 		{
