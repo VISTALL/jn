@@ -1,18 +1,19 @@
 package packet_readers.lineage2.holders;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
+import java.util.Iterator;
+import java.util.zip.ZipInputStream;
 
 import org.apache.log4j.Logger;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.napile.primitive.maps.IntObjectMap;
 import org.napile.primitive.maps.impl.HashIntObjectMap;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date:  19:57:29/31.07.2010
+ * @author VISTALL
+ * @date 19:57:29/31.07.2010
  */
 public class ItemNameHolder
 {
@@ -32,45 +33,37 @@ public class ItemNameHolder
 
 	private ItemNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/itemname-e.tsv");
+		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/ItemName-ru.zip");
 		if(stream == null)
 		{
 			_log.info("Not exists");
 			return;
 		}
 
-		LineNumberReader lineReader = new LineNumberReader(new InputStreamReader(stream));
-
 		try
 		{
-			String line = null;
-			while((line = lineReader.readLine()) != null)
+			ZipInputStream zipInputStream = new ZipInputStream(stream);
+			if(zipInputStream.getNextEntry() != null)
 			{
-				if(line.contains("#"))
-					continue;
+				SAXReader reader = new SAXReader();
 
-				String[] st = line.split("\t");
-				int itemId = Integer.parseInt(st[0]);
-				String itemName = st[1];
+				Document document = reader.read(zipInputStream);
+				for(Iterator<Element> iterator = document.getRootElement().elementIterator(); iterator.hasNext();)
+				{
+					Element e = iterator.next();
 
-				_itemNames.put(itemId, itemName);
+					int itemId = Integer.parseInt(e.element("item_id").getText());
+					String name = e.element("name").getText();
+
+					_itemNames.put(itemId, name);
+				}
 			}
 		}
-		catch (IOException e)
+		catch(Exception e)
 		{
-			_log.info("Exception: " + e, e);
+			_log.warn("Exception:" + e, e);
 		}
-		finally
-		{
-			try
-			{
-				lineReader.close();
-			}
-			catch (IOException e)
-			{
-				//
-			}
-		}
+
 		_itemNames.put(-100, "Clan Reputation");
 		_itemNames.put(-200, "Pc Bang Point");
 		_itemNames.put(-300, "Fame");

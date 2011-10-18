@@ -15,6 +15,7 @@ import com.jds.jn.network.packets.DecryptedPacket;
 public class L2NpcInfo extends L2DialogObject
 {
 	private final String _name;
+	private final String _title;
 	private final int _npcId;
 
 	private final int _pAttackSpeed;
@@ -39,6 +40,7 @@ public class L2NpcInfo extends L2DialogObject
 	{
 		_npcId = p.getInt("npcId") - 1000000;
 		_name = NpcNameHolder.getInstance().name(_npcId);
+		_title = NpcNameHolder.getInstance().title(_npcId);
 		_mAttackSpeed = p.getInt("mAttackSpeed");
 		_pAttackSpeed = p.getInt("pAttackSpeed");
 		_runSpd = p.getInt("run_spd");
@@ -58,40 +60,41 @@ public class L2NpcInfo extends L2DialogObject
 	public String toXML()
 	{
 		String xml =
-				"\t<npc id=\"%npcId%\" name=\"%name%\">\n" +
-				"\t\t<set name=\"collision_radius\" val=\"%collisionRadius%\" />\n" +
-				"\t\t<set name=\"collision_height\" val=\"%collisionHeight%\" />\n" +
-				"\t\t<set name=\"level\" val=\"%level%\" />\n" +
-				"\t\t<set name=\"type\" val=\"Npc\" />\n" +
-				"\t\t<set name=\"ai_type\" val=\"NpcAI\" />\n" +
-				"\t\t<set name=\"baseAtkRange\" val=\"40\" />\n" +
-				"\t\t<set name=\"baseHpMax\" val=\"%hp%\" />\n" +
-				"\t\t<set name=\"baseMpMax\" val=\"%mp%\" />\n" +
-				"\t\t<set name=\"baseHpReg\" val=\"7.5\" />\n" +
-				"\t\t<set name=\"baseMpReg\" val=\"2.7\" />\n" +
-				"\t\t<set name=\"baseSTR\" val=\"40\" />\n" +
-				"\t\t<set name=\"baseCON\" val=\"43\" />\n" +
-				"\t\t<set name=\"baseDEX\" val=\"30\" />\n" +
-				"\t\t<set name=\"baseINT\" val=\"21\" />\n" +
-				"\t\t<set name=\"baseWIT\" val=\"20\" />\n" +
-				"\t\t<set name=\"baseMEN\" val=\"10\" />\n" +
-				"\t\t<set name=\"rewardExp\" val=\"0\" />\n" +
-				"\t\t<set name=\"rewardSp\" val=\"0\" />\n" +
-				"\t\t<set name=\"rewardRp\" val=\"0\" />\n" +
-				"\t\t<set name=\"basePAtk\" val=\"500\" />\n" +
-				"\t\t<set name=\"basePDef\" val=\"500\" />\n" +
-				"\t\t<set name=\"baseMAtk\" val=\"500\" />\n" +
-				"\t\t<set name=\"baseMDef\" val=\"500\" />\n" +
-				"\t\t<set name=\"basePAtkSpd\" val=\"%pAttackSpeed%\" />\n" +
-				"\t\t<set name=\"baseMAtkSpd\" val=\"%mAttackSpeed%\" />\n" +
-				"\t\t<set name=\"aggroRange\" val=\"0\" />\n" +
-				"\t\t<set name=\"baseWalkSpd\" val=\"%walkSpd%\" />\n" + 
-				"\t\t<set name=\"baseRunSpd\" val=\"%runSpd%\" />\n" +
-				"\t\t<set name=\"baseShldDef\" val=\"0\" />\n" +
-				"\t\t<set name=\"baseShldRate\" val=\"0\" />\n" +
-				"\t\t<set name=\"baseCrit\" val=\"40\" />\n" +
-				"\t\t<set name=\"texture\" val=\"\" />\n" +
-				"\t\t<set name=\"shots\" val=\"NONE\" />\n";
+				"\t<npc id=\"%npcId%\" name=\"%name%\" title=\"%title%\">\n" +
+				"\t\t<set name=\"collision_radius\" value=\"%collisionRadius%\" />\n" +
+				"\t\t<set name=\"collision_height\" value=\"%collisionHeight%\" />\n" +
+				"\t\t<set name=\"level\" value=\"%level%\" />\n" +
+				"\t\t<set name=\"type\" value=\"Npc\" />\n" +
+				"\t\t<set name=\"ai_type\" value=\"CharacterAI\" />\n" +
+				"\t\t<set name=\"baseAtkRange\" value=\"40\" />\n" +
+				"\t\t<set name=\"baseAtkType\" value=\"SWORD\" />\n" +
+				"\t\t<set name=\"baseHpMax\" value=\"%hp%\" />\n" +
+				"\t\t<set name=\"baseMpMax\" value=\"%mp%\" />\n" +
+				"\t\t<set name=\"baseHpReg\" value=\"7.5\" />\n" +
+				"\t\t<set name=\"baseHpRate\" value=\"1\" />\n" +
+				"\t\t<set name=\"baseMpReg\" value=\"2.7\" />\n" +
+				"\t\t<set name=\"baseSTR\" value=\"40\" />\n" +
+				"\t\t<set name=\"baseCON\" value=\"43\" />\n" +
+				"\t\t<set name=\"baseDEX\" value=\"30\" />\n" +
+				"\t\t<set name=\"baseINT\" value=\"21\" />\n" +
+				"\t\t<set name=\"baseWIT\" value=\"20\" />\n" +
+				"\t\t<set name=\"baseMEN\" value=\"10\" />\n" +
+				"\t\t<set name=\"rewardExp\" value=\"0\" />\n" +
+				"\t\t<set name=\"rewardSp\" value=\"0\" />\n" +
+				"\t\t<set name=\"rewardRp\" value=\"0\" />\n" +
+				"\t\t<set name=\"basePAtk\" value=\"500\" />\n" +
+				"\t\t<set name=\"basePDef\" value=\"500\" />\n" +
+				"\t\t<set name=\"baseMAtk\" value=\"500\" />\n" +
+				"\t\t<set name=\"baseMDef\" value=\"500\" />\n" +
+				"\t\t<set name=\"basePAtkSpd\" value=\"%pAttackSpeed%\" />\n" +
+				"\t\t<set name=\"baseMAtkSpd\" value=\"%mAttackSpeed%\" />\n" +
+				"\t\t<set name=\"aggroRange\" value=\"0\" />\n" +
+				"\t\t<set name=\"baseWalkSpd\" value=\"%walkSpd%\" />\n" + 
+				"\t\t<set name=\"baseRunSpd\" value=\"%runSpd%\" />\n" +
+				"\t\t<set name=\"baseShldDef\" value=\"0\" />\n" +
+				"\t\t<set name=\"baseShldRate\" value=\"0\" />\n" +
+				"\t\t<set name=\"baseCritRate\" value=\"40\" />\n" +
+				"\t\t<set name=\"texture\" value=\"\" />\n";
 
 		if(_armor != 0 || _lhand != 0 || _rhand != 0)
 		{

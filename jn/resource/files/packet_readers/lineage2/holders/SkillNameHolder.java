@@ -1,11 +1,13 @@
 package packet_readers.lineage2.holders;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
+import java.util.Iterator;
+import java.util.zip.ZipInputStream;
 
 import org.apache.log4j.Logger;
+import org.dom4j.Document;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.napile.primitive.maps.IntObjectMap;
 import org.napile.primitive.maps.impl.HashIntObjectMap;
 
@@ -32,45 +34,36 @@ public class SkillNameHolder
 
 	private SkillNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/skillname-e.tsv");
+		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/SkillName-ru.zip");
 		if(stream == null)
 		{
 			_log.info("Not exists");
 			return;
 		}
 
-		LineNumberReader lineReader = new LineNumberReader(new InputStreamReader(stream));
-
 		try
 		{
-			String line = null;
-			while((line = lineReader.readLine()) != null)
+			ZipInputStream zipInputStream = new ZipInputStream(stream);
+			if(zipInputStream.getNextEntry() != null)
 			{
-				if(line.contains("#"))
-					continue;
+				SAXReader reader = new SAXReader();
 
-				String[] st = line.split("\t");
-				int id = Integer.parseInt(st[0]);
-				int level = Integer.parseInt(st[1]);
-				String name = st[2];
+				Document document = reader.read(zipInputStream);
+				for(Iterator<Element> iterator = document.getRootElement().elementIterator(); iterator.hasNext();)
+				{
+					Element e = iterator.next();
 
-				_skillNames.put(hashCode(id, level), name);
+					int id = Integer.parseInt(e.element("id").getText());
+					int level = Integer.parseInt(e.element("level").getText());
+					String name = e.element("name").getText();
+
+					_skillNames.put(hashCode(id, level), name);
+				}
 			}
 		}
-		catch (IOException e)
+		catch(Exception e)
 		{
-			_log.info("Exception: " + e, e);
-		}
-		finally
-		{
-			try
-			{
-				lineReader.close();
-			}
-			catch (IOException e)
-			{
-				//
-			}
+			_log.warn("Exception:" + e, e);
 		}
 
 		_log.info("Load skills names " + _skillNames.size());

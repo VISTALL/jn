@@ -257,7 +257,7 @@ public class FormForSearch extends JPanel
 		}
 		else
 		{
-			int index = search0();
+			int index = search0(false);
 
 			if(index >= 0)
 			{
@@ -308,7 +308,7 @@ public class FormForSearch extends JPanel
 			_statusLabel.setText("");
 	}
 
-	private int search0()
+	private int search0(boolean prev)
 	{
 		Session session = _pane.getSession();
 		NetworkProfile profile = NetworkProfiles.getInstance().active();
@@ -338,7 +338,7 @@ public class FormForSearch extends JPanel
 			}
 		}
 
-		int prevResult = search0();
+		int prevResult = prev ? -1 : search0(true);
 		int startIndex = _pane.getDecryptedPacketListPane().getPacketTable().getSelectedRow();
 		if(startIndex == prevResult)
 			startIndex++;

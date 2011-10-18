@@ -78,8 +78,9 @@ public class L2NpcBMListsListener extends L2AbstractListener
 				{
 					int itemId = ((VisualValuePart) block.getPartByName("itemId")).getValueAsInt();
 					long count = ((VisualValuePart) block.getPartByName("count")).getValueAsLong();
+					int chance = ((VisualValuePart) block.getPartByName("change-to-get")).getValueAsInt();
 
-					entry.addProduction(new L2ItemComponent(itemId, count));
+					entry.addProduction(new L2ItemComponent(itemId, count, chance));
 				}
 
 				for (DataForBlock block : ingridients.getNodes())
@@ -87,7 +88,7 @@ public class L2NpcBMListsListener extends L2AbstractListener
 					int itemId = ((VisualValuePart) block.getPartByName("itemId")).getValueAsInt();
 					long count = ((VisualValuePart) block.getPartByName("count")).getValueAsLong();
 
-					entry.addIngridient(new L2ItemComponent(itemId, count));
+					entry.addIngridient(new L2ItemComponent(itemId, count, 0));
 				}
 
 				multisell.addEntry(entry);
@@ -120,7 +121,7 @@ public class L2NpcBMListsListener extends L2AbstractListener
 							int itemId = ((VisualValuePart) macro.getPartByName("item_id")).getValueAsInt();
 							//long count = ((VisualValuePart) macro.getPartByName("count")).getValueAsLong();
 
-							buy.addItem(new L2ItemComponent(itemId, 1));
+							buy.addItem(new L2ItemComponent(itemId, 1, 0));
 						}
 					}
 				}
@@ -137,16 +138,19 @@ public class L2NpcBMListsListener extends L2AbstractListener
 			writer.write("<?xml version='1.0' encoding='utf-8'?>\n");
 			writer.write("<!DOCTYPE list SYSTEM \"multisell.dtd\">\n");
 			writer.write("<list>\n");
-			writer.write(String.format("\t<multisell id=\"%d\" type=\"%s\">\n", multisell.getId(), multisell.getType().name()));
+			writer.write(String.format("\t<config type=\"%s\" />\n",  multisell.getType().name()));
 			for(L2MultiSellEntry entry : multisell.getEntries())
 			{
-				writer.write(String.format("\t\t<item id=\"%d\">\n", entry.getId()));
+				writer.write("\t<item>\n");
 				for(L2ItemComponent ingridient : entry.getIngridients())
-					writer.write(String.format("\t\t\t<ingredient id=\"%d\" count=\"%d\" /> <!--%s-->\n", ingridient.getItemId(), ingridient.getCount(), ItemNameHolder.getInstance().name(ingridient.getItemId())));
+					writer.write(String.format("\t\t<ingredient id=\"%d\" count=\"%d\" /> <!--%s-->\n", ingridient.getItemId(), ingridient.getCount(), ItemNameHolder.getInstance().name(ingridient.getItemId())));
 
 				for(L2ItemComponent production : entry.getProductions())
-					writer.write(String.format("\t\t\t<production id=\"%d\" count=\"%d\" /> <!--%s-->\n", production.getItemId(), production.getCount(), ItemNameHolder.getInstance().name(production.getItemId())));
-				writer.write("\t\t</item>\n");
+					if(production.getChance() > 0)
+						writer.write(String.format("\t\t<production id=\"%d\" count=\"%d\" chance=\"%d\"/> <!--%s-->\n", production.getItemId(), production.getCount(), production.getChance(), ItemNameHolder.getInstance().name(production.getItemId())));
+					else
+						writer.write(String.format("\t\t<production id=\"%d\" count=\"%d\" /> <!--%s-->\n", production.getItemId(), production.getCount(), ItemNameHolder.getInstance().name(production.getItemId())));
+				writer.write("\t</item>\n");
 			}
 			writer.write("</list>");
 			writer.close();

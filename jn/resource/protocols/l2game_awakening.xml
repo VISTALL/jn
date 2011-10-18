@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_awakening" extends="l2game_highfive5">
-	<!---<session_listeners>
+	<session_listeners>
 		<listener name="lineage2.listeners.L2MagicSkillUserListener" />
 		<listener name="lineage2.listeners.L2AirShipTeleportListListener" />
 		<listener name="lineage2.listeners.L2NpcBMListsListener" />
@@ -10,7 +10,7 @@
 		<listener name="lineage2.listeners.L2NpcSpawnListener" />
 		<listener name="lineage2.listeners.L2ServerObjectInfoListener" />
 		<listener name="lineage2.listeners.L2JumpListener" />
-	</session_listeners>  -->
+	</session_listeners>
 	<macro id="item">
 		<part name="obj_id" type="d"/>
 		<part name="item_id" type="d">
@@ -1105,7 +1105,7 @@
 					<part name="type2" type="h"/>
 					<part name="count" type="Q"/>
 					<part name="enchant" type="h"/>
-					<part name="?" type="d"/>
+					<part name="change-to-get" type="d"/>
 					<part name="aug" type="d"/>
 					<part name="aug" type="d"/>
 					<part name="attackElement" type="h"/>
