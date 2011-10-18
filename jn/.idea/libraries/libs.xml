@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resource/libs/swingx.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/tools.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/trident.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/forms_rt.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/javolution-5.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/log4j-1.2.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/org.napile.primitive.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/bridj-0.5-SNAPSHOT-shaded.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/commons-io-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/resource/libs/dom4j-2.0.0-alpha-2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

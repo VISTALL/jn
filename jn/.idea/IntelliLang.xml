@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="LanguageInjectionConfiguration">
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+    <injection language="MySQL" injector-id="java">
+      <display-name>Writer.write (java.io)</display-name>
+      <place disabled="true"><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("write").withParameters("java.lang.String").definedInClass("java.io.Writer"))]]></place>
+    </injection>
+  </component>
+</project>
+
