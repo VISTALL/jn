@@ -18,20 +18,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="6a76865f-32f4-405e-8d83-898f8fe5fd21" name="Default" comment="">
-      <change type="DELETED" beforePath="W:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\itemname-e.tsv" afterPath="" />
-      <change type="DELETED" beforePath="W:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\npcname-e.tsv" afterPath="" />
-      <change type="DELETED" beforePath="W:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\skillname-e.tsv" afterPath="" />
-      <change type="DELETED" beforePath="W:\jn\trunk\jn\java\com\jds\jn\util\xml\SimpleDTDEntryResolver.java" afterPath="" />
-      <change type="DELETED" beforePath="W:\jn\trunk\jn\java\com\jds\jn\util\xml\SimpleErrorHandler.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java-test/com/jds/jn/JnTest.java" afterPath="$PROJECT_DIR$/java-test/com/jds/jn/JnTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ItemComponent.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ItemComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2MultiSell.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2MultiSell.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2NpcInfo.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2NpcInfo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2SpawnLocInfo.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2SpawnLocInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcBMListsListener.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcBMListsListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/protocol.dtd" afterPath="$PROJECT_DIR$/resource/protocols/protocol.dtd" />
     </list>
     <ignored path="jn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,31 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="L2NpcBMListsListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcBMListsListener.java">
+      <file leaf-file-name="l2game_awakening.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="152" column="30" selection-start="5582" selection-end="5582" vertical-scroll-proportion="0.0">
+            <state line="1523" column="29" selection-start="51835" selection-end="51835" vertical-scroll-proportion="0.25845146">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="71903-36-54 18.10.2011.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resource/saves/npc_multisell/71903-36-54 18.10.2011.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="0" selection-start="0" selection-end="27384" vertical-scroll-proportion="0.0543131">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="L2NpcInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2NpcInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="60" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -137,22 +112,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/java/com/jds/jn/gui/forms/menu_items/SearchThisValueMenuItem.java" />
-        <option value="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" />
-        <option value="$PROJECT_DIR$/resource/saves/npc_data/02-42-49 18.10.2011.xml" />
-        <option value="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ItemComponent.java" />
-        <option value="H:/overworld-branches-awakening/dist/gameserver/data/multisell/multisell.dtd" />
-        <option value="$PROJECT_DIR$/resource/saves/npc_multisell/71902-58-20 18.10.2011.xml" />
-        <option value="$PROJECT_DIR$/java-test/com/jds/jn/JnTest.java" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" />
         <option value="$PROJECT_DIR$/resource/saves/npc_data/03-20-11 18.10.2011.xml" />
         <option value="$PROJECT_DIR$/resource/saves/spawn_data/03-20-11 18.10.2011.xml" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2NpcInfo.java" />
         <option value="$PROJECT_DIR$/resource/saves/npc_multisell/71903-16-29 18.10.2011.xml" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcBMListsListener.java" />
+        <option value="$PROJECT_DIR$/resource/saves/npc_multisell/71905-46-42 18.10.2011.xml" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2MultiSell.java" />
+        <option value="$PROJECT_DIR$/resource/protocols/protocol.dtd" />
+        <option value="$PROJECT_DIR$/resource/saves/spawn_data/02-13-34 19.10.2011.xml" />
+        <option value="$PROJECT_DIR$/resource/saves/spawn_data/02-16-21 19.10.2011.xml" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2SpawnLocInfo.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2NpcInfo.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java" />
+        <option value="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
+        <option value="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" />
       </list>
     </option>
   </component>
@@ -210,6 +185,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -256,208 +233,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="saves" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="saves" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="npc_multisell" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="part_readers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="packet_readers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lineage2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="packet_readers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lineage2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="packet_readers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="org" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jds" />
+              <option name="myItemId" value="protocols" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Favorites" />
     </panes>
   </component>
@@ -477,9 +258,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -587,6 +368,16 @@
         <option name="PhingTarget" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" />
       <module name="" />
@@ -612,16 +403,6 @@
         <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
         <option name="PhingTarget" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
       </method>
     </configuration>
     <configuration default="false" name="Jn" type="Application" factoryName="Application">
@@ -735,6 +516,10 @@
           <option name="myVcsRoot" value="W:\jn\trunk\jn-module" />
           <option name="myCopyRoot" value="W:\jn\trunk\jn-module" />
         </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="W:\jn\trunk\jn\.idea" />
+          <option name="myCopyRoot" value="W:\jn\trunk\jn\.idea" />
+        </SvnCopyRootSimple>
       </list>
     </option>
     <option name="myMoreRealMappingRoots">
@@ -780,7 +565,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -792,10 +577,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.67098165" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42962962" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901832" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995194" sideWeight="0.39805827" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.6931217" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.6931217" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3068783" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28333333" sideWeight="0.67089945" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="132" width="1736" height="856" />
@@ -805,6 +589,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32804233" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Notes" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995194" sideWeight="0.67098165" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42962962" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -941,97 +726,84 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
+    <entry file="file://$PROJECT_DIR$/resource/protocols/protocol.dtd">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1107" column="32" selection-start="38236" selection-end="38249" vertical-scroll-proportion="-13.16">
-          <folding />
-        </state>
+        <state line="6" column="10" selection-start="217" selection-end="217" vertical-scroll-proportion="0.1629393" />
       </provider>
     </entry>
-    <entry file="file://H:/overworld-branches-awakening/dist/gameserver/data/multisell/multisell.dtd">
+    <entry file="jar://H:/programs/JDK/src.zip!/java/lang/Comparable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="10" selection-start="212" selection-end="212" vertical-scroll-proportion="0.2172524">
-          <folding />
-        </state>
+        <state line="85" column="67" selection-start="3995" selection-end="3995" vertical-scroll-proportion="0.3514377" />
       </provider>
     </entry>
-    <entry file="jar://H:/programs/JDK/src.zip!/java/util/zip/ZipInputStream.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="363" column="17" selection-start="10103" selection-end="10103" vertical-scroll-proportion="0.33260632">
-          <folding />
-        </state>
+        <state line="44" column="20" selection-start="1252" selection-end="1252" vertical-scroll-proportion="0.610687" />
       </provider>
     </entry>
-    <entry file="jar://H:/programs/JDK/src.zip!/java/util/zip/ZipEntry.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/aion/infos/AionLoc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="16" selection-start="4126" selection-end="4126" vertical-scroll-proportion="0.33260632">
-          <folding />
-        </state>
+        <state line="6" column="13" selection-start="102" selection-end="102" vertical-scroll-proportion="-0.49361023" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/util/xml/AbstractParser.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/aion/infos/AionNpc.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="11" selection-start="832" selection-end="832" vertical-scroll-proportion="0.519084">
-          <folding />
-        </state>
+        <state line="12" column="13" selection-start="287" selection-end="287" vertical-scroll-proportion="0.2172524" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/util/logging/LoggingService.java">
+    <entry file="jar://H:/programs/JDK/src.zip!/java/lang/Object.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="27" selection-start="228" selection-end="242" vertical-scroll-proportion="0.129771">
-          <folding />
-        </state>
+        <state line="132" column="19" selection-start="6092" selection-end="6092" vertical-scroll-proportion="0.658147" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java-test/com/jds/jn/JnTest.java">
+    <entry file="jar://H:/programs/JDK/src.zip!/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="285" selection-end="285" vertical-scroll-proportion="0.259542">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="375" column="32" selection-start="14505" selection-end="14505" vertical-scroll-proportion="0.5223642" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java">
+    <entry file="jar://H:/programs/JDK/src.zip!/java/util/HashSet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="806" selection-end="1568" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="199" column="16" selection-start="7947" selection-end="7947" vertical-scroll-proportion="0.35942492" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java">
+    <entry file="jar://H:/programs/JDK/src.zip!/java/util/Set.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="50" selection-start="840" selection-end="840" vertical-scroll-proportion="0.018538713">
-          <folding />
-        </state>
+        <state line="205" column="0" selection-start="9079" selection-end="9079" vertical-scroll-proportion="0.33226836" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2SpawnLocInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="72" selection-start="2003" selection-end="2003" vertical-scroll-proportion="0.90730643">
-          <folding />
-        </state>
+        <state line="56" column="13" selection-start="793" selection-end="793" vertical-scroll-proportion="0.8370607" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2NpcInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="60" selection-start="2417" selection-end="2417" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
+        <state line="40" column="11" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-0.0010905125" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcBMListsListener.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcInfoListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="30" selection-start="5582" selection-end="5582" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="40" column="27" selection-start="931" selection-end="931" vertical-scroll-proportion="0.39823008" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/saves/npc_multisell/71903-36-54 18.10.2011.xml">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="0" selection-end="27384" vertical-scroll-proportion="0.0543131">
+        <state line="93" column="55" selection-start="2673" selection-end="2673" vertical-scroll-proportion="0.7931416" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1437" column="0" selection-start="53763" selection-end="54237" vertical-scroll-proportion="0.33333334" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2532" column="42" selection-start="92696" selection-end="92696" vertical-scroll-proportion="0.49361023" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1523" column="29" selection-start="51835" selection-end="51835" vertical-scroll-proportion="0.25845146">
           <folding />
         </state>
       </provider>

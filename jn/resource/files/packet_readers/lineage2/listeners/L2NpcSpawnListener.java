@@ -21,6 +21,9 @@ import packet_readers.lineage2.infos.L2SpawnLocInfo;
  */
 public class L2NpcSpawnListener extends L2AbstractListener
 {
+	public static final int MAP_MIN_X = 11 - 20 << 15;
+	public static final int MAP_MIN_Y = 10 - 18 << 15;
+
 	private static final String USER_INFO = "UserInfo";
 	private static final String MY_TARGET_SELECTED = "MyTargetSelected";
 
@@ -63,7 +66,10 @@ public class L2NpcSpawnListener extends L2AbstractListener
 	{
 		Collection<L2NpcInfo> npcs = _world.valuesNpc();
 		FileWriter writer = new FileWriter(getLogFile("npc_data/", "xml"));
-		writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + "<list>\n");
+		writer.write(
+				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+				"<!DOCTYPE list SYSTEM \"npc.dtd\">\n" +
+				"<list>\n");
 		for(L2NpcInfo npc : npcs)
 			writer.write(npc.toXML());
 		writer.write("</list>");
@@ -72,19 +78,21 @@ public class L2NpcSpawnListener extends L2AbstractListener
 		writer = new FileWriter(getLogFile("spawn_data/", "xml"));
 		writer.write(
 				"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
+				"<!DOCTYPE list SYSTEM \"spawn.dtd\">\n" +
 				"<list>\n");
 		for(L2NpcInfo npc : npcs)
-		{
 			for(L2SpawnLocInfo spawnLocInfo : npc.getSpawnLoc())
 			{
+				int x = (spawnLocInfo.getX() - MAP_MIN_X >> 15) + 11;
+				int y = (spawnLocInfo.getY() - MAP_MIN_Y >> 15) + 10;
 				String text =
+						"\t<!--geo %d_%d-->\n" +
 						"\t<spawn count=\"1\" respawn=\"60\" respawn_random=\"0\" period_of_day=\"none\">\n" +
 						"\t\t<point x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\" />\n" +
 						"\t\t<npc id=\"%d\" /><!--%s-->\n" +
 						"\t</spawn>\n";
-				writer.write(String.format(text, spawnLocInfo.getX(), spawnLocInfo.getY(), spawnLocInfo.getZ(), spawnLocInfo.getH(), npc.getNpcId(), NpcNameHolder.getInstance().name(npc.getNpcId())));
+				writer.write(String.format(text, x, y, spawnLocInfo.getX(), spawnLocInfo.getY(), spawnLocInfo.getZ(), spawnLocInfo.getH(), npc.getNpcId(), NpcNameHolder.getInstance().name(npc.getNpcId())));
 			}
-		}
 		writer.write("</list>");
 		writer.close();
 	}

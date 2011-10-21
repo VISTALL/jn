@@ -33,6 +33,8 @@ public class L2NpcInfo extends L2DialogObject
 	private final int _armor;
 	private final int _lhand;
 
+	private final boolean _showName;
+
 	private final Map<Integer, L2SkillInfo> _skills = new HashMap<Integer, L2SkillInfo>();
 	private final Set<L2SpawnLocInfo> _spawnLocInfo;
 
@@ -52,6 +54,7 @@ public class L2NpcInfo extends L2DialogObject
 		_lhand = p.getInt("lhand");
 		_hp = p.getInt("max_hp");
 		_mp = p.getInt("max_mp");
+		_showName = p.getInt("show_name") == 1;
 
 		_spawnLocInfo = new HashSet<L2SpawnLocInfo>();
 		_spawnLocInfo.add(new L2SpawnLocInfo(p));
@@ -118,6 +121,13 @@ public class L2NpcInfo extends L2DialogObject
 			for(L2SkillInfo info : _skills.values())
 				xml += String.format("\t\t\t<skill id=\"%d\" level=\"%d\" /> <!--%s-->\n", info.getId(), info.getLevel(), SkillNameHolder.getInstance().name(info.getId(), info.getLevel()));
 			xml += "\t\t</skills>\n";
+		}
+
+		if(!_showName)
+		{
+			xml += "\t\t<ai_params>\n";
+			xml += "\t\t\t<set name=\"showName\" value=\"false\" />\n";
+			xml += "\t\t</ai_params>\n";
 		}
 
 		xml += "\t</npc>\n";

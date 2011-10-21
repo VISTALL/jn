@@ -33,7 +33,7 @@
 <!ELEMENT switch (case)*>
 <!ATTLIST switch
 	id CDATA #REQUIRED>
-<!ELEMENT case (part|for)*>
+<!ELEMENT case (part|for|macro)*>
 <!ATTLIST case
 	id CDATA #REQUIRED
 	name CDATA #IMPLIED>

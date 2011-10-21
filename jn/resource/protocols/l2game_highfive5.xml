@@ -2523,14 +2523,14 @@
 		<packet id="D0;0064" name="RequestMpccPartyMasterList"/>
 		<packet id="D0;0065" name="RequestPostItemList"/>
 		<packet id="D0;0066" name="RequestSendPost"/>
-		<packet id="D0;0067" name="RequestRequestReceivedPostList"/>
+		<packet id="D0;0067" name="RequestReceivedPostList"/>
 		<packet id="D0;0068" name="RequestDeleteReceivedPost"/>
-		<packet id="D0;0069" name="RequestRequestReceivedPost"/>
+		<packet id="D0;0069" name="RequestReceivedPost"/>
 		<packet id="D0;006A" name="RequestReceivePost"/>
 		<packet id="D0;006B" name="RequestRejectPost"/>
 		<packet id="D0;006C" name="RequestSentPostList"/>
 		<packet id="D0;006D" name="RequestDeleteSentPost"/>
-		<packet id="D0;006E" name="RequestRequestSentPost"/>
+		<packet id="D0;006E" name="RequestSentPost"/>
 		<packet id="D0;006F" name="RequestCancelSentPost"/>
 		<packet id="D0;0070" name="RequestShowNewUserPetition"/>
 		<packet id="D0;0071" name="RequestShowStepThree"/>

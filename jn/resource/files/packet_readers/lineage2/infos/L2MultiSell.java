@@ -12,7 +12,7 @@ public class L2MultiSell
 	public static enum MultisellType
 	{
 		NORMAL_SELL,
-		DYE_SELL;
+		CHANCE_SELL;
 
 		public static final MultisellType[] VALUES = values();
 	}

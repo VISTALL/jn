@@ -11,6 +11,42 @@
 		<listener name="lineage2.listeners.L2ServerObjectInfoListener" />
 		<listener name="lineage2.listeners.L2JumpListener" />
 	</session_listeners>
+	<macro id="commission_part">
+		<part name="time" type="d">
+			<reader type="Timestamp" />
+		</part>
+		<part name="part" type="d" />
+		<part name="items-size" type="d" id="1" />
+		<for id="1">
+			<part name="object_id" type="Q" />
+			<part name="price" type="Q" />
+			<part name="group" type="d" />
+			<part name="?" type="d" />
+			<part name="time" type="d">
+				<reader type="Timestamp" />
+			</part>
+			<part name="name" type="S" />
+			<part name="?" type="d" />
+			<part name="item-id" type="d" />
+			<part name="count" type="Q" />
+			<part name="item-type-2" type="h" />
+			<part name="?" type="h" />
+			<part name="?" type="h"/>
+			<part name="enchant-level" type="h"/>
+			<part name="?" type="h"/>
+			<part name="attack-element" type="h"/>
+			<part name="attack-value" type="h"/>
+			<part name="water" type="h"/>
+			<part name="fire" type="h"/>
+			<part name="earth" type="h"/>
+			<part name="wind" type="h"/>
+			<part name="dark" type="h"/>
+			<part name="holy" type="h"/>
+			<part name="enchant-effect-1" type="h"/>
+			<part name="enchant-effect-2" type="h"/>
+			<part name="enchant-effect-3" type="h"/>
+		</for>
+	</macro>
 	<macro id="item">
 		<part name="obj_id" type="d"/>
 		<part name="item_id" type="d">
@@ -157,32 +193,35 @@
 			<part name="?" type="d"/>
 		</packet>
 		<packet id="D0;00A0" name="RequestCommissionList">
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="S"/>
+			<part name="group" type="d"/>
+			<part name="sub_group" type="d"/>
+			<part name="rare" type="d"/>
+			<part name="grade" type="d"/>
+			<part name="name" type="S"/>
 		</packet>
 		<packet id="D0;009D" name="RequestCommissionRegister">
 			<part name="item-object-id" type="d"/>
-			<part name="?" type="S"/>
+			<part name="item-name" type="S"/>
 			<part name="price" type="Q"/>
 			<part name="count" type="Q"/>
-			<part name="?" type="d"/>
+			<part name="day-count" type="d"/>
 		</packet>
 		<packet id="D0;009A" name="RequestInzonePartyInfoHistory" />
 		<packet id="D0;009B" name="RequestCommissionRegistrableItemList" />
 		<packet id="D0;009E" name="RequestCommissionCancel" />
 		<packet id="D0;009F" name="RequestCommissionDelete">
 			<part name="object_id" type="Q"/>
-			<part name="?" type="d"/>
+			<part name="group" type="d"/>
 			<part name="?" type="d"/>
 		</packet>
 		<packet id="D0;00A1" name="RequestCommissionBuyInfo">
 			<part name="object_id" type="Q"/>
-			<part name="?" type="d"/>
+			<part name="group" type="d"/>
 		</packet>
-		<packet id="D0;00A2" name="RequestCommissionBuyItem" />
+		<packet id="D0;00A2" name="RequestCommissionBuyItem">
+			<part name="object_id" type="Q"/>
+			<part name="group" type="d"/>
+		</packet>
 		<packet id="D0;00A3" name="RequestCommissionRegisteredItem" />
 		<packet id="D0;0099" name="RequestUpdateBlockMemo">
 			<part name="name" type="S"/>
@@ -880,14 +919,34 @@
 		<packet id="FE;00F3" name="ExResponseCommissionInfo">
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
-			<part name="?" type="Q"/>
+			<part name="price" type="Q"/>
 			<part name="?" type="Q"/>
 			<part name="?" type="d"/>
 		</packet>
 		<packet id="FE;00F7" name="ExResponseCommissionBuyInfo">
 			<part name="?" type="d"/>
-			<part name="?" type="Q"/>
-			<part name="?" type="Q"/>
+			<part name="price" type="Q"/>
+			<part name="id" type="Q"/>
+			<part name="group" type="d"/>
+			<part name="?" type="d"/>
+			<part name="item-id" type="d" />
+			<part name="count" type="Q" />
+			<part name="item-type-2" type="h" />
+			<part name="?" type="h" />
+			<part name="?" type="h"/>
+			<part name="enchant-level" type="h"/>
+			<part name="?" type="h"/>
+			<part name="attack-element" type="h"/>
+			<part name="attack-value" type="h"/>
+			<part name="water" type="h"/>
+			<part name="fire" type="h"/>
+			<part name="earth" type="h"/>
+			<part name="wind" type="h"/>
+			<part name="dark" type="h"/>
+			<part name="holy" type="h"/>
+			<part name="enchant-effect-1" type="h"/>
+			<part name="enchant-effect-2" type="h"/>
+			<part name="enchant-effect-3" type="h"/>
 		</packet>
 		<packet id="FE;00F8" name="ExResponseCommissionBuyItem">
 			<part name="response" type="d"/>
@@ -898,76 +957,10 @@
 				<case id="-1" />
 				<case id="-2" />
 				<case id="2">
-					<part name="time" type="d">
-						<reader type="Timestamp" />
-					</part>
-					<part name="?" type="d" />
-					<part name="items-size" type="d" id="1" />
-					<for id="1">
-						<part name="object_id" type="Q" />
-						<part name="price" type="Q" />
-						<part name="?" type="d" />
-						<part name="?" type="d" />
-						<part name="time" type="d">
-							<reader type="Timestamp" />
-						</part>
-						<part name="name" type="S" />
-
-						<part name="?" type="d" />
-						<part name="item-id" type="d" />
-						<part name="count" type="Q" />
-						<part name="item-type-2" type="h" />
-						<part name="custom-item-type-1" type="h" />
-						<part name="bodypart?" type="d" />
-						<part name="enchant?" type="h"/>
-						<part name="attack-element" type="h"/>
-						<part name="attack-value" type="h"/>
-						<part name="water" type="h"/>
-						<part name="fire" type="h"/>
-						<part name="earth" type="h"/>
-						<part name="wind" type="h"/>
-						<part name="dark" type="h"/>
-						<part name="holy" type="h"/>
-						<part name="enchant-effect-1" type="h"/>
-						<part name="enchant-effect-2" type="h"/>
-						<part name="enchant-effect-3" type="h"/>
-					</for>
+					<macro id="commission_part" />
 				</case>
 				<case id="3">
-					<part name="time" type="d">
-						<reader type="Timestamp" />
-					</part>
-					<part name="?" type="d" />
-					<part name="items-size" type="d" id="1" />
-					<for id="1">
-						<part name="object_id" type="Q" />
-						<part name="price" type="Q" />
-						<part name="?" type="d" />
-						<part name="?" type="d" />
-						<part name="time" type="d">
-							<reader type="Timestamp" />
-						</part>
-						<part name="name" type="S" />
-
-						<part name="?" type="d" />
-						<part name="item-id" type="d" />
-						<part name="count" type="Q" />
-						<part name="item-type-2" type="h" />
-						<part name="custom-item-type-1" type="h" />
-						<part name="bodypart?" type="d" />
-						<part name="enchant?" type="h"/>
-						<part name="attack-element" type="h"/>
-						<part name="attack-value" type="h"/>
-						<part name="water" type="h"/>
-						<part name="fire" type="h"/>
-						<part name="earth" type="h"/>
-						<part name="wind" type="h"/>
-						<part name="dark" type="h"/>
-						<part name="holy" type="h"/>
-						<part name="enchant-effect-1" type="h"/>
-						<part name="enchant-effect-2" type="h"/>
-						<part name="enchant-effect-3" type="h"/>
-					</for>
+					<macro id="commission_part" />
 				</case>
 				<case id="default" />
 			</switch>
@@ -1412,19 +1405,28 @@
 			<part name="millis" type="d"/>
 			<part name="size" type="d" id="0"/>
 			<for id="0">
+				<part name="type" type="d" id="1"/>
+				<switch id="1">
+					<case id="4">
+						<part name="title-system-message" type="d" />
+					</case>
+					<case id="5">
+						<part name="title-system-message" type="d" />
+					</case>
+					<case id="default" />
+				</switch>
 				<part name="objectId" type="d"/>
 				<part name="subject" type="S"/>
 				<part name="sender" type="S"/>
 				<part name="locked" type="d"/>
 				<part name="expiration" type="d"/>
 				<part name="unread" type="d"/>
-				<part name="?" type="d"/>
 				<part name="attachments" type="d"/>
 				<part name="forStar" type="d"/>
 				<part name="news" type="d"/>
+				<part name="?" type="d"/>
 			</for>
 			<part name="?(100)" type="d"/>
-			<part name="?(1000)" type="d"/>
 			<part name="?(1000)" type="d"/>
 		</packet>
 		<packet id="00" name="Die">
@@ -1515,6 +1517,42 @@
 			<part name="spirit-shots" type="d"/>
 			<part name="form" type="d"/>
 			<part name="abnormal-effect2" type="d"/>
+		</packet>
+		<packet id="FE;00AB" name="ExReplyReceivedPost">
+			<part name="type" type="d" id="1"/>
+			<switch id="1">
+				<case id="4">
+					<part name="title-system-message" type="d"/>
+					<part name="sender-system-message" type="d"/>
+				</case>
+				<case id="5">
+					<part name="item_id" type="d"/>
+					<part name="enchant-level" type="d"/>
+					<part name="fire" type="d"/>
+					<part name="water" type="d"/>
+					<part name="earth" type="d"/>
+					<part name="wind" type="d"/>
+					<part name="holy" type="d"/>
+					<part name="unholy" type="d"/>
+					<part name="title-system-message" type="d"/>
+					<part name="sender-system-message" type="d"/>
+				</case>
+				<case id="default" />
+			</switch>
+			<part name="object-id" type="d"/>
+			<part name="locked" type="d"/>
+			<part name="?" type="d"/>
+			<part name="sender" type="S"/>
+			<part name="subject" type="S"/>
+			<part name="context" type="S"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<macro id="item"/>
+				<part name="object-id" type="d"/>
+			</for>
+			<part name="adena" type="Q"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
 		</packet>
 	</packetfamilly>
 </protocol>

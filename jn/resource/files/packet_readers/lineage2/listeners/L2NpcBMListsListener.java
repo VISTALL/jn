@@ -146,7 +146,7 @@ public class L2NpcBMListsListener extends L2AbstractListener
 					writer.write(String.format("\t\t<ingredient id=\"%d\" count=\"%d\" /> <!--%s-->\n", ingridient.getItemId(), ingridient.getCount(), ItemNameHolder.getInstance().name(ingridient.getItemId())));
 
 				for(L2ItemComponent production : entry.getProductions())
-					if(production.getChance() > 0)
+					if(production.getChance() != 100)
 						writer.write(String.format("\t\t<production id=\"%d\" count=\"%d\" chance=\"%d\"/> <!--%s-->\n", production.getItemId(), production.getCount(), production.getChance(), ItemNameHolder.getInstance().name(production.getItemId())));
 					else
 						writer.write(String.format("\t\t<production id=\"%d\" count=\"%d\" /> <!--%s-->\n", production.getItemId(), production.getCount(), ItemNameHolder.getInstance().name(production.getItemId())));

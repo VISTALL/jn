@@ -3,9 +3,8 @@ package packet_readers.lineage2.infos;
 import com.jds.jn.network.packets.DecryptedPacket;
 
 /**
- * Author: VISTALL
- * Company: J Develop Station
- * Date:  13:54:01/22.06.2010
+ * @author VISTALL
+ * @date  13:54:01/22.06.2010
  */
 public class L2SpawnLocInfo
 {
@@ -49,11 +48,15 @@ public class L2SpawnLocInfo
 		{
 			L2SpawnLocInfo o1 = (L2SpawnLocInfo)o;
 			if(o1._x == _x && o1._y == _y && o1._z == _z)
-			{
 				return true;
-			}
 		}
 
 		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return _x ^ _y ^ _z;
 	}
 }
