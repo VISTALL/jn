@@ -56,8 +56,8 @@ public class L2ServerObjectInfoListener extends L2AbstractListener
 		FileWriter writer = new FileWriter(getLogFile("server-object-data/", "xml"));
 		writer.write("<list>\n");
 		for(L2ServerObjectInfo objectInfo : _objects.values())
-			writer.write(String.format("\t<object npc_id=\"%d\" type=\"%d\" col_radius=\"%f\" col_height=\"%f\" max_hp=\"%d\" statistic_type=\"%d\" x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\"/>\n",
-					objectInfo.getNpcId(), objectInfo.getType(), objectInfo.getColRadius(), objectInfo.getColHeight(), objectInfo.getMaxHp(), objectInfo.getStatisticType(), objectInfo.getSpawnLoc().getX(), objectInfo.getSpawnLoc().getY(), objectInfo.getSpawnLoc().getZ(), objectInfo.getSpawnLoc().getH()));
+			writer.write(String.format("\t<object npc_id=\"%d\" type=\"%d\" col_radius=\"%f\" col_height=\"%f\" max_hp=\"%d\" statistic_type=\"%d\" pool_id=\"%d\" x=\"%d\" y=\"%d\" z=\"%d\" h=\"%d\"/>\n",
+					objectInfo.getNpcId(), objectInfo.getType(), objectInfo.getColRadius(), objectInfo.getColHeight(), objectInfo.getMaxHp(), objectInfo.getStatisticType(), objectInfo.getPoolId(), objectInfo.getSpawnLoc().getX(), objectInfo.getSpawnLoc().getY(), objectInfo.getSpawnLoc().getZ(), objectInfo.getSpawnLoc().getH()));
 		writer.write("</list>");
 		writer.close();
 	}

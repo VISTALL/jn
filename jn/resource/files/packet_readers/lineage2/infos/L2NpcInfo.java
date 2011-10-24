@@ -36,7 +36,9 @@ public class L2NpcInfo extends L2DialogObject
 	private final boolean _showName;
 
 	private final Map<Integer, L2SkillInfo> _skills = new HashMap<Integer, L2SkillInfo>();
-	private final Set<L2SpawnLocInfo> _spawnLocInfo;
+	private final Set<L2Loc> _spawnLocInfo = new HashSet<L2Loc>();
+	private final Set<L2NpcSayInfo> _says = new HashSet<L2NpcSayInfo>();
+	private final Set<L2Loc> _moveLocs = new HashSet<L2Loc>();
 
 	public L2NpcInfo(DecryptedPacket p)
 	{
@@ -56,8 +58,7 @@ public class L2NpcInfo extends L2DialogObject
 		_mp = p.getInt("max_mp");
 		_showName = p.getInt("show_name") == 1;
 
-		_spawnLocInfo = new HashSet<L2SpawnLocInfo>();
-		_spawnLocInfo.add(new L2SpawnLocInfo(p));
+		_spawnLocInfo.add(new L2Loc(p));
 	}
 
 	public String toXML()
@@ -171,8 +172,18 @@ public class L2NpcInfo extends L2DialogObject
 		return _npcId;
 	}
 
-	public Set<L2SpawnLocInfo> getSpawnLoc()
+	public Set<L2Loc> getSpawnLoc()
 	{
 		return _spawnLocInfo;
+	}
+
+	public Set<L2NpcSayInfo> getSays()
+	{
+		return _says;
+	}
+
+	public Set<L2Loc> getMoveLocs()
+	{
+		return _moveLocs;
 	}
 }

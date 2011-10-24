@@ -443,7 +443,7 @@
 			<part name="state" type="d"/>
 		</packet>
 		<packet id="2f" name="CharMoveToLocation">
-			<part name="obj_id" type="d"/>
+			<part name="object-id" type="d"/>
 			<part name="desc_x" type="d"/>
 			<part name="desc_y" type="d"/>
 			<part name="desc_z" type="d"/>

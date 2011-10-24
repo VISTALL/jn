@@ -10,6 +10,8 @@
 		<listener name="lineage2.listeners.L2NpcSpawnListener" />
 		<listener name="lineage2.listeners.L2ServerObjectInfoListener" />
 		<listener name="lineage2.listeners.L2JumpListener" />
+		<listener name="lineage2.listeners.L2NpcSayListener" />
+		<listener name="lineage2.listeners.L2MoveNpcListener" />
 	</session_listeners>
 	<macro id="commission_part">
 		<part name="time" type="d">
@@ -103,8 +105,8 @@
 		<packet id="D0;00A4" name="RequestCallToChangeClass" />
 		<packet id="D0;00A5" name="RequestChangeToAwakenedClass" />
 		<packet id="D0;00A6" name="RequestWorldStatistics">
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
+			<part name="statistic-id" type="d"/>
+			<part name="pool-id" type="d"/>
 		</packet>
 		<packet id="D0;00A7" name="RequestUserStatistics" />
 		<packet id="D0;00B3" name="RequestFirstPlayStart" />
@@ -843,36 +845,36 @@
 			<macro id="loc" name="desc-loc" />
 		</packet>
 		<packet id="FE;0100" name="ExLoadStatWorldRank">
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="size" type="d" id="0" />
+			<part name="statistic-id" type="d" />
+			<part name="pool-id" type="d" />
+			<part name="prev-size" type="d" id="0" />
 			<for id="0">
 				<part name="place" type="h"/>
-				<part name="?" type="d"/>
+				<part name="object-id" type="d"/>
 				<part name="name" type="S"/>
 				<part name="points" type="Q"/>
 				<part name="?" type="h"/>
-				<part name="?" type="d"/>
-				<part name="?" type="d"/>
+				<part name="clanId?" type="d"/>
+				<part name="allyId?" type="d"/>
 			</for>
-			<part name="size" type="d" id="0" />
-			<for id="0">
+			<part name="current-size" type="d" id="1" />
+			<for id="1">
 				<part name="place" type="h"/>
-				<part name="?" type="d"/>
+				<part name="object-id" type="d"/>
 				<part name="name" type="S"/>
 				<part name="points" type="Q"/>
 				<part name="?" type="h"/>
-				<part name="?" type="d"/>
-				<part name="?" type="d"/>
+				<part name="clanId?" type="d"/>
+				<part name="allyId?" type="d"/>
 			</for>
 		</packet>
 		<packet id="FE;0101" name="ExLoadStatUser">
 			<part name="size" type="d" id="0" />
 			<for id="0">
 				<part name="statistic-id" type="d"/>
-				<part name="?" type="d"/>
-				<part name="points" type="Q"/>
-				<part name="points" type="Q"/>
+				<part name="sub" type="d"/>
+				<part name="prev-points" type="Q"/>
+				<part name="current-points" type="Q"/>
 			</for>
 		</packet>
 		<packet id="FE;0117" name="ExChangeAttributeItemList">
@@ -893,7 +895,30 @@
 		<packet id="FE;010a" name="Ex2NDPasswordVerify" />
 		<packet id="FE;010b" name="Ex2NDPasswordAck" />
 		<packet id="FE;011b" name="ExExchangeSubstitute" />
-		<packet id="FE;0102" name="ExLoadStatHotLink" />
+		<packet id="FE;0102" name="ExLoadStatHotLink">
+			<part name="statistic-id" type="d"/>
+			<part name="sub-id" type="d"/>
+			<part name="prev-size" type="d" id="0"/>
+			<for id="0">
+				<part name="place" type="h"/>
+				<part name="object-id" type="d"/>
+				<part name="name" type="S"/>
+				<part name="points" type="Q"/>
+				<part name="?" type="h"/>
+				<part name="clanId?" type="d"/>
+				<part name="allyId?" type="d"/>
+			</for>
+			<part name="current-size" type="d" id="1"/>
+			<for id="1">
+				<part name="place" type="h"/>
+				<part name="object-id" type="d"/>
+				<part name="name" type="S"/>
+				<part name="points" type="Q"/>
+				<part name="?" type="h"/>
+				<part name="clanId?" type="d"/>
+				<part name="allyId?" type="d"/>
+			</for>
+		</packet>
 		<packet id="FE;0114" name="ExNotifyFlyMoveStart" />
 		<packet id="FE;0105" name="ExRegistPartySubstitute" />
 		<packet id="FE;0107" name="ExTimeOverPartySubstitute" />
@@ -1148,7 +1173,7 @@
 			<switch id="0">
 				<case id="7">
 					<part name="statistic-name-id" type="d"/>
-					<part name="?" type="d"/>
+					<part name="pool-id" type="d"/>
 					<part name="social-id" type="d"/>
 					<part name="percent-of-done-social" type="d"/>
 					<part name="first-class-id" type="d"/>

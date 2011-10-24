@@ -19,6 +19,8 @@
 
 package packet_readers.lineage2.infos;
 
+import com.jds.jn.network.packets.DecryptedPacket;
+
 /**
  * @author VISTALL
  * @date 21:06/13.10.2011
@@ -36,6 +38,14 @@ public class L2Loc
 		_z = z;
 		_y = y;
 		_x = x;
+	}
+
+	public L2Loc(DecryptedPacket p)
+	{
+		_x = p.getInt("x");
+		_y = p.getInt("y");
+		_z = p.getInt("z");
+		_h = p.getInt("h");
 	}
 
 	public int getX()
@@ -69,5 +79,11 @@ public class L2Loc
 		}
 
 		return false;
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return _x ^ _y ^ _z;
 	}
 }

@@ -34,9 +34,10 @@ public class L2ServerObjectInfo extends L2DialogObject
 	private int _maxHp;
 	private int _type;
 	private int _statisticType = -1;
+	private int _poolId = -1;
 	private double _colRadius;
 	private double _colHeight;
-	private L2SpawnLocInfo _spawnLoc;
+	private L2Loc _spawnLoc;
 
 	public L2ServerObjectInfo(DecryptedPacket packet)
 	{
@@ -45,7 +46,7 @@ public class L2ServerObjectInfo extends L2DialogObject
 		_type = packet.getInt("type");
 		_colHeight = packet.getDouble("col_height"); 
 		_colRadius = packet.getDouble("col_radius"); 
-		_spawnLoc = new L2SpawnLocInfo(packet);
+		_spawnLoc = new L2Loc(packet);
 		switch(_type)
 		{
 			case 4:
@@ -57,7 +58,10 @@ public class L2ServerObjectInfo extends L2DialogObject
 					{
 						DataSwitchBlock caseBlock = (DataSwitchBlock)a;
 						if(caseBlock.getCaseValue() == 7)
+						{
 							_statisticType = ((VisualValuePart) caseBlock.getPartByName("statistic-name-id")).getValueAsInt();
+							_poolId = ((VisualValuePart) caseBlock.getPartByName("pool-id")).getValueAsInt();
+						}
 						break;
 					}
 				}
@@ -98,7 +102,7 @@ public class L2ServerObjectInfo extends L2DialogObject
 		return _colHeight;
 	}
 
-	public L2SpawnLocInfo getSpawnLoc()
+	public L2Loc getSpawnLoc()
 	{
 		return _spawnLoc;
 	}
@@ -106,5 +110,10 @@ public class L2ServerObjectInfo extends L2DialogObject
 	public int getStatisticType()
 	{
 		return _statisticType;
+	}
+
+	public int getPoolId()
+	{
+		return _poolId;
 	}
 }

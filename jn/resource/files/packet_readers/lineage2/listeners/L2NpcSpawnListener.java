@@ -10,9 +10,9 @@ import com.jds.jn.network.packets.DecryptedPacket;
 import packet_readers.lineage2.L2AbstractListener;
 import packet_readers.lineage2.L2World;
 import packet_readers.lineage2.holders.NpcNameHolder;
+import packet_readers.lineage2.infos.L2Loc;
 import packet_readers.lineage2.infos.L2NpcInfo;
 import packet_readers.lineage2.infos.L2Object;
-import packet_readers.lineage2.infos.L2SpawnLocInfo;
 
 /**
  * Author: VISTALL
@@ -81,7 +81,7 @@ public class L2NpcSpawnListener extends L2AbstractListener
 				"<!DOCTYPE list SYSTEM \"spawn.dtd\">\n" +
 				"<list>\n");
 		for(L2NpcInfo npc : npcs)
-			for(L2SpawnLocInfo spawnLocInfo : npc.getSpawnLoc())
+			for(L2Loc spawnLocInfo : npc.getSpawnLoc())
 			{
 				int x = (spawnLocInfo.getX() - MAP_MIN_X >> 15) + 11;
 				int y = (spawnLocInfo.getY() - MAP_MIN_Y >> 15) + 10;

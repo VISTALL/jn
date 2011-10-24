@@ -9,8 +9,8 @@ import com.jds.jn.network.packets.DecryptedPacket;
 import packet_readers.lineage2.L2AbstractListener;
 import packet_readers.lineage2.L2World;
 import packet_readers.lineage2.infos.L2DialogInfo;
+import packet_readers.lineage2.infos.L2Loc;
 import packet_readers.lineage2.infos.L2NpcInfo;
-import packet_readers.lineage2.infos.L2SpawnLocInfo;
 
 /**
  * Author: VISTALL
@@ -42,14 +42,18 @@ public class L2NpcInfoListener extends L2AbstractListener
 			_world.addObject(objectId, npc);
 		}
 
-		L2NpcInfo list = _world.getNpcByNpcId(npc.getNpcId());
-		if(list == null)
+		L2NpcInfo npcInfo = _world.getNpcByNpcId(npc.getNpcId());
+		if(npcInfo == null)
 		{
-			list = npc;
-			_world.addNpcByNpcId(npc.getNpcId(), list);
+			npcInfo = npc;
+			_world.addNpcByNpcId(npc.getNpcId(), npcInfo);
 		}
 		else
-			list.getSpawnLoc().add(new L2SpawnLocInfo(p));
+		{
+			L2Loc loc = new L2Loc(p);
+			if(!npcInfo.getMoveLocs().contains(loc))
+				npcInfo.getSpawnLoc().add(loc);
+		}
 	}
 
 	@Override
