@@ -3,6 +3,8 @@ package packet_readers.lineage2.infos;
 import java.lang.reflect.Field;
 import java.util.*;
 
+import org.napile.primitive.sets.IntSet;
+import org.napile.primitive.sets.impl.HashIntSet;
 import packet_readers.lineage2.holders.NpcNameHolder;
 import packet_readers.lineage2.holders.SkillNameHolder;
 import com.jds.jn.network.packets.DecryptedPacket;
@@ -39,6 +41,7 @@ public class L2NpcInfo extends L2DialogObject
 	private final Set<L2Loc> _spawnLocInfo = new HashSet<L2Loc>();
 	private final Set<L2NpcSayInfo> _says = new HashSet<L2NpcSayInfo>();
 	private final Set<L2Loc> _moveLocs = new HashSet<L2Loc>();
+	private final IntSet _states = new HashIntSet();
 
 	public L2NpcInfo(DecryptedPacket p)
 	{
@@ -185,5 +188,10 @@ public class L2NpcInfo extends L2DialogObject
 	public Set<L2Loc> getMoveLocs()
 	{
 		return _moveLocs;
+	}
+
+	public IntSet getStates()
+	{
+		return _states;
 	}
 }

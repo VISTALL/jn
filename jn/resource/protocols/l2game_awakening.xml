@@ -12,6 +12,7 @@
 		<listener name="lineage2.listeners.L2JumpListener" />
 		<listener name="lineage2.listeners.L2NpcSayListener" />
 		<listener name="lineage2.listeners.L2MoveNpcListener" />
+		<listener name="lineage2.listeners.L2NpcStateListener" />
 	</session_listeners>
 	<macro id="commission_part">
 		<part name="time" type="d">

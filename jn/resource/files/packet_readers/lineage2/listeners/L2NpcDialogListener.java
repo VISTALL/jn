@@ -1,7 +1,5 @@
 package packet_readers.lineage2.listeners;
 
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +8,6 @@ import packet_readers.lineage2.L2AbstractListener;
 import packet_readers.lineage2.L2World;
 import packet_readers.lineage2.infos.L2DialogInfo;
 import packet_readers.lineage2.infos.L2DialogObject;
-import packet_readers.lineage2.infos.L2NpcInfo;
 
 /**
  * @author VISTALL

@@ -33,30 +33,30 @@ import com.jds.jn.network.packets.DecryptedPacket;
 import packet_readers.lineage2.L2AbstractListener;
 import packet_readers.lineage2.holders.NpcNameHolder;
 import packet_readers.lineage2.infos.L2NpcInfo;
-import packet_readers.lineage2.infos.L2NpcSayInfo;
 
 /**
  * @author VISTALL
- * @date 19:15/24.10.2011
+ * @date 20:20/24.10.2011
  */
-public class L2NpcSayListener extends L2AbstractListener
+public class L2NpcStateListener extends L2AbstractListener
 {
-	@Override
 	public List<String> getPackets()
 	{
-		return Collections.singletonList("NpcSay");
+		return Collections.singletonList("NpcInfo");
 	}
 
 	@Override
 	public void invokeImpl(DecryptedPacket p)
 	{
-		int npcId = p.getInt("npc_id") - 1000000;
+		int npcId = p.getInt("npcId") - 1000000;
 
 		L2NpcInfo info = _world.getNpcByNpcId(npcId);
 		if(info == null)
 			return;
 
-		info.getSays().add(new L2NpcSayInfo(p));
+		int state = p.getInt("state");
+		if(state > 0)
+			info.getStates().add(p.getInt("state"));
 	}
 
 	@Override
@@ -67,27 +67,17 @@ public class L2NpcSayListener extends L2AbstractListener
 
 		for(L2NpcInfo info : _world.valuesNpc())
 		{
-			if(info.getSays().isEmpty())
+			if(info.getStates().isEmpty())
 				continue;
 
 			Element npcElement = listElement.addElement("npc");
 			npcElement.addAttribute("id", String.valueOf(info.getNpcId()));
 			npcElement.addComment(NpcNameHolder.getInstance().name(info.getNpcId()));
 
-			for(L2NpcSayInfo npcSay : info.getSays())
+			for(int i : info.getStates().toArray())
 			{
-				Element element = npcElement.addElement("npc_say");
-				element.addAttribute("string_id", String.valueOf(npcSay.getId()));
-				element.addAttribute("type", String.valueOf(npcSay.getChatType()));
-
-				for(String val : npcSay.getParams())
-				{
-					if(val.isEmpty())
-						continue;
-
-					Element valElement = element.addElement("arg");
-					valElement.setText(val);
-				}
+				Element element = npcElement.addElement("state");
+				element.setText(String.valueOf(i));
 			}
 		}
 
@@ -96,7 +86,7 @@ public class L2NpcSayListener extends L2AbstractListener
 
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		format.setIndent("\t");
-		XMLWriter writer = new XMLWriter(new FileWriter(getLogFile("./npc_say ", "xml")), format);
+		XMLWriter writer = new XMLWriter(new FileWriter(getLogFile("./npc_states ", "xml")), format);
 		writer.write(document);
 		writer.close();
 	}
