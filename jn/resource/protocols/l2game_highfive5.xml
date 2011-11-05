@@ -733,6 +733,14 @@
 					<case id="13">
 						<part name="sys_string" type="d"/>
 					</case>
+					<case id="14">
+						<macro id="npc_string_container" />
+					</case>
+					<case id="16">
+						<part name="target-object-id" type="d"/>
+						<part name="attacker-object-id" type="d"/>
+						<part name="damage" type="d"/>
+					</case>
 					<case id="default"/>
 				</switch>
 			</for>
