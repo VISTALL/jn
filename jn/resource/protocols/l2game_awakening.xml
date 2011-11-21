@@ -669,17 +669,15 @@
 			<part name="show_title" type="c"/>
 			<part name="specialEffects" type="d"/>
 			<part name="state" type="d"/>
-			<part name="?" type="d"/>
+			<part name="transform_id" type="d"/>
 			<part name="current_hp" type="d"/>
 			<part name="max_hp" type="d"/>
 			<part name="current_mp" type="d"/>
 			<part name="max_mp" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d"/>
-			<part name="?" type="d">
-				<reader type="Color"/>
-			</part>
 			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d" />
 		</packet>
 		<packet id="31" name="CharInfo">
 			<part name="x" type="d"/>
