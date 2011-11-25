@@ -33,7 +33,7 @@ import java.awt.*;
 
 /**
  * Implementation of {@link ResizableIcon} that paints nothing.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class EmptyResizableIcon implements ResizableIcon {
@@ -49,7 +49,7 @@ public class EmptyResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new empty resizable icon of the specified size.
-	 * 
+	 *
 	 * @param initialDim
 	 *            Initial dimension of the icon.
 	 */
@@ -60,7 +60,7 @@ public class EmptyResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new empty resizable icon of the specified size.
-	 * 
+	 *
 	 * @param initialDim
 	 *            Initial dimension of the icon.
 	 */

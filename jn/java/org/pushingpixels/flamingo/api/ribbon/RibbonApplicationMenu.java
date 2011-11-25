@@ -38,26 +38,26 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary.P
 /**
  * Metadata description of the application menu of the {@link JRibbon}
  * component. The ribbon application menu has three parts:
- * 
+ *
  * <pre>
  * +-------------------------------------+
  * |           |                         |
  * |           |                         |
  * |  primary  |        secondary        |
- * |   area    |           area          |        
+ * |   area    |           area          |
  * |           |                         |
  * |           |                         |
  * |-------------------------------------|
  * |            footer area              |
  * +-------------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * The entries in the primary area are always visible. The secondary area
  * entries are shown based on the currently active element in the primary area.
  * There are three different types of primary entries:
  * </p>
- * 
+ *
  * <ul>
  * <li>Associated {@link ActionListener} passed to the constructor of the
  * {@link RibbonApplicationMenuEntryPrimary}. When this entry is armed (with
@@ -80,7 +80,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary.P
  * secondary menu entries. The <code>Save As</code> menu item is an example of
  * such a primary menu item, showing a list of default save formats.</li>
  * </ul>
- * 
+ *
  * <p>
  * At runtime, the application menu entries are implemented as
  * {@link JCommandMenuButton}, but the application code does not operate on that
@@ -88,7 +88,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary.P
  * the ribbon application menu, and that description is used to create and
  * populate the "real" controls of the application menu popup.
  * </p>
- * 
+ *
  * <p>
  * Note that once a {@link RibbonApplicationMenu} is set on the {@link JRibbon}
  * with the {@link JRibbon#setApplicationMenu(RibbonApplicationMenu)}, its
@@ -96,7 +96,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary.P
  * from {@link #addMenuEntry(RibbonApplicationMenuEntryPrimary)} and
  * {@link #addFooterEntry(RibbonApplicationMenuEntryFooter)}.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RibbonApplicationMenu {
@@ -108,7 +108,7 @@ public class RibbonApplicationMenu {
 	 * {@link IllegalStateException} will be thrown from
 	 * {@link #addMenuEntry(RibbonApplicationMenuEntryPrimary)} and
 	 * {@link #addFooterEntry(RibbonApplicationMenuEntryFooter)}.
-	 * 
+	 *
 	 * @see #setFrozen(boolean)
 	 * @see #addMenuEntry(RibbonApplicationMenuEntryPrimary)
 	 * @see #addFooterEntry(RibbonApplicationMenuEntryFooter)
@@ -127,7 +127,7 @@ public class RibbonApplicationMenu {
 
 	/**
 	 * The default callback to be called when:
-	 * 
+	 *
 	 * <ul>
 	 * <li>The ribbon application menu is first shown.</li>
 	 * <li>The currently active (rollover) primary application menu entry has no
@@ -148,7 +148,7 @@ public class RibbonApplicationMenu {
 
 	/**
 	 * Adds the specified primary menu entry.
-	 * 
+	 *
 	 * @param entry
 	 *            Primary menu entry to add.
 	 * @throws IllegalStateException
@@ -179,7 +179,7 @@ public class RibbonApplicationMenu {
 	/**
 	 * Returns an unmodifiable list of all primary menu entries of this
 	 * application menu. The result is guaranteed to be non-<code>null</code>.
-	 * 
+	 *
 	 * @return An unmodifiable list of all primary menu entries of this
 	 *         application menu.
 	 * @see #addMenuEntry(RibbonApplicationMenuEntryPrimary)
@@ -191,7 +191,7 @@ public class RibbonApplicationMenu {
 
 	/**
 	 * Adds the specified footer menu entry.
-	 * 
+	 *
 	 * @param entry
 	 *            Footer menu entry to add.
 	 * @throws IllegalStateException
@@ -213,7 +213,7 @@ public class RibbonApplicationMenu {
 	/**
 	 * Returns an unmodifiable list of all footer menu entries of this
 	 * application menu. The result is guaranteed to be non-<code>null</code>.
-	 * 
+	 *
 	 * @return An unmodifiable list of all footer menu entries of this
 	 *         application menu.
 	 * @see #addFooterEntry(RibbonApplicationMenuEntryFooter)
@@ -225,13 +225,13 @@ public class RibbonApplicationMenu {
 
 	/**
 	 * Sets the default callback to be called when:
-	 * 
+	 *
 	 * <ul>
 	 * <li>The ribbon application menu is first shown.</li>
 	 * <li>The currently active (rollover) primary application menu entry has no
 	 * secondary menu entries and no associated rollover callback.
 	 * </ul>
-	 * 
+	 *
 	 * @param defaultCallback
 	 *            Default callback.
 	 */
@@ -241,7 +241,7 @@ public class RibbonApplicationMenu {
 
 	/**
 	 * Returns the default callback of this ribbon application menu.
-	 * 
+	 *
 	 * @return The default callback of this ribbon application menu.
 	 * @see #setDefaultCallback(PrimaryRolloverCallback)
 	 */
@@ -254,7 +254,7 @@ public class RibbonApplicationMenu {
 	 * {@link #addMenuEntry(RibbonApplicationMenuEntryPrimary)} and
 	 * {@link #addFooterEntry(RibbonApplicationMenuEntryFooter)} will throw an
 	 * {@link IllegalStateException}.
-	 * 
+	 *
 	 * @see #addMenuEntry(RibbonApplicationMenuEntryPrimary)
 	 * @see #addFooterEntry(RibbonApplicationMenuEntryFooter)
 	 * @see JRibbon#setApplicationMenu(RibbonApplicationMenu)

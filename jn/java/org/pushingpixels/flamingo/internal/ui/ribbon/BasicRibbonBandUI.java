@@ -54,7 +54,7 @@ import org.pushingpixels.trident.swing.SwingRepaintCallback;
 
 /**
  * Basic UI for ribbon band {@link JRibbonBand}.
- * 
+ *
  * @author Kirill Grouchnikov
  * @author Matt Nathan
  */
@@ -98,7 +98,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 	/**
 	 * Popup panel that shows the contents of the ribbon band when it is in a
 	 * collapsed state.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static class CollapsedButtonPopupPanel extends JPopupPanel {
@@ -110,7 +110,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 		/**
 		 * Creates popup gallery with the specified component.
-		 * 
+		 *
 		 * @param component
 		 *            The main component of the popup gallery.
 		 * @param originalSize
@@ -128,7 +128,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 		/**
 		 * Removes the main component of <code>this</code> popup gallery.
-		 * 
+		 *
 		 * @return The removed main component.
 		 */
 		public Component removeComponent() {
@@ -138,7 +138,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 		/**
 		 * Returns the main component of <code>this</code> popup gallery.
-		 * 
+		 *
 		 * @return The main component.
 		 */
 		public Component getComponent() {
@@ -236,7 +236,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Creates the expand button for the associated ribbon band.
-	 * 
+	 *
 	 * @return Expand button for the associated ribbon band.
 	 */
 	protected JCommandButton createExpandButton() {
@@ -411,7 +411,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 	/**
 	 * Invoked by <code>installUI</code> to create a layout manager object to
 	 * manage the {@link JCommandButtonStrip}.
-	 * 
+	 *
 	 * @return a layout manager object
 	 */
 	protected LayoutManager createLayoutManager() {
@@ -420,7 +420,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Layout for the ribbon band.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class RibbonBandLayout implements LayoutManager {
@@ -781,7 +781,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Paints band title pane.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param titleRectangle
@@ -819,7 +819,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Paints band title pane.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param titleRectangle
@@ -846,7 +846,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Paints band background.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill
@@ -864,7 +864,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Returns the height of the ribbon band title area.
-	 * 
+	 *
 	 * @return The height of the ribbon band title area.
 	 */
 	@Override
@@ -883,7 +883,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 	/**
 	 * Round border for the ribbon bands.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static class RoundBorder implements Border {
@@ -899,7 +899,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 
 		/**
 		 * Creates the new border.
-		 * 
+		 *
 		 * @param color
 		 *            Border color.
 		 * @param insets
@@ -949,7 +949,7 @@ public class BasicRibbonBandUI extends RibbonBandUI {
 	/**
 	 * This method is for unit tests only and should not be called by the
 	 * application code.
-	 * 
+	 *
 	 * @return The expand button of the matching ribbon band.
 	 */
 	public AbstractCommandButton getExpandButton() {

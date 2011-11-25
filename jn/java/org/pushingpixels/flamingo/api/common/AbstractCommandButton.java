@@ -44,14 +44,14 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonUI;
 
 /**
  * Base class for command buttons.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class AbstractCommandButton extends
 		RichToolTipManager.JTrackableComponent {
 	/**
 	 * Associated icon.
-	 * 
+	 *
 	 * @see #setIcon(ResizableIcon)
 	 * @see #getIcon()
 	 */
@@ -59,7 +59,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Associated disabled icon.
-	 * 
+	 *
 	 * @see #setDisabledIcon(ResizableIcon)
 	 * @see #getDisabledIcon()
 	 */
@@ -67,7 +67,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * The button text.
-	 * 
+	 *
 	 * @see #setText(String)
 	 * @see #getText()
 	 */
@@ -75,7 +75,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * The button action model.
-	 * 
+	 *
 	 * @see #getActionModel()
 	 * @see #setActionModel(ActionButtonModel)
 	 */
@@ -84,7 +84,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Additional text. This is shown for {@link CommandButtonDisplayState#TILE}
 	 * .
-	 * 
+	 *
 	 * @see #setExtraText(String)
 	 * @see #getExtraText()
 	 */
@@ -92,7 +92,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Current display state of <code>this</code> button.
-	 * 
+	 *
 	 * @see #setDisplayState(CommandButtonDisplayState)
 	 * @see #getDisplayState()
 	 */
@@ -101,7 +101,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * The dimension of the icon of the associated command button in the
 	 * {@link CommandButtonDisplayState#FIT_TO_ICON} state.
-	 * 
+	 *
 	 * @see #getCustomDimension()
 	 * @see #updateCustomDimension(int)
 	 */
@@ -109,7 +109,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Indication whether this button is flat.
-	 * 
+	 *
 	 * @see #setFlat(boolean)
 	 * @see #isFlat()
 	 */
@@ -117,7 +117,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Horizontal alignment of the content.
-	 * 
+	 *
 	 * @see #setHorizontalAlignment(int)
 	 * @see #getHorizontalAlignment()
 	 */
@@ -125,7 +125,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Scale factor for horizontal gaps.
-	 * 
+	 *
 	 * @see #setHGapScaleFactor(double)
 	 * @see #getHGapScaleFactor()
 	 */
@@ -133,7 +133,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Scale factor for vertical gaps.
-	 * 
+	 *
 	 * @see #setVGapScaleFactor(double)
 	 * @see #getVGapScaleFactor()
 	 */
@@ -141,7 +141,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Rich tooltip for the action area.
-	 * 
+	 *
 	 * @see #setActionRichTooltip(RichTooltip)
 	 * @see #getRichTooltip(MouseEvent)
 	 */
@@ -150,7 +150,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Location order kind for buttons placed in command button strips or for
 	 * buttons that need the visuals of segmented strips.
-	 * 
+	 *
 	 * @see #setLocationOrderKind(CommandButtonLocationOrderKind)
 	 * @see #getLocationOrderKind()
 	 */
@@ -163,7 +163,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Key tip for the action area.
-	 * 
+	 *
 	 * @see #setActionKeyTip(String)
 	 * @see #getActionKeyTip()
 	 */
@@ -173,7 +173,7 @@ public abstract class AbstractCommandButton extends
 	 * Enumerates the available values for the location order kind. This is used
 	 * for buttons placed in command button strips or for buttons that need the
 	 * visuals of segmented strips.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static enum CommandButtonLocationOrderKind {
@@ -200,7 +200,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Creates a new command button.
-	 * 
+	 *
 	 * @param text
 	 *            Button title. May contain any number of words.
 	 * @param icon
@@ -221,7 +221,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Sets the new UI delegate.
-	 * 
+	 *
 	 * @param ui
 	 *            New UI delegate.
 	 */
@@ -231,7 +231,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the UI delegate for this button.
-	 * 
+	 *
 	 * @return The UI delegate for this button.
 	 */
 	public CommandButtonUI getUI() {
@@ -241,7 +241,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets new display state for <code>this</code> button. Fires a
 	 * <code>displayState</code> property change event.
-	 * 
+	 *
 	 * @param state
 	 *            New display state.
 	 * @see #getDisplayState()
@@ -255,7 +255,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the associated icon.
-	 * 
+	 *
 	 * @return The associated icon.
 	 * @see #getDisabledIcon()
 	 * @see #setIcon(ResizableIcon)
@@ -267,7 +267,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets new icon for this button. Fires an <code>icon</code> property change
 	 * event.
-	 * 
+	 *
 	 * @param defaultIcon
 	 *            New default icon for this button.
 	 * @see #setDisabledIcon(ResizableIcon)
@@ -290,7 +290,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Sets the disabled icon for this button.
-	 * 
+	 *
 	 * @param disabledIcon
 	 *            Disabled icon for this button.
 	 * @see #setIcon(ResizableIcon)
@@ -302,7 +302,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the associated disabled icon.
-	 * 
+	 *
 	 * @return The associated disabled icon.
 	 * @see #setDisabledIcon(ResizableIcon)
 	 * @see #getIcon()
@@ -313,7 +313,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Return the current display state of <code>this</code> button.
-	 * 
+	 *
 	 * @return The current display state of <code>this</code> button.
 	 * @see #setDisplayState(CommandButtonDisplayState)
 	 */
@@ -323,7 +323,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the extra text of this button.
-	 * 
+	 *
 	 * @return Extra text of this button.
 	 * @see #setExtraText(String)
 	 */
@@ -334,7 +334,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets the extra text for this button. Fires an <code>extraText</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param extraText
 	 *            Extra text for this button.
 	 * @see #getExtraText()
@@ -358,7 +358,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the text of this button.
-	 * 
+	 *
 	 * @return The text of this button.
 	 * @see #setText(String)
 	 */
@@ -369,7 +369,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets the new text for this button. Fires a <code>text</code> property
 	 * change event.
-	 * 
+	 *
 	 * @param text
 	 *            The new text for this button.
 	 * @see #getText()
@@ -394,7 +394,7 @@ public abstract class AbstractCommandButton extends
 	 * Updates the dimension of the icon of the associated command button in the
 	 * {@link CommandButtonDisplayState#FIT_TO_ICON} state. Fires a
 	 * <code>customDimension</code> property change event.
-	 * 
+	 *
 	 * @param dimension
 	 *            New dimension of the icon of the associated command button in
 	 *            the {@link CommandButtonDisplayState#FIT_TO_ICON} state.
@@ -412,7 +412,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Returns the dimension of the icon of the associated command button in the
 	 * {@link CommandButtonDisplayState#FIT_TO_ICON} state.
-	 * 
+	 *
 	 * @return The dimension of the icon of the associated command button in the
 	 *         {@link CommandButtonDisplayState#FIT_TO_ICON} state.
 	 * @see #updateCustomDimension(int)
@@ -423,7 +423,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns indication whether this button has flat appearance.
-	 * 
+	 *
 	 * @return <code>true</code> if this button has flat appearance,
 	 *         <code>false</code> otherwise.
 	 * @see #setFlat(boolean)
@@ -435,7 +435,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets the flat appearance of this button. Fires a <code>flat</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param isFlat
 	 *            If <code>true</code>, this button will have flat appearance,
 	 *            otherwise this button will not have flat appearance.
@@ -455,7 +455,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the action model for this button.
-	 * 
+	 *
 	 * @return The action model for this button.
 	 * @see #setActionModel(ActionButtonModel)
 	 */
@@ -466,7 +466,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets the new action model for this button. Fires an
 	 * <code>actionModel</code> property change event.
-	 * 
+	 *
 	 * @param newModel
 	 *            The new action model for this button.
 	 * @see #getActionModel()
@@ -495,7 +495,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Adds the specified action listener to this button.
-	 * 
+	 *
 	 * @param l
 	 *            Action listener to add.
 	 * @see #removeActionListener(ActionListener)
@@ -506,7 +506,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Removes the specified action listener from this button.
-	 * 
+	 *
 	 * @param l
 	 *            Action listener to remove.
 	 * @see #addActionListener(ActionListener)
@@ -517,7 +517,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Adds the specified change listener to this button.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to add.
 	 * @see #removeChangeListener(ChangeListener)
@@ -528,7 +528,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Removes the specified change listener from this button.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to remove.
 	 * @see #addChangeListener(ChangeListener)
@@ -553,7 +553,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Default action handler for this button.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	class ActionHandler implements ActionListener, ChangeListener {
@@ -570,7 +570,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Notifies all listeners that have registered interest for notification on
 	 * this event type. The event instance is lazily created.
-	 * 
+	 *
 	 * @see EventListenerList
 	 */
 	protected void fireStateChanged() {
@@ -591,7 +591,7 @@ public abstract class AbstractCommandButton extends
 	 * Notifies all listeners that have registered interest for notification on
 	 * this event type. The event instance is lazily created using the
 	 * <code>event</code> parameter.
-	 * 
+	 *
 	 * @param event
 	 *            the <code>ActionEvent</code> object
 	 * @see EventListenerList
@@ -619,7 +619,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets new horizontal alignment for the content of this button. Fires a
 	 * <code>horizontalAlignment</code> property change event.
-	 * 
+	 *
 	 * @param alignment
 	 *            New horizontal alignment for the content of this button.
 	 * @see #getHorizontalAlignment()
@@ -636,7 +636,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the horizontal alignment for the content of this button.
-	 * 
+	 *
 	 * @return The horizontal alignment for the content of this button.
 	 * @see #setHorizontalAlignment(int)
 	 */
@@ -647,7 +647,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets new horizontal gap scale factor for the content of this button.
 	 * Fires an <code>hgapScaleFactor</code> property change event.
-	 * 
+	 *
 	 * @param hgapScaleFactor
 	 *            New horizontal gap scale factor for the content of this
 	 *            button.
@@ -670,7 +670,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets new vertical gap scale factor for the content of this button. Fires
 	 * a <code>vgapScaleFactor</code> property change event.
-	 * 
+	 *
 	 * @param vgapScaleFactor
 	 *            New vertical gap scale factor for the content of this button.
 	 * @see #getVGapScaleFactor()
@@ -691,7 +691,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Sets new gap scale factor for the content of this button.
-	 * 
+	 *
 	 * @param gapScaleFactor
 	 *            New gap scale factor for the content of this button.
 	 * @see #getHGapScaleFactor()
@@ -704,7 +704,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the horizontal gap scale factor for the content of this button.
-	 * 
+	 *
 	 * @return The horizontal gap scale factor for the content of this button.
 	 * @see #setHGapScaleFactor(double)
 	 * @see #setGapScaleFactor(double)
@@ -716,7 +716,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the vertical gap scale factor for the content of this button.
-	 * 
+	 *
 	 * @return The vertical gap scale factor for the content of this button.
 	 * @see #setVGapScaleFactor(double)
 	 * @see #setGapScaleFactor(double)
@@ -750,7 +750,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Sets the rich tooltip for the action area of this button.
-	 * 
+	 *
 	 * @param richTooltip
 	 *            Rich tooltip for the action area of this button.
 	 * @see #getRichTooltip(MouseEvent)
@@ -790,7 +790,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Returns the location order kind for buttons placed in command button
 	 * strips or for buttons that need the visuals of segmented strips.
-	 * 
+	 *
 	 * @return The location order kind for buttons placed in command button
 	 *         strips or for buttons that need the visuals of segmented strips.
 	 * @see #setLocationOrderKind(CommandButtonLocationOrderKind)
@@ -803,7 +803,7 @@ public abstract class AbstractCommandButton extends
 	 * Sets the location order kind for buttons placed in command button strips
 	 * or for buttons that need the visuals of segmented strips. Fires a
 	 * <code>locationOrderKind</code> property change event.
-	 * 
+	 *
 	 * @param locationOrderKind
 	 *            The location order kind for buttons placed in command button
 	 *            strips or for buttons that need the visuals of segmented
@@ -822,7 +822,7 @@ public abstract class AbstractCommandButton extends
 
 	/**
 	 * Returns the key tip for the action area of this button.
-	 * 
+	 *
 	 * @return The key tip for the action area of this button.
 	 * @see #setActionKeyTip(String)
 	 */
@@ -833,7 +833,7 @@ public abstract class AbstractCommandButton extends
 	/**
 	 * Sets the key tip for the action area of this button. Fires an
 	 * <code>actionKeyTip</code> property change event.
-	 * 
+	 *
 	 * @param actionKeyTip
 	 *            The key tip for the action area of this button.
 	 * @see #getActionKeyTip()

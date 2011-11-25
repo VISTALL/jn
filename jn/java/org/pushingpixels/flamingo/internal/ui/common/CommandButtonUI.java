@@ -38,13 +38,13 @@ import org.pushingpixels.flamingo.api.common.JCommandButton;
 
 /**
  * UI for command button ({@link JCommandButton}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class CommandButtonUI extends ButtonUI {
 	/**
 	 * Returns the layout information for the associated button.
-	 * 
+	 *
 	 * @return Layout information for the associated button.
 	 */
 	public abstract CommandButtonLayoutManager.CommandButtonLayoutInfo getLayoutInfo();

@@ -36,7 +36,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 
 /**
  * The core resize sequencing policies. Provides the following:
- * 
+ *
  * <ul>
  * <li>{@link RoundRobin} under which the ribbon bands are being collapsed in a
  * cyclic fashion, distributing the collapsed pixels between the different
@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
  * <li>{@link CollapseFromLast} under which the ribbon bands are being collapsed
  * from right to left.</li>
  * </ul>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class CoreRibbonResizeSequencingPolicies {
@@ -52,7 +52,7 @@ public class CoreRibbonResizeSequencingPolicies {
 	 * The round robin resize sequencing policy. Under this policy the ribbon
 	 * bands are being collapsed in a cyclic fashion, distributing the collapsed
 	 * pixels between the different bands.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class RoundRobin extends BaseRibbonBandResizeSequencingPolicy {
@@ -64,7 +64,7 @@ public class CoreRibbonResizeSequencingPolicies {
 		/**
 		 * Creates a new round robin resize sequencing policy for the specified
 		 * task.
-		 * 
+		 *
 		 * @param ribbonTask
 		 *            Ribbon task.
 		 */
@@ -90,7 +90,7 @@ public class CoreRibbonResizeSequencingPolicies {
 	/**
 	 * The collapse from last resize sequencing policy. Under this policy the
 	 * ribbon bands are being collapsed from right to left.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class CollapseFromLast extends
@@ -103,7 +103,7 @@ public class CoreRibbonResizeSequencingPolicies {
 		/**
 		 * Creates a new collapse from last resize sequencing policy for the
 		 * specified task.
-		 * 
+		 *
 		 * @param ribbonTask
 		 *            Ribbon task.
 		 */

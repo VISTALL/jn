@@ -41,7 +41,7 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 
 /**
  * Root pane for the {@link JRibbonFrame}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JRibbonRootPane extends JRootPane {

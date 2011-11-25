@@ -34,7 +34,7 @@ import java.awt.event.ActionListener;
 /**
  * Popup action listener. Is used to associate application logic with the popup
  * area of {@link JCommandButton} component.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public interface PopupActionListener extends ActionListener {

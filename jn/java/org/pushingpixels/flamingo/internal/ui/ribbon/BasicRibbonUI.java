@@ -60,7 +60,7 @@ import org.pushingpixels.flamingo.internal.utils.*;
 
 /**
  * Basic UI for ribbon {@link JRibbon}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicRibbonUI extends RibbonUI {
@@ -466,7 +466,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Paints the ribbon background.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 */
@@ -482,7 +482,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Paints the task border.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param x
@@ -576,7 +576,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 		if(rect == null)
 			return null;
-		
+
 		int buttonGap = getTabButtonGap();
 		Point location = SwingUtilities.convertPoint(
 				taskToggleButtonsScrollablePanel.getView(), rect.getLocation(),
@@ -587,7 +587,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Returns the layout gap for the bands in the associated ribbon.
-	 * 
+	 *
 	 * @return The layout gap for the bands in the associated ribbon.
 	 */
 	protected int getBandGap() {
@@ -596,7 +596,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Returns the layout gap for the tab buttons in the associated ribbon.
-	 * 
+	 *
 	 * @return The layout gap for the tab buttons in the associated ribbon.
 	 */
 	protected int getTabButtonGap() {
@@ -606,7 +606,7 @@ public class BasicRibbonUI extends RibbonUI {
 	/**
 	 * Invoked by <code>installUI</code> to create a layout manager object to
 	 * manage the {@link JRibbon}.
-	 * 
+	 *
 	 * @return a layout manager object
 	 */
 	protected LayoutManager createLayoutManager() {
@@ -616,7 +616,7 @@ public class BasicRibbonUI extends RibbonUI {
 	/**
 	 * Invoked by <code>installUI</code> to create a layout manager object to
 	 * manage the {@link JRibbon} taskbar.
-	 * 
+	 *
 	 * @return a layout manager object
 	 */
 	protected LayoutManager createTaskbarLayoutManager() {
@@ -625,7 +625,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Returns the height of the taskbar area.
-	 * 
+	 *
 	 * @return The height of the taskbar area.
 	 */
 	public int getTaskbarHeight() {
@@ -634,7 +634,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Returns the height of the task toggle button area.
-	 * 
+	 *
 	 * @return The height of the task toggle button area.
 	 */
 	public int getTaskToggleButtonHeight() {
@@ -643,7 +643,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Layout for the ribbon.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class RibbonLayout implements LayoutManager {
@@ -869,7 +869,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Layout for the task bar.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class TaskbarLayout implements LayoutManager {
@@ -958,7 +958,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * The taskbar panel that holds the {@link JRibbon#getTaskbarComponents()}.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class TaskbarPanel extends JPanel {
@@ -1113,7 +1113,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 		/**
 		 * Returns the outline of this taskbar panel.
-		 * 
+		 *
 		 * @param taskbarPanel
 		 *            Insets.
 		 * @return The outline of this taskbar panel.
@@ -1122,8 +1122,10 @@ public class BasicRibbonUI extends RibbonUI {
 			double height = this.getHeight() - 1;
 			boolean ltr = taskbarPanel.getComponentOrientation()
 					.isLeftToRight();
-			if (this.getComponentCount() == 0) {
-				if (applicationMenuButton.isVisible()) {
+			if (this.getComponentCount() == 0)
+			{
+				/*if (applicationMenuButton.isVisible())
+				{
 					// no taskbar components
 					if (ltr) {
 						int x = 1;
@@ -1143,8 +1145,10 @@ public class BasicRibbonUI extends RibbonUI {
 					}
 				} else {
 					return null;
-				}
-			} else {
+				}  */
+			}
+			else
+			{
 				int minX = this.getWidth();
 				int maxX = 0;
 				for (int i = 0; i < this.getComponentCount(); i++) {
@@ -1206,6 +1210,8 @@ public class BasicRibbonUI extends RibbonUI {
 
 				return outline;
 			}
+
+			return null;
 		}
 
 		/*
@@ -1226,7 +1232,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Layout for the band host panel.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class BandHostPanelLayout implements LayoutManager {
@@ -1546,7 +1552,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 		/**
 		 * Paints the outline of the contextual task groups.
-		 * 
+		 *
 		 * @param g
 		 *            Graphics context.
 		 */
@@ -1561,21 +1567,17 @@ public class BasicRibbonUI extends RibbonUI {
 				// of bounds of the matching tab buttons
 				Rectangle rect = getContextualTaskGroupBounds(group);
 				if(rect == null)
-				{
 					continue;
-				}
+
 				rect.setLocation(SwingUtilities.convertPoint(ribbon, rect.getLocation(), taskToggleButtonsScrollablePanel.getView()));
-				if(rect == null)
-				{
-					continue;
-				}
+
 				paintContextualTaskGroupOutlines(g, group, rect);
 			}
 		}
 
 		/**
 		 * Paints the outline of the specified contextual task group.
-		 * 
+		 *
 		 * @param g
 		 *            Graphics context.
 		 * @param group
@@ -1627,7 +1629,7 @@ public class BasicRibbonUI extends RibbonUI {
 
 	/**
 	 * Layout for the band host panel.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class TaskToggleButtonsHostPanelLayout implements LayoutManager {
@@ -2004,7 +2006,7 @@ public class BasicRibbonUI extends RibbonUI {
 	/**
 	 * Returns the list of currently shown ribbon tasks. This method is for
 	 * internal use only.
-	 * 
+	 *
 	 * @return The list of currently shown ribbon tasks.
 	 */
 	protected List<RibbonTask> getCurrentlyShownRibbonTasks() {

@@ -51,7 +51,7 @@ import org.pushingpixels.flamingo.internal.utils.KeyTipManager;
 
 /**
  * Basic UI for popup panel {@link JPopupPanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicPopupPanelUI extends PopupPanelUI {
@@ -176,7 +176,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 	 * This class is used to trace the changes in the shown popup panels and
 	 * install ESC key listener on the matching root pane so that the popup
 	 * panels can be dismissed with the ESC key.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static class PopupPanelEscapeDismisser implements
@@ -257,7 +257,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 		 * Installs the maps on the root pane of the originating component of
 		 * the first popup panel of the specified sequence to trace the ESC key
 		 * and dismiss the shown popup panels.
-		 * 
+		 *
 		 * @param shownPath
 		 *            Popup panel sequence.
 		 */
@@ -306,7 +306,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 
 		/**
 		 * Adds the specified input map to the specified component.
-		 * 
+		 *
 		 * @param c
 		 *            Component.
 		 * @param map
@@ -331,7 +331,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 
 		/**
 		 * Adds the specified action map to the specified component.
-		 * 
+		 *
 		 * @param c
 		 *            Component.
 		 * @param map
@@ -356,7 +356,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 
 		/**
 		 * Removes the specified input map from the specified component.
-		 * 
+		 *
 		 * @param c
 		 *            Component.
 		 * @param map
@@ -383,7 +383,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 
 		/**
 		 * Removes the specified action map from the specified component.
-		 * 
+		 *
 		 * @param c
 		 *            Component.
 		 * @param map
@@ -410,17 +410,17 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 
 	/**
 	 * This class is used to dismiss popup panels on the following events:
-	 * 
+	 *
 	 * <ul>
 	 * <li>Mouse click outside any shown popup panel.</li>
 	 * <li>Closing, iconifying or deactivation of a top-level window.</li>
 	 * <li>Any change in the component hierarchy of a top-level window.</li>
 	 * </ul>
-	 * 
+	 *
 	 * Only one top-level window is tracked at any time. The assumption is that
 	 * the {@link PopupPanelManager} only shows popup panels originating from
 	 * one top-level window.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static class WindowTracker implements
@@ -455,7 +455,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 		/**
 		 * Grabs the window of the first popup panel in the specified popup
 		 * panel sequence.
-		 * 
+		 *
 		 * @param shownPath
 		 *            Sequence of the currently shown popup panels.
 		 */
@@ -608,7 +608,7 @@ public class BasicPopupPanelUI extends PopupPanelUI {
 		/**
 		 * Checks whether the specified component lies inside a
 		 * {@link JPopupPanel}.
-		 * 
+		 *
 		 * @param src
 		 *            Component.
 		 * @return <code>true</code> if the specified component lies inside a

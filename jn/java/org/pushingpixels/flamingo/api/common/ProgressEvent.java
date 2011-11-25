@@ -34,7 +34,7 @@ import java.util.EventObject;
 /**
  * This event is used to notify interested parties that progress has been made
  * in the event source.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see ProgressListener
  */
@@ -56,7 +56,7 @@ public class ProgressEvent extends EventObject {
 
 	/**
 	 * Creates a new progress event.
-	 * 
+	 *
 	 * @param source
 	 *            Event source.
 	 * @param min
@@ -75,7 +75,7 @@ public class ProgressEvent extends EventObject {
 
 	/**
 	 * Returns the maximum value of the available progress range.
-	 * 
+	 *
 	 * @return The maximum value of the available progress range.
 	 */
 	public int getMaximum() {
@@ -84,7 +84,7 @@ public class ProgressEvent extends EventObject {
 
 	/**
 	 * Returns the minimum value of the available progress range.
-	 * 
+	 *
 	 * @return The minimum value of the available progress range.
 	 */
 	public int getMinimum() {
@@ -93,7 +93,7 @@ public class ProgressEvent extends EventObject {
 
 	/**
 	 * Returns the current value of the progress.
-	 * 
+	 *
 	 * @return The current value of the progress.
 	 */
 	public int getProgress() {

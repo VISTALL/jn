@@ -33,7 +33,7 @@ import javax.swing.plaf.PanelUI;
 
 /**
  * UI for rich tooltip panel ({@link JRichTooltipPanel}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class RichTooltipPanelUI extends PanelUI {

@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind;
  * {@link ActionButtonModel} interface and repeated invocation of action
  * listeners on mouse rollover. This is the default core action model set on
  * {@link JCommandButton}s.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class ActionRepeatableButtonModel extends DefaultButtonModel implements
@@ -67,7 +67,7 @@ public class ActionRepeatableButtonModel extends DefaultButtonModel implements
 
 	/**
 	 * Creates a new button model.
-	 * 
+	 *
 	 * @param commandButton
 	 *            The associated command button.
 	 */
@@ -194,7 +194,7 @@ public class ActionRepeatableButtonModel extends DefaultButtonModel implements
 
 	/**
 	 * Checks whether the action timer is running.
-	 * 
+	 *
 	 * @return <code>true</code> if the action timer is running,
 	 *         <code>false</code> otherwise.
 	 */
@@ -207,7 +207,7 @@ public class ActionRepeatableButtonModel extends DefaultButtonModel implements
 	/**
 	 * Starts the action timer, passing the specified modifiers to the action
 	 * event that will be fired in a loop.
-	 * 
+	 *
 	 * @param modifiers
 	 *            Modifiers for the action event to be fired.
 	 */

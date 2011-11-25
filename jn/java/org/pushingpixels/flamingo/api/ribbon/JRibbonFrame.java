@@ -52,14 +52,14 @@ import org.pushingpixels.flamingo.internal.utils.KeyTipManager.KeyTipEvent;
  * Ribbon frame. Provides the same functionality as a regular {@link JFrame},
  * but with a {@link JRibbon} component in the top location.
  * </p>
- * 
+ *
  * <p>
  * This is the only officially supported way to use the {@link JRibbon}
  * container. While {@link JRibbon#JRibbon()} constructor is public, it is
  * provided only for the applications that are absolutely prevented from using
  * {@link JRibbonFrame} class.
  * </p>
- * 
+ *
  * <p>
  * The implementation enforces that a {@link JRibbon} component is always at the
  * {@link BorderLayout#NORTH} location, throwing
@@ -68,7 +68,7 @@ import org.pushingpixels.flamingo.internal.utils.KeyTipManager.KeyTipEvent;
  * {@link JRibbon} component, set a custom menu bar, content pane or any other
  * operation that inteferes with the intended hierarchy of this frame.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JRibbonFrame extends JFrame {
@@ -84,7 +84,7 @@ public class JRibbonFrame extends JFrame {
 	/**
 	 * Custom layout manager that enforces the {@link JRibbon} location at
 	 * {@link BorderLayout#NORTH}.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class RibbonFrameLayout extends BorderLayout {
@@ -115,7 +115,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * A custom layer that shows the currently visible key tip chain.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class KeyTipLayer extends JComponent {
@@ -239,7 +239,7 @@ public class JRibbonFrame extends JFrame {
 		/**
 		 * Checks whether the specified component or one of its ancestors has
 		 * the specified client property set to {@link Boolean#TRUE}.
-		 * 
+		 *
 		 * @param c
 		 *            Component.
 		 * @param clientPropName
@@ -274,7 +274,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * Creates a new ribbon frame with no title.
-	 * 
+	 *
 	 * @throws HeadlessException
 	 *             If GraphicsEnvironment.isHeadless() returns true.
 	 */
@@ -285,7 +285,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * Creates a new ribbon frame with no title.
-	 * 
+	 *
 	 * @param gc
 	 *            Graphics configuration to use.
 	 */
@@ -296,7 +296,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * Creates a new ribbon frame with the specified title.
-	 * 
+	 *
 	 * @param title
 	 *            Ribbon frame title.
 	 * @throws HeadlessException
@@ -309,7 +309,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * Creates a new ribbon frame with the specified title.
-	 * 
+	 *
 	 * @param title
 	 *            Ribbon frame title.
 	 * @param gc
@@ -519,7 +519,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * Returns the ribbon component.
-	 * 
+	 *
 	 * @return Ribbon component.
 	 */
 	public JRibbon getRibbon() {
@@ -711,7 +711,7 @@ public class JRibbonFrame extends JFrame {
 
 	/**
 	 * Returns indication whether this ribbon frame is showing the key tips.
-	 * 
+	 *
 	 * @return <code>true</code> if this ribbon frame is showing the key tips,
 	 *         <code>false</code> otherwise.
 	 */

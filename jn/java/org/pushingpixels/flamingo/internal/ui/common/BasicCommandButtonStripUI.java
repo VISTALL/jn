@@ -43,7 +43,7 @@ import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientatio
 
 /**
  * Basic UI for button strip {@link JCommandButtonStrip}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandButtonStripUI extends CommandButtonStripUI {
@@ -163,7 +163,7 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 	/**
 	 * Invoked by <code>installUI</code> to create a layout manager object to
 	 * manage the {@link JCommandButtonStrip}.
-	 * 
+	 *
 	 * @return a layout manager object
 	 */
 	protected LayoutManager createLayoutManager() {
@@ -172,7 +172,7 @@ public class BasicCommandButtonStripUI extends CommandButtonStripUI {
 
 	/**
 	 * Layout for the button strip.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class ButtonStripLayout implements LayoutManager {

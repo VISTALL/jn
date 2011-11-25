@@ -41,13 +41,13 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.JFlowBandControlPanel;
  * Flow ribbon band component. Hosts components added with
  * {@link #addFlowComponent(JComponent)} in flowing rows. Depending on the
  * current resize policy, the content is shown in either two or three rows.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JFlowRibbonBand extends AbstractRibbonBand<JFlowBandControlPanel> {
 	/**
 	 * Creates a new flow ribbon band.
-	 * 
+	 *
 	 * @param title
 	 *            Band title.
 	 * @param icon
@@ -59,7 +59,7 @@ public class JFlowRibbonBand extends AbstractRibbonBand<JFlowBandControlPanel> {
 
 	/**
 	 * Creates a new flow ribbon band.
-	 * 
+	 *
 	 * @param title
 	 *            Band title.
 	 * @param icon
@@ -77,7 +77,7 @@ public class JFlowRibbonBand extends AbstractRibbonBand<JFlowBandControlPanel> {
 
 	/**
 	 * Adds the specified component to this flow ribbon band.
-	 * 
+	 *
 	 * @param comp
 	 *            Component to add.
 	 */

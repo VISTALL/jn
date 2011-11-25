@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
  * {@link RibbonApplicationMenu}. The footer entries at runtime are represented
  * by {@link CommandButtonKind#ACTION_ONLY} command buttons placed in a
  * right-aligned row along the bottom edge of the ribbon application menu.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RibbonApplicationMenuEntryFooter extends
@@ -47,7 +47,7 @@ public class RibbonApplicationMenuEntryFooter extends
 	/**
 	 * Creates the metadata description of a {@link RibbonApplicationMenu}
 	 * footer menu entry.
-	 * 
+	 *
 	 * @param icon
 	 *            The icon of this footer menu entry. Must be non-
 	 *            <code>null</code>.

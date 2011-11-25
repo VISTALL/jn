@@ -34,7 +34,7 @@ import java.awt.*;
 /**
  * Decorator icon that layers icons one on top of the other. The original icons
  * are drawn and resized together as one layered stack.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class LayeredIcon implements ResizableIcon {
@@ -45,7 +45,7 @@ public class LayeredIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new layered icon.
-	 * 
+	 *
 	 * @param layers
 	 *            Layer icons.
 	 */

@@ -33,7 +33,7 @@ import java.util.*;
 
 /**
  * Generic key-value pair with optional property map.
- * 
+ *
  * @author Kirill Grouchnikov
  * @param <S>
  *            Key class.
@@ -58,7 +58,7 @@ public class KeyValuePair<S, T> {
 
 	/**
 	 * Creates a new pair.
-	 * 
+	 *
 	 * @param key
 	 *            Pair key.
 	 * @param value
@@ -72,7 +72,7 @@ public class KeyValuePair<S, T> {
 
 	/**
 	 * Returns the pair value.
-	 * 
+	 *
 	 * @return Pair value.
 	 */
 	public T getValue() {
@@ -81,7 +81,7 @@ public class KeyValuePair<S, T> {
 
 	/**
 	 * Returns the pair key.
-	 * 
+	 *
 	 * @return Pair key.
 	 */
 	public S getKey() {
@@ -90,7 +90,7 @@ public class KeyValuePair<S, T> {
 
 	/**
 	 * Returns the property attached to the specified key.
-	 * 
+	 *
 	 * @param propKey
 	 *            Property key.
 	 * @return Attached property.
@@ -101,7 +101,7 @@ public class KeyValuePair<S, T> {
 
 	/**
 	 * Sets the property specified by the key and value.
-	 * 
+	 *
 	 * @param propKey
 	 *            Property key.
 	 * @param propValue
@@ -113,7 +113,7 @@ public class KeyValuePair<S, T> {
 
 	/**
 	 * Returns all attached properties.
-	 * 
+	 *
 	 * @return All attached properties.
 	 */
 	public Map<String, Object> getProps() {

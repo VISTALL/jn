@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
 /**
  * Control panel of a single {@link JRibbonBand}. This class is for internal use
  * only and should not be directly used by the applications.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JFlowBandControlPanel extends AbstractBandControlPanel implements
@@ -59,7 +59,7 @@ public class JFlowBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Creates a control panel for specified ribbon band.
-	 * 
+	 *
 	 * @param ribbonBand
 	 *            Ribbon band.
 	 */
@@ -71,7 +71,7 @@ public class JFlowBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Sets the new UI delegate.
-	 * 
+	 *
 	 * @param ui
 	 *            New UI delegate.
 	 */
@@ -115,7 +115,7 @@ public class JFlowBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Adds new panel to <code>this</code> control panel.
-	 * 
+	 *
 	 * @param panel
 	 *            Panel to add
 	 */
@@ -126,7 +126,7 @@ public class JFlowBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Returns regular panels of <code>this</code> control panel.
-	 * 
+	 *
 	 * @return Regular panels of <code>this</code> control panel.
 	 */
 	public List<JComponent> getFlowComponents() {

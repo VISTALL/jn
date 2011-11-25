@@ -36,13 +36,13 @@ import org.pushingpixels.flamingo.api.common.PopupActionListener;
 
 /**
  * Model for the popup area of {@link JCommandButton} component.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public interface PopupButtonModel extends ButtonModel {
 	/**
 	 * Adds an <code>PopupActionListener</code> to the model.
-	 * 
+	 *
 	 * @param l
 	 *            the listener to add
 	 */
@@ -50,7 +50,7 @@ public interface PopupButtonModel extends ButtonModel {
 
 	/**
 	 * Removes an <code>PopupActionListener</code> from the model.
-	 * 
+	 *
 	 * @param l
 	 *            the listener to remove
 	 */
@@ -58,7 +58,7 @@ public interface PopupButtonModel extends ButtonModel {
 
 	/**
 	 * Sets indication on the visibility status of the associated popup.
-	 * 
+	 *
 	 * @param flag
 	 *            The visibility status of the associated popup.
 	 */
@@ -66,7 +66,7 @@ public interface PopupButtonModel extends ButtonModel {
 
 	/**
 	 * Returns indication whether the associated popup is showing.
-	 * 
+	 *
 	 * @return <code>true</code> if the associated popup is showing,
 	 *         <code>false</code> otherwise.
 	 */

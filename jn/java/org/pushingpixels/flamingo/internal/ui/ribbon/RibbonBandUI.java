@@ -35,7 +35,7 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 
 /**
  * UI for ribbon band ({@link JRibbonBand}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class RibbonBandUI extends ComponentUI {

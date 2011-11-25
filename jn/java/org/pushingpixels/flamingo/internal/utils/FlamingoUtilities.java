@@ -50,13 +50,13 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.appmenu.JRibbonApplicationM
 
 /**
  * Helper utilities for Flamingo project. This class is for internal use only.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class FlamingoUtilities {
 	/**
 	 * Gets the component font.
-	 * 
+	 *
 	 * @param comp
 	 *            Component.
 	 * @param keys
@@ -86,7 +86,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Gets the color based on the specified {@link UIManager} keys.
-	 * 
+	 *
 	 * @param defaultColor
 	 *            Default color to return if none of the {@link UIManager} keys
 	 *            are present.
@@ -106,7 +106,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Returns a ribbon band expand icon.
-	 * 
+	 *
 	 * @return Ribbon band expand icon.
 	 */
 	public static ResizableIcon getRibbonBandExpandIcon(
@@ -138,7 +138,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Creates a thumbnail of the specified width.
-	 * 
+	 *
 	 * @param image
 	 *            The original image.
 	 * @param requestedThumbWidth
@@ -174,7 +174,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Returns the outline of the ribbon border.
-	 * 
+	 *
 	 * @param startX
 	 *            The starting X of the ribbon area.
 	 * @param endX
@@ -250,7 +250,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Returns the clip area of a task toggle button in ribbon component.
-	 * 
+	 *
 	 * @param width
 	 *            Toggle tab button width.
 	 * @param height
@@ -286,7 +286,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Returns the outline of in-ribbon gallery.
-	 * 
+	 *
 	 * @param startX
 	 *            Start X of the in-ribbon gallery.
 	 * @param endX
@@ -337,7 +337,7 @@ public class FlamingoUtilities {
 	 * end of the input string separated by ellipses (...) in case the string is
 	 * too long to fit into the specified width, and the origianl string
 	 * otherwise.
-	 * 
+	 *
 	 * @param metrics
 	 *            Font metrics.
 	 * @param availableWidth
@@ -379,7 +379,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Retrieves transparent image of specified dimension.
-	 * 
+	 *
 	 * @param width
 	 *            Image width.
 	 * @param height
@@ -398,7 +398,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Returns the alpha version of the specified color.
-	 * 
+	 *
 	 * @param color
 	 *            Original color.
 	 * @param alpha
@@ -489,7 +489,7 @@ public class FlamingoUtilities {
 
 	/**
 	 * Returns lighter version of the specified color.
-	 * 
+	 *
 	 * @param color
 	 *            Color.
 	 * @param diff

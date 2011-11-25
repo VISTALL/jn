@@ -44,16 +44,16 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonPanelUI;
  * Panel that hosts command buttons. Provides support for button groups, single
  * selection mode (for toggle command buttons), same icon state / dimension and
  * column-fill / row-fill layout.
- * 
+ *
  * <p>
  * Under the default {@link LayoutKind#ROW_FILL}, the buttons are laid out in
  * rows, never exceeding the available horizontal space. A vertical scroll bar
  * will kick in once there is not enough vertical space to show all the buttons.
  * The schematic below shows a row-fill command button panel:
  * </p>
- * 
+ *
  * <pre>
- * +-----------------------------+-+ 
+ * +-----------------------------+-+
  * |                             | |
  * | +----+ +----+ +----+ +----+ | |
  * | | 01 | | 02 | | 03 | | 04 | | |
@@ -71,21 +71,21 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonPanelUI;
  * | | 13 | | 14 | | 15 | | 16 | | |
  * +-----------------------------+-+
  * </pre>
- * 
+ *
  * <p>
  * Each row hosts four buttons, and the vertical scroll bar allows scrolling the
  * content down.
  * </p>
- * 
+ *
  * <p>
  * Under the {@link LayoutKind#COLUMN_FILL}, the buttons are laid out in
  * columns, never exceeding the available vertical space. A horizontal scroll
  * bar will kick in once there is not enough horizontal space to show all the
  * buttons. The schematic below shows a column-fill command button panel:
  * </p>
- * 
+ *
  * <pre>
- * +---------------------------------+ 
+ * +---------------------------------+
  * |                                 |
  * | +----+ +----+ +----+ +----+ +---|
  * | | 01 | | 04 | | 07 | | 10 | | 13|
@@ -102,12 +102,12 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonPanelUI;
  * +---------------------------------+
  * +---------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * Each column hosts three buttons, and the horizontal scroll bar allows
  * scrolling the content down.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JCommandButtonPanel extends JPanel implements Scrollable {
@@ -118,7 +118,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * List of titles for all button groups.
-	 * 
+	 *
 	 * @see #getGroupCount()
 	 * @see #getGroupTitleAt(int)
 	 */
@@ -126,7 +126,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * List of all button groups.
-	 * 
+	 *
 	 * @see #getGroupCount()
 	 * @see #getGroupButtons(int)
 	 */
@@ -135,7 +135,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Maximum number of columns for this panel. Relevant only when the layout
 	 * kind is {@link LayoutKind#ROW_FILL}.
-	 * 
+	 *
 	 * @see #getMaxButtonColumns()
 	 * @see #setMaxButtonColumns(int)
 	 */
@@ -144,7 +144,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Maximum number of rows for this panel. Relevant only when the layout kind
 	 * is {@link LayoutKind#COLUMN_FILL}.
-	 * 
+	 *
 	 * @see #getMaxButtonRows()
 	 * @see #setMaxButtonRows(int)
 	 */
@@ -153,14 +153,14 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Indicates the selection mode for the {@link JCommandToggleButton} in this
 	 * panel.
-	 * 
+	 *
 	 * @see #setSingleSelectionMode(boolean)
 	 */
 	protected boolean isSingleSelectionMode;
 
 	/**
 	 * If <code>true</code>, the panel will show group labels.
-	 * 
+	 *
 	 * @see #setToShowGroupLabels(boolean)
 	 * @see #isToShowGroupLabels()
 	 */
@@ -183,7 +183,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Layout kind of this button panel.
-	 * 
+	 *
 	 * @see #getLayoutKind()
 	 * @see #setLayoutKind(LayoutKind)
 	 */
@@ -191,7 +191,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Enumerates the available layout kinds.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public enum LayoutKind {
@@ -221,7 +221,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Creates a new panel.
-	 * 
+	 *
 	 * @param startingDimension
 	 *            Initial dimension for buttons.
 	 */
@@ -234,7 +234,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Creates a new panel.
-	 * 
+	 *
 	 * @param startingState
 	 *            Initial state for buttons.
 	 */
@@ -247,7 +247,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Adds a new button group at the specified index.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Button group name.
 	 * @param groupIndex
@@ -265,7 +265,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Adds a new button group after all the existing button groups.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Button group name.
 	 * @see #addButtonGroup(String, int)
@@ -278,7 +278,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Removes the specified button group.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Name of the button group to remove.
 	 * @see #addButtonGroup(String)
@@ -306,7 +306,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Adds a new button to the specified button group.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Button to add.
 	 * @return Returns the index of the button on the specified group, or -1 if
@@ -326,7 +326,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Adds a new button to the specified button group.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Name of the button group.
 	 * @param commandButton
@@ -349,7 +349,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Adds a new button to the specified button group.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Name of the button group.
 	 * @param indexInGroup
@@ -381,7 +381,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Removes the button at the specified index from the specified button
 	 * group.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Name of the button group.
 	 * @param indexInGroup
@@ -407,7 +407,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Removes all the button groups and buttons from this panel.
-	 * 
+	 *
 	 * @see #addButtonGroup(String, int)
 	 * @see #addButtonGroup(String)
 	 * @see #removeButtonGroup(String)
@@ -430,7 +430,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Returns the number of button groups in this panel.
-	 * 
+	 *
 	 * @return Number of button groups in this panel.
 	 */
 	public int getGroupCount() {
@@ -441,7 +441,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Returns the number of buttons in this panel.
-	 * 
+	 *
 	 * @return Number of buttons in this panel.
 	 */
 	public int getButtonCount() {
@@ -454,7 +454,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Returns the title of the button group at the specified index.
-	 * 
+	 *
 	 * @param index
 	 *            Button group index.
 	 * @return Title of the button group at the specified index.
@@ -492,7 +492,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * and the layout kind is {@link LayoutKind#ROW_FILL}, it will have no more
 	 * than this number of buttons in each row. Fires a
 	 * <code>maxButtonColumns</code> property change event.
-	 * 
+	 *
 	 * @param maxButtonColumns
 	 *            Maximum button columns for this panel.
 	 * @see #getMaxButtonColumns()
@@ -510,7 +510,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Returns the maximum button columns for this panel. The return value is
 	 * relevant only when the layout kind is {@link LayoutKind#ROW_FILL}.
-	 * 
+	 *
 	 * @return Maximum button columns for this panel.
 	 * @see #setMaxButtonColumns(int)
 	 * @see #getMaxButtonRows()
@@ -524,7 +524,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * the layout kind is {@link LayoutKind#COLUMN_FILL}, it will have no more
 	 * than this number of buttons in each column. Fires a
 	 * <code>maxButtonRows</code> property change event.
-	 * 
+	 *
 	 * @param maxButtonRows
 	 *            Maximum button rows for this panel.
 	 * @see #getMaxButtonRows()
@@ -542,7 +542,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Returns the maximum button rows for this panel. The return value is
 	 * relevant only when the layout kind is {@link LayoutKind#COLUMN_FILL}.
-	 * 
+	 *
 	 * @return Maximum button rows for this panel.
 	 * @see #setMaxButtonRows(int)
 	 * @see #getMaxButtonColumns()
@@ -553,7 +553,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Returns the list of all buttons in the specified button group.
-	 * 
+	 *
 	 * @param groupIndex
 	 *            Group index.
 	 * @return Unmodifiable view on the list of all buttons in the specified
@@ -568,7 +568,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * Sets the selection mode for this panel. If <code>true</code> is passed as
 	 * the parameter, all {@link JCommandToggleButton} in this panel are set to
 	 * belong to the same button group.
-	 * 
+	 *
 	 * @param isSingleSelectionMode
 	 *            If <code>true</code>,all {@link JCommandToggleButton} in this
 	 *            panel are set to belong to the same button group.
@@ -603,7 +603,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Sets indication whether button group labels should be shown. Fires a
 	 * <code>toShowGroupLabels</code> property change event.
-	 * 
+	 *
 	 * @param toShowGroupLabels
 	 *            If <code>true</code>, this panel will show the labels of the
 	 *            button groups.
@@ -624,7 +624,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Returns indication whether button group labels should be shown.
-	 * 
+	 *
 	 * @return If <code>true</code>, this panel shows the labels of the button
 	 *         groups, and <code>false</code> otherwise.
 	 * @see #setToShowGroupLabels(boolean)
@@ -636,7 +636,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Sets the new dimension for the icons in this panel. The state for all the
 	 * icons is set to {@link CommandButtonDisplayState#FIT_TO_ICON}.
-	 * 
+	 *
 	 * @param dimension
 	 *            New dimension for the icons in this panel.
 	 * @see #setIconState(CommandButtonDisplayState)
@@ -662,7 +662,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * {@link CommandButtonDisplayState#TILE},
 	 * {@link CommandButtonDisplayState#MEDIUM} and
 	 * {@link CommandButtonDisplayState#SMALL}).
-	 * 
+	 *
 	 * @param state
 	 *            New state for the icons in this panel.
 	 * @see #setIconDimension(int)
@@ -686,7 +686,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	 * Returns the selected button of this panel. Only relevant for single
 	 * selection mode (set by {@link #setSingleSelectionMode(boolean)}),
 	 * returning <code>null</code> otherwise.
-	 * 
+	 *
 	 * @return The selected button of this panel.
 	 * @see #setSingleSelectionMode(boolean)
 	 */
@@ -707,7 +707,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Returns the layout kind of this panel.
-	 * 
+	 *
 	 * @return Layout kind of this panel.
 	 * @see #setLayoutKind(LayoutKind)
 	 */
@@ -718,7 +718,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 	/**
 	 * Sets the new layout kind for this panel. Fires a <code>layoutKind</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param layoutKind
 	 *            New layout kind for this panel.
 	 * @see #getLayoutKind()
@@ -740,7 +740,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Adds the specified change listener to this button panel.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to add.
 	 * @see #removeChangeListener(ChangeListener)
@@ -751,7 +751,7 @@ public class JCommandButtonPanel extends JPanel implements Scrollable {
 
 	/**
 	 * Removes the specified change listener from this button panel.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to remove.
 	 * @see #addChangeListener(ChangeListener)

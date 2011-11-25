@@ -38,7 +38,7 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonUI;
 
 /**
  * A command toggle button that can be placed in {@link JCommandPopupMenu}.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see JCommandPopupMenu#addMenuButton(JCommandToggleMenuButton)
  */
@@ -50,7 +50,7 @@ public class JCommandToggleMenuButton extends JCommandToggleButton {
 
 	/**
 	 * Creates a new command toggle menu button.
-	 * 
+	 *
 	 * @param title
 	 *            Command toggle menu button title.
 	 * @param icon

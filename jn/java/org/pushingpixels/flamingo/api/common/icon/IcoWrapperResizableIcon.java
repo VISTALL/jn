@@ -36,14 +36,14 @@ import java.net.URL;
 
 /**
  * Implementation of {@link ResizableIcon} interface that wraps ICO files.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class IcoWrapperResizableIcon extends IcoWrapperIcon implements
 		ResizableIcon {
 	/**
 	 * Returns the icon for the specified URL.
-	 * 
+	 *
 	 * @param location
 	 *            Icon URL.
 	 * @param initialDim
@@ -63,7 +63,7 @@ public class IcoWrapperResizableIcon extends IcoWrapperIcon implements
 
 	/**
 	 * Returns the icon for the specified input stream.
-	 * 
+	 *
 	 * @param inputStream
 	 *            Icon input stream.
 	 * @param initialDim
@@ -77,7 +77,7 @@ public class IcoWrapperResizableIcon extends IcoWrapperIcon implements
 
 	/**
 	 * Creates a new ICO-based resizable icon.
-	 * 
+	 *
 	 * @param inputStream
 	 *            Input stream with the ICO content.
 	 * @param initialDim

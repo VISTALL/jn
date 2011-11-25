@@ -40,14 +40,14 @@ import org.pushingpixels.flamingo.api.common.popup.PopupPanelCallback;
  * {@link RibbonApplicationMenu}. The secondary menu entries at runtime are
  * represented by command menu buttons placed in the right panel of the
  * application menu.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RibbonApplicationMenuEntrySecondary extends
 		RibbonApplicationMenuEntry {
 	/**
 	 * Extra description text for this secondary menu entry.
-	 * 
+	 *
 	 * @see #getDescriptionText()
 	 * @see #setDescriptionText(String)
 	 */
@@ -56,7 +56,7 @@ public class RibbonApplicationMenuEntrySecondary extends
 	/**
 	 * Popup callback for this menu entry. Must be not <code>null</code> if the
 	 * menu entry kind has popup part.
-	 * 
+	 *
 	 * @see #getPopupCallback()
 	 * @see #setPopupCallback(PopupPanelCallback)
 	 */
@@ -65,7 +65,7 @@ public class RibbonApplicationMenuEntrySecondary extends
 	/**
 	 * Creates the metadata description of a {@link RibbonApplicationMenu}
 	 * secondary menu entry.
-	 * 
+	 *
 	 * @param icon
 	 *            The icon of this menu entry. Must be non-<code>null</code>.
 	 * @param text
@@ -85,7 +85,7 @@ public class RibbonApplicationMenuEntrySecondary extends
 
 	/**
 	 * Returns the description text of this secondary menu entry.
-	 * 
+	 *
 	 * @return The description text of this secondary menu entry.
 	 * @see #setDescriptionText(String)
 	 */
@@ -95,7 +95,7 @@ public class RibbonApplicationMenuEntrySecondary extends
 
 	/**
 	 * Sets the new description text for this secondary menu entry.
-	 * 
+	 *
 	 * @param descriptionText
 	 *            The new description text for this secondary menu entry.
 	 * @see #getDescriptionText()
@@ -106,7 +106,7 @@ public class RibbonApplicationMenuEntrySecondary extends
 
 	/**
 	 * Sets the popup callback for this secondary menu entry.
-	 * 
+	 *
 	 * @param popupCallback
 	 *            The popup callback for this secondary menu entry.
 	 * @see #getPopupCallback()
@@ -117,7 +117,7 @@ public class RibbonApplicationMenuEntrySecondary extends
 
 	/**
 	 * Returns the current popup callback of this secondary menu entry.
-	 * 
+	 *
 	 * @return The current popup callback of this secondary menu entry.
 	 * @see #setPopupCallback(PopupPanelCallback)
 	 */

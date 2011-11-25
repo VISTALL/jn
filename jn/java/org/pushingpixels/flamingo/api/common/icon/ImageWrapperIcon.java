@@ -45,7 +45,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Helper class to load images and expose them as icons of dynamic size.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 abstract class ImageWrapperIcon implements Icon, AsynchronousLoading {
@@ -86,7 +86,7 @@ abstract class ImageWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Create a new image-wrapper icon.
-	 * 
+	 *
 	 * @param inputStream
 	 *            The input stream to read the image from.
 	 * @param w
@@ -111,7 +111,7 @@ abstract class ImageWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Create a new image-wrapper icon.
-	 * 
+	 *
 	 * @param image
 	 *            The original image.
 	 * @param w
@@ -194,7 +194,7 @@ abstract class ImageWrapperIcon implements Icon, AsynchronousLoading {
 	/**
 	 * Sets the preferred size for <code>this</code> icon. The rendering is
 	 * scheduled automatically.
-	 * 
+	 *
 	 * @param dim
 	 *            Preferred size.
 	 */
@@ -209,7 +209,7 @@ abstract class ImageWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Renders the image.
-	 * 
+	 *
 	 * @param renderWidth
 	 *            Requested rendering width.
 	 * @param renderHeight
@@ -279,7 +279,7 @@ abstract class ImageWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Fires the asynchronous load event.
-	 * 
+	 *
 	 * @param event
 	 *            Event object.
 	 */

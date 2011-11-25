@@ -41,19 +41,19 @@ import org.pushingpixels.flamingo.api.common.JCommandButton;
 
 /**
  * Manager for showing and hiding {@link JPopupPanel}s.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class PopupPanelManager {
 	/**
 	 * Listener on showing and hiding the popup panels.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static interface PopupListener extends EventListener {
 		/**
 		 * Fired when a popup panel has been shown.
-		 * 
+		 *
 		 * @param event
 		 *            Popup event.
 		 */
@@ -61,7 +61,7 @@ public class PopupPanelManager {
 
 		/**
 		 * Fired when a popup panel has been hidden.
-		 * 
+		 *
 		 * @param event
 		 *            Popup event.
 		 */
@@ -70,7 +70,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Popup event.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class PopupEvent extends ComponentEvent {
@@ -91,7 +91,7 @@ public class PopupPanelManager {
 
 		/**
 		 * Creates a new popup event.
-		 * 
+		 *
 		 * @param source
 		 *            Event source.
 		 * @param id
@@ -106,7 +106,7 @@ public class PopupPanelManager {
 
 		/**
 		 * Returns the popup originator component.
-		 * 
+		 *
 		 * @return Popup originator component.
 		 */
 		public JComponent getPopupOriginator() {
@@ -126,7 +126,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Information on a single showing popup.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class PopupInfo {
@@ -142,7 +142,7 @@ public class PopupPanelManager {
 
 		/**
 		 * Creates a new information object.
-		 * 
+		 *
 		 * @param popupOriginator
 		 *            The originating component.
 		 * @param popupPanel
@@ -155,7 +155,7 @@ public class PopupPanelManager {
 
 		/**
 		 * Returns the popup panel.
-		 * 
+		 *
 		 * @return The popup panel.
 		 */
 		public JPopupPanel getPopupPanel() {
@@ -164,7 +164,7 @@ public class PopupPanelManager {
 
 		/**
 		 * Returns the originating component.
-		 * 
+		 *
 		 * @return The originating component.
 		 */
 		public JComponent getPopupOriginator() {
@@ -174,7 +174,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Returns the default popup panel manager.
-	 * 
+	 *
 	 * @return a PopupPanelManager object
 	 */
 	public static PopupPanelManager defaultManager() {
@@ -193,7 +193,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Adds new popup to the tracking structures.
-	 * 
+	 *
 	 * @param popupOriginator
 	 *            The originating component.
 	 * @param popup
@@ -237,7 +237,7 @@ public class PopupPanelManager {
 	 * first ancestor of the specified component that is popup panel, and close
 	 * all popup panels that were open from that popup panel. If the specified
 	 * component is <code>null</code>, all popup panels are closed.
-	 * 
+	 *
 	 * @param comp
 	 *            Component.
 	 */
@@ -294,7 +294,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Returns all currently shown popup panels.
-	 * 
+	 *
 	 * @return All currently shown popup panels.
 	 */
 	public List<PopupInfo> getShownPath() {
@@ -306,7 +306,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Adds the specified popup listener.
-	 * 
+	 *
 	 * @param l
 	 *            Listener to add.
 	 */
@@ -316,7 +316,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Removes the specified popup listener.
-	 * 
+	 *
 	 * @param l
 	 *            Listener to remove.
 	 */
@@ -326,7 +326,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Fires an event on showing the specified popup panel.
-	 * 
+	 *
 	 * @param panel
 	 *            Popup panel that was shown.
 	 * @param popupOriginator
@@ -348,7 +348,7 @@ public class PopupPanelManager {
 
 	/**
 	 * Fires an event on hiding the specified popup panel.
-	 * 
+	 *
 	 * @param panel
 	 *            Popup panel that was hidden.
 	 * @param popupOriginator

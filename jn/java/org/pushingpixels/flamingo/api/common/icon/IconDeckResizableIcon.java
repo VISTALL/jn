@@ -40,7 +40,7 @@ import org.pushingpixels.flamingo.api.common.AsynchronousLoading;
  * painting at runtime. This class can be used as a delegate in the
  * {@link DecoratedResizableIcon} where the "base" icon is changed at runtime
  * without the need to recompute all the decorators.
- * 
+ *
  * @param <T>
  *            enumeration key into the deck
  * @author Kenneth Flynn flynnk@darkcornersoftware.com.
@@ -59,7 +59,7 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 
 	/**
 	 * Creates the icon deck.
-	 * 
+	 *
 	 * @param iconDeck
 	 *            Icon deck.
 	 */
@@ -73,7 +73,7 @@ public class IconDeckResizableIcon<T> implements ResizableIcon,
 
 	/**
 	 * Sets the currently shown icon.
-	 * 
+	 *
 	 * @param key
 	 *            Icon key.
 	 */

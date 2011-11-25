@@ -46,7 +46,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
  * Ribbon band. Is part of a logical {@link RibbonTask}. This is an abstract
  * base class for two types of ribbon bands - flow in {@link JFlowRibbonBand}
  * and general in {@link JRibbonBand}.
- * 
+ *
  * <p>
  * This class provides the following common functionality:
  * </p>
@@ -61,7 +61,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
  * band.</li>
  * <li>Associating key tip with the collapsed button of the ribbon band.</li>
  * </ul>
- * 
+ *
  * @author Kirill Grouchnikov
  * @param <T>
  *            Class parameter that specifies the type of band control panel
@@ -81,7 +81,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Band title.
-	 * 
+	 *
 	 * @see #getTitle()
 	 * @see #setTitle(String)
 	 */
@@ -91,7 +91,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Optional <code>expand</code> action listener. If present, the title pane
 	 * shows button with plus sign. The action listener on the button will be
 	 * <code>this</code> listener.
-	 * 
+	 *
 	 * @see #getExpandActionListener()
 	 * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
 	 *      AbstractBandControlPanel)
@@ -105,7 +105,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * it shows the {@link #popupRibbonBand} in a popup panel. The collapsed
 	 * button itself is implemented as a part of the UI delegate in
 	 * {@link BasicRibbonBandUI}.
-	 * 
+	 *
 	 * @see #popupRibbonBand
 	 * @see #icon
 	 */
@@ -114,7 +114,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Ribbon band shown in a popup panel when this ribbon band is in a
 	 * collapsed state.
-	 * 
+	 *
 	 * @see #controlPanel
 	 * @see #getPopupRibbonBand()
 	 * @see #setPopupRibbonBand(AbstractRibbonBand)
@@ -125,7 +125,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Icon for the collapsed state. Is set on the button that represents the
 	 * collapsed state of this band. The collapsed button itself is implemented
 	 * as a part of the UI delegate in {@link BasicRibbonBandUI}.
-	 * 
+	 *
 	 * @see #getIcon()
 	 */
 	private ResizableIcon icon;
@@ -133,7 +133,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * The current resize policy for this band. Must be one of the policies in
 	 * the {@link #resizePolicies} list.
-	 * 
+	 *
 	 * @see #resizePolicies
 	 * @see #setCurrentResizePolicy(RibbonBandResizePolicy)
 	 * @see #getCurrentResizePolicy()
@@ -142,7 +142,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * The list of available resize policies.
-	 * 
+	 *
 	 * @see #currResizePolicy
 	 * @see #setResizePolicies(List)
 	 * @see #getResizePolicies()
@@ -153,7 +153,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * The key tip for the ribbon band expand button. Is relevant only when
 	 * {@link #expandActionListener} is not <code>null</code>.
-	 * 
+	 *
 	 * @see #setExpandButtonKeyTip(String)
 	 * @see #getExpandButtonKeyTip()
 	 */
@@ -162,7 +162,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * The rich tooltip for the ribbon band expand button. Is relevant only when
 	 * {@link #expandActionListener} is not <code>null</code>.
-	 * 
+	 *
 	 * @see #setExpandButtonRichTooltip(RichTooltip)
 	 * @see #getExpandButtonRichTooltip()
 	 */
@@ -173,7 +173,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * enough horizontal space to show the ribbon band content under the most
 	 * restrictive resize policy. The collapsed button itself is implemented as
 	 * a part of the UI delegate in {@link BasicRibbonBandUI}.
-	 * 
+	 *
 	 * @see #setCollapsedStateKeyTip(String)
 	 * @see #getCollapsedStateKeyTip()
 	 */
@@ -181,7 +181,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Creates a new ribbon band.
-	 * 
+	 *
 	 * @param title
 	 *            Band title.
 	 * @param icon
@@ -207,14 +207,14 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Returns a clone of this ribbon band.
-	 * 
+	 *
 	 * @return A clone of this ribbon band.
 	 */
 	public abstract AbstractRibbonBand<T> cloneBand();
 
 	/**
 	 * Returns the UI object which implements the L&F for this component.
-	 * 
+	 *
 	 * @return a <code>RibbonBandUI</code> object
 	 * @see #setUI
 	 */
@@ -224,7 +224,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Sets the new UI delegate.
-	 * 
+	 *
 	 * @param ui
 	 *            New UI delegate.
 	 */
@@ -258,7 +258,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Returns the title of <code>this</code> band.
-	 * 
+	 *
 	 * @return Title of <code>this</code> band.
 	 * @see #setTitle(String)
 	 */
@@ -268,7 +268,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Returns the icon for the collapsed state.
-	 * 
+	 *
 	 * @return The icon for the collapsed state.
 	 * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
 	 *      AbstractBandControlPanel)
@@ -280,7 +280,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Changes the title of this ribbon band. Fires a <code>title</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param title
 	 *            The new title for this ribbon band.
 	 * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
@@ -296,7 +296,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Returns the expand action listener of <code>this</code> ribbon band. The
 	 * result may be <code>null</code>.
-	 * 
+	 *
 	 * @return Expand action listener of <code>this</code> ribbon band.
 	 * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
 	 *      AbstractBandControlPanel)
@@ -310,7 +310,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Sets the specified action listener to be activated when the user clicks
 	 * the expand button on this ribbon band. Passing <code>null</code> will
 	 * remove the expand button from this ribbon band.
-	 * 
+	 *
 	 * @param expandActionListener
 	 *            Expand action listener for this ribbon band.
 	 * @see #getExpandActionListener()
@@ -325,7 +325,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Returns the control panel of <code>this</code> ribbon band. The result
 	 * may be <code>null</code>.
-	 * 
+	 *
 	 * @return Control panel of <code>this</code> ribbon band.
 	 * @see #AbstractRibbonBand(String, ResizableIcon, ActionListener,
 	 *      AbstractBandControlPanel)
@@ -338,7 +338,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Sets the control panel of <code>this</code> ribbon band. The parameter
 	 * may be <code>null</code>. This method is for internal use only.
-	 * 
+	 *
 	 * @param controlPanel
 	 *            The new control panel for <code>this</code> ribbon band. May
 	 *            be <code>null</code>.
@@ -361,7 +361,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Returns the ribbon band shown in a popup panel when this ribbon band is
 	 * in a collapsed state. This method is for internal use only and should not
 	 * be called by the application code.
-	 * 
+	 *
 	 * @return The ribbon band shown in a popup panel when this ribbon band is
 	 *         in a collapsed state.
 	 * @see #setPopupRibbonBand(AbstractRibbonBand)
@@ -374,7 +374,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Sets the specified parameter to be the ribbon band shown in a popup panel
 	 * when this ribbon band is in a collapsed state. This method is for
 	 * internal use only and should not be called by the application code.
-	 * 
+	 *
 	 * @param popupRibbonBand
 	 *            The ribbon band to be shown in a popup panel when this ribbon
 	 *            band is in a collapsed state.
@@ -389,7 +389,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Returns the current resize policy of this ribbon band.
-	 * 
+	 *
 	 * @return The current resize policy of this ribbon band.
 	 */
 	public RibbonBandResizePolicy getCurrentResizePolicy() {
@@ -400,7 +400,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Sets the specified parameter to be the current resize policy of this
 	 * ribbon band. This method is for internal use only and should not be
 	 * called by the application code.
-	 * 
+	 *
 	 * @param resizePolicy
 	 *            The new resize policy for this ribbon band.
 	 * @see #getCurrentResizePolicy()
@@ -413,7 +413,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Returns an unmodifiable list of available resize policies of this ribbon
 	 * band.
-	 * 
+	 *
 	 * @return An unmodifiable list of available resize policies of this ribbon
 	 *         band.
 	 */
@@ -430,7 +430,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * successive entry in the list must return the value smaller than its
 	 * predecessors. If {@link IconRibbonBandResizePolicy} is in the list, it
 	 * <strong>must</strong> be the last entry.
-	 * 
+	 *
 	 * @param resizePolicies
 	 *            The new available resize policies of this ribbon band.
 	 */
@@ -443,7 +443,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Returns the key tip for the expand button of this ribbon band.
-	 * 
+	 *
 	 * @return The key tip for the expand button of this ribbon band.
 	 * @see #setExpandButtonKeyTip(String)
 	 */
@@ -454,7 +454,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Changes the key tip for the expand button of this ribbon band. Fires an
 	 * <code>expandButtonKeyTip</code> property change event.
-	 * 
+	 *
 	 * @param expandButtonKeyTip
 	 *            The new key tip for the expand button of this ribbon band.
 	 * @see #getExpandButtonKeyTip()
@@ -468,7 +468,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Returns the rich tooltip for the expand button of this ribbon band.
-	 * 
+	 *
 	 * @return The rich tooltip for the expand button of this ribbon band.
 	 * @see #setExpandButtonRichTooltip(RichTooltip)
 	 */
@@ -479,7 +479,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	/**
 	 * Changes the rich tooltip for the expand button of this ribbon band. Fires
 	 * an <code>expandButtonRichTooltip</code> property change event.
-	 * 
+	 *
 	 * @param expandButtonRichTooltip
 	 *            The new rich tooltip for the expand button of this ribbon
 	 *            band.
@@ -496,7 +496,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * Returns the key tip for the collapsed button which is shown when there is
 	 * not enough horizontal space to show the ribbon band content under the
 	 * most restrictive resize policy.
-	 * 
+	 *
 	 * @return The key tip for the collapsed button of this ribbon band.
 	 * @see #setCollapsedStateKeyTip(String)
 	 */
@@ -509,7 +509,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 	 * not enough horizontal space to show the ribbon band content under the
 	 * most restrictive resize policy. Fires a <code>collapsedStateKeyTip</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param collapsedStateKeyTip
 	 *            The new key tip for the collapsed button of this ribbon band.
 	 * @see #getCollapsedStateKeyTip()
@@ -523,7 +523,7 @@ public abstract class AbstractRibbonBand<T extends AbstractBandControlPanel>
 
 	/**
 	 * Associates this ribbon band with the specified ribbon task.
-	 * 
+	 *
 	 * @param ribbonTask
 	 *            Ribbon task.
 	 * @throws IllegalArgumentException

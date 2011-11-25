@@ -43,7 +43,7 @@ import org.pushingpixels.trident.swing.SwingRepaintCallback;
 
 /**
  * Basic UI for color selector component {@link JColorSelectorComponent}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicColorSelectorComponentUI extends ColorSelectorComponentUI {

@@ -37,7 +37,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 
 /**
  * Basic metadata for entries in the ribbon application menu.
- * 
+ *
  * <p>
  * At runtime, the application menu entries are implemented as
  * {@link JCommandMenuButton}, but the application code does not operate on that
@@ -45,7 +45,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
  * the ribbon application menu, and that description is used to create and
  * populate the "real" controls of the application menu popup.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  * @see RibbonApplicationMenu
  * @see JRibbon#setApplicationMenu(RibbonApplicationMenu)
@@ -91,7 +91,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Creates the basic metadata description of a {@link RibbonApplicationMenu}
 	 * menu entry.
-	 * 
+	 *
 	 * @param icon
 	 *            The icon of this menu entry. Must be non-<code>null</code>.
 	 * @param text
@@ -116,7 +116,7 @@ abstract class RibbonApplicationMenuEntry {
 
 	/**
 	 * Returns the icon of this application menu entry.
-	 * 
+	 *
 	 * @return The icon of this application menu entry.
 	 */
 	public ResizableIcon getIcon() {
@@ -125,7 +125,7 @@ abstract class RibbonApplicationMenuEntry {
 
 	/**
 	 * Returns the text of this application menu entry.
-	 * 
+	 *
 	 * @return The text of this application menu entry.
 	 * @see #setText(String)
 	 */
@@ -135,7 +135,7 @@ abstract class RibbonApplicationMenuEntry {
 
 	/**
 	 * Sets the new text for this application menu entry.
-	 * 
+	 *
 	 * @param text
 	 *            The new text for this application menu entry.
 	 * @see #getText()
@@ -147,7 +147,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Returns the main action listener associated with this application menu
 	 * entry.
-	 * 
+	 *
 	 * @return The main action listener associated with this application menu
 	 *         entry.
 	 */
@@ -157,7 +157,7 @@ abstract class RibbonApplicationMenuEntry {
 
 	/**
 	 * Returns the kind of the command button that represents this menu entry.
-	 * 
+	 *
 	 * @return The kind of the command button that represents this menu entry.
 	 */
 	public CommandButtonKind getEntryKind() {
@@ -167,7 +167,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Sets the enabled state of the command button that represents this menu
 	 * entry.
-	 * 
+	 *
 	 * @param isEnabled
 	 *            If <code>true</code>, the command button that represents this
 	 *            menu entry will be enabled, if <code>false</code>, the command
@@ -181,7 +181,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Returns the enabled state of the command button that represents this menu
 	 * entry.
-	 * 
+	 *
 	 * @return <code>true</code> if the command button that represents this menu
 	 *         entry is enabled, <code>false</code> otherwise.
 	 */
@@ -192,7 +192,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Returns the key tip for the action area of the command button that
 	 * represents this menu entry.
-	 * 
+	 *
 	 * @return The key tip for the action area of the command button that
 	 *         represents this menu entry.
 	 * @see #setActionKeyTip(String)
@@ -205,7 +205,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Sets the new value for the key tip for the action area of the command
 	 * button that represents this menu entry.
-	 * 
+	 *
 	 * @param actionKeyTip
 	 *            The new value for the key tip for the action area of the
 	 *            command button that represents this menu entry.
@@ -219,7 +219,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Returns the key tip for the popup area of the command button that
 	 * represents this menu entry.
-	 * 
+	 *
 	 * @return The key tip for the popup area of the command button that
 	 *         represents this menu entry.
 	 * @see #setPopupKeyTip(String)
@@ -232,7 +232,7 @@ abstract class RibbonApplicationMenuEntry {
 	/**
 	 * Sets the new value for the key tip for the popup area of the command
 	 * button that represents this menu entry.
-	 * 
+	 *
 	 * @param popupKeyTip
 	 *            The new value for the key tip for the popup area of the
 	 *            command button that represents this menu entry.

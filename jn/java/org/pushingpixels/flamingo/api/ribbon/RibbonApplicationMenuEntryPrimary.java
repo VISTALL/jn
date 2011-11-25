@@ -42,11 +42,11 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
  * {@link RibbonApplicationMenu}. The primary menu entries at runtime are
  * represented by command menu buttons placed in the left panel of the
  * application menu.
- * 
+ *
  * <p>
  * There are three different types of primary entries:
  * </p>
- * 
+ *
  * <ul>
  * <li>Associated {@link ActionListener} passed to the
  * {@link RibbonApplicationMenuEntryPrimary#RibbonApplicationMenuEntryPrimary(ResizableIcon, String, ActionListener, CommandButtonKind)}
@@ -68,7 +68,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
  * secondary menu entries. The <code>Save As</code> menu item is an example of
  * such a primary menu item, showing a list of default save formats.</li>
  * </ul>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RibbonApplicationMenuEntryPrimary extends
@@ -77,7 +77,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 	 * An optional rollover callback. It allows the application to place custom
 	 * content in the secondary panel of the {@link RibbonApplicationMenu} when
 	 * this primary menu entry is activated.
-	 * 
+	 *
 	 * @see #setRolloverCallback(PrimaryRolloverCallback)
 	 * @see #getRolloverCallback()
 	 */
@@ -86,13 +86,13 @@ public class RibbonApplicationMenuEntryPrimary extends
 	/**
 	 * Callback that allows application code to provide custom content on the
 	 * secondary panel of the {@link RibbonApplicationMenu}.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static interface PrimaryRolloverCallback {
 		/**
 		 * Called when the matching primary menu item is activated.
-		 * 
+		 *
 		 * @param targetPanel
 		 *            The secondary panel of the {@link RibbonApplicationMenu}.
 		 *            Note that the application code <strong>must not</strong>
@@ -114,7 +114,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 	/**
 	 * Creates the metadata description of a {@link RibbonApplicationMenu}
 	 * primary menu entry.
-	 * 
+	 *
 	 * @param icon
 	 *            The icon of this menu entry. Must be non-<code>null</code>.
 	 * @param text
@@ -136,7 +136,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 
 	/**
 	 * Adds a titled group of secondary menu entries.
-	 * 
+	 *
 	 * @param groupTitle
 	 *            The title of the group.
 	 * @param entries
@@ -159,7 +159,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 
 	/**
 	 * Returns the number of secondary menu groups of this primary menu entry.
-	 * 
+	 *
 	 * @return The number of secondary menu groups of this primary menu entry.
 	 * @see #addSecondaryMenuGroup(String,
 	 *      RibbonApplicationMenuEntrySecondary...)
@@ -172,7 +172,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 
 	/**
 	 * Returns the title of the secondary menu group at the specified index.
-	 * 
+	 *
 	 * @param groupIndex
 	 *            The index of a secondary menu group.
 	 * @return The title of the secondary menu group at the specified index.
@@ -188,7 +188,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 	/**
 	 * Returns an unmodifiable list of menu entries of the secondary menu group
 	 * at the specified index.
-	 * 
+	 *
 	 * @param groupIndex
 	 *            The index of a secondary menu group.
 	 * @return An unmodifiable list of menu entries of the secondary menu group
@@ -207,7 +207,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 	 * Sets the rollover callback that allows the application to place custom
 	 * content in the secondary panel of the {@link RibbonApplicationMenu} when
 	 * this primary menu entry is activated.
-	 * 
+	 *
 	 * @param rolloverCallback
 	 *            The new rollover callback for populating the secondary panel
 	 *            of the {@link RibbonApplicationMenu}.
@@ -221,7 +221,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 	 * Returns the current application callback that allows placing custom
 	 * content in the secondary panel of the {@link RibbonApplicationMenu} when
 	 * this primary menu entry is activated.
-	 * 
+	 *
 	 * @return The current rollover callback for populating the secondary panel
 	 *         of the {@link RibbonApplicationMenu}.
 	 * @see #setRolloverCallback(PrimaryRolloverCallback)
@@ -232,7 +232,7 @@ public class RibbonApplicationMenuEntryPrimary extends
 
 	/**
 	 * Changes the title of the specified group.
-	 * 
+	 *
 	 * @param groupIndex
 	 *            Group index.
 	 * @param newTitle

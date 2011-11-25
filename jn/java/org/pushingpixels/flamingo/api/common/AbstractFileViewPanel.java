@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 /**
  * Panel that hosts file-related command buttons with progress indication and
  * cancellation capabilities.
- * 
+ *
  * @author Kirill Grouchnikov
  * @param <T>
  *            Type tag.
@@ -71,7 +71,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 	/**
 	 * Information on the specific file. Depending on the actual type of the
 	 * file repository, the property map will have different keys.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class Leaf {
@@ -92,7 +92,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 		/**
 		 * Creates a new leaf.
-		 * 
+		 *
 		 * @param leafName
 		 *            Leaf name.
 		 * @param leafStream
@@ -106,7 +106,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 		/**
 		 * Returns the leaf name.
-		 * 
+		 *
 		 * @return Leaf name.
 		 */
 		public String getLeafName() {
@@ -115,7 +115,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 		/**
 		 * Returns the stream with the contents of the leaf file.
-		 * 
+		 *
 		 * @return Stream with the contents of the leaf file.
 		 */
 		public InputStream getLeafStream() {
@@ -124,7 +124,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 		/**
 		 * Returns the leaf property with the specified name.
-		 * 
+		 *
 		 * @param propName
 		 *            Property name.
 		 * @return Leaf property with the specified name.
@@ -135,7 +135,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 		/**
 		 * Sets the leaf property with the specified name.
-		 * 
+		 *
 		 * @param propName
 		 *            Property name.
 		 * @param propValue
@@ -147,7 +147,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 		/**
 		 * Returns the map of all the properties of this leaf.
-		 * 
+		 *
 		 * @return Unmodifiable view of the map of all the properties of this
 		 *         leaf.
 		 */
@@ -158,7 +158,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 	/**
 	 * Creates a new panel.
-	 * 
+	 *
 	 * @param startingDimension
 	 *            Initial dimension for icons.
 	 * @param progressListener
@@ -176,7 +176,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 	/**
 	 * Creates a new panel.
-	 * 
+	 *
 	 * @param startingState
 	 *            Initial state for icons.
 	 * @param progressListener
@@ -198,7 +198,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 	 * {@link #toShowFile(StringValuePair)} call, a new {@link JCommandButton}
 	 * hosting an the matching implementation of {@link ResizableIcon} is added
 	 * to the panel.
-	 * 
+	 *
 	 * @param leafs
 	 *            Information on the entries to show in the panel.
 	 */
@@ -317,7 +317,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 	/**
 	 * Returns the number of loaded icons.
-	 * 
+	 *
 	 * @return The number of loaded icons.
 	 */
 	public int getLoadedIconCount() {
@@ -337,7 +337,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 	/**
 	 * Returns the button map.
-	 * 
+	 *
 	 * @return Unmodifiable view on the button map.
 	 */
 	public Map<String, JCommandButton> getButtonMap() {
@@ -347,7 +347,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 	/**
 	 * Returns indication whether the specified file should be shown on this
 	 * panel.
-	 * 
+	 *
 	 * @param pair
 	 *            Information on the file.
 	 * @return <code>true</code> if the specified file should be shown on this
@@ -357,7 +357,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 	/**
 	 * Returns the icon for the specified parameters.
-	 * 
+	 *
 	 * @param leaf
 	 *            Information on the file.
 	 * @param stream
@@ -376,7 +376,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 	 * Configures the specified command button. Can be used to wire additional
 	 * behavior, such as tooltips or action listeners if the specific view panel
 	 * implementation requires it.
-	 * 
+	 *
 	 * @param leaf
 	 *            Information on the file "behind" the button.
 	 * @param button
@@ -389,7 +389,7 @@ public abstract class AbstractFileViewPanel<T> extends JCommandButtonPanel {
 
 	/**
 	 * Returns the input stream with the file contents.
-	 * 
+	 *
 	 * @param leaf
 	 *            Leaf (file behind a command button on this panel).
 	 * @return Input stream with the file contents.

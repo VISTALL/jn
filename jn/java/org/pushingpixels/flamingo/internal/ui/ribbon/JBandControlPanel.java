@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.api.ribbon.*;
 /**
  * Control panel of a single {@link JRibbonBand}. This class is for internal use
  * only and should not be directly used by the applications.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JBandControlPanel extends AbstractBandControlPanel implements
@@ -118,7 +118,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 		/**
 		 * Adds a new ribbon button to <code>this</code> control panel.
-		 * 
+		 *
 		 * @param ribbonButton
 		 *            Ribbon button to add.
 		 * @param priority
@@ -149,7 +149,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 		/**
 		 * Adds a new in-ribbon gallery to <code>this</code> control panel.
-		 * 
+		 *
 		 * @param ribbonGallery
 		 *            Ribbon gallery to add.
 		 * @param priority
@@ -184,7 +184,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 		/**
 		 * Sets new priority of a ribbon button in <code>this</code> control
 		 * panel.
-		 * 
+		 *
 		 * @param ribbonButton
 		 *            Gallery button.
 		 * @param newPriority
@@ -209,7 +209,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 		/**
 		 * Sets new priority of an in-ribbon gallery in <code>this</code>
 		 * control panel.
-		 * 
+		 *
 		 * @param ribbonGallery
 		 *            In-ribbon gallery.
 		 * @param newPriority
@@ -245,7 +245,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 		/**
 		 * Retrieves all ribbon buttons of specified priority from
 		 * <code>this</code> control panel.
-		 * 
+		 *
 		 * @param priority
 		 *            Priority.
 		 * @return All ribbon buttons of specified priority from
@@ -263,7 +263,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 		/**
 		 * Retrieves all in-ribbon galleries of specified priority from
 		 * <code>this</code> control panel.
-		 * 
+		 *
 		 * @param priority
 		 *            Priority.
 		 * @return All in-ribbon galleries of specified priority from
@@ -280,7 +280,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 		/**
 		 * Returns indication whether <code>this</code> control panel has
 		 * in-ribbon galleries.
-		 * 
+		 *
 		 * @return <code>true</code> if <code>this</code> control panel has
 		 *         in-ribbon galleries, <code>false</code> otherwise.
 		 */
@@ -291,7 +291,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 		/**
 		 * Returns the number of in-ribbon galleries in <code>this</code>
 		 * control panel.
-		 * 
+		 *
 		 * @return Number of in-ribbon galleries in <code>this</code> control
 		 *         panel.
 		 */
@@ -332,7 +332,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Creates a control panel for specified ribbon band.
-	 * 
+	 *
 	 * @param ribbonBand
 	 *            Ribbon band.
 	 */
@@ -345,7 +345,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Sets the new UI delegate.
-	 * 
+	 *
 	 * @param ui
 	 *            New UI delegate.
 	 */
@@ -389,7 +389,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Adds a new ribbon button to <code>this</code> control panel.
-	 * 
+	 *
 	 * @param ribbonButton
 	 *            Ribbon button to add.
 	 * @param priority
@@ -408,7 +408,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Adds a new in-ribbon gallery to <code>this</code> control panel.
-	 * 
+	 *
 	 * @param ribbonGallery
 	 *            Ribbon gallery to add.
 	 * @param priority
@@ -440,7 +440,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Sets new priority of a ribbon button in <code>this</code> control panel.
-	 * 
+	 *
 	 * @param ribbonButton
 	 *            Gallery button.
 	 * @param newPriority
@@ -458,7 +458,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 	/**
 	 * Sets new priority of an in-ribbon gallery in <code>this</code> control
 	 * panel.
-	 * 
+	 *
 	 * @param ribbonGallery
 	 *            In-ribbon gallery.
 	 * @param newPriority
@@ -519,7 +519,7 @@ public class JBandControlPanel extends AbstractBandControlPanel implements
 
 	/**
 	 * Returns the ribbon gallery based on its name.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Ribbon gallery name.
 	 * @return Ribbon gallery.

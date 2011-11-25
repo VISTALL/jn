@@ -36,7 +36,7 @@ import org.pushingpixels.flamingo.internal.ui.common.*;
  * display states, and it is possible to create additional custom states by
  * using the protected constructor and implementing the relevant abstract
  * methods.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class CommandButtonDisplayState {
@@ -102,7 +102,7 @@ public abstract class CommandButtonDisplayState {
 
 	/**
 	 * Preferred icon size for this state.
-	 * 
+	 *
 	 * @see #CommandButtonDisplayState(String, int)
 	 * @see #getPreferredIconSize()
 	 */
@@ -110,7 +110,7 @@ public abstract class CommandButtonDisplayState {
 
 	/**
 	 * Display name for this state.
-	 * 
+	 *
 	 * @see #CommandButtonDisplayState(String, int)
 	 * @see #getDisplayName()
 	 */
@@ -118,7 +118,7 @@ public abstract class CommandButtonDisplayState {
 
 	/**
 	 * Creates a new element state.
-	 * 
+	 *
 	 * @param displayName
 	 *            Display name.
 	 * @param preferredIconSize
@@ -132,7 +132,7 @@ public abstract class CommandButtonDisplayState {
 
 	/**
 	 * Returns the display name for this state.
-	 * 
+	 *
 	 * @return The display name for this state.
 	 * @see #CommandButtonDisplayState(String, int)
 	 */
@@ -142,7 +142,7 @@ public abstract class CommandButtonDisplayState {
 
 	/**
 	 * Returns the preferred icon size for this state.
-	 * 
+	 *
 	 * @return The preferred icon size for this state.
 	 * @see #CommandButtonDisplayState(String, int)
 	 */
@@ -152,7 +152,7 @@ public abstract class CommandButtonDisplayState {
 
 	/**
 	 * Creates a layout manager for the specified button.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Command button.
 	 * @return A layout manager for the specified button.

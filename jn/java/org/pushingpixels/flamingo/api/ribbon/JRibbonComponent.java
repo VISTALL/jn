@@ -42,20 +42,20 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.RibbonComponentUI;
 /**
  * Wrapper around core and 3rd party Swing controls to allow placing them in the
  * {@link JRibbonBand}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	/**
 	 * Wrapper icon. Can be <code>null</code>.
-	 * 
+	 *
 	 * @see #JRibbonComponent(ResizableIcon, String, JComponent)
 	 */
 	private ResizableIcon icon;
 
 	/**
 	 * Wrapper caption. Can be <code>null</code>.
-	 * 
+	 *
 	 * @see #JRibbonComponent(ResizableIcon, String, JComponent)
 	 */
 	private String caption;
@@ -73,7 +73,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * The key tip for this wrapper component.
-	 * 
+	 *
 	 * @see #setKeyTip(String)
 	 * @see #getKeyTip()
 	 */
@@ -81,7 +81,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * The rich tooltip for this wrapper component.
-	 * 
+	 *
 	 * @see #setRichTooltip(RichTooltip)
 	 * @see #getRichTooltip(MouseEvent)
 	 */
@@ -89,7 +89,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * The horizontal alignment for this wrapper component.
-	 * 
+	 *
 	 * @see #getHorizontalAlignment()
 	 * @see #setHorizontalAlignment(HorizontalAlignment)
 	 */
@@ -106,7 +106,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Creates a simple wrapper with no icon and no caption.
-	 * 
+	 *
 	 * @param mainComponent
 	 *            Wrapped component. Can not be <code>null</code>.
 	 * @throws IllegalArgumentException
@@ -127,7 +127,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Creates a wrapper with an icon and a caption.
-	 * 
+	 *
 	 * @param icon
 	 *            Wrapper icon. Can be <code>null</code>.
 	 * @param caption
@@ -180,7 +180,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Returns the UI object which implements the L&F for this component.
-	 * 
+	 *
 	 * @return a <code>RibbonUI</code> object
 	 * @see #setUI
 	 */
@@ -191,7 +191,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	/**
 	 * Returns the wrapper icon of this wrapper component. Can return
 	 * <code>null</code>.
-	 * 
+	 *
 	 * @return The wrapper icon of this wrapper component.
 	 * @see #JRibbonComponent(ResizableIcon, String, JComponent)
 	 */
@@ -202,7 +202,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	/**
 	 * Returns the caption of this wrapper component. Can return
 	 * <code>null</code>.
-	 * 
+	 *
 	 * @return The caption of this wrapper component.
 	 * @see #JRibbonComponent(ResizableIcon, String, JComponent)
 	 */
@@ -212,7 +212,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Sets new value for the caption of this wrapper component.
-	 * 
+	 *
 	 * @param caption
 	 *            The new caption.
 	 */
@@ -233,7 +233,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	/**
 	 * Returns the wrapped component of this wrapper component. The result is
 	 * guaranteed to be non <code>null</code>.
-	 * 
+	 *
 	 * @return The wrapped component of this wrapper component.
 	 */
 	public JComponent getMainComponent() {
@@ -242,7 +242,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Returns indication whether this wrapper is simple.
-	 * 
+	 *
 	 * @return <code>true</code> if both {@link #getIcon()} and
 	 *         {@link #getCaption()} return <code>null</code>,
 	 *         <code>false</code> otherwise.
@@ -253,7 +253,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Returns the key tip for this wrapper component.
-	 * 
+	 *
 	 * @return The key tip for this wrapper component.
 	 * @see #setKeyTip(String)
 	 */
@@ -264,7 +264,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	/**
 	 * Sets the specified string to be the key tip for this wrapper component.
 	 * Fires a <code>keyTip</code> property change event.
-	 * 
+	 *
 	 * @param keyTip
 	 *            The new key tip for this wrapper component.
 	 */
@@ -287,7 +287,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Sets the rich tooltip for this wrapper component.
-	 * 
+	 *
 	 * @param richTooltip
 	 * @see #getRichTooltip(MouseEvent)
 	 */
@@ -304,7 +304,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 
 	/**
 	 * Returns the horizontal alignment for this wrapper component.
-	 * 
+	 *
 	 * @return The horizontal alignment for this wrapper component.
 	 * @see #setHorizontalAlignment(HorizontalAlignment)
 	 */
@@ -315,7 +315,7 @@ public class JRibbonComponent extends RichToolTipManager.JTrackableComponent {
 	/**
 	 * Sets the specified parameter to be the horizontal alignment for this
 	 * wrapper component.
-	 * 
+	 *
 	 * @param horizontalAlignment
 	 *            The new horizontal alignment for this wrapper component.
 	 * @see #getHorizontalAlignment()

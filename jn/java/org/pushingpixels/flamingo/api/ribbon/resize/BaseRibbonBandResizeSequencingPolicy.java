@@ -33,7 +33,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 
 /**
  * Base class for the core ribbon band resize sequencing policies.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class BaseRibbonBandResizeSequencingPolicy implements
@@ -45,7 +45,7 @@ public abstract class BaseRibbonBandResizeSequencingPolicy implements
 
 	/**
 	 * Creates a new resize sequencing policy.
-	 * 
+	 *
 	 * @param ribbonTask
 	 *            The associated ribbon task.
 	 */

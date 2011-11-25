@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
 /**
  * Toggle button for ribbon tasks. This class is for internal use only and
  * should not be directly used by the applications.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JRibbonTaskToggleButton extends JCommandToggleButton {
@@ -60,7 +60,7 @@ public class JRibbonTaskToggleButton extends JCommandToggleButton {
 
 	/**
 	 * Creates a new toggle button.
-	 * 
+	 *
 	 * @param text
 	 */
 	public JRibbonTaskToggleButton(RibbonTask ribbonTask) {
@@ -94,7 +94,7 @@ public class JRibbonTaskToggleButton extends JCommandToggleButton {
 	/**
 	 * Returns the hue color of the matching contextual task group if the
 	 * associated task is contextual.
-	 * 
+	 *
 	 * @return The hue color of the matching contextual task group if the
 	 *         associated task is contextual, <code>null</code> otherwise.
 	 */
@@ -108,7 +108,7 @@ public class JRibbonTaskToggleButton extends JCommandToggleButton {
 
 	/**
 	 * Sets the hue color of the matching contextual task group on this button.
-	 * 
+	 *
 	 * @param contextualGroupHueColor
 	 *            The hue color of the matching contextual task group.
 	 */

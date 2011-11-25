@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonBand.RibbonGalleryPopupCallb
 /**
  * In-ribbon gallery. This class is for internal use only and should not be
  * directly used by the applications.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see JRibbonBand#addRibbonGallery(String, List, Map, int, int,
  *      RibbonElementPriority)
@@ -146,7 +146,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Sets the new UI delegate.
-	 * 
+	 *
 	 * @param ui
 	 *            New UI delegate.
 	 */
@@ -156,7 +156,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Resets the UI property to a value from the current look and feel.
-	 * 
+	 *
 	 * @see JComponent#updateUI
 	 */
 	@Override
@@ -173,7 +173,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Returns the UI object which implements the L&F for this component.
-	 * 
+	 *
 	 * @return a <code>RibbonGalleryUI</code> object
 	 * @see #setUI
 	 */
@@ -184,7 +184,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Returns the name of the UI class that implements the L&F for this
 	 * component.
-	 * 
+	 *
 	 * @return the string "RibbonGalleryUI"
 	 * @see JComponent#getUIClassID
 	 * @see UIDefaults#getUI
@@ -196,7 +196,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Adds new gallery button to <code>this</code> in-ribbon gallery.
-	 * 
+	 *
 	 * @param buttonGroup
 	 *            Button group.
 	 * @param button
@@ -235,7 +235,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Removes an existing gallery button from <code>this</code> in-ribbon
 	 * gallery.
-	 * 
+	 *
 	 * @param button
 	 *            Gallery button to remove.
 	 */
@@ -251,7 +251,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Set preferred width of <code>this</code> in-ribbon gallery for the
 	 * specified display state.
-	 * 
+	 *
 	 * @param state
 	 *            Display state.
 	 * @param visibleButtonCount
@@ -265,7 +265,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Returns the preferred width of <code>this</code> in-ribbon gallery for
 	 * the specified display state.
-	 * 
+	 *
 	 * @param state
 	 *            Display state.
 	 * @param availableHeight
@@ -285,7 +285,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Sets new display priority for <code>this</code> in-ribbon gallery.
-	 * 
+	 *
 	 * @param displayPriority
 	 *            New display priority for <code>this</code> in-ribbon gallery.
 	 */
@@ -296,7 +296,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Returns the current display priority for <code>this</code> in-ribbon
 	 * gallery.
-	 * 
+	 *
 	 * @return The current display priority for <code>this</code> in-ribbon
 	 *         gallery.
 	 */
@@ -307,7 +307,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Returns the number of button groups in <code>this</code> in-ribbon
 	 * gallery.
-	 * 
+	 *
 	 * @return The number of button groups in <code>this</code> in-ribbon
 	 *         gallery.
 	 */
@@ -317,7 +317,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Returns the list of buttons in the specifed button group.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Button group name.
 	 * @return The list of buttons in the specifed button group.
@@ -333,7 +333,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Returns the number of gallery buttons in <code>this</code> in-ribbon
 	 * gallery.
-	 * 
+	 *
 	 * @return The number of gallery buttons in <code>this</code> in-ribbon
 	 *         gallery.
 	 */
@@ -343,7 +343,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Returns the gallery button at specified index.
-	 * 
+	 *
 	 * @param index
 	 *            Gallery button index.
 	 * @return Gallery button at specified index.
@@ -354,7 +354,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Returns the currently selected gallery button.
-	 * 
+	 *
 	 * @return The currently selected gallery button.
 	 */
 	public JCommandToggleButton getSelectedButton() {
@@ -363,7 +363,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Sets new value for the currently selected gallery button.
-	 * 
+	 *
 	 * @param selectedButton
 	 *            New value for the currently selected gallery button.
 	 */
@@ -373,7 +373,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Returns the associated popup gallery.
-	 * 
+	 *
 	 * @return The associated popup gallery.
 	 */
 	public JCommandButtonPanel getPopupButtonPanel() {
@@ -402,7 +402,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Sets indication whether the popup panel is showing.
-	 * 
+	 *
 	 * @param isShowingPopupPanel
 	 *            Indication whether the popup panel is showing.
 	 */
@@ -424,7 +424,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Returns indication whether the popup panel is showing.
-	 * 
+	 *
 	 * @return <code>true</code> if the popup panel is showing,
 	 *         <code>false</code> otherwise.
 	 */
@@ -434,7 +434,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Sets the button groups for this ribbon gallery.
-	 * 
+	 *
 	 * @param buttons
 	 *            Button groups.
 	 */
@@ -467,7 +467,7 @@ public class JRibbonGallery extends JComponent {
 	/**
 	 * Adds toggle command buttons to the specified button group in this ribbon
 	 * gallery.
-	 * 
+	 *
 	 * @param buttonGroupName
 	 *            Button group name.
 	 * @param buttons
@@ -490,7 +490,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Removes the specified toggle command buttons from this ribbon gallery.
-	 * 
+	 *
 	 * @param buttons
 	 *            Toggle command buttons to remove from this gallery.
 	 */
@@ -513,7 +513,7 @@ public class JRibbonGallery extends JComponent {
 
 	/**
 	 * Sets the preferred dimension of the popup panel.
-	 * 
+	 *
 	 * @param preferredPopupMaxButtonColumns
 	 *            Preferred maximum number of button columns for the popup
 	 *            panel.

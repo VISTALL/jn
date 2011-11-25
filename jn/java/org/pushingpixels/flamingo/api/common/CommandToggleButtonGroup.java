@@ -41,7 +41,7 @@ import javax.swing.event.ChangeListener;
 /**
  * Group of command toggle buttons. Unlike the {@link ButtonGroup}, this class
  * operates on buttons and not on button models.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class CommandToggleButtonGroup implements Serializable {
@@ -94,7 +94,7 @@ public class CommandToggleButtonGroup implements Serializable {
 	 * passed, the selection can be cleared in {@link #clearSelection()} or
 	 * {@link #setSelected(JCommandToggleButton, boolean)} (passing the
 	 * currently selected button and <code>false</code>).
-	 * 
+	 *
 	 * @param allowsClearingSelection
 	 *            The new value for clearing selection.
 	 */
@@ -107,7 +107,7 @@ public class CommandToggleButtonGroup implements Serializable {
 	 * returned when selection can be cleared in {@link #clearSelection()} or
 	 * {@link #setSelected(JCommandToggleButton, boolean)} (passing the
 	 * currently selected button and <code>false</code>).
-	 * 
+	 *
 	 * @return The current value for clearing selection.
 	 */
 	public boolean isAllowsClearingSelection() {
@@ -118,7 +118,7 @@ public class CommandToggleButtonGroup implements Serializable {
 	 * Adds the specified button to the group. If the button is selected, and
 	 * the group has a selected button, the newly added button is marked as
 	 * unselected.
-	 * 
+	 *
 	 * @param b
 	 *            The button to be added.
 	 */
@@ -158,7 +158,7 @@ public class CommandToggleButtonGroup implements Serializable {
 
 	/**
 	 * Removes the specified button from the group.
-	 * 
+	 *
 	 * @param b
 	 *            The button to be removed
 	 */
@@ -182,7 +182,7 @@ public class CommandToggleButtonGroup implements Serializable {
 
 	/**
 	 * Changes the selected status of the specified button.
-	 * 
+	 *
 	 * @param button
 	 *            Button.
 	 * @param isSelected
@@ -215,7 +215,7 @@ public class CommandToggleButtonGroup implements Serializable {
 
 	/**
 	 * Returns the selected button of this group.
-	 * 
+	 *
 	 * @return The selected button of this group. The result can be
 	 *         <code>null</code>.
 	 */
@@ -234,7 +234,7 @@ public class CommandToggleButtonGroup implements Serializable {
 
 	/**
 	 * Adds the specified property change listener on this button group.
-	 * 
+	 *
 	 * @param listener
 	 *            Listener to add.
 	 */
@@ -251,7 +251,7 @@ public class CommandToggleButtonGroup implements Serializable {
 
 	/**
 	 * Removes the specified property change listener from this button group.
-	 * 
+	 *
 	 * @param listener
 	 *            Listener to remove.
 	 */
@@ -265,7 +265,7 @@ public class CommandToggleButtonGroup implements Serializable {
 
 	/**
 	 * Fires a property change event on all registered listeners.
-	 * 
+	 *
 	 * @param propertyName
 	 *            Name of the changed property.
 	 * @param oldValue

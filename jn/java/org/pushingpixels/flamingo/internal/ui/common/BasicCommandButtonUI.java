@@ -54,7 +54,7 @@ import org.pushingpixels.flamingo.internal.utils.*;
 
 /**
  * Basic UI for command button {@link JCommandButton}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandButtonUI extends CommandButtonUI {
@@ -94,7 +94,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 	/**
 	 * Client property to mark the command button to not dispose the popups on
 	 * activation.
-	 * 
+	 *
 	 * @see #disposePopupsActionListener
 	 */
 	public static final String DONT_DISPOSE_POPUPS = "flamingo.internal.commandButton.ui.dontDisposePopups";
@@ -104,7 +104,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 	 * activated. An example of scenario would be a command button in the popup
 	 * panel of an in-ribbon gallery. When this command button is activated, the
 	 * associated popup panel is dismissed.
-	 * 
+	 *
 	 * @see #DONT_DISPOSE_POPUPS
 	 */
 	protected ActionListener disposePopupsActionListener;
@@ -224,7 +224,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Creates the renderer button.
-	 * 
+	 *
 	 * @return The renderer button.
 	 */
 	protected AbstractButton createRendererButton() {
@@ -402,7 +402,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Creates the icon for the popup area.
-	 * 
+	 *
 	 * @return The icon for the popup area.
 	 */
 	protected ResizableIcon createPopupActionIcon() {
@@ -412,7 +412,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Creates the button listener for the specified command button.
-	 * 
+	 *
 	 * @param b
 	 *            Command button.
 	 * @return The button listener for the specified command button.
@@ -630,7 +630,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Paints the icon of the popup area.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param popupActionRect
@@ -647,7 +647,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Returns the current icon.
-	 * 
+	 *
 	 * @return Current icon.
 	 */
 	protected Icon getIconToPaint() {
@@ -673,7 +673,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Paints command button vertical separator.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param separatorArea
@@ -693,7 +693,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Paints command button horizontal separator.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param separatorArea
@@ -713,7 +713,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Paints command button background.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill
@@ -764,7 +764,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Paints the background of the command button.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill
@@ -965,7 +965,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Paints the button icon.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param iconRect
@@ -1005,7 +1005,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Returns the layout gap for the visuals of the associated command button.
-	 * 
+	 *
 	 * @return The layout gap for the visuals of the associated command button.
 	 */
 	protected int getLayoutGap() {
@@ -1017,7 +1017,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Returns indication whether the action-popup areas separator is painted.
-	 * 
+	 *
 	 * @return <code>true</code> if the action-popup areas separator is painted.
 	 */
 	protected boolean isPaintingSeparators() {
@@ -1038,7 +1038,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Returns indication whether the button background is painted.
-	 * 
+	 *
 	 * @return <code>true</code> if the button background is painted.
 	 */
 	protected boolean isPaintingBackground() {
@@ -1065,7 +1065,7 @@ public class BasicCommandButtonUI extends CommandButtonUI {
 
 	/**
 	 * Creates the popup action listener for this command button.
-	 * 
+	 *
 	 * @return Popup action listener for this command button.
 	 */
 	protected PopupActionListener createPopupActionListener() {

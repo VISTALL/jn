@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
  * Extension of the default toggle button model that supports the
  * {@link ActionButtonModel} interface. This is the default core action model
  * set on {@link JCommandToggleButton}s.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class ActionToggleButtonModel extends ToggleButtonModel implements
@@ -55,7 +55,7 @@ public class ActionToggleButtonModel extends ToggleButtonModel implements
 
 	/**
 	 * Creates a new model.
-	 * 
+	 *
 	 * @param toFireActionOnPress
 	 *            If <code>true</code>, the action will be fired on mouse press,
 	 *            if <code>false</code>, the action will be fired on mouse

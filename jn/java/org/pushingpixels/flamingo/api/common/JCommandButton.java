@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonUI;
 
 /**
  * Command button.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JCommandButton extends AbstractCommandButton {
@@ -55,7 +55,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Associated popup callback. May be <code>null</code>.
-	 * 
+	 *
 	 * @see #setPopupCallback(PopupPanelCallback)
 	 * @see #getPopupCallback()
 	 */
@@ -63,7 +63,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * The command button kind of this button.
-	 * 
+	 *
 	 * @see #setCommandButtonKind(CommandButtonKind)
 	 * @see #getCommandButtonKind()
 	 */
@@ -71,7 +71,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * The popup orientation kind of this button.
-	 * 
+	 *
 	 * @see #setPopupOrientationKind(CommandButtonPopupOrientationKind)
 	 * @see #getPopupOrientationKind()
 	 */
@@ -87,7 +87,7 @@ public class JCommandButton extends AbstractCommandButton {
 	 * action listeners will be activated every
 	 * {@link #getAutoRepeatSubsequentInterval()} until the button is disabled
 	 * or the mouse is released.
-	 * 
+	 *
 	 * @see #autoRepeatInitialInterval
 	 * @see #autoRepeatSubsequentInterval
 	 * @see #setAutoRepeatAction(boolean)
@@ -98,7 +98,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * The initial interval for invoking the registered action listeners in the
 	 * auto-repeat action mode.
-	 * 
+	 *
 	 * @see #isAutoRepeatAction
 	 * @see #autoRepeatSubsequentInterval
 	 * @see #getAutoRepeatInitialInterval()
@@ -109,7 +109,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * The subsequent interval for invoking the registered action listeners in
 	 * the auto-repeat action mode.
-	 * 
+	 *
 	 * @see #isAutoRepeatAction
 	 * @see #autoRepeatInitialInterval
 	 * @see #getAutoRepeatSubsequentInterval()
@@ -121,7 +121,7 @@ public class JCommandButton extends AbstractCommandButton {
 	 * Indicates that rollover should result in firing the action. Used in
 	 * conjunction with the {@link #isAutoRepeatAction} can model quick pan
 	 * buttons such as breadcrumb bar scrollers.
-	 * 
+	 *
 	 * @see #setFireActionOnRollover(boolean)
 	 * @see #isFireActionOnRollover()
 	 */
@@ -129,7 +129,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Popup model of this button.
-	 * 
+	 *
 	 * @see #setPopupModel(PopupButtonModel)
 	 * @see #getPopupModel()
 	 */
@@ -142,7 +142,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Rich tooltip for the popup area of this button.
-	 * 
+	 *
 	 * @see #setPopupRichTooltip(RichTooltip)
 	 * @see #getRichTooltip(MouseEvent)
 	 */
@@ -150,7 +150,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Key tip for the popup area of this button.
-	 * 
+	 *
 	 * @see #setPopupKeyTip(String)
 	 * @see #getPopupKeyTip()
 	 */
@@ -158,7 +158,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Enumerates the available command button kinds.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static enum CommandButtonKind {
@@ -196,7 +196,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 		/**
 		 * Constructs a new command button kind.
-		 * 
+		 *
 		 * @param hasAction
 		 *            Indicates whether the command button kind has an action.
 		 * @param hasPopup
@@ -209,7 +209,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 		/**
 		 * Returns indication whether this command button kind has an action.
-		 * 
+		 *
 		 * @return <code>true</code> if the command button kind has an action,
 		 *         <code>false</code> otherwise.
 		 */
@@ -219,7 +219,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 		/**
 		 * Returns indication whether this command button kind has a popup.
-		 * 
+		 *
 		 * @return <code>true</code> if the command button kind has a popup,
 		 *         <code>false</code> otherwise.
 		 */
@@ -230,7 +230,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Orientation kind for the popup.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static enum CommandButtonPopupOrientationKind {
@@ -249,7 +249,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Extension of the default button model that supports the
 	 * {@link PopupButtonModel} interface.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private static class DefaultPopupButtonModel extends DefaultButtonModel
@@ -299,7 +299,7 @@ public class JCommandButton extends AbstractCommandButton {
 		/**
 		 * Notifies all listeners that have registered interest for notification
 		 * on this event type.
-		 * 
+		 *
 		 * @param e
 		 *            the <code>ActionEvent</code> to deliver to listeners
 		 * @see EventListenerList
@@ -386,7 +386,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Creates a new command button with empty text
-	 * 
+	 *
 	 * @param icon
 	 *            Button icon.
 	 */
@@ -396,7 +396,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Creates a new command button without an icon.
-	 * 
+	 *
 	 * @param title
 	 *            Button title. May contain any number of words.
 	 */
@@ -406,7 +406,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Creates a new command button.
-	 * 
+	 *
 	 * @param title
 	 *            Button title. May contain any number of words.
 	 * @param icon
@@ -435,7 +435,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns the command button kind of this button.
-	 * 
+	 *
 	 * @return Command button kind of this button.
 	 * @see #setCommandButtonKind(CommandButtonKind)
 	 */
@@ -446,7 +446,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Sets the kind for this button. Fires a <code>commandButtonKind</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param commandButtonKind
 	 *            The new button kind.
 	 * @see #getCommandButtonKind()
@@ -461,7 +461,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns the popup orientation kind of this button.
-	 * 
+	 *
 	 * @return Popup orientation kind of this button.
 	 * @see #setPopupOrientationKind(CommandButtonPopupOrientationKind)
 	 */
@@ -472,7 +472,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Sets the popup orientation for this button. Fires a
 	 * <code>popupOrientationKind</code> property change event.
-	 * 
+	 *
 	 * @param popupOrientationKind
 	 *            The new popup orientation kind.
 	 * @see #getPopupOrientationKind()
@@ -513,7 +513,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns the associated popup callback.
-	 * 
+	 *
 	 * @return The associated popup callback.
 	 * @see #setPopupCallback(PopupPanelCallback)
 	 */
@@ -523,7 +523,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Sets new popup callback for <code>this</code> button.
-	 * 
+	 *
 	 * @param popupCallback
 	 *            New popup callback for <code>this</code> button.
 	 * @see #getPopupCallback()
@@ -534,7 +534,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Sets the auto-repeat action indication.
-	 * 
+	 *
 	 * @param isAutoRepeatAction
 	 *            If <code>true</code>, pressing the button will activate
 	 *            auto-repeat action mode. When the button is not in the
@@ -556,7 +556,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Sets the intervals for the auto-repeat action mode.
-	 * 
+	 *
 	 * @param initial
 	 *            The initial interval for invoking the registered action
 	 *            listeners in the auto-repeat action mode.
@@ -575,7 +575,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns indication whether the button is in auto-repeat action mode.
-	 * 
+	 *
 	 * @return <code>true</code> if the button is in auto-repeat action mode,
 	 *         <code>false</code> otherwise.
 	 * @see #setAutoRepeatAction(boolean)
@@ -590,7 +590,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Returns the initial interval for invoking the registered action listeners
 	 * in the auto-repeat action mode.
-	 * 
+	 *
 	 * @return The initial interval for invoking the registered action listeners
 	 *         in the auto-repeat action mode.
 	 * @see #setAutoRepeatActionIntervals(int, int)
@@ -605,7 +605,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Returns the subsequent interval for invoking the registered action
 	 * listeners in the auto-repeat action mode.
-	 * 
+	 *
 	 * @return The subsequent interval for invoking the registered action
 	 *         listeners in the auto-repeat action mode.
 	 * @see #setAutoRepeatActionIntervals(int, int)
@@ -623,7 +623,7 @@ public class JCommandButton extends AbstractCommandButton {
 	 * {@link #setAutoRepeatAction(boolean)} passing <code>true</code> to get
 	 * auto-repeat action fired on rollover (useful for quicker manipulation of
 	 * scroller buttons, for example).
-	 * 
+	 *
 	 * @param isFireActionOnRollover
 	 *            If <code>true</code>, the button is moved into the
 	 *            action-on-rollover mode.
@@ -635,7 +635,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns indication whether this button is in action-on-rollover mode.
-	 * 
+	 *
 	 * @return <code>true</code> if this button is in action-on-rollover mode,
 	 *         <code>false</code> otherwise.
 	 * @see #setFireActionOnRollover(boolean)
@@ -646,7 +646,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns the popup model of this button.
-	 * 
+	 *
 	 * @return The popup model of this button.
 	 * @see #setPopupModel(PopupButtonModel)
 	 */
@@ -657,7 +657,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Sets the new popup model for this button. Fires a <code>popupModel</code>
 	 * property change event.
-	 * 
+	 *
 	 * @param newModel
 	 *            The new popup model for this button.
 	 * @see #getPopupModel()
@@ -701,7 +701,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Default popup handler.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	class PopupHandler implements PopupActionListener, ChangeListener {
@@ -719,7 +719,7 @@ public class JCommandButton extends AbstractCommandButton {
 	 * Notifies all listeners that have registered interest for notification on
 	 * this event type. The event instance is lazily created using the
 	 * <code>event</code> parameter.
-	 * 
+	 *
 	 * @param event
 	 *            the <code>ActionEvent</code> object
 	 * @see EventListenerList
@@ -751,7 +751,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Sets the rich tooltip for the popup area of this button.
-	 * 
+	 *
 	 * @param richTooltip
 	 *            Rich tooltip for the popup area of this button.
 	 * @see #getRichTooltip(MouseEvent)
@@ -787,7 +787,7 @@ public class JCommandButton extends AbstractCommandButton {
 
 	/**
 	 * Returns the key tip for the popup area of this button.
-	 * 
+	 *
 	 * @return The key tip for the popup area of this button.
 	 * @see #setPopupKeyTip(String)
 	 * @see #getActionKeyTip()
@@ -799,7 +799,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Sets the key tip for the popup area of this button. Fires a
 	 * <code>popupKeyTip</code> property change event.
-	 * 
+	 *
 	 * @param popupKeyTip
 	 *            The key tip for the popup area of this button.
 	 * @see #getPopupKeyTip()
@@ -838,7 +838,7 @@ public class JCommandButton extends AbstractCommandButton {
 	/**
 	 * Returns indication whether key tips can be installed on both action and
 	 * popup areas of this button. This method is for internal use only.
-	 * 
+	 *
 	 * @return <code>true</code> if key tips can be installed on both action and
 	 *         popup areas of this button, <code>false</code> otherwise.
 	 */

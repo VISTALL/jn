@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 
 /**
  * Helper implementation of {@link ResizableIcon} that draws a double arrow.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class DoubleArrowResizableIcon implements ResizableIcon {
@@ -67,7 +67,7 @@ public class DoubleArrowResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new double arrow resizable icon.
-	 * 
+	 *
 	 * @param initialDim
 	 *            Initial icon dimension.
 	 * @param direction
@@ -83,7 +83,7 @@ public class DoubleArrowResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new double arrow resizable icon.
-	 * 
+	 *
 	 * @param initialDim
 	 *            Initial icon dimension.
 	 * @param direction

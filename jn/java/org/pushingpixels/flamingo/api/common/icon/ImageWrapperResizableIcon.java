@@ -37,14 +37,14 @@ import java.net.URL;
 
 /**
  * Implementation of {@link ResizableIcon} interface that wraps image files.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class ImageWrapperResizableIcon extends ImageWrapperIcon implements
 		ResizableIcon {
 	/**
 	 * Returns the icon for the specified URL.
-	 * 
+	 *
 	 * @param image
 	 *            Image.
 	 * @param initialDim
@@ -58,7 +58,7 @@ public class ImageWrapperResizableIcon extends ImageWrapperIcon implements
 
 	/**
 	 * Returns the icon for the specified URL.
-	 * 
+	 *
 	 * @param location
 	 *            Icon URL.
 	 * @param initialDim
@@ -78,7 +78,7 @@ public class ImageWrapperResizableIcon extends ImageWrapperIcon implements
 
 	/**
 	 * Returns the icon for the specified input stream.
-	 * 
+	 *
 	 * @param inputStream
 	 *            Icon input stream.
 	 * @param initialDim
@@ -92,7 +92,7 @@ public class ImageWrapperResizableIcon extends ImageWrapperIcon implements
 
 	/**
 	 * Creates a new image-based resizable icon.
-	 * 
+	 *
 	 * @param image
 	 *            Image.
 	 * @param initialDim
@@ -104,7 +104,7 @@ public class ImageWrapperResizableIcon extends ImageWrapperIcon implements
 
 	/**
 	 * Creates a new image-based resizable icon.
-	 * 
+	 *
 	 * @param inputStream
 	 *            Input stream with the image content.
 	 * @param initialDim

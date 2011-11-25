@@ -35,7 +35,7 @@ import org.pushingpixels.flamingo.api.common.JScrollablePanel;
 
 /**
  * UI for scrollable panel ({@link JScrollablePanel}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class ScrollablePanelUI extends PanelUI {

@@ -45,7 +45,7 @@ import org.pushingpixels.flamingo.internal.ui.common.BasicCommandButtonUI;
  * The main application menu button for {@link JRibbon} component placed in a
  * {@link JRibbonFrame}. This class is for internal use only and is intended for
  * look-and-feel layer customization.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JRibbonApplicationMenuButton extends JCommandButton {

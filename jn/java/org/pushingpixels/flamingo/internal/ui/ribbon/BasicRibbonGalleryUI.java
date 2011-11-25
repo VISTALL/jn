@@ -50,7 +50,7 @@ import org.pushingpixels.flamingo.internal.utils.*;
 
 /**
  * Basic UI for ribbon gallery {@link JRibbonGallery}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicRibbonGalleryUI extends RibbonGalleryUI {
@@ -88,7 +88,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Contains the scroll down, scroll up and show popup buttons.
-	 * 
+	 *
 	 * @see #scrollDownButton
 	 * @see #scrollUpButton
 	 * @see #expandActionButton
@@ -129,7 +129,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Button strip as a UI resource.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static class JButtonStripUIResource extends JCommandButtonStrip
@@ -144,7 +144,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 		/**
 		 * Creates a new UI-resource button strip.
-		 * 
+		 *
 		 * @param orientation
 		 *            Orientation for this strip.
 		 */
@@ -200,7 +200,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Creates the scroll-down button.
-	 * 
+	 *
 	 * @return Scroll-down button.
 	 */
 	protected JCommandButton createScrollDownButton() {
@@ -217,7 +217,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Creates the scroll-up button.
-	 * 
+	 *
 	 * @return Scroll-up button.
 	 */
 	protected JCommandButton createScrollUpButton() {
@@ -234,7 +234,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Creates the expand button.
-	 * 
+	 *
 	 * @return Expand button.
 	 */
 	protected ExpandCommandButton createExpandButton() {
@@ -481,7 +481,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 	/**
 	 * Invoked by <code>installUI</code> to create a layout manager object to
 	 * manage the {@link JCommandButtonStrip}.
-	 * 
+	 *
 	 * @return a layout manager object
 	 */
 	protected LayoutManager createLayoutManager() {
@@ -490,7 +490,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Layout for the ribbon gallery.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class RibbonGalleryLayout implements LayoutManager {
@@ -689,7 +689,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Paints ribbon gallery border.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill
@@ -718,7 +718,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 
 	/**
 	 * Returns the layout gap for the controls in the associated ribbon gallery.
-	 * 
+	 *
 	 * @return The layout gap for the controls in the associated ribbon gallery.
 	 */
 	protected int getLayoutGap() {
@@ -728,7 +728,7 @@ public class BasicRibbonGalleryUI extends RibbonGalleryUI {
 	/**
 	 * Returns the preferred width of the ribbon gallery for the specified
 	 * parameters.
-	 * 
+	 *
 	 * @param buttonCount
 	 *            Button count.
 	 * @param availableHeight

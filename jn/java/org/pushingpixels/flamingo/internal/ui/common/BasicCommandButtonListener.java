@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.api.common.model.PopupButtonModel;
 
 /**
  * Listener to track user interaction with the command buttons.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandButtonListener implements MouseListener,
@@ -199,7 +199,7 @@ public class BasicCommandButtonListener implements MouseListener,
 	/**
 	 * Synchronizes the action and popup models of the command button with the
 	 * specified mouse event.
-	 * 
+	 *
 	 * @param e
 	 *            Mouse event for the model synchronization.
 	 */
@@ -270,7 +270,7 @@ public class BasicCommandButtonListener implements MouseListener,
 	/**
 	 * Installs keyboard action (space / enter keys) on the specified command
 	 * button.
-	 * 
+	 *
 	 * @param button
 	 *            Command button.
 	 */
@@ -289,7 +289,7 @@ public class BasicCommandButtonListener implements MouseListener,
 
 	/**
 	 * Button press action.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private static class PressAction extends AbstractAction {
@@ -305,7 +305,7 @@ public class BasicCommandButtonListener implements MouseListener,
 
 		/**
 		 * Creates a new press action.
-		 * 
+		 *
 		 * @param button
 		 *            Associated command button.
 		 */
@@ -343,7 +343,7 @@ public class BasicCommandButtonListener implements MouseListener,
 
 	/**
 	 * Button release action.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private static class ReleaseAction extends AbstractAction {
@@ -359,7 +359,7 @@ public class BasicCommandButtonListener implements MouseListener,
 
 		/**
 		 * Creates a new release action.
-		 * 
+		 *
 		 * @param button
 		 *            Associated command button.
 		 */
@@ -395,7 +395,7 @@ public class BasicCommandButtonListener implements MouseListener,
 	/**
 	 * Uninstalls keyboard action (space / enter keys) from the specified
 	 * command button.
-	 * 
+	 *
 	 * @param button
 	 *            Command button.
 	 */

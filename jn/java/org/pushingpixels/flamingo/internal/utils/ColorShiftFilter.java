@@ -34,7 +34,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * Image filter that shifts the colors of the original image.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class ColorShiftFilter extends AbstractFilter {
@@ -60,7 +60,7 @@ public class ColorShiftFilter extends AbstractFilter {
 
 	/**
 	 * Creates a new color shift filter.
-	 * 
+	 *
 	 * @param shiftColor
 	 *            Shift color.
 	 * @param shiftAmount
@@ -98,7 +98,7 @@ public class ColorShiftFilter extends AbstractFilter {
 
 	/**
 	 * Color-shifts all the pixels in the specified pixel array.
-	 * 
+	 *
 	 * @param pixels
 	 *            Pixel array for color-shifting.
 	 */

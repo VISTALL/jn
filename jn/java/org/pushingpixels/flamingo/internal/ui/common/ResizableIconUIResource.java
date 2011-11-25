@@ -58,6 +58,6 @@ public class ResizableIconUIResource implements ResizableIcon, UIResource {
 		delegate.setDimension(newDimension);
 	}
 
-	
-    
+
+
 }

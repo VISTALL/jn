@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonStripUI;
  * Button strip component. Provides visual appearance of a strip. The buttons in
  * the strip are either drawn horizontally with no horizontal space between them
  * or drawn vertically with no vertical space between them.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JCommandButtonStrip extends JComponent {
@@ -59,21 +59,21 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Scale factor for horizontal gaps.
-	 * 
+	 *
 	 * @see #setVGapScaleFactor(double)
 	 */
 	protected double hgapScaleFactor;
 
 	/**
 	 * Scale factor for vertical gaps.
-	 * 
+	 *
 	 * @see #setVGapScaleFactor(double)
 	 */
 	protected double vgapScaleFactor;
 
 	/**
 	 * Button strip orientation.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public enum StripOrientation {
@@ -90,7 +90,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Orientation of <code>this</code> strip.
-	 * 
+	 *
 	 * @see #getOrientation()
 	 */
 	private StripOrientation orientation;
@@ -104,7 +104,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Creates an empty strip.
-	 * 
+	 *
 	 * @param orientation
 	 *            Orientation for this strip.
 	 */
@@ -129,7 +129,7 @@ public class JCommandButtonStrip extends JComponent {
 	 * Sets the display state for the buttons in this button strip. This method
 	 * must be called <em>before</em> adding the first command button. The
 	 * default state is {@link CommandButtonDisplayState#SMALL}.
-	 * 
+	 *
 	 * @param elementState
 	 *            New element state for the buttons in this button strip.
 	 */
@@ -145,13 +145,13 @@ public class JCommandButtonStrip extends JComponent {
 	 * Sets the horizontal gap scale factor for the buttons in this button
 	 * strip. This method must be called <em>before</em> adding the first
 	 * command button.
-	 * 
+	 *
 	 * <p>
 	 * The default horizontal gap scale factor for horizontally oriented strips
 	 * is 0.75. The default horizontal gap scale factor for vertically oriented
 	 * strips is 1.0.
 	 * </p>
-	 * 
+	 *
 	 * @param hgapScaleFactor
 	 *            New horizontal gap scale factor for the buttons in this button
 	 *            strip.
@@ -169,13 +169,13 @@ public class JCommandButtonStrip extends JComponent {
 	 * Sets the vertical gap scale factor for the buttons in this button strip.
 	 * This method must be called <em>before</em> adding the first command
 	 * button.
-	 * 
+	 *
 	 * <p>
 	 * The default vertical gap scale factor for vertically oriented strips is
 	 * 0.75. The default vertical gap scale factor for horizontally oriented
 	 * strips is 1.0.
 	 * </p>
-	 * 
+	 *
 	 * @param vgapScaleFactor
 	 *            New vertical gap scale factor for the buttons in this button
 	 *            strip.
@@ -242,7 +242,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Configures the specified command button.
-	 * 
+	 *
 	 * @param button
 	 *            Command button to configure.
 	 */
@@ -265,7 +265,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Sets the new UI delegate.
-	 * 
+	 *
 	 * @param ui
 	 *            New UI delegate.
 	 */
@@ -275,7 +275,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Resets the UI property to a value from the current look and feel.
-	 * 
+	 *
 	 * @see JComponent#updateUI
 	 */
 	@Override
@@ -289,7 +289,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Returns the UI object which implements the L&F for this component.
-	 * 
+	 *
 	 * @return a <code>ButtonStripUI</code> object
 	 * @see #setUI
 	 */
@@ -300,7 +300,7 @@ public class JCommandButtonStrip extends JComponent {
 	/**
 	 * Returns the name of the UI class that implements the L&F for this
 	 * component.
-	 * 
+	 *
 	 * @return the string "ButtonStripUI"
 	 * @see JComponent#getUIClassID
 	 * @see UIDefaults#getUI
@@ -312,7 +312,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Returns the number of buttons in <code>this</code> strip.
-	 * 
+	 *
 	 * @return Number of buttons in <code>this</code> strip.
 	 * @see #getButton(int)
 	 */
@@ -322,7 +322,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Returns the specified button component of <code>this</code> strip.
-	 * 
+	 *
 	 * @param index
 	 *            Button index.
 	 * @return The matching button.
@@ -335,7 +335,7 @@ public class JCommandButtonStrip extends JComponent {
 	/**
 	 * Checks whether the specified button is the first button in
 	 * <code>this</code> strip.
-	 * 
+	 *
 	 * @param button
 	 *            Button to check.
 	 * @return <code>true</code> if the specified button is the first button in
@@ -349,7 +349,7 @@ public class JCommandButtonStrip extends JComponent {
 	/**
 	 * Checks whether the specified button is the last button in
 	 * <code>this</code> strip.
-	 * 
+	 *
 	 * @param button
 	 *            Button to check.
 	 * @return <code>true</code> if the specified button is the last button in
@@ -362,7 +362,7 @@ public class JCommandButtonStrip extends JComponent {
 
 	/**
 	 * Returns the orientation of <code>this</code> strip.
-	 * 
+	 *
 	 * @return Orientation of <code>this</code> strip.
 	 */
 	public StripOrientation getOrientation() {
@@ -372,7 +372,7 @@ public class JCommandButtonStrip extends JComponent {
 	/**
 	 * Adds the specified change listener to track changes to this command
 	 * button strip.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to add.
 	 * @see #removeChangeListener(ChangeListener)
@@ -384,7 +384,7 @@ public class JCommandButtonStrip extends JComponent {
 	/**
 	 * Removes the specified change listener from tracking changes to this
 	 * command button strip.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to remove.
 	 * @see #addChangeListener(ChangeListener)

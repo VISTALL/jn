@@ -78,7 +78,7 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 
 	/**
 	 * Popup panel that hosts groups of icons.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static class ScrollableCommandButtonPanel extends JComponent {
@@ -105,7 +105,7 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 
 		/**
 		 * Creates new a icon popup panel.
-		 * 
+		 *
 		 * @param iconPanel
 		 *            The internal panel that hosts icon command buttons.
 		 * @param maxButtonColumns
@@ -186,7 +186,7 @@ public class BasicCommandPopupMenuUI extends BasicPopupPanelUI {
 
 		/**
 		 * Layout manager for <code>this</code> popup gallery.
-		 * 
+		 *
 		 * @author Kirill Grouchnikov
 		 */
 		protected class IconPopupLayout implements LayoutManager {

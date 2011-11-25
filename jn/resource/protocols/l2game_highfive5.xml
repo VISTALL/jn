@@ -681,32 +681,32 @@
 			</for>
 		</packet>
 		<packet id="62" name="SystemMessage">
-			<part name="messageId" type="d"/>
+			<part name="message-id" type="d"/>
 			<part id="0" name="size" type="d"/>
 			<for id="0">
 				<part id="1" name="type" type="d"/>
 				<switch id="1">
 					<case id="0">
-						<part name="att" type="S"/>
+						<part name="text" type="S"/>
 					</case>
 					<case id="1">
-						<part name="num" type="d"/>
+						<part name="integer-value" type="d"/>
 					</case>
 					<case id="2">
-						<part name="npc id" type="d"/>
+						<part name="npc-id" type="d"/>
 					</case>
 					<case id="3">
-						<part name="item id" type="d"/>
+						<part name="item-id" type="d"/>
 					</case>
 					<case id="4">
-						<part name="skill_id" type="d"/>
-						<part name="skill_level" type="d"/>
+						<part name="skill-id" type="d"/>
+						<part name="skill-level" type="d"/>
 					</case>
 					<case id="5">
-						<part name="att" type="d"/>
+						<part name="residence-id" type="d"/>
 					</case>
 					<case id="6">
-						<part name="long" type="Q"/>
+						<part name="long-value" type="Q"/>
 					</case>
 					<case id="7">
 						<part name="x" type="d"/>
@@ -714,27 +714,30 @@
 						<part name="z" type="d"/>
 					</case>
 					<case id="8">
-						<part name="item_id" type="d"/>
-						<part name="augmentation1" type="h"/>
-						<part name="augmentation2" type="h"/>
+						<part name="item-id" type="d"/>
+						<part name="augmentation-1" type="h"/>
+						<part name="augmentation-2" type="h"/>
 					</case>
 					<case id="9">
-						<part name="att" type="d"/>
+						<part name="element-id" type="d"/>
 					</case>
 					<case id="10">
-						<part name="att" type="d"/>
+						<part name="instance-id" type="d"/>
 					</case>
 					<case id="11">
-						<part name="att" type="d"/>
+						<part name="static-object-id" type="d"/>
 					</case>
 					<case id="12">
 						<part name="name" type="S"/>
 					</case>
 					<case id="13">
-						<part name="sys_string" type="d"/>
+						<part name="sys-string-id" type="d"/>
 					</case>
 					<case id="14">
 						<macro id="npc_string_container" />
+					</case>
+					<case id="15">
+						<part name="class-id" type="d"/>
 					</case>
 					<case id="16">
 						<part name="target-object-id" type="d"/>

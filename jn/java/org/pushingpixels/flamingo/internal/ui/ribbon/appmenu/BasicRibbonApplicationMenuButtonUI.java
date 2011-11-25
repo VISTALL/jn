@@ -46,7 +46,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 /**
  * Basic UI for ribbon application menu button
  * {@link JRibbonApplicationMenuButton}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicRibbonApplicationMenuButtonUI extends BasicCommandButtonUI {
@@ -192,7 +192,7 @@ public class BasicRibbonApplicationMenuButtonUI extends BasicCommandButtonUI {
 
 	/**
 	 * Paints the button background.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill

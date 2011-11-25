@@ -35,7 +35,7 @@ import org.pushingpixels.flamingo.api.common.JCommandButtonStrip;
 
 /**
  * UI for button strip ({@link JCommandButtonStrip}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class CommandButtonStripUI extends ComponentUI {

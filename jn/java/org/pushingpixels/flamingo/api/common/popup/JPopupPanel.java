@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.internal.ui.common.popup.PopupPanelUI;
 
 /**
  * Base class for popup panels.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see PopupPanelManager#addPopup(javax.swing.JComponent, javax.swing.Popup,
  *      JPopupPanel)
@@ -52,7 +52,7 @@ public abstract class JPopupPanel extends JPanel {
 
 	/**
 	 * The customizer for this popup panel. Can be <code>null</code>.
-	 * 
+	 *
 	 * @see #getCustomizer()
 	 * @see #setCustomizer(PopupPanelCustomizer)
 	 */
@@ -61,13 +61,13 @@ public abstract class JPopupPanel extends JPanel {
 	/**
 	 * Allows providing custom application logic for computing the screen bounds
 	 * of popup panels before they are shown on the screen.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static interface PopupPanelCustomizer {
 		/**
 		 * Returns the requested screen bounds of the associated popup panel.
-		 * 
+		 *
 		 * @return The requested screen bounds of the associated popup panel.
 		 */
 		public Rectangle getScreenBounds();
@@ -91,7 +91,7 @@ public abstract class JPopupPanel extends JPanel {
 
 	/**
 	 * Sets the look and feel (L&F) object that renders this component.
-	 * 
+	 *
 	 * @param ui
 	 *            the PopupGalleryUI L&F object
 	 */
@@ -125,7 +125,7 @@ public abstract class JPopupPanel extends JPanel {
 
 	/**
 	 * Sets the customizer for this popup panel.
-	 * 
+	 *
 	 * @param customizer
 	 *            The customizer for this popup panel.
 	 * @see #getCustomizer()
@@ -136,7 +136,7 @@ public abstract class JPopupPanel extends JPanel {
 
 	/**
 	 * Returns the customizer of this popup panel. Can return <code>null</code>.
-	 * 
+	 *
 	 * @return The customizer of this popup panel.
 	 * @see #setCustomizer(PopupPanelCustomizer)
 	 */

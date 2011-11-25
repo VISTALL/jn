@@ -34,24 +34,24 @@ import java.util.*;
 
 /**
  * Rich tooltip for command buttons.
- * 
+ *
  * <p>
  * In its most basic form, the rich tooltip has a title and one (possible
  * multiline) description text:
  * </p>
- * 
+ *
  * <pre>
  * +--------------------------------+
  * | Title                          |
  * |        Some description text   |
  * +--------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * The {@link #addDescriptionSection(String)} can be used to add multiple
  * sections to the description:
  * </p>
- * 
+ *
  * <pre>
  * +--------------------------------+
  * | Title                          |
@@ -65,12 +65,12 @@ import java.util.*;
  * |        description section     |
  * +--------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * The {@link #setMainImage(Image)} can be used to place an image below the
  * title and to the left of the description sections:
  * </p>
- * 
+ *
  * <pre>
  * +--------------------------------+
  * | Title                          |
@@ -81,12 +81,12 @@ import java.util.*;
  * |          description section   |
  * +--------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * The {@link #addFooterSection(String)} can be used to add (possibly) multiple
  * footer sections that will be shown below a horizontal separator:
  * </p>
- * 
+ *
  * <pre>
  * +--------------------------------+
  * | Title                          |
@@ -100,12 +100,12 @@ import java.util.*;
  * | placed below a separator       |
  * +--------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * The {@link #setFooterImage(Image)} can be used to place an image to the left
  * of the footer sections:
  * </p>
- * 
+ *
  * <pre>
  * +--------------------------------+
  * | Title                          |
@@ -120,11 +120,11 @@ import java.util.*;
  * | *******                        |
  * +--------------------------------+
  * </pre>
- * 
+ *
  * <p>
  * Here is a fully fledged rich tooltip that shows all these APIs in action:
  * </p>
- * 
+ *
  * <pre>
  * +--------------------------------+
  * | Title                          |
@@ -141,13 +141,13 @@ import java.util.*;
  * |          footer section        |
  * +--------------------------------+
  * </pre>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RichTooltip {
 	/**
 	 * The main title of this tooltip.
-	 * 
+	 *
 	 * @see #RichTooltip(String, String)
 	 * @see #setTitle(String)
 	 * @see #getTitle()
@@ -156,7 +156,7 @@ public class RichTooltip {
 
 	/**
 	 * The main image of this tooltip. Can be <code>null</code>.
-	 * 
+	 *
 	 * @see #getMainImage()
 	 * @see #setMainImage(Image)
 	 */
@@ -164,7 +164,7 @@ public class RichTooltip {
 
 	/**
 	 * The description sections of this tooltip.
-	 * 
+	 *
 	 * @see #RichTooltip(String, String)
 	 * @see #addDescriptionSection(String)
 	 * @see #getDescriptionSections()
@@ -173,7 +173,7 @@ public class RichTooltip {
 
 	/**
 	 * The footer image of this tooltip. Can be <code>null</code>.
-	 * 
+	 *
 	 * @see #getFooterImage()
 	 * @see #setFooterImage(Image)
 	 */
@@ -181,7 +181,7 @@ public class RichTooltip {
 
 	/**
 	 * The footer sections of this tooltip. Can be empty.
-	 * 
+	 *
 	 * @see #addFooterSection(String)
 	 * @see #getFooterSections()
 	 */
@@ -195,7 +195,7 @@ public class RichTooltip {
 
 	/**
 	 * Creates a tooltip with the specified title and description section.
-	 * 
+	 *
 	 * @param title
 	 *            Tooltip title.
 	 * @param descriptionSection
@@ -208,7 +208,7 @@ public class RichTooltip {
 
 	/**
 	 * Sets the title for this tooltip.
-	 * 
+	 *
 	 * @param title
 	 *            The new tooltip title.
 	 */
@@ -218,7 +218,7 @@ public class RichTooltip {
 
 	/**
 	 * Sets the main image for this tooltip.
-	 * 
+	 *
 	 * @param image
 	 *            The main image for this tooltip.
 	 * @see #getMainImage()
@@ -230,7 +230,7 @@ public class RichTooltip {
 
 	/**
 	 * Adds the specified description section to this tooltip.
-	 * 
+	 *
 	 * @param section
 	 *            The description section to add.
 	 * @see #getDescriptionSections()
@@ -246,7 +246,7 @@ public class RichTooltip {
 
 	/**
 	 * Sets the footer image for this tooltip.
-	 * 
+	 *
 	 * @param image
 	 *            The footer image for this tooltip.
 	 * @see #getFooterImage()
@@ -258,7 +258,7 @@ public class RichTooltip {
 
 	/**
 	 * Adds the specified footer section to this tooltip.
-	 * 
+	 *
 	 * @param section
 	 *            The footer section to add.
 	 * @see #getFooterSections()
@@ -273,7 +273,7 @@ public class RichTooltip {
 
 	/**
 	 * Returns the main title of this tooltip.
-	 * 
+	 *
 	 * @return The main title of this tooltip.
 	 * @see #RichTooltip(String, String)
 	 * @see #setTitle(String)
@@ -284,7 +284,7 @@ public class RichTooltip {
 
 	/**
 	 * Returns the main image of this tooltip. Can return <code>null</code>.
-	 * 
+	 *
 	 * @return The main image of this tooltip.
 	 * @see #setMainImage(Image)
 	 * @see #getDescriptionSections()
@@ -296,7 +296,7 @@ public class RichTooltip {
 	/**
 	 * Returns an unmodifiable list of description sections of this tooltip.
 	 * Guaranteed to return a non-<code>null</code> list.
-	 * 
+	 *
 	 * @return An unmodifiable list of description sections of this tooltip.
 	 * @see #RichTooltip(String, String)
 	 * @see #addDescriptionSection(String)
@@ -312,7 +312,7 @@ public class RichTooltip {
 
 	/**
 	 * Returns the footer image of this tooltip. Can return <code>null</code>.
-	 * 
+	 *
 	 * @return The footer image of this tooltip.
 	 * @see #setFooterImage(Image)
 	 * @see #getFooterSections()
@@ -324,7 +324,7 @@ public class RichTooltip {
 	/**
 	 * Returns an unmodifiable list of footer sections of this tooltip.
 	 * Guaranteed to return a non-<code>null</code> list.
-	 * 
+	 *
 	 * @return An unmodifiable list of footer sections of this tooltip.
 	 * @see #addFooterSection(String)
 	 * @see #getFooterImage()

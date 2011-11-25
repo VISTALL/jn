@@ -46,7 +46,7 @@ import java.awt.image.*;
  * interface. This class can be used to created new image filters based on
  * <code>BufferedImageOp</code>.
  * </p>
- * 
+ *
  * @author Romain Guy <romain.guy@mac.com>
  */
 public abstract class AbstractFilter implements BufferedImageOp {
@@ -101,7 +101,7 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	 * Returns an array of integer pixels in the default RGB color model
 	 * (TYPE_INT_ARGB) and default sRGB color space, from a portion of the image
 	 * data.
-	 * 
+	 *
 	 * @param img
 	 *            Image.
 	 * @param x
@@ -147,7 +147,7 @@ public abstract class AbstractFilter implements BufferedImageOp {
 	 * different from <code>BufferedImage.TYPE_INT_ARGB</code> and
 	 * <code>BufferedImage.TYPE_INT_RGB</code> will unmanage the image.
 	 * </p>
-	 * 
+	 *
 	 * @param img
 	 *            the destination image
 	 * @param x

@@ -35,13 +35,13 @@ import java.util.List;
 
 /**
  * Definition of a layout manager for {@link AbstractCommandButton}s.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public interface CommandButtonLayoutManager extends PropertyChangeListener {
 	/**
 	 * Enumerates the available values for separator orientations.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public enum CommandButtonSeparatorOrientation {
@@ -58,7 +58,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 
 	/**
 	 * Layout information on a single line of text.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public class TextLayoutInfo {
@@ -75,7 +75,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 
 	/**
 	 * Layout information on different visual parts of a single command button.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public class CommandButtonLayoutInfo {
@@ -136,7 +136,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 
 	/**
 	 * Returns the preferred size of the specified command button.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Command button.
 	 * @return The preferred size of the specified command button.
@@ -146,7 +146,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 	/**
 	 * Returns the preferred icon size of command buttons which use this layout
 	 * manager.
-	 * 
+	 *
 	 * @return The preferred icon size of command buttons which use this layout
 	 *         manager.
 	 */
@@ -155,7 +155,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 	/**
 	 * Returns the anchor center point of the key tip of the specified command
 	 * button.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Command button.
 	 * @return The anchor center point of the key tip of the specified command
@@ -165,7 +165,7 @@ public interface CommandButtonLayoutManager extends PropertyChangeListener {
 
 	/**
 	 * Returns the layout information for the specified command button.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Command button.
 	 * @param g

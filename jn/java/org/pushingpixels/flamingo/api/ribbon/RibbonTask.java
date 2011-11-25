@@ -37,7 +37,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizeSequencingPo
 /**
  * Single ribbon task in {@link JRibbon}. This is a logical entity that groups
  * {@link AbstractRibbonBand} components.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RibbonTask {
@@ -74,7 +74,7 @@ public class RibbonTask {
 
 	/**
 	 * Creates a ribbon task that contains the specified bands.
-	 * 
+	 *
 	 * @param title
 	 *            Ribbon task title.
 	 * @param bands
@@ -96,7 +96,7 @@ public class RibbonTask {
 
 	/**
 	 * Returns the number of bands in <code>this</code> task.
-	 * 
+	 *
 	 * @return Number of bands in <code>this</code> task.
 	 * @see #getBand(int)
 	 * @see #getBands()
@@ -107,7 +107,7 @@ public class RibbonTask {
 
 	/**
 	 * Returns band at the specified index from <code>this</code> task.
-	 * 
+	 *
 	 * @param index
 	 *            Band index.
 	 * @return Band at the specified index.
@@ -120,7 +120,7 @@ public class RibbonTask {
 
 	/**
 	 * Returns the title of this task.
-	 * 
+	 *
 	 * @return The title of this task.
 	 */
 	public String getTitle() {
@@ -130,7 +130,7 @@ public class RibbonTask {
 	/**
 	 * Sets the contextual task group for this ribbon task. This method is
 	 * package protected and is for internal use only.
-	 * 
+	 *
 	 * @param contextualGroup
 	 *            The contextual task group for this ribbon task.
 	 * @see #getContextualGroup()
@@ -146,7 +146,7 @@ public class RibbonTask {
 	/**
 	 * Returns the contextual task group for this ribbon task. Will return
 	 * <code>null</code> for general ribbon tasks.
-	 * 
+	 *
 	 * @return The contextual task group for this ribbon task.
 	 */
 	public RibbonContextualTaskGroup getContextualGroup() {
@@ -155,7 +155,7 @@ public class RibbonTask {
 
 	/**
 	 * Returns an unmodifiable view on the ribbon bands of this task.
-	 * 
+	 *
 	 * @return Unmodifiable view on the ribbon bands of this task.
 	 * @see #getBandCount()
 	 * @see #getBand(int)
@@ -166,7 +166,7 @@ public class RibbonTask {
 
 	/**
 	 * Changes the title of this ribbon task.
-	 * 
+	 *
 	 * @param title
 	 *            The new title for this ribbon task.
 	 */
@@ -179,7 +179,7 @@ public class RibbonTask {
 	/**
 	 * Associates this ribbon task with the specified ribbon. This method is
 	 * package protected and is for internal use only.
-	 * 
+	 *
 	 * @param ribbon
 	 *            The associated ribbon.
 	 */
@@ -193,7 +193,7 @@ public class RibbonTask {
 
 	/**
 	 * Returns the current resize sequencing policy of this ribbon task.
-	 * 
+	 *
 	 * @return The current resize sequencing policy of this ribbon task.
 	 * @see #setResizeSequencingPolicy(RibbonBandResizeSequencingPolicy)
 	 */
@@ -204,7 +204,7 @@ public class RibbonTask {
 	/**
 	 * Sets the specified parameter as the new resize sequencing policy of this
 	 * ribbon task.
-	 * 
+	 *
 	 * @param resizeSequencingPolicy
 	 *            The new resize sequencing policy of this ribbon task.
 	 * @see #getResizeSequencingPolicy()
@@ -216,7 +216,7 @@ public class RibbonTask {
 
 	/**
 	 * Returns the key tip for the task button of this task.
-	 * 
+	 *
 	 * @return The key tip for the task button of this task.
 	 * @see #setKeyTip(String)
 	 */
@@ -227,7 +227,7 @@ public class RibbonTask {
 	/**
 	 * Sets the specified parameter to be the new key tip for the task button of
 	 * this task.
-	 * 
+	 *
 	 * @param keyTip
 	 *            The new key tip for the task button of this task.
 	 */

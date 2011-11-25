@@ -35,7 +35,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntrySecondary
 /**
  * An application hook that allows associating a custom popup panel with a popup
  * area of the specific command button.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see JCommandButton#setPopupCallback(PopupPanelCallback)
  * @see RibbonApplicationMenuEntrySecondary#setPopupCallback(PopupPanelCallback)
@@ -44,7 +44,7 @@ public interface PopupPanelCallback {
 	/**
 	 * Returns the popup panel to be shown when the popup area of the specified
 	 * command button is activated.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Command button.
 	 * @return The popup panel to be shown when the popup area of the specified

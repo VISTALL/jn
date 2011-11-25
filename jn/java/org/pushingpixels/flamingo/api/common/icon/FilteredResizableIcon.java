@@ -41,7 +41,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 /**
  * Implementation of {@link ResizableIcon} that allows applying a
  * {@link BufferedImageOp} on another icon.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class FilteredResizableIcon implements ResizableIcon {
@@ -62,7 +62,7 @@ public class FilteredResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new filtered icon.
-	 * 
+	 *
 	 * @param delegate
 	 *            The main (pre-filtered) icon.
 	 * @param operation

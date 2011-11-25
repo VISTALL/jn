@@ -36,7 +36,7 @@ import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
 
 /**
  * Basic UI for command toggle button {@link JCommandToggleButton}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandToggleButtonUI extends BasicCommandButtonUI {

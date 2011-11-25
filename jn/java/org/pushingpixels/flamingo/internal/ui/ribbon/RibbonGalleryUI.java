@@ -34,7 +34,7 @@ import javax.swing.plaf.ComponentUI;
 
 /**
  * UI for in-ribbon gallery ({@link JRibbonGallery}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class RibbonGalleryUI extends ComponentUI {

@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonUI;
 
 /**
  * Command button.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JCommandToggleButton extends AbstractCommandButton {
@@ -50,7 +50,7 @@ public class JCommandToggleButton extends AbstractCommandButton {
 
 	/**
 	 * Creates a new command toggle button with empty text
-	 * 
+	 *
 	 * @param icon
 	 *            Button icon.
 	 */
@@ -60,7 +60,7 @@ public class JCommandToggleButton extends AbstractCommandButton {
 
 	/**
 	 * Creates a new command toggle button without an icon.
-	 * 
+	 *
 	 * @param title
 	 *            Button title. May contain any number of words.
 	 */
@@ -70,7 +70,7 @@ public class JCommandToggleButton extends AbstractCommandButton {
 
 	/**
 	 * Creates a new command toggle button.
-	 * 
+	 *
 	 * @param title
 	 *            Button title. May contain any number of words.
 	 * @param icon
@@ -84,7 +84,7 @@ public class JCommandToggleButton extends AbstractCommandButton {
 
 	/**
 	 * Resets the UI property to a value from the current look and feel.
-	 * 
+	 *
 	 * @see JComponent#updateUI
 	 */
 	@Override

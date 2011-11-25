@@ -48,7 +48,7 @@ import org.pushingpixels.flamingo.internal.ui.common.popup.PopupPanelUI;
  * {@link #addMenuSeparator()}. The
  * {@link #JCommandPopupMenu(JCommandButtonPanel, int, int)} constructor allows
  * placing a scrollable command button panel in the top part of the popup menu.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JCommandPopupMenu extends JPopupPanel {
@@ -60,7 +60,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	/**
 	 * The main button panel. Can be <code>null</code> if this command popup
 	 * menu was created with the {@link #JCommandPopupMenu()} constructor.
-	 * 
+	 *
 	 * @see #JCommandPopupMenu(JCommandButtonPanel, int, int)
 	 * @see #hasCommandButtonPanel()
 	 * @see #getMainButtonPanel()
@@ -74,7 +74,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	 * {@link JCommandToggleMenuButton}s added with
 	 * {@link #addMenuButton(JCommandToggleMenuButton)} and {@link Separator}s
 	 * added with {@link #addMenuSeparator()}.
-	 * 
+	 *
 	 * @see #addMenuButton(JCommandMenuButton)
 	 * @see #addMenuSeparator()
 	 * @see #getMenuComponents()
@@ -83,7 +83,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Maximum number of button columns visible in the {@link #mainButtonPanel}.
-	 * 
+	 *
 	 * @see #JCommandPopupMenu(JCommandButtonPanel, int, int)
 	 * @see #getMaxButtonColumns()
 	 */
@@ -91,7 +91,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Maximum number of button rows visible in the {@link #mainButtonPanel}.
-	 * 
+	 *
 	 * @see #JCommandPopupMenu(JCommandButtonPanel, int, int)
 	 * @see #getMaxVisibleButtonRows()
 	 */
@@ -121,7 +121,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Creates a popup menu hosting the specified button panel.
-	 * 
+	 *
 	 * @param buttonPanel
 	 *            Fully constructed button panel.
 	 * @param maxButtonColumns
@@ -144,7 +144,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Adds the specified menu button to this menu.
-	 * 
+	 *
 	 * @param menuButton
 	 *            Menu button to add.
 	 */
@@ -156,7 +156,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Adds the specified toggle menu button to this menu.
-	 * 
+	 *
 	 * @param menuButton
 	 *            Menu button to add.
 	 */
@@ -176,7 +176,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Adds a menu panel to this menu.
-	 * 
+	 *
 	 * @param menuPanel
 	 *            Menu panel to add.
 	 */
@@ -191,7 +191,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Returns indication whether this menu has a command button panel.
-	 * 
+	 *
 	 * @return <code>true</code> if this menu has a command button panel,
 	 *         <code>false</code> otherwise.
 	 * @see #getMainButtonPanel()
@@ -203,7 +203,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	/**
 	 * Returns the command button panel of this menu. Can return
 	 * <code>null</code>.
-	 * 
+	 *
 	 * @return The command button panel of this menu.
 	 * @see #hasCommandButtonPanel()
 	 */
@@ -214,7 +214,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	/**
 	 * Returns an unmodifiable list of all the menu components. Can return
 	 * <code>null</code>.
-	 * 
+	 *
 	 * @return An unmodifiable list of all the menu components
 	 */
 	public java.util.List<Component> getMenuComponents() {
@@ -227,7 +227,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	 * Returns the maximum number of button columns visible in the command
 	 * button panel of this menu. If this menu has been created with the
 	 * {@link #JCommandPopupMenu()} constructor, zero is returned.
-	 * 
+	 *
 	 * @return The maximum number of button columns visible in the command
 	 *         button panel of this menu.
 	 * @see #JCommandPopupMenu(JCommandButtonPanel, int, int)
@@ -241,7 +241,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	 * Returns the maximum number of button rows visible in the command button
 	 * panel of this menu. If this menu has been created with the
 	 * {@link #JCommandPopupMenu()} constructor, zero is returned.
-	 * 
+	 *
 	 * @return The maximum number of button rows visible in the command button
 	 *         panel of this menu.
 	 * @see #JCommandPopupMenu(JCommandButtonPanel, int, int)
@@ -253,7 +253,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Returns the maximum number of menu items visible in this menu.
-	 * 
+	 *
 	 * @return The maximum number of menu items visible in this menu. If the
 	 *         value is negative, there is no limitation on how many menu
 	 *         buttons are shown, and the entire popup menu can overflow the
@@ -267,7 +267,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	 * Sets the maximum number of menu items visible in this menu. If the value
 	 * is negative, there is no limitation on how many menu buttons are shown,
 	 * and the entire popup menu can overflow the monitor edges.
-	 * 
+	 *
 	 * @param maxVisibleMenuButtons
 	 *            The new value for the maximum number of menu items visible in
 	 *            this menu.
@@ -305,7 +305,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 
 	/**
 	 * Adds the specified change listener to track changes to this popup menu.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to add.
 	 * @see #removeChangeListener(ChangeListener)
@@ -317,7 +317,7 @@ public class JCommandPopupMenu extends JPopupPanel {
 	/**
 	 * Removes the specified change listener from tracking changes to this popup
 	 * menu.
-	 * 
+	 *
 	 * @param l
 	 *            Change listener to remove.
 	 * @see #addChangeListener(ChangeListener)

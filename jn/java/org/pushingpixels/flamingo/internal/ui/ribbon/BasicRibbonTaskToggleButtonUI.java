@@ -46,7 +46,7 @@ import org.pushingpixels.flamingo.internal.utils.*;
 
 /**
  * Basic UI for toggle button of ribbon tasks {@link JRibbonTaskToggleButton}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicRibbonTaskToggleButtonUI extends BasicCommandToggleButtonUI {
@@ -176,7 +176,7 @@ public class BasicRibbonTaskToggleButtonUI extends BasicCommandToggleButtonUI {
 
 	/**
 	 * Paints the button background.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill

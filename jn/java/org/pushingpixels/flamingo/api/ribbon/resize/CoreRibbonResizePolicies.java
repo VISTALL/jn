@@ -46,7 +46,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * and
  * {@link JRibbonBand#addRibbonGallery(String, java.util.List, java.util.Map, int, int, org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority)}
  * APIs. There are three types of built in resize policies: </p>
- * 
+ *
  * <ul>
  * <li>Resize policies for the {@link JFlowRibbonBand}s. The {@link FlowTwoRows}
  * and {@link FlowThreeRows} allow placing the flow ribbon band content in two
@@ -70,12 +70,12 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * under the most permissive resize policy in a popup. This policy is
  * implemented in the {@link IconRibbonBandResizePolicy}.</li>
  * </ul>
- * 
+ *
  * <p>
  * In addition to the specific resize policies, this class provides three core
  * resize policies lists for {@link JRibbonBand}s:
  * </p>
- * 
+ *
  * <ul>
  * <li>{@link #getCorePoliciesPermissive(JRibbonBand)} returns a list that
  * starts with a resize policy that shows all command buttons in the
@@ -88,12 +88,12 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * <code>mirror</code> resize policy that respects the associated ribbon element
  * priority set on the specific components.</li>
  * </ul>
- * 
+ *
  * <p>
  * Note that as mentioned above, all the three lists above have the
  * <code>collapsed</code> policy as their last element.
  * </p>
- * 
+ *
  * <p>
  * In addition, the
  * {@link #getCoreFlowPoliciesRestrictive(JFlowRibbonBand, int)} returns a
@@ -101,21 +101,21 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * the two-row policy, goes to the three-row policy and then finally to the
  * collapsed policy.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class CoreRibbonResizePolicies {
 	/**
 	 * Maps the element priority associated with a ribbon band component to the
 	 * element priority assigned by the specific resize policy.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	static interface Mapping {
 		/**
 		 * Maps the element priority associated with a ribbon band component to
 		 * the element priority assigned by the specific resize policy.
-		 * 
+		 *
 		 * @param priority
 		 *            The element priority associated with a ribbon band
 		 *            component
@@ -129,7 +129,7 @@ public class CoreRibbonResizePolicies {
 	 * buttons in the {@link CommandButtonDisplayState#BIG} and ribbon galleries
 	 * with the largest number of visible buttons. The last entry is the
 	 * {@link IconRibbonBandResizePolicy}.
-	 * 
+	 *
 	 * @param ribbonBand
 	 *            Ribbon band.
 	 * @return The permissive list of core ribbon band resize policies.
@@ -161,7 +161,7 @@ public class CoreRibbonResizePolicies {
 	 * Returns a list that starts with a resize policy that respects the
 	 * associated ribbon element priority set on the specific components. The
 	 * last entry is the {@link IconRibbonBandResizePolicy}.
-	 * 
+	 *
 	 * @param ribbonBand
 	 *            Ribbon band.
 	 * @return The restrictive list of core ribbon band resize policies.
@@ -187,7 +187,7 @@ public class CoreRibbonResizePolicies {
 	 * Returns a list that only has a <code>mirror</code> resize policy that
 	 * respects the associated ribbon element priority set on the specific
 	 * components. The last entry is the {@link IconRibbonBandResizePolicy}.
-	 * 
+	 *
 	 * @param ribbonBand
 	 *            Ribbon band.
 	 * @return The mirror list of core ribbon band resize policies.
@@ -205,7 +205,7 @@ public class CoreRibbonResizePolicies {
 
 	/**
 	 * The base class for mapping-based core resize policies.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected static abstract class BaseCoreRibbonBandResizePolicy extends
@@ -217,7 +217,7 @@ public class CoreRibbonResizePolicies {
 
 		/**
 		 * Creates a new resize policy.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 * @param mapping
@@ -231,7 +231,7 @@ public class CoreRibbonResizePolicies {
 
 		/**
 		 * Returns the total width of the specified buttons.
-		 * 
+		 *
 		 * @param gap
 		 *            Inter component gap.
 		 * @param bigButtons
@@ -333,7 +333,7 @@ public class CoreRibbonResizePolicies {
 		/**
 		 * Returns the preferred width of the specified command button under the
 		 * specified display priority.
-		 * 
+		 *
 		 * @param button
 		 *            Command button.
 		 * @param buttonDisplayPriority
@@ -434,7 +434,7 @@ public class CoreRibbonResizePolicies {
 		/**
 		 * Returns the preferred width of all the buttons in the specified
 		 * control panel group.
-		 * 
+		 *
 		 * @param controlPanelGroup
 		 *            A single control panel group in the associated ribbon
 		 *            band.
@@ -473,7 +473,7 @@ public class CoreRibbonResizePolicies {
 		/**
 		 * Returns the preferred width of all the ribbon galleries in the
 		 * specified control panel group.
-		 * 
+		 *
 		 * @param controlPanelGroup
 		 *            A single control panel group in the associated ribbon
 		 *            band.
@@ -597,13 +597,13 @@ public class CoreRibbonResizePolicies {
 	/**
 	 * Core resize policy that maps all {@link RibbonElementPriority}s to
 	 * {@link RibbonElementPriority#TOP}.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class None extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>NONE</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -619,7 +619,7 @@ public class CoreRibbonResizePolicies {
 
 	/**
 	 * Core resize policy that maps:
-	 * 
+	 *
 	 * <ul>
 	 * <li>{@link RibbonElementPriority#TOP} ->
 	 * {@link RibbonElementPriority#TOP}</li>
@@ -628,13 +628,13 @@ public class CoreRibbonResizePolicies {
 	 * <li>{@link RibbonElementPriority#LOW} ->
 	 * {@link RibbonElementPriority#MEDIUM}</li>
 	 * </ul>
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class Low2Mid extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>LOW2MID</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -658,7 +658,7 @@ public class CoreRibbonResizePolicies {
 
 	/**
 	 * Core resize policy that maps:
-	 * 
+	 *
 	 * <ul>
 	 * <li>{@link RibbonElementPriority#TOP} ->
 	 * {@link RibbonElementPriority#TOP}</li>
@@ -667,13 +667,13 @@ public class CoreRibbonResizePolicies {
 	 * <li>{@link RibbonElementPriority#LOW} ->
 	 * {@link RibbonElementPriority#MEDIUM}</li>
 	 * </ul>
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class Mid2Mid extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>MID2MID</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -698,13 +698,13 @@ public class CoreRibbonResizePolicies {
 	/**
 	 * Mirror core resize policy that maps the values of
 	 * {@link RibbonElementPriority}s to themselves.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class Mirror extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>MIRROR</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -720,7 +720,7 @@ public class CoreRibbonResizePolicies {
 
 	/**
 	 * Core resize policy that maps:
-	 * 
+	 *
 	 * <ul>
 	 * <li>{@link RibbonElementPriority#TOP} ->
 	 * {@link RibbonElementPriority#TOP}</li>
@@ -729,13 +729,13 @@ public class CoreRibbonResizePolicies {
 	 * <li>{@link RibbonElementPriority#LOW} ->
 	 * {@link RibbonElementPriority#LOW}</li>
 	 * </ul>
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class Mid2Low extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>MID2LOW</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -759,7 +759,7 @@ public class CoreRibbonResizePolicies {
 
 	/**
 	 * Core resize policy that maps:
-	 * 
+	 *
 	 * <ul>
 	 * <li>{@link RibbonElementPriority#TOP} ->
 	 * {@link RibbonElementPriority#MEDIUM}</li>
@@ -768,13 +768,13 @@ public class CoreRibbonResizePolicies {
 	 * <li>{@link RibbonElementPriority#LOW} ->
 	 * {@link RibbonElementPriority#LOW}</li>
 	 * </ul>
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class High2Mid extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>HIGH2MID</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -799,13 +799,13 @@ public class CoreRibbonResizePolicies {
 	/**
 	 * Core resize policy that maps all {@link RibbonElementPriority}s to
 	 * {@link RibbonElementPriority#LOW}.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static final class High2Low extends BaseCoreRibbonBandResizePolicy {
 		/**
 		 * Creates the new resize policy of type <code>HIGH2LOW</code>.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -822,14 +822,14 @@ public class CoreRibbonResizePolicies {
 	/**
 	 * Core resize policy for {@link JFlowRibbonBand} that places the content in
 	 * two rows.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class FlowTwoRows extends
 			BaseRibbonBandResizePolicy<JFlowBandControlPanel> {
 		/**
 		 * Creates a new two-row resize policy for {@link JFlowRibbonBand}s.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -877,14 +877,14 @@ public class CoreRibbonResizePolicies {
 	/**
 	 * Core resize policy for {@link JFlowRibbonBand} that places the content in
 	 * three rows.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static class FlowThreeRows extends
 			BaseRibbonBandResizePolicy<JFlowBandControlPanel> {
 		/**
 		 * Creates a new three-row resize policy for {@link JFlowRibbonBand}s.
-		 * 
+		 *
 		 * @param controlPanel
 		 *            The control panel of the associated ribbon band.
 		 */
@@ -939,7 +939,7 @@ public class CoreRibbonResizePolicies {
 	 * Returns a list that has {@link FlowTwoRows} policy followed by the
 	 * {@link FlowThreeRows} resize policy. The last entry is the
 	 * {@link IconRibbonBandResizePolicy}.
-	 * 
+	 *
 	 * @param ribbonBand
 	 *            Ribbon band.
 	 * @param stepsToRepeat

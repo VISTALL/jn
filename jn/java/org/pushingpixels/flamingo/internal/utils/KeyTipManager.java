@@ -78,7 +78,7 @@ public class KeyTipManager {
 	 * keytips on clicking its action area. Can be used to associate keytips
 	 * with menu command buttons in the popup menu shown when the ribbon gallery
 	 * is expanded.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	@Target(ElementType.TYPE)

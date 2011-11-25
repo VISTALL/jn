@@ -33,7 +33,7 @@ import javax.swing.plaf.ComponentUI;
 
 /**
  * UI for command button ({@link JColorSelectorComponent}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class ColorSelectorComponentUI extends ComponentUI {

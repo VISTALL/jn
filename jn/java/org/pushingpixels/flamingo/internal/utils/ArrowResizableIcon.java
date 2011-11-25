@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 
 /**
  * Helper implementation of {@link ResizableIcon} that draws an arrow.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class ArrowResizableIcon implements ResizableIcon {
@@ -67,7 +67,7 @@ public class ArrowResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new arrow resizable icon.
-	 * 
+	 *
 	 * @param initialDim
 	 *            Initial icon dimension.
 	 * @param direction
@@ -84,7 +84,7 @@ public class ArrowResizableIcon implements ResizableIcon {
 
 	/**
 	 * Creates a new arrow resizable icon.
-	 * 
+	 *
 	 * @param initialDim
 	 *            Initial icon dimension.
 	 * @param direction

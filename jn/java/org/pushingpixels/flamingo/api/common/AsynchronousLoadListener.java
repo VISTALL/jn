@@ -39,13 +39,13 @@ import java.util.concurrent.ExecutorService;
  * SVG image in the background. When the image is loaded, the component that
  * contains this image ({@link JCommandButton} for example) is notified to
  * repaint itself.
- * 
+ *
  * @author Kirill Grouchnikov.
  */
 public interface AsynchronousLoadListener extends EventListener {
 	/**
 	 * Indicates that the asynchronous load has been completed.
-	 * 
+	 *
 	 * @param success
 	 *            If <code>true</code>, the load has been completed
 	 *            successfully.

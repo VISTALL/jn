@@ -239,6 +239,7 @@ public abstract class RibbonActions
 
 		m.setDefaultCallback(new RibbonApplicationMenuEntryPrimary.PrimaryRolloverCallback()
 		{
+			@Override
 			public void menuEntryActivated(JPanel targetPanel)
 			{
 				targetPanel.removeAll();
@@ -250,9 +251,7 @@ public abstract class RibbonActions
 				{
 					final File file = new File(st);
 					if (!file.exists())
-					{
 						continue;
-					}
 
 					JCommandButton historyButton = new JCommandButton(file.getName(), ImageStatic.DOC_24x24);
 					historyButton.addActionListener(new ActionListener()

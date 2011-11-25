@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Basic UI for control panel of ribbon band {@link JBandControlPanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 abstract class AbstractBandControlPanelUI extends BandControlPanelUI {
@@ -152,7 +152,7 @@ abstract class AbstractBandControlPanelUI extends BandControlPanelUI {
 	/**
 	 * Invoked by <code>installUI</code> to create a layout manager object to
 	 * manage the {@link JBandControlPanel}.
-	 * 
+	 *
 	 * @return a layout manager object
 	 */
 	protected abstract LayoutManager createLayoutManager();
@@ -177,7 +177,7 @@ abstract class AbstractBandControlPanelUI extends BandControlPanelUI {
 
 	/**
 	 * Paints band background.
-	 * 
+	 *
 	 * @param graphics
 	 *            Graphics context.
 	 * @param toFill

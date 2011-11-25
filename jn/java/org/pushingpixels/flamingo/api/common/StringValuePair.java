@@ -31,7 +31,7 @@ package org.pushingpixels.flamingo.api.common;
 
 /**
  * Key-value pair with a {@link String} key.
- * 
+ *
  * @author Kirill Grouchnikov
  * @param <T>
  *            Value class.
@@ -39,7 +39,7 @@ package org.pushingpixels.flamingo.api.common;
 public class StringValuePair<T> extends KeyValuePair<String, T> {
 	/**
 	 * Creates a new pair.
-	 * 
+	 *
 	 * @param key
 	 *            Pair key.
 	 * @param value

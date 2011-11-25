@@ -38,7 +38,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Basic UI for color selector panel {@link JColorSelectorPanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicColorSelectorPanelUI extends ColorSelectorPanelUI {
@@ -170,7 +170,7 @@ public class BasicColorSelectorPanelUI extends ColorSelectorPanelUI {
 
 	/**
 	 * Returns the layout gap for button panel components.
-	 * 
+	 *
 	 * @return The layout gap for button panel components.
 	 */
 	protected int getLayoutGap() {

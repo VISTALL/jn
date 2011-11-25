@@ -41,7 +41,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Basic UI delegate for the {@link JCommandToggleMenuButton} component.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandToggleMenuButtonUI extends BasicCommandToggleButtonUI {

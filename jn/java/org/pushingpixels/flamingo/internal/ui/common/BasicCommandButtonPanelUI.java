@@ -46,7 +46,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Basic UI for command button panel {@link JCommandButtonPanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
@@ -219,7 +219,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Returns the layout manager for the associated button panel.
-	 * 
+	 *
 	 * @return The layout manager for the associated button panel.
 	 */
 	protected LayoutManager createLayoutManager() {
@@ -259,7 +259,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Paints the background of the specified button panel group.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param groupIndex
@@ -292,7 +292,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Paints the background of the title of specified button panel group.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @param groupIndex
@@ -314,7 +314,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Returns the height of the group title strip.
-	 * 
+	 *
 	 * @param groupIndex
 	 *            Group index.
 	 * @return The height of the title strip of the specified group.
@@ -325,7 +325,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Returns the insets of button panel groups.
-	 * 
+	 *
 	 * @return The insets of button panel groups.
 	 */
 	protected Insets getGroupInsets() {
@@ -334,7 +334,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Row-fill layout for the button panel.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected class RowFillLayout implements LayoutManager {
@@ -555,7 +555,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Column-fill layout for the button panel.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	protected class ColumnFillLayout implements LayoutManager {
@@ -762,7 +762,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 
 	/**
 	 * Returns the layout gap for button panel components.
-	 * 
+	 *
 	 * @return The layout gap for button panel components.
 	 */
 	protected int getLayoutGap() {
@@ -797,7 +797,7 @@ public class BasicCommandButtonPanelUI extends CommandButtonPanelUI {
 	/**
 	 * Returns the preferred size of the associated button panel for the
 	 * specified parameters.
-	 * 
+	 *
 	 * @param buttonVisibleRows
 	 *            Target number of visible button rows.
 	 * @param titleVisibleRows

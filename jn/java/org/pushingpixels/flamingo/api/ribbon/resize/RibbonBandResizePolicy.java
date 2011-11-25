@@ -37,13 +37,13 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
 /**
  * Defines the resize policies for the {@link JRibbonBand}s and
  * {@link JFlowRibbonBand}s.
- * 
+ *
  * <p>
  * The resize policy defines a single visual state of the given ribbon band. For
  * every control in the specific ribbon band (command button, gallery etc), the
  * resize policy defines what is its display state.
  * </p>
- * 
+ *
  * <p>
  * The resize policies are installed with
  * {@link AbstractRibbonBand#setResizePolicies(java.util.List)} API. The order
@@ -53,7 +53,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
  * return the value smaller than its predecessors. The last entry
  * <strong>must</strong> be {@link IconRibbonBandResizePolicy}.
  * </p>
- * 
+ *
  * <p>
  * As the ribbon horizontal size is changed (by the user resizing the
  * application window), the ribbon task resize sequencing policy set by
@@ -61,7 +61,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
  * determines the order of ribbon bands to shrink / expand. See more details in
  * the documentation of the {@link RibbonBandResizeSequencingPolicy}.
  * </p>
- * 
+ *
  * <p>
  * The {@link CoreRibbonResizePolicies} provides a number of built in resize
  * policies that respect the application element priorities passed to
@@ -70,7 +70,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
  * {@link JRibbonBand#addRibbonGallery(String, java.util.List, java.util.Map, int, int, org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority)}
  * APIs. There are three types of built in resize policies:
  * </p>
- * 
+ *
  * <ul>
  * <li>Resize policies for the {@link JFlowRibbonBand}s. The {@link FlowTwoRows}
  * and {@link FlowThreeRows} allow placing the flow ribbon band content in two
@@ -92,13 +92,13 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
  * under the most permissive resize policy in a popup. This policy is
  * implemented in the {@link IconRibbonBandResizePolicy}.</li>
  * </ul>
- * 
+ *
  * <p>
  * In addition to the specific resize policies, the
  * {@link CoreRibbonResizePolicies} provides three core resize policies lists
  * for {@link JRibbonBand}s:
  * </p>
- * 
+ *
  * <ul>
  * <li>{@link CoreRibbonResizePolicies#getCorePoliciesPermissive(JRibbonBand)}
  * returns a list that starts with a resize policy that shows all command
@@ -112,12 +112,12 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
  * a list that only has a <code>mirror</code> resize policy that respects the
  * associated ribbon element priority set on the specific components.</li>
  * </ul>
- * 
+ *
  * <p>
  * Note that as mentioned above, all the three lists above have the
  * <code>collapsed</code> policy as their last element.
  * </p>
- * 
+ *
  * <p>
  * In addition, the
  * {@link CoreRibbonResizePolicies#getCoreFlowPoliciesRestrictive(JFlowRibbonBand, int)}
@@ -125,14 +125,14 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies.*;
  * starts with the two-row policy, goes to the three-row policy and then finally
  * to the collapsed policy.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public interface RibbonBandResizePolicy {
 	/**
 	 * Returns the preferred width of the associated ribbon band under the
 	 * specified dimensions.
-	 * 
+	 *
 	 * @param availableHeight
 	 *            The height available for the associated ribbon band.
 	 * @param gap
@@ -151,7 +151,7 @@ public interface RibbonBandResizePolicy {
 	 * ) and the number of visible buttons in the ribbon galleries. Note that
 	 * this method is for internal use only and should not be called by the
 	 * application code.
-	 * 
+	 *
 	 * @param availableHeight
 	 *            The height available for the associated ribbon band.
 	 * @param gap

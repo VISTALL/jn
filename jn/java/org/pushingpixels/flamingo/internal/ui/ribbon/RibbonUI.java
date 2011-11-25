@@ -39,13 +39,13 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonContextualTaskGroup;
 
 /**
  * UI for ribbon ({@link JRibbon}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class RibbonUI extends ComponentUI {
 	/**
 	 * Returns the bounds of the specified contextual task group.
-	 * 
+	 *
 	 * @param group
 	 *            Contextual task group.
 	 * @return The bounds of the specified contextual task group.

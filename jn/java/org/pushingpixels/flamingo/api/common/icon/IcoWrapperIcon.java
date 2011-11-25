@@ -46,7 +46,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Helper class to load image planes from .ICO files.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
@@ -82,7 +82,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Create a new SVG icon.
-	 * 
+	 *
 	 * @param inputStream
 	 *            The input stream to read the SVG document from.
 	 * @param w
@@ -164,7 +164,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 	/**
 	 * Sets the preferred size for <code>this</code> icon. The rendering is
 	 * scheduled automatically.
-	 * 
+	 *
 	 * @param dim
 	 *            Preferred size.
 	 */
@@ -179,7 +179,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Renders the image.
-	 * 
+	 *
 	 * @param renderWidth
 	 *            Requested rendering width.
 	 * @param renderHeight
@@ -303,7 +303,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
 
 	/**
 	 * Fires the asynchronous load event.
-	 * 
+	 *
 	 * @param event
 	 *            Event object.
 	 */
@@ -339,7 +339,7 @@ abstract class IcoWrapperIcon implements Icon, AsynchronousLoading {
  * location</a>. This code is licensed under BSD license and can be reused as
  * long as the credit is given to Jeff Friesen, InformIT.com and the original
  * URL above.
- * 
+ *
  * @author Jeff Friesen
  */
 class Ico {

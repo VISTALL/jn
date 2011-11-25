@@ -35,7 +35,7 @@ import org.pushingpixels.flamingo.api.common.JCommandButtonPanel;
 
 /**
  * UI for icon panel ({@link JCommandButtonPanel}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class CommandButtonPanelUI extends PanelUI {

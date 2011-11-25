@@ -38,7 +38,7 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 /**
  * Control panel of a single {@link JRibbonBand}. This class is for internal use
  * only and should not be directly used by the applications.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class AbstractBandControlPanel extends JPanel implements UIResource {

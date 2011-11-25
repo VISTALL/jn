@@ -75,7 +75,7 @@ public class RichToolTipManager extends MouseAdapter implements
 
 	/**
 	 * Specifies the initial delay value.
-	 * 
+	 *
 	 * @param milliseconds
 	 *            the number of milliseconds to delay (after the cursor has
 	 *            paused) before displaying the tooltip
@@ -87,7 +87,7 @@ public class RichToolTipManager extends MouseAdapter implements
 
 	/**
 	 * Returns the initial delay value.
-	 * 
+	 *
 	 * @return an integer representing the initial delay value, in milliseconds
 	 * @see #setInitialDelay
 	 */
@@ -97,7 +97,7 @@ public class RichToolTipManager extends MouseAdapter implements
 
 	/**
 	 * Specifies the dismissal delay value.
-	 * 
+	 *
 	 * @param milliseconds
 	 *            the number of milliseconds to delay before taking away the
 	 *            tooltip
@@ -109,7 +109,7 @@ public class RichToolTipManager extends MouseAdapter implements
 
 	/**
 	 * Returns the dismissal delay value.
-	 * 
+	 *
 	 * @return an integer representing the dismissal delay value, in
 	 *         milliseconds
 	 * @see #setDismissDelay
@@ -194,7 +194,7 @@ public class RichToolTipManager extends MouseAdapter implements
 
 	/**
 	 * Returns a shared <code>ToolTipManager</code> instance.
-	 * 
+	 *
 	 * @return a shared <code>ToolTipManager</code> object
 	 */
 	public static RichToolTipManager sharedInstance() {
@@ -209,7 +209,7 @@ public class RichToolTipManager extends MouseAdapter implements
 	 * components that are not normally focus traversable, such as
 	 * <code>JLabel</code>, are not made focus traversable as a result of
 	 * invoking this method.
-	 * 
+	 *
 	 * @param comp
 	 *            a <code>JComponent</code> object to add
 	 * @see JComponent#isFocusTraversable
@@ -225,7 +225,7 @@ public class RichToolTipManager extends MouseAdapter implements
 
 	/**
 	 * Removes a component from tooltip control.
-	 * 
+	 *
 	 * @param comp
 	 *            a <code>JComponent</code> object to remove
 	 */

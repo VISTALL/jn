@@ -31,7 +31,7 @@ package org.pushingpixels.flamingo.api.ribbon;
 
 /**
  * Priority of ribbon band components.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public enum RibbonElementPriority {

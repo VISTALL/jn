@@ -37,7 +37,7 @@ import org.pushingpixels.flamingo.api.common.AsynchronousLoading;
 
 /**
  * Implementation of {@link ResizableIcon} that adds decorations to a main icon.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class DecoratedResizableIcon implements ResizableIcon,
@@ -54,13 +54,13 @@ public class DecoratedResizableIcon implements ResizableIcon,
 
 	/**
 	 * Icon decorator interface.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static interface IconDecorator {
 		/**
 		 * Paints the icon decoration.
-		 * 
+		 *
 		 * @param c
 		 *            Component.
 		 * @param g
@@ -80,7 +80,7 @@ public class DecoratedResizableIcon implements ResizableIcon,
 
 	/**
 	 * Creates a new decorated icon.
-	 * 
+	 *
 	 * @param delegate
 	 *            The main icon.
 	 * @param decorators
@@ -100,7 +100,7 @@ public class DecoratedResizableIcon implements ResizableIcon,
 	/**
 	 * Creates a new decorated icon with no decorators. Decorators can be added
 	 * later with {@link #addIconDecorator(IconDecorator)}.
-	 * 
+	 *
 	 * @param delegate
 	 *            Main icon.
 	 */
@@ -155,7 +155,7 @@ public class DecoratedResizableIcon implements ResizableIcon,
 	 * Adds the specified decorator to the end of the decorator sequence. If the
 	 * specified decorator already exists, it is not moved to the end of the
 	 * sequence.
-	 * 
+	 *
 	 * @param decorator
 	 *            Decorator to add.
 	 */
@@ -167,7 +167,7 @@ public class DecoratedResizableIcon implements ResizableIcon,
 
 	/**
 	 * Removes the specified decorator.
-	 * 
+	 *
 	 * @param decorator
 	 *            Decorator to remove.
 	 */

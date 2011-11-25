@@ -34,13 +34,13 @@ import javax.swing.plaf.PanelUI;
 
 /**
  * UI for control panel of ribbon band ({@link JBandControlPanel}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class BandControlPanelUI extends PanelUI {
 	/**
 	 * Returns the layout gap for the controls in the associated control panel.
-	 * 
+	 *
 	 * @return The layout gap for the controls in the associated control panel.
 	 */
 	public abstract int getLayoutGap();

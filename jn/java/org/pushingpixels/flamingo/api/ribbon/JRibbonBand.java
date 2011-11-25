@@ -42,7 +42,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
 
 /**
  * Ribbon band component. Can host three types of content:
- * 
+ *
  * <ul>
  * <li>Command buttons added with
  * {@link #addCommandButton(AbstractCommandButton, RibbonElementPriority)}.</li>
@@ -53,7 +53,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * {@link #addRibbonGallery(String, List, Map, int, int, RibbonElementPriority)}
  * .</li>
  * </ul>
- * 
+ *
  * <p>
  * Command buttons are added with associated {@link RibbonElementPriority}. The
  * higher the priority, the longer the button "stays" in the
@@ -61,20 +61,20 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * {@link CommandButtonDisplayState#MEDIUM} state - depending on the available
  * resize policies.
  * </p>
- * 
+ *
  * <p>
  * Wrapped components can span one or multiple rows. Use the
  * {@link #addRibbonComponent(JRibbonComponent, int)} API to add a wrapped
  * component that spans more than one row.
  * </p>
- * 
+ *
  * <p>
  * Once a ribbon gallery is added with
  * {@link #addRibbonGallery(String, List, Map, int, int, RibbonElementPriority)}
  * , you can use the following APIs to configure the content and behavior of
  * that gallery:
  * </p>
- * 
+ *
  * <ul>
  * <li>{@link #addRibbonGalleryButtons(String, String, JCommandToggleButton...)}
  * </li>
@@ -84,7 +84,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * <li>
  * {@link #setRibbonGalleryPopupCallback(String, RibbonGalleryPopupCallback)}</li>
  * </ul>
- * 
+ *
  * <p>
  * A ribbon band can have multiple visual groups separated with vertical
  * separator lines. To start a new unnamed group use the {@link #startGroup()}
@@ -92,7 +92,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.*;
  * Unnamed groups will have three rows of controls. Named groups will have two
  * rows of controls, with the top row showing the group title.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
@@ -103,13 +103,13 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 	 * {@link JCommandPopupMenu#addMenuButton(JCommandMenuButton)} and
 	 * {@link JCommandPopupMenu#addMenuSeparator()} APIs on the passed menu
 	 * parameter.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	public static interface RibbonGalleryPopupCallback {
 		/**
 		 * Called just before the popup menu is about to be shown.
-		 * 
+		 *
 		 * @param menu
 		 *            The popup menu that will be shown.
 		 */
@@ -144,7 +144,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Creates a new ribbon band.
-	 * 
+	 *
 	 * @param title
 	 *            Band title.
 	 * @param icon
@@ -156,7 +156,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Creates a new ribbon band.
-	 * 
+	 *
 	 * @param title
 	 *            Band title.
 	 * @param icon
@@ -175,7 +175,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Adds the specified command button to <code>this</code> band.
-	 * 
+	 *
 	 * @param commandButton
 	 *            Command button to add.
 	 * @param priority
@@ -201,7 +201,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Adds a new ribbon gallery to <code>this</code> band.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Gallery name.
 	 * @param buttons
@@ -246,7 +246,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 	/**
 	 * Adds the specified command toggle buttons to a button group in the
 	 * specified ribbon gallery.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Ribbon gallery name.
 	 * @param buttonGroupName
@@ -269,7 +269,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Removes command toggle buttons from the specified ribbon gallery.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Ribbon gallery name.
 	 * @param buttons
@@ -291,7 +291,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 	/**
 	 * Selects the specified command toggle button in the specified ribbon
 	 * gallery.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Ribbon gallery name.
 	 * @param buttonToSelect
@@ -312,7 +312,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Sets the display state for the buttons of the specified ribbon gallery.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Ribbon gallery name.
 	 * @param displayState
@@ -330,7 +330,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 	/**
 	 * Sets the application callback to place additional entries in the popup
 	 * menu shown when the specified ribbon gallery is expanded.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Gallery name.
 	 * @param popupCallback
@@ -348,7 +348,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Sets the key tip on the expand button of the specified ribbon gallery.
-	 * 
+	 *
 	 * @param galleryName
 	 *            Gallery name.
 	 * @param expandKeyTip
@@ -366,7 +366,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Adds the specified ribbon component to this ribbon band.
-	 * 
+	 *
 	 * @param comp
 	 *            The ribbon component to add.
 	 */
@@ -376,7 +376,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Adds the specified ribbon component to this ribbon band.
-	 * 
+	 *
 	 * @param comp
 	 *            The ribbon component to add.
 	 * @param rowSpan
@@ -402,7 +402,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Starts a new unnamed group.
-	 * 
+	 *
 	 * @return The index of the new group.
 	 */
 	public int startGroup() {
@@ -411,7 +411,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Starts a new named group.
-	 * 
+	 *
 	 * @param groupTitle
 	 *            The group title.
 	 * @return The index of the new group.
@@ -422,7 +422,7 @@ public class JRibbonBand extends AbstractRibbonBand<JBandControlPanel> {
 
 	/**
 	 * Changes the title of the specified group.
-	 * 
+	 *
 	 * @param groupIndex
 	 *            Group index.
 	 * @param groupTitle

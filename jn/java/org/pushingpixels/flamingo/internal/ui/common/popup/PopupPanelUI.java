@@ -35,7 +35,7 @@ import org.pushingpixels.flamingo.api.common.popup.JPopupPanel;
 
 /**
  * UI for popup panel ({@link JPopupPanel}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class PopupPanelUI extends PanelUI {

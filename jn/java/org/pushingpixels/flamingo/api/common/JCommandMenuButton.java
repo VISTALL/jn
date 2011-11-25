@@ -41,7 +41,7 @@ import org.pushingpixels.flamingo.internal.ui.common.CommandButtonUI;
 /**
  * A command button that can be placed in {@link JCommandPopupMenu}s and in the
  * primary / secondary panels of the ribbon application menu.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see JCommandPopupMenu#addMenuButton(JCommandMenuButton)
  */
@@ -53,7 +53,7 @@ public class JCommandMenuButton extends JCommandButton {
 
 	/**
 	 * Creates a new command menu button.
-	 * 
+	 *
 	 * @param title
 	 *            Command menu button title.
 	 * @param icon
@@ -66,7 +66,7 @@ public class JCommandMenuButton extends JCommandButton {
 	/**
 	 * Adds a rollover action listener that will be called when the rollover
 	 * state of this button becomes active.
-	 * 
+	 *
 	 * @param l
 	 *            The rollover action listener to add.
 	 * @see #removeRolloverActionListener(RolloverActionListener)
@@ -77,7 +77,7 @@ public class JCommandMenuButton extends JCommandButton {
 
 	/**
 	 * Removes the specified rollover action listener.
-	 * 
+	 *
 	 * @param l
 	 *            The listener to remove.
 	 * @see #addRolloverActionListener(RolloverActionListener)

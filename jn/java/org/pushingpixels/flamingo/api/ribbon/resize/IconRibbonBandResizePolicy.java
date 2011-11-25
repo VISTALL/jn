@@ -39,20 +39,20 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.RibbonBandUI;
  * restructive {@link RibbonBandResizePolicy}, the entire ribbon band content is
  * replaced by a single popup button. Activating the popup button will show the
  * original content under the most permissive resize policy in a popup.
- * 
+ *
  * <p>
  * An instance of this policy <strong>must</strong> appear exactly once in the
  * list passed to {@link AbstractRibbonBand#setResizePolicies(java.util.List)},
  * and it <strong>must</strong> be the last entry in that list.
  * </p>
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class IconRibbonBandResizePolicy extends
 		BaseRibbonBandResizePolicy<AbstractBandControlPanel> {
 	/**
 	 * Creates a new collapsed resize policy.
-	 * 
+	 *
 	 * @param controlPanel
 	 *            The control panel of the associated ribbon band.
 	 */

@@ -39,7 +39,7 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
 
 /**
  * UI for extended components ({@link JRibbonComponent}).
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public abstract class RibbonComponentUI extends ComponentUI {

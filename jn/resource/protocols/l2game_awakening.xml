@@ -438,7 +438,7 @@
 			<part name="?" type="d"/>
 			<part id="0" name="size" type="d"/>
 			<for id="0" name="attibutes">
-				<part name="id" type="d"/>
+				<part name="id" type="d" id="1"/>
 				<part name="value" type="d"/>
 			</for>
 		</packet>
@@ -1020,6 +1020,9 @@
 		</packet>
 		<packet id="FE;00EF" name="ExLoadInzonePartyHistory">
 			<part name="size" type="d" id="0" />
+		</packet>
+		<packet id="FE;00FE" name="ExChangeToAwakenedClass">
+			<part name="class-id" type="d" />
 		</packet>
 		<packet id="FE;00E9" name="ExSubjobInfo">
 			<part name="type" type="c"/>

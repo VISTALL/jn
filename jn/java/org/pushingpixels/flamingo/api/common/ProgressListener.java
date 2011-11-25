@@ -33,14 +33,14 @@ import java.util.EventListener;
 
 /**
  * Contract for parties interested to listen on progress events.
- * 
+ *
  * @author Kirill Grouchnikov
  * @see ProgressEvent
  */
 public interface ProgressListener extends EventListener {
 	/**
 	 * Fired when progress has been made in the source process.
-	 * 
+	 *
 	 * @param evt
 	 *            Progress event.
 	 */

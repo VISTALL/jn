@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.internal.utils.DoubleArrowResizableIcon;
 
 /**
  * Basic UI for scrollable panel {@link JScrollablePanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicScrollablePanelUI extends ScrollablePanelUI {
@@ -374,7 +374,7 @@ public class BasicScrollablePanelUI extends ScrollablePanelUI {
 
 	/**
 	 * Layout for the scrollable panel.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 * @author Topologi
 	 */

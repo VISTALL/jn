@@ -43,7 +43,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.BasicRibbonBandUI.Collapsed
 
 /**
  * Basic UI for control panel of ribbon band {@link JBandControlPanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicFlowBandControlPanelUI extends AbstractBandControlPanelUI {
@@ -70,7 +70,7 @@ public class BasicFlowBandControlPanelUI extends AbstractBandControlPanelUI {
 
 	/**
 	 * Layout for the control panel of flow ribbon band.
-	 * 
+	 *
 	 * @author Kirill Grouchnikov
 	 */
 	private class FlowControlPanelLayout implements LayoutManager {

@@ -35,7 +35,7 @@ import java.util.*;
 
 /**
  * Utilities to install desktop rendering hints for correctly rasterizing texts.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class RenderingUtils {
@@ -48,7 +48,7 @@ public class RenderingUtils {
 
 	/**
 	 * Installs desktop hints on the specified graphics context.
-	 * 
+	 *
 	 * @param g2
 	 *            Graphics context.
 	 * @return Map of old rendering hints.
@@ -70,7 +70,7 @@ public class RenderingUtils {
 
 	/**
 	 * Returns the desktop hints for the specified graphics context.
-	 * 
+	 *
 	 * @param g2
 	 *            Graphics context.
 	 * @return The desktop hints for the specified graphics context.
@@ -100,7 +100,7 @@ public class RenderingUtils {
 
 	/**
 	 * Checks whether the specified graphics context is a print context.
-	 * 
+	 *
 	 * @param g
 	 *            Graphics context.
 	 * @return <code>true</code> if the specified graphics context is a print

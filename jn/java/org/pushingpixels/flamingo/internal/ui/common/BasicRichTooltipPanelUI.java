@@ -44,7 +44,7 @@ import org.pushingpixels.flamingo.internal.utils.FlamingoUtilities;
 
 /**
  * Basic UI for rich tooltip panel {@link JRichTooltipPanel}.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicRichTooltipPanelUI extends RichTooltipPanelUI {

@@ -58,7 +58,7 @@ public class JRichTooltipPanel extends JPanel {
 
 	/**
 	 * Sets the look and feel (L&F) object that renders this component.
-	 * 
+	 *
 	 * @param ui
 	 *            The UI delegate.
 	 */

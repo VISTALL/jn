@@ -41,7 +41,7 @@ import org.pushingpixels.flamingo.internal.utils.KeyTipRenderingUtilities;
 
 /**
  * Basic UI delegate for the {@link JCommandMenuButton} component.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public class BasicCommandMenuButtonUI extends BasicCommandButtonUI {
@@ -102,7 +102,7 @@ public class BasicCommandMenuButtonUI extends BasicCommandButtonUI {
 
 	/**
 	 * Fires the rollover action on all registered handlers.
-	 * 
+	 *
 	 * @param e
 	 *            Event object.
 	 */

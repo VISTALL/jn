@@ -31,7 +31,7 @@ package org.pushingpixels.flamingo.api.common;
 
 /**
  * Enumerates the available values for horizontal alignment.
- * 
+ *
  * @author Kirill Grouchnikov
  */
 public enum HorizontalAlignment {

@@ -33,7 +33,7 @@ import org.pushingpixels.flamingo.internal.ui.ribbon.AbstractBandControlPanel;
 
 /**
  * Base class for the core ribbon band resize policies.
- * 
+ *
  * @author Kirill Grouchnikov
  * @param <T>
  *            Class parameter that specifies the type of band control panel
@@ -48,7 +48,7 @@ public abstract class BaseRibbonBandResizePolicy<T extends AbstractBandControlPa
 
 	/**
 	 * Creates a new resize policy.
-	 * 
+	 *
 	 * @param controlPanel
 	 *            The control panel of the associated ribbon band.
 	 */
