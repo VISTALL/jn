@@ -14,7 +14,7 @@ import com.jds.jn.session.Session;
  */
 public abstract class L2AbstractListener extends IPacketListener.Abstract
 {
-	private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH-mm-ss dd.MM.yyyy");
+	public static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("HH-mm-ss dd.MM.yyyy");
 
 	protected L2World _world;
 

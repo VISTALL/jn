@@ -32,11 +32,7 @@ import com.jds.jn.util.Bundle;
  */
 public class PacketListPane extends HiddenPanel
 {
-	private static final String[] NAMES = new String[]{
-			"CryptedPacketList",
-			"DecodePacketList",
-			"UnknownPacketList"
-	};
+	private static final String[] NAMES = new String[]{"CryptedPacketList", "DecodePacketList", "UnknownPacketList"};
 
 	private class ShowPaneActionListenerImpl implements ActionListener
 	{

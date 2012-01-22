@@ -136,4 +136,34 @@ public class DataTreeNodeContainer extends DataTreeNode
 		}
 		return size;
 	}
+
+	public float getFloat(String s)
+	{
+		return ((VisualValuePart)getPartByName(s)).getValueAsFloat();
+	}
+
+	public double getDouble(String s)
+	{
+		return ((VisualValuePart)getPartByName(s)).getValueAsDouble();
+	}
+
+	public int getInt(String s)
+	{
+		return ((VisualValuePart)getPartByName(s)).getValueAsInt();
+	}
+
+	public long getLong(String s)
+	{
+		return ((VisualValuePart)getPartByName(s)).getValueAsLong();
+	}
+
+	public String getString(String s)
+	{
+		return ((VisualValuePart)getPartByName(s)).getValueAsString();
+	}
+
+	public byte[] getBytes(String s)
+	{
+		return ((RawValuePart)getPartByName(s)).getBytes();
+	}
 }

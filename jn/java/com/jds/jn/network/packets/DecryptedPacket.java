@@ -279,6 +279,11 @@ public class DecryptedPacket implements IPacket
 		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsInt();
 	}
 
+	public long getLong(String s)
+	{
+		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsLong();
+	}
+
 	public String getString(String s)
 	{
 		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsString();

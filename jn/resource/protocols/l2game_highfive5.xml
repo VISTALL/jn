@@ -2061,8 +2061,35 @@
 		</packet>
 		<packet id="FE;00B9" name="ExPrivateMarketList"/>
 		<packet id="FE;00D5" name="ExBR_GamePoint"/>
-		<packet id="FE;00D6" name="ExBR_ProductList"/>
-		<packet id="FE;00D7" name="ExBR_ProductInfo"/>
+		<packet id="FE;00D6" name="ExBR_ProductList">
+			<part name="size" type="d" id="0"/>
+			<for id="0" name="list">
+				<part name="product-id" type="d" />
+				<part name="category" type="h" />
+				<part name="price" type="d" />
+				<part name="tab-id" type="d" />
+				<part name="start-sale-time" type="d" />
+				<part name="stop-sale-time" type="d" />
+				<part name="week-of-day" type="c" />
+				<part name="start-sell-hour" type="c" />
+				<part name="start-sell-minute" type="c" />
+				<part name="stop-sell-hour" type="c" />
+				<part name="stop-sell-minute" type="c" />
+				<part name="current-stock" type="d" />
+				<part name="max-stock" type="d" />
+			</for>
+		</packet>
+		<packet id="FE;00D7" name="ExBR_ProductInfo">
+			<part name="product-id" type="d" />
+			<part name="price" type="d" />
+			<part name="size" type="d" id="0"/>
+			<for id="0" name="list">
+				<part name="item-id" type="d" />
+				<part name="count" type="d" />
+				<part name="weight" type="d" />
+				<part name="dropable" type="d" />
+			</for>
+		</packet>
 		<packet id="FE;00D8" name="ExBR_BuyProduct"/>
 		<packet id="FE;00DC" name="ExBR_RecentProductList"/>
 		<packet id="FE;00BD" name="ExBR_LoadEventTopRankers"/>

@@ -86,7 +86,7 @@ public class L2NpcStateListener extends L2AbstractListener
 
 		OutputFormat format = OutputFormat.createPrettyPrint();
 		format.setIndent("\t");
-		XMLWriter writer = new XMLWriter(new FileWriter(getLogFile("./npc_states ", "xml")), format);
+		XMLWriter writer = new XMLWriter(new FileWriter(getLogFile("./npc_states", "xml")), format);
 		writer.write(document);
 		writer.close();
 	}

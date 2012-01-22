@@ -110,11 +110,6 @@
 				<include name="*.**"/>
 			</fileset>
 		</copy>
-		<copy todir="${build.classes}/com/jds/jn/resources/nimg">
-			<fileset dir="${java-resources}/com/jds/jn/resources/nimg">
-				<include name="*.**"/>
-			</fileset>
-		</copy>
 		<copy todir="${build.classes}/com/jds/jn/resources/images/part">
 			<fileset dir="${java-resources}/com/jds/jn/resources/images/part">
 				<include name="*.*"/>

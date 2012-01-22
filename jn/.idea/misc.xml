@@ -38,9 +38,6 @@
     <option name="LOCALE" />
     <option name="OPEN_IN_BROWSER" value="true" />
   </component>
-  <component name="MavenRunner">
-    <option name="jreName" value="1.6" />
-  </component>
   <component name="ModuleStructureConfigurable.UI">
     <splitter-proportions>
       <SplitterProportionsDataImpl />
@@ -119,6 +116,9 @@
         </entry>
       </map>
     </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="SvnBranchConfigurationManager17">
     <option name="mySupportsUserInfoFilter" value="true" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />

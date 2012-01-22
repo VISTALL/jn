@@ -100,10 +100,7 @@ public class ConfirmDialog extends JDialog
 		setSize(400, 100);
 		setResizable(false);
 		setVisible(true);
-		return new boolean[]{
-				OK,
-				!_donTShowNextCheckBox.isSelected()
-		};
+		return new boolean[]{OK, !_donTShowNextCheckBox.isSelected()};
 	}
 
 

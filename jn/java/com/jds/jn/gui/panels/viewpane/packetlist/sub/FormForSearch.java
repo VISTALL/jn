@@ -64,18 +64,8 @@ public class FormForSearch extends JPanel
 	private JLabel _statusLabel;
 	private ViewPane _pane;
 
-	private static final String[] MATH_OPERATORS = {
-			"==",
-			"!=",
-			">",
-			">=",
-			"<",
-			"<="
-	};
-	private static final String[] STRING_OPERATORS = {
-			"equals",
-			"equalsIgnoreCase"
-	};
+	private static final String[] MATH_OPERATORS = {"==", "!=", ">", ">=", "<", "<="};
+	private static final String[] STRING_OPERATORS = {"equals", "equalsIgnoreCase"};
 
 	private Map<String, PacketInfo> _formats = new HashMap<String, PacketInfo>();
 
