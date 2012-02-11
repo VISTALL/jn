@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_awakening" extends="l2game_highfive5">
-	<session_listeners>
+	<!--<session_listeners>
 		<listener name="lineage2.listeners.L2MagicSkillUserListener" />
 		<listener name="lineage2.listeners.L2AirShipTeleportListListener" />
 		<listener name="lineage2.listeners.L2NpcBMListsListener" />
@@ -14,7 +14,7 @@
 		<listener name="lineage2.listeners.L2MoveNpcListener" />
 		<listener name="lineage2.listeners.L2NpcStateListener" />
 		<listener name="lineage2.listeners.L2ProductListener" />
-	</session_listeners>
+	</session_listeners>  -->
 	<macro id="commission_part">
 		<part name="time" type="d">
 			<reader type="Timestamp" />
@@ -79,6 +79,7 @@
 		<part name="enchanteffect1" type="h"/>
 		<part name="enchanteffect2" type="h"/>
 		<part name="enchanteffect3" type="h"/>
+		<part name="?" type="d"/>
 	</macro>
 	<packetfamilly way="CLIENT">
 		<packet id="D0;00AC" name="Request24HzSessionID"/>
@@ -341,6 +342,9 @@
 			<part name="aurg_id-BELT" type="d"/>
 			<part name="talismans" type="d"/>
 			<part name="cloakactive" type="d"/>
+			<part name="visibleLhand" type="d"/>
+			<part name="visibleRhand" type="d"/>
+			<part name="visibleLRhand" type="d"/>
 			<part name="pAtack" type="d"/>
 			<part name="pAtackSpeed" type="d"/>
 			<part name="pDef" type="d"/>
@@ -377,7 +381,7 @@
 			<part name="clan_crest_id" type="d"/>
 			<part name="ally_id" type="d"/>
 			<part name="ally_crest_id" type="d"/>
-			<part name="relation" type="d"/>
+			<part name="relation" type="d"/>    <!--0x20 - clan member-->
 			<part name="mount_type" type="c"/>
 			<part name="private_store" type="c"/>
 			<part name="can_crystalize" type="c"/>
@@ -389,7 +393,7 @@
 			</for>
 			<part name="party_room" type="c"/>
 			<part name="abnormal" type="d"/>
-			<part name="fly" type="c"/>
+			<part name="move-type" type="c"/>
 			<part name="clan_privs" type="d"/>
 			<part name="rec_left" type="h"/>
 			<part name="rec_have" type="h"/>
@@ -429,7 +433,7 @@
 			<part name="unholy" type="h"/>
 			<part name="agathion" type="d"/>
 			<part name="fame" type="d"/>
-			<part name="allowedMap" type="d"/>
+			<part name="blocked-fame" type="d"/>
 			<part name="vitalityLevel" type="d"/>
 			<part name="specialeffects" type="d"/>
 		</packet>
@@ -684,7 +688,7 @@
 			<part name="x" type="d"/>
 			<part name="y" type="d"/>
 			<part name="z" type="d"/>
-			<part name="?" type="d"/>
+			<part name="clan-ship-object-id" type="d"/>
 			<part name="obj_id" type="d"/>
 			<part name="name" type="S"/>
 			<part name="race" type="d"/>
@@ -734,6 +738,9 @@
 			<part name="belt-augId" type="d"/>
 			<part name="talismanCount" type="d"/>
 			<part name="activeCloak" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
 			<part name="pvpFlag" type="d"/>
 			<part name="karma" type="d"/>
 			<part name="mAttackSpeed" type="d"/>
@@ -798,8 +805,8 @@
 			<part name="cw_level" type="d"/>
 			<part name="clan_reputation" type="d"/>
 			<part name="transformation" type="d"/>
-			<part name="agation" type="d"/>
-			<part name="allowedMap" type="d"/>
+			<part name="agathion" type="d"/>
+			<part name="blocked-fame" type="d"/>
 			<part name="specialEffects" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
@@ -825,10 +832,20 @@
 		<packet id="FE;0103" name="ExWaitWaitingSubStituteInfo">
 			<part name="value" type="h"/>
 		</packet>
-		<packet id="FE;011D" name="ExMentorList">
+		<packet id="FE;011D" name="ExVitalityEffectInfo">
+			<part name="points" type="d"/>
+			<part name="bonus-exp" type="d"/>
+			<part name="can-use-vitality-items-count" type="d"/>
+			<part name="max-can-use-vitality-items-count" type="d"/>
+		</packet>
+		<packet id="FE;011E" name="ExLoginVitalityEffectInfo">
+			<part name="bonus-exp" type="d"/>
+			<part name="can-use-vitality-items-count" type="d"/>
+		</packet>
+		<packet id="FE;0120" name="ExMentorList">
 			<part name="size" type="d"/>
 		</packet>
-		<packet id="FE;011E" name="ExMentorAdd" />
+		<packet id="FE;0121" name="ExMentorAdd" />
 		<packet id="FE;011F" name="ListMenteeWaiting" />
 		<packet id="FE;010F" name="ExIsCharNameCreatable">
 			<part name="response" type="d"/>
@@ -1361,10 +1378,10 @@
 			<part name="level" type="h" />
 			<part name="class-id" type="h" />
 			<part name="clan-id" type="d" />
-			<part name="?" type="d" />
+			<part name="clan-crest-id" type="d" />
 			<part name="clan-name" type="S" />
 			<part name="ally-id" type="d" />
-			<part name="?" type="d" />
+			<part name="ally-crest-id" type="d" />
 			<part name="ally-name" type="S" />
 			<part name="create-month" type="c" />
 			<part name="create-day" type="c" />
@@ -1545,6 +1562,9 @@
 			<part name="spirit-shots" type="d"/>
 			<part name="form" type="d"/>
 			<part name="abnormal-effect2" type="d"/>
+			<part name="transformId" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
 		</packet>
 		<packet id="FE;00AB" name="ExReplyReceivedPost">
 			<part name="type" type="d" id="1"/>
@@ -1581,6 +1601,130 @@
 			<part name="adena" type="Q"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
+		</packet>
+		<packet id="09" name="CharacterSelectionInfo">
+			<part name="size" type="d" id="0"/>
+			<part name="0x07" type="d"/>
+			<part name="cant create" type="c"/>
+			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<for id="0">
+				<part name="name" type="S"/>
+				<part name="charId" type="d"/>
+				<part name="login" type="S"/>
+				<part name="sessionId" type="d"/>
+				<part name="clanId" type="d"/>
+				<part name="?" type="d"/>
+				<part name="sex" type="d"/>
+				<part name="race" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="active" type="d"/>
+				<part name="x" type="d"/>
+				<part name="y" type="d"/>
+				<part name="z" type="d"/>
+				<part name="cur_hp" type="D"/>
+				<part name="cur_mp" type="D"/>
+				<part name="sp" type="d"/>
+				<part name="exp" type="Q"/>
+				<part name="?" type="D"/>
+				<part name="level" type="d"/>
+				<part name="karma" type="d"/>
+				<part name="pk kills" type="d"/>
+				<part name="pvp kills" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="item_id-UNDER" type="d"/>
+				<part name="item_id-REAR" type="d"/>
+				<part name="item_id-LEAR" type="d"/>
+				<part name="item_id-NECK" type="d"/>
+				<part name="item_id-RFINGER" type="d"/>
+				<part name="item_id-LFINGER" type="d"/>
+				<part name="item_id-HEAD" type="d"/>
+				<part name="item_id-RHAND" type="d"/>
+				<part name="item_id-LHAND" type="d"/>
+				<part name="item_id-GLOVES" type="d"/>
+				<part name="item_id-CHEST" type="d"/>
+				<part name="item_id-LEGS" type="d"/>
+				<part name="item_id-FEET" type="d"/>
+				<part name="item_id-BACK" type="d"/>
+				<part name="item_id-LRHAND" type="d"/>
+				<part name="item_id-HAIR" type="d"/>
+				<part name="item_id-DHAIR" type="d"/>
+				<part name="item_id-RBRACELET" type="d"/>
+				<part name="item_id-LBRACELET" type="d"/>
+				<part name="item_id-DECO1" type="d"/>
+				<part name="item_id-DECO2" type="d"/>
+				<part name="item_id-DECO3" type="d"/>
+				<part name="item_id-DECO4" type="d"/>
+				<part name="item_id-DECO5" type="d"/>
+				<part name="item_id-DECO6" type="d"/>
+				<part name="item_id-BACK" type="d"/>
+				<part name="hair_style" type="d"/>
+				<part name="hair_color" type="d"/>
+				<part name="face" type="d"/>
+				<part name="maxHP" type="D"/>
+				<part name="maxMP" type="D"/>
+				<part name="deleteTimer" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="active" type="d"/>
+				<part name="enchant" type="c"/>
+				<part name="aurgmentationId" type="d"/>
+				<part name="transformId" type="d"/>
+				<part name="npcId" type="d"/>
+				<part name="level" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="maxHP" type="D"/>
+				<part name="currentHP" type="D"/>
+				<part name="vitality" type="d"/>
+				<part name="active" type="d"/>
+			</for>
+		</packet>
+		<packet id="55" name="FriendAddRequestResult">
+			<part id="0" name="size" type="d" />
+			<for id="0">
+				<part name="database-id" type="d" />
+				<part name="name" type="S" />
+				<part name="online" type="d" />
+				<part name="object-id" type="d" />
+				<part name="level" type="d" />
+				<part name="class-id" type="d" />
+				<part name="memo" type="S" />
+			</for>
+		</packet>
+		<packet id="57" name="FriendRemove">
+			<part id="0" name="size" type="d" />
+			<for id="0">
+				<part name="name" type="S" />
+			</for>
+		</packet>
+		<packet id="59" name="FriendStatus">
+			<part name="online" type="d" />
+			<part name="name" type="S" />
+			<part name="object-id" type="d" />
+		</packet>
+		<packet id="B6" name="PetStatusUpdate">
+			<part name="type" type="d" />
+			<part name="object-id" type="d" />
+			<part name="x" type="d" />
+			<part name="y" type="d" />
+			<part name="z" type="d" />
+			<part name="title" type="S" />
+			<part name="current-feed" type="d" />
+			<part name="max-feed" type="d" />
+			<part name="current-hp" type="d" />
+			<part name="max-hp" type="d" />
+			<part name="current-mp" type="d" />
+			<part name="max-mp" type="d" />
+			<part name="level" type="d" />
+			<part name="exp" type="Q" />
+			<part name="exp-this-lvl" type="Q" />
+			<part name="exp-next-lvl" type="Q" />
 		</packet>
 	</packetfamilly>
 </protocol>

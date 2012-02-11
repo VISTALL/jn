@@ -277,8 +277,9 @@ public class FormForSearch extends JPanel
 	private void getAllFormatsName(Protocol p)
 	{
 		for(PacketFamilly a : p.getFamilies())
-			for(PacketInfo pi : a.getFormats().values())
-				_formats.put(pi.getName(), pi);
+			if(a != null)
+				for(PacketInfo pi : a.getFormats().values())
+					_formats.put(pi.getName(), pi);
 	}
 
 	private void createUIComponents()

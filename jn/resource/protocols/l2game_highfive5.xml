@@ -799,7 +799,12 @@
 		</packet>
 		<packet id="84" name="LeaveWorld"/>
 		<packet id="85" name="AbnormalStatusUpdate">
-			<part name="size" type="h"/>
+			<part name="size" type="h" id="0"/>
+			<for id="0">
+				<part name="skill-id" type="d" />
+				<part name="level" type="h" />
+				<part name="duration" type="d" />
+			</for>
 		</packet>
 		<packet id="00" name="Die"/>
 		<packet id="05" name="SpawnItem"/>
@@ -991,7 +996,6 @@
 		</packet>
 		<packet id="1f" name="ActionFail"/>
 		<packet id="23" name="TargetSelected"/>
-		<packet id="25" name="AutoAttackStart"/>
 		<packet id="27" name="SocialAction">
 			<part name="obj_id" type="d"/>
 			<part name="actionId" type="d"/>
@@ -1035,7 +1039,6 @@
 		<packet id="1E" name="CharacterDeleteFail"/>
 		<packet id="20" name="ServerClose"/>
 		<packet id="24" name="TargetUnselectedPacket"/>
-		<packet id="26" name="AutoAttackStopPacket"/>
 		<packet id="29" name="ChangeWaitTypePacket"/>
 		<packet id="2A" name="ManagePledgePowerPacket"/>
 		<packet id="2B" name="CreatePledgePacket"/>
@@ -1250,7 +1253,6 @@
 				</switch>
 			</for>
 		</packet>
-		<packet id="91" name="AcquireSkillInfo"/>
 		<packet id="92" name="ServerObjectInfo">
 			<part name="object_id" type="d"/>
 			<part name="npc_id" type="d"/>
@@ -1390,7 +1392,7 @@
 			</for>
 		</packet>
 		<packet id="B5" name="AllianceInfoPacket"/>
-		<packet id="B6" name="PetStatusUpdatePacket"/>
+		<packet id="B6" name="PetStatusUpdate"/>
 		<packet id="B7" name="PetDeletePacket"/>
 		<packet id="B8" name="DeleteRadarPacket"/>
 		<packet id="BA" name="PartyMemberPosition"/>

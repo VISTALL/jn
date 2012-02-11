@@ -888,7 +888,9 @@
 		</packet>
 		<packet id="1f" name="ActionFail"/>
 		<packet id="23" name="TargetSelected"/>
-		<packet id="25" name="AutoAttackStart"/>
+		<packet id="25" name="AutoAttackStart">
+			<part name="object-id" type="d"/>
+		</packet>
 		<packet id="27" name="SocialAction">
 			<part name="obj_id" type="d"/>
 			<part name="actionId" type="d"/>
@@ -932,7 +934,9 @@
 		<packet id="1E" name="CharacterDeleteFail"/>
 		<packet id="20" name="ServerClose"/>
 		<packet id="24" name="TargetUnselectedPacket"/>
-		<packet id="26" name="AutoAttackStopPacket"/>
+		<packet id="26" name="AutoAttackStop">
+			<part name="object-id" type="d" />
+		</packet>
 		<packet id="29" name="ChangeWaitTypePacket"/>
 		<packet id="2A" name="ManagePledgePowerPacket"/>
 		<packet id="2B" name="CreatePledgePacket"/>
@@ -1060,7 +1064,19 @@
 		<packet id="8E" name="PledgeShowInfoUpdatePacket"/>
 		<packet id="8F" name="ActionFail"/>
 		<packet id="90" name="AcquireSkillListPacket"/>
-		<packet id="91" name="AcquireSkillInfoPacket"/>
+		<packet id="91" name="AcquireSkillInfo">
+			<part name="id" type="d" />
+			<part name="level" type="d" />
+			<part name="cost" type="d" />
+			<part name="type" type="d" />
+			<part name="req-size" type="d" id="1" />
+			<for id="1">
+				<part name="type" type="d" />
+				<part name="item-id" type="d" />
+				<part name="item-count" type="Q" />
+				<part name="?" type="d" />
+			</for>
+		</packet>
 		<packet id="92" name="ServerObjectInfoPacket"/>
 		<packet id="93" name="GMHidePacket"/>
 		<packet id="94" name="AcquireSkillDonePacket"/>
