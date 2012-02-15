@@ -23,19 +23,19 @@ package packet_readers.lineage2.infos;
  * @author VISTALL
  * @date 19:37/22.01.2012
  */
-public class L2ProductComponent implements Comparable<L2ProductComponent>
+public class L2ItemWithCount implements Comparable<L2ItemWithCount>
 {
 	private int _itemId;
-	private int _count;
+	private long _count;
 
-	public L2ProductComponent(int itemId, int count)
+	public L2ItemWithCount(int itemId, long count)
 	{
 		_itemId = itemId;
 		_count = count;
 	}
 
 	@Override
-	public int compareTo(L2ProductComponent o)
+	public int compareTo(L2ItemWithCount o)
 	{
 		if(_itemId == o._itemId)
 			return 0;
@@ -47,7 +47,7 @@ public class L2ProductComponent implements Comparable<L2ProductComponent>
 		return _itemId;
 	}
 
-	public int getCount()
+	public long getCount()
 	{
 		return _count;
 	}

@@ -9,6 +9,7 @@ import packet_readers.lineage2.holders.NpcNameHolder;
 import packet_readers.lineage2.holders.SkillNameHolder;
 import packet_readers.lineage2.infos.L2NpcInfo;
 import packet_readers.lineage2.infos.L2Object;
+import packet_readers.lineage2.infos.L2SkillInfo;
 
 /**
  * @author VISTALL
@@ -21,6 +22,11 @@ public class L2World
 	// npcs
 	private IntObjectMap<L2Object> _objects = new TreeIntObjectMap<L2Object>();
 	private IntObjectMap<L2NpcInfo> _npcInfosByNpcId = new TreeIntObjectMap<L2NpcInfo>();
+	private IntObjectMap<L2SkillInfo> _skills = new TreeIntObjectMap<L2SkillInfo>();
+
+	//values
+	private int _userLevel;
+	private int _userClassId = -1;
 
 	public L2World()
 	{
@@ -55,5 +61,30 @@ public class L2World
 	public Collection<L2NpcInfo> valuesNpc()
 	{
 		return _npcInfosByNpcId.values();
+	}
+
+	public IntObjectMap<L2SkillInfo> getSkills()
+	{
+		return _skills;
+	}
+
+	public int getUserLevel()
+	{
+		return _userLevel;
+	}
+
+	public void setUserLevel(int userLevel)
+	{
+		_userLevel = userLevel;
+	}
+
+	public int getUserClassId()
+	{
+		return _userClassId;
+	}
+
+	public void setUserClassId(int userClassId)
+	{
+		_userClassId = userClassId;
 	}
 }

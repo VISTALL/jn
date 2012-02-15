@@ -1,8 +1,9 @@
 package packet_readers.lineage2.holders;
 
-import java.io.InputStream;
+import java.io.File;
+import java.net.URL;
 import java.util.Iterator;
-import java.util.zip.ZipInputStream;
+import java.util.zip.ZipFile;
 
 import org.apache.log4j.Logger;
 import org.dom4j.Document;
@@ -33,30 +34,38 @@ public class ItemNameHolder
 
 	private ItemNameHolder()
 	{
-		InputStream stream = getClass().getResourceAsStream("/com/jds/jn/resources/datas/ItemName-ru.zip");
-		if(stream == null)
+		URL url = getClass().getResource("/com/jds/jn/resources/datas/l2-data.zip");
+
+		if(url == null)
 		{
 			_log.info("Not exists");
 			return;
 		}
 
+		ZipFile zipFile = null;
 		try
 		{
-			ZipInputStream zipInputStream = new ZipInputStream(stream);
-			if(zipInputStream.getNextEntry() != null)
+			zipFile = new ZipFile(new File(url.toURI()));
+		}
+		catch(Exception e)
+		{
+			_log.info(e, e);
+			return;
+		}
+
+		try
+		{
+			SAXReader reader = new SAXReader();
+
+			Document document = reader.read(zipFile.getInputStream(zipFile.getEntry("ItemName.xml")));
+			for(Iterator<Element> iterator = document.getRootElement().elementIterator(); iterator.hasNext();)
 			{
-				SAXReader reader = new SAXReader();
+				Element e = iterator.next();
 
-				Document document = reader.read(zipInputStream);
-				for(Iterator<Element> iterator = document.getRootElement().elementIterator(); iterator.hasNext();)
-				{
-					Element e = iterator.next();
+				int itemId = Integer.parseInt(e.element("item_id").getText());
+				String name = e.element("name").getText();
 
-					int itemId = Integer.parseInt(e.element("item_id").getText());
-					String name = e.element("name").getText();
-
-					_itemNames.put(itemId, name);
-				}
+				_itemNames.put(itemId, name);
 			}
 		}
 		catch(Exception e)

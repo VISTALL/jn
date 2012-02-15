@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_tauti" extends="l2game_awakening">
+	<!---<session_listeners>
+			<listener name="lineage2.listeners.L2PlayerListener" />
+			<listener name="lineage2.listeners.L2MagicSkillUserListener" />
+			<listener name="lineage2.listeners.L2AirShipTeleportListListener" />
+			<listener name="lineage2.listeners.L2NpcBMListsListener" />
+			<listener name="lineage2.listeners.L2NpcDialogListener" />
+			<listener name="lineage2.listeners.L2NpcInfoListener" />
+			<listener name="lineage2.listeners.L2NpcSpawnListener" />
+			<listener name="lineage2.listeners.L2ServerObjectInfoListener" />
+			<listener name="lineage2.listeners.L2JumpListener" />
+			<listener name="lineage2.listeners.L2NpcSayListener" />
+			<listener name="lineage2.listeners.L2MoveNpcListener" />
+			<listener name="lineage2.listeners.L2NpcStateListener" />
+			<listener name="lineage2.listeners.L2ProductListener" />
+			<listener name="lineage2.listeners.L2AcquireSkillListener" />
+		</session_listeners> -->
 	<macro id="abnormal-macro">
 		<part name="abnormal-size" type="d" id="1"/>
 		<for id="1">
@@ -211,10 +227,7 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="c"/>
-			<part name="abnormal-size" type="d" id="1"/>
-			<for id="1">
-				<part name="abnormal-id" type="d"/>
-			</for>
+			<macro id="abnormal-macro" />
 			<part name="?" type="c"/>
 		</packet>
 		<packet id="B2" name="PetInfo">
@@ -282,7 +295,6 @@
 			<part name="?" type="d"/>
 			<part name="p-attack-speed" type="d"/>
 			<part name="m-attack-speed" type="d"/>
-			<part name="abnormal" type="d"/>
 			<part name="rideable" type="h"/>
 			<part name="move-type" type="c"/>
 			<part name="?" type="h"/>
@@ -290,9 +302,211 @@
 			<part name="soul-shots" type="d"/>
 			<part name="spirit-shots" type="d"/>
 			<part name="form" type="d"/>
-			<part name="abnormal-effect2" type="d"/>
 			<part name="transformId" type="d"/>
+			<part name="used-summon-points" type="d"/>
+			<part name="max-summon-points" type="d"/>
+			<macro id="abnormal-macro" />
+		</packet>
+		<packet id="0C" name="NpcInfo">
+			<part name="object-id" type="d"/>
+			<part name="npcId" type="d"/>
+			<part name="attackable" type="d"/>
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="h" type="d"/>
 			<part name="?" type="d"/>
+			<part name="mAttackSpeed" type="d"/>
+			<part name="pAttackSpeed" type="d"/>
+			<part name="run_spd" type="d"/>
+			<part name="walk_spd" type="d"/>
+			<part name="run_spd_" type="d"/>
+			<part name="walk_spd_" type="d"/>
+			<part name="run_spd__" type="d"/>
+			<part name="walk_spd__" type="d"/>
+			<part name="run_spd___" type="d"/>
+			<part name="walk_spd___" type="d"/>
+			<part name="move_speed" type="D"/>
+			<part name="attack_speed" type="D"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="rhand" type="d"/>
+			<part name="armor" type="d"/>
+			<part name="lhand" type="d"/>
+			<part name="?" type="c"/>
+			<part name="running" type="c"/>
+			<part name="in combat" type="c"/>
+			<part name="dead" type="c"/>
+			<part name="show spawn animation" type="c"/>
+			<part name="nameStringId" type="d"/>
+			<part name="name" type="S"/>
+			<part name="titleStringId" type="d"/>
+			<part name="title" type="S"/>
+			<part name="isPet" type="d"/>
+			<part name="pvp_flag" type="d"/>
+			<part name="karma" type="d"/>
+			<macro id="abnormal-macro" />
+			<part name="clan_id" type="d"/>
+			<part name="clan_crest_id" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_crest_id" type="d"/>
+			<part name="?" type="c"/>
+			<part name="team" type="c"/>
+			<part name="col_radius" type="D"/>
+			<part name="col_height" type="D"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="type" type="d"/>
+			<part name="show_name" type="c"/>
+			<part name="show_title" type="c"/>
+			<part name="state" type="d"/>
+			<part name="transform_id" type="d"/>
+			<part name="current_hp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="current_mp" type="d"/>
+			<part name="max_mp" type="d"/>
+			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d" />
+			<part name="?" type="d" />
+		</packet>
+		<packet id="31" name="CharInfo">
+			<part name="x" type="d"/>
+			<part name="y" type="d"/>
+			<part name="z" type="d"/>
+			<part name="clan-ship-object-id" type="d"/>
+			<part name="obj_id" type="d"/>
+			<part name="name" type="S"/>
+			<part name="race" type="d"/>
+			<part name="sex" type="d"/>
+			<part name="base_class" type="d"/>
+			<part name="under-itemId" type="d"/>
+			<part name="head-itemId" type="d"/>
+			<part name="rhand-itemId" type="d"/>
+			<part name="lhand-itemId" type="d"/>
+			<part name="gloves-itemId" type="d"/>
+			<part name="chest-itemId" type="d"/>
+			<part name="legs-itemId" type="d"/>
+			<part name="feet-itemId" type="d"/>
+			<part name="back-itemId" type="d"/>
+			<part name="lrhand-itemId" type="d"/>
+			<part name="hair-itemId" type="d"/>
+			<part name="dhair-itemId" type="d"/>
+			<part name="rbracelet-itemId" type="d"/>
+			<part name="lbracelet-itemId" type="d"/>
+			<part name="deco1-itemId" type="d"/>
+			<part name="deco2-itemId" type="d"/>
+			<part name="deco3-itemId" type="d"/>
+			<part name="deco4-itemId" type="d"/>
+			<part name="deco5-itemId" type="d"/>
+			<part name="deco6-itemId" type="d"/>
+			<part name="belt-itemId" type="d"/>
+			<part name="under-augId" type="d"/>
+			<part name="head-augId" type="d"/>
+			<part name="rhand-augId" type="d"/>
+			<part name="lhand-augId" type="d"/>
+			<part name="gloves-augId" type="d"/>
+			<part name="chest-augId" type="d"/>
+			<part name="legs-augId" type="d"/>
+			<part name="feet-augId" type="d"/>
+			<part name="back-augId" type="d"/>
+			<part name="lrhand-augId" type="d"/>
+			<part name="hair-augId" type="d"/>
+			<part name="dhair-augId" type="d"/>
+			<part name="rbracelet-augId" type="d"/>
+			<part name="lbracelet-augId" type="d"/>
+			<part name="deco1-augId" type="d"/>
+			<part name="deco2-augId" type="d"/>
+			<part name="deco3-augId" type="d"/>
+			<part name="deco4-augId" type="d"/>
+			<part name="deco5-augId" type="d"/>
+			<part name="deco6-augId" type="d"/>
+			<part name="belt-augId" type="d"/>
+			<part name="talismanCount" type="d"/>
+			<part name="activeCloak" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="pvpFlag" type="d"/>
+			<part name="karma" type="d"/>
+			<part name="mAttackSpeed" type="d"/>
+			<part name="pAtttackSpeed" type="d"/>
+			<part name="?" type="d"/>
+			<part name="runSpeed" type="d"/>
+			<part name="walkSpeed" type="d"/>
+			<part name="sweemRunSpeed" type="d"/>
+			<part name="sweemWalkSpeed" type="d"/>
+			<part name="flyRunSpeed" type="d"/>
+			<part name="flyWalkSpeed" type="d"/>
+			<part name="flyRunSpeed" type="d"/>
+			<part name="flyWalkSpeed" type="d"/>
+			<part name="moveMulti" type="D"/>
+			<part name="attackMulti" type="D"/>
+			<part name="colRadius" type="D"/>
+			<part name="colHeight" type="D"/>
+			<part name="hairStyle" type="d"/>
+			<part name="hairColor" type="d"/>
+			<part name="face" type="d"/>
+			<part name="title" type="S"/>
+			<part name="clan_id" type="d"/>
+			<part name="clan_crest_id" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_crest_id" type="d"/>
+			<part name="sit" type="c"/>
+			<part name="run" type="c"/>
+			<part name="combat" type="c"/>
+			<part name="dead" type="c"/>
+			<part name="invis" type="c"/>
+			<part name="mount_type" type="c"/>
+			<part name="private_store" type="c"/>
+			<part name="cubic_size" type="h" id="0"/>
+			<for id="0">
+				<part name="cubicId" type="h"/>
+			</for>
+			<part name="partyRoom" type="c"/>
+			<part name="flying" type="c"/>
+			<part name="rec_have" type="h"/>
+			<part name="mount_id" type="d"/>
+			<part name="class_Id" type="d"/>
+			<part name="?" type="d"/>
+			<part name="enchant" type="c"/>
+			<part name="team" type="c"/>
+			<part name="large_crest_id" type="d"/>
+			<part name="noble" type="c"/>
+			<part name="hero" type="c"/>
+			<part name="fishing" type="c"/>
+			<part name="fish-x" type="d"/>
+			<part name="fish-y" type="d"/>
+			<part name="fish-z" type="d"/>
+			<part name="name_color" type="d">
+				<reader type="Color"/>
+			</part>
+			<part name="h" type="d"/>
+			<part name="plegde_class" type="d"/>
+			<part name="pledge_type" type="d"/>
+			<part name="title_color" type="d">
+				<reader type="Color"/>
+			</part>
+			<part name="cw_level" type="d"/>
+			<part name="clan_reputation" type="d"/>
+			<part name="transformation" type="d"/>
+			<part name="agathion" type="d"/>
+			<part name="blocked-fame" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="current_cp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="max_hp" type="d"/>
+			<part name="current_mp" type="d"/>
+			<part name="max_mp" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<macro id="abnormal-macro" />
+			<part name="?" type="c"/>
 		</packet>
 	</packetfamilly>
 </protocol>

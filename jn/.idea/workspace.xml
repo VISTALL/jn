@@ -17,13 +17,34 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a76865f-32f4-405e-8d83-898f8fe5fd21" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" />
+    <list default="true" readonly="true" id="6a76865f-32f4-405e-8d83-898f8fe5fd21" name="Default" comment="+ added L2ProductListener">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java-resource/com/jds/jn/resources/datas/l2-data.zip" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2AcquireType.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2SkillLearn.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2AcquireSkillListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2PlayerListener.java" />
+      <change type="DELETED" beforePath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\ItemName-ru.zip" afterPath="" />
+      <change type="DELETED" beforePath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\NpcName-ru.zip" afterPath="" />
+      <change type="DELETED" beforePath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\SkillName-ru.zip" afterPath="" />
+      <change type="MODIFICATION" beforePath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\ItemName-e.zip" afterPath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\ItemName-e.zip" />
+      <change type="MODIFICATION" beforePath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\NpcName-e.zip" afterPath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\NpcName-e.zip" />
+      <change type="MODIFICATION" beforePath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\SkillName-e.zip" afterPath="J:\jn\trunk\jn\java-resource\com\jds\jn\resources\datas\SkillName-e.zip" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2World.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2World.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2Product.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2Product.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2MagicSkillUserListener.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2MagicSkillUserListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcStateListener.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcStateListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2ProductListener.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2ProductListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_final.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_final.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" />
+      <change type="MOVED" beforePath="J:\jn\trunk\jn\resource\files\packet_readers\lineage2\infos\L2ProductComponent.java" afterPath="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ItemWithCount.java" />
     </list>
     <ignored path="jn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,37 +106,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="l2game_awakening.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1685" column="69" selection-start="57786" selection-end="57786" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="l2game_highfive5.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1394" column="8" selection-start="47184" selection-end="47224" vertical-scroll-proportion="-11.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="l2game_tauti.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_tauti.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="14" selection-start="292" selection-end="292" vertical-scroll-proportion="-3.168527">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JRibbon.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/org/pushingpixels/flamingo/api/ribbon/JRibbon.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="578" column="0" selection-start="16178" selection-end="16178" vertical-scroll-proportion="0.0">
+            <state line="19" column="36" selection-start="1110" selection-end="1110" vertical-scroll-proportion="-7.8359375">
               <folding />
             </state>
           </provider>
@@ -128,28 +122,24 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
-  <component name="Git.Settings">
-    <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
-    <option name="UPDATE_CHANGES_POLICY" value="STASH" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcStateListener.java" />
-        <option value="$PROJECT_DIR$/java/com/jds/jn/parser/datatree/DataTreeNodeContainer.java" />
-        <option value="$PROJECT_DIR$/java/com/jds/jn/network/packets/DecryptedPacket.java" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ProductComponent.java" />
-        <option value="$PROJECT_DIR$/resource/saves/X-productlist19-39-44 22.01.2012.xml" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2AbstractListener.java" />
-        <option value="$PROJECT_DIR$/resource/saves/X-productlist 19-42-30 22.01.2012.xml" />
-        <option value="$PROJECT_DIR$/resource/saves/X-productlist 19-46-42 22.01.2012.xml" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2Product.java" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2ProductListener.java" />
-        <option value="$PROJECT_DIR$/resource/saves/X-productlist 19-48-45 22.01.2012.xml" />
-        <option value="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcSpawnListener.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2World.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/AcquireType.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2AcquireType.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_final.xml" />
-        <option value="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2SkillLearn.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ItemWithCount.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcStateListener.java" />
+        <option value="$PROJECT_DIR$/java/com/jds/jn/gui2/PacketMassAnallize/listeners/FileTypeListener.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" />
+        <option value="$PROJECT_DIR$/java/com/jds/jn/Jn.java" />
+        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2AcquireSkillListener.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" />
       </list>
     </option>
@@ -164,7 +154,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="32" />
-    <option name="width" value="1936" />
+    <option name="width" value="1932" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -211,7 +201,16 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -276,15 +275,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jpcap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -361,7 +378,17 @@
         <option name="PhingTarget" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" adl_options="" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" browser_family="FIREFOX" class_name="" debugger_sdk="Module SDK" html_or_swf_file_path="" launcher_type="OSDefault" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" player_path="FlashPlayer.exe" port="0" run_mode="HtmlOrSwfFile" run_trusted="true" scope="Class" socket_policy_port="0" url_to_launch="http://">
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" class_name="" method_name="" output_log_level="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browserFamily" value="FIREFOX" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -553,6 +580,7 @@
     <option name="FORCE_UPDATE" value="false" />
     <configuration useDefault="false">C:\Users\VISTALL\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
+    <supportedVersion>125</supportedVersion>
   </component>
   <component name="SvnFileUrlMappingImpl17">
     <option name="myMappingRoots">
@@ -613,25 +641,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="32" width="1932" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.103125" sideWeight="0.67089945" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19479166" sideWeight="0.69381106" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38110748" sideWeight="0.0" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19467641" sideWeight="0.57111835" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43213898" sideWeight="0.0" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.49791667" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.67098165" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42888165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995194" sideWeight="0.39805827" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22916667" sideWeight="0.6188925" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30688936" sideWeight="0.57111835" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3061889" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28333333" sideWeight="0.67089945" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="132" width="1736" height="856" />
@@ -680,6 +709,7 @@
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="LAST_COMMIT_MESSAGE" value="+ added L2ProductListener" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
@@ -778,88 +808,84 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/protocol/Protocol.java">
+    <entry file="jar://G:/programs/JDK/jre/lib/deploy.jar!/com/sun/deploy/cache/CachedJarFile.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="28" selection-start="989" selection-end="989" vertical-scroll-proportion="0.018973215" />
+        <state line="5" column="13" selection-start="158" selection-end="158" vertical-scroll-proportion="0.07701019" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/AboutDialog.java">
+    <entry file="jar://G:/programs/JDK/jre/lib/rt.jar!/sun/net/www/protocol/jar/URLJarFile.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="35" selection-start="1660" selection-end="1660" vertical-scroll-proportion="1.4439411" />
+        <state line="5" column="13" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/AionGame.bak">
+    <entry file="jar://G:/programs/JDK/src.zip!/java/util/zip/ZipFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="30" column="13" selection-start="787" selection-end="794" vertical-scroll-proportion="0.32254463" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/APB.xml">
+    <entry file="jar://G:/programs/JDK/src.zip!/java/lang/Class.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="2066" column="21" selection-start="87429" selection-end="87429" vertical-scroll-proportion="0.484375" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/AionGame.xml">
+    <entry file="jar://G:/programs/JDK/src.zip!/java/net/URL.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
+        <state line="115" column="19" selection-start="5140" selection-end="5140" vertical-scroll-proportion="-0.06584822" />
       </provider>
     </entry>
-    <entry file="jar://G:/programs/JDK/src.zip!/java/awt/EventDispatchThread.java">
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/gui2/PacketMassAnallize/listeners/FileTypeListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="0" selection-start="3717" selection-end="3717" vertical-scroll-proportion="0.33211008" />
+        <state line="12" column="13" selection-start="298" selection-end="298" vertical-scroll-proportion="0.17075893" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
+    <entry file="jar://G:/programs/JDK/src.zip!/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1066" column="48" selection-start="36852" selection-end="36852" vertical-scroll-proportion="0.0" />
+        <state line="356" column="18" selection-start="15015" selection-end="15015" vertical-scroll-proportion="0.3325893" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/util/iterator/EmptyIterator.java">
+    <entry file="jar://G:/programs/JDK/src.zip!/java/net/URI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="13" selection-start="129" selection-end="129" vertical-scroll-proportion="0.0" />
+        <state line="453" column="19" selection-start="20987" selection-end="20987" vertical-scroll-proportion="-0.008928572" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/parser/packetfactory/ListenerInvoker.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="8" selection-start="1021" selection-end="1021" vertical-scroll-proportion="0.0" />
+        <state line="36" column="0" selection-start="813" selection-end="1252" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/util/Util.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="186" column="36" selection-start="3260" selection-end="3260" vertical-scroll-proportion="3.453125" />
+        <state line="37" column="0" selection-start="851" selection-end="1291" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/util/iterator/JoinedIterator.java">
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/Jn.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="21" selection-start="1571" selection-end="1571" vertical-scroll-proportion="0.0" />
+        <state line="48" column="0" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.51227677" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/session/Session.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="96" column="16" selection-start="2980" selection-end="2980" vertical-scroll-proportion="0.0" />
+        <state line="61" column="92" selection-start="1341" selection-end="1341" vertical-scroll-proportion="0.58258927" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/org/pushingpixels/flamingo/api/ribbon/JRibbon.java">
+    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2AcquireSkillListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="578" column="0" selection-start="16178" selection-end="16178" vertical-scroll-proportion="0.0" />
+        <state line="152" column="56" selection-start="5321" selection-end="5321" vertical-scroll-proportion="2.200893" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
+    <entry file="file://$PROJECT_DIR$/java/jpcap/JpcapSender.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1394" column="8" selection-start="47184" selection-end="47224" vertical-scroll-proportion="-11.6">
-          <folding />
-        </state>
+        <state line="7" column="13" selection-start="106" selection-end="106" vertical-scroll-proportion="0.1328125" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
+    <entry file="file://$PROJECT_DIR$/java/jpcap/JpcapCaptor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1685" column="69" selection-start="57786" selection-end="57786" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="7" column="13" selection-start="145" selection-end="145" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_tauti.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="14" selection-start="292" selection-end="292" vertical-scroll-proportion="-3.168527">
+        <state line="19" column="36" selection-start="1110" selection-end="1110" vertical-scroll-proportion="-7.8359375">
           <folding />
         </state>
       </provider>

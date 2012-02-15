@@ -24,11 +24,9 @@ public class L2NpcSpawnListener extends L2AbstractListener
 	public static final int MAP_MIN_X = 11 - 20 << 15;
 	public static final int MAP_MIN_Y = 10 - 18 << 15;
 
-	private static final String USER_INFO = "UserInfo";
+
 	private static final String MY_TARGET_SELECTED = "MyTargetSelected";
 
-	//values
-   	private int _userLevel;
 
 	public L2NpcSpawnListener()
 	{
@@ -38,15 +36,14 @@ public class L2NpcSpawnListener extends L2AbstractListener
 	@Override
 	public List<String> getPackets()
 	{
-		return Arrays.asList(USER_INFO, MY_TARGET_SELECTED);
+		return Arrays.asList(MY_TARGET_SELECTED);
 	}
  
 	@Override
 	public void invokeImpl(DecryptedPacket p)
 	{
-		if (p.getName().equalsIgnoreCase(USER_INFO))
-			_userLevel = p.getInt("level");
-		else if (p.getName().equalsIgnoreCase(MY_TARGET_SELECTED))
+
+		if (p.getName().equalsIgnoreCase(MY_TARGET_SELECTED))
 		{
 			int obj_id = p.getInt(L2World.OBJECT_ID);
 
@@ -55,7 +52,7 @@ public class L2NpcSpawnListener extends L2AbstractListener
 			 	return;
 
 			int diff = p.getInt("diff");
-			int level = _userLevel - diff;
+			int level = _world.getUserLevel() - diff;
 
 			((L2NpcInfo) object).setLevel(level);
 		}

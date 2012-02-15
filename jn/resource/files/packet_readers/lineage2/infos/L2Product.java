@@ -44,7 +44,7 @@ public class L2Product
 
 	private final int _stock;
 
-	private final Set<L2ProductComponent> _items = new TreeSet<L2ProductComponent>();
+	private final Set<L2ItemWithCount> _items = new TreeSet<L2ItemWithCount>();
 
 	public L2Product(DataForBlock packet)
 	{
@@ -87,7 +87,7 @@ public class L2Product
 		return _stock;
 	}
 
-	public Set<L2ProductComponent> getItems()
+	public Set<L2ItemWithCount> getItems()
 	{
 		return _items;
 	}

@@ -37,7 +37,7 @@ import com.jds.jn.parser.datatree.DataForPart;
 import com.jds.jn.parser.datatree.VisualValuePart;
 import packet_readers.lineage2.L2AbstractListener;
 import packet_readers.lineage2.infos.L2Product;
-import packet_readers.lineage2.infos.L2ProductComponent;
+import packet_readers.lineage2.infos.L2ItemWithCount;
 
 /**
  * @author VISTALL
@@ -86,7 +86,7 @@ public class L2ProductListener extends L2AbstractListener
 				int itemId = entryNode.getInt("item-id");
 				int count = entryNode.getInt("count");
 
-				product.getItems().add(new L2ProductComponent(itemId, count));
+				product.getItems().add(new L2ItemWithCount(itemId, count));
 			}
 		}
 	}
@@ -113,7 +113,7 @@ public class L2ProductListener extends L2AbstractListener
 			productElement.addAttribute("week-of-day", String.valueOf(product.getWeekOfDay()));
 			productElement.addAttribute("max-stock", String.valueOf(product.getStock()));
 
-			for(L2ProductComponent itemInfo : product.getItems())
+			for(L2ItemWithCount itemInfo : product.getItems())
 			{
 				Element element = productElement.addElement("item");
 				element.addAttribute("id", String.valueOf(itemInfo.getItemId()));

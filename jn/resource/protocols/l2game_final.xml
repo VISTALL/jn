@@ -1063,14 +1063,30 @@
 		<packet id="8D" name="Dummy"/>
 		<packet id="8E" name="PledgeShowInfoUpdatePacket"/>
 		<packet id="8F" name="ActionFail"/>
-		<packet id="90" name="AcquireSkillListPacket"/>
+		<packet id="90" name="AcquireSkillList">
+			<part name="type" type="d" id="0"/>
+			<part name="size" type="d" id="1"/>
+			<for id="1">
+				<part name="skill_id" type="d"/>
+				<part name="next_skill_level" type="d"/>
+				<part name="max_skill_level" type="d"/>
+				<part name="cost" type="d"/>
+				<part name="require" type="d"/>
+				<switch id="0">
+					<case id="3">
+						<part name="sub_unit" type="d"/>
+					</case>
+					<case id="default"/>
+				</switch>
+			</for>
+		</packet>
 		<packet id="91" name="AcquireSkillInfo">
 			<part name="id" type="d" />
 			<part name="level" type="d" />
 			<part name="cost" type="d" />
 			<part name="type" type="d" />
 			<part name="req-size" type="d" id="1" />
-			<for id="1">
+			<for id="1" name="need-items">
 				<part name="type" type="d" />
 				<part name="item-id" type="d" />
 				<part name="item-count" type="Q" />
@@ -1079,7 +1095,7 @@
 		</packet>
 		<packet id="92" name="ServerObjectInfoPacket"/>
 		<packet id="93" name="GMHidePacket"/>
-		<packet id="94" name="AcquireSkillDonePacket"/>
+		<packet id="94" name="AcquireSkillDone"/>
 		<packet id="95" name="GMViewCharacterInfoPacket"/>
 		<packet id="96" name="GMViewPledgeInfo" extended="true">
 			<part name="main_pledge" type="d" />
