@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_tauti" extends="l2game_awakening">
-	<!---<session_listeners>
+	<session_listeners>
 			<listener name="lineage2.listeners.L2PlayerListener" />
 			<listener name="lineage2.listeners.L2MagicSkillUserListener" />
 			<listener name="lineage2.listeners.L2AirShipTeleportListListener" />
@@ -16,7 +16,7 @@
 			<listener name="lineage2.listeners.L2NpcStateListener" />
 			<listener name="lineage2.listeners.L2ProductListener" />
 			<listener name="lineage2.listeners.L2AcquireSkillListener" />
-		</session_listeners> -->
+	</session_listeners>
 	<macro id="abnormal-macro">
 		<part name="abnormal-size" type="d" id="1"/>
 		<for id="1">

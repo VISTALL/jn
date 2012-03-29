@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Source Files\org">
+      <UniqueIdentifier>{8c79d7c1-eb59-4d95-9595-825a73a94e3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\org\napile">
+      <UniqueIdentifier>{24b6ac4a-d7c5-47bf-9039-bf3209b6789f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\org\napile\exemaker">
+      <UniqueIdentifier>{8932e688-1e4c-4162-89d0-0abd737d7534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org">
+      <UniqueIdentifier>{1e7f6ff2-303d-4a2d-b09c-0db8f5547068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org\napile">
+      <UniqueIdentifier>{f84cc135-a250-46e5-8982-c0db4cbcdab2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org\napile\exemaker">
+      <UniqueIdentifier>{796dcd03-d6ff-4242-bfbe-7fa8b227414e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org\napile\exemaker\jvm">
+      <UniqueIdentifier>{3461e93b-324a-47d1-9303-67964e7aa39f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\org\napile\exemaker\jvm">
+      <UniqueIdentifier>{26e26ca0-cd91-4624-860f-93126da47969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org\napile\exemaker\utils">
+      <UniqueIdentifier>{6889271a-433a-4cf1-9d78-4e7bf384836d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\org\napile\exemaker\utils">
+      <UniqueIdentifier>{bab2821d-afa5-486c-a7ec-ad483c8e9917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org\napile\exemaker\utils\debug">
+      <UniqueIdentifier>{5346e101-0d3f-4c74-bdae-825cf5f03e35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\org\napile\exemaker\utils\debug">
+      <UniqueIdentifier>{9926d04f-d7f2-4099-b975-4fd3ab705d3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\org\napile\exemaker\classpath">
+      <UniqueIdentifier>{85bdaa02-f15a-4ae5-bce5-f1321e71f1ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\org\napile\exemaker\classpath">
+      <UniqueIdentifier>{4dff6da5-d27e-4ed4-8f5a-1d1926ac4fd6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JavaMachineManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JClassProxy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JMethodCaller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JVMBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JVMEnvVarLookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JVMRegistryLookup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Process.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleInstanceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SunJVMDLL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SunJVMLauncher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Thread.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JVMOptions.cpp">
+      <Filter>Source Files\org\napile\exemaker\jvm</Filter>
+    </ClCompile>
+    <ClCompile Include="FileUtils.cpp">
+      <Filter>Source Files\org\napile\exemaker\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp">
+      <Filter>Source Files\org\napile\exemaker\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SunJVMExe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JavaProperty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JArgs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugConsole.cpp">
+      <Filter>Source Files\org\napile\exemaker\utils\debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files\org\napile\exemaker\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\org\napile\exemaker</Filter>
+    </ClCompile>
+    <ClCompile Include="ClasspathDirectory.cpp">
+      <Filter>Source Files\org\napile\exemaker\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="ClasspathSingle.cpp">
+      <Filter>Source Files\org\napile\exemaker\classpath</Filter>
+    </ClCompile>
+    <ClCompile Include="ClasspathEntry.cpp">
+      <Filter>Source Files\org\napile\exemaker\classpath</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JavaMachineManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JClassProxy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JMethodCaller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JVMBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JVMEnvVarLookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JVMRegistryLookup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Process.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleInstanceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SunJVMDLL.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SunJVMLauncher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Thread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>Header Files\org\napile\exemaker</Filter>
+    </ClInclude>
+    <ClInclude Include="JVMOptions.h">
+      <Filter>Header Files\org\napile\exemaker\jvm</Filter>
+    </ClInclude>
+    <ClInclude Include="FileUtils.h">
+      <Filter>Header Files\org\napile\exemaker\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
+      <Filter>Header Files\org\napile\exemaker\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SunJVMExe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JArgs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JavaProperty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugConsole.h">
+      <Filter>Header Files\org\napile\exemaker\utils\debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Header Files\org\napile\exemaker\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClasspathEntry.h">
+      <Filter>Header Files\org\napile\exemaker\classpath</Filter>
+    </ClInclude>
+    <ClInclude Include="ClasspathDirectory.h">
+      <Filter>Header Files\org\napile\exemaker\classpath</Filter>
+    </ClInclude>
+    <ClInclude Include="ClasspathSingle.h">
+      <Filter>Header Files\org\napile\exemaker\classpath</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ExeMaker.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

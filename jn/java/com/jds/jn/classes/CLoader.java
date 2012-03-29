@@ -1,10 +1,12 @@
 package com.jds.jn.classes;
 
-import org.apache.log4j.Logger;
-
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import org.apache.log4j.Logger;
 import com.jds.jn.classes.compiler.Compiler;
 import com.jds.jn.classes.compiler.MemoryClassLoader;
 
@@ -46,7 +48,7 @@ public class CLoader
 
 		List<File> fileNames = new ArrayList<File>();
 
-		getFiles(fileNames, new java.io.File("./files"), "");
+		getFiles(fileNames, new java.io.File("../files"), "");
 
 		if (Compiler.getInstance().compile(fileNames))
 		{

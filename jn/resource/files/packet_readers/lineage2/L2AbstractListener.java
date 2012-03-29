@@ -44,7 +44,7 @@ public abstract class L2AbstractListener extends IPacketListener.Abstract
 	{
 		String format = TIME_FORMAT.format(System.currentTimeMillis());
 
-		File file = new File("./saves/" + prefix + format + "." + ext);
+		File file = new File("../saves/" + prefix + format + "." + ext);
 		File parent = file.getParentFile();
 		while(parent != null)
 		{

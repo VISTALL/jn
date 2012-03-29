@@ -1731,5 +1731,37 @@
 			<part name="exp-this-lvl" type="Q" />
 			<part name="exp-next-lvl" type="Q" />
 		</packet>
+		<packet id="5A" name="PledgeShowMemberListAllPacket">
+			<part name="mainORsub" type="d"/>
+			<part name="clanId" type="d"/>
+			<part name="pledgeType" type="d"/>
+			<part name="name" type="S"/>
+			<part name="leaderName" type="S"/>
+			<part name="crestId" type="d"/>
+			<part name="level" type="d"/>
+			<part name="castle" type="d"/>
+			<part name="clanhall" type="d"/>
+			<part name="fortress" type="d"/>
+			<part name="clanhall_type" type="d"/>
+			<part name="rank" type="d"/>
+			<part name="reputation" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_name" type="S"/>
+			<part name="all_crest_id" type="d"/>
+			<part name="at_war" type="d"/>
+			<part name="territoryId" type="d"/>
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="name" type="S"/>
+				<part name="leve" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="sex" type="d"/>
+				<part name="objectId" type="d"/>
+				<part name="online" type="d"/>
+				<part name="hasSponsor" type="d"/>
+			</for>
+		</packet>
 	</packetfamilly>
 </protocol>

@@ -1,0 +1,86 @@
+<Configuration>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <RecentFiles>
+    <RecentFiles>
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:Thread.cpp" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SingleInstanceManager.cpp" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:Process.h" caret="1460" fromTop="30" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:global.cpp" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:resource.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ExeMaker.rc" caret="1299" fromTop="14" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JavaMachineManager.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMBase.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMBase.cpp" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:StringUtils.cpp" caret="3701" fromTop="33" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ClasspathEntry.h" caret="715" fromTop="23" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ClasspathSingle.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:FileUtils.h" caret="2239" fromTop="9" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ClasspathEntry.cpp" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMExe.cpp" caret="3085" fromTop="112" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:FileUtils.cpp" caret="2966" fromTop="43" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ClasspathDirectory.cpp" caret="1078" fromTop="32" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ClasspathSingle.cpp" caret="1025" fromTop="25" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:common.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:ClasspathDirectory.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.h" caret="1988" fromTop="14" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMExe.h" caret="0" fromTop="0" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.h" caret="1307" fromTop="8" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="3608" fromTop="34" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.h" caret="641" fromTop="16" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.cpp" caret="1773" fromTop="23" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JavaMachineManager.cpp" caret="4014" fromTop="34" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:main.cpp" caret="1963" fromTop="10" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="2826" fromTop="31" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:config.h" caret="1022" fromTop="7" />
+    </RecentFiles>
+    <RecentEdits>
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:config.h" caret="945" fromTop="18" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.h" caret="1179" fromTop="33" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.h" caret="1988" fromTop="14" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.cpp" caret="2805" fromTop="20" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.cpp" caret="4307" fromTop="27" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="3133" fromTop="19" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="2899" fromTop="11" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:config.h" caret="1100" fromTop="33" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JavaMachineManager.cpp" caret="3348" fromTop="25" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="2496" fromTop="3" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMDLL.cpp" caret="1773" fromTop="23" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="3314" fromTop="24" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="4762" fromTop="26" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="963" fromTop="25" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:main.cpp" caret="2106" fromTop="19" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.h" caret="1051" fromTop="36" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="898" fromTop="9" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="2197" fromTop="24" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:SunJVMLauncher.cpp" caret="3747" fromTop="40" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="773" fromTop="3" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.h" caret="749" fromTop="23" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="2064" fromTop="23" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="2064" fromTop="19" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="2066" fromTop="26" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="1868" fromTop="22" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="1770" fromTop="17" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="3029" fromTop="28" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:JVMOptions.cpp" caret="2826" fromTop="31" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:main.cpp" caret="1963" fromTop="10" />
+      <File id="BBFE1622-50AD-1351-521F-90DA4F559007/f:config.h" caret="1451" fromTop="45" />
+    </RecentEdits>
+  </RecentFiles>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <UnitTestRunner>
+    <Providers />
+  </UnitTestRunner>
+  <UnitTestRunnerNUnit>
+    <NUnitInstallDir IsNull="False">
+    </NUnitInstallDir>
+    <UseAddins>Never</UseAddins>
+  </UnitTestRunnerNUnit>
+</Configuration>

@@ -18,9 +18,9 @@ public enum RValues
 	@PropertyValue("PrintUnknownPacket")
 	PRINT_UNKNOWN_PACKET(true),
 	@PropertyValue("LastFolder")
-	LAST_FOLDER("./logs/"),
+	LAST_FOLDER("../logs/"),
 	@PropertyValue("ProtocolDir")
-	PROTOCOL_DIR("./protocols/"),
+	PROTOCOL_DIR("../protocols/"),
 	@PropertyValue("ActiveProfile")
 	ACTIVE_PROFILE(null, String.class),
 	@PropertyValue("MainVisible")

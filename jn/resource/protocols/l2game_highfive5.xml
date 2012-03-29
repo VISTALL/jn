@@ -1262,7 +1262,24 @@
 		<packet id="99" name="GMViewQuestInfoPacket"/>
 		<packet id="9A" name="GMViewItemListPacket"/>
 		<packet id="9B" name="GMViewWarehouseWithdrawListPacket"/>
-		<packet id="9C" name="ListPartyWatingPacket"/>
+		<packet id="9C" name="ListPartyWaiting">
+			<part name="full-size" type="d" />
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="id" type="d" />
+				<part name="topic" type="S" />
+				<part name="location-id" type="d" />
+				<part name="min-level" type="d" />
+				<part name="max-level" type="d" />
+				<part name="max-members-size" type="d" />
+				<part name="leader-name" type="S" />
+				<part name="players-size" type="d" id="1" />
+				<for id="1">
+					<part name="class-id" type="d" />
+					<part name="name" type="S" />
+				</for>
+			</for>
+		</packet>
 		<packet id="9D" name="PartyRoomInfoPacket"/>
 		<packet id="9F" name="StaticObject">
 			<part name="id" type="d"/>
@@ -1624,7 +1641,20 @@
 		<packet id="FE;0032" name="ExPCCafePointInfoPacket"/>
 		<packet id="FE;0034" name="ExGetBossRecord"/>
 		<packet id="FE;0035" name="ExAskJoinPartyRoom"/>
-		<packet id="FE;0036" name="ExListPartyMatchingWaitingRoom"/>
+		<packet id="FE;0036" name="ExListPartyMatchingWaitingRoom">
+			<part name="full-size" type="d" />
+			<part name="size" type="d" id="0" />
+			<for id="0">
+				<part name="name" type="S" />
+				<part name="class-id" type="d" />
+				<part name="level" type="d" />
+				<part name="location-id" type="d" />
+				<part name="instant-reuses" type="d" id="1" />
+				<for id="1">
+					<part name="instant-id" type="d" />
+				</for>
+			</for>
+		</packet>
 		<packet id="FE;0037" name="ExSetMpccRouting"/>
 		<packet id="FE;0038" name="ExShowAdventurerGuideBook"/>
 		<packet id="FE;0039" name="ExShowScreenMessage"/>

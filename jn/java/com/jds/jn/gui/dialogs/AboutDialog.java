@@ -88,7 +88,7 @@ public class AboutDialog extends JWindow
 	{
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout(0, 0));
-		JPicturePanel = new JPicturePanel();
+		JPicturePanel = new com.jds.swing.JPicturePanel();
 		contentPane.add(JPicturePanel, BorderLayout.NORTH);
 		final JPanel panel1 = new JPanel();
 		panel1.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
