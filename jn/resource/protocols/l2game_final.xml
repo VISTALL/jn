@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE protocol SYSTEM "protocol.dtd">
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol crypt="L2Game" name="l2game_final"> <!--Final ct2.3-->
 	<!--Inventory Macro-->
 	<macro id="item">
@@ -935,7 +934,7 @@
 		<packet id="20" name="ServerClose"/>
 		<packet id="24" name="TargetUnselectedPacket"/>
 		<packet id="26" name="AutoAttackStop">
-			<part name="object-id" type="d" />
+			<part name="object-id" type="d"/>
 		</packet>
 		<packet id="29" name="ChangeWaitTypePacket"/>
 		<packet id="2A" name="ManagePledgePowerPacket"/>
@@ -1019,10 +1018,10 @@
 		<packet id="69" name="SetPledgeCrestPacket"/>
 		<packet id="6A" name="PledgeCrest"/>
 		<packet id="6B" name="SetupGauge">
-			<part name="object-id" type="d" />
-			<part name="type" type="d" />
-			<part name="current-time" type="d" />
-			<part name="max-time" type="d" />
+			<part name="object-id" type="d"/>
+			<part name="type" type="d"/>
+			<part name="current-time" type="d"/>
+			<part name="max-time" type="d"/>
 		</packet>
 		<packet id="6C" name="OnVehicleDeparture"/>
 		<packet id="6D" name="OnVehicleCheckLocation"/>
@@ -1031,15 +1030,15 @@
 		<packet id="70" name="TradeRequestPacket"/>
 		<packet id="71" name="RestartResponsePacket"/>
 		<packet id="72" name="MoveToPawn">
-			<part name="player-object-id" type="d" />
-			<part name="target-object-id" type="d" />
-			<part name="distance" type="d" />
-			<part name="player-x" type="d" />
-			<part name="player-y" type="d" />
-			<part name="player-z" type="d" />
-			<part name="target-x" type="d" />
-			<part name="target-y" type="d" />
-			<part name="target-z" type="d" />
+			<part name="player-object-id" type="d"/>
+			<part name="target-object-id" type="d"/>
+			<part name="distance" type="d"/>
+			<part name="player-x" type="d"/>
+			<part name="player-y" type="d"/>
+			<part name="player-z" type="d"/>
+			<part name="target-x" type="d"/>
+			<part name="target-y" type="d"/>
+			<part name="target-z" type="d"/>
 		</packet>
 		<packet id="76" name="L2FriendPacket"/>
 		<packet id="77" name="L2FriendStatusPacket"/>
@@ -1081,16 +1080,16 @@
 			</for>
 		</packet>
 		<packet id="91" name="AcquireSkillInfo">
-			<part name="id" type="d" />
-			<part name="level" type="d" />
-			<part name="cost" type="d" />
-			<part name="type" type="d" />
-			<part name="req-size" type="d" id="1" />
+			<part name="id" type="d"/>
+			<part name="level" type="d"/>
+			<part name="cost" type="d"/>
+			<part name="type" type="d"/>
+			<part name="req-size" type="d" id="1"/>
 			<for id="1" name="need-items">
-				<part name="type" type="d" />
-				<part name="item-id" type="d" />
-				<part name="item-count" type="Q" />
-				<part name="?" type="d" />
+				<part name="type" type="d"/>
+				<part name="item-id" type="d"/>
+				<part name="item-count" type="Q"/>
+				<part name="?" type="d"/>
 			</for>
 		</packet>
 		<packet id="92" name="ServerObjectInfoPacket"/>
@@ -1098,35 +1097,35 @@
 		<packet id="94" name="AcquireSkillDone"/>
 		<packet id="95" name="GMViewCharacterInfoPacket"/>
 		<packet id="96" name="GMViewPledgeInfo" extended="true">
-			<part name="main_pledge" type="d" />
-			<part name="player_name" type="S" />
-			<part name="clan_id" type="d" />
-			<part name="pledge_type" type="d" />
-			<part name="clan_name" type="S" />
-			<part name="leader_name" type="S" />
-			<part name="clan_crest_id" type="d" />
-			<part name="clan_level" type="d" />
-			<part name="castle_id" type="d" />
-			<part name="clanhall_id" type="d" />
-			<part name="fortress_id" type="d" />
-			<part name="rank" type="d" />
-			<part name="reputation" type="d" />
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="ally_id" type="d" />
-			<part name="ally_name" type="S" />
-			<part name="ally_crest_id" type="d" />
-			<part name="at_war" type="d" />
-			<part name="territory_side" type="d" />
-			<part name="members_size" type="d" id="0" />
+			<part name="main_pledge" type="d"/>
+			<part name="player_name" type="S"/>
+			<part name="clan_id" type="d"/>
+			<part name="pledge_type" type="d"/>
+			<part name="clan_name" type="S"/>
+			<part name="leader_name" type="S"/>
+			<part name="clan_crest_id" type="d"/>
+			<part name="clan_level" type="d"/>
+			<part name="castle_id" type="d"/>
+			<part name="clanhall_id" type="d"/>
+			<part name="fortress_id" type="d"/>
+			<part name="rank" type="d"/>
+			<part name="reputation" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="ally_id" type="d"/>
+			<part name="ally_name" type="S"/>
+			<part name="ally_crest_id" type="d"/>
+			<part name="at_war" type="d"/>
+			<part name="territory_side" type="d"/>
+			<part name="members_size" type="d" id="0"/>
 			<for id="0">
-				<part name="name" type="S" />
-				<part name="level" type="d" />
-				<part name="class_id" type="d" />
-				<part name="sex" type="d" />
-				<part name="race" type="d" />
-				<part name="online" type="d" />
-				<part name="sponsor" type="d" />
+				<part name="name" type="S"/>
+				<part name="level" type="d"/>
+				<part name="class_id" type="d"/>
+				<part name="sex" type="d"/>
+				<part name="race" type="d"/>
+				<part name="online" type="d"/>
+				<part name="sponsor" type="d"/>
 			</for>
 		</packet>
 		<packet id="97" name="GMViewSkillInfoPacket"/>
@@ -1181,18 +1180,18 @@
 		<packet id="C6" name="SurrenderAllianceWarPacket"/>
 		<packet id="C8" name="PackageToListPacket"/>
 		<packet id="C9" name="CastleSiegeInfo">
-			<part name="id" type="d" />
-			<part name="leader" type="d" />
-			<part name="owner-object-id" type="d" />
-			<part name="owner-name" type="S" />
-			<part name="leader-name" type="S" />
-			<part name="ally-object-id" type="d" />
-			<part name="ally-name" type="S" />
-			<part name="current-date" type="d" />
-			<part name="siege-date" type="d" />
-			<part name="select-time-size" type="d" id="0" />
+			<part name="id" type="d"/>
+			<part name="leader" type="d"/>
+			<part name="owner-object-id" type="d"/>
+			<part name="owner-name" type="S"/>
+			<part name="leader-name" type="S"/>
+			<part name="ally-object-id" type="d"/>
+			<part name="ally-name" type="S"/>
+			<part name="current-date" type="d"/>
+			<part name="siege-date" type="d"/>
+			<part name="select-time-size" type="d" id="0"/>
 			<for id="0">
-				<part name="select-date" type="d" />
+				<part name="select-date" type="d"/>
 			</for>
 		</packet>
 		<packet id="CA" name="CastleSiegeAttackerList">
@@ -1256,8 +1255,8 @@
 		<packet id="EB" name="ObserverStartPacket"/>
 		<packet id="EC" name="ObserverEndPacket"/>
 		<packet id="ED" name="ChairSitPacket">
-			<part name="object_id" type="d" />
-			<part name="static_object_id" type="d" />
+			<part name="object_id" type="d"/>
+			<part name="static_object_id" type="d"/>
 		</packet>
 		<packet id="EE" name="HennaEquipListPacket"/>
 		<packet id="EF" name="SellListProcure"/>
@@ -1395,27 +1394,27 @@
 		<packet id="FE;007C" name="ExOlympiadModePacket"/>
 		<packet id="FE;007D" name="ExShowFortressMapInfo"/>
 		<packet id="FE;007E" name="ExPVPMatchRecord" extended="true">
-			<part name="state" type="d" /> <!--0 - preparing, 1 - start-->
-			<part name="?" type="d" />
-			<part name="?" type="d" />
-			<part name="blue_kills" type="d" />
-			<part name="red_kills" type="d" />
+			<part name="state" type="d"/><!--0 - start, 1 - update, 2 - finish-->
+			<part name="win-index" type="d"/>
+			<part name="loose-index" type="d"/>
+			<part name="blue_kills" type="d"/>
+			<part name="red_kills" type="d"/>
 			<part name="blue_size" type="d" id="0"/>
 			<for id="0">
-				<part name="name" type="S" />
-				<part name="kills" type="d" />
-				<part name="deaths" type="d" />
+				<part name="name" type="S"/>
+				<part name="kills" type="d"/>
+				<part name="deaths" type="d"/>
 			</for>
 			<part name="red_size" type="d" id="1"/>
 			<for id="1">
-				<part name="name" type="S" />
-				<part name="kills" type="d" />
-				<part name="deaths" type="d" />
+				<part name="name" type="S"/>
+				<part name="kills" type="d"/>
+				<part name="deaths" type="d"/>
 			</for>
 		</packet>
 		<packet id="FE;007F" name="ExPVPMatchUserDie" extended="true">
-			<part name="blue_kills" type="d" />
-			<part name="red_kills" type="d" />
+			<part name="blue_kills" type="d"/>
+			<part name="red_kills" type="d"/>
 		</packet>
 		<packet id="FE;0080" name="ExPrivateStoreSetWholeMsg"/>
 		<packet id="FE;0081" name="ExPutEnchantTargetItemResult"/>
