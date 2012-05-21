@@ -19,7 +19,7 @@
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="6a76865f-32f4-405e-8d83-898f8fe5fd21" name="Default" comment="+ added L2ProductListener">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_final.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_final.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
     </list>
     <ignored path="jn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,73 +85,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="l2game_awakening.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="845" column="38" selection-start="30290" selection-end="30293" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="l2game_final.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1396" column="81" selection-start="51512" selection-end="51512" vertical-scroll-proportion="9.353795">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Protocol.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/com/jds/jn/protocol/Protocol.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="13" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProtocolParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/com/jds/jn/data/xml/parser/ProtocolParser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="34" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RValues.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/com/jds/jn/config/RValues.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="144" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="l2game_highfive5.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="l2game_highfive5.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1275" column="51" selection-start="43077" selection-end="43077" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/com/jds/jn/classes/CLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="30" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="L2AbstractListener.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2AbstractListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="38" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
+            <state line="2148" column="32" selection-start="75414" selection-end="75414" vertical-scroll-proportion="0.43638393">
               <folding />
             </state>
           </provider>
@@ -178,11 +115,11 @@
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2AcquireSkillListener.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_awakening.xml" />
-        <option value="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
         <option value="$PROJECT_DIR$/java/com/jds/jn/config/RValues.java" />
         <option value="$PROJECT_DIR$/java/com/jds/jn/classes/CLoader.java" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2AbstractListener.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_final.xml" />
+        <option value="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
       </list>
     </option>
   </component>
@@ -196,7 +133,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="32" />
-    <option name="width" value="1932" />
+    <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -243,22 +180,54 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="jn" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resource" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protocols" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -269,6 +238,16 @@
             <PATH_ELEMENT USER_OBJECT="Root">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jn" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -292,9 +271,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PublishConfig" persistUploadOnCheckin="false" />
   <component name="RecentsManager">
@@ -450,7 +429,7 @@
       <option name="MAIN_CLASS_NAME" value="com.jds.jn.Jn" />
       <option name="VM_PARAMETERS" value="-Xmx4G" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/resource" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/resource/bin" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="F:/Binaries/jdk_6_18_x32" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -648,7 +627,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1932" height="1056" extended-state="0" />
+    <frame x="-8" y="32" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -659,11 +638,12 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43213898" sideWeight="0.0" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.49791667" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Kotlin" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995194" sideWeight="0.39805827" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32724425" sideWeight="0.567861" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32708332" sideWeight="0.69381106" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3061889" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="132" width="1736" height="856" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28333333" sideWeight="0.67089945" order="2" side_tool="false" content_ui="tabs" />
@@ -861,11 +841,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-8.481027" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="845" column="38" selection-start="30290" selection-end="30293" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="1789" column="44" selection-start="67872" selection-end="67881" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/com/jds/jn/protocol/Protocol.java">
@@ -873,36 +851,34 @@
         <state line="29" column="13" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/data/xml/parser/ProtocolParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="34" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/com/jds/jn/config/RValues.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="144" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1275" column="51" selection-start="43077" selection-end="43077" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/com/jds/jn/classes/CLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="30" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.0" />
+        <state line="77" column="30" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.16517857" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2AbstractListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="38" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" />
+        <state line="12" column="38" selection-start="309" selection-end="309" vertical-scroll-proportion="0.018973215" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1396" column="81" selection-start="51512" selection-end="51512" vertical-scroll-proportion="9.353795">
+        <state line="157" column="56" selection-start="6181" selection-end="6181" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/data/xml/parser/ProtocolParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="34" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2148" column="32" selection-start="75414" selection-end="75414" vertical-scroll-proportion="0.43638393">
           <folding />
         </state>
       </provider>

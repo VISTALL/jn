@@ -2139,6 +2139,7 @@
 		</packet>
 		<packet id="FE;00C2" name="ExChangeClientEffectInfo">
 			<part name="?" type="d"/>
+			<part name="?" type="d"/>
 			<part name="stage" type="d"/>
 		</packet>
 		<packet id="FE;00C4" name="ExReplyHandOverPartyMaster">
