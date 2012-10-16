@@ -24,6 +24,98 @@
 		</for>
 	</macro>
 	<packetfamilly way="SERVER">
+		<packet id="09" name="CharacterSelectionInfo">
+			<part name="size" type="d" id="0"/>
+			<part name="0x07" type="d"/>
+			<part name="cant create" type="c"/>
+			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<for id="0">
+				<part name="name" type="S"/>
+				<part name="charId" type="d"/>
+				<part name="login" type="S"/>
+				<part name="sessionId" type="d"/>
+				<part name="clanId" type="d"/>
+				<part name="?" type="d"/>
+				<part name="sex" type="d"/>
+				<part name="race" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="active" type="d"/>
+				<part name="x" type="d"/>
+				<part name="y" type="d"/>
+				<part name="z" type="d"/>
+				<part name="cur_hp" type="D"/>
+				<part name="cur_mp" type="D"/>
+				<part name="sp" type="d"/>
+				<part name="exp" type="Q"/>
+				<part name="?" type="D"/>
+				<part name="level" type="d"/>
+				<part name="karma" type="d"/>
+				<part name="pk kills" type="d"/>
+				<part name="pvp kills" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="item_id-UNDER" type="d"/>
+				<part name="item_id-REAR" type="d"/>
+				<part name="item_id-LEAR" type="d"/>
+				<part name="item_id-NECK" type="d"/>
+				<part name="item_id-RFINGER" type="d"/>
+				<part name="item_id-LFINGER" type="d"/>
+				<part name="item_id-HEAD" type="d"/>
+				<part name="item_id-RHAND" type="d"/>
+				<part name="item_id-LHAND" type="d"/>
+				<part name="item_id-GLOVES" type="d"/>
+				<part name="item_id-CHEST" type="d"/>
+				<part name="item_id-LEGS" type="d"/>
+				<part name="item_id-FEET" type="d"/>
+				<part name="item_id-BACK" type="d"/>
+				<part name="item_id-LRHAND" type="d"/>
+				<part name="item_id-HAIR" type="d"/>
+				<part name="item_id-DHAIR" type="d"/>
+				<part name="item_id-RBRACELET" type="d"/>
+				<part name="item_id-LBRACELET" type="d"/>
+				<part name="item_id-DECO1" type="d"/>
+				<part name="item_id-DECO2" type="d"/>
+				<part name="item_id-DECO3" type="d"/>
+				<part name="item_id-DECO4" type="d"/>
+				<part name="item_id-DECO5" type="d"/>
+				<part name="item_id-DECO6" type="d"/>
+				<part name="item_id-BACK" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="hair_style" type="d"/>
+				<part name="hair_color" type="d"/>
+				<part name="face" type="d"/>
+				<part name="maxHP" type="D"/>
+				<part name="maxMP" type="D"/>
+				<part name="deleteTimer" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="active" type="d"/>
+				<part name="enchant" type="c"/>
+				<part name="aurgmentationId" type="d"/>
+				<part name="transformId" type="d"/>
+				<part name="npcId" type="d"/>
+				<part name="level" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="maxHP" type="D"/>
+				<part name="currentHP" type="D"/>
+				<part name="vitality" type="d"/>
+				<part name="active" type="d"/>
+			</for>
+		</packet>
 		<packet id="32" name="UserInfo">
 			<part name="x" type="d"/>
 			<part name="y" type="d"/>
