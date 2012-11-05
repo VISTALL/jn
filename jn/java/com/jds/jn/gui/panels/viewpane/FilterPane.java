@@ -136,12 +136,16 @@ public class FilterPane extends HiddenPanel
 	public void drawThis()
 	{
 		if(_pane == null)
+		{
 			return;
+		}
 
 		_formats.clear();
 
 		if(_pane.getSession() == null)
+		{
 			return;
+		}
 
 		Protocol currentProto = _pane.getSession().getProtocol();
 		//
@@ -207,7 +211,9 @@ public class FilterPane extends HiddenPanel
 			{
 				i++;
 				if(i == text.length())
+				{
 					break;
+				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -232,4 +238,5 @@ public class FilterPane extends HiddenPanel
 	{
 		return main;
 	}
+
 }

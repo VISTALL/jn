@@ -107,7 +107,9 @@ public class PacketForm extends JFrame
 
 				EnterNameDialog dialog = new EnterNameDialog(PacketForm.this, Bundle.getString("EnterName"));
 				if(!dialog.showToWrite())
+				{
 					return;
+				}
 
 				PartContainer pC = getPacket().getPacketInfo().getDataFormat().getMainBlock();
 				PartType partType = PartTypeManager.getInstance().getType(getPartBox().getSelectedItem().toString());
@@ -305,7 +307,9 @@ public class PacketForm extends JFrame
 		{
 			String color = getPacket().getColor(i);
 			if(color == null)
+			{
 				color = BASE_COLOR;
+			}
 
 			byte b = data[i];
 
@@ -314,9 +318,13 @@ public class PacketForm extends JFrame
 			String nextColor = (i != (len - 1)) ? getPacket().getColor(i + 1) : null;
 
 			if(nextColor != null && nextColor.equals(color))
+			{
 				addStyledText(" ", color);
+			}
 			else
+			{
 				addStyledText(" ", BASE_COLOR);
+			}
 		}
 
 		addLineBreaksToHexDump(data);
@@ -546,7 +554,9 @@ public class PacketForm extends JFrame
 			{
 				i++;
 				if(i == text.length())
+				{
 					break;
+				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -571,4 +581,5 @@ public class PacketForm extends JFrame
 	{
 		return root;
 	}
+
 }

@@ -28,7 +28,7 @@
 		<echo message="compile: ${jpcap.jar}" />
 		<delete dir="${build.classes}"/>
 		<delete file="${build}/${jpcap.jar}"/>
-		<delete file="${lib}/${jpcap.jar}"/>
+		<delete file="/dist/libs/jpcap.jar"/>
 
 		<antcall target="make"/>
 
@@ -36,7 +36,7 @@
 			<classpath refid="classpath"/>
 		</javac>
 
-		<jar destfile="${lib}/${jpcap.jar}">
+		<jar destfile="/dist/libs/jpcap.jar">
 			<fileset dir="${build.classes}"/>
 			<manifest>
 				<attribute name="Company" value="J Develop Station"/>

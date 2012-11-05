@@ -127,7 +127,9 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 		});
 
 		if(RValues.LAST_WINDOW_POSITION_X.asInt() > 0 && RValues.LAST_WINDOW_POSITION_Y.asInt() > 0)
+		{
 			setLocation(RValues.LAST_WINDOW_POSITION_X.asInt(), RValues.LAST_WINDOW_POSITION_Y.asInt());
+		}
 	}
 
 	@Override
@@ -135,7 +137,9 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 	{
 		super.setVisible(b);
 		if(b && Platform.isWindows7() && _hwnd == null)
+		{
 			_hwnd = Pointer.pointerToAddress(JAWTUtils.getNativePeerHandle(this), Integer.class, null);
+		}
 	}
 
 	private void initTray()
@@ -245,7 +249,9 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 	public void closeSessionTab(ViewPane vp)
 	{
 		if(vp == null || vp.getSession() == null)
+		{
 			return;
+		}
 
 		getRibbon().removeContextualTaskGroup(vp.getSession().getRibbonGroup());
 		getViewTabbedPane().remove(vp);
@@ -373,4 +379,5 @@ public class MainForm extends JRibbonFrame implements JWin7ProgressBar.WindowsCo
 	{
 		return _mainPanel;
 	}
+
 }

@@ -9,6 +9,7 @@
       <w>popup</w>
       <w>productlist</w>
       <w>resizable</w>
+      <w>targetable</w>
     </words>
   </dictionary>
 </component>

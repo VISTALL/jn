@@ -137,13 +137,13 @@ public class DecryptedPacket implements IPacket
 					int forBlockSize = forPart.getModelBlock().getLength();
 					if (size * forBlockSize > buff.remaining())
 					{
-						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" +/* part.getContainingFormat().getPacketInfo() +*/ "]";
 						return false;
 					}
 				}
 				else if (size > buff.remaining())
 				{
-					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + /*part.getContainingFormat().getPacketInfo() + */"]";
 					return false;
 				}
 				DataForPart dataForPart = new DataForPart(dataNode, forPart);

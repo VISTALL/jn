@@ -137,7 +137,9 @@ public class InfoPane extends HiddenPanel
 			{
 				i++;
 				if(i == text.length())
+				{
 					break;
+				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -162,4 +164,5 @@ public class InfoPane extends HiddenPanel
 	{
 		return root;
 	}
+
 }

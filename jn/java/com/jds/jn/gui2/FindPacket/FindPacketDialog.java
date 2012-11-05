@@ -52,11 +52,15 @@ public class FindPacketDialog extends JDialog
 		public void onFinish(Session session, File file)
 		{
 			if(session == null)
+			{
 				return;
+			}
 
 			List<DecryptedPacket> tempList = new ArrayList<DecryptedPacket>(session.getCryptedPackets().size());
 			for(CryptedPacket cryptedPacket : session.getCryptedPackets())
+			{
 				tempList.add(session.decode(cryptedPacket));
+			}
 			session.receiveDecryptedPackets(tempList);
 
 
@@ -65,7 +69,9 @@ public class FindPacketDialog extends JDialog
 			for(DecryptedPacket packet : packets)
 			{
 				if(packet.getPacketInfo() == packetInfo)
+				{
 					((FPTableModel) _packetTable.getModel()).addRow(file.getName(), packet);
+				}
 			}
 		}
 	};
@@ -85,8 +91,10 @@ public class FindPacketDialog extends JDialog
 
 		_chooseFiles.setText(Bundle.getString("SelectFiles"));
 		for(ListenerType type : ListenerType.VALUES)
+		{
 			_listeners.addItem(type);
-	
+		}
+
 		_listeners.setSelectedItem(null);
 		_listeners.addActionListener(new ActionListener()
 		{
@@ -97,10 +105,16 @@ public class FindPacketDialog extends JDialog
 				ListenerType type = (ListenerType) _listeners.getSelectedItem();
 				Protocol protocol = ProtocolHolder.getInstance().getProtocol(type);
 				if(protocol == null)
+				{
 					return;
+				}
 				for(PacketFamilly familly : protocol.getFamilies())
+				{
 					for(PacketInfo info : familly.getFormats().values())
+					{
 						_packetList.addItem(info);
+					}
+				}
 			}
 		});
 
@@ -217,4 +231,5 @@ public class FindPacketDialog extends JDialog
 	{
 		return contentPane;
 	}
+
 }

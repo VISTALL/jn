@@ -161,11 +161,15 @@ public class NetworkSettingsDialog extends JDialog
 		_profiles.removeAllItems();
 
 		for(NetworkProfile profile : NetworkProfiles.getInstance().profiles())
+		{
 			_profiles.addItem(profile);
+		}
 
 		NetworkProfile prof = NetworkProfiles.getInstance().getProfile(RValues.ACTIVE_PROFILE.asString());
 		if(prof != null)
+		{
 			_profiles.setSelectedItem(prof);
+		}
 	}
 
 	public void save()
@@ -174,7 +178,9 @@ public class NetworkSettingsDialog extends JDialog
 
 		NetworkProfile prof = (NetworkProfile) _profiles.getSelectedItem();
 		if(prof == null)
+		{
 			return;
+		}
 
 		for(Component component : _setTabPane.getComponents())
 		{
@@ -315,4 +321,5 @@ public class NetworkSettingsDialog extends JDialog
 	{
 		return contentPane;
 	}
+
 }

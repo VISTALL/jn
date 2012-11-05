@@ -437,11 +437,11 @@
 			<part name="isPet" type="d"/>
 			<part name="pvp_flag" type="d"/>
 			<part name="karma" type="d"/>
-			<macro id="abnormal-macro" />
 			<part name="clan_id" type="d"/>
 			<part name="clan_crest_id" type="d"/>
 			<part name="ally_id" type="d"/>
 			<part name="ally_crest_id" type="d"/>
+			<part name="?" type="d"/>
 			<part name="?" type="c"/>
 			<part name="team" type="c"/>
 			<part name="col_radius" type="D"/>
@@ -462,7 +462,8 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d" />
-			<part name="?" type="d" />
+			<part name="?" type="D" />
+			<macro id="abnormal-macro" />
 		</packet>
 		<packet id="31" name="CharInfo">
 			<part name="x" type="d"/>
@@ -521,8 +522,14 @@
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
 			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
+			<part name="?" type="d"/>
 			<part name="pvpFlag" type="d"/>
 			<part name="karma" type="d"/>
+			<part name="m-evasion" type="d"/>
+			<part name="m-accuracy" type="d"/>
+			<part name="m-crit-rate" type="d"/>
 			<part name="mAttackSpeed" type="d"/>
 			<part name="pAtttackSpeed" type="d"/>
 			<part name="?" type="d"/>
@@ -599,6 +606,12 @@
 			<part name="?" type="d"/>
 			<macro id="abnormal-macro" />
 			<part name="?" type="c"/>
+		</packet>
+		<packet id="FE;0060" name="ExBasicActionList">
+			<part name="size" type="d" id="0"/>
+			<for id="0">
+				<part name="actionId" type="d"/>
+			</for>
 		</packet>
 	</packetfamilly>
 </protocol>

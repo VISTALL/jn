@@ -64,8 +64,18 @@ public class FormForSearch extends JPanel
 	private JLabel _statusLabel;
 	private ViewPane _pane;
 
-	private static final String[] MATH_OPERATORS = {"==", "!=", ">", ">=", "<", "<="};
-	private static final String[] STRING_OPERATORS = {"equals", "equalsIgnoreCase"};
+	private static final String[] MATH_OPERATORS = {
+			"==",
+			"!=",
+			">",
+			">=",
+			"<",
+			"<="
+	};
+	private static final String[] STRING_OPERATORS = {
+			"equals",
+			"equalsIgnoreCase"
+	};
 
 	private Map<String, PacketInfo> _formats = new HashMap<String, PacketInfo>();
 
@@ -86,8 +96,12 @@ public class FormForSearch extends JPanel
 
 				Set<String> set = new TreeSet<String>();
 				for(PacketInfo packetInfo : _formats.values())
+				{
 					if(packetInfo.getName().startsWith(_findText.getText()))
+					{
 						set.add(packetInfo.getName());
+					}
+				}
 
 				if(!set.isEmpty())
 				{
@@ -113,13 +127,17 @@ public class FormForSearch extends JPanel
 						_menuFindSimple.add(item);
 
 						if(++i >= 10)
+						{
 							break;
+						}
 					}
 
 					_menuFindSimple.show(_findText, 0, _findText.getY() + _findText.getHeight());
 				}
 				else
+				{
 					_menuFindSimple.setVisible(false);
+				}
 
 				checkPartFields();
 			}
@@ -173,7 +191,9 @@ public class FormForSearch extends JPanel
 			Part part = (Part) selected;
 
 			for(String str : (part.getType().getValueType() == PartType.PartValueType.STRING ? STRING_OPERATORS : MATH_OPERATORS))
+			{
 				_operatorSelect.addItem(str);
+			}
 
 			_operatorSelect.setSelectedIndex(0);
 
@@ -193,13 +213,18 @@ public class FormForSearch extends JPanel
 		{
 			PacketInfo packetInfo = _formats.get(_findText.getText());
 			if(packetInfo == null)
+			{
 				break checkLoop;
+			}
 
 			Object selectedPart = _partSelect.getSelectedItem();
 			if(!(selectedPart instanceof Part))
+			{
 				break checkLoop;
+			}
 
 			if(((Part) selectedPart).getType().getValueType() == PartType.PartValueType.DIGITAL)
+			{
 				try
 				{
 					Long.decode(_operatorEqual.getText());
@@ -208,6 +233,7 @@ public class FormForSearch extends JPanel
 				{
 					passed = false;
 				}
+			}
 		}
 
 		_searchBtn.setEnabled(passed);
@@ -225,7 +251,9 @@ public class FormForSearch extends JPanel
 			for(Part part : packetInfo.getDataFormat().getMainBlock().getParts())
 			{
 				if(part instanceof ForPart)
+				{
 					continue;
+				}
 				_partSelect.addItem(part);
 			}
 		}
@@ -241,9 +269,13 @@ public class FormForSearch extends JPanel
 		if(selected == null || selected == NONE)
 		{
 			if(_pane.getDecryptedPacketListPane().getModel().searchPacket(_pane, _findText.getText()))
+			{
 				setStatusLabel("Found", Color.GREEN);
+			}
 			else
+			{
 				setStatusLabel("NotFound", Color.RED);
+			}
 		}
 		else
 		{
@@ -259,7 +291,9 @@ public class FormForSearch extends JPanel
 				setStatusLabel("Found", Color.GREEN);
 			}
 			else
+			{
 				setStatusLabel("NotFound", Color.RED);
+			}
 		}
 	}
 
@@ -268,7 +302,9 @@ public class FormForSearch extends JPanel
 		_formats.clear();
 
 		if(_pane.getSession() == null)
+		{
 			return;
+		}
 
 		Protocol currentProto = _pane.getSession().getProtocol();
 		getAllFormatsName(currentProto);
@@ -277,9 +313,15 @@ public class FormForSearch extends JPanel
 	private void getAllFormatsName(Protocol p)
 	{
 		for(PacketFamilly a : p.getFamilies())
+		{
 			if(a != null)
+			{
 				for(PacketInfo pi : a.getFormats().values())
+				{
 					_formats.put(pi.getName(), pi);
+				}
+			}
+		}
 	}
 
 	private void createUIComponents()
@@ -296,7 +338,9 @@ public class FormForSearch extends JPanel
 			_statusLabel.setForeground(color);
 		}
 		else
+		{
 			_statusLabel.setText("");
+		}
 	}
 
 	private int search0(boolean prev)
@@ -305,7 +349,9 @@ public class FormForSearch extends JPanel
 		NetworkProfile profile = NetworkProfiles.getInstance().active();
 
 		if(session == null || profile == null)
+		{
 			return -1;
+		}
 
 		List<DecryptedPacket> packets = session.getDecryptPackets();
 
@@ -316,7 +362,9 @@ public class FormForSearch extends JPanel
 
 		Object value = null;
 		if(selectedPart.getType().getValueType() == PartType.PartValueType.STRING)
+		{
 			value = _operatorEqual.getText();
+		}
 		else
 		{
 			try
@@ -332,18 +380,24 @@ public class FormForSearch extends JPanel
 		int prevResult = prev ? -1 : search0(true);
 		int startIndex = _pane.getDecryptedPacketListPane().getPacketTable().getSelectedRow();
 		if(startIndex == prevResult)
+		{
 			startIndex++;
+		}
 
 		for(int i = startIndex; i < size; i++)
 		{
 			DecryptedPacket gp = packets.get(i);
 			PacketInfo format = gp.getPacketInfo();
 			if(format != packetInfo || gp.hasError())
+			{
 				continue;
+			}
 
 			DataTreeNode p = gp.getRootNode().getPartByName(selectedPart.getName());
 			if(!(p instanceof VisualValuePart))
+			{
 				continue;
+			}
 
 			Object partValue = ((VisualValuePart) p).getValue();
 
@@ -356,27 +410,39 @@ public class FormForSearch extends JPanel
 					{
 						case 0: // ==
 							if(selectedLongValue.equals(longValue))
+							{
 								return i;
+							}
 							break;
 						case 1: // !=
 							if(!selectedLongValue.equals(longValue))
+							{
 								return i;
+							}
 							break;
 						case 2: // >
 							if(selectedLongValue > longValue)
+							{
 								return i;
+							}
 							break;
 						case 3: // >=
 							if(selectedLongValue > longValue)
+							{
 								return i;
+							}
 							break;
 						case 4: // <
 							if(selectedLongValue < longValue)
+							{
 								return i;
+							}
 							break;
 						case 5: // <=
 							if(selectedLongValue <= longValue)
+							{
 								return i;
+							}
 							break;
 					}
 					break;
@@ -385,11 +451,15 @@ public class FormForSearch extends JPanel
 					{
 						case 0: // equals
 							if(value.equals(partValue))
+							{
 								return i;
+							}
 							break;
 						case 1: // equalsIgnoreCase
 							if(((String) value).equalsIgnoreCase((String) partValue))
+							{
 								return i;
+							}
 							break;
 					}
 					break;
@@ -472,7 +542,9 @@ public class FormForSearch extends JPanel
 			{
 				i++;
 				if(i == text.length())
+				{
 					break;
+				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -497,4 +569,5 @@ public class FormForSearch extends JPanel
 	{
 		return main;
 	}
+
 }

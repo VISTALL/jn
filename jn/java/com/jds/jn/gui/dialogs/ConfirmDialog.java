@@ -100,7 +100,10 @@ public class ConfirmDialog extends JDialog
 		setSize(400, 100);
 		setResizable(false);
 		setVisible(true);
-		return new boolean[]{OK, !_donTShowNextCheckBox.isSelected()};
+		return new boolean[]{
+				OK,
+				!_donTShowNextCheckBox.isSelected()
+		};
 	}
 
 
@@ -181,7 +184,9 @@ public class ConfirmDialog extends JDialog
 			{
 				i++;
 				if(i == text.length())
+				{
 					break;
+				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -206,4 +211,5 @@ public class ConfirmDialog extends JDialog
 	{
 		return content;
 	}
+
 }

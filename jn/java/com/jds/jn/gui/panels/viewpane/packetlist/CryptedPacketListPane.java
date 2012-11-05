@@ -50,187 +50,6 @@ import com.jds.nio.buffer.NioBuffer;
  */
 public class CryptedPacketListPane extends PacketListPanel<CryptedPacket>
 {
-	private class MouseListenerImpl extends MouseAdapter
-	{
-		@Override
-		public void mouseClicked(MouseEvent e)
-		{
-			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
-			{
-				int row = _packetList.getSelectedRow();
-				CryptedPacket packet = _model.getPacket(row);
-				if(packet == null)
-					return;
-
-				JTextPane pane = new JTextPane();
-				pane.setText(Util.printData(packet.getAllData()));
-
-				JPopupMenu m = new JPopupMenu();
-
-				m.add(pane);
-
-				m.show(_packetList, e.getX(), e.getY());
-			}
-		}
-	}
-
-	private CryptedPacketListModel _model = new CryptedPacketListModel();
-
-	private JScrollPane _packetScrollPane;
-	private JTable _packetList;
-	private JPanel _rootPane;
-	private JButton _decodeButton;
-	private JButton _decodeAllButton;
-	private JButton _sendServerListButton;
-	private ViewPane _pane;
-
-	public CryptedPacketListPane(ViewPane pane)
-	{
-		_pane = pane;
-		$$$setupUI$$$();
-
-		_decodeAllButton.addActionListener(new DecodeAllActionListener(this));
-
-		_sendServerListButton.addActionListener(new ActionListener()
-		{
-
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				NetworkProfile prof = NetworkProfiles.getInstance().active();
-				if(prof == null)
-					return;
-
-				NetworkProfilePart p = prof.getPart(ListenerType.Auth_Server);
-				if(p.getServerList() == null)
-					return;
-
-				PacketStructureParser parser = new PacketStructureParser(p.getServerList());
-				parser.parse();
-
-				NioBuffer buf = parser.getBuffer();
-
-				Session session = getViewPane().getSession();
-
-				DecryptedPacketListModel model = getViewPane().getDecryptedPacketListPane().getModel();
-
-				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER, session);
-				if(bytes == null)
-					return;
-
-				final DecryptedPacketListPane pane = getViewPane().getDecryptedPacketListPane();
-
-				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, bytes, System.currentTimeMillis()));
-				model.addRow(-1, datapacket, true);
-				session.receiveQuitPacket(datapacket, true, true);
-
-				try
-				{
-					Proxy proxy = (Proxy) ListenerSystem.getInstance().getMethod(ReceiveType.PROXY, ListenerType.Auth_Server);
-					proxy.getClientSession().put(NioBuffer.wrap(bytes));
-				}
-				catch(Exception e1)
-				{
-					e1.printStackTrace();
-				}
-
-				getViewPane().updateInfo(session);
-			}
-		});
-
-
-		_decodeButton.addActionListener(new ActionListener()
-		{
-			@Override
-			public void actionPerformed(ActionEvent e)
-			{
-				Session session = getViewPane().getSession();
-				NetworkProfile profile = NetworkProfiles.getInstance().active();
-
-				if(session.getProtocol() == null || profile == null)
-					return;
-
-				final DecryptedPacketListPane pane = getViewPane().getDecryptedPacketListPane();
-				DecryptedPacketListModel model = getViewPane().getDecryptedPacketListPane().getModel();
-				if(_packetList.getSelectedRow() == -1)
-				{
-					return;
-				}
-				CryptedPacket packet = _model.getPacket(_packetList.getSelectedRow());
-				if(packet.isDecrypted())
-					return;
-
-				DecryptedPacket datapacket = session.decode(packet);
-
-				if(datapacket.getName() != null && datapacket.getPacketInfo().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
-					setEnableServerListButton(true);
-
-				if(datapacket.getPacketInfo() != null)
-				{
-					NetworkProfilePart part = profile.getPart(session.getListenerType());
-					if(part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
-						return;
-				}
-
-				session.receiveQuitPacket(datapacket, true, true);
-
-				model.addRow(-1, datapacket, true);
-
-				getViewPane().updateInfo(session);
-			}
-		});
-	}
-
-	private void createUIComponents()
-	{
-		_rootPane = this;
-		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-		_packetList = new JTable(_model);
-		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		_packetList.setDefaultRenderer(Object.class, new CryptedPacketTableRender());
-		_packetList.getColumnModel().getColumn(0).setMaxWidth(50); //type
-		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
-		_packetList.getColumnModel().getColumn(2).setMaxWidth(300);  //
-		_packetList.addMouseListener(new MouseListenerImpl());
-	}
-
-	@Override
-	public CryptedPacketListModel getModel()
-	{
-		return _model;
-	}
-
-	@Override
-	public void setEnabled(boolean b)
-	{
-		for(Component c : getComponents())
-			if(c != null)
-				c.setEnabled(b);
-
-		super.setEnabled(b);
-	}
-
-	public void setEnableServerListButton(boolean b)
-	{
-		_sendServerListButton.setEnabled(b);
-		_sendServerListButton.setVisible(b);
-	}
-
-	public JTable getPacketTable()
-	{
-		return _packetList;
-	}
-
-	public JScrollPane getScroll()
-	{
-		return _packetScrollPane;
-	}
-
-	public ViewPane getViewPane()
-	{
-		return _pane;
-	}
-
 	/**
 	 * Method generated by IntelliJ IDEA GUI Designer
 	 * >>> IMPORTANT!! <<<
@@ -288,7 +107,9 @@ public class CryptedPacketListPane extends PacketListPanel<CryptedPacket>
 			{
 				i++;
 				if(i == text.length())
+				{
 					break;
+				}
 				if(!haveMnemonic && text.charAt(i) != '&')
 				{
 					haveMnemonic = true;
@@ -305,4 +126,206 @@ public class CryptedPacketListPane extends PacketListPanel<CryptedPacket>
 			component.setDisplayedMnemonicIndex(mnemonicIndex);
 		}
 	}
+
+	private class MouseListenerImpl extends MouseAdapter
+	{
+		@Override
+		public void mouseClicked(MouseEvent e)
+		{
+			if(e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1)
+			{
+				int row = _packetList.getSelectedRow();
+				CryptedPacket packet = _model.getPacket(row);
+				if(packet == null)
+				{
+					return;
+				}
+
+				JTextPane pane = new JTextPane();
+				pane.setText(Util.printData(packet.getAllData()));
+
+				JPopupMenu m = new JPopupMenu();
+
+				m.add(pane);
+
+				m.show(_packetList, e.getX(), e.getY());
+			}
+		}
+	}
+
+	private CryptedPacketListModel _model = new CryptedPacketListModel();
+
+	private JScrollPane _packetScrollPane;
+	private JTable _packetList;
+	private JPanel _rootPane;
+	private JButton _decodeButton;
+	private JButton _decodeAllButton;
+	private JButton _sendServerListButton;
+	private ViewPane _pane;
+
+	public CryptedPacketListPane(ViewPane pane)
+	{
+		_pane = pane;
+		$$$setupUI$$$();
+
+		_decodeAllButton.addActionListener(new DecodeAllActionListener(this));
+
+		_sendServerListButton.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				NetworkProfile prof = NetworkProfiles.getInstance().active();
+				if(prof == null)
+				{
+					return;
+				}
+
+				NetworkProfilePart p = prof.getPart(ListenerType.Auth_Server);
+				if(p.getServerList() == null)
+				{
+					return;
+				}
+
+				PacketStructureParser parser = new PacketStructureParser(p.getServerList());
+				parser.parse();
+
+				NioBuffer buf = parser.getBuffer();
+
+				Session session = getViewPane().getSession();
+
+				DecryptedPacketListModel model = getViewPane().getDecryptedPacketListPane().getModel();
+
+				byte[] bytes = session.getCrypt().encrypt(buf.array(), PacketType.SERVER, session);
+				if(bytes == null)
+				{
+					return;
+				}
+
+				final DecryptedPacketListPane pane = getViewPane().getDecryptedPacketListPane();
+
+				DecryptedPacket datapacket = session.decode(new CryptedPacket(PacketType.SERVER, bytes, System.currentTimeMillis()));
+				model.addRow(-1, datapacket, true);
+				session.receiveQuitPacket(datapacket, true, true);
+
+				try
+				{
+					Proxy proxy = (Proxy) ListenerSystem.getInstance().getMethod(ReceiveType.PROXY, ListenerType.Auth_Server);
+					proxy.getClientSession().put(NioBuffer.wrap(bytes));
+				}
+				catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+
+				getViewPane().updateInfo(session);
+			}
+		});
+
+
+		_decodeButton.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				Session session = getViewPane().getSession();
+				NetworkProfile profile = NetworkProfiles.getInstance().active();
+
+				if(session.getProtocol() == null || profile == null)
+				{
+					return;
+				}
+
+				final DecryptedPacketListPane pane = getViewPane().getDecryptedPacketListPane();
+				DecryptedPacketListModel model = getViewPane().getDecryptedPacketListPane().getModel();
+				if(_packetList.getSelectedRow() == -1)
+				{
+					return;
+				}
+				CryptedPacket packet = _model.getPacket(_packetList.getSelectedRow());
+				if(packet.isDecrypted())
+				{
+					return;
+				}
+
+				DecryptedPacket datapacket = session.decode(packet);
+
+				if(datapacket.getName() != null && datapacket.getPacketInfo().isServerList() && session.getMethod() != null && session.getListenerType() == ListenerType.Auth_Server)
+				{
+					setEnableServerListButton(true);
+				}
+
+				if(datapacket.getPacketInfo() != null)
+				{
+					NetworkProfilePart part = profile.getPart(session.getListenerType());
+					if(part.isFiltredOpcode(datapacket.getPacketInfo().getOpcodeStr()))
+					{
+						return;
+					}
+				}
+
+				session.receiveQuitPacket(datapacket, true, true);
+
+				model.addRow(-1, datapacket, true);
+
+				getViewPane().updateInfo(session);
+			}
+		});
+	}
+
+	private void createUIComponents()
+	{
+		_rootPane = this;
+		setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+		_packetList = new JTable(_model);
+		_packetList.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		_packetList.setDefaultRenderer(Object.class, new CryptedPacketTableRender());
+		_packetList.getColumnModel().getColumn(0).setMaxWidth(50); //type
+		_packetList.getColumnModel().getColumn(1).setMaxWidth(115); //time
+		_packetList.getColumnModel().getColumn(2).setMaxWidth(300);  //
+		_packetList.addMouseListener(new MouseListenerImpl());
+	}
+
+	@Override
+	public CryptedPacketListModel getModel()
+	{
+		return _model;
+	}
+
+	@Override
+	public void setEnabled(boolean b)
+	{
+		for(Component c : getComponents())
+		{
+			if(c != null)
+			{
+				c.setEnabled(b);
+			}
+		}
+
+		super.setEnabled(b);
+	}
+
+	public void setEnableServerListButton(boolean b)
+	{
+		_sendServerListButton.setEnabled(b);
+		_sendServerListButton.setVisible(b);
+	}
+
+	public JTable getPacketTable()
+	{
+		return _packetList;
+	}
+
+	public JScrollPane getScroll()
+	{
+		return _packetScrollPane;
+	}
+
+	public ViewPane getViewPane()
+	{
+		return _pane;
+	}
+
 }
