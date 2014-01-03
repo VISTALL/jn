@@ -726,7 +726,6 @@
 				</switch>
 			</for>
 		</packet>
-		<packet id="86" name="QuestList"/>
 		<packet id="9e" name="PlaySound">
 			<part name="type" type="d"/>
 			<part name="sound" type="S"/>

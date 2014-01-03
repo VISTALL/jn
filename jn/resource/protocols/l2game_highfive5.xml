@@ -751,8 +751,17 @@
 		<packet id="86" name="QuestList">
 			<part name="size" type="h" id="0"/>
 			<for id="0">
-				<part name="quest_id" type="d"/>
-				<part name="cond" type="d"/>
+				<part name="quest-id" type="d" />
+				<part name="state" type="d" />
+			</for>
+
+
+			<for fixed="8">
+				<part name="!" type="h" />
+				<part name="!" type="h" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="d" />
 			</for>
 		</packet>
 		<packet id="9e" name="PlaySound">

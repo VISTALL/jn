@@ -18,33 +18,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6a76865f-32f4-405e-8d83-898f8fe5fd21" name="Default" comment="+ added L2ProductListener">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/protocols/l2game_episodian.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resource/protocols/l2game_lingvidor.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/IntelliLang.xml" afterPath="$PROJECT_DIR$/.idea/IntelliLang.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/L2Game Freya.xml" afterPath="$PROJECT_DIR$/resource/protocols/L2Game Freya.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/VISTALL.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/VISTALL.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui2/FindPacket/FindPacketDialog.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui2/FindPacket/FindPacketDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui2/PacketMassAnallize/PacketMassAnalysisDialog.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui2/PacketMassAnallize/PacketMassAnalysisDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/ConfirmDialog.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/ConfirmDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/EnterNameDialog.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/EnterNameDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/NetworkSettingsDialog.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/NetworkSettingsDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/ProgramSettingsDialog.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/dialogs/ProgramSettingsDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/forms/MainForm.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/forms/MainForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/forms/PacketForm.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/forms/PacketForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/NetworkSettingPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/NetworkSettingPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/ViewTabbedPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/ViewTabbedPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/FilterPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/FilterPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/InfoPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/InfoPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/PacketListPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/PacketListPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/CryptedPacketListPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/CryptedPacketListPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/DecryptedPacketListPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/DecryptedPacketListPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/UnknownPacketListPane.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/UnknownPacketListPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/gui/panels/viewpane/packetlist/sub/FormForSearch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/com/jds/jn/network/packets/DecryptedPacket.java" afterPath="$PROJECT_DIR$/java/com/jds/jn/network/packets/DecryptedPacket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" afterPath="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" />
     </list>
     <ignored path="jn.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -239,9 +222,9 @@
     <file path="F:/GoD/src/gameserver/trs/gameserver/serverpackets/ExPVPMatchCCMyRecord.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1351001595180" ignored="false" />
     <file path="F:/GoD/src/gameserver/trs/gameserver/Config.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1351001595180" ignored="false" />
     <file path="F:/GoD/src/gameserver/trs/gameserver/serverpackets/ExPlayAnimation.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1351001595180" ignored="false" />
-    <file path="/Dummy.txt" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1351000424809" ignored="false" />
+    <file path="/Dummy.txt" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1388748878543" ignored="false" />
     <file path="F:/GoD/src/gameserver/trs/gameserver/serverpackets/ExSendUIEvent.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1351000207974" ignored="false" />
-    <file path="/ExSendUIEvent.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1351000205287" ignored="false" />
+    <file path="/ExSendUIEvent.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388019480" ignored="false" />
     <file path="/a.dummy" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1350829287229" ignored="false" />
     <file path="F:/mmocore/aionserver/gameserver/src/main/java/gameserver/managers/WorldManager.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1350828602914" ignored="false" />
     <file path="/WorldManager.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1350828600156" ignored="false" />
@@ -591,6 +574,129 @@
     <file path="F:/mmocore/l2server.git/gameserver/src/main/java/org/mmocore/gameserver/model/entity/boat/ClanAirShip.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1350474926679" ignored="false" />
     <file path="F:/mmocore/l2server.git/gameserver/src/main/java/org/mmocore/gameserver/model/CommandChannel.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1350474926679" ignored="false" />
     <file path="/l2game_tauti.xml" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1350744752345" ignored="false" />
+    <file path="/fragment.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1374320935062" ignored="false" />
+    <file path="/L2Game Freya.xml" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1374332912910" ignored="false" />
+    <file path="/l2game_highfive5.xml" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1374333986832" ignored="false" />
+    <file path="/l2game_lingvidor.xml" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1378931812810" ignored="false" />
+    <file path="/l2game_episodian.xml" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375359795051" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/actor/instances/player/BlockList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387819925" ignored="false" />
+    <file path="/BlockList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387689663" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/RequestBlock.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385869944" ignored="false" />
+    <file path="/RequestBlock.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385530591" ignored="false" />
+    <file path="F:/GodWorld.git/dist/gameserver/data/scripts/services/community/ManageFriends.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386203076" ignored="false" />
+    <file path="/ManageFriends.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386201561" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/Player.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388924646" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/dao/CharacterBlockDAO.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387121742" ignored="false" />
+    <file path="/CharacterBlockDAO.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387118662" ignored="false" />
+    <file path="F:/GodWorld.git/dist/tools/sql-game/install/character_blocks.sql" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386911615" ignored="false" />
+    <file path="/character_blocks.sql" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386876758" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/dao/PlayerDAO.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386101024" ignored="false" />
+    <file path="/PlayerDAO.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385831764" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/BlockList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385869944" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/actor/instances/player/AbstractRelationListWithMemo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385931912" ignored="false" />
+    <file path="/AbstractRelationList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385931598" ignored="false" />
+    <file path="/AbstractRelationListWithMemo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375385917225" ignored="false" />
+    <file path="F:/GodWorld.git/dist/gameserver/data/scripts/npc/model/residences/castle/ChamberlainDarkInstance.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386249308" ignored="false" />
+    <file path="/ChamberlainDarkInstance.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386248055" ignored="false" />
+    <file path="F:/GodWorld.git/dist/gameserver/data/scripts/npc/model/residences/castle/ChamberlainLightInstance.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386255255" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/Say2C.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386321473" ignored="false" />
+    <file path="/Say2C.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386320915" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/TradeRequest.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386329488" ignored="false" />
+    <file path="/TradeRequest.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386328881" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/RequestExSendPost.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386341632" ignored="false" />
+    <file path="/RequestExSendPost.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386341136" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/RequestBR_PresentBuyProduct.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386350713" ignored="false" />
+    <file path="/RequestBR_PresentBuyProduct.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386350060" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/RequestFriendInvite.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386359193" ignored="false" />
+    <file path="/RequestFriendInvite.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386358705" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExBlockAddResult.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386700443" ignored="false" />
+    <file path="/ExBlockAddResult.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386694687" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/dao/CharacterFriendDAO.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375386933055" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/clientpackets/RequestUpdateBlockMemo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387331835" ignored="false" />
+    <file path="/RequestUpdateBlockMemo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387331498" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/GamePacketHandler.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387307310" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExBlockRemoveResult.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387673070" ignored="false" />
+    <file path="/ServerPacketOpcode.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388267846" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/components/ServerPacketOpcode.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388267846" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExBR_AgathionEnergyInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387846590" ignored="false" />
+    <file path="/ExBR_AgathionEnergyInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387846238" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExReceiveShowPostFriend.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387891403" ignored="false" />
+    <file path="/ExReceiveShowPostFriend.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387870158" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExReceiveOlympiad.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387898864" ignored="false" />
+    <file path="/ExReceiveOlympiad.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387898864" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExTacticalSign.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387937415" ignored="false" />
+    <file path="/ExTacticalSign.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387937031" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/Party.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387949552" ignored="false" />
+    <file path="/Party.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387949189" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExBuySellList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387989026" ignored="false" />
+    <file path="/ExBuySellList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375387989026" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExNotifyBirthDay.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388009726" ignored="false" />
+    <file path="/ExNotifyBirthDay.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388009086" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExSendUIEvent.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388024222" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExNpcQuestHtmlMessage.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388035774" ignored="false" />
+    <file path="/ExNpcQuestHtmlMessage.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388035438" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/pledge/ExSubPledgeSkillAdd.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388053232" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/pledge/ExSubPledgetSkillAdd.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388061118" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/pledge/SubUnit.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388054432" ignored="false" />
+    <file path="/ExSubPledgetSkillAdd.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388060767" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExGetBookMarkInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388095830" ignored="false" />
+    <file path="/ExGetBookMarkInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388095471" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExNotifyPremiumItem.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388106567" ignored="false" />
+    <file path="/ExNotifyPremiumItem.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388106159" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExGetPremiumItemList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388120822" ignored="false" />
+    <file path="/ExGetPremiumItemList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388118294" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/MPCC/ExMpccRoomInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388141352" ignored="false" />
+    <file path="/ExMpccRoomInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388137902" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/MPCC/ExListMpccWaiting.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388151321" ignored="false" />
+    <file path="/ExListMpccWaiting.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388151321" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExDissmissMpccRoom.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388164070" ignored="false" />
+    <file path="/ExDissmissMpccRoom.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388161911" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExManageMpccRoomMember.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388173350" ignored="false" />
+    <file path="/ExManageMpccRoomMember.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388172982" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/MPCC/ExMpccRoomMember.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388185350" ignored="false" />
+    <file path="/ExMpccRoomMember.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388184886" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExQuestItemList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388200334" ignored="false" />
+    <file path="/ExQuestItemList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388199879" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExChangeNpcState.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388215101" ignored="false" />
+    <file path="/ExChangeNpcState.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388215101" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExRotation.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388232910" ignored="false" />
+    <file path="/ExRotation.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388232362" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/party/ExAskModifyPartyLooting.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388241494" ignored="false" />
+    <file path="/ExAskModifyPartyLooting.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388241494" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/company/party/ExSetPartyLooting.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388250775" ignored="false" />
+    <file path="/ExSetPartyLooting.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388250447" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExChangeClientEffectInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388261718" ignored="false" />
+    <file path="/ExChangeClientEffectInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388259006" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExQuestNpcLogList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388276350" ignored="false" />
+    <file path="/ExQuestNpcLogList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388276350" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExVoteSystemInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388291801" ignored="false" />
+    <file path="/ExVoteSystemInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388291398" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExConfirmAddingPostFriend.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388308246" ignored="false" />
+    <file path="/ExConfirmAddingPostFriend.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388308246" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExChangeToAwakenedClass.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388328001" ignored="false" />
+    <file path="/ExChangeToAwakenedClass.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388327598" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExShowUsmVideo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388341012" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExShowUsm.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388384550" ignored="false" />
+    <file path="F:/GodWorld.git/dist/gameserver/data/scripts/quests/_10360_CertificationofFate.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388342879" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/instances/NpcInstance.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388372974" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/components/UsmVideo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388362779" ignored="false" />
+    <file path="/NpcInstance.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388369692" ignored="false" />
+    <file path="/ExShowUsm.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388384550" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExIsCharNameCreatable.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388398959" ignored="false" />
+    <file path="/ExIsCharNameCreatable.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388397958" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExNotifyFlyMoveStart.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388412961" ignored="false" />
+    <file path="/ExNotifyFlyMoveStart.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388410574" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExVitalityEffectInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388425598" ignored="false" />
+    <file path="/ExVitalityEffectInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388425255" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExLoginVitalityEffectInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388436413" ignored="false" />
+    <file path="/ExLoginVitalityEffectInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388434534" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExAbnormalStatusUpdateFromTargetPacket.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388468710" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/ExAbnormalStatusUpdateFromTarget.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388892223" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/model/EffectList.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388825660" ignored="false" />
+    <file path="/ExAbnormalStatusUpdateFromTarget.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388882735" ignored="false" />
+    <file path="/Player.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375388924005" ignored="false" />
+    <file path="F:/GodWorld.git/gameserver/src/main/java/l2p/gameserver/network/serverpackets/CharInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375389323989" ignored="false" />
+    <file path="/CharInfo.java" changelist="6a76865f-32f4-405e-8d83-898f8fe5fd21" time="1375389177130" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -617,6 +723,7 @@
         <option name="ENABLED" value="false" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
         <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
@@ -633,6 +740,7 @@
         <option name="ENABLED" value="false" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
         <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
@@ -644,7 +752,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -659,28 +766,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="l2game_highfive5.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
+      <file leaf-file-name="l2game_lingvidor.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_lingvidor.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="979" column="0" selection-start="31951" selection-end="32113" vertical-scroll-proportion="0.0">
+            <state line="3" column="100" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="l2game_tauti.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_tauti.xml">
+      <file leaf-file-name="l2game_episodian.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_episodian.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="609" column="27" selection-start="22246" selection-end="22246" vertical-scroll-proportion="0.0">
+            <state line="70" column="78" selection-start="2373" selection-end="2373" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="l2game_awakening.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
+      <file leaf-file-name="L2Game Freya.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resource/protocols/L2Game Freya.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1035" column="35" selection-start="36535" selection-end="36535" vertical-scroll-proportion="0.018973215">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="l2game_final.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="420" column="35" selection-start="13844" selection-end="13849" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -696,13 +812,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitLogSettings">
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/infos/L2ItemWithCount.java" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/listeners/L2NpcStateListener.java" />
-        <option value="$PROJECT_DIR$/java/com/jds/jn/gui2/PacketMassAnallize/listeners/FileTypeListener.java" />
-        <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/ItemNameHolder.java" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/SkillNameHolder.java" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/holders/NpcNameHolder.java" />
         <option value="$PROJECT_DIR$/java/com/jds/jn/Jn.java" />
@@ -712,9 +829,13 @@
         <option value="$PROJECT_DIR$/java/com/jds/jn/classes/CLoader.java" />
         <option value="$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2AbstractListener.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_final.xml" />
-        <option value="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
         <option value="$PROJECT_DIR$/java/com/jds/jn/network/packets/DecryptedPacket.java" />
         <option value="$PROJECT_DIR$/resource/protocols/l2game_tauti.xml" />
+        <option value="$PROJECT_DIR$/resource/protocols/L2Game Freya.xml" />
+        <option value="$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml" />
+        <option value="$PROJECT_DIR$/java-test/com/jds/jn/LogConverter.java" />
+        <option value="$PROJECT_DIR$/resource/protocols/l2game_episodian.xml" />
+        <option value="$PROJECT_DIR$/resource/protocols/l2game_lingvidor.xml" />
       </list>
     </option>
   </component>
@@ -727,9 +848,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="32" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="y" value="-8" />
+    <option name="width" value="1770" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -775,88 +896,12 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="jn" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn-module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn-module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn_module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn-module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="com" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn_module" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -901,40 +946,14 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="libs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jn" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="files" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -954,7 +973,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
@@ -962,16 +981,17 @@
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="preferences.sourceCode.Java" />
-    <property name="last_opened_file_path" value="F:/mmocore/l2server.git" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PublishConfig" persistUploadOnCheckin="false" />
   <component name="RecentsManager">
@@ -1028,19 +1048,6 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method />
-    </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" output_log_level="null" package_name="" scope="Class">
-      <option name="BCName" value="" />
-      <option name="launcherParameters">
-        <LauncherParameters>
-          <option name="browserFamily" value="FIREFOX" />
-          <option name="launcherType" value="OSDefault" />
-          <option name="playerPath" value="FlashPlayerDebugger.exe" />
-        </LauncherParameters>
-      </option>
-      <option name="moduleName" value="" />
-      <option name="trusted" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
@@ -1111,7 +1118,12 @@
       <module name="jn" />
       <envs />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="6385" />
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
         <option name="TRANSPORT" value="0" />
         <option name="LOCAL" value="true" />
       </RunnerSettings>
@@ -1119,6 +1131,7 @@
         <option name="myExternalizedOptions" value="&#13;&#10;additional-options2=onexit\=snapshot&#13;&#10;startup=12&#13;&#10;" />
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Profile " />
       <ConfigurationWrapper RunnerId="Run" />
@@ -1166,6 +1179,11 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="StructuralSearchPlugin">
     <searchConfiguration name="user defined" text=".updateUI()" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
     <searchConfiguration name="user defined" text="updateUI()" recursive="true" caseInsensitive="true" type="JAVA" history="1" />
@@ -1247,6 +1265,21 @@
       <changelist id="6a76865f-32f4-405e-8d83-898f8fe5fd21" name="Default" comment="" />
       <created>1296334152249</created>
       <updated>1296334152249</updated>
+      <workItem from="1374320886384" duration="642000" />
+      <workItem from="1374332449410" duration="2108000" />
+      <workItem from="1374336607968" duration="15000" />
+      <workItem from="1374528265370" duration="687000" />
+      <workItem from="1374529686954" duration="9000" />
+      <workItem from="1374748596290" duration="241000" />
+      <workItem from="1374750937293" duration="30000" />
+      <workItem from="1374754117717" duration="1082000" />
+      <workItem from="1375279066790" duration="409000" />
+      <workItem from="1375282636973" duration="163000" />
+      <workItem from="1375359134345" duration="745000" />
+      <workItem from="1375385175723" duration="1258000" />
+      <workItem from="1378920862069" duration="3266000" />
+      <workItem from="1378936945667" duration="18000" />
+      <workItem from="1388748877765" duration="509000" />
     </task>
     <task id="LOCAL-00001" summary="correct packet">
       <created>1350402246761</created>
@@ -1254,6 +1287,9 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="11182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1276,33 +1312,35 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="32" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1770" height="1096" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.103125" sideWeight="0.67089945" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19427083" sideWeight="0.6710098" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31270358" sideWeight="0.0" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37903225" sideWeight="0.0" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.49791667" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.67098165" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42888165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32804233" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995194" sideWeight="0.39805827" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2484375" sideWeight="0.6872964" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24800456" sideWeight="0.62096775" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3061889" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="92" y="132" width="1736" height="856" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28333333" sideWeight="0.67089945" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.67098165" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.6710098" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32899022" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32899022" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1311,7 +1349,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32790446" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Kotlin" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Notes" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32995194" sideWeight="0.67098165" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42888165" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1344,7 +1381,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
-    <option name="SHORT_DIFF_HORISONTALLY" value="true" />
+    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
     <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
@@ -1352,6 +1389,12 @@
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
+    <option name="UPDATE_FILTER_SCOPE_NAME" />
+    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
+    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
+    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" value="correct packet" />
@@ -1365,6 +1408,7 @@
     <option name="ACTIVE_VCS_NAME" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
+    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="+ added L2ProductListener" />
@@ -1433,77 +1477,28 @@
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
     <buildFile url="file://$PROJECT_DIR$/build.xml">
-      <antCommandLine value="" />
-      <runInBackground value="true" />
-      <targetFilters />
-      <treeView value="true" />
-      <verbose value="true" />
-      <viewClosedWhenNoErrors value="false" />
+      <targetFilters>
+        <filter targetName="make" isVisible="true" />
+        <filter targetName="jpcap.jar" isVisible="true" />
+        <filter targetName="jribbon.jar" isVisible="true" />
+        <filter targetName="jn.jar" isVisible="true" />
+        <filter targetName="jn-resources.jar" isVisible="true" />
+        <filter targetName="main" isVisible="false" />
+      </targetFilters>
       <expanded value="true" />
     </buildFile>
     <buildFile url="file://$PROJECT_DIR$/../jn-module/build.xml">
-      <antCommandLine value="" />
-      <runInBackground value="true" />
-      <targetFilters />
-      <treeView value="true" />
-      <verbose value="true" />
-      <viewClosedWhenNoErrors value="false" />
+      <targetFilters>
+        <filter targetName="clean" isVisible="true" />
+        <filter targetName="make" isVisible="true" />
+        <filter targetName="compile" isVisible="true" />
+        <filter targetName="jar" isVisible="true" />
+        <filter targetName="main" isVisible="false" />
+      </targetFilters>
       <expanded value="true" />
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/config/RValues.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="144" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/classes/CLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="30" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.16517857" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resource/files/packet_readers/lineage2/L2AbstractListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="38" selection-start="309" selection-end="309" vertical-scroll-proportion="0.018973215" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/data/xml/parser/ProtocolParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="34" selection-start="1548" selection-end="1548" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../jn-module/java/com/jds/jn_module/network/session/Sequenced.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="19" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../jn-module/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="65" selection-start="689" selection-end="689" vertical-scroll-proportion="0.43914473">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/parser/formattree/Part.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="25" selection-start="1515" selection-end="1515" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/parser/formattree/PartContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="13" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/parser/formattree/Format.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="19" selection-start="384" selection-end="384" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/parser/formattree/ForPart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="20" selection-start="1856" selection-end="1856" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/com/jds/jn/network/packets/DecryptedPacket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="163" column="48" selection-start="5248" selection-end="5248" vertical-scroll-proportion="0.0" />
@@ -1511,35 +1506,89 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../jn-module/java/com/jds/jn_module/JnModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="13" selection-start="260" selection-end="260" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../jn-module/java/com/jds/jn_module/utils/OSUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="134" selection-end="134" vertical-scroll-proportion="0.1328125">
-          <folding />
-        </state>
+        <state line="7" column="13" selection-start="134" selection-end="134" vertical-scroll-proportion="0.1328125" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
+    <entry file="file://$PROJECT_DIR$/java-test/com/jds/jn/JnTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="979" column="0" selection-start="31951" selection-end="32113" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="20" column="23" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/util/StringHexBuffer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="11" selection-start="263" selection-end="263" vertical-scroll-proportion="0.050988555" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/logs/readers/PLogReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="49" selection-start="2384" selection-end="2384" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_tauti.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="609" column="27" selection-start="22246" selection-end="22246" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/logs/readers/JNL2Reader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="13" selection-start="894" selection-end="894" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/com/jds/jn/classes/compiler/Compiler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="54" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar://I:/Programs/jdk6/src.zip!/javax/tools/ToolProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="31" selection-start="832" selection-end="832" vertical-scroll-proportion="0.32466182" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_highfive5.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="39" selection-start="1226" selection-end="1226" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_awakening.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1035" column="35" selection-start="36535" selection-end="36535" vertical-scroll-proportion="0.018973215">
+        <state line="1053" column="43" selection-start="37150" selection-end="37150" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_final.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="420" column="35" selection-start="13844" selection-end="13849" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_lingvidor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="100" selection-start="99" selection-end="99" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/l2game_episodian.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="78" selection-start="2373" selection-end="2373" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/protocols/L2Game Freya.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1585,7 +1634,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Libs</last-edited>
+          <last-edited>Consulo 1.SNAPSHOT</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

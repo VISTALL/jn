@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Jn (Java sNiffer)
+  ~ Copyright (C) 2013 napile.org
+  ~
+  ~ This program is free software; you can redistribute it and/or
+  ~ modify it under the terms of the GNU General Public License
+  ~ as published by the Free Software Foundation; either version 2
+  ~ of the License.
+  ~
+  ~ This program is distributed in the hope that it will be useful,
+  ~ but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~ GNU General Public License for more details.
+  ~
+  ~ You should have received a copy of the GNU General Public License
+  ~ along with this program; if not, write to the Free Software
+  ~ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+  -->
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
+<protocol crypt="L2Game" name="l2game_episodian" extends="l2game_lingvidor">
+	<macro id="item">
+		<part name="obj_id" type="d"/>
+		<part name="item_id" type="d">
+			<reader type="ItemName"/>
+		</part>
+		<part name="equip_slot" type="c"/>
+		<part name="count" type="Q"/>
+		<part name="item type 2" type="c"/>
+		<part name="custom item type 1" type="c"/>
+		<part name="is Equiped" type="h"/>
+		<part name="bodypart" type="d"/>
+		<part name="enchant" type="c"/>
+		<part name="custom item type 1" type="c"/>
+		<part name="augId" type="h"/>
+		<part name="augId" type="h"/>
+		<part name="lifeLeft" type="d"/>
+		<part name="timeLeft" type="d"/>
+		<part name="enabled" type="c"/>
+		<part name="attackElement" type="h"/>
+		<part name="attackElement" type="h"/>
+		<part name="water" type="h"/>
+		<part name="fire" type="h"/>
+		<part name="earth" type="h"/>
+		<part name="wind" type="h"/>
+		<part name="dark" type="h"/>
+		<part name="holy" type="h"/>
+		<part name="enchanteffect1" type="h"/>
+		<part name="enchanteffect2" type="h"/>
+		<part name="enchanteffect3" type="h"/>
+		<part name="skin" type="d"/>
+	</macro>
+
+	<macro id="paperdoll">
+		<for fixed="26">
+			<part name="item-info" type="d" />
+		</for>
+	</macro>
+
+	<macro id="paperdoll-skin">
+		<for fixed="9">
+			<part name="item-info" type="d" />
+		</for>
+	</macro>
+
+	<packetfamilly way="SERVER">
+		<packet id="09" name="CharacterSelectionInfo">
+			<part name="size" type="d" id="0"/>
+			<part name="0x07" type="d"/>
+			<part name="?" type="c"/>
+			<part name="cant create" type="c"/>
+			<part name="?" type="c"/>
+			<part name="?" type="d"/>
+			<for id="0">
+				<part name="name" type="S"/>
+				<part name="charId" type="d"/>
+				<part name="login" type="S"/>
+				<part name="sessionId" type="d"/>
+				<part name="clanId" type="d"/>
+				<part name="?" type="d"/>
+				<part name="sex" type="d"/>
+				<part name="race" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="active" type="d"/>
+				<part name="x" type="d"/>
+				<part name="y" type="d"/>
+				<part name="z" type="d"/>
+				<part name="cur_hp" type="D"/>
+				<part name="cur_mp" type="D"/>
+				<part name="sp" type="d"/>
+				<part name="exp" type="Q"/>
+				<part name="?" type="D"/>
+				<part name="level" type="d"/>
+				<part name="karma" type="d"/>
+				<part name="pk kills" type="d"/>
+				<part name="pvp kills" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+
+				<macro id="paperdoll" name="equip" />
+
+				<macro id="paperdoll-skin" name="equip-skin" />
+
+				<part name="?" type="d" />
+				<part name="?" type="d" />
+				<part name="?" type="h" />
+
+				<part name="hair_style" type="d"/>
+				<part name="hair_color" type="d"/>
+				<part name="face" type="d"/>
+				<part name="maxHP" type="D"/>
+				<part name="maxMP" type="D"/>
+				<part name="deleteTimer" type="d"/>
+				<part name="classId" type="d"/>
+				<part name="active" type="d"/>
+				<part name="enchant" type="c"/>
+				<part name="aurgmentationId" type="d"/>
+				<part name="transformId" type="d"/>
+				<part name="npcId" type="d"/>
+				<part name="level" type="d"/>
+				<part name="?" type="d"/>
+				<part name="?" type="d"/>
+				<part name="maxHP" type="D"/>
+				<part name="currentHP" type="D"/>
+				<part name="vitality" type="d"/>
+				<part name="active" type="d"/>
+			</for>
+		</packet>
+		<packet id="E5" name="HennaInfo">
+			<part name="INT" type="c"/>
+			<part name="STR" type="c"/>
+			<part name="CON" type="c"/>
+			<part name="MEN" type="c"/>
+			<part name="DEX" type="c"/>
+			<part name="WIT" type="c"/>
+			<part name="slots" type="d"/>
+			<part id="0" name="size" type="d"/>
+			<for id="0">
+				<part name="symbolId" type="d"/>
+				<part name="isValidSymbolId" type="d"/>
+			</for>
+			<part name="?" type="d"/>
+			<part name="?" type="h"/>
+			<part name="?" type="h"/>
+		</packet>
+		<packet id="FE;00B8" name="ExBuySellListPacket">
+			<part name="type" type="d" id="1"/>
+			<switch id="1">
+				<case id="0">
+					<part name="money" type="Q"/>
+					<part name="listId" type="d"/>
+					<part name="slots" type="d"/>
+					<part name="buy_size" type="h" id="0"/>
+					<for id="0" name="buyList">
+						<macro id="item"/>
+						<part name="price" type="Q"/>
+					</for>
+				</case>
+				<case id="1">
+					<part name="slots" type="d"/>
+					<part name="sell_size" type="h" id="2"/>
+					<for id="2">
+						<macro id="item" name="item"/>
+						<part name="price" type="Q"/>
+					</for>
+					<part name="refund_size" type="h" id="3"/>
+					<for id="3">
+						<macro id="item" name="item"/>
+						<part name="refune_id" type="d"/>
+						<part name="price" type="Q"/>
+					</for>
+					<part name="end" type="c"/>
+				</case>
+			</switch>
+		</packet>
+	</packetfamilly>
+</protocol>
