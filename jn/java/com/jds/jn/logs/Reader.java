@@ -87,7 +87,7 @@ public class Reader
 
 		if (returnVal == JFileChooser.APPROVE_OPTION)
 		{
-			JActionListener.handle(JActionEvent.OPEN_SELECT_FILE, this, chooser.getSelectedFile());
+			JActionListener.handle(JActionEvent.OPEN_SELECT_LOG_FILE, this, chooser.getSelectedFile());
 		}
 	}
 

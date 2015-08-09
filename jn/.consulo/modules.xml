@@ -9,6 +9,7 @@
             <content-folder type="PRODUCTION" url="file://$MODULE_DIR$/java" />
             <content-folder type="PRODUCTION_RESOURCE" url="file://$MODULE_DIR$/java-resource" />
             <content-folder type="TEST" url="file://$MODULE_DIR$/java-test" />
+            <content-folder type="PRODUCTION" url="file://$MODULE_DIR$/resource/files" />
           </content>
           <orderEntry type="module-extension-sdk" extension-id="java" />
           <orderEntry type="sourceFolder" />

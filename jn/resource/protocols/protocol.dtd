@@ -2,6 +2,7 @@
 <!ELEMENT protocol (macro|packetfamilly|global_listeners|session_listeners)*>
 <!ATTLIST protocol
 	crypt CDATA #REQUIRED
+	order CDATA #IMPLIED
 	name CDATA #REQUIRED
 	extends CDATA #IMPLIED>
 <!ELEMENT macro (part|for)*>

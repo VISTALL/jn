@@ -44,13 +44,21 @@ public class DecryptedPacket implements IPacket
 	private final byte[] _decryptedData;
 	private final byte[] _cryptedData;
 	private final long _time;
+	private final String myForceName;
 	private final PacketType _packetType;
 
 	public DecryptedPacket(Session session, PacketType type, byte[] data, long time, Protocol protocol, boolean decode)
 	{
+		this(session, type, data, time, protocol, decode, null, null);
+	}
+
+	public DecryptedPacket(Session session, PacketType type, byte[] data, long time, Protocol protocol, boolean decode, PacketInfo forcePacketInfo,
+			String forceName)
+	{
 		_packetType = type;
 		_cryptedData = data;
 		_time = time;
+		myForceName = forceName;
 
 		byte[] decrypted = Arrays.copyOf(data, data.length);
 		_decryptedData = decode ? session.getCrypt().decrypt(decrypted, type, session) : decrypted;
@@ -59,7 +67,7 @@ public class DecryptedPacket implements IPacket
 		NioBuffer buf = NioBuffer.wrap(_decryptedData);
 		buf.order(protocol.getOrder());
 
-		_packetFormat = protocol.getPacketInfo(this, buf);
+		_packetFormat = forcePacketInfo == null ? protocol.getPacketInfo(this, buf) : forcePacketInfo;
 		if(_packetFormat != null)
 		{
 			try
@@ -81,8 +89,14 @@ public class DecryptedPacket implements IPacket
 
 	public String getName()
 	{
+		if(myForceName != null)
+		{
+			return myForceName;
+		}
 		if (getPacketInfo() == null)
+		{
 			return null;
+		}
 
 		return getPacketInfo().getName();
 	}

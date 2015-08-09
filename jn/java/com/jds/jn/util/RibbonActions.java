@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -26,6 +27,7 @@ import com.jds.jn.config.RValues;
 import com.jds.jn.data.xml.parser.ProtocolParser;
 import com.jds.jn.gui.JActionEvent;
 import com.jds.jn.gui.JActionListener;
+import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.gui2.FindPacket.listeners.FPOpenListener;
 import com.jds.jn.gui2.PacketMassAnallize.PacketMassAnalysisDialog;
 import com.jds.jn.logs.Reader;
@@ -95,8 +97,8 @@ public abstract class RibbonActions
 		JRibbonBand animationBand = new JRibbonBand(Bundle.getString("Files"), new SimpleResizableIcon(RibbonElementPriority.MEDIUM, 30, 30));
 		animationBand.setResizePolicies(CoreRibbonResizePolicies.getCorePoliciesNone(animationBand));
 
-		JCommandButton opnFile = new JCommandButton(Bundle.getString("Open"), ImageStatic.FILE_48x48);
-		opnFile.addActionListener(new ActionListener()
+		JCommandButton openLogFile = new JCommandButton(Bundle.getString("Open"), ImageStatic.FILE_48x48);
+		openLogFile.addActionListener(new ActionListener()
 		{
 
 			@Override
@@ -106,10 +108,28 @@ public abstract class RibbonActions
 			}
 		});
 
+		JCommandButton openFile = new JCommandButton("Open File", ImageStatic.FILE_48x48);
+		openFile.addActionListener(new ActionListener()
+		{
+
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				final JFileChooser chooser = new JFileChooser(RValues.LAST_FOLDER.asString());
+
+				final int returnVal = chooser.showOpenDialog(MainForm.getInstance());
+				if (returnVal == JFileChooser.APPROVE_OPTION)
+				{
+					JActionListener.handle(JActionEvent.OPEN_SELECT_FILE, this, chooser.getSelectedFile());
+				}
+			}
+		});
+
 		JCommandButton searchPacket = new JCommandButton(Bundle.getString("SearchPacket"), ImageStatic.SEARCH_PACKET_48x48);
 		searchPacket.addActionListener(FPOpenListener.STATIC);
 
-		animationBand.addCommandButton(opnFile, RibbonElementPriority.TOP);
+		animationBand.addCommandButton(openLogFile, RibbonElementPriority.TOP);
+		animationBand.addCommandButton(openFile, RibbonElementPriority.TOP);
 		animationBand.addCommandButton(searchPacket, RibbonElementPriority.TOP);
 		return animationBand;
 	}
@@ -260,7 +280,7 @@ public abstract class RibbonActions
 						@Override
 						public void actionPerformed(ActionEvent e)
 						{
-							JActionListener.handle(JActionEvent.OPEN_SELECT_FILE, e.getSource(), file);
+							JActionListener.handle(JActionEvent.OPEN_SELECT_LOG_FILE, e.getSource(), file);
 						}
 					});
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE protocol SYSTEM "protocol.dtd">
+<protocol name="Unity" crypt="Null" order="BIG_ENDIAN">
+	<packetfamilly way="CLIENT">
+		<packet id="00" name="Any">
+			<part name="metadataSize" type="d" />
+			<part name="fileSize" type="ud" />
+			<part name="versionInfo" type="d" />
+			<part name="dataOffset" type="ud" />
+			<part name="endianness" type="c" />
+			<part name="reserved1" type="c" />
+			<part name="reserved2" type="c" />
+			<part name="reserved3" type="c" />
+		</packet>
+	</packetfamilly>
+
+	<packetfamilly way="SERVER">
+
+	</packetfamilly>
+</protocol>

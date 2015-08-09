@@ -1,12 +1,13 @@
 package com.jds.jn.gui;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.pushingpixels.flamingo.api.common.JCommandButton;
-
 import com.jds.jn.Jn;
 import com.jds.jn.config.LastFiles;
 import com.jds.jn.config.RValues;
@@ -20,11 +21,17 @@ import com.jds.jn.logs.Writer;
 import com.jds.jn.network.listener.ListenerSystem;
 import com.jds.jn.network.listener.types.ListenerType;
 import com.jds.jn.network.listener.types.ReceiveType;
+import com.jds.jn.network.packets.DecryptedPacket;
+import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.network.profiles.NetworkProfiles;
+import com.jds.jn.protocol.Protocol;
+import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.jn.session.Session;
 import com.jds.jn.util.ImageStatic;
 import com.jds.jn.util.RibbonActions;
 import com.jds.jn.util.RunnableImpl;
 import com.jds.jn.util.ThreadPoolManager;
+import com.jds.jn.util.Util;
 
 /**
  * Author: VISTALL
@@ -133,7 +140,7 @@ public class JActionListener
 			case CLEAR_LAST_FILES:
 				LastFiles.clearFiles();
 				break;
-			case OPEN_SELECT_FILE:
+			case OPEN_SELECT_LOG_FILE:
 				final File files = (File) arg[0];
 				if (files == null)
 				{
@@ -148,6 +155,9 @@ public class JActionListener
 						openSession(files);
 					}
 				});
+				break;
+			case OPEN_SELECT_FILE:
+				openSessionAndAddFile(arg);
 				break;
 			case ADD_PROFILE:
 				final NetworkSettingsDialog d = (NetworkSettingsDialog) arg[0];
@@ -171,6 +181,47 @@ public class JActionListener
 			LastFiles.addLastFile(file.getAbsolutePath());
 			RValues.LAST_FOLDER.setVal(file.getAbsolutePath().replace(file.getName(), ""));
 			Reader.getInstance().read(file, Reader.DEFAULT_READER_LISTENER);
+		}
+		catch (Exception e)
+		{
+			MainForm.getInstance().warn("Failed to open file " + e.getMessage(), e);
+		}
+	}
+
+	public static void openSessionAndAddFile(Object[] args)
+	{
+		final File file = (File) args[0];
+		if (file == null)
+		{
+			return;
+		}
+
+		try
+		{
+			LastFiles.addLastFile(file.getAbsolutePath());
+			RValues.LAST_FOLDER.setVal(file.getAbsolutePath().replace(file.getName(), ""));
+
+			Session session = new Session(ListenerType.Game_Server, Util.positiveRandom());
+
+			FileInputStream fileInputStream = new FileInputStream(file);
+			int available = fileInputStream.available();
+			byte[] bytes = new byte[available];
+			int read = fileInputStream.read(bytes);
+			assert read == available;
+
+			Protocol protocol = session.getProtocol();
+			Collection<PacketInfo> famillyPackets = protocol.getFamillyPackets(PacketType.CLIENT);
+			PacketInfo packetInfo = null;
+			if(!famillyPackets.isEmpty())
+			{
+				packetInfo = famillyPackets.iterator().next();
+			}
+			DecryptedPacket packet = new DecryptedPacket(session, PacketType.CLIENT, bytes, System.currentTimeMillis(), protocol, true, packetInfo,
+					file.getName());
+
+			session.receiveQuitPacket(packet, true, true);
+
+			Reader.DEFAULT_READER_LISTENER.onFinish(session, file);
 		}
 		catch (Exception e)
 		{
