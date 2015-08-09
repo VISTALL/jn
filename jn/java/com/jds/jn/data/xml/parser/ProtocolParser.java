@@ -13,6 +13,7 @@ import com.jds.jn.config.RValues;
 import com.jds.jn.data.xml.holder.ProtocolHolder;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.PartTypeManager;
+import com.jds.jn.parser.formattree.AlignPart;
 import com.jds.jn.parser.formattree.ChangeOrderPart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.IfPart;
@@ -250,6 +251,17 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				parseParts(element, newForPart.getModelBlock());
 
 				container.addPart(newForPart);
+			}
+			else if(element.getName().equals("align"))
+			{
+				try
+				{
+					container.addPart(new AlignPart(Integer.parseInt(element.attributeValue("val", "0"))));
+				}
+				catch(Exception e)
+				{
+					throw new Error(e);
+				}
 			}
 			else if(element.getName().equals("changeOrder"))
 			{

@@ -19,6 +19,7 @@ public abstract class PartType
 
 	public static final PartType b = new RawPartType("b");
 
+	public static final PartType align = new BlockPartType("align");
 	public static final PartType order = new BlockPartType("order");
 	public static final PartType ifBlock = new BlockPartType("ifBlock");
 	public static final PartType forBlock = new BlockPartType("forblock");

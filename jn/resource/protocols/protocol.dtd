@@ -20,19 +20,19 @@
 <!ELEMENT packetfamilly (packet)*>
 <!ATTLIST packetfamilly
 	way CDATA #REQUIRED>
-<!ELEMENT packet (part|for|switch|macro|changeOrder|if)*>
+<!ELEMENT packet (part|for|switch|macro|changeOrder|if|align)*>
 <!ATTLIST packet
 	id CDATA #REQUIRED
 	key CDATA #IMPLIED
 	server_list CDATA #IMPLIED
 	extended CDATA #IMPLIED
 	name CDATA #REQUIRED>
-<!ELEMENT for (part|macro|switch|for|if)*>
+<!ELEMENT for (part|macro|switch|for|if|align)*>
 <!ATTLIST for
 	id CDATA #IMPLIED
 	fixed CDATA #IMPLIED
 	name CDATA #IMPLIED>
-<!ELEMENT if (part|macro|switch|for|if)*>
+<!ELEMENT if (part|macro|switch|for|if|align)*>
 <!ATTLIST if
 	field CDATA #REQUIRED
 	op CDATA #REQUIRED
@@ -41,6 +41,9 @@
 <!ELEMENT changeOrder (#PCDATA)>
 <!ATTLIST changeOrder
 	order CDATA #REQUIRED>
+<!ELEMENT align (#PCDATA)>
+<!ATTLIST align
+	val CDATA #REQUIRED>
 <!ATTLIST switch
 	id CDATA #REQUIRED>
 <!ELEMENT case (part|for|macro)*>

@@ -7,14 +7,17 @@
 
 	<packetfamilly way="CLIENT">
 		<packet id="00" name="Any">
+			<!--header-->
 			<part name="metadataSize" type="d"/>
 			<part name="fileSize" type="ud"/>
-			<part name="versionInfo" type="d"/>
+			<part name="version" type="d"/>
 			<part name="dataOffset" type="ud"/>
 			<part name="endianness" type="c"/>
 			<part name="reserved1" type="c"/>
 			<part name="reserved2" type="c"/>
 			<part name="reserved3" type="c"/>
+
+			<!-- typeTreeStruct -->
 			<!--unity 5-->
 			<changeOrder order="LITTLE_ENDIAN"/>
 			<!--unity > 6 -->
@@ -36,16 +39,36 @@
 					<part name="stringTableLen" type="d" id="4"/>
 					<for id="3">
 						<!--unity 13-->
-						<part name="version" type="h" />
-						<part name="treeLevel" type="uc"  />
-						<part name="array" type="c"  />
-						<part name="typeOffset" type="d"  />
-						<part name="nameOffset" type="d"  />
-						<part name="size" type="d"  />
-						<part name="index" type="d"  />
-						<part name="metaFlag" type="d"  />
+						<part name="version" type="h"/>
+						<part name="treeLevel" type="uc"/>
+						<part name="array" type="c"/>
+						<part name="typeOffset" type="d"/>
+						<part name="nameOffset" type="d"/>
+						<part name="size" type="d"/>
+						<part name="index" type="d"/>
+						<part name="metaFlag" type="d"/>
 					</for>
-					<part name="stringTable" type="b" sizeid="4" />
+					<part name="stringTable" type="b" sizeid="4"/>
+				</if>
+			</for>
+
+			<!--objectInfoStruct-->
+			<part name="objectInfoStructSize" type="d" id="5"/>
+			<if field="version" op="GT" value="13">
+				<align val="4" />
+			</if>
+			<for id="5">
+				<!--unity 13-->
+				<part name="pathID" type="Q"/>
+
+				<part name="offset" type="ud"/>
+				<part name="length" type="ud"/>
+				<part name="typeID" type="d"/>
+				<part name="classID" type="h"/>
+				<part name="isDestroyed" type="h"/>
+
+				<if field="version" op="GT" value="14">
+					<part name="unknown14" type="d"/>
 				</if>
 			</for>
 		</packet>

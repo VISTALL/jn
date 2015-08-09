@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.apache.log4j.Logger;
 import com.jds.jn.gui.forms.MainForm;
 import com.jds.jn.parser.datatree.*;
+import com.jds.jn.parser.formattree.AlignPart;
 import com.jds.jn.parser.formattree.ChangeOrderPart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.IfPart;
@@ -47,7 +48,13 @@ public class DecryptedPacket implements IPacket
 		this(session, type, data, time, protocol, decode, null, null);
 	}
 
-	public DecryptedPacket(Session session, PacketType type, byte[] data, long time, Protocol protocol, boolean decode, PacketInfo forcePacketInfo,
+	public DecryptedPacket(Session session,
+			PacketType type,
+			byte[] data,
+			long time,
+			Protocol protocol,
+			boolean decode,
+			PacketInfo forcePacketInfo,
 			String forceName)
 	{
 		_packetType = type;
@@ -69,12 +76,13 @@ public class DecryptedPacket implements IPacket
 			{
 				parse(protocol, buf);
 			}
-			catch (BufferUnderflowException e)
+			catch(BufferUnderflowException e)
 			{
 				_error = "Insuficient data for the specified format";
-				MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format.");
+				MainForm.getInstance().info("Parsing packet (" + getName() + "), insuficient data for the specified format. Please verify the format" +
+						".");
 			}
-			catch (Exception e)
+			catch(Exception e)
 			{
 				_error = "Exception: " + e.getMessage();
 				_log.info("Exception: " + e, e);
@@ -88,7 +96,7 @@ public class DecryptedPacket implements IPacket
 		{
 			return myForceName;
 		}
-		if (getPacketInfo() == null)
+		if(getPacketInfo() == null)
 		{
 			return null;
 		}
@@ -115,24 +123,26 @@ public class DecryptedPacket implements IPacket
 
 	private boolean parse(Protocol protocol, NioBuffer buff, PartContainer protocolNode, DataTreeNodeContainer dataNode)
 	{
-		for (Part part : protocolNode.getParts())
+		for(Part part : protocolNode.getParts())
 		{
-			if (part instanceof ForPart)
+			if(part instanceof ForPart)
 			{
-				ForPart forPart = (ForPart)part;
+				ForPart forPart = (ForPart) part;
 				int size = 0;
 				if(forPart.getFixedSize() > 0)
+				{
 					size = forPart.getFixedSize();
+				}
 				else
 				{
 					// find the size of this for in the scope
 					ValuePart vp = dataNode.getPacketValuePartById(forPart.getForId());
-					if (vp == null)
+					if(vp == null)
 					{
 						_error = "Error: could not find valuepart to loop on for (For " + part.getName() + " - id:" + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 						return false;
 					}
-					if (!(vp instanceof VisualValuePart))
+					if(!(vp instanceof VisualValuePart))
 					{
 						_error = "Error: for id didnt refer to an IntValePart in (For " + part.getName() + " - id:" + forPart.getForId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 						return false;
@@ -141,65 +151,82 @@ public class DecryptedPacket implements IPacket
 				}
 
 				//check size here
-				if (forPart.getModelBlock().hasConstantLength())
+				if(forPart.getModelBlock().hasConstantLength())
 				{
 					int forBlockSize = forPart.getModelBlock().getLength();
-					if (size * forBlockSize > buff.remaining())
+					if(size * forBlockSize > buff.remaining())
 					{
-						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" +/* part.getContainingFormat().getPacketInfo() +*/ "]";
+						_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") " +
+								"in [" +/* part.getContainingFormat().getPacketInfo() +*/ "]";
 						return false;
 					}
 				}
-				else if (size > buff.remaining())
+				else if(size > buff.remaining())
 				{
-					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in [" + /*part.getContainingFormat().getPacketInfo() + */"]";
+					_error = "Error size is too big (" + size + ") for For (Part Name: " + part.getName() + " - Id: " + forPart.getForId() + ") in " +
+							"[" + /*part.getContainingFormat().getPacketInfo() + */"]";
 					return false;
 				}
 				DataForPart dataForPart = new DataForPart(dataNode, forPart);
-				for (int i = 0; i < size; i++)
+				for(int i = 0; i < size; i++)
 				{
 					DataForBlock forBlock = new DataForBlock(dataForPart, forPart.getModelBlock(), i, size);
-					if (!parse(protocol, buff, forPart.getModelBlock(), forBlock))
+					if(!parse(protocol, buff, forPart.getModelBlock(), forBlock))
+					{
 						return false;
+					}
 				}
 			}
 			else if(part instanceof ChangeOrderPart)
 			{
 				buff = buff.order(((ChangeOrderPart) part).getByteOrder());
 			}
-			else if (part instanceof MacroPart)
+			else if(part instanceof MacroPart)
 			{
-				MacroInfo macro = protocol.getMacroInfo(((MacroPart)part).getMacroId());
+				MacroInfo macro = protocol.getMacroInfo(((MacroPart) part).getMacroId());
 				if(macro == null)
 				{
-					_error = "Not find macro by id: " + ((MacroPart)part).getMacroId();
+					_error = "Not find macro by id: " + ((MacroPart) part).getMacroId();
 					return false;
 				}
 
-				if (macro.getModelBlock().hasConstantLength())
+				if(macro.getModelBlock().hasConstantLength())
 				{
 					int macroSize = macro.getModelBlock().getLength();
-					if (macroSize > buff.remaining())
+					if(macroSize > buff.remaining())
 					{
-						_error =  "Incorrect buffer to read macro " + part.getName();
+						_error = "Incorrect buffer to read macro " + part.getName();
 						return false;
 					}
 				}
 
-				DataMacroPart macroPart = new DataMacroPart(dataNode, (MacroPart)part);
-				if (!parse(protocol, buff, macro.getModelBlock(), macroPart))
+				DataMacroPart macroPart = new DataMacroPart(dataNode, (MacroPart) part);
+				if(!parse(protocol, buff, macro.getModelBlock(), macroPart))
+				{
 					return false;
+				}
+			}
+			else if(part instanceof AlignPart)
+			{
+				int align = ((AlignPart) part).getAlign();
+
+				int pos = buff.position();
+				int rem = pos % align;
+				if(rem != 0)
+				{
+					buff.position(pos + align - rem);
+				}
 			}
 			else if(part instanceof IfPart)
 			{
 				//find the actual type
 				DataTreeNode vp = dataNode.getPartByNameDeep(((IfPart) part).getFieldName(), false);
-				if (vp == null)
+				if(vp == null)
 				{
 					_error = ((IfPart) part).getFieldName() + " is not found";
 					return false;
 				}
-				if (!(vp instanceof VisualValuePart))
+				if(!(vp instanceof VisualValuePart))
 				{
 					_error = "Field " + ((IfPart) part).getFieldName() + " is not visual";
 					return false;
@@ -216,37 +243,42 @@ public class DecryptedPacket implements IPacket
 					}
 				}
 			}
-			else if (part instanceof SwitchPart)
+			else if(part instanceof SwitchPart)
 			{
 				//find the actual type
 				ValuePart vp = dataNode.getPacketValuePartById(((SwitchPart) part).getSwitchId());
-				if (vp == null)
+				if(vp == null)
 				{
-					_error = "Error: could not find valuepart to switch on for Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+					_error = "Error: could not find valuepart to switch on for Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part)
+							.getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
-				if (!(vp instanceof VisualValuePart))
+				if(!(vp instanceof VisualValuePart))
 				{
-					_error = "Error: swicth id didnt refer to an IntValePart in Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+					_error = "Error: swicth id didnt refer to an IntValePart in Switch (Part: " + part.getName() + " - id:" + ((SwitchPart) part)
+							.getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
 				SwitchCaseBlock caseBlockFormat = ((SwitchPart) part).getCase(((VisualValuePart) vp).getValueAsInt());
-				if (caseBlockFormat == null)
+				if(caseBlockFormat == null)
 				{
-					_error = "Error: no such case: " + ((VisualValuePart) vp).getValueAsInt() + " for (Switch " + part.getName() + " - id:" + ((SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
+					_error = "Error: no such case: " + ((VisualValuePart) vp).getValueAsInt() + " for (Switch " + part.getName() + " - id:" + (
+							(SwitchPart) part).getSwitchId() + ") in [" + part.getContainingFormat().getPacketInfo() + "]";
 					return false;
 				}
 
 				DataSwitchBlock caseBlock = new DataSwitchBlock(dataNode, caseBlockFormat, vp);
-				if (!parse(protocol, buff, caseBlockFormat, caseBlock))
+				if(!parse(protocol, buff, caseBlockFormat, caseBlock))
+				{
 					return false;
+				}
 			}
-			else if (part instanceof PartContainer)
+			else if(part instanceof PartContainer)
 			{
 				_error = "Error: Unparsed new type of PartContainer (" + this.getClass().getSimpleName() + ")";
 				return false;
 			}
-			else if (part.getType() != null && part.getType().isReadableType())
+			else if(part.getType() != null && part.getType().isReadableType())
 			{
 				ValuePart vp = part.getType().getValuePart(dataNode, part);
 				vp.parse(buff, this);
@@ -305,31 +337,31 @@ public class DecryptedPacket implements IPacket
 
 	public float getFloat(String s)
 	{
-		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsFloat();
+		return ((VisualValuePart) getRootNode().getPartByName(s)).getValueAsFloat();
 	}
 
 	public double getDouble(String s)
 	{
-		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsDouble();
+		return ((VisualValuePart) getRootNode().getPartByName(s)).getValueAsDouble();
 	}
 
 	public int getInt(String s)
 	{
-		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsInt();
+		return ((VisualValuePart) getRootNode().getPartByName(s)).getValueAsInt();
 	}
 
 	public long getLong(String s)
 	{
-		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsLong();
+		return ((VisualValuePart) getRootNode().getPartByName(s)).getValueAsLong();
 	}
 
 	public String getString(String s)
 	{
-		return ((VisualValuePart)getRootNode().getPartByName(s)).getValueAsString();
+		return ((VisualValuePart) getRootNode().getPartByName(s)).getValueAsString();
 	}
 
 	public byte[] getBytes(String s)
 	{
-		return ((RawValuePart)getRootNode().getPartByName(s)).getBytes();
+		return ((RawValuePart) getRootNode().getPartByName(s)).getBytes();
 	}
 }
