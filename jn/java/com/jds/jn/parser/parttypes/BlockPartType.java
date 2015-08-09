@@ -10,21 +10,9 @@ import com.jds.jn.parser.formattree.Part;
  */
 public class BlockPartType extends PartType
 {
-	public enum blockType
-	{
-		forblock,
-		ifBlock,
-		switchblock,
-		block,
-		macroBlock
-	}
-
-	private blockType _type;
-
-	public BlockPartType(String name, blockType type)
+	public BlockPartType(String name)
 	{
 		super(name);
-		_type = type;
 	}
 
 	@Override
@@ -45,10 +33,7 @@ public class BlockPartType extends PartType
 		return PartValueType.BLOB;
 	}
 
-	public blockType getType()
-	{
-		return _type;
-	}
+
 
 	@Override
 	public int getTypeByteNumber()

@@ -4,7 +4,6 @@ package com.jds.jn.parser.parttypes;
 import com.jds.jn.parser.datatree.DataTreeNodeContainer;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.Part;
-import com.jds.jn.parser.parttypes.BlockPartType.blockType;
 
 
 public abstract class PartType
@@ -20,12 +19,12 @@ public abstract class PartType
 
 	public static final PartType b = new RawPartType("b");
 
-	public static final PartType order = new BlockPartType("order", blockType.block);
-	public static final PartType ifBlock = new BlockPartType("ifBlock", blockType.forblock);
-	public static final PartType forBlock = new BlockPartType("forblock", blockType.forblock);
-	public static final PartType macroBlock = new BlockPartType("macroblock", blockType.macroBlock);
-	public static final PartType swicthBlock = new BlockPartType("switchblock", blockType.switchblock);
-	public static final PartType block = new BlockPartType("block", blockType.block);
+	public static final PartType order = new BlockPartType("order");
+	public static final PartType ifBlock = new BlockPartType("ifBlock");
+	public static final PartType forBlock = new BlockPartType("forblock");
+	public static final PartType macroBlock = new BlockPartType("macroblock");
+	public static final PartType swicthBlock = new BlockPartType("switchblock");
+	public static final PartType block = new BlockPartType("block");
 
 	public PartType(String name)
 	{

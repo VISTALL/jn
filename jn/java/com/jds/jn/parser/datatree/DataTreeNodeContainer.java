@@ -95,6 +95,38 @@ public class DataTreeNodeContainer extends DataTreeNode
 		return null;
 	}
 
+	public DataTreeNode getPartByNameDeep(String name, boolean enterSwitch)
+	{
+		for (DataTreeNode node : getNodes())
+		{
+			if (name.equals(node.getModelPart().getName()))
+			{
+				return node;
+			}
+
+			if (enterSwitch && node instanceof DataTreeNodeContainer && node.getModelPart().getType() == PartType.swicthBlock)
+			{
+				DataTreeNode partByName = ((DataTreeNodeContainer) node).getPartByNameDeep(name, true);
+				if(partByName != null)
+				{
+					return partByName;
+				}
+			}
+		}
+
+		DataTreeNodeContainer parentContainer = getParentContainer();
+		if(parentContainer != null)
+		{
+			DataTreeNode partByNameDeep = parentContainer.getPartByNameDeep(name, enterSwitch);
+			if(partByNameDeep != null)
+			{
+				return partByNameDeep;
+			}
+		}
+
+		return null;
+	}
+
 	public DataTreeNode getPartById(int id)
 	{
 		return getPartById(id, false);

@@ -193,7 +193,7 @@ public class DecryptedPacket implements IPacket
 			else if(part instanceof IfPart)
 			{
 				//find the actual type
-				DataTreeNode vp = dataNode.getPartByName(((IfPart) part).getFieldName());
+				DataTreeNode vp = dataNode.getPartByNameDeep(((IfPart) part).getFieldName(), false);
 				if (vp == null)
 				{
 					_error = ((IfPart) part).getFieldName() + " is not found";
@@ -207,10 +207,10 @@ public class DecryptedPacket implements IPacket
 
 				int valueAsInt = ((VisualValuePart) vp).getValueAsInt();
 
-				if(((IfPart) part).getOperator().test(((IfPart) part).getValue(), valueAsInt))
+				if(((IfPart) part).getOperator().test(valueAsInt, ((IfPart) part).getValue()))
 				{
-					DataIfPart caseBlock = new DataIfPart(dataNode, (IfPart) part);
-					if(!parse(protocol, buff, (PartContainer) part, caseBlock))
+					DataIfPart ifPart = new DataIfPart(dataNode, (IfPart) part);
+					if(!parse(protocol, buff, (PartContainer) part, ifPart))
 					{
 						return false;
 					}

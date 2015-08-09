@@ -7,6 +7,7 @@ import com.jds.jn.parser.datatree.DataTreeNode;
 import com.jds.jn.parser.datatree.DataTreeNodeContainer;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.IfPart;
 import com.jds.jn.parser.formattree.MacroPart;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 
@@ -67,6 +68,10 @@ public class DataPartNode extends DefaultMutableTreeTableNode
 			{
 				ForPart part = (ForPart) _node.getModelPart();
 				return "For: " + part.getForId();
+			}
+			else if (_node.getModelPart() instanceof IfPart)
+			{
+				return _node.toString();
 			}
 			else if (_node.getModelPart() instanceof MacroPart)
 			{

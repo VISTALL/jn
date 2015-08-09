@@ -34,7 +34,7 @@
 <!ELEMENT if (part|macro|switch|for|if)*>
 <!ATTLIST if
 	field CDATA #REQUIRED
-	operator CDATA #REQUIRED
+	op CDATA #REQUIRED
 	value CDATA #REQUIRED>
 <!ELEMENT switch (case)*>
 <!ELEMENT changeOrder (#PCDATA)>

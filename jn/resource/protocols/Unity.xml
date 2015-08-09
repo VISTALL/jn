@@ -23,18 +23,27 @@
 			<!--unity > 13-->
 			<part name="embedded" type="c"/>
 			<part name="numBaseClasses" type="d" id="0"/>
-			<for id="0">
+			<for fixed="1">
 				<part name="classID" type="d" id="1"/>
 				<!--if classID < 0 need read scriptID 16 bytes -->
-				<if field="classID" operator="LT" value="0">
+				<if field="classID" op="LT" value="0">
 					<macro id="hash16" name="scriptID"/>
 				</if>
 				<macro id="hash16" name="oldTypeHash"/>
-				<if field="embedded" operator="EQ" value="1">
+				<if field="embedded" op="EQ" value="1">
 					<!--unity 13-->
-					<part name="numFields" type="d"/>
+					<part name="numFields" type="d" id="3"/>
 					<part name="stringTableLen" type="d"/>
-
+					<!--<for id="3">  -->
+						<!--unity 13-->
+						<!--<part name="version" type="h" />
+						<part name="treeLevel" type="uc"  />
+						<part name="array" type="c"  />
+						<part name="typeOffset" type="d"  />
+						<part name="nameOffset" type="d"  />
+						<part name="size" type="d"  />
+						<part name="metaFlag" type="d"  />
+					</for>  -->
 				</if>
 			</for>
 		</packet>
