@@ -15,6 +15,7 @@ public class BlockPartType extends PartType
 		forblock,
 		switchblock,
 		block,
+		order,
 		macroBlock
 	}
 

@@ -13,6 +13,7 @@ import com.jds.jn.parser.datatree.DataTreeNodeContainer;
 import com.jds.jn.parser.datatree.RawValuePart;
 import com.jds.jn.parser.datatree.ValuePart;
 import com.jds.jn.parser.datatree.VisualValuePart;
+import com.jds.jn.parser.formattree.ChangeOrderPart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.MacroPart;
 import com.jds.jn.parser.formattree.Part;
@@ -167,6 +168,10 @@ public class DecryptedPacket implements IPacket
 					if (!parse(protocol, buff, forPart.getModelBlock(), forBlock))
 						return false;
 				}
+			}
+			else if(part instanceof ChangeOrderPart)
+			{
+				buff = buff.order(((ChangeOrderPart) part).getByteOrder());
 			}
 			else if (part instanceof MacroPart)
 			{

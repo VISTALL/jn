@@ -13,6 +13,7 @@ import com.jds.jn.config.RValues;
 import com.jds.jn.data.xml.holder.ProtocolHolder;
 import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.PartTypeManager;
+import com.jds.jn.parser.formattree.ChangeOrderPart;
 import com.jds.jn.parser.formattree.ForPart;
 import com.jds.jn.parser.formattree.MacroPart;
 import com.jds.jn.parser.formattree.Part;
@@ -20,13 +21,13 @@ import com.jds.jn.parser.formattree.PartContainer;
 import com.jds.jn.parser.formattree.SwitchCaseBlock;
 import com.jds.jn.parser.formattree.SwitchPart;
 import com.jds.jn.parser.packetfactory.IPacketListener;
-import com.jds.jn.util.ClassUtil;
 import com.jds.jn.parser.packetreader.PacketReader;
 import com.jds.jn.parser.valuereader.ValueReader;
 import com.jds.jn.protocol.Protocol;
 import com.jds.jn.protocol.protocoltree.MacroInfo;
 import com.jds.jn.protocol.protocoltree.PacketFamilly;
 import com.jds.jn.protocol.protocoltree.PacketInfo;
+import com.jds.jn.util.ClassUtil;
 import com.jds.jn.util.xml.AbstractDirParser;
 
 /**
@@ -128,9 +129,13 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				protocol.addMacro(part);
 			}
 			else if(element.getName().equals("global_listeners"))
+			{
 				protocol.setGlobalListeners(ClassUtil.newInstancesFrom(listClasses(element)));
+			}
 			else if(element.getName().equals("session_listeners"))
+			{
 				protocol.setSessionListeners(listClasses(element));
+			}
 		}
 	}
 
@@ -150,9 +155,13 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 					{
 						Class<?> clazz = CLoader.getInstance().forName("packet_readers." + value);
 						if(IPacketListener.class.isAssignableFrom(clazz))
-							classes.add((Class<IPacketListener>)clazz);
+						{
+							classes.add((Class<IPacketListener>) clazz);
+						}
 						else
+						{
 							info("Class: " + value + " is not instanceof IPacketListener");
+						}
 					}
 					catch(Exception e)
 					{
@@ -183,7 +192,9 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				boolean dynBSize = false;
 				String atr = element.attributeValue("size");
 				if(atr != null)
+				{
 					size = Integer.decode(atr);
+				}
 				else
 				{
 					atr = element.attributeValue("sizeid");
@@ -213,9 +224,13 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				Part part = new Part(PartTypeManager.getInstance().getType(type), id, name, invert);
 				part.setDynamicBSize(dynBSize);
 				if(dynBSize)
+				{
 					part.setBSizeId(sizeid);
+				}
 				else
+				{
 					part.setBSize(size);
+				}
 
 				part.setReader(r);
 				container.addPart(part);
@@ -234,6 +249,18 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				parseParts(element, newForPart.getModelBlock());
 
 				container.addPart(newForPart);
+			}
+			else if(element.getName().equals("changeOrder"))
+			{
+				try
+				{
+					container.addPart(new ChangeOrderPart((ByteOrder) ByteOrder.class.getField(element.attributeValue("order",
+							"LITTLE_ENDIAN")).get(null)));
+				}
+				catch(Exception e)
+				{
+					throw new Error(e);
+				}
 			}
 			else if(element.getName().equals("switch"))
 			{
@@ -257,7 +284,9 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 						SwitchCaseBlock newSwitchCase;
 
 						if(caseIdString.equalsIgnoreCase("default"))
+						{
 							newSwitchCase = new SwitchCaseBlock(newSwitchBlock);
+						}
 						else
 						{
 							int caseId = Integer.decode(caseDefaultElement.attributeValue("id"));

@@ -19,7 +19,7 @@
 <!ELEMENT packetfamilly (packet)*>
 <!ATTLIST packetfamilly
 	way CDATA #REQUIRED>
-<!ELEMENT packet (part|for|switch|macro)*>
+<!ELEMENT packet (part|for|switch|macro|changeOrder)*>
 <!ATTLIST packet
 	id CDATA #REQUIRED
 	key CDATA #IMPLIED
@@ -32,6 +32,9 @@
 	fixed CDATA #IMPLIED
 	name CDATA #IMPLIED>
 <!ELEMENT switch (case)*>
+<!ELEMENT changeOrder (#PCDATA)>
+<!ATTLIST changeOrder
+	order CDATA #REQUIRED>
 <!ATTLIST switch
 	id CDATA #REQUIRED>
 <!ELEMENT case (part|for|macro)*>
