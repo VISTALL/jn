@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE protocol SYSTEM "protocol.dtd">
 <protocol name="Unity" crypt="Null" order="BIG_ENDIAN">
+	<macro id="hash16">
+		<part name="bytes" type="b" size="16" />
+	</macro>
+
 	<packetfamilly way="CLIENT">
 		<packet id="00" name="Any">
 			<part name="metadataSize" type="d" />
@@ -11,6 +15,22 @@
 			<part name="reserved1" type="c" />
 			<part name="reserved2" type="c" />
 			<part name="reserved3" type="c" />
+			<!--unity 5-->
+			<changeOrder order="LITTLE_ENDIAN" />
+			<!--unity > 6 -->
+			<part name="unityVersion" type="ls" size="255" />
+			<part name="attributes" type="d"  />
+			<!--unity > 13-->
+			<part name="embedded" type="c" />
+			<part name="numBaseClasses" type="d" id="0"/>
+			<for id="0">
+				<part name="classID" type="d" id="1"/>
+				<!--if classID < 0 need read scriptID 16 bytes -->
+				<switch id="1">
+
+				</switch>
+				<macro id="hash16" name="oldTypeHash" />
+			</for>
 		</packet>
 	</packetfamilly>
 
