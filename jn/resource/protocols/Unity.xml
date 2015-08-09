@@ -71,6 +71,16 @@
 					<part name="unknown14" type="d"/>
 				</if>
 			</for>
+
+			<if field="version" op="GT" value="13">
+				<align val="4" />
+				<part name="unknown13_block" type="d" id="6"/>
+				<for id="6">
+					<part name="unknown13_block_1" type="d"/>
+					<part name="unknown13_block_2" type="d"/>
+					<part name="unknown13_block_3" type="d"/>
+				</for>
+			</if>
 		</packet>
 	</packetfamilly>
 
