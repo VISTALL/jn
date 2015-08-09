@@ -13,9 +13,9 @@ public class BlockPartType extends PartType
 	public enum blockType
 	{
 		forblock,
+		ifBlock,
 		switchblock,
 		block,
-		order,
 		macroBlock
 	}
 

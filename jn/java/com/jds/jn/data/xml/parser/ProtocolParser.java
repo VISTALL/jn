@@ -15,6 +15,7 @@ import com.jds.jn.network.packets.PacketType;
 import com.jds.jn.parser.PartTypeManager;
 import com.jds.jn.parser.formattree.ChangeOrderPart;
 import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.IfPart;
 import com.jds.jn.parser.formattree.MacroPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
@@ -261,6 +262,19 @@ public class ProtocolParser extends AbstractDirParser<ProtocolHolder>
 				{
 					throw new Error(e);
 				}
+			}
+			else if(element.getName().equals("if"))
+			{
+				String fieldName = element.attributeValue("field", "null");
+				IfPart.Operator operator = IfPart.Operator.valueOf(element.attributeValue("op", "eq").toUpperCase());
+				int value = Integer.decode(element.attributeValue("value"));
+
+				IfPart part = new IfPart(fieldName, operator, value);
+				part.setParentContainer(container);
+				part.setContainingFormat(container.getContainingFormat());
+
+				parseParts(element, part);
+				container.addPart(part);
 			}
 			else if(element.getName().equals("switch"))
 			{

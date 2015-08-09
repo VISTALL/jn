@@ -5,16 +5,10 @@ import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 import com.jds.jn.gui.forms.MainForm;
-import com.jds.jn.parser.datatree.DataForBlock;
-import com.jds.jn.parser.datatree.DataForPart;
-import com.jds.jn.parser.datatree.DataMacroPart;
-import com.jds.jn.parser.datatree.DataSwitchBlock;
-import com.jds.jn.parser.datatree.DataTreeNodeContainer;
-import com.jds.jn.parser.datatree.RawValuePart;
-import com.jds.jn.parser.datatree.ValuePart;
-import com.jds.jn.parser.datatree.VisualValuePart;
+import com.jds.jn.parser.datatree.*;
 import com.jds.jn.parser.formattree.ChangeOrderPart;
 import com.jds.jn.parser.formattree.ForPart;
+import com.jds.jn.parser.formattree.IfPart;
 import com.jds.jn.parser.formattree.MacroPart;
 import com.jds.jn.parser.formattree.Part;
 import com.jds.jn.parser.formattree.PartContainer;
@@ -195,6 +189,32 @@ public class DecryptedPacket implements IPacket
 				DataMacroPart macroPart = new DataMacroPart(dataNode, (MacroPart)part);
 				if (!parse(protocol, buff, macro.getModelBlock(), macroPart))
 					return false;
+			}
+			else if(part instanceof IfPart)
+			{
+				//find the actual type
+				DataTreeNode vp = dataNode.getPartByName(((IfPart) part).getFieldName());
+				if (vp == null)
+				{
+					_error = ((IfPart) part).getFieldName() + " is not found";
+					return false;
+				}
+				if (!(vp instanceof VisualValuePart))
+				{
+					_error = "Field " + ((IfPart) part).getFieldName() + " is not visual";
+					return false;
+				}
+
+				int valueAsInt = ((VisualValuePart) vp).getValueAsInt();
+
+				if(((IfPart) part).getOperator().test(((IfPart) part).getValue(), valueAsInt))
+				{
+					DataIfPart caseBlock = new DataIfPart(dataNode, (IfPart) part);
+					if(!parse(protocol, buff, (PartContainer) part, caseBlock))
+					{
+						return false;
+					}
+				}
 			}
 			else if (part instanceof SwitchPart)
 			{

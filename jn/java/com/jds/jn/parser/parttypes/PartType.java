@@ -20,7 +20,8 @@ public abstract class PartType
 
 	public static final PartType b = new RawPartType("b");
 
-	public static final PartType order = new BlockPartType("order", blockType.order);
+	public static final PartType order = new BlockPartType("order", blockType.block);
+	public static final PartType ifBlock = new BlockPartType("ifBlock", blockType.forblock);
 	public static final PartType forBlock = new BlockPartType("forblock", blockType.forblock);
 	public static final PartType macroBlock = new BlockPartType("macroblock", blockType.macroBlock);
 	public static final PartType swicthBlock = new BlockPartType("switchblock", blockType.switchblock);

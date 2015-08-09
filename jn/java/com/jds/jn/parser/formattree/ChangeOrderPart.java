@@ -14,7 +14,7 @@ public class ChangeOrderPart extends Part
 
 	public ChangeOrderPart(ByteOrder byteOrder)
 	{
-		super(PartType.order);
+		super(PartType.block);
 		myByteOrder = byteOrder;
 	}
 
